@@ -14,7 +14,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"com.web.icook", "forum"})
+@ComponentScan(basePackages = {"com.web.icook", "forum","recipe"})
 public class WebAppConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public ViewResolver internalResourViewResolver() {
@@ -37,7 +37,6 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		CommonsMultipartResolver resolver = new CommonsMultipartResolver();
 		resolver.setDefaultEncoding("UTF-8");
 		resolver.setMaxUploadSize(81920000);
-
 		return resolver;
 	}
 }
