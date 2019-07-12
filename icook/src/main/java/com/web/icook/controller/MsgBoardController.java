@@ -213,7 +213,7 @@ public class MsgBoardController {
 		// 重要事項-end
 //		System.out.println("msgBoardbean====="+msgBoardbean.toString());
 		msgservice.insertIcookMsgBoard(msgBoardbean);
-		return "article";
+		return "A_article";
 	}
 
 }

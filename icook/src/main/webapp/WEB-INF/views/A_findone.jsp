@@ -49,7 +49,7 @@
 
 
 	<form:form method="POST" modelAttribute="modelMsginsert"
-		enctype="multipart/form-data" action="/icookarticle/Msginsert">
+		enctype="multipart/form-data" action="/icook/Msginsert">
 
 		<table>
 

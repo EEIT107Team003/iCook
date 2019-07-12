@@ -22,7 +22,7 @@
 
 <body bgcolor='black'>
 	<form:form method="POST" modelAttribute="ArticlebeanUpdate"
-		action="/icookarticle/updateAfterSelete" class='form-horizontal'
+		action="/icook/A_updateAfterSelete" class='form-horizontal'
 		enctype="multipart/form-data">
 		<table border="3px" bgcolor='#CCEEFF'>
 			<thead>

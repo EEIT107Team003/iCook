@@ -76,7 +76,7 @@ public class AticleController {
 //		return "selectpage";
 //	}
 	
-	@RequestMapping("/findAll") // 指向index href裡面
+	@RequestMapping("/A_findAll") // 指向index href裡面
 	public String list(Model model) {
 		List<ArticleBean> list = arcicleservice.getAllArticles();
 		model.addAttribute("Articles", list);
@@ -100,7 +100,7 @@ public class AticleController {
 		
 		arcicleservice.deleteIcookArticle(articlebean);
 
-		return "redirect:/A_article";/* 讓瀏覽器再次發出請求，呼叫successPage.jsp檔案 */
+		return "A_article";/* 讓瀏覽器再次發出請求，呼叫successPage.jsp檔案 */
 	}// end of processAddNewProductForm mathod
 
 	@RequestMapping(value = "/A_select", method = RequestMethod.GET)
@@ -225,7 +225,8 @@ public class AticleController {
 		arcicleservice.updateIcookArticle(articlebean);
 
 		// 將上傳的檔案移到指定的資料夾
-		return "redirect:/A_article";/* 讓瀏覽器再次發出請求，呼叫successPage.jsp檔案 */
+		return "A_article";/* 讓瀏覽器再次發出請求，呼叫successPage.jsp檔案 */
+		
 	}// end of processAddNewProductForm mathod
 
 	/* 跟 <a href="insert">新增</a> 有關 */
@@ -283,7 +284,7 @@ public class AticleController {
 		arcicleservice.insertIcookArticle(articlebean);
 
 		// 將上傳的檔案移到指定的資料夾
-		return "redirect:/A_article";/* 讓瀏覽器再次發出請求，呼叫successPage.jsp檔案 */
+		return "A_article";/* 讓瀏覽器再次發出請求，呼叫successPage.jsp檔案 */
 	}// end of processAddNewProductForm mathod
 
 	@RequestMapping(value = "/getPicture/{article_num}", method = RequestMethod.GET)
