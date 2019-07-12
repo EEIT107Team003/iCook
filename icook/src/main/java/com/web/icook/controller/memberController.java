@@ -48,7 +48,7 @@ public class memberController {
 	// 會員首頁
 	@RequestMapping("/user")
 	public String user(@ModelAttribute("MemberBean") MemberBean bean, Model model) {
-		if (getPrincipal() != "anonymousUser") {
+		if (getPrincipal().equals("anonymousUser")) {
 			bean = service.selectByUsername(getPrincipal());
 			String nickname = bean.getNickname();
 			int member_id = bean.getMember_id();
@@ -100,41 +100,44 @@ public class memberController {
 	}
 
 	// 修改大頭貼
-	@RequestMapping(value = "/updateMemberPhoto", method = RequestMethod.GET)
-	public String updateMemberPhoto(Model model) {
-		MemberBean bean = service.selectByUsername(getPrincipal());
-		model.addAttribute("MemberBean", bean);
-
-		return "user";
-	}
-
-	@RequestMapping(value = "/updateMemberPhoto", method = RequestMethod.POST)
-	public String updateMemberPhoto(@ModelAttribute("MemberBean") MemberBean bean, Model model) {
-		MultipartFile memberImage = bean.getMember_photo_tr();
-		// 完整檔名
-		if (memberImage != null && !memberImage.isEmpty()) {
-			String originalFilename = memberImage.getOriginalFilename();
-//				System.out.println(bean.getMember_id() + "  222222222222222222222222222222222");
-			// 副檔名
-			String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
-			// 跟目錄路徑
-			String rootDirectory = context.getRealPath("/");
-			try {
-				byte[] b = memberImage.getBytes();
-				Blob blob = new SerialBlob(b);
-				bean.setFileName_member(originalFilename);
-				bean.setMember_photo(blob);
-			} catch (Exception e) {
-				e.printStackTrace();
-				throw new RuntimeException("檔案上傳發生異常:" + e.getMessage());
-			}
-
-			service.updateMember_photo(bean);
-			return "redirect:/user";
-		} else {
-			return "redirect:/user";
-		}
-	}
+	
+	
+	
+//	@RequestMapping(value = "/updateMemberPhoto", method = RequestMethod.GET)
+//	public String updateMemberPhoto(Model model) {
+//		MemberBean bean = service.selectByUsername(getPrincipal());
+//		model.addAttribute("MemberBean", bean);
+//
+//		return "user";
+//	}
+//
+//	@RequestMapping(value = "/updateMemberPhoto", method = RequestMethod.POST)
+//	public String updateMemberPhoto(@ModelAttribute("MemberBean") MemberBean bean, Model model) {
+//		MultipartFile memberImage = bean.getMember_photo_tr();
+//		// 完整檔名
+//		if (memberImage != null && !memberImage.isEmpty()) {
+//			String originalFilename = memberImage.getOriginalFilename();
+////				System.out.println(bean.getMember_id() + "  222222222222222222222222222222222");
+//			// 副檔名
+//			String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
+//			// 跟目錄路徑
+//			String rootDirectory = context.getRealPath("/");
+//			try {
+//				byte[] b = memberImage.getBytes();
+//				Blob blob = new SerialBlob(b);
+//				bean.setFileName_member(originalFilename);
+//				bean.setMember_photo(blob);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//				throw new RuntimeException("檔案上傳發生異常:" + e.getMessage());
+//			}
+//
+//			service.updateMember_photo(bean);
+//			return "redirect:/user";
+//		} else {
+//			return "redirect:/user";
+//		}
+//	}
 
 	// 修改封面圖片
 	@RequestMapping(value = "/updateCoverPhoto", method = RequestMethod.GET)
