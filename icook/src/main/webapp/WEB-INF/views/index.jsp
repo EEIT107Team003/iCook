@@ -20,6 +20,7 @@
 		<p>其他會員</p>
 		<a href="members">會員首頁</a>
 		<%-- 	<a href="member?member_id=${member_id}">會員首頁</a> --%>
+		<a href="A_article">文章首頁</a>
 	</div>
 </body>
 </html>
