@@ -17,7 +17,7 @@ public interface MemberDAO {
 
 	void updateMember(MemberBean bean);
 
-	MemberBean selectByUsername(String username); 
+	MemberBean selectByUsername(String username);  
 
 	void updateMember_photo(MemberBean bean);
 
