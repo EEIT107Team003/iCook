@@ -27,7 +27,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan("com.web.icook")
+@ComponentScan(basePackages = {"com.web.icook", "forum"})
 public class RootAppConfig {
 	@Bean
 	public DataSource dataSource() {
@@ -50,7 +50,7 @@ public class RootAppConfig {
 	public LocalSessionFactoryBean sessionFactory() {
 		LocalSessionFactoryBean factory = new LocalSessionFactoryBean();
 		factory.setDataSource(dataSource());
-		factory.setPackagesToScan(new String[] { "com.web.icook.model" });
+		factory.setPackagesToScan(new String[] { "com.web.icook.model" , "forum.model"});
 		factory.setHibernateProperties(additionalProperties());
 		return factory;
 	}
@@ -61,7 +61,7 @@ public class RootAppConfig {
 		properties.put("hibernate.show_sql", Boolean.TRUE);
 		properties.put("hibernate.format_sql", Boolean.TRUE);
 		properties.put("default_batch_fetch_size", 10);
-		properties.put("hibernate.hbm2ddl.auto", "update");
+		properties.put("hibernate.hbm2ddl.auto", "create");
 		return properties;
 	}
 

@@ -23,6 +23,8 @@ import javax.sql.rowset.serial.SerialBlob;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import forum.model.ForumMainBean;
+
 @Entity
 @Table(name = "members")
 public class MemberBean implements Serializable {
@@ -63,7 +65,8 @@ public class MemberBean implements Serializable {
 	// ------------------------------------------------------------------------
 	private Set<MyTrackBean> tracker = new LinkedHashSet<>();
 	private Set<MyTrackBean> tracked = new LinkedHashSet<>();
-
+	// ------------------------------------------------------------------------
+	private Set<ForumMainBean> article = new LinkedHashSet<>();
 //	private Set<RecipeBean> recipe = new LinkedHashSet<>();
 //	private Set<CollectRecipe> recipe_Collecter = new LinkedHashSet<>();
 
@@ -267,5 +270,14 @@ public class MemberBean implements Serializable {
 
 	public void setCover_photo_tr(MultipartFile cover_photo_tr) {
 		this.cover_photo_tr = cover_photo_tr;
+	}
+	
+	@OneToMany(mappedBy = "memberBean")
+	public Set<ForumMainBean> getArticle() {
+		return article;
+	}
+
+	public void setArticle(Set<ForumMainBean> article) {
+		this.article = article;
 	}
 }
