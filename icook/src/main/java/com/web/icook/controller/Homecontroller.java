@@ -47,9 +47,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.sun.xml.bind.CycleRecoverable.Context;
+import com.web.icook.model.MemberBean;
 import com.web.icook.service.MemberService;
 
 
@@ -89,4 +91,25 @@ public class Homecontroller {
 		}
 		return userName;
 	}
+
+	// --------------------------------------------------------------------------
+	// AJAX測試
+	@ResponseBody
+	@RequestMapping(value = "/category", method = RequestMethod.GET)
+	public  List<MemberBean>  categorySelect () {
+		System.out.println("======CategorySelect IN==============");
+		List<MemberBean> bean=service.selectAll();
+//	    	String nvrsjson = JSONArray.toJSONString(bean);
+		for(MemberBean bb : bean) {
+			System.out.println("name : "+bb.getNickname()+" 55555555555555555555555555");
+		}
+		System.out.println("======CategorySelect OUT=============");
+		return bean;
+	}
+
+	  
+		
+	//--------------------------------------------------------------------------
+		
+
 }
