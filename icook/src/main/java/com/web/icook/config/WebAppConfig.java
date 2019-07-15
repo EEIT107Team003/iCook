@@ -13,8 +13,10 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
+
 @EnableWebMvc
-@ComponentScan(basePackages = {"com.web.icook", "forum"})
+@ComponentScan(basePackages = {"com.web.icook", "forum","recipe"})
+
 public class WebAppConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public ViewResolver internalResourViewResolver() {
@@ -29,7 +31,8 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/views/css/");
 		registry.addResourceHandler("/member_image/**").addResourceLocations("/WEB-INF/views/member_image/");
-//		super.addResourceHandlers(registry);
+		registry.addResourceHandler("/ckeditor/**").addResourceLocations("/WEB-INF/views/ckeditor/");
+		//		super.addResourceHandlers(registry);
 	}
 
 	@Bean
@@ -37,7 +40,6 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		CommonsMultipartResolver resolver = new CommonsMultipartResolver();
 		resolver.setDefaultEncoding("UTF-8");
 		resolver.setMaxUploadSize(81920000);
-
 		return resolver;
 	}
 }

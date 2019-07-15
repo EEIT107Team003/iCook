@@ -81,6 +81,7 @@ public class MemberBean implements Serializable {
 	private MultipartFile cover_photo_tr;
 
 	// ------------------------------------------------------------------------
+
 	@OneToMany(mappedBy = "memberId", fetch = FetchType.LAZY)
 	@JsonIgnore
 	private Set<MyTrackBean> tracker = new LinkedHashSet<>();
