@@ -7,24 +7,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Insert title here</title>
+
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
 	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
 	crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
-	integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-	crossorigin="anonymous"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-	integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-	crossorigin="anonymous"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" -->
+<!-- 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" -->
+<!-- 	crossorigin="anonymous"></script> -->
+<!-- <script -->
+<!-- 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" -->
+<!-- 	integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" -->
+<!-- 	crossorigin="anonymous"></script> -->
+<!-- <script -->
+<!-- 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" -->
+<!-- 	integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" -->
+<!-- 	crossorigin="anonymous"></script> -->
 <style>
 .memberImg {
 	height: 500;
@@ -69,21 +72,85 @@
 	<br>
 	<div class=memberImg>
 		<p>修改大頭貼</p>
-		<img width='200' height='200'
-			src="<c:url value='/getMemberPhoto/${member_id}' />" />
+<!-- 		<img width='200' height='200' -->
+<%-- 			src="<c:url value='/getMemberPhoto/${member_id}' />" /> --%>
 		<form:form method="POST" action="updateMemberPhoto"
-			modelAttribute="MemberBean" enctype="multipart/form-data">
+ 			modelAttribute="MemberBean" enctype="multipart/form-data">
+<!-- 			<div> -->
+<%-- 				<form:input id="member_photo_tr" path="member_photo_tr" type='file' /> --%>
+<!-- 			</div> -->
 			<div>
-				<form:input id="member_photo_tr" path="member_photo_tr" type='file' />
-			</div>
-			<div>
-				<input id=submit type="submit" value="送出">
+				<label for="image"> 
+					<form:input type="file" path="member_photo_tr" name="image" id="image" style="display: none;" /> 
+					<img id="image2" src="<c:url value='/getMemberPhoto/${member_id}' />" width="200px" />
+				</label>
+				
+				<input id=submit1 type="submit" value="送出" style="display: none;">
 			</div>
 		</form:form>
 
-		<%-- 		<form method="POST" action="trackMe"> --%>
-		<!-- 			<button id=trackMe type="submit">加入追蹤</button> -->
-		<%-- 		</form> --%>
+
+<script>
+	$(document).ready(function() {
+		$("#image").click(function(){
+			$.ajax({
+				url : "${pageContext.request.contextPath}/updateMemberPhotos",
+				type : "GET",
+				dataType : "json",
+				contentType : "application/json",
+				async : true,
+				success : function(data) {
+					alert(9998)
+					console.log("success: "+data);
+					var names = JSON.parse(JSON.stringify(data).split(","));
+					var txt = "";
+										
+	// 				$("#submit1").click();
+	// 				console.log(999999999999999);
+	// 		        for (i in names) {
+	// 					txt += "<option value='"+i+"'>" + names[i].nickname + "</option>";
+	// 				$("#show").append(txt);
+	// 				}
+	// 				$("#show").append(txt);
+				},
+				error : function(data, textStatus, errorThrown) {
+					console.log("error: "+data);
+				},
+			});
+		});
+		
+		$("#image2").change(function(){
+			$.ajax({
+				url : "${pageContext.request.contextPath}/getMemberPhoto/",
+				type : "GET",
+				dataType : "json",
+				contentType : "application/json",
+				async : true,
+				success : function(data) {
+					alert(9998)
+					console.log("success: "+data);
+					var names = JSON.parse(JSON.stringify(data).split(","));
+					var txt = "";
+	// 				$("#submit1").click();
+	// 				console.log(999999999999999);
+	// 		        for (i in names) {
+	// 					txt += "<option value='"+i+"'>" + names[i].nickname + "</option>";
+	// 				$("#show").append(txt);
+	// 				}
+	// 				$("#show").append(txt);
+				},
+				error : function(data, textStatus, errorThrown) {
+					console.log("error: "+data);
+				},
+			});
+		});
+	});
+</script>
+
+<!--    <label for="image"> -->
+<!--       <input type="file" name="image" id="image" style="display:none;"/> -->
+<%--       <img id="image2" src="<c:url value='/getMemberPhoto/${member_id}' />" width="200px"/> --%>
+<!--    </label> -->
 
 	</div>
 	<div class=coverImg>

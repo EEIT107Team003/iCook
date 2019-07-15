@@ -37,7 +37,6 @@ import com.web.icook.model.MemberBean;
 import com.web.icook.model.MyTrackBean;
 import com.web.icook.service.MemberService;
 
-
 @Controller
 public class memberController {
 //	private int member_id;
@@ -49,7 +48,7 @@ public class memberController {
 	// 會員首頁
 	@RequestMapping("/user")
 	public String user(@ModelAttribute("MemberBean") MemberBean bean, Model model) {
-		if (getPrincipal().equals("anonymousUser")) {
+		if (!getPrincipal().equals("anonymousUser")) {
 			bean = service.selectByUsername(getPrincipal());
 			String nickname = bean.getNickname();
 			int member_id = bean.getMember_id();
@@ -89,7 +88,7 @@ public class memberController {
 
 	// 加入追蹤(會員)
 	@RequestMapping(value = "/members/page/track", method = RequestMethod.POST)
-	public String trackMembers(Model model,@RequestParam("member_id") Integer member_id) {
+	public String trackMembers(Model model, @RequestParam("member_id") Integer member_id) {
 		MemberBean member = service.selectByUsername(getPrincipal());
 		MemberBean tracked = service.selectById(member_id);
 
@@ -99,42 +98,55 @@ public class memberController {
 		service.trackById(bean);
 		return this.member_page(model, member_id);
 	}
-	
-	// 修改大頭貼
-	@RequestMapping(value = "/updateMemberPhoto", method = RequestMethod.GET)
-	public String updateMemberPhoto(Model model) {
-		MemberBean bean = service.selectByUsername(getPrincipal());
-		model.addAttribute("MemberBean", bean);
 
-		return "user";
-	}
-
-	@RequestMapping(value = "/updateMemberPhoto", method = RequestMethod.POST)
-	public String updateMemberPhoto(@ModelAttribute("MemberBean") MemberBean bean, Model model) {
-		MultipartFile memberImage = bean.getMember_photo_tr();
-		// 完整檔名
-		if (memberImage != null && !memberImage.isEmpty()) {
-			String originalFilename = memberImage.getOriginalFilename();
+//	// 修改大頭貼
+//	@RequestMapping(value = "/updateMemberPhoto", method = RequestMethod.GET)
+//	public String updateMemberPhoto(Model model) {
+//		MemberBean bean = service.selectByUsername(getPrincipal());
+//		model.addAttribute("MemberBean", bean);
+//
+//		return "user";
+//	}
+//
+//	@RequestMapping(value = "/updateMemberPhoto", method = RequestMethod.POST)
+//	public String updateMemberPhoto(@ModelAttribute("MemberBean") MemberBean bean, Model model) {
+//		MultipartFile memberImage = bean.getMember_photo_tr();
+//		// 完整檔名
+//		if (memberImage != null && !memberImage.isEmpty()) {
+//			String originalFilename = memberImage.getOriginalFilename();
 //				System.out.println(bean.getMember_id() + "  222222222222222222222222222222222");
-			// 副檔名
-			String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
-			// 跟目錄路徑
-			String rootDirectory = context.getRealPath("/");
-			try {
-				byte[] b = memberImage.getBytes();
-				Blob blob = new SerialBlob(b);
-				bean.setFileName_member(originalFilename);
-				bean.setMember_photo(blob);
-			} catch (Exception e) {
-				e.printStackTrace();
-				throw new RuntimeException("檔案上傳發生異常:" + e.getMessage());
-			}
+//			// 副檔名
+//			String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
+//			// 跟目錄路徑
+//			String rootDirectory = context.getRealPath("/");
+//			try {
+//				byte[] b = memberImage.getBytes();
+//				Blob blob = new SerialBlob(b);
+//				bean.setFileName_member(originalFilename);
+//				bean.setMember_photo(blob);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//				throw new RuntimeException("檔案上傳發生異常:" + e.getMessage());
+//			}
+//
+//			service.updateMember_photo(bean);
+//			return "redirect:/user";
+//		} else {
+//			return "redirect:/user";
+//		}
+//	}
+	@ResponseBody
+	@RequestMapping(value = "/updateMemberPhotos", method = RequestMethod.GET)
+	public List<MemberBean> updateMemberPhoto() {
+		MemberBean bean = service.selectByUsername(getPrincipal());
+		List<MemberBean> list = new ArrayList<MemberBean>();
+		list.add(bean);
 
-			service.updateMember_photo(bean);
-			return "redirect:/user";
-		} else {
-			return "redirect:/user";
+		System.out.println("size : " + list.size());
+		for (MemberBean mb : list) {			
+			System.out.println("Nickname : " + mb.getNickname());
 		}
+		return list;
 	}
 
 	// 修改封面圖片
@@ -248,20 +260,20 @@ public class memberController {
 		return "result";
 	}
 
-//	// 查詢單筆
-//	@RequestMapping(value = "/user/resultOne", method = RequestMethod.GET)
-//	public String SelectMemberId(Model model) {
-//		MemberBean bean = new MemberBean();
-//		model.addAttribute("MemberBean", bean);
-//		return "findOne";
-//	}
+	// 查詢單筆
+	@RequestMapping(value = "/user/resultOne", method = RequestMethod.GET)
+	public String SelectMemberId(Model model) {
+		MemberBean bean = new MemberBean();
+		model.addAttribute("MemberBean", bean);
+		return "findOne";
+	}
 
 	@RequestMapping(value = "/user/resultOne", method = RequestMethod.POST)
 	public String listOne(@ModelAttribute("MemberBean") MemberBean bean, Model model, HttpServletRequest request) {
 		bean = service.selectByNickname(bean.getNickname().trim());
 		List<MemberBean> list = new ArrayList<>();
 		list.add(bean);
-		model.addAttribute("members", list);
+		model.addAttribute("members", list); 
 
 		return "result";
 	}

@@ -91,12 +91,12 @@ public class Homecontroller {
 		}
 		return userName;
 	}
-
+	
 	// --------------------------------------------------------------------------
 	// AJAX測試
 	@ResponseBody
 	@RequestMapping(value = "/category", method = RequestMethod.GET)
-	public  List<MemberBean>  categorySelect () {
+	public  List<MemberBean> categorySelect () {
 		System.out.println("======CategorySelect IN==============");
 		List<MemberBean> bean=service.selectAll();
 //	    	String nvrsjson = JSONArray.toJSONString(bean);
@@ -106,10 +106,6 @@ public class Homecontroller {
 		System.out.println("======CategorySelect OUT=============");
 		return bean;
 	}
-
-	  
-		
 	//--------------------------------------------------------------------------
-		
-
+	
 }

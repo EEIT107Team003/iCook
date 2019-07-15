@@ -1,29 +1,29 @@
 package com.web.icook.model;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.Serializable;
 import java.sql.Blob;
 import java.sql.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import javax.imageio.ImageIO;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.sql.rowset.serial.SerialBlob;
+import javax.xml.bind.annotation.XmlTransient;
 
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import forum.model.ForumMainBean;
+import recipe.model.RecipeBean;
 
 @Entity
 @Table(name = "members")
@@ -31,20 +31,31 @@ public class MemberBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	// 會員編號(不重複)*
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer member_id;
+	
 	// 電子郵件(不重複)*
+	@Column(unique = true)
 	private String username;
+	
 	// 密碼(不重複)*
+	@Column(unique = true)
 	private String password;
+	
 	// 暱稱(不重複)*
+	@Column(unique = true)
 	private String nickname;
+	
 	// 大頭貼
+	@JsonIgnore
 	private Blob member_photo;
 	// 被追蹤數
 	private Integer tracked_num;
 	// 發表食譜數量
 	private Integer recipe_num;
 	// 封面圖片
+	@JsonIgnore
 	private Blob cover_photo;
 	// 註冊時間
 	private Date register_date;
@@ -59,20 +70,47 @@ public class MemberBean implements Serializable {
 	// 權限
 	private String role;
 
+	@JsonIgnore
+	@XmlTransient
+	@Transient
 	private MultipartFile member_photo_tr;
+	
+	@JsonIgnore
+	@XmlTransient
+	@Transient
 	private MultipartFile cover_photo_tr;
 
 	// ------------------------------------------------------------------------
+	@OneToMany(mappedBy = "memberId", fetch = FetchType.LAZY)
+	@JsonIgnore
 	private Set<MyTrackBean> tracker = new LinkedHashSet<>();
+	
+	@OneToMany(mappedBy = "trackedId",fetch= FetchType.LAZY)
+	@JsonIgnore
 	private Set<MyTrackBean> tracked = new LinkedHashSet<>();
 	// ------------------------------------------------------------------------
+	@OneToMany(mappedBy = "memberBean")
+	@JsonIgnore
 	private Set<ForumMainBean> article = new LinkedHashSet<>();
-//	private Set<RecipeBean> recipe = new LinkedHashSet<>();
+
+	@OneToMany(mappedBy = "memberbean", cascade = CascadeType.ALL)
+	@JsonIgnore
+	private Set<RecipeBean> recipe = new LinkedHashSet<RecipeBean>();// 一中有個多，【一方】。
+	
 //	private Set<CollectRecipe> recipe_Collecter = new LinkedHashSet<>();
+
+	public Set<RecipeBean> getRecipe() {
+		return recipe;
+	}
+
+	public void setRecipe(Set<RecipeBean> recipe) {
+		this.recipe = recipe;
+	}
 
 	public MemberBean() {
 
 	}
+	
 //
 //	public MemberBean(Integer member_id, String username, String password, String nickname, Blob member_photo,
 //			Integer tracked_num, Integer recipe_num, Blob cover_photo, Date register_date, Boolean enabled,
@@ -101,8 +139,6 @@ public class MemberBean implements Serializable {
 //		this.recipe_Collecter = recipe_Collecter;
 //	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getMember_id() {
 		return member_id;
 	}
@@ -111,7 +147,6 @@ public class MemberBean implements Serializable {
 		this.member_id = member_id;
 	}
 
-	@Column(unique = true)
 	public String getUsername() {
 		return username;
 	}
@@ -120,7 +155,6 @@ public class MemberBean implements Serializable {
 		this.username = username;
 	}
 
-	@Column(unique = true)
 	public String getPassword() {
 		return password;
 	}
@@ -129,7 +163,6 @@ public class MemberBean implements Serializable {
 		this.password = password;
 	}
 
-	@Column(unique = true)
 	public String getNickname() {
 		return nickname;
 	}
@@ -178,7 +211,6 @@ public class MemberBean implements Serializable {
 		this.register_date = register_date;
 	}
 
-	@OneToMany(mappedBy = "memberId")
 	public Set<MyTrackBean> getTracker() {
 		return tracker;
 	}
@@ -187,7 +219,6 @@ public class MemberBean implements Serializable {
 		this.tracker = tracker;
 	}
 
-	@OneToMany(mappedBy = "trackedId")
 	public Set<MyTrackBean> getTracked() {
 		return tracked;
 	}
@@ -222,7 +253,6 @@ public class MemberBean implements Serializable {
 		this.enabled = enabled;
 	}
 
-	@Transient
 	public MultipartFile getMember_photo_tr() {
 		return member_photo_tr;
 	}
@@ -263,7 +293,6 @@ public class MemberBean implements Serializable {
 		this.role = role;
 	}
 
-	@Transient
 	public MultipartFile getCover_photo_tr() {
 		return cover_photo_tr;
 	}
@@ -271,8 +300,7 @@ public class MemberBean implements Serializable {
 	public void setCover_photo_tr(MultipartFile cover_photo_tr) {
 		this.cover_photo_tr = cover_photo_tr;
 	}
-	
-	@OneToMany(mappedBy = "memberBean")
+
 	public Set<ForumMainBean> getArticle() {
 		return article;
 	}
