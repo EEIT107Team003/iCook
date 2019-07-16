@@ -3,6 +3,7 @@ package com.web.icook.model;
 import java.io.Serializable;
 import java.sql.Blob;
 import java.sql.Date;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -100,6 +101,9 @@ public class MemberBean implements Serializable {
 	
 //	private Set<CollectRecipe> recipe_Collecter = new LinkedHashSet<>();
 
+	@OneToMany(mappedBy="memberBean")
+	private Set<CollectiontBean> collectiontbean=new HashSet<>(0);
+	
 	public Set<RecipeBean> getRecipe() {
 		return recipe;
 	}
@@ -108,6 +112,14 @@ public class MemberBean implements Serializable {
 		this.recipe = recipe;
 	}
 
+		public Set<CollectiontBean> getCollectiontbean() {
+			return collectiontbean;
+		}
+
+		public void setCollectiontbean(Set<CollectiontBean> collectiontbean) {
+			this.collectiontbean = collectiontbean;
+		}
+	
 	public MemberBean() {
 
 	}
