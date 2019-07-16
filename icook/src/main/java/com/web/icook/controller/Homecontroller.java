@@ -58,7 +58,7 @@ import com.web.icook.service.MemberService;
 @Controller
 public class Homecontroller {
 	@Autowired
-	MemberService service;
+	MemberService service; 
 	@Autowired
 	ServletContext context;
 
