@@ -141,14 +141,17 @@ getstock();
 function getstock(){
         var names=parseInt(${product.stock})
         var txt=""
-        alert(444)
-        alert(names)
         for(var i=1;i<=names;i++) {
-        	console.log(i)
 			txt += "<option value='"+i+"'>" +i+ "</option>"
 		}
         $("#quantity").append(txt);
 }
+
+$("#quantity").change(function() {
+	var txt = $("#quantity :selected").text();
+	$("#quan").val(txt);
+    alert($("#quan").val());
+})
 	function catchSelect1(){
 		var txt = $("#show :selected").text();
 		if(txt=='請選擇'){
@@ -284,22 +287,27 @@ function getstock(){
 			<img width='100' height='150'
 			     src="<c:url value='/getProductPicture/${product.product_id}'/>" />
 			<div class="col-md-5">
-				<h3>${product.description}</h3>
-				<strong>商品編號: </strong> <span class='label label-warning'>{product.product_id} </span>
+				<h3>${product.name}</h3>
+				<p>${product.description}</p>
+				<strong>商品編號: </strong> <span class='label label-warning'>${product.product_id} </span>
 				<p>顏色: ${product.color}</p>
 				<p>單價: ${product.price}</p>
 				<p>分類: ${product.categoriesbean.name}</p>
 				<p> ${collection.productBean.categoriesbean.name}</p>
-                請選擇數量:<select id="quantity" name="quantity" style="width:30ch" class="form-control form-control-sm"><option
+                            請選擇數量:<select id="quantity" name="quantity" style="width:10ch" class="form-control form-control-sm"><option
 							value="0" SELECTED id='ch'>0</option></select>
 					<a href="<spring:url value='/products' />" class="btn btn-default">
 						<span class="glyphicon-hand-left glyphicon"></span>返回
 					</a> 
-					<a href='#' class='btn btn-warning btn-large'> 
-					    <span class='glyphicon-shopping-cart glyphicon'></span>加入購物車
-					</a>
-				</p>
-			</div>
+
+						<form method='POST' action="<c:url value='/product/addToCart'/>">
+							<input type="hidden" name="productId"
+								value="${product.product_id}" /> <input type="hidden"
+								name="price" value="${product.price}" /> 
+								<input type="hidden" id="quan" name="quan"/> 
+								 <input class="btn btn-warning" type="submit" value="加入購物車" />
+						</form>
+					</div>
 		</div>
 	</section>			
 	
