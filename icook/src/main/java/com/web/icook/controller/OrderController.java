@@ -136,7 +136,7 @@ public class OrderController {
 		String username=mcontroller.getPrincipal();
 		MemberBean mb=mservice.selectByUsername(username);
 		//抓session member-----------------------------------------------------
-		mb = (MemberBean) session.getAttribute("LoginOK");// 已登入會員會丟會員物件至session
+		//mb = (MemberBean) session.getAttribute("LoginOK");// 已登入會員會丟會員物件至session
 		if (mb == null) {
 			model.addAttribute("LoginMsg", "請先登入");
 			return "redirect:/login_page";// 此處要改跳轉至登入畫面
