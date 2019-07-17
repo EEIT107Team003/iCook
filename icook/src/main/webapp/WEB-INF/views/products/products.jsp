@@ -116,7 +116,8 @@ width:30px;
 	
 // ================================起始畫面SHOW====================================
 	 firstShow();
-	function firstShow(){
+
+    function firstShow(){
 	$.ajax({
 			url : "${pageContext.request.contextPath}/category",
 			type : "POST",

@@ -132,8 +132,23 @@ $.ajax({
 	},
 });
 
+
+
 $(document).ready(function() {
 	
+getstock();
+
+function getstock(){
+        var names=parseInt(${product.stock})
+        var txt=""
+        alert(444)
+        alert(names)
+        for(var i=1;i<=names;i++) {
+        	console.log(i)
+			txt += "<option value='"+i+"'>" +i+ "</option>"
+		}
+        $("#quantity").append(txt);
+}
 	function catchSelect1(){
 		var txt = $("#show :selected").text();
 		if(txt=='請選擇'){
@@ -270,14 +285,13 @@ $(document).ready(function() {
 			     src="<c:url value='/getProductPicture/${product.product_id}'/>" />
 			<div class="col-md-5">
 				<h3>${product.description}</h3>
+				<strong>商品編號: </strong> <span class='label label-warning'>{product.product_id} </span>
 				<p>顏色: ${product.color}</p>
 				<p>單價: ${product.price}</p>
 				<p>分類: ${product.categoriesbean.name}</p>
-				<p> ${collection.productBean.categoriesbean.name}
-					<strong>商品編號: </strong> <span class='label label-warning'>
-						${product.product_id} </span>
-				</p>
-				<p>
+				<p> ${collection.productBean.categoriesbean.name}</p>
+                請選擇數量:<select id="quantity" name="quantity" style="width:30ch" class="form-control form-control-sm"><option
+							value="0" SELECTED id='ch'>0</option></select>
 					<a href="<spring:url value='/products' />" class="btn btn-default">
 						<span class="glyphicon-hand-left glyphicon"></span>返回
 					</a> 
@@ -287,19 +301,9 @@ $(document).ready(function() {
 				</p>
 			</div>
 		</div>
-	</section>
-			
-			
-			<div class="page">
-			<form >
-				<input type = 'button' id="Previous"   value="Previous"/>
-				<input type = 'button' id="Next"   value="Next"/>
-				<div id="pageNum">
-				</div>
-<!-- 				<input type = 'button' id="next"  onclick="edit(this)" value="1"/> -->
-			</form>
-			</div>
-			<section id="right"></section>
+	</section>			
+	
+	<section id="right"></section>
 		</div>
 		<div class="right"></div>
 	</div>
