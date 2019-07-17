@@ -78,7 +78,8 @@
 		<hr>
 		<a href="logout_page">會員登出</a>
 		<hr>
-		<a href="addMember">新增會員</a> <a href="user">會員首頁</a>
+		<a href="addMember">新增會員</a>
+		 <a href="user">會員首頁</a>
 		<hr>
 		<p>其他會員</p>
 		<a href="members">會員首頁</a>
@@ -90,6 +91,9 @@
 	<div>
 		<select id="show" name="show"><option value="0" SELECTED>請選擇</option></select>
 	</div>
+		<hr>
+		<a href="insert">新增食譜</a>
+		<a href="recipe">所有食譜</a>
 <hr>
 點擊圖片並上傳 測試一
    <label for="image">

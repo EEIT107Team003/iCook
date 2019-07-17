@@ -34,11 +34,6 @@ public class MemberBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	// 會員編號(不重複)*
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
-//	private Integer member_id;
-	
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY,generator="generatorName")
 	@GenericGenerator(name = "generatorName", strategy = "native")
@@ -51,11 +46,14 @@ public class MemberBean implements Serializable {
 	// 密碼(不重複)*
 	@Column(unique = true)
 	private String password;
-	
 	// 暱稱(不重複)*
 	@Column(unique = true)
 	private String nickname;
-	
+	//會員簡介
+	@Column(length = 50 )
+	private String resume;
+	// 會員電話
+	private String member_phone_num;
 	// 大頭貼
 	@JsonIgnore
 	private Blob member_photo;
@@ -78,6 +76,8 @@ public class MemberBean implements Serializable {
 	private Integer forum_num;
 	// 權限
 	private String role;
+	//收貨地址
+	private String address;
 
 	@JsonIgnore
 	@XmlTransient
@@ -116,7 +116,7 @@ public class MemberBean implements Serializable {
 	
 //	private Set<CollectRecipe> recipe_Collecter = new LinkedHashSet<>();
 
-	@OneToMany(mappedBy="memberBean")
+	@OneToMany(mappedBy="memberBean" ,fetch= FetchType.EAGER)
 	private Set<CollectiontBean> collectiontbean=new HashSet<>(0);
 	
 	public Set<RecipeBean> getRecipe() {
@@ -336,7 +336,31 @@ public class MemberBean implements Serializable {
 	public void setArticle(Set<ForumMainBean> article) {
 		this.article = article;
 	}
-	
+
+
+	public String getMember_phone_num() {
+		return member_phone_num;
+	}
+
+	public void setMember_phone_num(String member_phone_num) {
+		this.member_phone_num = member_phone_num;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getResume() {
+		return resume;
+	}
+
+	public void setResume(String resume) {
+		this.resume = resume;
+	}
 	
 	public Set<OrderBean> getOrders() {
 		return orders;
@@ -353,4 +377,5 @@ public class MemberBean implements Serializable {
 	public void setOrderitems(List<OrderItemBean> orderitems) {
 		this.orderitems = orderitems;
 	}
+
 }
