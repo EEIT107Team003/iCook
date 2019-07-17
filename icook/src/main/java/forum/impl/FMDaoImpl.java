@@ -1,4 +1,4 @@
-package forum.dao.impl;
+package forum.impl;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
