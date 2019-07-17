@@ -1,6 +1,19 @@
 /.classpath
+<<<<<<< HEAD
 /.settings/
 /target/
 *.gitignore
 *.project
 *.classpath
+=======
+<<<<<<< HEAD
+/.settings/
+/target/
+*.gitignore
+*.project
+*.classpath
+=======
+/.project
+/.gitignore
+>>>>>>> branch 'master' of https://github.com/EEIT107Team003/iCook.git
+>>>>>>> branch 'master' of https://github.com/EEIT107Team003/iCook.git
