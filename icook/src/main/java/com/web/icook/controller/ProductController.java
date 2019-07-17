@@ -202,7 +202,7 @@ public class ProductController {
 	public String ProductForm(Model model) {
 		List<ProductBean> list = service.getAllProducts();
 		model.addAttribute("products", list);
-		return "products";
+		return "products/products";
 	}
 
 	// 查單筆
@@ -210,13 +210,14 @@ public class ProductController {
 	public String getProductById(@RequestParam("id") Integer id, Model model) {
 		ProductBean bb = service.getProductById(id);
 		model.addAttribute("product", service.getProductById(id));
-		return "product";
+		return "products/product";
 	}
 
-	@RequestMapping(value = "/getPicture/{product_Id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getProductPicture/{product_Id}", method = RequestMethod.GET)
 //  ResponseEntity代表一個所有回應的東西(狀態列:Status Line、回應標頭  Response Header、 回應本體 Response Body)
 //  會直接挑過Dispatcher 直接回應給Browser	。@PathVariable("可省略，但上面大括號內德變數要跟後面的變數一樣")
 	public ResponseEntity<byte[]> getPicture(HttpServletResponse resp, @PathVariable Integer product_Id) {
+		System.out.println("getPicture================");
 //             回應本體的資料型態                   
 		String filePath = "/resources/images/NoImage.jpg";
 //                           設定預設圖路徑
@@ -228,8 +229,8 @@ public class ProductController {
 		if (bean != null) {
 			Blob blob = bean.getImage();
 			filename = bean.getFileName();
-//            System.out.println("filename  = "+filename);
-//            System.out.println("blob  = "+blob);
+            System.out.println("filename  = "+filename);
+            System.out.println("blob  = "+blob);
 			if (blob != null) {
 				try {
 					// blob.lenght---> Long型態
@@ -315,7 +316,7 @@ public class ProductController {
 //			}
 //		}
 		System.out.println("update Form Finish============================================");
-		return "updProduct";
+		return "products/updProduct";
 	}
 
 //  此方法是新建表單以及設定表單初始，
@@ -335,7 +336,7 @@ public class ProductController {
 			}
 		}
 		System.out.println("Init Form Finish============================================");
-		return "addProduct";
+		return "products/addProduct";
 	}
 
 //submit表單
@@ -371,6 +372,7 @@ public class ProductController {
 			bb.setStock(0);
 		}
 		System.out.println("product_id======================================" + product_id);
+		
 		MultipartFile productImage = bb.getProductImage();
 		String originalFilename = productImage.getOriginalFilename();
 		bb.setFileName(originalFilename);

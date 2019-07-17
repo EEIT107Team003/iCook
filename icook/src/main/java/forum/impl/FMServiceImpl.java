@@ -1,4 +1,4 @@
-package forum;
+package forum.impl;
 
 import java.util.List;
 

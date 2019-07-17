@@ -357,7 +357,7 @@ width:30px;
 				             txt+=
 				            	  "<div class='col-sm-6 col-md-3' style='width: 180px; height: 180px;margin-bottom:90px'>"
 					             +"<div class=''>"
-					             +"<img width='75' height='75'src=   \" <c:url value=  '/getPicture/"+names[i].product_id+"'   /> \"     />"
+					             +"<img width='75' height='75'src=   \" <c:url value=  '/getProductPicture/"+names[i].product_id+"'   /> \"     />"
 					             +"<div class=''  height='100' style='font-size: 8px; ''><p>"
 					             +names[i].name+"</p><p>"+names[i].unit_size+" "+names[i].color+" "+names[i].remark
 					             +"</p><p>"+names[i].price+"</p><p>庫存:"+names[i].stock+"</p>"
@@ -423,16 +423,16 @@ width:30px;
 					             txt+=
 					            	  "<div class='col-sm-6 col-md-3' style='width: 180px; height: 180px;margin-bottom:90px'>"
 						             +"<div class=''>"
-						             +"<img width='75' height='75'src=   \" <c:url value=  '/getPicture/"+names[i].product_id+"'   /> \"     />"
+						             +"<img width='75' height='75'src=   \" <c:url value=  '/getProductPicture/"+names[i].product_id+"'   /> \"     />"
 						             +"<div class=''  height='100' style='font-size: 8px; ''><p>"
 						             +names[i].name+"</p><p>"+names[i].unit_size+" "+names[i].color+" "+names[i].remark
 						             +"</p><p>"+names[i].price+"</p><p>庫存:"+names[i].stock+"</p>"
 						             +"<nav class='navbar navbar-light bg-light'><form class='form-inline'>"
-						             +"<a class='btn btn-sm btn-outline-secondary'   href=\" <c:url value=  '/product?id="+names[i].product_id+"'    /> \"    >" 
+						             +"<a class='btn btn-sm btn-outline-secondary'   href=\" <c:url value=  '/products/product?id="+names[i].product_id+"'    /> \"    >" 
 						             +"詳細資料</a>"
-						             +"<a class='btn btn-sm btn-outline-secondary'   href=\" <c:url value=  '/product/addToCollection?id="+names[i].product_id+"'    /> \"    >" 
+						             +"<a class='btn btn-sm btn-outline-secondary'   href=\" <c:url value=  '/products/product/addToCollection?id="+names[i].product_id+"'    /> \"    >" 
 						             +"新增收藏</a>"
-						             +"<a class='btn btn-sm btn-outline-secondary'   href=\" <c:url value=  '/products/upd?id="+names[i].product_id+"'    /> \"    >" 
+						             +"<a class='btn btn-sm btn-outline-secondary'   href=\" <c:url value=  '/products/products/upd?id="+names[i].product_id+"'    /> \"    >" 
 						             +"更新</a>"
 						             +"</form></nav></div></div></div>"
 					         }
@@ -578,10 +578,10 @@ width:30px;
 			<fieldset class="field">
 				<div class="divA">
 					<img id="Mai00" class="mainShow"
-						src="${pageContext.request.contextPath}//image/img01.JPG" alt="" />
+						src="${pageContext.request.contextPath}//product_image/img01.JPG" alt="" />
 					<c:forEach var="i" begin="2" end="8">
 						<img id="Mai00" class="mainBlock"
-							src="${pageContext.request.contextPath}//image/img0${i}.JPG"
+							src="${pageContext.request.contextPath}//product_image/img0${i}.JPG"
 							alt="" />
 					</c:forEach>
 				</div>
@@ -592,7 +592,6 @@ width:30px;
 				<input type = 'button' id="Next"   value="Next"/>
 				<div id="pageNum">
 				</div>
-<!-- 				<input type = 'button' id="next"  onclick="edit(this)" value="1"/> -->
 			</form>
 			</div>
 			<section id="right"></section>
