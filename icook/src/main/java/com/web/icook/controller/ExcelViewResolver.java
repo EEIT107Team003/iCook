@@ -11,10 +11,10 @@ public class ExcelViewResolver implements ViewResolver{
 	public View resolveViewName(String viewName, Locale locale) throws Exception {
 		
 		View view = null;
-		if (viewName.startsWith("allProducts")) {
+		if (viewName.startsWith("products/allProducts")) {
 			view = new AllProductsExcelView();
 		} 
-		else if (viewName.startsWith("productsByCategory"))  {
+		else if (viewName.startsWith("products/productsByCategory"))  {
 			view = new ProductsByCategoryExcelView();
 		} 
 		System.out.println("ExcelViewResolver, viewName=" + viewName + ", return value=" + view);

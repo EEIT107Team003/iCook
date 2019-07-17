@@ -115,7 +115,9 @@ width:30px;
 	<script>
 	
 // ================================起始畫面SHOW====================================
-		$.ajax({
+	 firstShow();
+	function firstShow(){
+	$.ajax({
 			url : "${pageContext.request.contextPath}/category",
 			type : "POST",
 			dataType : "json",
@@ -133,6 +135,28 @@ width:30px;
 				console.log(data);
 			},
 		});
+    }
+	
+	function secondShow(){
+		$.ajax({
+				url : "${pageContext.request.contextPath}/category",
+				type : "POST",
+				dataType : "json",
+				contentType : "application/json",
+				async : true,
+				success : function(data) {
+					var names = JSON.parse(JSON.stringify(data).split(","));
+					var txt = "<option value='-1' SELECTED id='cr'>請選擇</option>";
+		            for (i in names) {
+						txt += "<option value='"+i+"'>" + names[i].name + "</option>";
+					}
+					$("#show").html(txt);
+				},
+				error : function(data, textStatus, errorThrown) {
+					console.log(data);	
+				},
+			});
+	    }
 		
 // ==========================================EXCEL================================================================
 		
@@ -166,7 +190,13 @@ width:30px;
 					var clean=null
 					$("#show2").html(clean);
 				}
-			}	
+			}
+		
+		function cleanAllSelect(){
+			secondShow()		
+			var clean=null
+				$("#show2").html(clean);
+			}
 		
 			
 		$("#show3").change(function() {
@@ -220,20 +250,22 @@ width:30px;
 	
 	
 	
-		$("#show").change(function() {
-			catchSelect1();	 
-			search();
-		})
-	
 		$("#show2").change(function() {
 			search2();
 		})
 			
+	
+		$("#show").change(function() {
+			catchSelect1();	 
+			search();
+		})
 		
 		function search(){
 			var txt = $("#show :selected").text();
 // 			console.log('Txt 123: '+txt)
 			$("#remark").val(txt);
+			 $("#fileName").val("");
+			alert($("#remark").val());
 			$.ajax({                                    
 				url : "${pageContext.request.contextPath}/categories/" + txt,
 				type : "GET",
@@ -275,6 +307,7 @@ width:30px;
 		
 // =================================================LEFT HREF SEARCH====================================
 		$(".search").click(function() {
+		     	cleanAllSelect()
 				var txt = $(this).text();
 				var txt2="";
 				 $("#fileName").val(txt);
@@ -477,7 +510,7 @@ width:30px;
 				<label for='show'> 種類</label>
 				<div>
 					<select id="show" name="show" style="width:30ch" class="form-control form-control-sm"><option
-							value="0" SELECTED id='ch'>請選擇</option></select> <select id="show2" name="show" style="width:30ch" class="form-control form-control-sm">
+							value="0" SELECTED id='ch'>請選擇</option></select> <select id="show2" name="show2" style="width:30ch" class="form-control form-control-sm">
 					</select>
 				</div>
 				<nav class="navbar navbar-light bg-light">
@@ -578,10 +611,10 @@ width:30px;
 			<fieldset class="field">
 				<div class="divA">
 					<img id="Mai00" class="mainShow"
-						src="${pageContext.request.contextPath}//product_image/img01.JPG" alt="" />
+						src="${pageContext.request.contextPath}/product_image/img01.JPG" alt="" />
 					<c:forEach var="i" begin="2" end="8">
 						<img id="Mai00" class="mainBlock"
-							src="${pageContext.request.contextPath}//product_image/img0${i}.JPG"
+							src="${pageContext.request.contextPath}/product_image/img0${i}.JPG"
 							alt="" />
 					</c:forEach>
 				</div>

@@ -56,9 +56,10 @@ public class ProductController {
 	public String AllProductsExcel(Model model) {
 		System.out.println("========Excel IN===========");
 		List<ProductBean> list = service.getAllProducts();
+		System.out.println("list:"+list);
 		model.addAttribute("allProducts", list);
 		System.out.println("========Excel OUT===========");
-		return "allProducts";
+		return "products/allProducts";
 	}
 	@RequestMapping(value = "/productsByCategoryEx", method = RequestMethod.GET, 
 			produces = "application/vnd.ms-excel")
@@ -71,7 +72,7 @@ public class ProductController {
 		List<ProductBean>list=service.SelectByCategoriesAndDescriptionForPage(remark, fileName, description);
 		model.addAttribute("productsByCategory", list);
 		System.out.println("========productsByCategoryEx OUT===========");
-		return "productsByCategory";
+		return "products/productsByCategory";
 	}
 
 	
@@ -87,7 +88,7 @@ public class ProductController {
 //	    	String nvrsjson = JSONArray.toJSONString(bean);
 		List<CategoriesBean> list=service.getOneCategory(txt);
 		for(CategoriesBean bb : list) {
-			System.out.println("name : "+bb.getCategorybean().getName());
+//			System.out.println("name : "+bb.getCategorybean().getName());
 		}
 		System.out.println("======category OUT=============");
 		return list;	
@@ -156,11 +157,11 @@ public class ProductController {
 	@ResponseBody
 	public List<CategoriesBean> categoriesSelect (@PathVariable String txt) {
 		System.out.println("======categoriesSelect IN==============");
-		System.out.println("category name :"+txt);
+//		System.out.println("category name :"+txt);
 		List<CategoriesBean> list=service.getAllCategories(txt);
 //	    	String nvrsjson = JSONArray.toJSONString(bean);
 		for(CategoriesBean bb : list) {
-			System.out.println("name : "+bb.getName());
+//			System.out.println("name : "+bb.getName());
 		}
 		System.out.println("======categoriesSelect OUT=============");
 		return list;	
@@ -178,7 +179,7 @@ public class ProductController {
 		List<CategoryBean> bean=service.getAllCategory();
 //	    	String nvrsjson = JSONArray.toJSONString(bean);
 		for(CategoryBean bb : bean) {
-			System.out.println("name : "+bb.getName());
+//			System.out.println("name : "+bb.getName());
 		}
 		System.out.println("======CategorySelect OUT=============");
 		return bean;
@@ -217,7 +218,7 @@ public class ProductController {
 //  ResponseEntity代表一個所有回應的東西(狀態列:Status Line、回應標頭  Response Header、 回應本體 Response Body)
 //  會直接挑過Dispatcher 直接回應給Browser	。@PathVariable("可省略，但上面大括號內德變數要跟後面的變數一樣")
 	public ResponseEntity<byte[]> getPicture(HttpServletResponse resp, @PathVariable Integer product_Id) {
-		System.out.println("getPicture================");
+//		System.out.println("getPicture================");
 //             回應本體的資料型態                   
 		String filePath = "/resources/images/NoImage.jpg";
 //                           設定預設圖路徑
@@ -229,8 +230,8 @@ public class ProductController {
 		if (bean != null) {
 			Blob blob = bean.getImage();
 			filename = bean.getFileName();
-            System.out.println("filename  = "+filename);
-            System.out.println("blob  = "+blob);
+//            System.out.println("filename  = "+filename);
+//            System.out.println("blob  = "+blob);
 			if (blob != null) {
 				try {
 					// blob.lenght---> Long型態

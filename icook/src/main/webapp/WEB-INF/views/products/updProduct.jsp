@@ -135,7 +135,7 @@ text-align: center;
 
 		//============================================================================================================
 		
-				$.ajax({
+		$.ajax({
 			url : "${pageContext.request.contextPath}/category",
 			type : "POST",
 			dataType : "json",
@@ -255,7 +255,7 @@ text-align: center;
 				<h1 class="pre">Previous Product</h1>
 				<div class="pre">
 					<img width='100' height='100'
-						src="<c:url value='/getPicture/${previousbean.product_id}' />" />
+						src="<c:url value='/getProductPicture/${previousbean.product_id}' />" />
 				</div >
 				<div class="pre">
 				<h2>編碼     :${previousbean.product_id}</h2>

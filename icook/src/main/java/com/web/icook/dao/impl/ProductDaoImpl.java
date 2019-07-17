@@ -35,7 +35,7 @@ public class ProductDaoImpl implements ProductDao {
 		list = session.createQuery(hql).setParameter("name", categoriesName).getResultList();
 		System.out.println("list :"+list);
 		for(CategoriesBean bb :list) {
-			System.out.println(bb.getName());
+//			System.out.println(bb.getName());
 		}
 		return list;
 	}
@@ -65,7 +65,7 @@ public class ProductDaoImpl implements ProductDao {
 			name=null;
 		if(remark.trim().equals("請選擇")) {
 			remark=null;}
-		System.out.println("name :"+name);
+//		System.out.println("name :"+name);
 		 if (name!=null && name.length()!=0  &&remark!=null &&remark.length()!=0 ) {
 			System.out.println("hql2");
 			System.out.println(hql2);
@@ -75,7 +75,7 @@ public class ProductDaoImpl implements ProductDao {
 			query.setMaxResults(pageSize);
 			list=query.list();
 		} else if(remark!=null &&remark.length()!=0 ) {
-			System.out.println("hql1");
+//			System.out.println("hql1");
 			System.out.println(hql1);
 			System.out.println("remark: "+remark);
 //			list = session.createQuery(hql1).setParameter("name", remark)
@@ -123,34 +123,35 @@ public class ProductDaoImpl implements ProductDao {
 		Session session = null;
 		List<ProductBean> list = new ArrayList<>();
 		session = factory.getCurrentSession();
+		System.out.println("remark :"+remark+"，name :"+name+"，description : "+description);
 		if(name.trim().equals("請選擇"))
 			name=null;
 		if(remark.trim().equals("請選擇")) {
 			remark=null;}
 		
 		 if (name!=null && name.length()!=0 ) {
-			System.out.println("ForPage hql2 ");
-			System.out.println(hql2);
+//			System.out.println("ForPage hql2 ");
+//			System.out.println(hql2);
 			list = session.createQuery(hql2).setParameter("name", name)
 					.setParameter("description", "%" + description + "%").getResultList();
 		} else if(remark!=null &&remark.length()!=0 ) {
-			System.out.println("ForPage hql1");
-			System.out.println(hql1);
+//			System.out.println("ForPage hql1");
+//			System.out.println(hql1);
 			list = session.createQuery(hql1).setParameter("name", remark)
 					.setParameter("description", "%" + description + "%").getResultList();
 		}else {
-			System.out.println("ForPage hql3");
+//			System.out.println("ForPage hql3");
 			list = session.createQuery(hql3).getResultList();
 			
 		}
-		System.out.println("list :" + list);
+//		System.out.println("list :" + list);
 		int count=0;
-		System.out.println("PageCount :"+count);
+//		System.out.println("PageCount :"+count);
 //		for (ProductBean bb : list) {
 //			System.out.println("id :" + bb.getProduct_id() );
 //			count++;
 //		}
-	   System.out.println("PageCount :"+count);
+//	   System.out.println("PageCount :"+count);
 	   return list;
 	}
 	
@@ -175,19 +176,19 @@ public class ProductDaoImpl implements ProductDao {
 			name=null;
 		if(remark.trim().equals("請選擇")) {
 			remark=null;}
-		
+		System.out.println("remark :"+remark+"，name :"+name+"，description : "+description);
 		 if (name!=null && name.length()!=0  &&remark!=null &&remark.length()!=0 ) {
-			System.out.println("hql2");
-			System.out.println(hql2);
+//			System.out.println("hql2");
+//			System.out.println(hql2);
 			list = session.createQuery(hql2).setParameter("name", name)
 					.setParameter("description", "%" + description + "%").getResultList();
 		} else if(remark!=null &&remark.length()!=0 ) {
-			System.out.println("hql1");
-			System.out.println(hql1);
+//			System.out.println("hql1");
+//			System.out.println(hql1);
 			list = session.createQuery(hql1).setParameter("name", remark)
 					.setParameter("description", "%" + description + "%").getResultList();
 		}else {
-			System.out.println("hql3");
+//			System.out.println("hql3");
 			list = session.createQuery(hql3).getResultList();
 			int count=0;
 			for(ProductBean bb :list) {
@@ -198,9 +199,8 @@ public class ProductDaoImpl implements ProductDao {
 			query.setMaxResults(10);
 			list=query.list();
 			
-			
 		}
-		System.out.println("list :" + list);
+//		System.out.println("list :" + list);
 //		for (ProductBean bb : list) {
 //			System.out.println("id :" + bb.getProduct_id() );
 //		}
