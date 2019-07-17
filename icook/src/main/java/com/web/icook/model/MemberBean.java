@@ -106,7 +106,7 @@ public class MemberBean implements Serializable {
 	
 //	private Set<CollectRecipe> recipe_Collecter = new LinkedHashSet<>();
 
-	@OneToMany(mappedBy="memberBean")
+	@OneToMany(mappedBy="memberBean" ,fetch= FetchType.EAGER)
 	private Set<CollectiontBean> collectiontbean=new HashSet<>(0);
 	
 	public Set<RecipeBean> getRecipe() {
