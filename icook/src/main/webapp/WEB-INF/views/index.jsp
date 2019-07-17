@@ -69,5 +69,11 @@ $("input[type='image']").click(function() {
     $("input[id='my_file']").click();
 });
 </script>
+	<table border="1" style="margin: 0px auto;">
+		<tr height="52" bgcolor="lightblue" align="center">
+			<td width="350"><p align="left" /> <a href='products'>查詢所有產品資料</a><BR>
+			</td>
+		</tr>
+	</table>
 </body>
 </html>
