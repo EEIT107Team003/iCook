@@ -118,9 +118,9 @@ public class CartController {
 
 	Map<Integer, OrderItemBean> cart = new HashMap<>();
 
-	@RequestMapping("/product/addToCart")
+	@RequestMapping(value="/product/addToCart")
 	private String addToCart(@RequestParam(value = "productId", required = false) Integer productId,
-			@RequestParam(value = "quantity") int quantity, Model model, HttpSession session) {
+			@RequestParam(value = "quan") Integer quantity, Model model, HttpSession session) {
 		Set<OrderItemBean> oibSet = new HashSet<>();
 		OrderItemBean oib;
 		ProductBean pb;

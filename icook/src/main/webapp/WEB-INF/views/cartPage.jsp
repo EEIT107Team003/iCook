@@ -22,19 +22,19 @@
 
 <script type="text/javascript">
 	function editorId(obj) {
-		window.location.href = '/icookProject/product?id=' + obj.id;
+		window.location.href = '/icook/product?id=' + obj.id;
 	}
 	function deleId(obj) {
 		// 		var msg = "真的要刪除嗎\n\n請確認！";
 		// 		if (confirm(msg) == true) {
-		window.location.href = '/icookProject/deleteCart?id=' + obj.id;
+		window.location.href = '/icook/deleteCart?id=' + obj.id;
 		//		}
 	}
 
 	function deleteAll() {
 		var msg = "確定要刪除所有嗎?";
 		if (confirm(msg) == true) {
-			window.location.href = '/icookProject/deleteCart?id=';
+			window.location.href = '/icook/deleteCart?id=';
 		}
 	}
 </script>
