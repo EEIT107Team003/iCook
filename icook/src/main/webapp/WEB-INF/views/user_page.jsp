@@ -193,9 +193,9 @@
 				<section class="about section">
 					<div class="section-inner">
 						<div id="myTabContent" class="tab-content">
-							<div class="tab-pane fade in active" id="home">
-                				<iframe src="hw1.html" frameborder="0" class="HWView" id="aa">dsdsds</iframe>
-            				</div>
+<!-- 							<div class="tab-pane fade in active" id="home"> -->
+<!--                 				<iframe src="hw1.html" frameborder="0" class="HWView" id="aa">dsdsds</iframe> -->
+<!--             				</div> -->
 						</div>
 					</div><!--//section-inner-->                 
 				</section><!--//section-->

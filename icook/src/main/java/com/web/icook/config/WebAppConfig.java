@@ -41,6 +41,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/member_image/**").addResourceLocations("/WEB-INF/views/member_image/");
 		registry.addResourceHandler("/product_image/**").addResourceLocations("/WEB-INF/views/products/images/");
 		registry.addResourceHandler("/ckeditor/**").addResourceLocations("/WEB-INF/views/ckeditor/");
+		registry.addResourceHandler("/assets/**").addResourceLocations("/WEB-INF/views/assets/");
 		//		super.addResourceHandlers(registry);
 	}
 
