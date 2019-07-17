@@ -81,7 +81,7 @@ width:30px;
 
 .mainShow {
 	opacity: 100;
-	width: 200px;
+	width: 50px;
 	filter: alpha(opacity = 100);
 	margin:auto;
 }
