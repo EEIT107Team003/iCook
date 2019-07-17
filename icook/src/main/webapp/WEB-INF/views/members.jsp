@@ -13,8 +13,8 @@
 </head>
 <body>
 	<h1>其他會員 登入者:${username}</h1>
-	<a href="/icook/user">回到會員頁</a>
-	<a href="/icook/home">回到首頁</a>
+	<a href="${pageContext.request.contextPath}/user">回到會員頁</a>
+	<a href="${pageContext.request.contextPath}/home">回到首頁</a>
 	<p>會員連結</p>
 	<div>
 		<c:forEach var="member" items="${members}">

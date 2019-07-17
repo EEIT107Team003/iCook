@@ -31,45 +31,50 @@ import recipe.model.RecipeBean;
 public class MemberBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	// 會員編號(不重複)*
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer member_id;
-	
-	// 電子郵件(不重複)*
-	@Column(unique = true)
-	private String username;
-	
-	// 密碼(不重複)*
-	@Column(unique = true)
-	private String password;
-	
-	// 暱稱(不重複)*
-	@Column(unique = true)
-	private String nickname;
-	
-	// 大頭貼
-	@JsonIgnore
-	private Blob member_photo;
-	// 被追蹤數
-	private Integer tracked_num;
-	// 發表食譜數量
-	private Integer recipe_num;
-	// 封面圖片
-	@JsonIgnore
-	private Blob cover_photo;
-	// 註冊時間
-	private Date register_date;
-	// 是否水桶(0.公開 1.隱藏)
-	private Boolean enabled;
-	// 大頭貼檔名
-	private String fileName_member;
-	// 個人封面檔名
-	private String fileName_cover;
-	// 發文篇數
-	private Integer forum_num;
-	// 權限
-	private String role;
+	// 會員編號
+		@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
+		private Integer member_id;
+		
+		// 電子郵件(不重複)*
+		@Column(unique = true)
+		private String username;
+		
+		// 密碼(不重複)*
+		@Column(unique = true)
+		private String password;
+		// 暱稱(不重複)*
+		@Column(unique = true)
+		private String nickname;
+		//會員簡介
+		@Column(length = 50 )
+		private String resume;
+		// 會員電話
+		private String member_phone_num;
+		// 大頭貼
+		@JsonIgnore
+		private Blob member_photo;
+		// 被追蹤數
+		private Integer tracked_num;
+		// 發表食譜數量
+		private Integer recipe_num;
+		// 封面圖片
+		@JsonIgnore
+		private Blob cover_photo;
+		// 註冊時間
+		private Date register_date;
+		// 是否水桶(0.公開 1.隱藏)
+		private Boolean enabled;
+		// 大頭貼檔名
+		private String fileName_member;
+		// 個人封面檔名
+		private String fileName_cover;
+		// 發文篇數
+		private Integer forum_num;
+		// 權限
+		private String role;
+		//收貨地址
+		private String address;
 
 	@JsonIgnore
 	@XmlTransient
@@ -320,5 +325,29 @@ public class MemberBean implements Serializable {
 
 	public void setArticle(Set<ForumMainBean> article) {
 		this.article = article;
+	}
+
+	public String getMember_phone_num() {
+		return member_phone_num;
+	}
+
+	public void setMember_phone_num(String member_phone_num) {
+		this.member_phone_num = member_phone_num;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getResume() {
+		return resume;
+	}
+
+	public void setResume(String resume) {
+		this.resume = resume;
 	}
 }

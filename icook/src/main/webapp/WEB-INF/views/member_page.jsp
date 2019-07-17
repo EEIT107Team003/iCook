@@ -25,9 +25,15 @@
 
 </head>
 <body>
+
+	<script >
+		var currentUrl = this.location.href
+		console.log(currentUrl);
+	</script>
+
 	<h1>會員首頁 登入者:${username}</h1>
-	<a href="/icook/user">回到會員頁</a>
-	<a href="/icook/home">回到首頁</a>
+	<a href="${pageContext.request.contextPath}/logout_page" class="alert alert-dark" role="alert">會員登出</a>
+	<a href="${pageContext.request.contextPath}/home" class="alert alert-dark" role="alert">回到首頁</a>
 	<div class=memberImg>
 		<p>大頭貼</p>
 		<img width='200' height='200'
