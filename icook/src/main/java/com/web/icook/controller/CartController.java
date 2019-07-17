@@ -1,0 +1,171 @@
+package com.web.icook.controller;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.web.icook.model.OrderItemBean;
+import com.web.icook.model.ProductBean;
+import com.web.icook.service.OrderService;
+import com.web.icook.service.ProductService;
+
+@Controller
+public class CartController {
+
+	@Autowired
+	ServletContext context;
+	@Autowired
+	OrderService service;
+	// 測試
+	ProductService pservice;
+
+	// 測試
+	@RequestMapping("/finishOrderPage")
+	public String tofinishOrderPage(Model model) {
+		// 測試
+//		boolean status=odao.setPaymentOK(13);
+//		model.addAttribute("status", status);
+		return "finishOrderPage";
+	}
+
+	@RequestMapping("/thankyou")
+	public String thankyou() {
+		return "thankyouPage2";
+	}
+
+	@RequestMapping("/realPaypal")
+	public String realPaypal() {
+
+		return "realPaypal";
+	}
+
+	// 測試
+	@RequestMapping("/testEL1")
+	public String toTest1() {
+
+		return "testEL1";
+	}
+
+	// 測試
+	@RequestMapping("/testEL2")
+	public String totestEL2() {
+
+		return "testEL2";
+	}
+
+	// 測試
+	@RequestMapping("/toIndex")
+	public String toIndex() {
+
+		return "index";
+	}
+
+//	@RequestMapping("/paypal")
+//	public String toPaypal() {
+//		return "information";
+//	}
+
+	// 測試顯示此頁,不會有單一指令到此頁
+	@RequestMapping("/information")
+	public String inforamation() {
+
+		return "information";
+	}
+//	@RequestMapping("/aioCheckOutOneTime")
+//	public String aioCheckOutOneTime() {
+//		
+//		return "aioCheckOutOneTime";
+//	}
+	@RequestMapping("/toAIOcheck")
+	public String aioCheckOut() {
+		
+		return "aioCheckOut";
+	}
+
+	// 選擇了EZ要先填資料
+	@RequestMapping("/ezship2")
+	public String chosedEZ(Model model, HttpSession session) {
+		return "ezship2";
+	}
+
+	// 測試
+	// 確認結帳跳轉至填寫information
+	@RequestMapping("/confirmOrder")
+	public String confirmOrder(Model model, HttpSession session) {
+		return "inforamation";
+	}
+
+	@RequestMapping("/cartPage")
+	public String gotoCart(Model model, HttpSession session) {
+
+		return "cartPage";
+	}
+
+	@RequestMapping("/showOrder")
+	public String Cash(Model model, HttpSession session) {
+		return "showOrder";
+	}
+
+	Map<Integer, OrderItemBean> cart = new HashMap<>();
+
+	@RequestMapping("/product/addToCart")
+	private String addToCart(@RequestParam(value = "productId", required = false) Integer productId,
+			@RequestParam(value = "quantity") int quantity, Model model, HttpSession session) {
+		Set<OrderItemBean> oibSet = new HashSet<>();
+		OrderItemBean oib;
+		ProductBean pb;
+		// 前端已經攔截<0
+		if (quantity == 0) {
+			cart.remove(productId);
+			return "redirect:/product?id=" + productId;
+		}
+		// 如果客戶在伺服器端沒有此項商品的資料，則客戶第一次購買此項商品
+		if (quantity > 0) {
+			pb = new ProductBean();
+			pb = pservice.getProductById(productId);
+			oib = new OrderItemBean();
+			oib.setDiscount(1.0);
+			oib.setQuantity(quantity);
+			oib.setSubtotal(quantity * pb.getPrice());
+			oib.setProductBean(pb);
+			cart.put(productId, oib);
+			session.setAttribute("shoppingCart", cart);
+			return "redirect:/product?id=" + productId;
+		} else {
+			return "redirect:/product?id=" + productId;
+		}
+	}
+
+	@SuppressWarnings({ "unused" })
+	@RequestMapping("/deleteCart")
+	public String deleteProduct(HttpSession session, @RequestParam(value = "id") Integer productId) {
+		if (productId == null) {
+			session.removeAttribute("shoppingCart");
+			cart.clear();
+			return "redirect:/cartPage";
+		} else if (productId != null) {
+			cart.remove(productId);
+			return "redirect:/cartPage";
+		} else {
+			return "redirect:/cartPage";
+		}
+	}
+
+	@RequestMapping("/infomationDeleteAllToMarket")
+	public String infomationDeleteAllToMarket(HttpSession session) {
+		session.removeAttribute("shoppingCart");
+		cart.clear();
+		return "redirect:/products";
+	}
+
+}

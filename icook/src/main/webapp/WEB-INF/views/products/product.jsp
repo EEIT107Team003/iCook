@@ -224,7 +224,43 @@ $("#quantity").change(function() {
     JSP version: <%= JspFactory.getDefaultFactory().getEngineInfo().getSpecificationVersion() %><br>
     Java Version: <%= System.getProperty("java.version") %><br>
 	</header>
-	
+	<c:out value="登入者${LoginOK.member_id}"></c:out>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="/">ICook!</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarTogglerDemo02"
+			aria-controls="navbarTogglerDemo02" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+				<li class="nav-item"><a class="nav-link" href='products'>市集</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="#">食譜</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">(修改商品)</a></li>
+				<li class="nav-item"><a class="nav-link" href='products/add'>(新增商品)</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="products/upd">(更新產品)</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="collections">查詢收藏</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="cartPage">購物車</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="checkOrders">檢視訂單(會員用)</a>
+				</li>
+				<li class="nav-item"><a class="nav-link"
+					href="adminCheckOrders">查看訂單(僅限admin的URL)</a></li>
+
+			</ul>
+			<form class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2" type="search" placeholder="查詢商品">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+			</form>
+		</div>
+	</nav>
     
 	<div class="allPage">
 		<div class="left">
