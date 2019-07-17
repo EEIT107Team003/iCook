@@ -2,7 +2,9 @@ package com.web.icook.model;
 
 import java.io.Serializable;
 import java.sql.Blob;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -62,7 +64,21 @@ public class ProductBean implements Serializable {
 			         org.hibernate.annotations.CascadeType.DELETE})
 	private Set<CollectiontBean> collections = new HashSet<CollectiontBean>(0);
 
-//	@JsonIgnoreProperties("productBean")
+	@JsonIgnoreProperties("productBean")
+	@OneToMany(fetch=FetchType.EAGER, mappedBy = "productBean"
+	        , cascade = CascadeType.ALL)
+	private List<OrderItemBean> carts = new ArrayList<OrderItemBean>(0);
+
+	
+public List<OrderItemBean> getCarts() {
+		return carts;
+	}
+
+	public void setCarts(List<OrderItemBean> carts) {
+		this.carts = carts;
+	}
+
+	//	@JsonIgnoreProperties("productBean")
 //	@JsonBackReference(value="categoriesbean")
 	@ManyToOne
 	@JoinColumn(name="fk_product_categories",referencedColumnName="name")	

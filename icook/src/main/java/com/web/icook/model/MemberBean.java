@@ -5,6 +5,7 @@ import java.sql.Blob;
 import java.sql.Date;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -19,6 +20,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlTransient;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -32,8 +34,14 @@ public class MemberBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	// 會員編號(不重複)*
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	private Integer member_id;
+	
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY,generator="generatorName")
+	@GenericGenerator(name = "generatorName", strategy = "native")
 	private Integer member_id;
 	
 	// 電子郵件(不重複)*
@@ -80,6 +88,13 @@ public class MemberBean implements Serializable {
 	@XmlTransient
 	@Transient
 	private MultipartFile cover_photo_tr;
+	
+	
+	@OneToMany(mappedBy="memberbean")
+	private Set<OrderBean> orders ;
+
+	@OneToMany(mappedBy="memberBean")
+	private List<OrderItemBean> orderitems ;
 
 	// ------------------------------------------------------------------------
 
@@ -320,5 +335,22 @@ public class MemberBean implements Serializable {
 
 	public void setArticle(Set<ForumMainBean> article) {
 		this.article = article;
+	}
+	
+	
+	public Set<OrderBean> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Set<OrderBean> orders) {
+		this.orders = orders;
+	}
+
+	public List<OrderItemBean> getOrderitems() {
+		return orderitems;
+	}
+
+	public void setOrderitems(List<OrderItemBean> orderitems) {
+		this.orderitems = orderitems;
 	}
 }
