@@ -12,6 +12,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+import com.web.icook.controller.ExcelViewResolver;
+
 @Configuration
 
 @EnableWebMvc
@@ -41,5 +43,11 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		resolver.setDefaultEncoding("UTF-8");
 		resolver.setMaxUploadSize(81920000);
 		return resolver;
+	}
+	
+	@Bean
+	public ViewResolver excelViewResolver() {
+		System.out.println("excelViewResolver");
+		return new ExcelViewResolver();
 	}
 }
