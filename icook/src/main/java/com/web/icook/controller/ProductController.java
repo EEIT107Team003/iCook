@@ -40,7 +40,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.web.icook.model.CategoriesBean;
 import com.web.icook.model.CategoryBean;
+import com.web.icook.model.MemberBean;
 import com.web.icook.model.ProductBean;
+import com.web.icook.service.MemberService;
 import com.web.icook.service.ProductService;
 
 @Controller
@@ -50,6 +52,7 @@ public class ProductController {
 
 	@Autowired
 	ServletContext context;
+<<<<<<< HEAD
 	
 	
 	@RequestMapping(value = "/product_Test")
@@ -61,92 +64,95 @@ public class ProductController {
 	
 	@RequestMapping(value = "/productsEx", method = RequestMethod.GET, 
 			produces = "application/vnd.ms-excel")
+=======
+
+	@Autowired
+	memberController mcontroller;
+
+	@Autowired
+	MemberService mservice;
+
+	@RequestMapping(value = "/productsEx", method = RequestMethod.GET, produces = "application/vnd.ms-excel")
+>>>>>>> branch 'master' of https://github.com/EEIT107Team003/iCook.git
 	public String AllProductsExcel(Model model) {
 		System.out.println("========Excel IN===========");
 		List<ProductBean> list = service.getAllProducts();
-		System.out.println("list:"+list);
+		System.out.println("list:" + list);
 		model.addAttribute("allProducts", list);
 		System.out.println("========Excel OUT===========");
 		return "products/allProducts";
 	}
-	@RequestMapping(value = "/productsByCategoryEx", method = RequestMethod.GET, 
-			produces = "application/vnd.ms-excel")
-	public String ProductsByCategoryExcel(HttpServletRequest request,
-		HttpServletResponse resopnse,Model model) {
+
+	@RequestMapping(value = "/productsByCategoryEx", method = RequestMethod.GET, produces = "application/vnd.ms-excel")
+	public String ProductsByCategoryExcel(HttpServletRequest request, HttpServletResponse resopnse, Model model) {
 		System.out.println("========productsByCategoryEx IN===========");
-		String remark=request.getParameter("remark2");
-		String fileName=request.getParameter("fileName2");
-		String description=request.getParameter("description2");
-		List<ProductBean>list=service.SelectByCategoriesAndDescriptionForPage(remark, fileName, description);
+		String remark = request.getParameter("remark2");
+		String fileName = request.getParameter("fileName2");
+		String description = request.getParameter("description2");
+		List<ProductBean> list = service.SelectByCategoriesAndDescriptionForPage(remark, fileName, description);
 		model.addAttribute("productsByCategory", list);
 		System.out.println("========productsByCategoryEx OUT===========");
 		return "products/productsByCategory";
 	}
 
-	
-	//========================================================================================================
-	//========================================================================================================
-		
-		
+	// ========================================================================================================
+	// ========================================================================================================
+
 	@RequestMapping(value = "/category/{txt}", method = RequestMethod.GET)
 	@ResponseBody
-	public List<CategoriesBean> getOneCategory (@PathVariable String txt) {
+	public List<CategoriesBean> getOneCategory(@PathVariable String txt) {
 		System.out.println("======category IN==============");
-		System.out.println("category name :"+txt);
+		System.out.println("category name :" + txt);
 //	    	String nvrsjson = JSONArray.toJSONString(bean);
-		List<CategoriesBean> list=service.getOneCategory(txt);
-		for(CategoriesBean bb : list) {
+		List<CategoriesBean> list = service.getOneCategory(txt);
+		for (CategoriesBean bb : list) {
 //			System.out.println("name : "+bb.getCategorybean().getName());
 		}
 		System.out.println("======category OUT=============");
-		return list;	
+		return list;
 	}
-	
-	
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/ForPage", method = RequestMethod.POST)
-	public List<ProductBean> ForPage(@RequestBody ProductBean searchBean,HttpServletRequest request,HttpServletResponse resopnse) {
+	public List<ProductBean> ForPage(@RequestBody ProductBean searchBean, HttpServletRequest request,
+			HttpServletResponse resopnse) {
 		System.out.println("======ForPageController IN==============");
-		String fileName=searchBean.getFileName().trim();//Categories.name AjAX後端抓不到 硬塞一個String去接
-		String remark=searchBean.getRemark().trim();//Category.name AjAX後端抓不到 硬塞一個String去接
-		String description=searchBean.getDescription().trim();
-		System.out.println("remark :"+remark+"fileName :"+fileName+"，description :"+description);
-		List<ProductBean>list=service.SelectByCategoriesAndDescriptionForPage(remark, fileName, description);
+		String fileName = searchBean.getFileName().trim();// Categories.name AjAX後端抓不到 硬塞一個String去接
+		String remark = searchBean.getRemark().trim();// Category.name AjAX後端抓不到 硬塞一個String去接
+		String description = searchBean.getDescription().trim();
+		System.out.println("remark :" + remark + "fileName :" + fileName + "，description :" + description);
+		List<ProductBean> list = service.SelectByCategoriesAndDescriptionForPage(remark, fileName, description);
 //		for(ProductBean bb :list) {
 //			System.out.println("id :"+bb.getProduct_id()
 //			+"  description :"+bb.getDescription() +"Name"+bb.getRemark());
 //		}
 		System.out.println("======ForPageController OUT==============");
-		return list;	
+		return list;
 	}
-
-
 
 	@ResponseBody
 	@RequestMapping(value = "/SelectByCategoriesAndDescription", method = RequestMethod.POST)
 	public List<ProductBean> SelectByCategoriesAndDescription(@RequestBody ProductBean searchBean) {
 		System.out.println("======SelectByCategoriesAndDescription IN==============");
 //		System.out.println("Page: "+request.getParameter("pagebut"));	
-		String fileName=searchBean.getFileName().trim();//Categories.name AjAX後端抓不到 硬塞一個String去接
-		String remark=searchBean.getRemark().trim();//Category.name AjAX後端抓不到 硬塞一個String去接
-		String description=searchBean.getDescription().trim();
-		if(searchBean.getStock()==null) {
+		String fileName = searchBean.getFileName().trim();// Categories.name AjAX後端抓不到 硬塞一個String去接
+		String remark = searchBean.getRemark().trim();// Category.name AjAX後端抓不到 硬塞一個String去接
+		String description = searchBean.getDescription().trim();
+		if (searchBean.getStock() == null) {
 			searchBean.setStock(1);
 		}
-		int stock=searchBean.getStock();
-		System.out.println("pageValue :"+stock);
-		System.out.println("remark :"+remark+"fileName :"+fileName+"，description :"+description);
-		List<ProductBean>list=service.SelectByCategoriesAndDescription(remark,fileName, description,stock);
+		int stock = searchBean.getStock();
+		System.out.println("pageValue :" + stock);
+		System.out.println("remark :" + remark + "fileName :" + fileName + "，description :" + description);
+		List<ProductBean> list = service.SelectByCategoriesAndDescription(remark, fileName, description, stock);
 //		for(ProductBean bb :list2) {
 //			System.out.println("id :"+bb.getProduct_id()
 //			+"  description :"+bb.getDescription() +"Name"+bb.getRemark());
 //		}
 		System.out.println("======SelectByCategoriesAndDescription OUT==============");
-		return list;	
+		return list;
 	}
-	
-	
+
 //	@ResponseBody
 //	@RequestMapping(value = "/SelectByCategories/{txt}", method = RequestMethod.GET)
 //	public List<ProductBean> SelectByCategories( @PathVariable String txt,Model model) {
@@ -160,55 +166,56 @@ public class ProductController {
 //		System.out.println("======SelectByCategories OUT=============");
 //		return list;
 //	}
-	
+
 	@RequestMapping(value = "/categories/{txt}", method = RequestMethod.GET)
 	@ResponseBody
-	public List<CategoriesBean> categoriesSelect (@PathVariable String txt) {
+	public List<CategoriesBean> categoriesSelect(@PathVariable String txt) {
 		System.out.println("======categoriesSelect IN==============");
 //		System.out.println("category name :"+txt);
-		List<CategoriesBean> list=service.getAllCategories(txt);
+		List<CategoriesBean> list = service.getAllCategories(txt);
 //	    	String nvrsjson = JSONArray.toJSONString(bean);
-		for(CategoriesBean bb : list) {
+		for (CategoriesBean bb : list) {
 //			System.out.println("name : "+bb.getName());
 		}
 		System.out.println("======categoriesSelect OUT=============");
-		return list;	
+		return list;
 	}
-	
-	
-	
-	
+
 // Category 後臺送到前端 successful
 //			,produces = MediaType.APPLICATION_JSON_VALUE ,consumes = MediaType.APPLICATION_JSON_VALUE
 	@RequestMapping(value = "/category", method = RequestMethod.POST)
 	@ResponseBody
-	public  List<CategoryBean>  categorySelect () {
-		System.out.println("======CategorySelect IN==============");
-		List<CategoryBean> bean=service.getAllCategory();
+	public List<CategoryBean> categorySelect() {
+//		System.out.println("======CategorySelect IN==============");
+		List<CategoryBean> bean = service.getAllCategory();
 //	    	String nvrsjson = JSONArray.toJSONString(bean);
-		for(CategoryBean bb : bean) {
+		for (CategoryBean bb : bean) {
 //			System.out.println("name : "+bb.getName());
 		}
-		System.out.println("======CategorySelect OUT=============");
+//		System.out.println("======CategorySelect OUT=============");
 		return bean;
 	}
-	
-	
-	
+
 	@RequestMapping("/product/addToCollection")
 	public String addToCollection(@RequestParam("id") Integer id, Model model) {
-		//暫時用member=5
-		int memberId=2;
+		// 暫時用member=5
+		int memberId = 2;
 		service.addtoCollection(id, memberId);
 //		model.addAttribute("product", bb);
 		return "redirect:/products";
 	}
-	
-	
 
 	// 查全部
 	@RequestMapping(value = "/products")
 	public String ProductForm(Model model) {
+
+		// 要在下頁用EL顯示會員${LoginOK.member_id}需在controller裡面加此行,-----------------------------
+		//測試成功
+		if (!mcontroller.getPrincipal().equals("anonymousUser")) {
+			MemberBean mb = mservice.selectByUsername(mcontroller.getPrincipal());
+			model.addAttribute("LoginOK", mb);
+		}
+		// -----------------------------------------------------------------------
 		List<ProductBean> list = service.getAllProducts();
 		model.addAttribute("products", list);
 		return "products/products";
@@ -217,6 +224,14 @@ public class ProductController {
 	// 查單筆
 	@RequestMapping("/product")
 	public String getProductById(@RequestParam("id") Integer id, Model model) {
+		// 要在下頁用EL顯示會員${LoginOK.member_id}需在controller裡面加此行,-----------------------------
+		//測試成功
+		if (!mcontroller.getPrincipal().equals("anonymousUser")) {
+			MemberBean mb = mservice.selectByUsername(mcontroller.getPrincipal());
+			model.addAttribute("LoginOK", mb);
+		}
+		// -----------------------------------------------------------------------
+
 		ProductBean bb = service.getProductById(id);
 		model.addAttribute("product", service.getProductById(id));
 		return "products/product";
@@ -260,14 +275,14 @@ public class ProductController {
 		}
 		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
 		String mimeType = context.getMimeType(filename);
-		if(mimeType==null)
-			mimeType="image/jpeg";
+		if (mimeType == null)
+			mimeType = "image/jpeg";
 //		System.out.println("mimeType ="+mimeType);
 		MediaType mediaType = MediaType.valueOf(mimeType);
 //		System.out.println("mediaType =" + mediaType);
 		headers.setContentType(mediaType);
 		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
-		
+
 		return responseEntity;
 	}
 
@@ -301,17 +316,15 @@ public class ProductController {
 //限定輸入欄位	
 	@InitBinder
 	public void whiteListing(WebDataBinder binder) {
-		binder.setAllowedFields("product_id，", "description", "unit_size", "price", "color", "stock",
-				"productImage");
+		binder.setAllowedFields("product_id，", "description", "unit_size", "price", "color", "stock", "productImage");
 	}
-
 
 	@RequestMapping(value = "/products/upd", method = RequestMethod.GET)
 	public String updateProduct(Model model, @RequestParam("id") Integer id) {
 		System.out.println("update From Start============================================");
 		ProductBean bb = new ProductBean();
 		bb.setProduct_id(id);
-		ProductBean previousbean=service.getProductById(id);
+		ProductBean previousbean = service.getProductById(id);
 		model.addAttribute("productBeanObject", bb);
 		model.addAttribute("previousbean", previousbean);
 //		bb.setCategory("鍋子");
@@ -351,20 +364,21 @@ public class ProductController {
 //submit表單
 	@RequestMapping(value = { "/products/add", "/products/upd" }, method = RequestMethod.POST)
 	public String processAddNewProductForm(@ModelAttribute("productBeanObject") ProductBean bb,
-			@RequestParam String product_id, Model model, BindingResult result, HttpServletRequest request) throws IOException {
+			@RequestParam String product_id, Model model, BindingResult result, HttpServletRequest request)
+			throws IOException {
 		System.out.println("\nSubmit Form Start============================================");
-		String Categoriesname=request.getParameter("fileName");
-		String Category=request.getParameter("name");
-		String gender=request.getParameter("gender");
-		if(gender==null)
-			gender="2";
-		if(Category==null||Category.length()==0)
-			Category="其他";
-		if(Categoriesname==null||Categoriesname.length()==0)
-			Categoriesname="其他";
-		System.out.println(gender+"，"+Category+"，"+Categoriesname);
+		String Categoriesname = request.getParameter("fileName");
+		String Category = request.getParameter("name");
+		String gender = request.getParameter("gender");
+		if (gender == null)
+			gender = "2";
+		if (Category == null || Category.length() == 0)
+			Category = "其他";
+		if (Categoriesname == null || Categoriesname.length() == 0)
+			Categoriesname = "其他";
+		System.out.println(gender + "，" + Category + "，" + Categoriesname);
 		bb.setName(Category);
-		bb.setStatus(Integer.valueOf(gender)); 
+		bb.setStatus(Integer.valueOf(gender));
 		bb.getCategoriesbean().setName(Categoriesname);
 		System.out.println(model.asMap());
 		Map<String, Object> map = model.asMap();
@@ -381,37 +395,37 @@ public class ProductController {
 			bb.setStock(0);
 		}
 		System.out.println("product_id======================================" + product_id);
-		
+
 		MultipartFile productImage = bb.getProductImage();
 		String originalFilename = productImage.getOriginalFilename();
 		bb.setFileName(originalFilename);
-		String ext=null;
-		if (originalFilename != null && !originalFilename.isEmpty()) 
-			 ext= originalFilename.substring(originalFilename.lastIndexOf("."));
+		String ext = null;
+		if (originalFilename != null && !originalFilename.isEmpty())
+			ext = originalFilename.substring(originalFilename.lastIndexOf("."));
 
-		//       ext :抓檔案副檔名  從" .  "以後含點都取
+		// ext :抓檔案副檔名 從" . "以後含點都取
 
-		//-----------------------------------------寫入寫出-----------------------------------------------------------------------
-				System.out.println("=====input start");
-				InputStream ins = productImage.getInputStream();
-				OutputStream ous = new FileOutputStream(
-						"C:\\springMVC\\workspace\\icookProject\\src\\main\\webapp\\WEB-INF\\views\\images\\pictures" + originalFilename
-								+ ext);
-				int lenght = -1;
-				byte[] tmp = new byte[81920];
+		// -----------------------------------------寫入寫出-----------------------------------------------------------------------
+		System.out.println("=====input start");
+		InputStream ins = productImage.getInputStream();
+		OutputStream ous = new FileOutputStream(
+				"C:\\springMVC\\workspace\\icookProject\\src\\main\\webapp\\WEB-INF\\views\\images\\pictures"
+						+ originalFilename + ext);
+		int lenght = -1;
+		byte[] tmp = new byte[81920];
 
-				while ((lenght = ins.read(tmp)) != -1) {
-					ous.write(tmp, 0, lenght);
-				}
-				ins.close();
-				ous.close();
-				System.out.println("=====outputf finish");
-		//-----------------------------------------寫入寫出-----------------------------------------------------------------------
+		while ((lenght = ins.read(tmp)) != -1) {
+			ous.write(tmp, 0, lenght);
+		}
+		ins.close();
+		ous.close();
+		System.out.println("=====outputf finish");
+		// -----------------------------------------寫入寫出-----------------------------------------------------------------------
 		String rootDirectory = context.getRealPath("/");
 
 		String Nameof_contextOath = context.getContextPath();
 		String getServletPath = request.getServletPath();
-		
+
 		getServletPath = getServletPath.trim().substring(getServletPath.length() - 3, getServletPath.length());
 		// 建立Blob物件，交由 Hibernate 寫入資料庫
 		if (productImage != null && !productImage.isEmpty()) {

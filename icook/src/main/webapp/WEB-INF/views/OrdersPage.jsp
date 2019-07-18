@@ -35,7 +35,7 @@ td, th {
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="/icookProject">ICook!</a>
+		<a class="navbar-brand" href="/icook">ICook!</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarTogglerDemo02"
 			aria-controls="navbarTogglerDemo02" aria-expanded="false"
@@ -71,7 +71,8 @@ td, th {
 		</div>
 	</nav>
 	<h1>
-		<c:out value="會員ID:${LoginOK.member_id}的訂單"></c:out>
+
+		<c:out value="會員ID:${LoginOK.nickname}的訂單"></c:out>
 	</h1>
 	<div class="outer">
 		<table class="table table-hover">

@@ -146,7 +146,7 @@
 			<div align="center">
 				<input type="hidden" name="finalDecision" value="">
 				<button type="button"
-					onclick="{if(confirm('確定離開嗎?\r\n資料將不會記住喔'))location.href='/icookProject/cartPage'}"
+					onclick="{if(confirm('確定離開嗎?\r\n資料將不會記住喔'))location.href='/icook/cartPage'}"
 					class="btn btn-outline-info btn-lg btnSeperate1">回購物車</button>
 
 			</div>

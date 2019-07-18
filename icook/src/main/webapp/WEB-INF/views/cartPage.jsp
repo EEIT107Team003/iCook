@@ -22,19 +22,19 @@
 
 <script type="text/javascript">
 	function editorId(obj) {
-		window.location.href = '/icookProject/product?id=' + obj.id;
+		window.location.href = '/icook/product?id=' + obj.id;
 	}
 	function deleId(obj) {
 		// 		var msg = "真的要刪除嗎\n\n請確認！";
 		// 		if (confirm(msg) == true) {
-		window.location.href = '/icookProject/deleteCart?id=' + obj.id;
+		window.location.href = '/icook/deleteCart?id=' + obj.id;
 		//		}
 	}
 
 	function deleteAll() {
 		var msg = "確定要刪除所有嗎?";
 		if (confirm(msg) == true) {
-			window.location.href = '/icookProject/deleteCart?id=';
+			window.location.href = '/icook/deleteCart?id=';
 		}
 	}
 </script>
@@ -48,7 +48,7 @@ th, td {
 <body>
 	<c:out value="登入者${LoginOK.member_id}"></c:out>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="/icookProject">ICook!</a>
+		<a class="navbar-brand" href="/icook">ICook!</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarTogglerDemo02"
 			aria-controls="navbarTogglerDemo02" aria-expanded="false"
@@ -152,7 +152,7 @@ th, td {
 			<c:when test="${!empty shoppingCart}">
 				<!-- 如果 -->
 				<button type="button" id='check'
-					onclick="window.location.href='/icookProject/toEZship'"
+					onclick="window.location.href='/icook/toEZship'"
 					class="btn btn-outline-success btn-lg">結帳囉!</button>
 			</c:when>
 			<c:when test="${empty shoppingCart}">

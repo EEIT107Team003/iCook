@@ -83,7 +83,7 @@ h1 {
 	</div>
 
 
-
+	<c:out value="登入者${LoginOK.nickname}"></c:out>
 	<form action="<c:url value='/placeOrder'/>" method="POST">
 		<div class="outer">
 			<h1>本次訂購的產品</h1>
