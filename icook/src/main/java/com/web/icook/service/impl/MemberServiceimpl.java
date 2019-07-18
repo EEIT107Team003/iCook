@@ -1,4 +1,4 @@
-package com.web.icook.service;
+package com.web.icook.service.impl;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.web.icook.dao.MemberDAO;
 import com.web.icook.model.MemberBean;
 import com.web.icook.model.MyTrackBean;
+import com.web.icook.service.MemberService;
 
 
 
@@ -71,6 +72,17 @@ public class MemberServiceimpl implements MemberService {
 	public MemberBean selectByNickname(String nickname) {
 		return dao.selectByNickname(nickname);
 	}
+
+	// 查詢追蹤者
+	@Override
+	public List<MyTrackBean> selectTrackerById(int member_Id) {
+		// TODO Auto-generated method stub
+		return dao.selectTrackerById(member_Id);
+	}
 	
-	
+	// 更新會員資料(2)
+	@Override
+	public void updateMemberInfo(MemberBean bean, int member_id) {
+		dao.updateMemberInfo(bean, member_id);
+	}
 }

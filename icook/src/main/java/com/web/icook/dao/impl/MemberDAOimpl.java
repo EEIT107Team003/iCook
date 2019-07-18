@@ -1,4 +1,4 @@
-package com.web.icook.dao;
+package com.web.icook.dao.impl;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
@@ -17,10 +17,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
 
+import com.web.icook.dao.MemberDAO;
 import com.web.icook.model.MemberBean;
 import com.web.icook.model.MyTrackBean;
-
-
+import com.web.icook.model.ProductBean;
 
 @Repository
 public class MemberDAOimpl implements MemberDAO {
@@ -41,7 +41,7 @@ public class MemberDAOimpl implements MemberDAO {
 		MemberBean oldBean = selectByUsername(getPrincipal());
 		oldBean.setNickname(bean.getNickname());// 暱稱
 	}
-
+	
 	// 修改大頭貼
 	@Override
 	public void updateMember_photo(MemberBean bean) {
@@ -87,6 +87,7 @@ public class MemberDAOimpl implements MemberDAO {
 
 		return bean;
 	}
+
 	// 尋找單筆資料(nickname)
 	@Override
 	public MemberBean selectByNickname(String nickname) {
@@ -96,15 +97,34 @@ public class MemberDAOimpl implements MemberDAO {
 
 		return bean;
 	}
-	
-	//追蹤會員
+
+	// 追蹤會員
 	@Override
 	public void trackById(MyTrackBean bean) {
 		Session session = factory.getCurrentSession();
 		session.save(bean);
 	}
 	
+	// 更新會員資料(2)
+	@Override
+	public void updateMemberInfo(MemberBean bean, int member_id) {
+		Session session = factory.getCurrentSession();
+		bean.setMember_id(member_id);
+		session.update(bean);
+	}
 
+	// 查詢追蹤者
+	@Override
+	public List<MyTrackBean> selectTrackerById(int member_Id) {
+		String hql = "from MyTrackBean where member_Id=:member_Id";
+		List<MyTrackBean> list = new ArrayList<MyTrackBean>();
+		Session session = factory.getCurrentSession();
+		list = session.createQuery(hql).setParameter("member_Id", member_Id).getResultList();
+
+		return list;
+	}
+
+	
 	private String getPrincipal() {
 		String userName = null;
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
