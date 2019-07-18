@@ -523,17 +523,6 @@ width:30px;
     JSP version: <%= JspFactory.getDefaultFactory().getEngineInfo().getSpecificationVersion() %><br>
     Java Version: <%= System.getProperty("java.version") %><br>
 		</header>
-		
-		
-		<h1>HEADER</h1>
-		Working with server:
-		<%=application.getServerInfo()%><br> Servlet Specification:
-		<%=application.getMajorVersion()%>.<%=application.getMinorVersion()%>
-		<br> JSP version:
-		<%=JspFactory.getDefaultFactory().getEngineInfo().getSpecificationVersion()%><br>
-		Java Version:
-		<%=System.getProperty("java.version")%><br>
-	</header>
 	<c:out value="登入者${LoginOK.nickname}"></c:out>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="/icook">ICook!</a>
@@ -687,7 +676,7 @@ width:30px;
 
 			<div class="page">
 				<form>
-					<ul class="pagination">
+					<ul class="pagination"  style="font-size: 20px">
 					</ul>
 				</form>
 			</div>

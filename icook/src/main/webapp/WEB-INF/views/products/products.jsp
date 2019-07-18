@@ -373,7 +373,7 @@ width:30px;
 					var txt="<li class='page-item'><input  type = 'button' id='Previous' value='&laquo;'  onclick='PreviousClick()'  class='page-link'/></li>";
 					count=Math.ceil(names.length/18);
 						for (var i=1;i<=count;i++) {
-				           txt+="<li class='page-item'><input type = 'button' class='page-link'  style='margin-left: 3ch;width:5ch;' name='stock' onclick='edit(this)'  value="+i+"></input></li>"   
+				           txt+="<li class='page-item'><input type = 'button' class='page-link' name='stock' onclick='edit(this)'   value="+i+"></input></li>"   
 				         }
 						txt+="<li class='page-item'><input type = 'button' id='Next'   value='&raquo;' onclick='NextClick()' class='page-link'/></li>"
 // 						console.log("count"+count);
@@ -502,8 +502,6 @@ width:30px;
 
 	</script>
 	<header>
-	
-	
 	
 	<h1>HEADER</h1>
 	Working with server: <%= application.getServerInfo() %><br>

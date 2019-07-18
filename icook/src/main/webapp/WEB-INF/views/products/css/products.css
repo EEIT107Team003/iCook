@@ -1,4 +1,11 @@
 @charset "UTF-8";
+.pagination input{
+margin:auto;
+width:10ch;
+background-color: #93C775;
+font-size: 15px;
+ text-align: center;
+}
 
 .list-type1{
 
