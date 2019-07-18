@@ -52,7 +52,6 @@ public class ProductController {
 
 	@Autowired
 	ServletContext context;
-<<<<<<< HEAD
 	
 	
 	@RequestMapping(value = "/product_Test")
@@ -62,10 +61,6 @@ public class ProductController {
 		return "products/test";
 	}
 	
-	@RequestMapping(value = "/productsEx", method = RequestMethod.GET, 
-			produces = "application/vnd.ms-excel")
-=======
-
 	@Autowired
 	memberController mcontroller;
 
@@ -73,7 +68,6 @@ public class ProductController {
 	MemberService mservice;
 
 	@RequestMapping(value = "/productsEx", method = RequestMethod.GET, produces = "application/vnd.ms-excel")
->>>>>>> branch 'master' of https://github.com/EEIT107Team003/iCook.git
 	public String AllProductsExcel(Model model) {
 		System.out.println("========Excel IN===========");
 		List<ProductBean> list = service.getAllProducts();
