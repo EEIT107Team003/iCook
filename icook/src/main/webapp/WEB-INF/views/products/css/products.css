@@ -66,3 +66,51 @@ font-weight: bold;
 border-radius: 2em;
 color:#FFF;
 }
+
+
+.rightMain p{
+font-size:15px;	
+padding: 0;
+margin: 0;
+text-align:center;
+line-height:30px;
+font-weight:bold;
+}
+
+
+.mh6{
+color:#666666;
+transition: all 0.5s;
+position: relative; 
+font-size:25px;
+width:150px;	
+line-height:35px;
+text-align:center;
+font-style:oblique;
+
+}
+
+.mh6 span{
+z-index: 2; 
+display: block;
+position: absolute;
+width: 100%;
+height: 100%;   
+}
+.mh6:before{
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: 1;
+opacity: 0;
+background-color: rgba(0,0,0,0.5);
+transition: all 0.4s;
+transform: scale(1, 0.5);
+}
+.mh6:hover::before{
+opacity: 1;
+transform: scale(1, 1);
+}

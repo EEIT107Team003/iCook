@@ -71,6 +71,9 @@ public class ProductController {
 	public String AllProductsExcel(Model model) {
 		System.out.println("========Excel IN===========");
 		List<ProductBean> list = service.getAllProducts();
+		for(ProductBean vv : list) {
+			System.out.println("vv :"+vv.getName());
+		}
 		System.out.println("list:" + list);
 		model.addAttribute("allProducts", list);
 		System.out.println("========Excel OUT===========");
