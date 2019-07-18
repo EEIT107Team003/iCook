@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -135,13 +136,14 @@ public class CartController {
 
 	@RequestMapping(value="/product/addToCart")
 	private String addToCart(@RequestParam(value = "productId", required = false) Integer productId,
-			@RequestParam(value = "quantity") Integer quantity, Model model, HttpSession session) {
-		
-		
-		
-		
-		
-		
+//			@RequestParam(value = "quantity") Integer quantity, Model model, HttpSession session) {
+		 Model model, HttpSession session, HttpServletRequest req) {
+		String quantityString =req.getParameter("quan");
+		if(quantityString=="") {
+			cart.remove(productId);
+			return "redirect:/product?id=" + productId;
+		}
+		Integer quantity= Integer.parseInt(quantityString);
 		//-----------------------------測試是否抓到登入會員------------------------------
 		//成功
 //		String username=mcontroller.getPrincipal();

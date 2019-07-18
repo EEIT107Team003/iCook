@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -9,6 +10,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <meta charset="UTF-8">
+
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 <title>Products</title>
@@ -158,6 +160,8 @@ $("#quantity").change(function() {
 	var txt = $("#quantity :selected").val();
 	$("#quan").val(txt);
 //     alert($("#quan").val());
+//     var n0 = typeof ($("#quan").val());
+//     alert(n0);
 })
 
 	function catchSelect1(){
@@ -185,6 +189,14 @@ $("#quantity").change(function() {
 		$.ajax({                                    
 			url : "${pageContext.request.contextPath}/categories/" + txt,
 			type : "GET",
+// ================================起始畫面SHOW====================================
+	firstShow();
+    var count;
+    
+    function firstShow(){
+	$.ajax({
+			url : "${pageContext.request.contextPath}/category",
+			type : "POST",
 			dataType : "json",
 			async : true,
 			contentType : "application/json",
@@ -360,8 +372,21 @@ $("#quantity").change(function() {
 						<form method='POST' action="<c:url value='/product/addToCart'/>">
 							<input type="hidden" name="productId"
 								value="${product.product_id}" /> <input type="hidden"
-								name="price" value="${product.price}" /> <input type="number"
-								name="quantity" min="0" max="100" value="0" /> 數量
+								name="price" value="${product.price}" /> 
+								
+								
+								
+<%-- 								<c:set value="" var="quan1"/> --%>
+<%-- 						<c:out value="${quan1}"></c:out> --%>
+								
+								<input type="hidden"
+								name="quan" id='quan' value="" /> 
+	
+								
+								
+								
+<!-- 								<input type="number" -->
+<!-- 								name="quantity" min="0" max="100" value="0" /> 數量 -->
 							<div align="center">
 								<button type="button" class="btn btn-warning"
 									onclick="{location.href='/icook/cartPage'}" class="">去購物車</button>
@@ -369,15 +394,6 @@ $("#quantity").change(function() {
 							</div>
 
 						</form>
-
-
-
-
-						<input type="hidden" name="productId" id="quan" name="quan" />
-						
-						
-						
-						
 					</div>
 				</div>
 			</section>

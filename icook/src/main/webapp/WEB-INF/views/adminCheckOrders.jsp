@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="jquery-3.4.1.min.js"></script>
 <link
 	href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css"
 	rel="stylesheet">
@@ -18,6 +19,9 @@
 <link rel='stylesheet'
 	href='${pageContext.request.contextPath}/css/fontawesome-free/css/all.min.css'
 	type="text/css" />
+	
+	
+	<link rel="stylesheet" href="animate.min.css">
 <style type="text/css">
 .outer {
 	margin: 50px 5% 20% 10%;
@@ -68,7 +72,7 @@ td, th {
 /*   50% { background-color: #FF0000; box-shadow: 0 0 40px #FF0000; } */
 /*   100% { background-color: #B20000; box-shadow: 0 0 3px #B20000; } */
 /* } */
-.urgentFlash {
+.urgent {
 	background-color: red;
 }
 </style>
@@ -141,32 +145,36 @@ td, th {
 			</thead>
 			<tbody>
 
-				<c:set var="contains" value="no" />
-				<c:forEach var="urgentOrderNo" items="${urgentOrders_No}" begin="0"
-					end="${fn:length(urgentOrder)}">
-					<c:if test="${urgentOrderNo eq OrderBean.orderNo}">
-						<c:set var="contains" value="yes" />
-					</c:if>
-				</c:forEach>
-				<c:choose>
-					<c:when test="${contains=='yes'}">
-						<script type="text/javascript">
-							$(document).ready(function() {
-								$('#odno').classList.add("urgentFlash");
-							});
-						</script>
-					</c:when>
-					<c:otherwise>
-						<script type="text/javascript">
-							
-						</script>
-					</c:otherwise>
-				</c:choose>
+
 
 
 				<c:forEach var='OrderBean' items='${orders_list}'>
 					<tr>
-						<td id='odno'>${OrderBean.orderNo}</td>
+						<c:set var="contains" value="no" />
+						<c:forEach var="urgentOrderNo" items="${urgentOrders_No}">
+							<c:if test="${urgentOrderNo eq OrderBean.orderNo}">
+								<c:set var="contains" value="yes" />
+							</c:if>
+						</c:forEach>
+						<c:choose>
+							<c:when test="${contains=='yes'}">
+								<td id='odno' class='urgent'>${OrderBean.orderNo}</td>
+								<script type="text/javascript">
+								
+								
+// 									var myElement = document
+// 											.querySelector("#odno"); // 取得ID為homeTitle的元素 
+// 									myElement.style.backgroundColor = "#FF0000"; // 透過style.backgroundColor設定背景顏色
+								</script>
+							</c:when>
+							<c:otherwise>
+								<td id='odno'>${OrderBean.orderNo}</td>
+								<script type="text/javascript">
+									
+								</script>
+							</c:otherwise>
+						</c:choose>
+						<%-- 						<td id='odno'>${OrderBean.orderNo}</td> --%>
 						<td>
 							<form method='POST'
 								action="<c:url value='/adminCheckOrderDetails?id=${OrderBean.memberbean.member_id}'/>">
@@ -182,12 +190,12 @@ td, th {
 						<td>${OrderBean.shippingAddress}</td>
 						<td>${OrderBean.invoiceTitle}</td>
 						<c:set var="contains" value="no" />
-							<c:if test="${OrderBean.payment eq 'OK'}">
-								<c:set var="contains" value="yes" />
-								<script type="text/javascript">
-									
-								</script>
-							</c:if>
+						<c:if test="${OrderBean.payment eq 'OK'}">
+							<c:set var="contains" value="yes" />
+							<script type="text/javascript">
+								
+							</script>
+						</c:if>
 
 						<c:choose>
 							<c:when test="${contains=='yes'}">
@@ -200,8 +208,8 @@ td, th {
 								<script type="text/javascript">
 									
 								</script>
-								<td><input type="button" class="btn btn-success" id="${OrderBean.orderNo}"
-									onclick='setOK(this)' value="收到款項"></td>
+								<td><input type="button" class="btn btn-success"
+									id="${OrderBean.orderNo}" onclick='setOK(this)' value="收到款項"></td>
 							</c:otherwise>
 						</c:choose>
 						<c:set var="contains" value="no" />
@@ -213,6 +221,8 @@ td, th {
 			</tbody>
 		</table>
 	</div>
+
+
 
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

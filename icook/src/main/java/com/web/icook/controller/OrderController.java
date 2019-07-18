@@ -346,34 +346,33 @@ public class OrderController {
 			
 //-----------------------------------------計算離出貨<1天------------------------------------------------------
 			
-
-//			//算出貨時間<1天的
-//			Iterator<OrderBean> iter1 = orders.iterator();
-//			List<Integer> needShipOutOrderNo = new ArrayList<>();
-//			while (iter1.hasNext()) {
-//				OrderBean ob = iter1.next();
-//				Date checkDate = new Date();
-//				//test
-//				Long OrderDateLong=ob.getOrderDate().getTime();//why nullpointer!!!!
-//				Long checkDateLong=checkDate.getTime();
-//				System.out.println("OrderDate="+OrderDateLong);
-//				System.out.println("checkDate="+checkDateLong);
-//				Long diffDateLong=checkDateLong-OrderDateLong;
-//				System.out.println("diffDateLong="+diffDateLong);
-//				Long diffDateDay=diffDateLong/(1000 * 60 * 60 * 24);
-//				System.out.println("diffDateDay="+diffDateDay);
-//				System.out.println("四捨五入="+Math.ceil(diffDateLong/(1000 * 60 * 60 * 24)));;
-//				Long diffLong=checkDate.getTime()-ob.getOrderDate().getTime();
-//				Long diffDays=diffLong/(1000 * 60 * 60 * 24);
-//				//測試
-//				System.out.println("diffDays="+diffDays);
-//				if(diffDays<1) {
-//					needShipOutOrderNo.add(ob.getOrderNo());
-//				}
-//				//測試
-//				System.out.println("urgentOrderNo="+ob.getOrderNo());
-//			}
-//			model.addAttribute("urgentOrders_No", needShipOutOrderNo);
+			//算出貨時間<10天的
+			Iterator<OrderBean> iter1 = orders.iterator();
+			List<Integer> needShipOutOrderNo = new ArrayList<>();
+			while (iter1.hasNext()) {
+				OrderBean ob = iter1.next();
+				Date checkDate = new Date();
+				//test
+				Long Long_OrderDate=ob.getOrderDate().getTime();//why nullpointer!!!!
+				Long Long_todaycheckDate=checkDate.getTime();
+				System.out.println("OrderDate="+Long_OrderDate);
+				System.out.println("checkDate="+Long_todaycheckDate);
+				Long diffDateLong=Long_todaycheckDate-Long_OrderDate;
+				System.out.println("diffDateLong="+diffDateLong);
+				Long diffDateDay=diffDateLong/(1000 * 60 * 60 * 24);
+				System.out.println("diffDateDay="+diffDateDay);
+				System.out.println("四捨五入="+Math.ceil(diffDateLong/(1000 * 60 * 60 * 24)));;
+				Long diffLong=checkDate.getTime()-ob.getOrderDate().getTime();
+				Long diffDays=diffLong/(1000 * 60 * 60 * 24);
+				//測試
+				System.out.println("diffDays="+diffDays);
+				if(diffDays<10) {
+					needShipOutOrderNo.add(ob.getOrderNo());
+				}
+				//測試
+				System.out.println("urgentOrderNo="+ob.getOrderNo());
+			}
+			model.addAttribute("urgentOrders_No", needShipOutOrderNo);
 			
 			
 //------------------------------------計算完畢-------------------------------------------------
@@ -394,7 +393,6 @@ public class OrderController {
 		OrderBean admin_ob = odao.get_One_Order_by_OrderNo(OrderNo);
 		List<OrderItemBean> admin_oib = admin_ob.getItems();
 		model.addAttribute("orderItems_List", admin_oib);
-
 		return "adminCheckOrderDetails";
 	}
 
