@@ -46,7 +46,7 @@ th, td {
 </head>
 
 <body>
-	<c:out value="登入者${LoginOK.member_id}"></c:out>
+	<c:out value="登入者${LoginOK.nickname}"></c:out>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="/icook">ICook!</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -59,7 +59,7 @@ th, td {
 		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 				<li class="nav-item"><a class="nav-link"
-					href='/icookProject/products'>市集</a></li>
+					href='/icook/products'>市集</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">食譜</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">修改商品</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">新增商品</a></li>

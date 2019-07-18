@@ -43,8 +43,7 @@ body {
 
 header {
 	margin: auto;
-/* 	background-color: #FFC8B4; */
-    
+	background-color: #FFC8B4;
 }
 
 footer {

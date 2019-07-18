@@ -52,6 +52,7 @@ td , th{
 				</li>
 				<li class="nav-item"><a class="nav-link" href="checkOrders">檢視訂單</a>
 				</li>
+				</li>
 				<li class="nav-item"><a class="nav-link" href="information">(測試田個資)</a>
 				</li>
 
@@ -63,16 +64,13 @@ td , th{
 		</div>
 	</nav>
 	<h1>
-		<c:out value="管理者ID:${LoginOK.member_id}"></c:out>
+		<c:out value="會員ID:${LoginOK.member_id}的第${FrontSeqOrderNo}筆消費"></c:out><hr/>
+<%-- 		<c:out value="訂單編號:${OrderNo}"/> --%>
 	</h1>
-	<br>
-<%-- 	<h5>系統訂單編號:<c:out value="${systemOrderNo}"/></h5> --%>
 	<div class="outer">
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th scope="col">訂購者ID</th>
-					<th scope="col">系統單號</th>
 					<th scope="col">圖示</th>
 					<th scope="col">產品號</th>
 					<th scope="col">種類</th>
@@ -87,10 +85,8 @@ td , th{
 			<tbody>
 				<c:forEach var='orderItem' items='${orderItems_List}'>
 					<tr>
-					<td>${orderItem.memberBean.member_id}</td>
-					<td>${orderItem.orderBean.orderNo}</td>
 						<td><img width='50' height='50'
-				src="<c:url value='/getPicture/${orderItem.productBean.product_id}'/>"/></td>
+				src="<c:url value='/getPicture/${orderItem.productBean.product_id}'/>" /></td>
 						<td>${orderItem.productBean.product_id}</td>
 						<td>${orderItem.productBean.categoriesbean.name}</td>
 						<td>${orderItem.productBean.description}</td>
@@ -100,12 +96,9 @@ td , th{
 						<td>${orderItem.quantity}</td>
 						<td>${orderItem.subtotal}</td>
 					</tr>
-					
-					<c:set  var='OrderNoSum' value="${OrderNoSum+orderItem.orderBean.orderNo}"/>
-					<c:set  var='counter' value="${counter+1}"  />
-					<c:set   var='sum' value="${sum+orderItem.subtotal}" />
+					<c:set  var='sum' value="${sum+ orderItem.subtotal}"/>
 				</c:forEach>
-				<c:set value="${OrderNoSum/counter}" var='systemOrderNo' />
+
 				<tr>
 					<td><input type="button"  class="btn btn-outline-info" name="back" value="返回"onClick="javascript:history.back();"></td>
 					<td></td>
@@ -122,7 +115,9 @@ td , th{
 				</tr>
 			</tbody>
 		</table>
-		
+		<table>
+
+		</table>
 	</div>
 </body>
 

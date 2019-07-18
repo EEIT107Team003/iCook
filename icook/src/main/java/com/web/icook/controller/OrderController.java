@@ -96,15 +96,16 @@ public class OrderController {
 	@SuppressWarnings({ "unchecked", "unused" })
 	@RequestMapping(value = "/toEZship")
 	public String toezship(Model model, HttpSession session, HttpServletRequest request) {
-		//抓session member-----------------------------------------------------
-		String username=mcontroller.getPrincipal();
-		MemberBean mb=mservice.selectByUsername(username);
-		//抓session member-----------------------------------------------------
-		//mb = (MemberBean) session.getAttribute("LoginOK");// 已登入會員會丟會員物件至session
-		if (mb == null) {
-			model.addAttribute("LoginMsg", "請先登入");
+		// 要在下頁用EL顯示會員${LoginOK.member_id}需在controller裡面加此行,-----------------------------
+		//測試成功
+		MemberBean mb;
+		if (!mcontroller.getPrincipal().equals("anonymousUser")) {
+			mb = mservice.selectByUsername(mcontroller.getPrincipal());
+			model.addAttribute("LoginOK", mb);
+		}else {
 			return "redirect:/login_page";// 此處要改跳轉至登入畫面
 		}
+		// -----------------------------------------------------------------------
 		String lastName = (String) request.getAttribute("lastName");
 		String FirstName = (String) request.getAttribute("FirstName");
 		String inputEmail4 = (String) request.getAttribute("inputEmail4");
@@ -133,14 +134,10 @@ public class OrderController {
 	@RequestMapping("/check") // 購物車跳轉填資料頁
 	public String createOrder(HttpSession session, Model model, HttpServletRequest request) {
 		
-		//抓session member-----------------------------------------------------
-		String username=mcontroller.getPrincipal();
-		MemberBean mb=mservice.selectByUsername(username);
-		//抓session member-----------------------------------------------------
-		//mb = (MemberBean) session.getAttribute("LoginOK");// 已登入會員會丟會員物件至session
-		if (mb == null) {
-			model.addAttribute("LoginMsg", "請先登入");
-			return "redirect:/login_page";// 此處要改跳轉至登入畫面
+		MemberBean mb;
+		if (!mcontroller.getPrincipal().equals("anonymousUser")) {
+			mb = mservice.selectByUsername(mcontroller.getPrincipal());
+			model.addAttribute("LoginOK", mb);
 		}
 		Map<Integer, OrderItemBean> cart = (Map<Integer, OrderItemBean>) session.getAttribute("shoppingCart");
 	    //String s_processID = request.getParameter("processID")==null?"":request.getParameter("processID");
@@ -163,11 +160,12 @@ public class OrderController {
 	@RequestMapping("/placeOrder") // 資料頁跳轉訂單
 	public String toInformation(HttpSession session, HttpServletRequest request, Model model,
 			RedirectAttributes redirectAttributes) throws AddressException, MessagingException {
-		//抓session member-----------------------------------------------------
-		String username=mcontroller.getPrincipal();
-		MemberBean mb=mservice.selectByUsername(username);
-		//抓session member-----------------------------------------------------
-		//System.out.println(mb.getMember_id());
+		
+		MemberBean mb = null;
+		if (!mcontroller.getPrincipal().equals("anonymousUser")) {
+			mb = mservice.selectByUsername(mcontroller.getPrincipal());
+			model.addAttribute("LoginOK", mb);
+		}
 		@SuppressWarnings("unchecked")
 		Map<Integer, OrderItemBean> cart = (Map<Integer, OrderItemBean>) session.getAttribute("shoppingCart");
 		List<OrderItemBean> items = new ArrayList<>();
@@ -317,19 +315,16 @@ public class OrderController {
 	// 查看該會員所有訂單
 	@RequestMapping("/checkOrders")
 	public String showOrders(Model model, HttpSession session) {
-//		會員無訂單還是顯示成功
-		
-		//抓session member-----------------------------------------------------
-		String username=mcontroller.getPrincipal();
-		MemberBean mb=mservice.selectByUsername(username);
-		//抓session member-----------------------------------------------------
-		//MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
-		List<OrderBean> orders = new ArrayList<>();
-		//記得撈取是否否付款
-		if (mb == null) {
-			model.addAttribute("LoginMsg", "請先登入");
+		// 要在下頁用EL顯示會員${LoginOK.member_id}需在controller裡面加此行,-----------------------------
+		//測試成功
+		MemberBean mb=null;
+		if (!mcontroller.getPrincipal().equals("anonymousUser")) {
+			mb = mservice.selectByUsername(mcontroller.getPrincipal());
+			model.addAttribute("LoginOK", mb);
+		}else {
 			return "redirect:/login_page";// 此處要改跳轉至登入畫面
 		}
+		List<OrderBean> orders = new ArrayList<>();
 		orders = odao.getOrdersbyMemberSeqNo(mb.getMember_id());
 		model.addAttribute("orders_list", orders);
 		return "OrdersPage";
@@ -340,19 +335,15 @@ public class OrderController {
 	@RequestMapping("/adminCheckOrders")
 	public String adminAllOrders(Model model, HttpSession session) {
 		String requestURI = (String) session.getAttribute("requestURI");
-		//抓session member-----------------------------------------------------
-		String username=mcontroller.getPrincipal();
-		MemberBean mb=mservice.selectByUsername(username);
-		//抓session member-----------------------------------------------------
-		//MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
-		if (mb == null) {
-			model.addAttribute("LoginMsg", "管理員請先登入");
-			return "redirect:/login_page";// 此處要改跳轉至登入畫面
-		}
-		if (mb.getMember_id().equals("Admin")) {
-			// mb.getMember_id=="Admin" XXX 要用equal
+		
+		MemberBean mb=null;
+		if (mcontroller.getPrincipal().equals("Admin@gmail.com")) {
+			mb = mservice.selectByUsername(mcontroller.getPrincipal());
+			model.addAttribute("LoginOK", mb);
+			
 			List<OrderBean> orders = new ArrayList<>();
 			orders = odao.getAllOrders();
+			
 //-----------------------------------------計算離出貨<1天------------------------------------------------------
 			
 
@@ -389,7 +380,9 @@ public class OrderController {
 			model.addAttribute("orders_list", orders);
 			return "adminCheckOrders";
 		}
-		return "redirect:/login";
+		else {
+			return "redirect:/login_page";// 此處要改跳轉至登入畫面
+		}
 	}
 
 	// 查看系統所有訂單,一定是從orderPage跳轉到此頁,此頁無法直接到達
