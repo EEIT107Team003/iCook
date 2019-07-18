@@ -35,4 +35,10 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// Simplify the dialog windows.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
+	
+	config.extraPlugins = "youtube";
+
+	//做出響應（忽略寬度和高度，適合寬度）
+	config.youtube_responsive = true;
+	config.youtube_controls = true;
 };

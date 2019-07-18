@@ -7,12 +7,14 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -31,7 +33,7 @@ public class ArticleBean implements Serializable {
 	// 文章標頭
 	private String article_title;
 	// 作者
-	private String article_author;
+	private MemberBean article_member;
 	// 時間
 	private Date article_date;
 
@@ -47,7 +49,7 @@ public class ArticleBean implements Serializable {
 	private Blob coverImage = null;
 	// 封面圖檔案名稱
 	private String fileName = "";
-	
+
 //	@OneToMany(mappedBy="artuclenum_in_msg")//mappedBy防止自動生成中間表 	
 //	@JoinColumn(name="artuclenum_in_msg")//對應到msgboardbean
 //	private ArrayList<MsgBoardBean> msg = new ArrayList<MsgBoardBean>();
@@ -55,9 +57,10 @@ public class ArticleBean implements Serializable {
 	// --------------------------------------------------------------------------
 	// --------------------------------------------------------------------------
 	private Set<MsgBoardBean> msg_art_num = new LinkedHashSet<>();
-	@OneToMany(mappedBy="artuclenum_in_msg")
+
+	@OneToMany(mappedBy = "artuclenum_in_msg")
 	public Set<MsgBoardBean> getMsg_art_num() {
-		return msg_art_num; 
+		return msg_art_num;
 	}
 
 	public void setMsg_art_num(Set<MsgBoardBean> msg_art_num) {
@@ -80,14 +83,6 @@ public class ArticleBean implements Serializable {
 
 	public void setArticle_title(String article_title) {
 		this.article_title = article_title;
-	}
-
-	public String getArticle_author() {
-		return article_author;
-	}
-
-	public void setArticle_author(String article_author) {
-		this.article_author = article_author;
 	}
 
 	public Date getArticle_date() {
@@ -149,8 +144,6 @@ public class ArticleBean implements Serializable {
 		this.fileName = fileName;
 	}
 
-
-
 //	public ArrayList<MsgBoardBean> getMsg() {
 //		return msg;
 //	}
@@ -161,12 +154,20 @@ public class ArticleBean implements Serializable {
 
 	@Override
 	public String toString() {
-		return "ArticleBean [article_num=" + article_num + ", article_title=" + article_title + ", article_author="
-				+ article_author + ", article_date=" + article_date + ", article_status=" + article_status
-				+ ", article_content=" + article_content + ", article_catergoary=" + article_catergoary
-				+ ", coverImage=" + coverImage + ", fileName=" + fileName + ", ArticleImage=" + ArticleImage + "]";
+		return "ArticleBean [article_num=" + article_num + ", article_title=" + article_title + ", article_date="
+				+ article_date + ", article_status=" + article_status + ", article_content=" + article_content
+				+ ", article_catergoary=" + article_catergoary + ", coverImage=" + coverImage + ", fileName=" + fileName
+				+ ", ArticleImage=" + ArticleImage + "]";
 	}
 
-	
+	@ManyToOne
+	@JoinColumn(name = "member_id")
+	public MemberBean getArticle_member() {
+		return article_member;
+	}
+
+	public void setArticle_member(MemberBean article_member) {
+		this.article_member = article_member;
+	}
 
 }

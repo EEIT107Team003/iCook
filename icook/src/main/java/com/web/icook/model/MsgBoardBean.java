@@ -1,8 +1,8 @@
 package com.web.icook.model;
 
 import java.io.Serializable;
-import java.sql.Blob;
-import java.sql.Date;
+import java.sql.Clob;
+import java.sql.Timestamp;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -26,21 +26,21 @@ public class MsgBoardBean implements Serializable {
 	// 留言板名稱
 //	private String msgboard_title;
 	// 留言時間
-	private Date msgboard_date = new Date(System.currentTimeMillis());
+	private Timestamp msgboard_date = new Timestamp(System.currentTimeMillis());
+
 	// 留言內容
 	@Lob
 	private String msgboard_content;
 	// 留言圖片
 //	private Blob msgboard_picture;
 	// 留言狀態
-	private String msgboard_status = "1";
-	MemberBean mb = new MemberBean();
+	private String msgboard_status ;
 
-	private MemberBean memberid_in_msgs = mb;
+	private MemberBean memberid_in_msgs;
 	// 留言對應到的文章編號
 	private ArticleBean artuclenum_in_msg;
 
-	private Integer catchnum;
+	private Integer catchnum=0;
 
 //	private Integer catchMemnum;
 //	@Transient
@@ -79,11 +79,11 @@ public class MsgBoardBean implements Serializable {
 //		this.msgboard_name = msgboard_name;
 //	}
 
-	public Date getMsgboard_date() {
+	public Timestamp getMsgboard_date() {
 		return msgboard_date;
 	}
 
-	public void setMsgboard_date(Date msgboard_date) {
+	public void setMsgboard_date(Timestamp msgboard_date) {
 		this.msgboard_date = msgboard_date;
 	}
 
@@ -112,7 +112,7 @@ public class MsgBoardBean implements Serializable {
 //	public void setMemberid_in_msg(MemberBean memberid_in_msg) {
 //		this.memberid_in_msg = memberid_in_msg;
 //	}
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "artuclenum_in_msg")
 	public ArticleBean getArtuclenum_in_msg() {
 
@@ -124,7 +124,7 @@ public class MsgBoardBean implements Serializable {
 		this.artuclenum_in_msg = artuclenum_in_msg;
 	}
 
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "memberid_in_msgs")
 	public MemberBean getMemberid_in_msgs() {
 		return memberid_in_msgs;
