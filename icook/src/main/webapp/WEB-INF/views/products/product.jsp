@@ -33,6 +33,17 @@
 	margin: 0;
 }
 
+
+.textDiv{
+  margin-left:40px;
+}
+.textDiv p{
+  font-size:20px;
+}
+.textDiv h1{
+font-weight:bold;
+}
+
 .left {
 	width: 15%;
 	float: left;
@@ -351,16 +362,17 @@ $("#quantity").change(function() {
 
 			<section class="container">
 				<div class="row">
-					<img width='100' height='150'
+				<div>
+					<img width='300' height='350'
 						src="<c:url value='/getProductPicture/${product.product_id}'/>" />
-					<div class="col-md-5">
-						<h3>${product.name}</h3>
-						<p>${product.description}</p>
-						<strong>商品編號: </strong> <span class='label label-warning'>${product.product_id}
-						</span>
+				</div>
+					<div class="textDiv">
+						<h1>商品編號: ${product.product_id} </h1> 
+						<h1>${product.name}</h1>
+						<p>分類: ${product.categoriesbean.name}</p>
 						<p>顏色: ${product.color}</p>
 						<p>單價: ${product.price}</p>
-						<p>分類: ${product.categoriesbean.name}</p>
+						<p>${product.description}</p>
 						<p>${collection.productBean.categoriesbean.name}</p>
 						請選擇數量:<select id="quantity" name="quantity" style="width: 10ch"
 							class="form-control form-control-sm"><option value="0"
@@ -374,19 +386,10 @@ $("#quantity").change(function() {
 							<input type="hidden" name="productId"
 								value="${product.product_id}" /> <input type="hidden"
 								name="price" value="${product.price}" /> 
-								
-								
-								
 <%-- 								<c:set value="" var="quan1"/> --%>
 <%-- 						<c:out value="${quan1}"></c:out> --%>
-								
 								<input type="hidden"
 								name="quan" id='quan' value="" /> 
-	
-								
-								
-<!-- 								<input type="number" -->
-<!-- 								name="quantity" min="0" max="100" value="0" /> 數量 -->
 							<div align="center">
 								<button type="button" class="btn btn-warning"
 									onclick="{location.href='/icook/cartPage'}" class="">去購物車</button>

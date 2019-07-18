@@ -1,14 +1,20 @@
 @charset "UTF-8";
+
+.container h1{
+font-weight:bold;
+	
+}
+
 .pagination input{
 margin:auto;
 width:10ch;
 background-color: #93C775;
 font-size: 15px;
- text-align: center;
+text-align: center;
 }
 
 .list-type1{
-
+font-size:15px;	
 width:150px;
 margin:0 auto;
 }

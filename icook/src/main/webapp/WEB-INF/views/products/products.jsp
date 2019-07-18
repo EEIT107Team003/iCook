@@ -46,7 +46,6 @@ header {
 }
 
 footer {
-   
 	margin: auto;
 	background-color: #AAFFEE;
 }
@@ -66,7 +65,7 @@ footer {
 }
 .page{
 margin:auto;
-margin-left: 5ch;
+margin-left: 50ch;
 }
 .page button{
 margin-left: 3ch;
@@ -575,20 +574,20 @@ width:30px;
 
 				<a href='collections'>查詢收藏</a><BR> <br>
 				<a href='products/add'>新增產品資料</a>
-					<h4>鍋類</h4>
 				<div class="list-type1">
 				
+				<h1>鍋類</h1>
 				<ul style="cursor: pointer">
 					<li><a class="search">炒鍋</a></li>
 					<li><a class="search">平底鍋</a></li>
 					<li><a class="search">湯鍋</a></li>
 				</ul>
-					<h4>刀具</h4>
+				<h1>刀具</h1>
 				<ul style="cursor: pointer">
 					<li><a class="search">式剁刀</a></li>
 					<li><a class="search">牛排刀</a></li>
 				</ul>
-					<h4>食材</h4>
+				<h1>食材</h1>
 				<ul style="cursor: pointer">
 					<li><a class="search">牛肉</a></li>
 					<li><a class="search">雞肉</a></li>
@@ -669,12 +668,12 @@ width:30px;
 					</c:forEach>
 				</div>
 			</fieldset>
-			<div class="page">
 				<form>
+			<div class="page">
 					<ul class="pagination">
 					</ul>
-				</form>
 			</div>
+				</form>
 			<section id="right" class="rightMain"></section>
 		</div>
 		<div class="right"></div>
