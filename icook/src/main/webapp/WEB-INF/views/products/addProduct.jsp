@@ -247,7 +247,7 @@ float: left;
 					</div>
 				<div class="formGroup">
 					<input id="btnAdd" type='submit' class='btn btn-primary'
-						value="Submit" />
+						value="<spring:message code='spring.addProduct.form.submit.label' />" />
 				</div>
 				
 			</fieldset>

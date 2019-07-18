@@ -37,7 +37,7 @@
 	</script>
 <c:out value="登入者${LoginOK.member_id}"></c:out>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="/icook">ICook!</a>
+		<a class="navbar-brand" href="/icookProject">ICook!</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarTogglerDemo02"
 			aria-controls="navbarTogglerDemo02" aria-expanded="false"
@@ -64,9 +64,6 @@
 				</li>
 				<li class="nav-item"><a class="nav-link"
 					href="adminCheckOrders">查看訂單(僅限admin的URL)</a></li>
-					
-					<li class="nav-item"><a class="nav-link" href="toAIOcheck">ecpay</a>
-				</li>
 
 			</ul>
 			<form class="form-inline my-2 my-lg-0">
@@ -87,7 +84,7 @@
 		<p>其他會員</p>
 		<a href="members">會員首頁</a>
 		<%-- 	<a href="member?member_id=${member_id}">會員首頁</a> --%>
-		<a href="A_article">文章首頁</a>
+		<a href="A_articlemainpage">文章首頁</a>
 	</div>
 	
 		<label for='show'> 種類</label>

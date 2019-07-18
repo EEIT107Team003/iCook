@@ -10,7 +10,7 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <title>Responsive HTML5 Website Template for Developers | 3rd Wave Media</title>
-<!--     Meta -->
+    <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,27 +19,27 @@
     <link rel="shortcut icon" href="favicon.ico">  
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'> 
-<!--     Global CSS -->
+    <!-- Global CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/bootstrap/css/bootstrap.min.css">   
-<!--     Plugins CSS -->
+    <!-- Plugins CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/font-awesome/css/font-awesome.css">
-<!--     github acitivity css -->
-<!--     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/octicons/2.0.2/octicons.min.css"> -->
-<!--     <link rel="stylesheet" href="http://caseyscarborough.github.io/github-activity/github-activity-0.1.0.min.css"> -->
-<!--     Theme CSS   -->
+    <!-- github acitivity css -->
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/octicons/2.0.2/octicons.min.css">
+    <link rel="stylesheet" href="http://caseyscarborough.github.io/github-activity/github-activity-0.1.0.min.css">
+    
+    <!-- Theme CSS -->  
     <link id="theme-style" rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/styles.css">
-<!--     HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!--     [if lt IE 9]>
-<!--       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> -->
-<!--       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> -->
-<!--     <![endif]--> 
-<!-- <!--     CSS字型 --> 
-<link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
 <script>
 	$(document).ready(function() {
 		$("#member_photo_file").click(function(){
 			$.ajax({
-				url : "${pageContext.request.contextPath}/user/updateMemberPhotos",
+				url : "${pageContext.request.contextPath}/updateMemberPhotos",
 				type : "GET",
 				dataType : "json",
 				contentType : "application/json",
@@ -63,7 +63,7 @@
 		
 		$("#cover_photo_image").click(function(){
 			$.ajax({
-				url : "${pageContext.request.contextPath}/user/updateCoverPhotos",
+				url : "${pageContext.request.contextPath}/updateCoverPhotos",
 				type : "GET",
 				dataType : "json",
 				contentType : "application/json",
@@ -84,79 +84,7 @@
 			});
 		});
 		
-		$("#user_mytrack").click(function(){
-			$.ajax({
-				url : "${pageContext.request.contextPath}/user/mytrack",
-				type : "POST",
-				dataType : "json",
-				contentType : "application/json",
-				async : true,
-				success : function(data) {
-					var names = JSON.parse(JSON.stringify(data).split(","));
-					var txt = "";
-					for (i in names) {
-// 						txt+=names[i].trackedId.nickname+"<br>"
-						txt+=
-							"<div class=contain_mytrack>"
-								+"<div>"
-									+"<img class=contain_mytrack_photo src=<c:url value='/getMemberPhoto/"+names[i].trackedId.member_id+"' /> />"
-								+"</div>"
-								+"<div class=contain_mytrack_Info style="+"height:175px; background-color: yellow;"+">"
-									+"<div width=100%>"
-									+"<a href=members/page?member_id="+names[i].trackedId.member_id+" class=contain_mytrack_title>"+ names[i].trackedId.nickname+"</a>"
-									+"</div>"		
-									+"<div class=contain_mytrack_summary>個人簡介:"+names[i].trackedId.resume+"</div>"
-									+"</div>"
-								+"<hr style=clear: both;border-style: dashed;>"
-							+"</div>"
-						
-						console.log(names[i].trackedId);
-					};
-					$("#user_contain").html(txt);
-				},
-				error : function(data, textStatus, errorThrown) {
-					console.log("error: "+data);
-				},
-			});
-		});
 		
-		$("#updateResume_check").click(function(){
-			var resume=$("#resume").val();
-			$.ajax({
-				url : "${pageContext.request.contextPath}/user/updateResume",
-				type : "POST",
-				dataType : "json",
-				data: $("#resume_value").serializeObject(),
-				contentType : "application/json",
-				async : true,
-				success : function(data) {
-//	 					txt+=names[i].trackedId.nickname+"<br>"
-// 					alert(data);
-					$("#member_resume").html(resume);
-					$('#myModal').modal('hide');
-					
-				},
-				error : function(data, textStatus, errorThrown) {
-					console.log("error: "+data+"RRRRRRRRRRR");					
-				},
-			});
-		});
-		
-		 $.fn.serializeObject = function() {
-		        var o = {};
-		        var a = this.serializeArray();
-		        $.each(a, function() {
-		            if (o[this.name]) {
-		                if (!o[this.name].push) {
-		                    o[this.name] = [o[this.name]];
-		                }
-		                o[this.name].push(this.value || '');
-		            } else {
-		                o[this.name] = this.value || '';
-		            }
-		        });
-		        return JSON.stringify(o);
-		    };
 	});	
 </script>
     
@@ -174,7 +102,7 @@
     	height:100%;
    		background-color: rgb(242, 255, 213,1);
     	border: 2px dashed black;
-    	border-radius: 10px;
+    	border-radius: 20px;
     	text-align:center;
 
     }
@@ -184,6 +112,8 @@
       	color:black; 
       	border: 1px solid black; 
       	border-radius: 5px; 
+/*      	letter-spacing: 5px; */
+/*  		text-align: left; */
     }
     
     .items{
@@ -193,72 +123,33 @@
 	   	width:33.3%;
     }
     
-    .contain_mytrack{
-    	border:1px solid black;
-    	width:100%;
-    	height: 130px;
-    	margin-bottom: 10px;
-    	padding-left: 10px;
-    }
-    
-    .contain_mytrack_photo{
-    	border-radius: 50%;
-    	border:1px solid black;
-     	width:100px;
-		height:100px;
-		margin-top:15px;
- 		margin-right:20px;
-		float:left;
-    }
-    
-    .contain_mytrack_Info{
-    	 height:130px;
-		 width:80%; 
-		 margin-left: 20px;
-    }
-    
-    .contain_mytrack_title{
-    	color:black;
-    	margin-top:5px;
- 		height:30px; 
- 		font-size: 25px;
- 		font-family:'Noto Sans TC', sans-serif;;
- 		font-weight: 900;
- 	}
- 	
- 	.contain_mytrack_summary{ 
- 	 	height:70%;
- 	 	font-family:'Noto Sans TC', sans-serif;
- 	}
-    
     section{
 		border: 1px solid rgb(220,220,220);
 		border-top: 0px
     }
-    
 </style>    
 </head> 
 <body>
 	<a href="logout_page" class="alert alert-dark" role="alert">會員登出</a>
-	<a href="${pageContext.request.contextPath}/home" class="alert alert-dark" role="alert">回到首頁</a>
+	<a href="home" class="alert alert-dark" role="alert">回到首頁</a>
     <!-- ******HEADER****** --> 
-    <header class="header" style="background-image:url('getCoverPhoto/${member.member_id}');background-size:100% 100%">
+    <header class="header" style="background-image:url('getCoverPhoto/${member_id}');background-size:100% 100%">
         <div class="container" >
-				<form:form method="POST" action="user/updateMemberPhoto"
+				<form:form method="POST" action="updateMemberPhoto"
 					modelAttribute="MemberBean" enctype="multipart/form-data">
 					<label for="member_photo_file" style="float: left"> 
 					<form:input type="file" path="member_photo_tr" name="member_photo_file"
 							id="member_photo_file" style="display: none;" /> 
 							<img class="profile-image img-responsive pull-left member_photo"
 						id="member_photo_image"
-						src="<c:url value='/getMemberPhoto/${member.member_id}' />" />
+						src="<c:url value='/getMemberPhoto/${member_id}' />" />
 					</label>
 					<input id=submit1 type="submit" value="送出" style="display: none;">
 				</form:form>
 				
 				<div class="profile-content pull-left member_info">
 					<h1 class="name">${member.nickname}</h1>
-					<h2 id="member_resume" class="desc" style="font-size: 10px">${member.resume}</h2>
+					<h2 class="desc" style="font-size: 10px">${member.resume}</h2>
 					<ul class="social list-inline">
 						<li><a href="#"><i class="fa fa-twitter"></i></a></li>
 						<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
@@ -271,69 +162,40 @@
 				<!--//profile-->
         </div><!--//container-->
     </header><!--//header-->
-
-	<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">編輯個人簡介</button>
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	    <div class="modal-dialog">
-	        <div class="modal-content">
-	            <div class="modal-header">
-	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-	                <h4 class="modal-title" id="myModalLabel">編輯個人簡介</h4>
-	            </div>
-	            <div class="modal-body">
-	            	<div>請輸入的你個人簡介:(50字以內)</div><br>
-	            	
-		            <form id="resume_value" method="POST">
-						<div>
-			            	<textarea id="resume" name="resume" style="max-height: 200px; min-width:80%; max-width:80%"></textarea>
-						</div>
-					</form>
-					
-	            </div>
-	            <div class="modal-footer">
-	                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-	                <button type="button" class="btn btn-primary" id=updateResume_check>確定更改</button>
-	            </div>
-	        </div><!-- /.modal-content -->
-	    </div><!-- /.modal-dialog -->
-	</div>
-<!-- /.modal -->
-
-	<div class="btn btn-primary btn-lg" style="height: 50px">
-		<form:form method="POST" action="user/updateCoverPhoto" modelAttribute="MemberBean" enctype="multipart/form-data">
-			<label for="cover_photo_file"> 
-				<form:input type="file" path="cover_photo_tr" name="cover_photo_file" id="cover_photo_file" style="display: none;" /> 
-					<p id="cover_photo_image"> 更改圖片 </p>
-			</label>					
-				<input id=submit2 type="submit" value="送出" style="display: none;">
-		</form:form>
-	</div>
+				<div class="change_cover">
+					<form:form method="POST" action="updateCoverPhoto" modelAttribute="MemberBean" enctype="multipart/form-data">
+							<label for="cover_photo_file"> 
+								<form:input type="file" path="cover_photo_tr" name="cover_photo_file" id="cover_photo_file" style="display: none;" /> 
+								<p id="cover_photo_image"> 更改圖片 </p>
+							</label>					
+							<input id=submit2 type="submit" value="送出" style="display: none;">
+					</form:form>
+				</div>
 				
 	<div class="container sections-wrapper">
         <div class="row">
             <div class="primary col-md-8 col-sm-12 col-xs-12">
 				<ul id="myTab" class="nav nav-tabs" >
 					<li class="active">
-						<a href="user_myrecipe" data-toggle="tab">我的食譜</a>
+						<a href="member_group" data-toggle="tab">我的食譜</a>
 					</li>
 					<li>
-						<a href="user_mycollectrecipe" data-toggle="tab">我的收藏</a>
+						<a href="member_group" data-toggle="tab">我的收藏</a>
 					</li>
 					<li>
-						<a id="user_mytrack" data-toggle="tab">我的追蹤</a>
+						<a href="member_group" data-toggle="tab">我的追蹤</a>
 					</li>
 					<li>
-						<a href="user_myforum" data-toggle="tab">我的文章</a>
+						<a href="member_group" data-toggle="tab">我的文章</a>
 					</li>
 				</ul>
 
 				<section class="about section">
 					<div class="section-inner">
 						<div id="myTabContent" class="tab-content">
-<!-- 							<div class="tab-pane fade in active" id="user_contain"> -->
-							<div  id="user_contain">
+<!-- 							<div class="tab-pane fade in active" id="home"> -->
 <!--                 				<iframe src="hw1.html" frameborder="0" class="HWView" id="aa">dsdsds</iframe> -->
-            				</div>
+<!--             				</div> -->
 						</div>
 					</div><!--//section-inner-->                 
 				</section><!--//section-->
@@ -370,15 +232,15 @@
     </footer><!--//footer-->
  
     <!-- Javascript -->          
-    <script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/bootstrap/js/bootstrap.min.js"></script>    
-    <script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/jquery-rss/dist/jquery.rss.min.js"></script> 
+    <script type="text/javascript" src="assets/plugins/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>    
+    <script type="text/javascript" src="assets/plugins/jquery-rss/dist/jquery.rss.min.js"></script> 
     <!-- github activity plugin -->
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js"></script>
     <script type="text/javascript" src="http://caseyscarborough.github.io/github-activity/github-activity-0.1.0.min.js"></script>
     <!-- custom js -->
-    <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/main.js"></script>            
+    <script type="text/javascript" src="assets/js/main.js"></script>            
 </body>
 </html> 
 

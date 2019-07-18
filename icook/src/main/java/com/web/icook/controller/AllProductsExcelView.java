@@ -156,11 +156,11 @@ public class AllProductsExcelView extends AbstractXlsView  {
 			cell = row.createCell(colCount++);
 			cell.setCellStyle(styleCenter);
 			cell.setCellValue(m.getStock());			
-			if(m.getPrice()!=null) {
+			
 			cell = row.createCell(colCount++);
 			cell.setCellStyle(styleCenter);
 			cell.setCellValue(m.getPrice());			
-			}
+			
 
 			
 //			cell = row.createCell(colCount++);

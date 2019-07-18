@@ -35,7 +35,7 @@ td, th {
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="/icook">ICook!</a>
+		<a class="navbar-brand" href="/icookProject">ICook!</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarTogglerDemo02"
 			aria-controls="navbarTogglerDemo02" aria-expanded="false"
@@ -71,8 +71,7 @@ td, th {
 		</div>
 	</nav>
 	<h1>
-
-		<c:out value="會員ID:${LoginOK.nickname}的訂單"></c:out>
+		<c:out value="會員ID:${LoginOK.member_id}的訂單"></c:out>
 	</h1>
 	<div class="outer">
 		<table class="table table-hover">
@@ -97,7 +96,7 @@ td, th {
 					<tr>
 											<td><c:out value="${sum}" /></td>
 						<td><form method='POST'
-								action="<c:url value='/orderdetails?id=${OrderBean.memberbean.member_id}&orderNo=${OrderBean.orderNo}'/>">
+								action="<c:url value='/orderdetails?id=${OrderBean.memberbean.seqNo}&orderNo=${OrderBean.orderNo}'/>">
 								<input type="hidden" name="memberCheck"
 									value="${OrderBean.memberbean.member_id}" /> <input
 									type="hidden" name="SeqOrderNoForMember" value="${sum}" /> <input

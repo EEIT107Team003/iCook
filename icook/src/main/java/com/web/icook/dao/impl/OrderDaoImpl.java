@@ -42,6 +42,15 @@ public class OrderDaoImpl implements OrderDao {
 	}
 	
 
+	public  String getMemberId() {
+		return memberId;
+	}
+	
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+	
 
 	
 	@SuppressWarnings("unchecked")
@@ -57,11 +66,11 @@ public class OrderDaoImpl implements OrderDao {
 	//testOK
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<OrderBean> getOrdersbyMemberSeqNo(Integer member_id){
+	public List<OrderBean> getOrdersbyMemberSeqNo(Integer mSeqNo){
 		List<OrderBean> list = null;
 		Session session = factory.getCurrentSession();
-		String hql = "FROM OrderBean ob Where ob.memberbean.member_id = :memberSeqNo";
-		list = session.createQuery(hql).setParameter("memberSeqNo", member_id).list();
+		String hql = "FROM OrderBean ob Where ob.memberbean.seqNo = :memberSeqNo";
+		list = session.createQuery(hql).setParameter("memberSeqNo", mSeqNo).list();
 		return list;
 	}
 	@Override
@@ -86,11 +95,11 @@ public class OrderDaoImpl implements OrderDao {
 	
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<OrderItemBean> getOrderItemsByMemberSeqNo(Integer member_id){
+	public List<OrderItemBean> getOrderItemsByMemberSeqNo(Integer memberSeqNo){
 		List<OrderItemBean> orderItem_list = null;
 		Session session = factory.getCurrentSession();
-		String hql =  "FROM OrderItemBean oib Where oib.memberBean.member_id = :mseqNo";
-		orderItem_list = session.createQuery(hql).setParameter("mseqNo", member_id).list();
+		String hql =  "FROM OrderItemBean oib Where oib.memberBean.seqNo = :mseqNo";
+		orderItem_list = session.createQuery(hql).setParameter("mseqNo", memberSeqNo).list();
 		return orderItem_list;
 	}
 	
