@@ -121,7 +121,7 @@ width:30px;
 	
 // ================================起始畫面SHOW====================================
 	 firstShow();
-		var count;
+    var count;
     function firstShow(){
 	$.ajax({
 			url : "${pageContext.request.contextPath}/category",
@@ -190,19 +190,6 @@ width:30px;
 			selectAll();
 			page();
 		
-		function catchSelect1(){
-				var txt = $("#show :selected").text();
-				if(txt=='請選擇'){
-					var clean=null
-					$("#show2").html(clean);
-				}
-			}
-		
-		function cleanAllSelect(){
-			secondShow()		
-			var clean=null
-				$("#show2").html(clean);
-			}
 		
 			
 		$("#show3").change(function() {
@@ -223,10 +210,10 @@ width:30px;
 				success : function(data) {
 //                  console.log('remark2 :'+$("#remark2").val() );
 					var names = JSON.parse(JSON.stringify(data).split(","));
-		 			console.log(typeof names);
+// 		 			console.log(typeof names);
 					var txt = "<option value='-1' SELECTED id='cr'>請選擇</option>";
 					for (i in names) {
-						console.log(i + ' :' + names[i].name);
+// 						console.log(i + ' :' + names[i].name);
 						txt += "<option value='"+i+"'>" + names[i].name + "</option>";
 					}
 					$("#show4").html(txt);
@@ -255,6 +242,20 @@ width:30px;
 // ==========================================SHOW change================================================================
 	
 	
+	function catchSelect1(){
+			var txt = $("#show :selected").text();
+			if(txt=='請選擇'){
+				var clean=null
+				$("#show2").html(clean);
+			}
+		}
+	
+	function cleanAllSelect(){
+		secondShow()		
+		var clean=null
+			$("#show2").html(clean);
+		}
+	
 	
 		$("#show2").change(function() {
 			search2();
@@ -281,10 +282,10 @@ width:30px;
 				success : function(data) {
 //                  console.log('remark :'+$("#remark").val() );
 					var names = JSON.parse(JSON.stringify(data).split(","));
-		 			console.log(typeof names);
+// 		 			console.log(typeof names);
 					var txt = "<option value='-1' SELECTED id='cr'>請選擇</option>";
 					for (i in names) {
-						console.log(i + ' :' + names[i].name);
+// 						console.log(i + ' :' + names[i].name);
 						txt += "<option value='"+i+"'>" + names[i].name + "</option>";
 					}
 					$("#show2").html(txt);
@@ -298,12 +299,12 @@ width:30px;
 			
 		function search2(){
 			var txt2= $("#show2 :selected").text();
-			console.log('txt2:'+txt2)
+// 			console.log('txt2:'+txt2)
 			$.ajax({
                 success : function(data) {	
-                console.log(typeof txt2+' ，showTxt(change) :' + txt2)
+//                 console.log(typeof txt2+' ，showTxt(change) :' + txt2)
                 $("#fileName").val(txt2);
-                console.log('fileName :'+$("#fileName").val() );
+//                 console.log('fileName :'+$("#fileName").val() );
 				},
 				error : function(data, textStatus, errorThrown) {
 					console.log(data);
@@ -349,7 +350,7 @@ width:30px;
 			
 		$("#searchDiv").click(function() {
 			catchSelect1();	 
-			console.log($("#searchDiv").serializeObject());
+// 			console.log($("#searchDiv").serializeObject());
 // 			alert($(".search").serializeObject())
             $("#stock").val(1)
 			selectAll();
@@ -384,32 +385,32 @@ width:30px;
 		});
 		
 		function PreviousClick() {
-		 	console.log('txt:'+ $("#stock").val())
+// 		 	console.log('txt:'+ $("#stock").val())
 		 	var Previous=parseInt($("#stock").val())-1
 		 	if(Previous<1)
 		 		Previous=1
 		 	$("#stock").val(Previous)
-			 console.log('Previous:'+Previous )
+// 			 console.log('Previous:'+Previous )
 			 selectAll();
 		}
 		
 		function NextClick() {
-		 	console.log('txt:'+ $("#stock").val())
-		 	console.log('count:'+ count)
+// 		 	console.log('txt:'+ $("#stock").val())
+// 		 	console.log('count:'+ count)
 		 	if($("#stock").val()==""||$("#stock").val()==null)
 		 		$("#stock").val(1)
 		 	var next=parseInt($("#stock").val())+1
 		 	if(next>count)
 		 		next=count
 		 	$("#stock").val(next)
-			 console.log('next:'+next )
+// 			 console.log('next:'+next )
 			 selectAll();
 		}
 		
 		function edit(object){
 			    var txt=object.value;
 			    $("#stock").val(txt);
-			   	console.log('txt:'+ $("#stock").val())
+// 			   	console.log('txt:'+ $("#stock").val())
 // 			   	<input type = 'button' id="next"  onclick="edit(this)" value="1"/>
 			   	$.ajax({
 			   		url : "${pageContext.request.contextPath}/SelectByCategoriesAndDescription/",
