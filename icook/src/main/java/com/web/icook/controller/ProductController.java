@@ -52,7 +52,15 @@ public class ProductController {
 
 	@Autowired
 	ServletContext context;
-
+	
+	
+	@RequestMapping(value = "/product_Test")
+	public String producttest(Model model) {
+		List<ProductBean> list = service.getAllProducts();
+		model.addAttribute("products", list);
+		return "products/test";
+	}
+	
 	@Autowired
 	memberController mcontroller;
 

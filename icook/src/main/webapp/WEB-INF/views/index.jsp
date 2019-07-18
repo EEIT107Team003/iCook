@@ -113,6 +113,7 @@ $("input[type='image']").click(function() {
 		<tr height="52" bgcolor="lightblue" align="center">
 			<td width="350"><p align="left" /> <a href='products'>查詢所有產品資料</a><BR>
 			</td>
+			<td width="350"><p align="left" /> <a href='product_Test'>產品測試</a><BR>
 		</tr>
 	</table>
 	<div>
