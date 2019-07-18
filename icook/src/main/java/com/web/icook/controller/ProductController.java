@@ -51,6 +51,14 @@ public class ProductController {
 	@Autowired
 	ServletContext context;
 	
+	
+	@RequestMapping(value = "/product_Test")
+	public String producttest(Model model) {
+		List<ProductBean> list = service.getAllProducts();
+		model.addAttribute("products", list);
+		return "products/test";
+	}
+	
 	@RequestMapping(value = "/productsEx", method = RequestMethod.GET, 
 			produces = "application/vnd.ms-excel")
 	public String AllProductsExcel(Model model) {

@@ -37,9 +37,13 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/product_css/**").addResourceLocations("/WEB-INF/views/products/css/");
+		registry.addResourceHandler("/product_image/**").addResourceLocations("/WEB-INF/views/products/images/");
+		registry.addResourceHandler("/product_js/**").addResourceLocations("/WEB-INF/views/products/js/");
+		registry.addResourceHandler("/product_plugins/**").addResourceLocations("/WEB-INF/views/products/plugins/");
+		registry.addResourceHandler("/product_styles/**").addResourceLocations("/WEB-INF/views/products/styles/");
 		registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/views/css/");
 		registry.addResourceHandler("/member_image/**").addResourceLocations("/WEB-INF/views/member_image/");
-		registry.addResourceHandler("/product_image/**").addResourceLocations("/WEB-INF/views/products/images/");
 		registry.addResourceHandler("/ckeditor/**").addResourceLocations("/WEB-INF/views/ckeditor/");
 		registry.addResourceHandler("/assets/**").addResourceLocations("/WEB-INF/views/assets/");
 		//		super.addResourceHandlers(registry);
