@@ -54,7 +54,7 @@ public class OrderController {
 	OrderService oservice;
 
 	@Autowired
-	memberController mcontroller;
+	MemberController mcontroller;
 	
 	@Autowired
 	MemberService mservice;
