@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -198,9 +196,31 @@ $("#quantity").change(function() {
 		var txt = $("#show :selected").text();
 //			console.log('Txt 123: '+txt)
 		$("#remark").val(txt);
+		 $("#fileName").val("");
+//			alert($("#remark").val());
 		$.ajax({                                    
 			url : "${pageContext.request.contextPath}/categories/" + txt,
 			type : "GET",
+			dataType : "json",
+			async : true,
+			contentType : "application/json",
+			success : function(data) {
+//              console.log('remark :'+$("#remark").val() );
+				var names = JSON.parse(JSON.stringify(data).split(","));
+//		 			console.log(typeof names);
+				var txt = "<option value='-1' SELECTED id='cr'>請選擇</option>";
+				for (i in names) {
+//						console.log(i + ' :' + names[i].name);
+					txt += "<option value='"+i+"'>" + names[i].name + "</option>";
+				}
+				$("#show2").html(txt);
+			},
+			error : function(data, textStatus, errorThrown) {
+				console.log(data);
+			},
+		});
+	}
+	
 // ================================起始畫面SHOW====================================
 	firstShow();
     var count;
