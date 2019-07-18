@@ -38,13 +38,10 @@ public class MemberBean implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY,generator="generatorName")
 	@GenericGenerator(name = "generatorName", strategy = "native")
 	private Integer member_id;
-	
 	// 電子郵件(不重複)*
 	@Column(unique = true)
 	private String username;
-	
-	// 密碼(不重複)*
-	@Column(unique = true)
+	// 密碼
 	private String password;
 	// 暱稱(不重複)*
 	@Column(unique = true)
@@ -89,11 +86,12 @@ public class MemberBean implements Serializable {
 	@Transient
 	private MultipartFile cover_photo_tr;
 	
-	
-	@OneToMany(mappedBy="memberbean")
+	//@OneToMany(mappedBy="memberbean") to @OneToMany(mappedBy="memberbean" , fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="memberbean" , fetch = FetchType.EAGER)
 	private Set<OrderBean> orders ;
 
-	@OneToMany(mappedBy="memberBean")
+	//@OneToMany(mappedBy="memberbean") to @OneToMany(mappedBy="memberbean" , fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="memberBean" , fetch = FetchType.EAGER)
 	private List<OrderItemBean> orderitems ;
 
 	// ------------------------------------------------------------------------
@@ -139,7 +137,7 @@ public class MemberBean implements Serializable {
 
 	}
 	
-//
+
 //	public MemberBean(Integer member_id, String username, String password, String nickname, Blob member_photo,
 //			Integer tracked_num, Integer recipe_num, Blob cover_photo, Date register_date, Boolean enabled,
 //			String fileName_member, String fileName_cover, Integer forum_num, String role,
