@@ -237,7 +237,7 @@ public class AticleController {
 
 		/* 開始處理圖片檔案-start */
 		// 如果沒上傳圖片，則保持原本圖片
-		memberController c = new memberController();
+		MemberController c = new MemberController();
 		MemberBean mb = memberservice.selectByUsername(c.getPrincipal());
 		articlebean.setArticle_member(mb);
 		if (articlebean.getArticleImage() != null) {
@@ -286,7 +286,7 @@ public class AticleController {
 			HttpServletRequest request) throws UnsupportedEncodingException {
 		request.setCharacterEncoding("UTF-8");
 		
-		memberController c = new memberController();
+		MemberController c = new MemberController();
 		MemberBean mb = memberservice.selectByUsername(c.getPrincipal());
 		articlebean.setArticle_member(mb);
 		//錯誤訊息

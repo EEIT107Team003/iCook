@@ -8,7 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.web.icook.controller.memberController;
+import com.web.icook.controller.MemberController;
 import com.web.icook.dao.IcookDao;
 import com.web.icook.model.ArticleBean;
 import com.web.icook.model.MemberBean;

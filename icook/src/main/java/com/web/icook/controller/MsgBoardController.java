@@ -70,7 +70,7 @@ public class MsgBoardController {
 		MsgBoardBean msgBoardbean = new MsgBoardBean();
 		request.setCharacterEncoding("UTF-8");
 		msgBoardbean.setMsgboard_content(msgboard_content);
-		memberController c = new memberController();
+		MemberController c = new MemberController();
 		System.out.println("catchnumcatchnumcatchnum==" + catchnum);
 		MemberBean mb = memberservice.selectByUsername(c.getPrincipal());
 		
@@ -232,7 +232,7 @@ public class MsgBoardController {
 		if (catchnum == null) {
 			return "redirect:/A_articlemainpage";
 		} else {
-			memberController c = new memberController();
+			MemberController c = new MemberController();
 			System.out.println("catchnumcatchnumcatchnum==" + catchnum);
 			MemberBean mb = memberservice.selectByUsername(c.getPrincipal());
 			ArticleBean Ab = arcicleservice.getIcookArticle(catchnum);
