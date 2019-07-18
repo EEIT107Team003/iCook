@@ -57,23 +57,19 @@ div.panel {
 				<h3>謝謝老版  Thank you, 已發送訂單確認信</h3>
 				<h3>請記得您剛才的訂單編號: <c:out value="${orderNo}"/>號  並在付款時備註讓我們知道喔!</h3>
 		<a href="#" class="btn btn-primary btn-lg btn-block"
-			onclick="window.open(' /icookProject/realPaypal ', 'Paypal', config='height=500,width=500');">試試用Paypal付款!</a>
+			onclick="window.open(' /icook/realPaypal ', 'Paypal', config='height=500,width=500');">試試用Paypal付款!</a>
 
 		<a href="#" class="btn btn-primary btn-lg btn-block"
-			onclick="window.open(' /icookProject/realPaypal ', 'Paypal', config='height=500,width=500');">Paypal SandBox Demo!</a>
+			onclick="window.open(' /icook/realPaypal ', 'Paypal', config='height=500,width=500');">Paypal SandBox Demo!</a>
 		<p class="flip">请点击这里</p>
-		<div class="panel">
-			<p>W3School - 领先的 Web 技术教程站点</p>
-			<p>在 W3School，你可以找到你所需要的所有网站建设教程。</p>
-		</div>
 		<button type="button" id='home'
-			onclick="javascript:location.href='/icookProject/'"
+			onclick="javascript:location.href='/icook/'"
 			class="btn btn-primary btn-lg btn-block">回首頁</button>
 		<button type="button" id='market'
-			onclick="javascript:location.href='/icookProject/products'"
+			onclick="javascript:location.href='/icook/products'"
 			class="btn btn-primary btn-lg btn-block">去商城再看看</button>
 		<button type="button" id='checkMyOrder'
-			onclick="javascript:location.href='/icookProject/checkOrders'"
+			onclick="javascript:location.href='/icook/checkOrders'"
 			class="btn btn-primary btn-lg btn-block">查我的看訂單</button>
 	</div>
 	<div class='content'></div>

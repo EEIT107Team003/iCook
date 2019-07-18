@@ -76,7 +76,7 @@ td, th {
 	function setOK(obj) {
 		var msg = "確定收到款項了嗎";
 		if (confirm(msg) == true) {
-			window.location.href = '/icookProject/setPaymentOK?id=' + obj.id;
+			window.location.href = '/icook/setPaymentOK?id=' + obj.id;
 			return true;
 		}
 	}
@@ -84,7 +84,7 @@ td, th {
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="/icookProject">ICook!</a>
+		<a class="navbar-brand" href="/icook">ICook!</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarTogglerDemo02"
 			aria-controls="navbarTogglerDemo02" aria-expanded="false"
@@ -177,7 +177,7 @@ td, th {
 						</td>
 						<td>${OrderBean.orderDate}</td>
 						<td>${OrderBean.shippingDate}</td>
-						<td>${OrderBean.memberbean.member_id}</td>
+						<td>${OrderBean.memberbean.username}</td>
 						<td>${OrderBean.totalAmount}</td>
 						<td>${OrderBean.shippingAddress}</td>
 						<td>${OrderBean.invoiceTitle}</td>

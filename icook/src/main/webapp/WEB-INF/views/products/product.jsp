@@ -235,7 +235,7 @@ $("#quantity").change(function() {
 		Java Version:
 		<%=System.getProperty("java.version")%><br>
 	</header>
-	<c:out value="登入者${LoginOK.member_id}"></c:out>
+	<c:out value="登入者${LoginOK.nickname}"></c:out>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="/icook">ICook!</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"

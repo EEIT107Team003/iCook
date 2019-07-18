@@ -114,9 +114,15 @@ public class CartController {
 		return "inforamation";
 	}
 
+	//非測試,市集>購物車
 	@RequestMapping("/cartPage")
 	public String gotoCart(Model model, HttpSession session) {
-
+		MemberBean mb;
+		if (!mcontroller.getPrincipal().equals("anonymousUser")) {
+			mb = mservice.selectByUsername(mcontroller.getPrincipal());
+			model.addAttribute("LoginOK", mb);
+		}else {
+		}
 		return "cartPage";
 	}
 
@@ -131,10 +137,16 @@ public class CartController {
 	private String addToCart(@RequestParam(value = "productId", required = false) Integer productId,
 			@RequestParam(value = "quantity") Integer quantity, Model model, HttpSession session) {
 		
+		
+		
+		
+		
+		
 		//-----------------------------測試是否抓到登入會員------------------------------
-		String username=mcontroller.getPrincipal();
-		MemberBean mb=mservice.selectByUsername(username);
-		System.out.println(mb.getUsername());
+		//成功
+//		String username=mcontroller.getPrincipal();
+//		MemberBean mb=mservice.selectByUsername(username);
+//		System.out.println(mb.getUsername());
 		//-------------------------------------------------------------------------------
 		Set<OrderItemBean> oibSet = new HashSet<>();
 		OrderItemBean oib;

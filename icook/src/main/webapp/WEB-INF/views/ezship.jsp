@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<%@ page contentType="text/html;charset=utf-8"  language="java"
+<%@ page contentType="text/html;charset=utf-8" language="java"
 	import="java.io.*,java.util.*,java.sql.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -14,8 +14,8 @@
 	String s_stTel = request.getParameter("stTel") == null ? "" : request.getParameter("stTel");
 	String s_webPara = request.getParameter("webPara") == null ? "" : request.getParameter("webPara");
 
-// 	s_stName = new String(s_stName.getBytes("ISO8859_1"), "UTF-8");
-// 	s_stAddr = new String(s_stAddr.getBytes("ISO8859_1"), "UTF-8");
+	// 	s_stName = new String(s_stName.getBytes("ISO8859_1"), "UTF-8");
+	// 	s_stAddr = new String(s_stAddr.getBytes("ISO8859_1"), "UTF-8");
 %>
 <html>
 <head>
@@ -83,7 +83,7 @@
 					<tr>
 						<td align="center">
 							<!-- 用 URL 轉頁至電子地圖 //--> <a class="btn btn-info btn-lg"
-							href="https://map.ezship.com.tw/ezship_map_web.jsp?suID=buyer@myweb.com.tw&processID=155922&stCate=<%=s_stCate%>&stCode=<%=s_stCode%>&rtURL=http://localhost:8080/icookProject/check">---請先選擇收貨門市---</a>
+							href="https://map.ezship.com.tw/ezship_map_web.jsp?suID=buyer@myweb.com.tw&processID=155922&stCate=<%=s_stCate%>&stCode=<%=s_stCode%>&rtURL=http://localhost:8080/icook/check">---請先選擇收貨門市---</a>
 							<%--                 <a href="https://map.ezship.com.tw/ezship_map_web.jsp?suID=buyer@myweb.com.tw&processID=155922&stCate=<%=s_stCate%>&stCode=<%=s_stCode%>&rtURL=https://www.ezship.com.tw/emap/ezship_simulation_mappg_hy.jsp&webPara=simulationpage">選擇門市</a> --%>
 						</td>
 					</tr>
@@ -92,57 +92,56 @@
 		</tr>
 	</table>
 	<hr>
-		<div class="progress">
+	<div class="progress">
 		<div class="progress-bar progress-bar-striped bg-info"
 			role="progressbar" style="width: 50%" aria-valuenow="50"
 			aria-valuemin="0" aria-valuemax="100"></div>
 	</div>
 	<form action="<c:url value='/toEZship'/>" method="POST">
 		<div class="outer">
-			<div class="form-group col-md-6">
-			</div>
+			<div class="form-group col-md-6"></div>
 			<br>
-<!-- 			<div class="form-row"> -->
+			<!-- 			<div class="form-row"> -->
 
-<!-- 				<div class="form-group col-md-6"> -->
-<!-- 					<label for="lastName">姓 </label> <input type="text" -->
-<!-- 						class="form-control" id='lastName' disabled="disabled" -->
-<!-- 						name="lastName" value='' placeholder="lastName"> -->
+			<!-- 				<div class="form-group col-md-6"> -->
+			<!-- 					<label for="lastName">姓 </label> <input type="text" -->
+			<!-- 						class="form-control" id='lastName' disabled="disabled" -->
+			<!-- 						name="lastName" value='' placeholder="lastName"> -->
 
-<!-- 				</div> -->
-<!-- 				<div class="form-group col-md-6"> -->
-<!-- 					<label for="FirstName">名</label> <input type="text" -->
-<!-- 						class="form-control" id='FirstName' disabled="disabled" -->
-<!-- 						name="FirstName" value='' placeholder="FirstName"> -->
-<!-- 				</div> -->
+			<!-- 				</div> -->
+			<!-- 				<div class="form-group col-md-6"> -->
+			<!-- 					<label for="FirstName">名</label> <input type="text" -->
+			<!-- 						class="form-control" id='FirstName' disabled="disabled" -->
+			<!-- 						name="FirstName" value='' placeholder="FirstName"> -->
+			<!-- 				</div> -->
 
-<!-- 								email type會自動檢查email格式 -->
-<!-- 				<div class="form-group col-md-6"> -->
-<!-- 					<label for="inputEmail4">Email</label> <input type="text" -->
-<!-- 						class="form-control" id='inputEmail4' disabled="disabled" -->
-<!-- 						name="inputEmail4" value='' placeholder="Email"> -->
-<!-- 				</div> -->
-<!-- 				<div class="form-group col-md-6"> -->
-<!-- 					<label for="tel">手機</label> <input type="tel" disabled="disabled" -->
-<!-- 						class="form-control" id='tel' name="tel" value='' -->
-<!-- 						placeholder="tel"> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
+			<!-- 								email type會自動檢查email格式 -->
+			<!-- 				<div class="form-group col-md-6"> -->
+			<!-- 					<label for="inputEmail4">Email</label> <input type="text" -->
+			<!-- 						class="form-control" id='inputEmail4' disabled="disabled" -->
+			<!-- 						name="inputEmail4" value='' placeholder="Email"> -->
+			<!-- 				</div> -->
+			<!-- 				<div class="form-group col-md-6"> -->
+			<!-- 					<label for="tel">手機</label> <input type="tel" disabled="disabled" -->
+			<!-- 						class="form-control" id='tel' name="tel" value='' -->
+			<!-- 						placeholder="tel"> -->
+			<!-- 				</div> -->
+			<!-- 			</div> -->
 
 			<div class="form-group" id='info'>
 				<!-- 					<label for="inputAddress">取貨資訊</label> <input type="text" -->
 				<!-- 						disabled="disabled" class="form-control" name="shippingAddress" -->
 				<%-- 						value='<c:out value="${address_string}"/>'> --%>
-<!-- 				<ul> -->
-<%-- 					<li>訂單編號:<c:out value="${s_processID}" /></li> --%>
-<%-- 					<li>取件門市類別:<c:out value="${s_stCate}" /></li> --%>
-<%-- 					<li>取件門市代號:<c:out value="${s_stCode}" /></li> --%>
-<%-- 					<li>取件門市名稱:<c:out value="${s_stName}" /></li> --%>
-<%-- 					<li>取件門市地址:<c:out value="${s_stAddr}" /></li> --%>
-<%-- 					<li>取件門市電話:<c:out value="${s_stTel}" /></li> --%>
-<!-- 				</ul> -->
+				<!-- 				<ul> -->
+				<%-- 					<li>訂單編號:<c:out value="${s_processID}" /></li> --%>
+				<%-- 					<li>取件門市類別:<c:out value="${s_stCate}" /></li> --%>
+				<%-- 					<li>取件門市代號:<c:out value="${s_stCode}" /></li> --%>
+				<%-- 					<li>取件門市名稱:<c:out value="${s_stName}" /></li> --%>
+				<%-- 					<li>取件門市地址:<c:out value="${s_stAddr}" /></li> --%>
+				<%-- 					<li>取件門市電話:<c:out value="${s_stTel}" /></li> --%>
+				<!-- 				</ul> -->
 			</div>
-
+			<c:out value="登入者${LoginOK.nickname}"></c:out>
 			<div align="center">
 				<input type="hidden" name="finalDecision" value="">
 				<button type="button"

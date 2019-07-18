@@ -97,7 +97,7 @@ td, th {
 					<tr>
 											<td><c:out value="${sum}" /></td>
 						<td><form method='POST'
-								action="<c:url value='/orderdetails?id=${OrderBean.memberbean.seqNo}&orderNo=${OrderBean.orderNo}'/>">
+								action="<c:url value='/orderdetails?id=${OrderBean.memberbean.member_id}&orderNo=${OrderBean.orderNo}'/>">
 								<input type="hidden" name="memberCheck"
 									value="${OrderBean.memberbean.member_id}" /> <input
 									type="hidden" name="SeqOrderNoForMember" value="${sum}" /> <input
