@@ -28,7 +28,7 @@ td , th{
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="/icookProject">ICook!</a>
+		<a class="navbar-brand" href="/icook">ICook!</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarTogglerDemo02"
 			aria-controls="navbarTogglerDemo02" aria-expanded="false"
@@ -92,7 +92,7 @@ td , th{
 						<td><img width='50' height='50'
 				src="<c:url value='/getPicture/${orderItem.productBean.product_id}'/>"/></td>
 						<td>${orderItem.productBean.product_id}</td>
-						<td>${orderItem.productBean.category}</td>
+						<td>${orderItem.productBean.categoriesbean.name}</td>
 						<td>${orderItem.productBean.description}</td>
 						<td>${orderItem.productBean.unit_size}</td>
 						<td>${orderItem.productBean.color}</td>

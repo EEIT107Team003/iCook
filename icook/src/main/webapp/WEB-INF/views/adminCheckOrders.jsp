@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="jquery-3.4.1.min.js"></script>
 <link
 	href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css"
 	rel="stylesheet">
@@ -18,6 +19,9 @@
 <link rel='stylesheet'
 	href='${pageContext.request.contextPath}/css/fontawesome-free/css/all.min.css'
 	type="text/css" />
+	
+	
+	<link rel="stylesheet" href="animate.min.css">
 <style type="text/css">
 .outer {
 	margin: 50px 5% 20% 10%;
@@ -68,7 +72,7 @@ td, th {
 /*   50% { background-color: #FF0000; box-shadow: 0 0 40px #FF0000; } */
 /*   100% { background-color: #B20000; box-shadow: 0 0 3px #B20000; } */
 /* } */
-.urgentFlash {
+.urgent {
 	background-color: red;
 }
 </style>
@@ -76,7 +80,7 @@ td, th {
 	function setOK(obj) {
 		var msg = "確定收到款項了嗎";
 		if (confirm(msg) == true) {
-			window.location.href = '/icookProject/setPaymentOK?id=' + obj.id;
+			window.location.href = '/icook/setPaymentOK?id=' + obj.id;
 			return true;
 		}
 	}
@@ -84,7 +88,7 @@ td, th {
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="/icookProject">ICook!</a>
+		<a class="navbar-brand" href="/icook">ICook!</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarTogglerDemo02"
 			aria-controls="navbarTogglerDemo02" aria-expanded="false"
@@ -141,32 +145,14 @@ td, th {
 			</thead>
 			<tbody>
 
-				<c:set var="contains" value="no" />
-				<c:forEach var="urgentOrderNo" items="${urgentOrders_No}" begin="0"
-					end="${fn:length(urgentOrder)}">
-					<c:if test="${urgentOrderNo eq OrderBean.orderNo}">
-						<c:set var="contains" value="yes" />
-					</c:if>
-				</c:forEach>
-				<c:choose>
-					<c:when test="${contains=='yes'}">
-						<script type="text/javascript">
-							$(document).ready(function() {
-								$('#odno').classList.add("urgentFlash");
-							});
-						</script>
-					</c:when>
-					<c:otherwise>
-						<script type="text/javascript">
-							
-						</script>
-					</c:otherwise>
-				</c:choose>
+
 
 
 				<c:forEach var='OrderBean' items='${orders_list}'>
 					<tr>
-						<td id='odno'>${OrderBean.orderNo}</td>
+					<td>${OrderBean.orderNo}</td>
+						
+						<%-- 						<td id='odno'>${OrderBean.orderNo}</td> --%>
 						<td>
 							<form method='POST'
 								action="<c:url value='/adminCheckOrderDetails?id=${OrderBean.memberbean.member_id}'/>">
@@ -176,18 +162,38 @@ td, th {
 							</form>
 						</td>
 						<td>${OrderBean.orderDate}</td>
-						<td>${OrderBean.shippingDate}</td>
-						<td>${OrderBean.memberbean.member_id}</td>
+						<c:set var="contains" value="no" />
+						<c:forEach var="urgentOrderNo" items="${urgentOrders_No}">
+							<c:if test="${urgentOrderNo eq OrderBean.orderNo}">
+								<c:set var="contains" value="yes" />
+							</c:if>
+						</c:forEach>
+						<c:choose>
+							<c:when test="${contains=='yes'}">
+							<td id='odno' class='urgent'>${OrderBean.shippingDate}</td>
+								<script type="text/javascript">
+								</script>
+							</c:when>
+							<c:otherwise>
+								<td>${OrderBean.shippingDate}</td>
+								<script type="text/javascript">
+									
+								</script>
+							</c:otherwise>
+						</c:choose>
+						
+						
+						<td>${OrderBean.memberbean.username}</td>
 						<td>${OrderBean.totalAmount}</td>
 						<td>${OrderBean.shippingAddress}</td>
 						<td>${OrderBean.invoiceTitle}</td>
 						<c:set var="contains" value="no" />
-							<c:if test="${OrderBean.payment eq 'OK'}">
-								<c:set var="contains" value="yes" />
-								<script type="text/javascript">
-									
-								</script>
-							</c:if>
+						<c:if test="${OrderBean.payment eq 'OK'}">
+							<c:set var="contains" value="yes" />
+							<script type="text/javascript">
+								
+							</script>
+						</c:if>
 
 						<c:choose>
 							<c:when test="${contains=='yes'}">
@@ -200,19 +206,21 @@ td, th {
 								<script type="text/javascript">
 									
 								</script>
-								<td><input type="button" class="btn btn-success" id="${OrderBean.orderNo}"
-									onclick='setOK(this)' value="收到款項"></td>
+								<td><input type="button" class="btn btn-success"
+									id="${OrderBean.orderNo}" onclick='setOK(this)' value="收到款項"></td>
 							</c:otherwise>
 						</c:choose>
 						<c:set var="contains" value="no" />
 						<%-- 						<td><input type="button" id="${OrderBean.orderNo}" onclick='setOK(this)' value="OK"></td> --%>
-						<td><a href='members/${member.pk}.xls'><i
-								class="fas fa-file-csv"></i> </a></td>
+						<td><a href='orders.xls'>匯出xls</a></td>
 					</tr>
+					
 				</c:forEach>
 			</tbody>
 		</table>
 	</div>
+
+
 
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

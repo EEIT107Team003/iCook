@@ -35,6 +35,7 @@ import com.web.icook.dao.OrderItemDao;
 import com.web.icook.model.MemberBean;
 import com.web.icook.model.OrderBean;
 import com.web.icook.model.OrderItemBean;
+import com.web.icook.model.ProductBean;
 import com.web.icook.service.MemberService;
 import com.web.icook.service.OrderService;
 
@@ -44,8 +45,7 @@ public class OrderController {
 	@Autowired
 	OrderDao odao;
 
-	@Autowired
-	MemberService mservice;
+
 
 	@Autowired
 	OrderItemDao oidao;
@@ -53,6 +53,11 @@ public class OrderController {
 	@Autowired
 	OrderService oservice;
 
+	@Autowired
+	memberController mcontroller;
+	
+	@Autowired
+	MemberService mservice;
 	// 處理結帳
 //	@SuppressWarnings("unchecked")
 //	@RequestMapping("/check") // 購物車跳轉填資料頁
@@ -88,16 +93,28 @@ public class OrderController {
 //		return "information";
 //	}
 	
+	
+	@RequestMapping(value = "/orders", method = RequestMethod.GET, produces = "application/vnd.ms-excel")
+	public String AllProductsExcel(Model model) {
+		List<OrderBean> orders = odao.getAllOrders();
+		model.addAttribute("allOrders", orders);
+		return "orders/allOrders";
+	}
+	
 	// EZ填完資料跳EZ API,把資料丟給exship API
 	@SuppressWarnings({ "unchecked", "unused" })
 	@RequestMapping(value = "/toEZship")
 	public String toezship(Model model, HttpSession session, HttpServletRequest request) {
-		MemberBean mb = null;
-		mb = (MemberBean) session.getAttribute("LoginOK");// 已登入會員會丟會員物件至session
-		if (mb == null) {
-			model.addAttribute("LoginMsg", "請先登入");
+		// 要在下頁用EL顯示會員${LoginOK.member_id}需在controller裡面加此行,-----------------------------
+		//測試成功
+		MemberBean mb;
+		if (!mcontroller.getPrincipal().equals("anonymousUser")) {
+			mb = mservice.selectByUsername(mcontroller.getPrincipal());
+			model.addAttribute("LoginOK", mb);
+		}else {
 			return "redirect:/login_page";// 此處要改跳轉至登入畫面
 		}
+		// -----------------------------------------------------------------------
 		String lastName = (String) request.getAttribute("lastName");
 		String FirstName = (String) request.getAttribute("FirstName");
 		String inputEmail4 = (String) request.getAttribute("inputEmail4");
@@ -126,11 +143,10 @@ public class OrderController {
 	@RequestMapping("/check") // 購物車跳轉填資料頁
 	public String createOrder(HttpSession session, Model model, HttpServletRequest request) {
 		
-		MemberBean mb = null;
-		mb = (MemberBean) session.getAttribute("LoginOK");// 已登入會員會丟會員物件至session
-		if (mb == null) {
-			model.addAttribute("LoginMsg", "請先登入");
-			return "redirect:/login_page";// 此處要改跳轉至登入畫面
+		MemberBean mb;
+		if (!mcontroller.getPrincipal().equals("anonymousUser")) {
+			mb = mservice.selectByUsername(mcontroller.getPrincipal());
+			model.addAttribute("LoginOK", mb);
 		}
 		Map<Integer, OrderItemBean> cart = (Map<Integer, OrderItemBean>) session.getAttribute("shoppingCart");
 	    //String s_processID = request.getParameter("processID")==null?"":request.getParameter("processID");
@@ -154,11 +170,11 @@ public class OrderController {
 	public String toInformation(HttpSession session, HttpServletRequest request, Model model,
 			RedirectAttributes redirectAttributes) throws AddressException, MessagingException {
 		
-		
-		
-		
-		MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
-		System.out.println(mb.getMember_id());
+		MemberBean mb = null;
+		if (!mcontroller.getPrincipal().equals("anonymousUser")) {
+			mb = mservice.selectByUsername(mcontroller.getPrincipal());
+			model.addAttribute("LoginOK", mb);
+		}
 		@SuppressWarnings("unchecked")
 		Map<Integer, OrderItemBean> cart = (Map<Integer, OrderItemBean>) session.getAttribute("shoppingCart");
 		List<OrderItemBean> items = new ArrayList<>();
@@ -308,14 +324,16 @@ public class OrderController {
 	// 查看該會員所有訂單
 	@RequestMapping("/checkOrders")
 	public String showOrders(Model model, HttpSession session) {
-//		會員無訂單還是顯示成功
-		MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
-		List<OrderBean> orders = new ArrayList<>();
-		//記得撈取是否否付款
-		if (mb == null) {
-			model.addAttribute("LoginMsg", "請先登入");
+		// 要在下頁用EL顯示會員${LoginOK.member_id}需在controller裡面加此行,-----------------------------
+		//測試成功
+		MemberBean mb=null;
+		if (!mcontroller.getPrincipal().equals("anonymousUser")) {
+			mb = mservice.selectByUsername(mcontroller.getPrincipal());
+			model.addAttribute("LoginOK", mb);
+		}else {
 			return "redirect:/login_page";// 此處要改跳轉至登入畫面
 		}
+		List<OrderBean> orders = new ArrayList<>();
 		orders = odao.getOrdersbyMemberSeqNo(mb.getMember_id());
 		model.addAttribute("orders_list", orders);
 		return "OrdersPage";
@@ -326,52 +344,53 @@ public class OrderController {
 	@RequestMapping("/adminCheckOrders")
 	public String adminAllOrders(Model model, HttpSession session) {
 		String requestURI = (String) session.getAttribute("requestURI");
-		MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
-		if (mb == null) {
-			model.addAttribute("LoginMsg", "管理員請先登入");
-			return "redirect:/login_page";// 此處要改跳轉至登入畫面
-		}
-		if (mb.getMember_id().equals("Admin")) {
-			// mb.getMember_id=="Admin" XXX 要用equal
+		
+		MemberBean mb=null;
+		if (mcontroller.getPrincipal().equals("Admin@gmail.com")) {
+			mb = mservice.selectByUsername(mcontroller.getPrincipal());
+			model.addAttribute("LoginOK", mb);
+			
 			List<OrderBean> orders = new ArrayList<>();
 			orders = odao.getAllOrders();
+			
 //-----------------------------------------計算離出貨<1天------------------------------------------------------
 			
-
-//			//算出貨時間<1天的
-//			Iterator<OrderBean> iter1 = orders.iterator();
-//			List<Integer> needShipOutOrderNo = new ArrayList<>();
-//			while (iter1.hasNext()) {
-//				OrderBean ob = iter1.next();
-//				Date checkDate = new Date();
-//				//test
-//				Long OrderDateLong=ob.getOrderDate().getTime();//why nullpointer!!!!
-//				Long checkDateLong=checkDate.getTime();
-//				System.out.println("OrderDate="+OrderDateLong);
-//				System.out.println("checkDate="+checkDateLong);
-//				Long diffDateLong=checkDateLong-OrderDateLong;
-//				System.out.println("diffDateLong="+diffDateLong);
-//				Long diffDateDay=diffDateLong/(1000 * 60 * 60 * 24);
-//				System.out.println("diffDateDay="+diffDateDay);
-//				System.out.println("四捨五入="+Math.ceil(diffDateLong/(1000 * 60 * 60 * 24)));;
-//				Long diffLong=checkDate.getTime()-ob.getOrderDate().getTime();
-//				Long diffDays=diffLong/(1000 * 60 * 60 * 24);
-//				//測試
-//				System.out.println("diffDays="+diffDays);
-//				if(diffDays<1) {
-//					needShipOutOrderNo.add(ob.getOrderNo());
-//				}
-//				//測試
-//				System.out.println("urgentOrderNo="+ob.getOrderNo());
-//			}
-//			model.addAttribute("urgentOrders_No", needShipOutOrderNo);
+			//算出貨時間<1天的
+			Iterator<OrderBean> iter1 = orders.iterator();
+			List<Integer> needShipOutOrderNo = new ArrayList<>();
+			while (iter1.hasNext()) {
+				OrderBean ob = iter1.next();
+				Date checkDate = new Date();
+				//test
+				Long Long_OrderDate=ob.getOrderDate().getTime();//why nullpointer!!!!
+				Long Long_todaycheckDate=checkDate.getTime();
+				System.out.println("OrderDate="+Long_OrderDate);
+				System.out.println("checkDate="+Long_todaycheckDate);
+				Long diffDateLong=Long_todaycheckDate-Long_OrderDate;
+				System.out.println("diffDateLong="+diffDateLong);
+				Long diffDateDay=diffDateLong/(1000 * 60 * 60 * 24);
+				System.out.println("diffDateDay="+diffDateDay);
+				System.out.println("四捨五入="+Math.ceil(diffDateLong/(1000 * 60 * 60 * 24)));;
+				Long diffLong=checkDate.getTime()-ob.getOrderDate().getTime();
+				Long diffDays=diffLong/(1000 * 60 * 60 * 24);
+				//測試
+				System.out.println("diffDays="+diffDays);
+				if(diffDays<1) {
+					needShipOutOrderNo.add(ob.getOrderNo());
+				}
+				//測試
+				System.out.println("urgentOrderNo="+ob.getOrderNo());
+			}
+			model.addAttribute("urgentOrders_No", needShipOutOrderNo);
 			
 			
 //------------------------------------計算完畢-------------------------------------------------
 			model.addAttribute("orders_list", orders);
 			return "adminCheckOrders";
 		}
-		return "redirect:/login";
+		else {
+			return "redirect:/login_page";// 此處要改跳轉至登入畫面
+		}
 	}
 
 	// 查看系統所有訂單,一定是從orderPage跳轉到此頁,此頁無法直接到達
@@ -383,7 +402,6 @@ public class OrderController {
 		OrderBean admin_ob = odao.get_One_Order_by_OrderNo(OrderNo);
 		List<OrderItemBean> admin_oib = admin_ob.getItems();
 		model.addAttribute("orderItems_List", admin_oib);
-
 		return "adminCheckOrderDetails";
 	}
 

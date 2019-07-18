@@ -9,20 +9,19 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <meta charset="UTF-8">
+
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 <title>Products</title>
-<link rel='stylesheet'
-	href='${pageContext.request.contextPath}/css/styles.css'
-	type="text/css" />
 <!-- 	============================================================================================== -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" ></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
 	
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/product_css/products.css">
 	
 <style>
-* {
+* {	
 	padding: 0;
 	margin: 0;
 }
@@ -53,7 +52,6 @@ footer {
 }
 .search{
  border-right: 1px solid #cccccc ;
- width: 5em;
 }
 
 .container {
@@ -74,6 +72,8 @@ margin-left: 5ch;
 margin-left: 3ch;
 width:30px;
 }
+
+
 /* ======================MainShow=================================== */
 .field {
 	padding: 10px;
@@ -81,7 +81,7 @@ width:30px;
 
 .mainShow {
 	opacity: 100;
-	width: 200px;
+	width: 50px;
 	filter: alpha(opacity = 100);
 	margin:auto;
 }
@@ -105,9 +105,13 @@ width:30px;
 	-moz-transition: opacity 2s linear;
 	-o-transition: opacity 2s linear;
 	transition: opacity 1s linear;
-	width: 25cm;
+	width: 10cm;
 	height: 200px;
 }
+
+/* ============================================================= */
+
+
 </style>
 </head>
 <body>
@@ -116,7 +120,8 @@ width:30px;
 	
 // ================================起始畫面SHOW====================================
 	 firstShow();
-	function firstShow(){
+    var count;
+    function firstShow(){
 	$.ajax({
 			url : "${pageContext.request.contextPath}/category",
 			type : "POST",
@@ -184,19 +189,6 @@ width:30px;
 			selectAll();
 			page();
 		
-		function catchSelect1(){
-				var txt = $("#show :selected").text();
-				if(txt=='請選擇'){
-					var clean=null
-					$("#show2").html(clean);
-				}
-			}
-		
-		function cleanAllSelect(){
-			secondShow()		
-			var clean=null
-				$("#show2").html(clean);
-			}
 		
 			
 		$("#show3").change(function() {
@@ -217,10 +209,10 @@ width:30px;
 				success : function(data) {
 //                  console.log('remark2 :'+$("#remark2").val() );
 					var names = JSON.parse(JSON.stringify(data).split(","));
-		 			console.log(typeof names);
+// 		 			console.log(typeof names);
 					var txt = "<option value='-1' SELECTED id='cr'>請選擇</option>";
 					for (i in names) {
-						console.log(i + ' :' + names[i].name);
+// 						console.log(i + ' :' + names[i].name);
 						txt += "<option value='"+i+"'>" + names[i].name + "</option>";
 					}
 					$("#show4").html(txt);
@@ -249,6 +241,20 @@ width:30px;
 // ==========================================SHOW change================================================================
 	
 	
+	function catchSelect1(){
+			var txt = $("#show :selected").text();
+			if(txt=='請選擇'){
+				var clean=null
+				$("#show2").html(clean);
+			}
+		}
+	
+	function cleanAllSelect(){
+		secondShow()		
+		var clean=null
+			$("#show2").html(clean);
+		}
+	
 	
 		$("#show2").change(function() {
 			search2();
@@ -275,10 +281,10 @@ width:30px;
 				success : function(data) {
 //                  console.log('remark :'+$("#remark").val() );
 					var names = JSON.parse(JSON.stringify(data).split(","));
-		 			console.log(typeof names);
+// 		 			console.log(typeof names);
 					var txt = "<option value='-1' SELECTED id='cr'>請選擇</option>";
 					for (i in names) {
-						console.log(i + ' :' + names[i].name);
+// 						console.log(i + ' :' + names[i].name);
 						txt += "<option value='"+i+"'>" + names[i].name + "</option>";
 					}
 					$("#show2").html(txt);
@@ -292,12 +298,12 @@ width:30px;
 			
 		function search2(){
 			var txt2= $("#show2 :selected").text();
-			console.log('txt2:'+txt2)
+// 			console.log('txt2:'+txt2)
 			$.ajax({
                 success : function(data) {	
-                console.log(typeof txt2+' ，showTxt(change) :' + txt2)
+//                 console.log(typeof txt2+' ，showTxt(change) :' + txt2)
                 $("#fileName").val(txt2);
-                console.log('fileName :'+$("#fileName").val() );
+//                 console.log('fileName :'+$("#fileName").val() );
 				},
 				error : function(data, textStatus, errorThrown) {
 					console.log(data);
@@ -343,74 +349,15 @@ width:30px;
 			
 		$("#searchDiv").click(function() {
 			catchSelect1();	 
-			console.log($("#searchDiv").serializeObject());
+// 			console.log($("#searchDiv").serializeObject());
 // 			alert($(".search").serializeObject())
             $("#stock").val(1)
 			selectAll();
 			page();
 		})
 		
-		$("#Next").click(function() {
-		 	console.log('txt:'+ $("#stock").val())
-		 	console.log('count:'+ count)
-		 	if($("#stock").val()==""||$("#stock").val()==null)
-		 		$("#stock").val(1)
-		 	var next=parseInt($("#stock").val())+1
-		 	if(next>count)
-		 		next=count
-		 	$("#stock").val(next)
-			 console.log('next:'+next )
-			 selectAll();
-		})
 		
-		$("#Previous").click(function() {
-		 	console.log('txt:'+ $("#stock").val())
-		 	var Previous=parseInt($("#stock").val())-1
-		 	if(Previous<1)
-		 		Previous=1
-		 	$("#stock").val(Previous)
-			 console.log('Previous:'+Previous )
-			 selectAll();
-		})
-		
-
-        function selectAll(){
-			$.ajax({
-				url : "${pageContext.request.contextPath}/SelectByCategoriesAndDescription/",
-				type : "POST",
-				dataType : "json",
-				data :$("#searchDiv").serializeObject(),
-				contentType : "application/json",
-				success : function(data) {
-					var names = JSON.parse(JSON.stringify(data).split(","));
-					var ss=JSON.stringify(data).split(",")
-							txt="";
-						for (i in names) {
-// 				             console.log(i + ' :' + names[i]	);
-				             txt+=
-				            	  "<div class='col-sm-6 col-md-3' style='width: 180px; height: 180px;margin-bottom:90px'>"
-					             +"<div class=''>"
-					             +"<img width='75' height='75'src=   \" <c:url value=  '/getProductPicture/"+names[i].product_id+"'   /> \"     />"
-					             +"<div class=''  height='100' style='font-size: 8px; ''><p>"
-					             +names[i].name+"</p><p>"+names[i].unit_size+" "+names[i].color+" "+names[i].remark
-					             +"</p><p>"+names[i].price+"</p><p>庫存:"+names[i].stock+"</p>"
-					             +"<nav class='navbar navbar-light bg-light'><form class='form-inline'>"
-					             +"<a class='btn btn-sm btn-outline-secondary'   href=\" <c:url value=  '/product?id="+names[i].product_id+"'    /> \"    >" 
-					             +"詳細資料</a>"
-					             +"<a class='btn btn-sm btn-outline-secondary'   href=\" <c:url value=  '/product/addToCollection?id="+names[i].product_id+"'    /> \"    >" 
-					             +"新增收藏</a>"
-					             +"<a class='btn btn-sm btn-outline-secondary'   href=\" <c:url value=  '/products/upd?id="+names[i].product_id+"'    /> \"    >" 
-					             +"更新</a>"
-					             +"</form></nav></div></div></div>"
-
-				         }
-// 						console.log("txt : "+txt)
-						$("#right").html(txt);
-				    }
-			     })
-              }
-		
-		var count;
+	
 		function page(){
 // 			$("#stock").val(txt);
 			$.ajax({
@@ -422,24 +369,47 @@ width:30px;
 				success : function(data) {
 					var names = JSON.parse(JSON.stringify(data).split(","));
 					var ss=JSON.stringify(data).split(",")
-					var txt="";
+					var txt="<li class='page-item'><input  type = 'button' id='Previous' value='&laquo;'  onclick='PreviousClick()'  class='page-link'/></li>";
 					count=Math.ceil(names.length/18);
 						for (var i=1;i<=count;i++) {
-				           txt+="<input type = 'button'  style='margin-left: 3ch;width:5ch;' name='stock' onclick='edit(this)'  value="+i+"></input>"   
+				           txt+="<li class='page-item'><input type = 'button' class='page-link' name='stock' onclick='edit(this)'   value="+i+"></input></li>"   
 				         }
+						txt+="<li class='page-item'><input type = 'button' id='Next'   value='&raquo;' onclick='NextClick()' class='page-link'/></li>"
 // 						console.log("count"+count);
-						$("#pageNum").html(txt);
+						$(".pagination").html(txt);
 				    }
 			     })
               }
 
-		
 		});
+		
+		function PreviousClick() {
+// 		 	console.log('txt:'+ $("#stock").val())
+		 	var Previous=parseInt($("#stock").val())-1
+		 	if(Previous<1)
+		 		Previous=1
+		 	$("#stock").val(Previous)
+// 			 console.log('Previous:'+Previous )
+			 selectAll();
+		}
+		
+		function NextClick() {
+// 		 	console.log('txt:'+ $("#stock").val())
+// 		 	console.log('count:'+ count)
+		 	if($("#stock").val()==""||$("#stock").val()==null)
+		 		$("#stock").val(1)
+		 	var next=parseInt($("#stock").val())+1
+		 	if(next>count)
+		 		next=count
+		 	$("#stock").val(next)
+// 			 console.log('next:'+next )
+			 selectAll();
+		}
 		
 		function edit(object){
 			    var txt=object.value;
 			    $("#stock").val(txt);
-			   	console.log('txt:'+ $("#stock").val())
+// 			   	console.log('txt:'+ $("#stock").val())
 // 			   	<input type = 'button' id="next"  onclick="edit(this)" value="1"/>
 			   	$.ajax({
 			   		url : "${pageContext.request.contextPath}/SelectByCategoriesAndDescription/",
@@ -476,6 +446,42 @@ width:30px;
 			  
 		}
 		
+		 function selectAll(){
+				$.ajax({
+					url : "${pageContext.request.contextPath}/SelectByCategoriesAndDescription/",
+					type : "POST",
+					dataType : "json",
+					data :$("#searchDiv").serializeObject(),
+					contentType : "application/json",
+					success : function(data) {
+						var names = JSON.parse(JSON.stringify(data).split(","));
+						var ss=JSON.stringify(data).split(",")
+								txt="";
+							for (i in names) {
+//	 				             console.log(i + ' :' + names[i]	);
+					             txt+=
+					            	  "<div class='col-sm-6 col-md-3' style='width: 180px; height: 180px;margin-bottom:90px'>"
+						             +"<div class=''>"
+						             +"<img width='75' height='75'src=   \" <c:url value=  '/getProductPicture/"+names[i].product_id+"'   /> \"     />"
+						             +"<div class=''  height='100' style='font-size: 8px; ''><p>"
+						             +names[i].name+"</p><p>"+names[i].unit_size+" "+names[i].color+" "+names[i].remark
+						             +"</p><p>"+names[i].price+"</p><p>庫存:"+names[i].stock+"</p>"
+						             +"<nav class='navbar navbar-light bg-light'><form class='form-inline'>"
+						             +"<a class='btn btn-sm btn-outline-secondary'   href=\" <c:url value=  '/product?id="+names[i].product_id+"'    /> \"    >" 
+						             +"詳細資料</a>"
+						             +"<a class='btn btn-sm btn-outline-secondary'   href=\" <c:url value=  '/product/addToCollection?id="+names[i].product_id+"'    /> \"    >" 
+						             +"新增收藏</a>"
+						             +"<a class='btn btn-sm btn-outline-secondary'   href=\" <c:url value=  '/products/upd?id="+names[i].product_id+"'    /> \"    >" 
+						             +"更新</a>"
+						             +"</form></nav></div></div></div>"
+
+					         }
+//	 						console.log("txt : "+txt)
+							$("#right").html(txt);
+					    }
+				     })
+	              }
+		
 		 $.fn.serializeObject = function() {
 		        var o = {};
 		        var a = this.serializeArray();
@@ -496,17 +502,17 @@ width:30px;
 	</script>
 	<header>
 	
-	
-	
 	<h1>HEADER</h1>
 	Working with server: <%= application.getServerInfo() %><br>
     Servlet Specification: <%= application.getMajorVersion() %>.<%= application.getMinorVersion() %> <br>
     JSP version: <%= JspFactory.getDefaultFactory().getEngineInfo().getSpecificationVersion() %><br>
     Java Version: <%= System.getProperty("java.version") %><br>
-	</header>
-	<c:out value="登入者${LoginOK.member_id}"></c:out>
+		</header>
+		
+		
+	<c:out value="登入者${LoginOK.nickname}"></c:out>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="/">ICook!</a>
+		<a class="navbar-brand" href="/icook">ICook!</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarTogglerDemo02"
 			aria-controls="navbarTogglerDemo02" aria-expanded="false"
@@ -568,8 +574,33 @@ width:30px;
 			</section>
 			<section class="container">
 			
-                <a href='productsEx.xls' >AllProductsExcel</a><br>
-                
+
+				<a href='collections'>查詢收藏</a><BR> <br>
+				<a href='products/add'>新增產品資料</a>
+					<h4>鍋類</h4>
+				<div class="list-type1">
+				
+				<ul style="cursor: pointer">
+					<li><a class="search">炒鍋</a></li>
+					<li><a class="search">平底鍋</a></li>
+					<li><a class="search">湯鍋</a></li>
+				</ul>
+					<h4>刀具</h4>
+				<ul style="cursor: pointer">
+					<li><a class="search">式剁刀</a></li>
+					<li><a class="search">牛排刀</a></li>
+				</ul>
+					<h4>食材</h4>
+				<ul style="cursor: pointer">
+					<li><a class="search">牛肉</a></li>
+					<li><a class="search">雞肉</a></li>
+					<li><a class="search">豬肉</a></li>
+					<li><a class="search">羊肉</a></li>
+				</ul>
+				
+				
+				</div>
+				 <a href='productsEx.xls' >AllProductsExcel</a><br>
 				<div>
 					<div>
 						<select id="show3" name="show3" style="width: 30ch"
@@ -590,28 +621,7 @@ width:30px;
 						<input type="submit" value="ProductsExcel">
 					</form>
 				</div>
-
-
-				<a href='collections'>查詢收藏</a><BR> <br>
-				<a href='products/add'>新增產品資料</a>
-					<h4>鍋類</h4>
-				<ul style="cursor: pointer">
-					<li><a class="search">炒鍋</a></li>
-					<li><a class="search">平底鍋</a></li>
-					<li><a class="search">湯鍋</a></li>
-				</ul>
-					<h4>刀具</h4>
-				<ul style="cursor: pointer">
-					<li><a class="search">式剁刀</a></li>
-					<li><a class="search">牛排刀</a></li>
-				</ul>
-					<h4>食材</h4>
-				<ul style="cursor: pointer">
-					<li><a class="search">牛肉</a></li>
-					<li><a class="search">雞肉</a></li>
-					<li><a class="search">豬肉</a></li>
-					<li><a class="search">羊肉</a></li>
-				</ul>
+				
 				<a href='${pageContext.request.contextPath}'>回首頁</a><BR> <br>
 			</section>
 		</div>
@@ -648,6 +658,8 @@ width:30px;
 			</script>
 
 		<div class="right">
+
+           
 			<fieldset class="field">
 				<div class="divA">
 					<img id="Mai00" class="mainShow"
@@ -660,12 +672,10 @@ width:30px;
 				</div>
 			</fieldset>
 			<div class="page">
-			<form >
-				<input type = 'button' id="Previous"   value="Previous"/>
-				<input type = 'button' id="Next"   value="Next"/>
-				<div id="pageNum">
-				</div>
-			</form>
+				<form>
+					<ul class="pagination">
+					</ul>
+				</form>
 			</div>
 			<section id="right"></section>
 		</div>

@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.web.icook.model.MemberBean;
 import com.web.icook.model.OrderItemBean;
 import com.web.icook.model.ProductBean;
+import com.web.icook.service.MemberService;
 import com.web.icook.service.OrderService;
 import com.web.icook.service.ProductService;
 
@@ -27,8 +30,15 @@ public class CartController {
 	@Autowired
 	OrderService service;
 	// 測試
+	
+	@Autowired
 	ProductService pservice;
+	
+	@Autowired
+	MemberService mservice;
 
+	@Autowired
+	memberController mcontroller;
 	// 測試
 	@RequestMapping("/finishOrderPage")
 	public String tofinishOrderPage(Model model) {
@@ -105,9 +115,15 @@ public class CartController {
 		return "inforamation";
 	}
 
+	//非測試,市集>購物車
 	@RequestMapping("/cartPage")
 	public String gotoCart(Model model, HttpSession session) {
-
+		MemberBean mb;
+		if (!mcontroller.getPrincipal().equals("anonymousUser")) {
+			mb = mservice.selectByUsername(mcontroller.getPrincipal());
+			model.addAttribute("LoginOK", mb);
+		}else {
+		}
 		return "cartPage";
 	}
 
@@ -118,9 +134,22 @@ public class CartController {
 
 	Map<Integer, OrderItemBean> cart = new HashMap<>();
 
-	@RequestMapping("/product/addToCart")
+	@RequestMapping(value="/product/addToCart")
 	private String addToCart(@RequestParam(value = "productId", required = false) Integer productId,
-			@RequestParam(value = "quantity") int quantity, Model model, HttpSession session) {
+//			@RequestParam(value = "quantity") Integer quantity, Model model, HttpSession session) {
+		 Model model, HttpSession session, HttpServletRequest req) {
+		String quantityString =req.getParameter("quan");
+		if(quantityString=="") {
+			cart.remove(productId);
+			return "redirect:/product?id=" + productId;
+		}
+		Integer quantity= Integer.parseInt(quantityString);
+		//-----------------------------測試是否抓到登入會員------------------------------
+		//成功
+//		String username=mcontroller.getPrincipal();
+//		MemberBean mb=mservice.selectByUsername(username);
+//		System.out.println(mb.getUsername());
+		//-------------------------------------------------------------------------------
 		Set<OrderItemBean> oibSet = new HashSet<>();
 		OrderItemBean oib;
 		ProductBean pb;

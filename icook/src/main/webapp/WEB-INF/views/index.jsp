@@ -37,7 +37,7 @@
 	</script>
 <c:out value="登入者${LoginOK.member_id}"></c:out>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="/icookProject">ICook!</a>
+		<a class="navbar-brand" href="/icook">ICook!</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarTogglerDemo02"
 			aria-controls="navbarTogglerDemo02" aria-expanded="false"
@@ -64,6 +64,9 @@
 				</li>
 				<li class="nav-item"><a class="nav-link"
 					href="adminCheckOrders">查看訂單(僅限admin的URL)</a></li>
+					
+					<li class="nav-item"><a class="nav-link" href="toAIOcheck">ecpay</a>
+				</li>
 
 			</ul>
 			<form class="form-inline my-2 my-lg-0">
@@ -113,6 +116,7 @@ $("input[type='image']").click(function() {
 		<tr height="52" bgcolor="lightblue" align="center">
 			<td width="350"><p align="left" /> <a href='products'>查詢所有產品資料</a><BR>
 			</td>
+			<td width="350"><p align="left" /> <a href='product_Test'>產品測試</a><BR>
 		</tr>
 	</table>
 	<div>
