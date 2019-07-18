@@ -237,7 +237,7 @@ $("#quantity").change(function() {
 	</header>
 	<c:out value="登入者${LoginOK.member_id}"></c:out>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="/">ICook!</a>
+		<a class="navbar-brand" href="/icook">ICook!</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarTogglerDemo02"
 			aria-controls="navbarTogglerDemo02" aria-expanded="false"
@@ -356,15 +356,28 @@ $("#quantity").change(function() {
 							<span class="glyphicon-hand-left glyphicon"></span>返回
 						</a>
 
+						<!-- 						測試 -->
 						<form method='POST' action="<c:url value='/product/addToCart'/>">
-							<input type="hidden" name="productId" id="quan" name="quan" /> <input
-								class="btn btn-warning" type="submit" value="加入購物車" />
+							<input type="hidden" name="productId"
+								value="${product.product_id}" /> <input type="hidden"
+								name="price" value="${product.price}" /> <input type="number"
+								name="quantity" min="0" max="100" value="0" /> 數量
 							<div align="center">
 								<button type="button" class="btn btn-warning"
-									onclick="{location.href='/icook/cartPage'}" class="">購物車</button>
-
+									onclick="{location.href='/icook/cartPage'}" class="">去購物車</button>
+								<input class="btn btn-warning" type="submit" value="加入購物車" />
 							</div>
+
 						</form>
+
+
+
+
+						<input type="hidden" name="productId" id="quan" name="quan" />
+						
+						
+						
+						
 					</div>
 				</div>
 			</section>

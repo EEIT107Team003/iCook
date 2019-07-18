@@ -44,8 +44,7 @@ public class OrderController {
 	@Autowired
 	OrderDao odao;
 
-	@Autowired
-	MemberService mservice;
+
 
 	@Autowired
 	OrderItemDao oidao;
@@ -56,6 +55,8 @@ public class OrderController {
 	@Autowired
 	memberController mcontroller;
 	
+	@Autowired
+	MemberService mservice;
 	// 處理結帳
 //	@SuppressWarnings("unchecked")
 //	@RequestMapping("/check") // 購物車跳轉填資料頁

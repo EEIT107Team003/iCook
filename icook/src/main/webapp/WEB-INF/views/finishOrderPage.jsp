@@ -50,7 +50,7 @@ div.panel {
 			role="progressbar" style="width: 100%" aria-valuenow="100"
 			aria-valuemin="0" aria-valuemax="100"></div>
 	</div>
-
+	<c:out value="登入者${LoginOK.nickname}"></c:out>
 	<div class='text'>
 		<h1>訂單完成! </h1>
 		<h1>訂單編號:<c:out value="${orderNo}" /></h1>
