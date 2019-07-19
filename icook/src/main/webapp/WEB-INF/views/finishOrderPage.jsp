@@ -61,6 +61,8 @@ div.panel {
 
 		<a href="#" class="btn btn-primary btn-lg btn-block"
 			onclick="window.open(' /icook/realPaypal ', 'Paypal', config='height=500,width=500');">Paypal SandBox Demo!</a>
+		<a href="#" class="btn btn-primary btn-lg btn-block"
+			onclick="window.open(' /icook/toAIOcheck', 'Paypal', config='height=500,width=500');">去印超商取貨條碼!</a>
 		<p class="flip">请点击这里</p>
 		<button type="button" id='home'
 			onclick="javascript:location.href='/icook/'"

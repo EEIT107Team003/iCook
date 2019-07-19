@@ -158,7 +158,7 @@ function getstock(){
 $("#quantity").change(function() {
 	var txt = $("#quantity :selected").val();
 	$("#quan").val(txt);
-//     alert($("#quan").val());
+    alert($("#quan").val());
 //     var n0 = typeof ($("#quan").val());
 //     alert(n0);
 })
@@ -170,7 +170,6 @@ $("#quantity").change(function() {
 			$("#show2").html(clean);
 		}
 	}	
-	
 	
 	$("#show").change(function() {
 		catchSelect1();	 
@@ -372,8 +371,6 @@ $("#quantity").change(function() {
 							<input type="hidden" name="productId"
 								value="${product.product_id}" /> <input type="hidden"
 								name="price" value="${product.price}" /> 
-								
-								
 								
 <%-- 								<c:set value="" var="quan1"/> --%>
 <%-- 						<c:out value="${quan1}"></c:out> --%>

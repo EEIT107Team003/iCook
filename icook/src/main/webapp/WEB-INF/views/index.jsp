@@ -67,6 +67,9 @@
 					
 					<li class="nav-item"><a class="nav-link" href="toAIOcheck">ecpay</a>
 				</li>
+				
+				<a href="#" class="btn btn-primary btn-lg btn-block"
+			onclick="window.open(' /icook/toAIOcheck', 'Paypal', config='height=500,width=500');">去印超商取貨條碼!</a>
 
 			</ul>
 			<form class="form-inline my-2 my-lg-0">
