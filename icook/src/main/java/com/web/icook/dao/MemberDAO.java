@@ -31,4 +31,6 @@ public interface MemberDAO {
 
 	void updateMemberInfo(MemberBean bean, int member_id);
 
+	List<MyTrackBean> selectOneTrackerById(int member_Id, int tracked_id);
+
 }

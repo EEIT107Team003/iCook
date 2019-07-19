@@ -85,4 +85,11 @@ public class MemberServiceimpl implements MemberService {
 	public void updateMemberInfo(MemberBean bean, int member_id) {
 		dao.updateMemberInfo(bean, member_id);
 	}
+
+	// 查詢特定追蹤者
+	@Override
+	public List<MyTrackBean> selectOneTrackerById(int member_Id, int tracked_id) {
+		// TODO Auto-generated method stub
+		return dao.selectOneTrackerById(member_Id, tracked_id);
+	}
 }
