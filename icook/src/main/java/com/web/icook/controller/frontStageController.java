@@ -1,7 +1,8 @@
 package com.web.icook.controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+@Controller
 public class frontStageController {
 	@RequestMapping("/index2")
 	public String toIndex2() {
