@@ -54,6 +54,12 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/js/**").addResourceLocations("/WEB-INF/views/article/js/");
 		registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/views/article/css/");
 		//秉諺 結束
+		//威翰套版前端畫面
+		registry.addResourceHandler("/js/**").addResourceLocations("/WEB-INF/views/frontend/js/");
+		registry.addResourceHandler("/bat/**").addResourceLocations("/WEB-INF/views/frontend/bat/");
+		registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/views/frontend/css/");
+		registry.addResourceHandler("/images/**").addResourceLocations("/WEB-INF/views/frontend/images/");
+
 	}
 
 	@Bean
