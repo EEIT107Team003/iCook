@@ -79,7 +79,7 @@ public class MemberBean implements Serializable {
 	//收貨地址
 	private String address;
 
-//	@JsonIgnore
+	@JsonIgnore
 	@XmlTransient
 	@Transient
 	private MultipartFile member_photo_tr;

@@ -33,4 +33,6 @@ public interface MemberDAO {
 
 	List<MyTrackBean> selectOneTrackerById(int member_Id, int tracked_id);
 
+	List<MyTrackBean> selectTrackedById(int tracked_Id);
+
 }

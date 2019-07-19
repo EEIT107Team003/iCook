@@ -73,7 +73,7 @@ public class MemberServiceimpl implements MemberService {
 		return dao.selectByNickname(nickname);
 	}
 
-	// 查詢追蹤者
+	// 查詢 我追蹤了誰
 	@Override
 	public List<MyTrackBean> selectTrackerById(int member_Id) {
 		// TODO Auto-generated method stub
@@ -91,5 +91,12 @@ public class MemberServiceimpl implements MemberService {
 	public List<MyTrackBean> selectOneTrackerById(int member_Id, int tracked_id) {
 		// TODO Auto-generated method stub
 		return dao.selectOneTrackerById(member_Id, tracked_id);
+	}
+
+	// 查詢 我被誰追蹤
+	@Override
+	public List<MyTrackBean> selectTrackedById(int tracked_Id) {
+		// TODO Auto-generated method stub
+		return dao.selectTrackedById(tracked_Id);
 	}
 }

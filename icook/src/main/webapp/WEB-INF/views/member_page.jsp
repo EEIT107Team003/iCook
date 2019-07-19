@@ -49,9 +49,8 @@
 	href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap"
 	rel="stylesheet">
 <script>	
-
 	$(document).ready(function() {
-	
+		if($("#userId").val()!=null){
 		$.ajax({ 
 			url : "${pageContext.request.contextPath}/members/page/checkTracked",
 			type : "POST",
@@ -59,10 +58,8 @@
 			data:{member_id:$("#memberId").val()},
 			async : true,
 			success : function(data) {
-// 				alert(8888888888888);
 				var names = JSON.parse(JSON.stringify(data).split(","));
-				var txt = "";
-// 				alert(names.length);
+				var txt = "";				
 				
 				if(names.length==0){
 					txt+="<button id=trackMe type=submit>加入追蹤</button>"
@@ -71,30 +68,12 @@
 					txt+="<button id=trackCancel type=submit>取消追蹤</button>"
 					$("#trackbutton").html(txt);
 				}
-//						txt+=names[i].trackedId.nickname+"<br>"
-// 					txt+=
-// 						"<div class=contain_mytrack>"
-// 							+"<div>"
-// 								+"<img class=contain_mytrack_photo src=<c:url value='/getMemberPhoto/"+names[i].trackedId.member_id+"' /> />"
-// 							+"</div>"
-// 							+"<div class=contain_mytrack_Info style="+"height:175px; background-color: yellow;"+">"
-// 								+"<div width=100%>"
-// 								+"<a href=members/page?member_id="+names[i].trackedId.member_id+" class=contain_mytrack_title>"+ names[i].trackedId.nickname+"</a>"
-// 								+"</div>"		
-// 								+"<div class=contain_mytrack_summary>個人簡介:"+names[i].trackedId.resume+"</div>"
-// 								+"</div>"
-// 							+"<hr style=clear: both;border-style: dashed;>"
-// 						+"</div>"
-					
-// 					console.log(names[i].trackedId);
-// 				};
-// 				$("#user_contain").html(txt);
 			},
 			error : function(data, textStatus, errorThrown) {
 				console.log("error: "+data);
 			},
 		});
-
+	}
 		$.fn.serializeObject = function() {
 			var o = {};
 			var a = this.serializeArray();
@@ -197,6 +176,7 @@ section {
 <body>
 	
 	<input id="memberId" name="memberId" type="hidden" value="${member.member_id}"/>
+	<input id="userId" name="userId" type="hidden" value="${pageContext.request.userPrincipal.name}"/>
 
 	<a href="${pageContext.request.contextPath}/logout_page"
 		class="alert alert-dark" role="alert">會員登出</a>
@@ -227,7 +207,7 @@ section {
 	<!--//header-->
 
 	
-	<form method="POST" action="page/track?member_id=${member.member_id}">
+	<form method="POST" action="${pageContext.request.contextPath}/members/page/track?member_id=${member.member_id}">
 		<div id="trackbutton">
 			<button id=trackMe type="submit">加入追蹤</button>
 		</div>
