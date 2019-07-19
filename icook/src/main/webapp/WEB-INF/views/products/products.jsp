@@ -551,9 +551,10 @@ width:30px;
 					<h1>產品清單</h1>
 				</div>
 				<label for='show'> 種類</label>
+
 				<div>
-					<select id="show" name="show" style="width:30ch" class="form-control form-control-sm"><option
-							value="0" SELECTED id='ch'>請選擇</option></select> <select id="show2" name="show2" style="width:30ch" class="form-control form-control-sm">
+					<select  id="show" name="show"  class="form-control form-control-sm"><option
+							value="0" SELECTED id='ch'>請選擇</option></select> <select id="show2" name="show2"class="form-control form-control-sm">
 					</select>
 				</div>
 				<nav class="navbar navbar-light bg-light">
