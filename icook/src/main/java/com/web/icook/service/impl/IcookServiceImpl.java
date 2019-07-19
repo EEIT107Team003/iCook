@@ -52,5 +52,11 @@ public class IcookServiceImpl implements IcookService {
 
 		return dao.getIcookArticle(article_num);
 	}
+	@Transactional
+	@Override
+	public List<ArticleBean> getByArticle_Title(String article_title) {
+		// TODO Auto-generated method stub
+		return dao.getByArticle_Title(article_title);
+	}
 
 }

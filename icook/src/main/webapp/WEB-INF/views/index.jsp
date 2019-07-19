@@ -90,7 +90,7 @@
 		<p>其他會員</p>
 		<a href="members">會員首頁</a>
 		<%-- 	<a href="member?member_id=${member_id}">會員首頁</a> --%>
-		<a href="A_article">文章首頁</a>
+		<a href="A_articlemainpage">文章首頁</a>
 	</div>
 	
 		<label for='show'> 種類</label>
@@ -119,7 +119,7 @@ $("input[type='image']").click(function() {
 		<tr height="52" bgcolor="lightblue" align="center">
 			<td width="350"><p align="left" /> <a href='products'>查詢所有產品資料</a><BR>
 			</td>
-			<td width="350"><p align="left" /> <a href='product_Test'>產品測試</a><BR>
+			<td width="350"><p align="left" /> <a href='backStage'>後台</a><BR>
 		</tr>
 	</table>
 	<div>

@@ -20,9 +20,9 @@ public class IcookMsgServiceImpl implements IcookMsgService {
 
 	@Transactional
 	@Override
-	public List<MsgBoardBean> getAllMsgBoards() {
+	public List<MsgBoardBean> getAllMsgBoards(Integer article_num) {
 		// TODO Auto-generated method stub
-		return dao.getAllMsgBoards();
+		return dao.getAllMsgBoards(article_num);
 	}
 
 	@Transactional
