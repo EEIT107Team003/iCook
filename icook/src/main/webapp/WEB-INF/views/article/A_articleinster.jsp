@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,7 +60,8 @@
 
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a href="${pageContext.request.contextPath}/home" class="nav-link">Home</a></li>
+					<li class="nav-item"><a
+						href="${pageContext.request.contextPath}/home" class="nav-link">Home</a></li>
 					<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
 					<li class="nav-item"><a href="A_findAll" class="nav-link">Foods文章首頁</a></li>
 					<li class="nav-item"><a href="lifestyle.html" class="nav-link">Lifestyle</a></li>
@@ -72,7 +74,6 @@
 
 	<section class="hero-wrap hero-wrap-2"
 		style="background-image: url('images/bg_4.jpg');">
-		/icook/src/main/webapp/WEB-INF/views/article/images/bg_4.jpg
 		<div class="overlay"></div>
 		<div class="container">
 			<div
@@ -94,15 +95,20 @@
 			<div class="row">
 				<div class="col-lg-8 order-lg-last ftco-animate">
 					<!--           title -->
-					<h2 class="mb-3">新增一篇文章</h2>
 
+
+
+
+					<h2 class="mb-3">新增一篇文章</h2>
+					
 					<form:form method="POST" modelAttribute="Articlebean"
 						class="bg-light p-5 contact-form" enctype="multipart/form-data">
 
-						<div class="form-group">
-							<form:input path="article_date" type="text" class="form-control"
-								placeholder="日期(西元年-月份-日期)" />
-						</div>
+<!-- 						<div class="form-group"> -->
+
+<%-- 							<form:input path="article_date" type="text" class="form-control"  --%>
+<%-- 								placeholder="日期(西元年-月份-日期)" /> --%>
+<!-- 						</div> -->
 						<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.error_Article_date}</div>
 						<div class="form-group">
 							<form:input path="article_title" type="text" class="form-control"
@@ -110,11 +116,11 @@
 						</div>
 						<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.error_Article_title}</div>
 
-<!-- 						<div class="form-group"> -->
-<%-- 							<form:input path="article_author" type="text" --%>
-<%-- 								class="form-control" placeholder="作者" /> --%>
-<!-- 						</div> -->
-<%-- 						<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.error_Article_author}</div> --%>
+						<!-- 						<div class="form-group"> -->
+						<%-- 							<form:input path="article_author" type="text" --%>
+						<%-- 								class="form-control" placeholder="作者" /> --%>
+						<!-- 						</div> -->
+						<%-- 						<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.error_Article_author}</div> --%>
 
 						<div class="form-group">
 							<form:select path="article_status" class="form-control">
@@ -398,27 +404,33 @@
 	</div>
 
 
-	<script src="${pageContext.request.contextPath}/article/js/jquery.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/article/js/jquery.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/article/js/jquery-migrate-3.0.1.min.js"></script>
-	<script src="${pageContext.request.contextPath}/article/js/popper.min.js"></script>
-	<script src="${pageContext.request.contextPath}/article/js/bootstrap.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/article/js/popper.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/article/js/bootstrap.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/article/js/jquery.easing.1.3.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/article/js/jquery.waypoints.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/article/js/jquery.stellar.min.js"></script>
-	<script src="${pageContext.request.contextPath}/article/js/owl.carousel.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/article/js/owl.carousel.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/article/js/jquery.magnific-popup.min.js"></script>
 	<script src="${pageContext.request.contextPath}/article/js/aos.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/article/js/jquery.animateNumber.min.js"></script>
-	<script src="${pageContext.request.contextPath}/article/js/scrollax.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/article/js/scrollax.min.js"></script>
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-	<script src="${pageContext.request.contextPath}/article/js/google-map.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/article/js/google-map.js"></script>
 	<script src="${pageContext.request.contextPath}/article/js/main.js"></script>
 
 </body>

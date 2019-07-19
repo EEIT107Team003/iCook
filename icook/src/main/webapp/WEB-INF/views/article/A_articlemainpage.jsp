@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,7 +59,9 @@
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a href="${pageContext.request.contextPath}/home" class="nav-link">Home</a></li>
-					<li class="nav-item"><a href="user/A_insert" class="nav-link">新增一篇文章</a></li>
+					<c:if test="${pageContext.request.userPrincipal.name == 'aa'}">
+					<li class="nav-item"><a href="A_insert" class="nav-link">新增一篇文章</a></li>
+					</c:if>
 					<li class="nav-item active"><a href="A_findAll"
 						class="nav-link">Foods文章首頁</a></li>
 					<li class="nav-item"><a href="A_select" class="nav-link">查詢一篇文章</a></li>
@@ -104,8 +107,11 @@
 									<!-- 								寬800*高1000最佳像素 -->
 									<div class="text pt-3">
 										<p class="meta d-flex">
-											<span class="pr-3">${Article.article_catergoary}</span><span
-												class="ml-auto pl-3"> ${Article.article_date} </span>
+											<span class="pr-3">${Article.article_catergoary}</span>
+											<fmt:parseDate var="parseDate" value="${Article.article_date}" pattern="yyyy-MM-dd HH:mm" parseLocale="Asia/Taipei" />
+											
+											<span
+												class="ml-auto pl-3"> ${parseDate} </span>
 										</p>
 										<h3>
 											<a href="<spring:url value='/article?article_num=${Article.article_num}' />">${Article.article_title}</a>

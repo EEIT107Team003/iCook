@@ -144,19 +144,17 @@
 						</div>
 					</div>
 
+<!-- 					編輯者資料 -->
 					<div class="about-author d-flex p-4 bg-light">
 						<div class="bio mr-5">
-							<img src="images/person_1.jpg" alt="Image placeholder"
+							<img width="200px" height="200px" src="<spring:url value='/MemberPhoto?member_id=${Article.article_member.member_id}' />" alt="Image placeholder"
 								class="img-fluid mb-4">
 						</div>
 						<div class="desc">
 
 							<!--               簡介 -->
-							<h3>George Washington</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-								Ducimus itaque, autem necessitatibus voluptate quod mollitia
-								delectus aut, sunt placeat nam vero culpa sapiente consectetur
-								similique, inventore eos fugit cupiditate numquam!</p>
+							<h3>Author:           ${Article.article_member.nickname}</h3>
+							<p>${Article.article_member.resume}</p>
 						</div>
 					</div>
 
@@ -245,7 +243,8 @@
 																	function(
 																			res) {
 
-																		$(".comment-list")
+																		$(
+																				".comment-list")
 																				.append(
 																						'<li class="comment"><div class="vcard bio"><img src="<spring:url value="/MemberPhoto?member_id='
 																								+ res[1]
@@ -256,10 +255,10 @@
 																								+ '</div><p>'
 																								+ res[0]
 																								+ '</p></div></li>');
-																								
-																		CKEDITOR.instances.editor2.setData('');
 
-										
+																		CKEDITOR.instances.editor2
+																				.setData('');
+
 																	})
 
 												});
@@ -297,73 +296,38 @@
 					</div>
 
 					<div class="sidebar-box ftco-animate">
+						news
 						<h3 class="heading mb-4">Recent Blog</h3>
-						<div class="block-21 mb-4 d-flex">
-							<a class="blog-img mr-4"
-								style="background-image: url(images/image_1.jpg);"></a>
+
+						<c:forEach var='ArticleThree' items='${ArticleThrees}'>
+							<div class="block-21 mb-4 d-flex">
+								<a class="blog-img mr-4" href="<spring:url value='/article?article_num=${ArticleThree.article_num}' />">
+								<img width="100px" height="100px"  src="<c:url value='/getartPicture/${ArticleThree.article_num}'/>">
+									 </a>
+							
+							
+							
 							<div class="text">
 								<h3>
-									<a href="#">Even the all-powerful Pointing has no control
-										about the blind texts</a>
+									<a href="<spring:url value='/article?article_num=${ArticleThree.article_num}' />">${ArticleThree.article_title}
+										</a>
 								</h3>
 								<div class="meta">
 									<div>
-										<a href="#"><span class="icon-calendar"></span> February
-											12, 2019</a>
+										<a href="#"><span class="icon-calendar"></span> 
+										${ArticleThree.article_date}	</a>
 									</div>
 									<div>
-										<a href="#"><span class="icon-person"></span> Admin</a>
+										<a href="#"><span class="icon-person"></span> ${ArticleThree.article_member.nickname}</a>
 									</div>
-									<div>
-										<a href="#"><span class="icon-chat"></span> 19</a>
-									</div>
+									
 								</div>
 							</div>
 						</div>
-						<div class="block-21 mb-4 d-flex">
-							<a class="blog-img mr-4"
-								style="background-image: url(images/image_2.jpg);"></a>
-							<div class="text">
-								<h3>
-									<a href="#">Even the all-powerful Pointing has no control
-										about the blind texts</a>
-								</h3>
-								<div class="meta">
-									<div>
-										<a href="#"><span class="icon-calendar"></span> February
-											12, 2019</a>
-									</div>
-									<div>
-										<a href="#"><span class="icon-person"></span> Admin</a>
-									</div>
-									<div>
-										<a href="#"><span class="icon-chat"></span> 19</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="block-21 mb-4 d-flex">
-							<a class="blog-img mr-4"
-								style="background-image: url(images/image_3.jpg);"></a>
-							<div class="text">
-								<h3>
-									<a href="#">Even the all-powerful Pointing has no control
-										about the blind texts</a>
-								</h3>
-								<div class="meta">
-									<div>
-										<a href="#"><span class="icon-calendar"></span> February
-											12, 2019</a>
-									</div>
-									<div>
-										<a href="#"><span class="icon-person"></span> Admin</a>
-									</div>
-									<div>
-										<a href="#"><span class="icon-chat"></span> 19</a>
-									</div>
-								</div>
-							</div>
-						</div>
+						</c:forEach>
+						
+						
+						
 					</div>
 
 					<div class="sidebar-box ftco-animate">
@@ -579,9 +543,7 @@
 <script>
 	
 	
-console.log('12345');		
-console.log(${username});	
-console.log(${Article.article_member.username});
+
 	
 </script>
 <script>
