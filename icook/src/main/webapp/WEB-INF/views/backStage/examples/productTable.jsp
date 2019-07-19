@@ -21,6 +21,8 @@
     <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="76x76" href="backStage/assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../assets/img/favicon.ico">
+    <script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>Light Bootstrap Dashboard - Free Bootstrap 4 Admin Dashboard by Creative Tim</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
@@ -32,6 +34,79 @@
     <link href="backStage/assets/css/light-bootstrap-dashboard.css?v=2.0.0 " rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="backStage/assets/css/demo.css" rel="stylesheet" />
+    
+    
+    <script type="text/javascript">
+    function catchSelect1(){
+		var txt = $("#show :selected").text();
+		if(txt=='請選擇'){
+			var clean=null
+			$("#show2").html(clean);
+		}
+	}
+
+function cleanAllSelect(){
+	secondShow()		
+	var clean=null
+		$("#show2").html(clean);
+	}
+
+
+	$("#show2").change(function() {
+		search2();
+	})
+		
+
+	$("#show").change(function() {
+		catchSelect1();	 
+		search();
+	})
+	
+	function search(){
+		var txt = $("#show :selected").text();
+//			console.log('Txt 123: '+txt)
+		$("#remark").val(txt);
+		 $("#fileName").val("");
+//			alert($("#remark").val());
+		$.ajax({                                    
+			url : "${pageContext.request.contextPath}/categories/" + txt,
+			type : "GET",
+			dataType : "json",
+			async : true,
+			contentType : "application/json",
+			success : function(data) {
+//              console.log('remark :'+$("#remark").val() );
+				var names = JSON.parse(JSON.stringify(data).split(","));
+//		 			console.log(typeof names);
+				var txt = "<option value='-1' SELECTED id='cr'>請選擇</option>";
+				for (i in names) {
+//						console.log(i + ' :' + names[i].name);
+					txt += "<option value='"+i+"'>" + names[i].name + "</option>";
+				}
+				$("#show2").html(txt);
+			},
+			error : function(data, textStatus, errorThrown) {
+				console.log(data);
+			},
+		});
+	}
+	
+		
+	function search2(){
+		var txt2= $("#show2 :selected").text();
+//			console.log('txt2:'+txt2)
+		$.ajax({
+            success : function(data) {	
+//             console.log(typeof txt2+' ，showTxt(change) :' + txt2)
+            $("#fileName").val(txt2);
+//             console.log('fileName :'+$("#fileName").val() );
+			},
+			error : function(data, textStatus, errorThrown) {
+				console.log(data);
+			},
+		});
+	}
+    </script>
 </head>
 
 <body>
@@ -54,12 +129,6 @@
                         <a class="nav-link" href="backStageDashboard">
                             <i class="nc-icon nc-chart-pie-35"></i>
                             <p>Dashboard</p>
-                        </a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="productTable">
-                            <i class="nc-icon nc-chart-pie-35"></i>
-                            <p>productTable</p>
                         </a>
                     </li>
                     <li>
@@ -175,6 +244,37 @@
                 </div>
             </nav>
             <!-- End Navbar -->
+            <script type="text/javascript">
+        	firstShow();
+            function firstShow(){
+        	$.ajax({
+        			url : "${pageContext.request.contextPath}/allProductForProductTable",
+        			type : "POST",
+        			dataType : "json",
+        			contentType : "application/json",
+        			async : true,
+        			success : function(data) {
+        				var names = JSON.parse(JSON.stringify(data).split(","));
+        				var txt = "";
+        	            for (i in names) {
+        					txt += "<tr>"
+        					+"<td>"+names[i].product_id+"</td>"
+        					+"<td>"+names[i].name+"</td>"
+        					+"<td>"+names[i].price+"</td>"
+        					+"<td>"+names[i].status+"</td>"
+        					+"<td>"+names[i].stock+"</td>"
+        					+"<td><a class='btn btn-sm btn-outline-secondary'  href='${pageContext.request.contextPath}/products/upd?id="+names[i].product_id+"'    >Update</a> </td>"
+        					+"</tr>";
+        				}
+        				$("#Main").html(txt);
+        			},
+        			error : function(data, textStatus, errorThrown) {
+        				console.log(data);
+        			},
+        		});
+            }
+        	
+            </script>
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
@@ -183,122 +283,46 @@
                                 <div class="card-header ">
                                     <h4 class="card-title">Striped Table with Hover</h4>
                                     <p class="card-category">Here is a subtitle for this table</p>
-                                </div>
+
+									<section class="container">
+										<div>
+											<select id="show" name="show"
+												class="form-control form-control-sm"><option
+													value="0" SELECTED id='ch'>請選擇</option></select> <select id="show2"
+												name="show2" class="form-control form-control-sm">
+											</select>
+										</div>
+										<nav class="navbar navbar-light bg-light">
+											<form class="searchDiv" id="searchDiv" method="POST"
+												class="form-inline">
+												<input id="fileName" name="fileName" type="hidden" /> <input
+													id="remark" name="remark" type="hidden" /><input
+													id="stock" name="stock" type="hidden" />
+												<div>
+													<input id="description" name="description" type="text"
+														class="form-control mr-sm-2" placeholder="Search"
+														aria-label="Search"></input>
+												</div>
+												<div>
+													<input type="button"
+														class="btn btn-outline-success my-2 my-sm-0"
+														value="Search">
+												</div>
+											</form>
+										</nav>
+									</section>
+
+								</div>
                                 <div class="card-body table-full-width table-responsive">
                                     <table class="table table-hover table-striped">
                                         <thead>
                                             <th>ID</th>
                                             <th>Name</th>
-                                            <th>Salary</th>
-                                            <th>Country</th>
-                                            <th>City</th>
+                                            <th>Price</th>
+                                            <th>status</th>
+                                            <th>stock</th>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Dakota Rice</td>
-                                                <td>$36,738</td>
-                                                <td>Niger</td>
-                                                <td>Oud-Turnhout</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Minerva Hooper</td>
-                                                <td>$23,789</td>
-                                                <td>Curaçao</td>
-                                                <td>Sinaai-Waas</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Sage Rodriguez</td>
-                                                <td>$56,142</td>
-                                                <td>Netherlands</td>
-                                                <td>Baileux</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>Philip Chaney</td>
-                                                <td>$38,735</td>
-                                                <td>Korea, South</td>
-                                                <td>Overland Park</td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td>Doris Greene</td>
-                                                <td>$63,542</td>
-                                                <td>Malawi</td>
-                                                <td>Feldkirchen in Kärnten</td>
-                                            </tr>
-                                            <tr>
-                                                <td>6</td>
-                                                <td>Mason Porter</td>
-                                                <td>$78,615</td>
-                                                <td>Chile</td>
-                                                <td>Gloucester</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="card card-plain table-plain-bg">
-                                <div class="card-header ">
-                                    <h4 class="card-title">Table on Plain Background</h4>
-                                    <p class="card-category">Here is a subtitle for this table</p>
-                                </div>
-                                <div class="card-body table-full-width table-responsive">
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Salary</th>
-                                            <th>Country</th>
-                                            <th>City</th>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Dakota Rice</td>
-                                                <td>$36,738</td>
-                                                <td>Niger</td>
-                                                <td>Oud-Turnhout</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Minerva Hooper</td>
-                                                <td>$23,789</td>
-                                                <td>Curaçao</td>
-                                                <td>Sinaai-Waas</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Sage Rodriguez</td>
-                                                <td>$56,142</td>
-                                                <td>Netherlands</td>
-                                                <td>Baileux</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>Philip Chaney</td>
-                                                <td>$38,735</td>
-                                                <td>Korea, South</td>
-                                                <td>Overland Park</td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td>Doris Greene</td>
-                                                <td>$63,542</td>
-                                                <td>Malawi</td>
-                                                <td>Feldkirchen in Kärnten</td>
-                                            </tr>
-                                            <tr>
-                                                <td>6</td>
-                                                <td>Mason Porter</td>
-                                                <td>$78,615</td>
-                                                <td>Chile</td>
-                                                <td>Gloucester</td>
-                                            </tr>
+                                        <tbody id="Main">
                                         </tbody>
                                     </table>
                                 </div>

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -119,8 +118,8 @@ width:30px;
 	<script>
 	
 // ================================起始畫面SHOW====================================
-	 firstShow();
     var count;
+	firstShow();
     function firstShow(){
 	$.ajax({
 			url : "${pageContext.request.contextPath}/category",

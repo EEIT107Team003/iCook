@@ -54,6 +54,12 @@
                             <p>Dashboard</p>
                         </a>
                     </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="productTable">
+                            <i class="nc-icon nc-chart-pie-35"></i>
+                            <p>productTable</p>
+                        </a>
+                    </li>
                     <li>
                         <a class="nav-link" href="backStageUser">
                             <i class="nc-icon nc-circle-09"></i>
