@@ -18,6 +18,7 @@ import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import com.web.icook.viewResolver.ExcelViewResolver;
+
 import forum.model.Users;
 
 @Configuration
@@ -60,6 +61,9 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/frontend_bat/**").addResourceLocations("/WEB-INF/views/frontend/bat/");
 		registry.addResourceHandler("/frontend_css/**").addResourceLocations("/WEB-INF/views/frontend/css/");
 		registry.addResourceHandler("/frontend_images/**").addResourceLocations("/WEB-INF/views/frontend/images/");
+		
+		//DengYao
+		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 		
 		//DengYao
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
