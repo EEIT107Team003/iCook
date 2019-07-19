@@ -28,10 +28,7 @@ public class IcookDaoImpl implements IcookDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ArticleBean> getAllArticles() {
-//		MemberService memberservice = null;
-//		memberController c = new memberController();
-//		MemberBean mb = memberservice.selectByUsername(c.getPrincipal());
-		
+
 		String hql = "from ArticleBean as ab where ab.article_status = 1";
 		// 管理員權限		
 //		if (mb.getRole().equals("ROLE_ADMIN")) {
