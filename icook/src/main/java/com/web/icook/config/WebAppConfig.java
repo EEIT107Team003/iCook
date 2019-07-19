@@ -18,6 +18,7 @@ import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import com.web.icook.viewResolver.ExcelViewResolver;
+import forum.model.Users;
 
 @Configuration
 
@@ -53,11 +54,15 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/js/**").addResourceLocations("/WEB-INF/views/article/js/");
 		registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/views/article/css/");
 		//秉諺 結束
+		
 		//威翰套版前端畫面
 		registry.addResourceHandler("/frontend_js/**").addResourceLocations("/WEB-INF/views/frontend/js/");
 		registry.addResourceHandler("/frontend_bat/**").addResourceLocations("/WEB-INF/views/frontend/bat/");
 		registry.addResourceHandler("/frontend_css/**").addResourceLocations("/WEB-INF/views/frontend/css/");
 		registry.addResourceHandler("/frontend_images/**").addResourceLocations("/WEB-INF/views/frontend/images/");
+		
+		//DengYao
+		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 
 	}
 
@@ -89,4 +94,9 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		System.out.println("excelViewResolver");
 		return new ExcelViewResolver();
 	}
+	
+	@Bean
+	public Users getUsers() {
+		return new Users();
+	} //for livechat
 }
