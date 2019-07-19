@@ -52,17 +52,17 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		//秉諺 開始
 		registry.addResourceHandler("/article/**/**").addResourceLocations("/WEB-INF/views/article/");
 		registry.addResourceHandler("/fonts/**").addResourceLocations("/WEB-INF/views/article/fonts/");
-		registry.addResourceHandler("/images/**").addResourceLocations("/WEB-INF/views/article/images/");
+//		registry.addResourceHandler("/images/**").addResourceLocations("/WEB-INF/views/article/images/");
 		registry.addResourceHandler("/scss/**").addResourceLocations("/WEB-INF/views/article/scss/");
-		registry.addResourceHandler("/js/**").addResourceLocations("/WEB-INF/views/article/js/");
-		registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/views/article/css/");
+//		registry.addResourceHandler("/js/**").addResourceLocations("/WEB-INF/views/article/js/");
+//		registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/views/article/css/");
 		//秉諺 結束
 		
 		//威翰套版前端畫面
-		registry.addResourceHandler("/frontend_js/**").addResourceLocations("/WEB-INF/views/frontend/js/");
-		registry.addResourceHandler("/frontend_bat/**").addResourceLocations("/WEB-INF/views/frontend/bat/");
-		registry.addResourceHandler("/frontend_css/**").addResourceLocations("/WEB-INF/views/frontend/css/");
-		registry.addResourceHandler("/frontend_images/**").addResourceLocations("/WEB-INF/views/frontend/images/");
+		registry.addResourceHandler("/js/**").addResourceLocations("/WEB-INF/views/frontend/js/");
+		registry.addResourceHandler("/bat/**").addResourceLocations("/WEB-INF/views/frontend/bat/");
+		registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/views/frontend/css/");
+		registry.addResourceHandler("/images/**").addResourceLocations("/WEB-INF/views/frontend/images/");
 		//DengYao
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 	}
