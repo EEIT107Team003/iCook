@@ -3,11 +3,13 @@ package com.web.icook.model;
 import java.io.Serializable;
 import java.sql.Blob;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -35,7 +37,7 @@ public class ArticleBean implements Serializable {
 	// 作者
 	private MemberBean article_member;
 	// 時間
-	private Date article_date;
+	private Timestamp article_date =new Timestamp(System.currentTimeMillis());
 
 	// 狀態
 	private String article_status;
@@ -85,11 +87,11 @@ public class ArticleBean implements Serializable {
 		this.article_title = article_title;
 	}
 
-	public Date getArticle_date() {
+	public Timestamp getArticle_date() {
 		return article_date;
 	}
 
-	public void setArticle_date(Date article_date) {
+	public void setArticle_date(Timestamp article_date) {
 		this.article_date = article_date;
 	}
 
@@ -100,7 +102,7 @@ public class ArticleBean implements Serializable {
 	public void setArticle_status(String article_status) {
 		this.article_status = article_status;
 	}
-
+	@Column(columnDefinition = "nvarchar(max) not null")
 	public String getArticle_content() {
 		return article_content;
 	}

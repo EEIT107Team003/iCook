@@ -106,10 +106,10 @@
 									
 							</div>
 <%-- 							<h2 class="mb-3">文章編號:${Article.article_num}</h2> --%>
-							<div class="form-group">
-								<form:input path="article_date" type="text" class="form-control"
-									value="${Article.article_date}" />
-							</div>
+<!-- 							<div class="form-group"> -->
+<%-- 								<form:input path="article_date" type="text" class="form-control" --%>
+<%-- 									value="${Article.article_date}" /> --%>
+<!-- 							</div> -->
 							<div class="form-group">
 								<form:input path="article_title" type="text"
 									class="form-control" value="${Article.article_title}" />
