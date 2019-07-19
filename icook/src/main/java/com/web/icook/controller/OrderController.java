@@ -35,7 +35,6 @@ import com.web.icook.dao.OrderItemDao;
 import com.web.icook.model.MemberBean;
 import com.web.icook.model.OrderBean;
 import com.web.icook.model.OrderItemBean;
-import com.web.icook.model.ProductBean;
 import com.web.icook.service.MemberService;
 import com.web.icook.service.OrderService;
 
@@ -92,6 +91,10 @@ public class OrderController {
 //		session.setAttribute("orderItemBeanSet", orderItemBeanSet);
 //		return "information";
 //	}
+	
+
+	
+
 	
 	
 	@RequestMapping(value = "/orders", method = RequestMethod.GET, produces = "application/vnd.ms-excel")
@@ -393,6 +396,17 @@ public class OrderController {
 //			return "redirect:/login_page";// 此處要改跳轉至登入畫面
 //		}
 	}
+	
+	
+	
+//	@RequestMapping("searchOrdersByNickName")
+//	public String searchOrdersByNickName(Model model) {
+//		
+//		odao.getOrderItemsByMemberSeqNo(memerSeqNo);
+//		
+//		
+//		return "backStage/examples/table";
+//	}
 
 	// 查看系統所有訂單,一定是從orderPage跳轉到此頁,此頁無法直接到達
 	@RequestMapping(value = "/adminCheckOrderDetails", method = RequestMethod.POST)

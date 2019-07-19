@@ -18,7 +18,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
-import com.web.icook.controller.ExcelViewResolver;
+import com.web.icook.viewResolver.ExcelViewResolver;
 
 @Configuration
 
@@ -58,7 +58,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/js/**").addResourceLocations("/WEB-INF/views/frontend/js/");
 		registry.addResourceHandler("/bat/**").addResourceLocations("/WEB-INF/views/frontend/bat/");
 		registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/views/frontend/css/");
-		registry.addResourceHandler("/images/**").addResourceLocations("/WEB-INF/views/frontend/images/");
+		registry.addResourceHandler("/frontend_images/**").addResourceLocations("/WEB-INF/views/frontend/images/");
 
 	}
 

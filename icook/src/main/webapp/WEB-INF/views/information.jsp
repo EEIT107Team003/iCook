@@ -2,10 +2,29 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-<title>Insert title here</title>
+<title>About Us</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+
+
+<link rel="icon" href="images/favicon.ico">
+<link rel="shortcut icon" href="images/favicon.ico" />
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/zerogrid.css" type="text/css"
+	media="screen">
+<link rel="stylesheet" href="css/responsive.css" type="text/css"
+	media="screen">
+	
+	
+	
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -13,10 +32,14 @@
 <link rel='stylesheet'
 	href='${pageContext.request.contextPath}/css/fontawesome-free/css/all.min.css'
 	type="text/css" />
-<script src="https://code.jquery.com/jquery-3.4.1.js"
-	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-	crossorigin="anonymous"></script>
 
+<script src="js/jquery.js"></script>
+<script src="js/jquery-migrate-1.1.1.js"></script>
+<script src="js/superfish.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+<script src="js/sForm.js"></script>
+<script src="js/jquery.carouFredSel-6.1.0-packed.js"></script>
+<script src="js/css3-mediaqueries.js"></script>
 <style>
 .outer {
 	margin: 50px 20%;
@@ -39,7 +62,10 @@ h1 {
 	line-height: 200%
 }
 </style>
+
 <script type="text/javascript">
+
+
 	window.history.forward(1);
 
 	function reconfirmOrder() {
@@ -68,14 +94,61 @@ h1 {
 		}
 	}
 	function test() {
-			window.location.href = '/icookProject/';
-		
+		window.location.href = '/icookProject/';
+
 	}
 </script>
 
 </head>
 
 <body>
+		<!--==============================header=================================-->
+		<header>
+			<div class="zerogrid">
+				<div class="col-full">
+					<div class="wrap-col">
+						<h1>
+							<a href="index2"><img src="images/logo.png" alt="EXTERIOR"></a>
+						</h1>
+
+						<div class="menu_block">
+							<nav>
+								<ul class="sf-menu">
+									<li><a href="index2">ICook</a></li>
+									<li class="with_ul current"><a href="icookAboutUS">關於我們</a>
+										<ul>
+											<li><a href="icookContact">聯繫我們</a></li>
+										</ul></li>
+									<li><a href="icookMenu">查看食譜</a>
+										<ul>
+
+											<li><a href="#">cat1</a></li>
+											<li><a href="#">cat2</a></li>
+											<li><a href="#">cat3</a></li>
+										</ul>
+									<li><a href="icookLife">生活誌</a></li>
+									<li><a href="icookVideo">討論區</a></li>
+									<li><a href="icookProducts">市集</a>
+									<ul>
+											<li><a href="cartPage">購物車</a></li>
+										</ul></li>
+
+									<li><a href="icookLogin">會員專區</a>
+										<ul>
+											<li><a href="icookLogin">會員登入</a></li>
+											<li><a href="#">會員登出</a></li>
+											<li><a href="#">新增食譜</a></li>
+											<ul></li>
+
+								</ul>
+							</nav>
+							<div class="clear"></div>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+		</header>
+
 	<div class="progress">
 		<div class="progress-bar progress-bar-striped bg-info"
 			role="progressbar" style="width: 75%" aria-valuenow="75"
@@ -95,32 +168,32 @@ h1 {
 					<th>單價</th>
 					<th>小計</th>
 					<!-- 					<th></th> -->
-					<c:set var="contains" value="no" />
-					<c:if test="${empty shoppingCart}">
-						<c:set var="contains" value="yes" />
-						<script type="text/javascript">
-							
-						</script>
-					</c:if>
+					<%-- 					<c:set var="contains" value="no" /> --%>
+					<%-- 					<c:if test="${empty shoppingCart}"> --%>
+					<%-- 						<c:set var="contains" value="yes" /> --%>
+					<!-- 						<script type="text/javascript"> -->
 
-					<c:choose>
-						<c:when test="${contains=='yes'}">
-							<script type="text/javascript">
-								
-							</script>
-							<td></td>
-						</c:when>
-						<c:otherwise>
-							<script type="text/javascript">
-								
-							</script>
-							<th><button type='button' class="btn btn-danger"
-									id='${cart.value.productBean.product_id}' onclick='deleteAll()'>
-									<i class="fas fa-trash"></i>刪除所有
-								</button></th>
-						</c:otherwise>
-					</c:choose>
-					<c:set var="contains" value="no" />
+					<!-- 						</script> -->
+					<%-- 					</c:if> --%>
+
+					<%-- 					<c:choose> --%>
+					<%-- 						<c:when test="${contains=='yes'}"> --%>
+					<!-- 							<script type="text/javascript"> -->
+
+					<!-- 							</script> -->
+					<!-- 							<td></td> -->
+					<%-- 						</c:when> --%>
+					<%-- 						<c:otherwise> --%>
+					<!-- 							<script type="text/javascript"> -->
+
+					<!-- 							</script> -->
+					<!-- 							<th><button type='button' class="btn btn-danger" -->
+					<%-- 									id='${cart.value.productBean.product_id}' onclick='deleteAll()'> --%>
+					<!-- 									<i class="fas fa-trash"></i>刪除所有 -->
+					<!-- 								</button></th> -->
+					<%-- 						</c:otherwise> --%>
+					<%-- 					</c:choose> --%>
+					<%-- 					<c:set var="contains" value="no" /> --%>
 
 				</tr>
 				<c:forEach var='cart' items='${shoppingCart}'>
@@ -136,10 +209,10 @@ h1 {
 						<!-- 								onclick='editorId(this)'> -->
 						<!-- 								<i class="fas fa-edit"></i>確認修改(改下拉) -->
 						<!-- 							</button></td> -->
-						<td><button type='button' class="btn btn-danger"
-								id='${cart.value.productBean.product_id}' onclick='deleId(this)'>
-								<i class="fas fa-trash"></i>刪除
-							</button></td>
+						<!-- 						<td><button type='button' class="btn btn-danger" -->
+						<%-- 								id='${cart.value.productBean.product_id}' onclick='deleId(this)'> --%>
+						<!-- 								<i class="fas fa-trash"></i>刪除 -->
+						<!-- 							</button></td> -->
 					</tr>
 					<c:set value="${sum + cart.value.subtotal}" var='sum' />
 				</c:forEach>
@@ -152,8 +225,8 @@ h1 {
 							合計:
 							<c:out value="${sum}" />
 						</h5></th>
-					<th></th>
-					<th></th>
+					<!-- 					<th></th> -->
+					<!-- 					<th></th> -->
 				</tr>
 			</table>
 			<h1>請輸入收件人資訊</h1>
@@ -283,7 +356,7 @@ h1 {
 			<div align="center">
 				<input type="hidden" name="finalDecision" value="確定送出">
 				<button type="button"
-					onclick="{if(confirm('確定離開嗎?\r\n資料將不會記住喔'))location.href='/icookProject/cartPage'}"
+					onclick="{if(confirm('確定離開嗎?\r\n您的資料將不會記住喔'))location.href='/icook/cartPage'}"
 					class="btn btn-info btn-lg btnSeperate1">回購物車</button>
 
 				<!-- 				<input type="submit" value="去付款" -->
@@ -305,10 +378,10 @@ h1 {
 							class="btn btn-info btn-lg btnSeperate2"
 							onclick="reconfirmOrder()">
 					</c:when>
-										<c:when test="${empty shoppingCart}">
-											<button type="button" id='check' disabled onclick='backToshop()'
-												class="btn btn-warning btn-lg">您尚未選購</button>
-										</c:when>
+					<c:when test="${empty shoppingCart}">
+						<button type="button" id='check' disabled onclick='backToshop()'
+							class="btn btn-warning btn-lg">您尚未選購</button>
+					</c:when>
 					<c:otherwise>
 						<!-- 否则 -->
 					</c:otherwise>
@@ -316,8 +389,8 @@ h1 {
 				<!-- 				<input type="button" name="OrderBtn" value="確定送出" -->
 				<!-- 					class="btn btn-info btn-lg btnSeperate2" onclick="reconfirmOrder()"> -->
 
-<!-- 					<input type="button" name="OrderBtn" value="test infromation" -->
-<!-- 									class="btn btn-info btn-lg btnSeperate2"  onclick="test()"> -->
+				<!-- 					<input type="button" name="OrderBtn" value="test infromation" -->
+				<!-- 									class="btn btn-info btn-lg btnSeperate2"  onclick="test()"> -->
 			</div>
 		</div>
 	</form>

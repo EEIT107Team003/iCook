@@ -1,9 +1,13 @@
-package com.web.icook.controller;
+package com.web.icook.viewResolver;
 
 import java.util.Locale;
 
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
+
+import com.web.icook.controller.OrdersExcelView;
+import com.web.icook.controller.ProductsByCategoryExcelView;
+import com.web.icook.view.AllProductsExcelView;
 
 public class ExcelViewResolver implements ViewResolver{
 
