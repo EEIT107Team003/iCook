@@ -9,21 +9,27 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.web.icook.model.MemberBean;
+import com.web.icook.service.MemberService;
+
 import forum.dao.IFMDao;
 import forum.model.ForumMainBean;
 
 @Repository
 public class FMDaoImpl implements IFMDao {
-	
+
 	SessionFactory factory;
-	
+
 	@Autowired
 	public FMDaoImpl(SessionFactory factory) {
 		this.factory = factory;
 	}
 
 	@Override
-	public void insertArticle(ForumMainBean fmb) {
+	public void insertArticle(ForumMainBean fmb, MemberBean memberBean) { 
+		fmb.setMemberBean(memberBean);
+		fmb.setUsername(memberBean.getUsername());
+		fmb.setNickname(memberBean.getNickname());
 		fmb.setClicks(0);
 		fmb.setLikes(0);
 		fmb.setReplies(0);
@@ -36,7 +42,10 @@ public class FMDaoImpl implements IFMDao {
 	}
 
 	@Override
-	public void insertReply(ForumMainBean replyFmb, Integer harticle_id) { //harticle_id用來找Head 文章 ，增加回覆數
+	public void insertReply(ForumMainBean replyFmb, Integer harticle_id, MemberBean memberBean) { // harticle_id用來找Head 文章 ，增加回覆數
+		replyFmb.setMemberBean(memberBean);
+		replyFmb.setUsername(memberBean.getUsername());
+		replyFmb.setNickname(memberBean.getNickname());
 		replyFmb.setClicks(0);
 		replyFmb.setLikes(0);
 		replyFmb.setReplies(0);
@@ -45,21 +54,23 @@ public class FMDaoImpl implements IFMDao {
 		Session session = factory.getCurrentSession();
 		session.save(replyFmb);
 		String hql = "select count (harticle_id) from ForumMainBean where harticle_id = :harticle_id";
-		Integer replies = ((Number)session.createQuery(hql).setParameter("harticle_id", harticle_id).uniqueResult()).intValue();;
+		Integer replies = ((Number) session.createQuery(hql).setParameter("harticle_id", harticle_id).uniqueResult())
+				.intValue();
+		;
 		ForumMainBean headFmb = session.get(ForumMainBean.class, harticle_id);
 		headFmb.setReplies(replies - 1);
 		session.save(headFmb);
 	}
-	
+
 	@Override
-	public void update(ForumMainBean newFmb, Integer article_id) {
+	public void update(ForumMainBean newFmb, Integer article_id, MemberBean memberBean) {
 		Session session = factory.getCurrentSession();
-		ForumMainBean oldFmb = session.get(ForumMainBean.class, article_id);		
+		ForumMainBean oldFmb = session.get(ForumMainBean.class, article_id);
 		oldFmb.setCategory(newFmb.getCategory());
 		oldFmb.setTitle(newFmb.getTitle());
 		oldFmb.setText(newFmb.getText());
 		oldFmb.setSignature(newFmb.getSignature());
-		oldFmb.setEditTime(new Timestamp(System.currentTimeMillis()));	
+		oldFmb.setEditTime(new Timestamp(System.currentTimeMillis()));
 		session.save(oldFmb);
 	}
 
@@ -68,18 +79,23 @@ public class FMDaoImpl implements IFMDao {
 		Session session = factory.getCurrentSession();
 		ForumMainBean fmb = session.get(ForumMainBean.class, article_id);
 		Integer harticle_id = fmb.getHarticle_id();
-		session.delete(fmb);
 		String hql = "select count (harticle_id) from ForumMainBean where harticle_id = :harticle_id";
-		Integer replies = ((Number)session.createQuery(hql).setParameter("harticle_id", harticle_id).uniqueResult()).intValue();;
+		Integer replies = ((Number) session.createQuery(hql).setParameter("harticle_id", harticle_id).uniqueResult())
+				.intValue();
+
 		ForumMainBean headFmb = session.get(ForumMainBean.class, harticle_id);
-		headFmb.setReplies(replies - 1);
-		session.save(headFmb);
+		if (headFmb.getArticle_id() != headFmb.getHarticle_id()) {
+			headFmb.setReplies(replies - 1);
+			session.save(headFmb);
+		} 
+		session.delete(fmb);
+
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ForumMainBean> getAllTopic() {
-		String hql = "from ForumMainBean as fmb where fmb.article_id = fmb.harticle_id";
+		String hql = "from ForumMainBean as fmb where fmb.article_id = fmb.harticle_id order by fmb.postTime desc";
 		Session session = factory.getCurrentSession();
 		List<ForumMainBean> fmbList = new ArrayList<>();
 		fmbList = session.createQuery(hql).getResultList();
@@ -89,7 +105,7 @@ public class FMDaoImpl implements IFMDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ForumMainBean> getByTitle(String title) {
-		String hql = "from ForumMainBean as fmb where fmb.title like :title";
+		String hql = "from ForumMainBean as fmb where (fmb.title like :title) and (fmb.article_id = fmb.harticle_id)";
 		Session session = factory.getCurrentSession();
 		List<ForumMainBean> fmbList = new ArrayList<>();
 		fmbList = session.createQuery(hql).setParameter("title", "%" + title + "%").getResultList();
@@ -102,17 +118,17 @@ public class FMDaoImpl implements IFMDao {
 		String hql = "from ForumMainBean as fmb where fmb.nickname like :nickname";
 		Session session = factory.getCurrentSession();
 		List<ForumMainBean> fmbList = new ArrayList<>();
-		fmbList = session.createQuery(hql).setParameter("nickname", "%" + nickname + "%").getResultList(); 
+		fmbList = session.createQuery(hql).setParameter("nickname", "%" + nickname + "%").getResultList();
 		return fmbList;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ForumMainBean> getByCategory(String category) {
-		String hql = "from ForumMainBean as fmb where fmb.category like :category";
+		String hql = "from ForumMainBean as fmb where (fmb.category like :category) and (fmb.article_id = fmb.harticle_id)";
 		Session session = factory.getCurrentSession();
 		List<ForumMainBean> fmbList = new ArrayList<>();
-		fmbList = session.createQuery(hql).setParameter("category", "%" + category + "%").getResultList(); 
+		fmbList = session.createQuery(hql).setParameter("category", "%" + category + "%").getResultList();
 		return fmbList;
 	}
 
@@ -124,11 +140,13 @@ public class FMDaoImpl implements IFMDao {
 		List<ForumMainBean> fmbList = new ArrayList<>();
 		fmbList = session.createQuery(hql).setParameter("harticle_id", harticle_id).getResultList();
 		ForumMainBean headFmb = session.get(ForumMainBean.class, harticle_id);
-		headFmb.setClicks(headFmb.getClicks() + 1);
-		session.save(headFmb);
+		if (headFmb != null) {
+			headFmb.setClicks(headFmb.getClicks() + 1);
+			session.save(headFmb);
+		}		
 		return fmbList;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ForumMainBean> getByPK(Integer article_id) {
@@ -140,16 +158,16 @@ public class FMDaoImpl implements IFMDao {
 	}
 
 	@Override
-	public Integer like(Integer article_id) {
+	public Integer like(Integer article_id, MemberBean memberBean) {
 		Session session = factory.getCurrentSession();
 		String hql = "select likes from ForumMainBean where article_id = :article_id";
-		Integer likes = ((Number)session.createQuery(hql).setParameter("article_id", article_id).uniqueResult()).intValue();
+		Integer likes = ((Number) session.createQuery(hql).setParameter("article_id", article_id).uniqueResult())
+				.intValue();
 		ForumMainBean fmb = session.get(ForumMainBean.class, article_id);
 		fmb.setLikes(likes + 1);
 		session.save(fmb);
 		System.out.println(fmb.getLikes());
 		return fmb.getLikes();
 	}
-
 
 }

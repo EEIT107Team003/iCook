@@ -49,7 +49,8 @@
 		class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light"
 		id="ftco-navbar">
 		<div class="container">
-			<a class="navbar-brand" href="index.html">Stories<span>.</span></a>
+			<a class="navbar-brand" href="index2"><img width="240" height="111.5" src="images/logo.png"
+								alt="EXTERIOR"></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#ftco-nav" aria-controls="ftco-nav"
 				aria-expanded="false" aria-label="Toggle navigation">
@@ -73,7 +74,7 @@
 	<!-- END nav -->
 
 	<section class="hero-wrap hero-wrap-2"
-		style="background-image: url('images/bg_4.jpg');">
+		style="background-image: url('article/images/bg_4.jpg');">
 		<div class="overlay"></div>
 		<div class="container">
 			<div
@@ -132,7 +133,7 @@
 						<div class="col-md-4 ftco-animate">
 							<div class="blog-entry">
 								<a href="A_single.jsp" class="img-2"><img
-									src="images/blog-2.jpg" class="img-fluid"
+									src="article/images/blog-2.jpg" class="img-fluid"
 									alt="Colorlib Template"></a>
 								<div class="text pt-3">
 									<p class="meta d-flex">
@@ -153,7 +154,7 @@
 						<div class="col-md-4 ftco-animate">
 							<div class="blog-entry">
 								<a href="A_single.jsp" class="img-2"><img
-									src="images/blog-3.jpg" class="img-fluid"
+									src="article/images/blog-3.jpg" class="img-fluid"
 									alt="Colorlib Template"></a>
 								<div class="text pt-3">
 									<p class="meta d-flex">
@@ -174,7 +175,7 @@
 						<div class="col-md-4 ftco-animate">
 							<div class="blog-entry">
 								<a href="A_single.jsp" class="img-2"><img
-									src="images/blog-4.jpg" class="img-fluid"
+									src="article/images/blog-4.jpg" class="img-fluid"
 									alt="Colorlib Template"></a>
 								<div class="text pt-3">
 									<p class="meta d-flex">
@@ -195,7 +196,7 @@
 						<div class="col-md-4 ftco-animate">
 							<div class="blog-entry">
 								<a href="A_single.jsp" class="img-2"><img
-									src="images/blog-5.jpg" class="img-fluid"
+									src="article/images/blog-5.jpg" class="img-fluid"
 									alt="Colorlib Template"></a>
 								<div class="text pt-3">
 									<p class="meta d-flex">
@@ -216,7 +217,7 @@
 						<div class="col-md-4 ftco-animate">
 							<div class="blog-entry">
 								<a href="A_single.jsp" class="img-2"><img
-									src="images/blog-6.jpg" class="img-fluid"
+									src="article/images/blog-6.jpg" class="img-fluid"
 									alt="Colorlib Template"></a>
 								<div class="text pt-3">
 									<p class="meta d-flex">
@@ -237,7 +238,7 @@
 						<div class="col-md-4 ftco-animate">
 							<div class="blog-entry">
 								<a href="single.html" class="img-2"><img
-									src="images/blog-7.jpg" class="img-fluid"
+									src="article/images/blog-7.jpg" class="img-fluid"
 									alt="Colorlib Template"></a>
 								<div class="text pt-3">
 									<p class="meta d-flex">
@@ -258,7 +259,7 @@
 						<div class="col-md-4 ftco-animate">
 							<div class="blog-entry">
 								<a href="single.html" class="img-2"><img
-									src="images/blog-8.jpg" class="img-fluid"
+									src="article/images/blog-8.jpg" class="img-fluid"
 									alt="Colorlib Template"></a>
 								<div class="text pt-3">
 									<p class="meta d-flex">
@@ -279,7 +280,7 @@
 						<div class="col-md-4 ftco-animate">
 							<div class="blog-entry">
 								<a href="single.html" class="img-2"><img
-									src="images/blog-9.jpg" class="img-fluid"
+									src="article/images/blog-9.jpg" class="img-fluid"
 									alt="Colorlib Template"></a>
 								<div class="text pt-3">
 									<p class="meta d-flex">
@@ -319,7 +320,7 @@
 					<div class="sidebar-wrap">
 						<div class="sidebar-box p-4 about text-center ftco-animate">
 							<h2 class="heading mb-4">About Me</h2>
-							<img src="images/author.jpg" class="img-fluid"
+							<img src="article/images/author.jpg" class="img-fluid"
 								alt="Colorlib Template">
 							<div class="text pt-4">
 								<p>
@@ -353,21 +354,21 @@
 							<ul class="category-image">
 								<li><a href="#"
 									class="img d-flex align-items-center justify-content-center text-center"
-									style="background-image: url(images/category-1.jpg);">
+									style="background-image: url(article/images/category-1.jpg);">
 										<div class="text">
 											<h3>Foods</h3>
 										</div>
 								</a></li>
 								<li><a href="#"
 									class="img d-flex align-items-center justify-content-center text-center"
-									style="background-image: url(images/category-2.jpg);">
+									style="background-image: url(article/images/category-2.jpg);">
 										<div class="text">
 											<h3>Lifestyle</h3>
 										</div>
 								</a></li>
 								<li><a href="#"
 									class="img d-flex align-items-center justify-content-center text-center"
-									style="background-image: url(images/category-2.jpg);">
+									style="background-image: url(article/images/category-2.jpg);">
 										<div class="text">
 											<h3>Others</h3>
 										</div>

@@ -78,9 +78,15 @@ public class MemberBean implements Serializable {
 	private String role;
 	//收貨地址
 	private String address;
+<<<<<<< HEAD
 
 //	@JsonIgnore
 	@XmlTransient
+=======
+
+	@JsonIgnore
+	@XmlTransient
+>>>>>>> branch 'master' of https://github.com/EEIT107Team003/iCook.git
 	@Transient
 	private MultipartFile member_photo_tr;
 	

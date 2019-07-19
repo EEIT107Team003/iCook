@@ -50,8 +50,8 @@
 		class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light"
 		id="ftco-navbar">
 		<div class="container">
-			<a class="navbar-brand" href="index.html">Stories<span>.</span></a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
+<a class="navbar-brand" href="index2"><img width="240" height="111.5" src="images/logo.png"
+								alt="EXTERIOR"></a>			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#ftco-nav" aria-controls="ftco-nav"
 				aria-expanded="false" aria-label="Toggle navigation">
 				<span class="oi oi-menu"></span> Menu
@@ -71,7 +71,7 @@
 	<!-- END nav -->
 
 	<section class="hero-wrap hero-wrap-2"
-		style="background-image: url('images/bg_4.jpg');">
+		style="background-image: url('article/images/bg_4.jpg');">
 		<div class="overlay"></div>
 		<div class="container">
 			<div
@@ -182,7 +182,7 @@
 						<h3 class="heading mb-4">Recent Blog</h3>
 						<div class="block-21 mb-4 d-flex">
 							<a class="blog-img mr-4"
-								style="background-image: url(images/image_1.jpg);"></a>
+								style="background-image: url(article/images/image_1.jpg);"></a>
 							<div class="text">
 								<h3>
 									<a href="#">Even the all-powerful Pointing has no control
@@ -204,7 +204,7 @@
 						</div>
 						<div class="block-21 mb-4 d-flex">
 							<a class="blog-img mr-4"
-								style="background-image: url(images/image_2.jpg);"></a>
+								style="background-image: url(article/images/image_2.jpg);"></a>
 							<div class="text">
 								<h3>
 									<a href="#">Even the all-powerful Pointing has no control
@@ -226,7 +226,7 @@
 						</div>
 						<div class="block-21 mb-4 d-flex">
 							<a class="blog-img mr-4"
-								style="background-image: url(images/image_3.jpg);"></a>
+								style="background-image: url(article/images/image_3.jpg);"></a>
 							<div class="text">
 								<h3>
 									<a href="#">Even the all-powerful Pointing has no control

@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Member;
 import java.sql.Blob;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -37,11 +36,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.web.icook.model.MemberBean;
 import com.web.icook.model.MyTrackBean;
-import com.web.icook.model.ProductBean;
 import com.web.icook.service.MemberService;
-
-import recipe.model.RecipeBean;
-//import recipe.service.IProductService;
 
 @Controller
 public class MemberController {
@@ -61,10 +56,10 @@ public class MemberController {
 			bean = memberService.selectByUsername(getPrincipal());
 			model.addAttribute("member", bean);
 
-//			List<MyTrackBean> list=memberService.selectTrackerById(bean.getMember_id());
-//			model.addAttribute("mytrack",list.size);
 		}
-		return "user_page";
+		System.out.println("dsdssdsdsdsdss");
+//		return "user_page";
+		return "";
 	}
 
 	// 查詢我的追蹤
@@ -73,10 +68,10 @@ public class MemberController {
 	public List<MyTrackBean> myTrack() {
 		List<MyTrackBean> list = new ArrayList<MyTrackBean>();
 
-		if (!getPrincipal().equals("anonymousUser")) {
+//		if (!getPrincipal().equals("anonymousUser")) {
 			MemberBean bean = memberService.selectByUsername(getPrincipal());
 			list = memberService.selectTrackerById(bean.getMember_id());
-		}
+//		}
 
 		return list;
 	}
@@ -86,9 +81,10 @@ public class MemberController {
 	@RequestMapping(value = "/user/updateResume", method = RequestMethod.POST)
 	public List<String> updateResume(@RequestBody MemberBean bean) {
 		MemberBean memberBean = memberService.selectByUsername(getPrincipal());
+		
 		String dd = bean.getResume();
 		memberBean.setResume(dd);
-		System.out.println(dd);
+//		System.out.println(dd);
 
 		memberService.updateMemberInfo(memberBean, memberBean.getMember_id());
 		return null;
@@ -137,9 +133,9 @@ public class MemberController {
 		List<MemberBean> list = new ArrayList<MemberBean>();
 		list.add(bean);
 
-		System.out.println("size : " + list.size());
+//		System.out.println("size : " + list.size());
 		for (MemberBean mb : list) {
-			System.out.println("Nickname : " + mb.getNickname());
+//			System.out.println("Nickname : " + mb.getNickname());
 		}
 		return list;
 	}
@@ -186,9 +182,9 @@ public class MemberController {
 		List<MemberBean> list = new ArrayList<MemberBean>();
 		list.add(bean);
 
-		System.out.println("size : " + list.size());
+//		System.out.println("size : " + list.size());
 		for (MemberBean mb : list) {
-			System.out.println("Nickname : " + mb.getNickname());
+//			System.out.println("Nickname : " + mb.getNickname());
 		}
 		return list;
 	}
@@ -229,18 +225,19 @@ public class MemberController {
 	// 加入追蹤(會員)
 	@RequestMapping(value = "/members/page/track", method = RequestMethod.POST)
 	public String trackMembers(Model model, @RequestParam("member_id") Integer member_id) {
+		System.out.println("sssssssssssssssssssssssssssssssssssssssss");
 		MemberBean member = memberService.selectByUsername(getPrincipal());
 		MemberBean tracked = memberService.selectById(member_id);
-
 		MyTrackBean bean = new MyTrackBean();
 		bean.setMemberId(member);
 		bean.setTrackedId(tracked);
 		memberService.trackById(bean);
-
-		List<MyTrackBean> list=memberService.selectTrackerById(member.getMember_id());
-		model.addAttribute("mytrack",list.size());
 		
+		List<MyTrackBean> list=new ArrayList<MyTrackBean>();
+		list=memberService.selectTrackedById(tracked.getMember_id());		
+		System.out.println("-----------"+list.size()+"-----------");
 		tracked.setTracked_num(list.size());
+		//更新被追蹤者數量
 		memberService.updateMemberInfo(tracked, member_id);
 		return this.member_page(model, member_id);
 	}
@@ -251,7 +248,7 @@ public class MemberController {
 	public List<MyTrackBean> selectOneTrackerById (@RequestParam(value="member_id",required = false)Integer member_id){
 		MemberBean bean=memberService.selectByUsername(getPrincipal());
 		List<MyTrackBean> list =memberService.selectOneTrackerById(bean.getMember_id(), member_id);
-		System.out.println(member_id+" 544554545454545445");
+//		System.out.println(member_id+" 544554545454545445");
 		return list;
 	}
 	
@@ -297,13 +294,13 @@ public class MemberController {
 			// 完整檔名
 			String originalFilename = memberImage.getOriginalFilename();
 			bean.setFileName_member(originalFilename);
-			System.out.println(originalFilename + "  --1");
+//			System.out.println(originalFilename + "  --1");
 			// 副檔名
 			String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
-			System.out.println(ext + "  --2");
+//			System.out.println(ext + "  --2");
 			// 跟目錄路徑
 			String rootDirectory = context.getRealPath("/");
-			System.out.println(rootDirectory + "  --3");
+//			System.out.println(rootDirectory + "  --3");
 			try {
 				byte[] b = memberImage.getBytes();
 				Blob blob = new SerialBlob(b);
@@ -390,7 +387,7 @@ public class MemberController {
 		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
 		String mimeType = context.getMimeType(filename);
 		MediaType mediaType = MediaType.valueOf(mimeType);
-		System.out.println("mediaType=" + mediaType);
+//		System.out.println("mediaType=" + mediaType);
 		headers.setContentType(mediaType);
 		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
 
@@ -436,5 +433,9 @@ public class MemberController {
 			userName = principal.toString();
 		}
 		return userName;
+	}
+	
+	public MemberBean getMemberBean(String username) {
+		return memberService.selectByUsername(username);
 	}
 }

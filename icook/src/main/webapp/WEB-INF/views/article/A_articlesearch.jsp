@@ -48,7 +48,8 @@
 		class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light"
 		id="ftco-navbar">
 		<div class="container">
-			<a class="navbar-brand" href="index.html">Stories<span>.</span></a>
+			<a class="navbar-brand" href="index2"><img width="240" height="111.5" src="images/logo.png"
+								alt="EXTERIOR"></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#ftco-nav" aria-controls="ftco-nav"
 				aria-expanded="false" aria-label="Toggle navigation">
@@ -70,7 +71,7 @@
 	<!-- END nav -->
 
 	<section class="hero-wrap hero-wrap-2"
-		style="background-image: url('images/bg_4.jpg');">
+		style="background-image: url('article/images/bg_4.jpg');">
 		<div class="overlay"></div>
 		<div class="container">
 			<div
@@ -347,21 +348,21 @@
 							<ul class="category-image">
 								<li><a href="#"
 									class="img d-flex align-items-center justify-content-center text-center"
-									style="background-image: url(images/category-1.jpg);">
+									style="background-image: url(article/images/category-1.jpg);">
 										<div class="text">
 											<h3>Foods</h3>
 										</div>
 								</a></li>
 								<li><a href="#"
 									class="img d-flex align-items-center justify-content-center text-center"
-									style="background-image: url(images/category-2.jpg);">
+									style="background-image: url(article/images/category-2.jpg);">
 										<div class="text">
 											<h3>Lifestyle</h3>
 										</div>
 								</a></li>
 								<li><a href="#"
 									class="img d-flex align-items-center justify-content-center text-center"
-									style="background-image: url(images/category-2.jpg);">
+									style="background-image: url(article/images/category-2.jpg);">
 										<div class="text">
 											<h3>Others</h3>
 										</div>
