@@ -50,7 +50,7 @@ public class MemberBean implements Serializable {
 	@Column(unique = true)
 	private String nickname;
 	//會員簡介
-	@Column(length = 50 )
+	@Column(columnDefinition = "VARCHAR (50)" )
 	private String resume;
 	// 會員電話
 	private String member_phone_num;
@@ -79,7 +79,7 @@ public class MemberBean implements Serializable {
 	//收貨地址
 	private String address;
 
-	@JsonIgnore
+//	@JsonIgnore
 	@XmlTransient
 	@Transient
 	private MultipartFile member_photo_tr;

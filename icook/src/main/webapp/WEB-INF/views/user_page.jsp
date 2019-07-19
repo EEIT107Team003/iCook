@@ -255,7 +255,15 @@
 					</label>
 					<input id=submit1 type="submit" value="送出" style="display: none;">
 				</form:form>
-				
+<%-- 				<form id=updateMemberPhoto method="POST" enctype="multipart/form-data"> --%>
+<!-- 					<label id="member_photo_label" for="member_photo_tr" style="float: left">  -->
+<!-- 						<input type="file" name="member_photo_tr" id="member_photo_tr" style="display: none;" />  -->
+<!-- 						<img class="profile-image img-responsive pull-left member_photo" -->
+<!-- 							id="member_photo_image" -->
+<%-- 							src="<c:url value='/getMemberPhoto/${member.member_id}' />" /> --%>
+<!-- 					</label> -->
+<%-- 				</form> --%>
+
 				<div class="profile-content pull-left member_info">
 					<h1 class="name">${member.nickname}</h1>
 					<h2 id="member_resume" class="desc" style="font-size: 10px">${member.resume}</h2>
@@ -282,13 +290,11 @@
 	            </div>
 	            <div class="modal-body">
 	            	<div>請輸入的你個人簡介:(50字以內)</div><br>
-	            	
 		            <form id="resume_value" method="POST">
 						<div>
-			            	<textarea id="resume" name="resume" style="max-height: 200px; min-width:80%; max-width:80%"></textarea>
+			            	<textarea id="resume" name="resume" style="max-height: 40px; max-height: 200px; min-width:80%; max-width:80%"></textarea>
 						</div>
 					</form>
-					
 	            </div>
 	            <div class="modal-footer">
 	                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
@@ -298,6 +304,9 @@
 	    </div><!-- /.modal-dialog -->
 	</div>
 <!-- /.modal -->
+
+
+
 
 	<div class="btn btn-primary btn-lg" style="height: 50px">
 		<form:form method="POST" action="user/updateCoverPhoto" modelAttribute="MemberBean" enctype="multipart/form-data">

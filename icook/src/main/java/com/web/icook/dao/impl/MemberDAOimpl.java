@@ -123,7 +123,17 @@ public class MemberDAOimpl implements MemberDAO {
 
 		return list;
 	}
-
+	
+	// 查詢特定追蹤者
+	@Override
+	public List<MyTrackBean> selectOneTrackerById(int member_Id,int tracked_id) {
+		String hql = "from MyTrackBean where (member_Id=:member_Id and tracked_id=:tracked_id)";
+		List<MyTrackBean> list = new ArrayList<MyTrackBean>();
+		Session session = factory.getCurrentSession();
+		list = session.createQuery(hql).setParameter("member_Id", member_Id).setParameter("tracked_id", tracked_id).getResultList();
+		
+		return list;
+	}
 	
 	private String getPrincipal() {
 		String userName = null;
