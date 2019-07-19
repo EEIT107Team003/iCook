@@ -73,7 +73,7 @@
 	<!-- END nav -->
 
 	<section class="hero-wrap hero-wrap-2"
-		style="background-image: url('images/bg_4.jpg');">
+		style="background-image: url('article/images/bg_4.jpg');">
 		<div class="overlay"></div>
 		<div class="container">
 			<div
@@ -189,7 +189,7 @@
 						<h3 class="heading mb-4">Recent Blog</h3>
 						<div class="block-21 mb-4 d-flex">
 							<a class="blog-img mr-4"
-								style="background-image: url(images/image_1.jpg);"></a>
+								style="background-image: url(article/images/image_1.jpg);"></a>
 							<div class="text">
 								<h3>
 									<a href="#">Even the all-powerful Pointing has no control
@@ -211,7 +211,7 @@
 						</div>
 						<div class="block-21 mb-4 d-flex">
 							<a class="blog-img mr-4"
-								style="background-image: url(images/image_2.jpg);"></a>
+								style="background-image: url(article/images/image_2.jpg);"></a>
 							<div class="text">
 								<h3>
 									<a href="#">Even the all-powerful Pointing has no control
@@ -233,7 +233,7 @@
 						</div>
 						<div class="block-21 mb-4 d-flex">
 							<a class="blog-img mr-4"
-								style="background-image: url(images/image_3.jpg);"></a>
+								style="background-image: url(article/images/image_3.jpg);"></a>
 							<div class="text">
 								<h3>
 									<a href="#">Even the all-powerful Pointing has no control

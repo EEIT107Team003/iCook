@@ -97,7 +97,7 @@
 	<!-- END nav -->
 
 	<section class="hero-wrap hero-wrap-2"
-		style="background-image: url('images/bg_4.jpg');">
+		style="background-image: url('article/images/bg_4.jpg');">
 		<div class="overlay"></div>
 		<div class="container">
 			<div
