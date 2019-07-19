@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ page import="java.util.*, java.io.*"%>
+<%@ page import="java.util.*, java.io.*" %>
 
 <html>
 <head>
@@ -13,20 +13,15 @@
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 <title>Products</title>
-<link rel='stylesheet'
-	href='${pageContext.request.contextPath}/css/styles.css'
-	type="text/css" />
 <!-- 	============================================================================================== -->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" ></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
+	
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/product_css/products.css">
+	
 <style>
-* {
+* {	
 	padding: 0;
 	margin: 0;
 }
@@ -54,10 +49,8 @@ footer {
 	margin: auto;
 	background-color: #AAFFEE;
 }
-
-.search {
-	border-right: 1px solid #cccccc;
-	width: 5em;
+.search{
+ border-right: 1px solid #cccccc ;
 }
 
 .container {
@@ -67,19 +60,19 @@ footer {
 .allPage {
 	overflow: auto;
 	width: 100%;
-	margin-bottom: 10ch;
-	margin-top: 3ch;
+	margin-bottom:10ch;
+	margin-top:3ch;
+}
+.page{
+margin:auto;
+margin-left: 50ch;
+}
+.page button{
+margin-left: 3ch;
+width:30px;
 }
 
-.page {
-	margin: auto;
-	margin-left: 5ch;
-}
 
-.page button {
-	margin-left: 3ch;
-	width: 30px;
-}
 /* ======================MainShow=================================== */
 .field {
 	padding: 10px;
@@ -87,9 +80,9 @@ footer {
 
 .mainShow {
 	opacity: 100;
-	width: 200px;
+	width: 50px;
 	filter: alpha(opacity = 100);
-	margin: auto;
+	margin:auto;
 }
 
 .mainBlock {
@@ -102,93 +95,28 @@ footer {
 
 .divA {
 	position: relative;
-	margin: auto;
+	margin:auto;
 }
 
 .divA img {
-	margin: auto;
+      margin:auto;
 	-webkit-transition: opacity 2s linear;
 	-moz-transition: opacity 2s linear;
 	-o-transition: opacity 2s linear;
 	transition: opacity 1s linear;
-	width: 25cm;
+	width: 10cm;
 	height: 200px;
 }
+
+/* ============================================================= */
+
+
 </style>
 </head>
 <body>
 
-	<script type="text/javascript">
-$.ajax({
-	url : "${pageContext.request.contextPath}/category",
-	type : "POST",
-	dataType : "json",
-	contentType : "application/json",
-	async : true,
-	success : function(data) {
-		var names = JSON.parse(JSON.stringify(data).split(","));
-		var txt = "";
-        for (i in names) {
-			txt += "<option value='"+i+"'>" + names[i].name + "</option>";
-		}
-		$("#show").append(txt);
-	},
-	error : function(data, textStatus, errorThrown) {
-// 		console.log(data);
-	},
-});
-
-
-
-$(document).ready(function() {
+	<script>
 	
-getstock();
-
-
-
-function getstock(){
-        var names=parseInt(${product.stock})
-        var txt=""
-        for(var i=1;i<=names;i++) {
-			txt += "<option value='"+i+"'>" +i+ "</option>"
-		}
-        $("#quantity").append(txt);
-}
-
-$("#quantity").change(function() {
-	var txt = $("#quantity :selected").val();
-	$("#quan").val(txt);
-//     alert($("#quan").val());
-//     var n0 = typeof ($("#quan").val());
-//     alert(n0);
-})
-
-	function catchSelect1(){
-		var txt = $("#show :selected").text();
-		if(txt=='請選擇'){
-			var clean=null
-			$("#show2").html(clean);
-		}
-	}	
-	
-	
-	$("#show").change(function() {
-		catchSelect1();	 
-		search();
-	})
-
-	$("#show2").change(function() {
-		search2();
-	})
-	
-	function search(){
-		var txt = $("#show :selected").text();
-//			console.log('Txt 123: '+txt)
-		$("#remark").val(txt);
-		$.ajax({                                    
-			url : "${pageContext.request.contextPath}/categories/" + txt,
-			type : "GET",
->>>>>>> refs/remotes/origin/master
 // ================================起始畫面SHOW====================================
 	 firstShow();
     var count;
@@ -723,16 +651,17 @@ $("#quantity").change(function() {
 <!-- =============================================Dataisl=================================================================		 -->
        <section class="container">
 				<div class="row">
-					<img width='100' height='150'
+				<div>
+					<img width='300' height='350'
 						src="<c:url value='/getProductPicture/${product.product_id}'/>" />
-					<div class="col-md-5">
-						<h3>${product.name}</h3>
-						<p>${product.description}</p>
-						<strong>商品編號: </strong> <span class='label label-warning'>${product.product_id}
-						</span>
+				</div>
+					<div class="textDiv">
+						<h1>商品編號: ${product.product_id} </h1> 
+						<h1>${product.name}</h1>
+						<p>分類: ${product.categoriesbean.name}</p>
 						<p>顏色: ${product.color}</p>
 						<p>單價: ${product.price}</p>
-						<p>分類: ${product.categoriesbean.name}</p>
+						<p>${product.description}</p>
 						<p>${collection.productBean.categoriesbean.name}</p>
 						請選擇數量:<select id="quantity" name="quantity" style="width: 10ch"
 							class="form-control form-control-sm"><option value="0"
@@ -746,20 +675,10 @@ $("#quantity").change(function() {
 							<input type="hidden" name="productId"
 								value="${product.product_id}" /> <input type="hidden"
 								name="price" value="${product.price}" /> 
-								
-								
-								
 <%-- 								<c:set value="" var="quan1"/> --%>
 <%-- 						<c:out value="${quan1}"></c:out> --%>
-								
 								<input type="hidden"
 								name="quan" id='quan' value="" /> 
-	
-								
-								
-								
-<!-- 								<input type="number" -->
-<!-- 								name="quantity" min="0" max="100" value="0" /> 數量 -->
 							<div align="center">
 								<button type="button" class="btn btn-warning"
 									onclick="{location.href='/icook/cartPage'}" class="">去購物車</button>
