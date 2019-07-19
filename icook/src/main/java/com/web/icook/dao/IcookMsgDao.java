@@ -6,7 +6,7 @@ import java.util.List;
 import com.web.icook.model.MsgBoardBean;
 
 public interface IcookMsgDao {
-	List<MsgBoardBean> getAllMsgBoards();
+	List<MsgBoardBean> getAllMsgBoards(Integer article_num);
 
 	public void insertIcookMsgBoard(MsgBoardBean msgBoardbean);// 新增一筆資料
 

@@ -35,6 +35,7 @@ import com.web.icook.dao.OrderItemDao;
 import com.web.icook.model.MemberBean;
 import com.web.icook.model.OrderBean;
 import com.web.icook.model.OrderItemBean;
+import com.web.icook.model.ProductBean;
 import com.web.icook.service.MemberService;
 import com.web.icook.service.OrderService;
 
@@ -53,7 +54,7 @@ public class OrderController {
 	OrderService oservice;
 
 	@Autowired
-	memberController mcontroller;
+	MemberController mcontroller;
 	
 	@Autowired
 	MemberService mservice;
@@ -91,6 +92,14 @@ public class OrderController {
 //		session.setAttribute("orderItemBeanSet", orderItemBeanSet);
 //		return "information";
 //	}
+	
+	
+	@RequestMapping(value = "/orders", method = RequestMethod.GET, produces = "application/vnd.ms-excel")
+	public String AllProductsExcel(Model model) {
+		List<OrderBean> orders = odao.getAllOrders();
+		model.addAttribute("allOrders", orders);
+		return "orders/allOrders";
+	}
 	
 	// EZ填完資料跳EZ API,把資料丟給exship API
 	@SuppressWarnings({ "unchecked", "unused" })
@@ -346,7 +355,7 @@ public class OrderController {
 			
 //-----------------------------------------計算離出貨<1天------------------------------------------------------
 			
-			//算出貨時間<10天的
+			//算出貨時間<1天的
 			Iterator<OrderBean> iter1 = orders.iterator();
 			List<Integer> needShipOutOrderNo = new ArrayList<>();
 			while (iter1.hasNext()) {
@@ -366,7 +375,7 @@ public class OrderController {
 				Long diffDays=diffLong/(1000 * 60 * 60 * 24);
 				//測試
 				System.out.println("diffDays="+diffDays);
-				if(diffDays<10) {
+				if(diffDays<1) {
 					needShipOutOrderNo.add(ob.getOrderNo());
 				}
 				//測試

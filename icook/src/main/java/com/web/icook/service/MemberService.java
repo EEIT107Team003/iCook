@@ -26,4 +26,8 @@ public interface MemberService {
 	void trackById(MyTrackBean bean);
 	
 	MemberBean selectByNickname(String nickname);
+	
+	List<MyTrackBean> selectTrackerById(int member_Id);
+	
+	void updateMemberInfo(MemberBean bean, int member_id);
 }

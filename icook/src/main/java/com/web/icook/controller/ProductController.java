@@ -62,7 +62,7 @@ public class ProductController {
 	}
 	
 	@Autowired
-	memberController mcontroller;
+	MemberController mcontroller;
 
 	@Autowired
 	MemberService mservice;

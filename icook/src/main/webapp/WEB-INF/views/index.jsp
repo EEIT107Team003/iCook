@@ -64,6 +64,9 @@
 				</li>
 				<li class="nav-item"><a class="nav-link"
 					href="adminCheckOrders">查看訂單(僅限admin的URL)</a></li>
+					
+					<li class="nav-item"><a class="nav-link" href="toAIOcheck">ecpay</a>
+				</li>
 
 			</ul>
 			<form class="form-inline my-2 my-lg-0">

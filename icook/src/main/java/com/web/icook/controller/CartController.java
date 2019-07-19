@@ -38,7 +38,7 @@ public class CartController {
 	MemberService mservice;
 
 	@Autowired
-	memberController mcontroller;
+	MemberController mcontroller;
 	// 測試
 	@RequestMapping("/finishOrderPage")
 	public String tofinishOrderPage(Model model) {

@@ -11,19 +11,31 @@ import org.springframework.stereotype.Repository;
 import com.web.icook.dao.IcookMsgDao;
 import com.web.icook.model.ArticleBean;
 import com.web.icook.model.MsgBoardBean;
+//TODO HQL指令
+
+import forum.model.ForumMainBean;
 
 @Repository
 public class IcookMsgDaoImpl implements IcookMsgDao {
 	@Autowired
 	SessionFactory factory;
-
+	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<MsgBoardBean> getAllMsgBoards() {
-		String hql = "FROM MsgBoardBean";
+	public List<MsgBoardBean> getAllMsgBoards( Integer article_num) {
+//		value="SELECT new com.demo.test.Entity.ViewInfo(u,a)FROM "
+//		        + " UserInfo u, com.demo.test.Entity.Address a WHERE u.addressId = a.id) ")
+//		String hql = "from MsgBoardBean mb, ArticleBean ab where mb.artuclenum_in_msg = :article_num";
+		System.out.println("List<MsgBoardBean> getAllMsgBoards"+article_num);
+//		String hql = "FROM MsgBoardBean"; 
+		String hql = "from MsgBoardBean as mb where mb.artuclenum_in_msg = "+article_num;
 		Session session = null;
-		List<MsgBoardBean> list = new ArrayList<>();
 		session = factory.getCurrentSession();
+
+		List<MsgBoardBean> list = new ArrayList<>();
+		
+//		System.out.println("art.getarticle_num1()="+article_num1);
+//		list  = session.createQuery(hql).setParameter("artuclenum_in_msg",4).getResultList();
 		list = session.createQuery(hql).getResultList();
 
 		return list;

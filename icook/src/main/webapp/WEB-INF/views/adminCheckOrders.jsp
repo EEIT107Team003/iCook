@@ -150,30 +150,8 @@ td, th {
 
 				<c:forEach var='OrderBean' items='${orders_list}'>
 					<tr>
-						<c:set var="contains" value="no" />
-						<c:forEach var="urgentOrderNo" items="${urgentOrders_No}">
-							<c:if test="${urgentOrderNo eq OrderBean.orderNo}">
-								<c:set var="contains" value="yes" />
-							</c:if>
-						</c:forEach>
-						<c:choose>
-							<c:when test="${contains=='yes'}">
-								<td id='odno' class='urgent'>${OrderBean.orderNo}</td>
-								<script type="text/javascript">
-								
-								
-// 									var myElement = document
-// 											.querySelector("#odno"); // 取得ID為homeTitle的元素 
-// 									myElement.style.backgroundColor = "#FF0000"; // 透過style.backgroundColor設定背景顏色
-								</script>
-							</c:when>
-							<c:otherwise>
-								<td id='odno'>${OrderBean.orderNo}</td>
-								<script type="text/javascript">
-									
-								</script>
-							</c:otherwise>
-						</c:choose>
+					<td>${OrderBean.orderNo}</td>
+						
 						<%-- 						<td id='odno'>${OrderBean.orderNo}</td> --%>
 						<td>
 							<form method='POST'
@@ -184,7 +162,27 @@ td, th {
 							</form>
 						</td>
 						<td>${OrderBean.orderDate}</td>
-						<td>${OrderBean.shippingDate}</td>
+						<c:set var="contains" value="no" />
+						<c:forEach var="urgentOrderNo" items="${urgentOrders_No}">
+							<c:if test="${urgentOrderNo eq OrderBean.orderNo}">
+								<c:set var="contains" value="yes" />
+							</c:if>
+						</c:forEach>
+						<c:choose>
+							<c:when test="${contains=='yes'}">
+							<td id='odno' class='urgent'>${OrderBean.shippingDate}</td>
+								<script type="text/javascript">
+								</script>
+							</c:when>
+							<c:otherwise>
+								<td>${OrderBean.shippingDate}</td>
+								<script type="text/javascript">
+									
+								</script>
+							</c:otherwise>
+						</c:choose>
+						
+						
 						<td>${OrderBean.memberbean.username}</td>
 						<td>${OrderBean.totalAmount}</td>
 						<td>${OrderBean.shippingAddress}</td>
@@ -214,9 +212,9 @@ td, th {
 						</c:choose>
 						<c:set var="contains" value="no" />
 						<%-- 						<td><input type="button" id="${OrderBean.orderNo}" onclick='setOK(this)' value="OK"></td> --%>
-						<td><a href='members/${member.pk}.xls'><i
-								class="fas fa-file-csv"></i> </a></td>
+						<td><a href='orders.xls'>匯出xls</a></td>
 					</tr>
+					
 				</c:forEach>
 			</tbody>
 		</table>

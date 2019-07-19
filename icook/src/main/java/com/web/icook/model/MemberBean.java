@@ -119,6 +119,31 @@ public class MemberBean implements Serializable {
 	@OneToMany(mappedBy="memberBean" ,fetch= FetchType.EAGER)
 	private Set<CollectiontBean> collectiontbean=new HashSet<>(0);
 	
+	@OneToMany(mappedBy = "article_member")
+	private Set<ArticleBean> Act = new LinkedHashSet<>();
+	
+	@OneToMany(mappedBy = "memberid_in_msgs")
+	private Set<MsgBoardBean> Msg = new LinkedHashSet<>();
+	
+	
+	
+	
+	public Set<ArticleBean> getAct() {
+		return Act;
+	}
+
+	public void setAct(Set<ArticleBean> act) {
+		Act = act;
+	}
+
+	public Set<MsgBoardBean> getMsg() {
+		return Msg;
+	}
+
+	public void setMsg(Set<MsgBoardBean> msg) {
+		Msg = msg;
+	}
+
 	public Set<RecipeBean> getRecipe() {
 		return recipe;
 	}
