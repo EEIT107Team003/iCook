@@ -46,7 +46,6 @@ header {
 }
 
 footer {
-   
 	margin: auto;
 	background-color: #AAFFEE;
 }
@@ -119,8 +118,8 @@ width:30px;
 	<script>
 	
 // ================================起始畫面SHOW====================================
-	 firstShow();
     var count;
+	firstShow();
     function firstShow(){
 	$.ajax({
 			url : "${pageContext.request.contextPath}/category",
@@ -271,7 +270,7 @@ width:30px;
 // 			console.log('Txt 123: '+txt)
 			$("#remark").val(txt);
 			 $("#fileName").val("");
-			alert($("#remark").val());
+// 			alert($("#remark").val());
 			$.ajax({                                    
 				url : "${pageContext.request.contextPath}/categories/" + txt,
 				type : "GET",
@@ -424,21 +423,20 @@ width:30px;
 							for (i in names) {
 //	 				             console.log(i + ' :' + names[i]	);
 					             txt+=
-					            	  "<div class='col-sm-6 col-md-3' style='width: 180px; height: 180px;margin-bottom:90px'>"
+					            	  "<div class='col-sm-6 col-md-3' style='width: 200px; height: 250px;margin-bottom:20px'>"
 						             +"<div class=''>"
-						             +"<img width='75' height='75'src=   \" <c:url value=  '/getProductPicture/"+names[i].product_id+"'   /> \"     />"
+						             +"<img width='100' height='150'src=   \" <c:url value=  '/getProductPicture/"+names[i].product_id+"'   /> \"     />"
 						             +"<div class=''  height='100' style='font-size: 8px; ''><p>"
-						             +names[i].name+"</p><p>"+names[i].unit_size+" "+names[i].color+" "+names[i].remark
-						             +"</p><p>"+names[i].price+"</p><p>庫存:"+names[i].stock+"</p>"
+						             +"名稱 :"+names[i].name+"</p><p>價格 : "+names[i].price+"</p>"
 						             +"<nav class='navbar navbar-light bg-light'><form class='form-inline'>"
-						             +"<a class='btn btn-sm btn-outline-secondary'   href=\" <c:url value=  '/products/product?id="+names[i].product_id+"'    /> \"    >" 
-						             +"詳細資料</a>"
-						             +"<a class='btn btn-sm btn-outline-secondary'   href=\" <c:url value=  '/products/product/addToCollection?id="+names[i].product_id+"'    /> \"    >" 
-						             +"新增收藏</a>"
-						             +"<a class='btn btn-sm btn-outline-secondary'   href=\" <c:url value=  '/products/products/upd?id="+names[i].product_id+"'    /> \"    >" 
-						             +"更新</a>"
+						             +"<a class='mh6'   href=\" <c:url value=  '/products/product?id="+names[i].product_id+"'    /> \"    >" 
+						             +"Details</a>"
 						             +"</form></nav></div></div></div>"
 					         }
+// 						             +"<a class='btn btn-sm btn-outline-secondary'   href=\" <c:url value=  '/products/product/addToCollection?id="+names[i].product_id+"'    /> \"    >" 
+// 						             +"新增收藏</a>"
+// 						             +"<a class='btn btn-sm btn-outline-secondary'   href=\" <c:url value=  '/products/products/upd?id="+names[i].product_id+"'    /> \"    >" 
+// 						             +"更新</a>"
 //	 						console.log("txt : "+txt)
 							$("#right").html(txt);
 					}
@@ -460,22 +458,21 @@ width:30px;
 							for (i in names) {
 //	 				             console.log(i + ' :' + names[i]	);
 					             txt+=
-					            	  "<div class='col-sm-6 col-md-3' style='width: 180px; height: 180px;margin-bottom:90px'>"
+					            	  "<div class='col-sm-6 col-md-3' style='width: 200px; height: 250px;margin-bottom:50px;margin-right:50px'>"
 						             +"<div class=''>"
-						             +"<img width='75' height='75'src=   \" <c:url value=  '/getProductPicture/"+names[i].product_id+"'   /> \"     />"
+						             +"<img width='125' height='175'src=   \" <c:url value=  '/getProductPicture/"+names[i].product_id+"'   /> \"     />"
 						             +"<div class=''  height='100' style='font-size: 8px; ''><p>"
-						             +names[i].name+"</p><p>"+names[i].unit_size+" "+names[i].color+" "+names[i].remark
-						             +"</p><p>"+names[i].price+"</p><p>庫存:"+names[i].stock+"</p>"
+						             +"名稱  : "+names[i].name+"</p><p>價格 : "+names[i].price+"</p>"
 						             +"<nav class='navbar navbar-light bg-light'><form class='form-inline'>"
-						             +"<a class='btn btn-sm btn-outline-secondary'   href=\" <c:url value=  '/product?id="+names[i].product_id+"'    /> \"    >" 
-						             +"詳細資料</a>"
-						             +"<a class='btn btn-sm btn-outline-secondary'   href=\" <c:url value=  '/product/addToCollection?id="+names[i].product_id+"'    /> \"    >" 
-						             +"新增收藏</a>"
-						             +"<a class='btn btn-sm btn-outline-secondary'   href=\" <c:url value=  '/products/upd?id="+names[i].product_id+"'    /> \"    >" 
-						             +"更新</a>"
+						             +"<a class='mh6'   href=\" <c:url value=  '/product?id="+names[i].product_id+"'    /> \"    >" 
+						             +"Details</a>"
 						             +"</form></nav></div></div></div>"
-
 					         }
+
+// 						             +"<a class='btn btn-sm btn-outline-secondary'   href=\" <c:url value=  '/product/addToCollection?id="+names[i].product_id+"'    /> \"    >" 
+// 						             +"新增收藏</a>"
+// 						             +"<a class='btn btn-sm btn-outline-secondary'   href=\" <c:url value=  '/products/upd?id="+names[i].product_id+"'    /> \"    >" 
+// 						             +"更新</a>"
 //	 						console.log("txt : "+txt)
 							$("#right").html(txt);
 					    }
@@ -554,9 +551,10 @@ width:30px;
 					<h1>產品清單</h1>
 				</div>
 				<label for='show'> 種類</label>
+
 				<div>
-					<select id="show" name="show" style="width:30ch" class="form-control form-control-sm"><option
-							value="0" SELECTED id='ch'>請選擇</option></select> <select id="show2" name="show2" style="width:30ch" class="form-control form-control-sm">
+					<select  id="show" name="show"  class="form-control form-control-sm"><option
+							value="0" SELECTED id='ch'>請選擇</option></select> <select id="show2" name="show2"class="form-control form-control-sm">
 					</select>
 				</div>
 				<nav class="navbar navbar-light bg-light">
@@ -577,20 +575,20 @@ width:30px;
 
 				<a href='collections'>查詢收藏</a><BR> <br>
 				<a href='products/add'>新增產品資料</a>
-					<h4>鍋類</h4>
 				<div class="list-type1">
 				
+				<h1>鍋類</h1>
 				<ul style="cursor: pointer">
 					<li><a class="search">炒鍋</a></li>
 					<li><a class="search">平底鍋</a></li>
 					<li><a class="search">湯鍋</a></li>
 				</ul>
-					<h4>刀具</h4>
+				<h1>刀具</h1>
 				<ul style="cursor: pointer">
 					<li><a class="search">式剁刀</a></li>
 					<li><a class="search">牛排刀</a></li>
 				</ul>
-					<h4>食材</h4>
+				<h1>食材</h1>
 				<ul style="cursor: pointer">
 					<li><a class="search">牛肉</a></li>
 					<li><a class="search">雞肉</a></li>
@@ -671,13 +669,13 @@ width:30px;
 					</c:forEach>
 				</div>
 			</fieldset>
-			<div class="page">
 				<form>
+			<div class="page">
 					<ul class="pagination">
 					</ul>
-				</form>
 			</div>
-			<section id="right"></section>
+				</form>
+			<section id="right" class="rightMain"></section>
 		</div>
 		<div class="right"></div>
 	</div>

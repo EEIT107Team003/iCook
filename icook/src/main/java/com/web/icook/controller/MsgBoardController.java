@@ -1,16 +1,26 @@
 package com.web.icook.controller;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
-import java.sql.Date;
+import java.sql.Blob;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
-import javax.sql.rowset.serial.SerialException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.CacheControl;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,12 +28,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.web.icook.model.ArticleBean;
 import com.web.icook.model.MemberBean;
 import com.web.icook.model.MsgBoardBean;
 import com.web.icook.service.IcookMsgService;
 import com.web.icook.service.IcookService;
+import com.web.icook.service.MemberService;
 
 @Controller
 public class MsgBoardController {
@@ -34,13 +46,49 @@ public class MsgBoardController {
 	ServletContext context;
 	@Autowired
 	IcookService arcicleservice;
+	@Autowired
+	MemberService memberservice;
+	@Autowired
+	MemberController c;
+	
 
-//	@RequestMapping("/findAll") // 指向index href裡面
-//	public String Msglist(Model model) {
-//		List<MsgBoardBean> list = msgservice.getAllMsgBoards();
-//		model.addAttribute("Articles", list);
-//		return "findAll"; // 指向success.jsp
-//	}
+	@RequestMapping("/AjaxAllMsg")
+	@ResponseBody
+	public List<MsgBoardBean> Msglist(@RequestParam("article_num") Integer article_num, Model model) {
+		List<MsgBoardBean> list = msgservice.getAllMsgBoards(article_num);
+		model.addAttribute("MsgBoards", list);
+		return list;
+		
+	}
+
+	@RequestMapping(value = "/AjaxMsginsert", method = RequestMethod.POST)
+	@ResponseBody
+	public List<String> getSelectArticleForm(@RequestParam("catchnum") Integer catchnum,
+			@RequestParam("msgboard_content") String msgboard_content, Model model, HttpServletRequest request)
+			throws UnsupportedEncodingException {
+//		System.out.println("我進來了");
+		MsgBoardBean msgBoardbean = new MsgBoardBean();
+		request.setCharacterEncoding("UTF-8");
+		msgBoardbean.setMsgboard_content(msgboard_content);
+		
+		System.out.println("catchnumcatchnumcatchnum==" + catchnum);
+		MemberBean mb = memberservice.selectByUsername(c.getPrincipal());
+		
+		ArticleBean Ab = arcicleservice.getIcookArticle(catchnum);
+		msgBoardbean.setMemberid_in_msgs(mb);
+		msgBoardbean.setArtuclenum_in_msg(Ab);
+		msgservice.insertIcookMsgBoard(msgBoardbean);
+		System.out.println("msgBoardbean" + msgBoardbean);
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		List<String> list=new ArrayList() ;
+		list.add(0,msgBoardbean.getMsgboard_content());		//留言內容
+		list.add(1,Integer.toString(mb.getMember_id()));			//會員編號
+		list.add(2,sdf.format(msgBoardbean.getMsgboard_date()));		//日期
+		list.add(3, mb.getNickname());//暱稱
+		
+		return list;/* 呼叫insert.jsp檔案 */
+	}
 
 //	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 //	public String getDeleteArticle(Model model) {
@@ -173,35 +221,32 @@ public class MsgBoardController {
 //	
 //
 
-//	@RequestMapping(value = "/Msginsert", method = RequestMethod.GET)
-//	public String getSelectArticleForm(Model model) {
-//		System.out.println("#1");
-//		MsgBoardBean msgBoardbean = new MsgBoardBean();
-//		model.addAttribute("modelMsginsert", msgBoardbean);
-//		return "findone";/* 呼叫insert.jsp檔案 */
-//	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	@RequestMapping(value = "/Msginsert", method = RequestMethod.POST)
+	@RequestMapping(value = "/user/Msginsert", method = RequestMethod.POST)
 	public String processAddNewProductForm(@ModelAttribute("modelMsginsert") MsgBoardBean msgBoardbean, Model model,
-			BindingResult result, HttpServletRequest request,int catchnum,MemberBean mb)
-	//@RequestParam("id") Integer aid
+			BindingResult result, HttpServletRequest request, Integer catchnum)
+			// @RequestParam("id") Integer aid
 			throws UnsupportedEncodingException {
 		request.setCharacterEncoding("UTF-8");
 //		System.out.println("文章編號為="+aid);
 //		System.out.println("catchnumcatchnumcatchnum==="+catchnum);
-		ArticleBean Ab= arcicleservice.getIcookArticle(catchnum);
-								                         //會員進來之後砍掉
+		if (catchnum == null) {
+			return "redirect:/A_articlemainpage";
+		} else {
+			MemberController c = new MemberController();
+			System.out.println("catchnumcatchnumcatchnum==" + catchnum);
+			MemberBean mb = memberservice.selectByUsername(c.getPrincipal());
+			ArticleBean Ab = arcicleservice.getIcookArticle(catchnum);
+			msgBoardbean.setMemberid_in_msgs(mb);
+			msgBoardbean.setArtuclenum_in_msg(Ab);
+			msgservice.insertIcookMsgBoard(msgBoardbean);
+
+			return "redirect:article/article?article_num=" + catchnum;
+		}
+
+		// 會員進來之後砍掉
 //		mb.setMember_id(catchMemnum);					//接前端catchMemnum值
-//		msgBoardbean.setMemberid_in_msgs(mb);
-		msgBoardbean.setArtuclenum_in_msg(Ab); 
+		// 假會員區
+
 //		System.out.println("mb=========="+mb.toString());
 //		model.addAttribute("modelMsginsert", msgBoardbean);
 		// 重要事項-start
@@ -212,8 +257,69 @@ public class MsgBoardController {
 		// RecipeBean recipeBean
 		// 重要事項-end
 //		System.out.println("msgBoardbean====="+msgBoardbean.toString());
-		msgservice.insertIcookMsgBoard(msgBoardbean);
-		return "A_article";
+
 	}
+
+	// 取得圖片(Member)-------------------------------------------------------------------
+	@RequestMapping(value = "/MemberPhoto", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> getMemberPhoto(@RequestParam("member_id") Integer member_id) {
+		System.out.println("我建得getMemberPhoto  member_id=" + member_id);
+		String filePath = "/resources/images/NoImage.jpg";
+		byte[] media = null;
+		HttpHeaders headers = new HttpHeaders();
+		String filename = "";
+		int len = 0;
+		MemberBean bean = memberservice.selectById(member_id);
+		if (bean != null) {
+			Blob blob = bean.getMember_photo();
+			filename = bean.getFileName_member();
+			if (blob != null) {
+				try {
+					len = (int) blob.length();
+					media = blob.getBytes(1, len);
+				} catch (SQLException e) {
+					throw new RuntimeException("ProductController的getPictur()發生SQLException:" + e.getMessage());
+				}
+			} else {
+				media = toByteArray(filePath);
+				filename = filePath;
+			}
+		} else {
+			media = toByteArray(filePath);
+			filename = filePath;
+		}
+		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+		String mimeType = context.getMimeType(filename);
+		MediaType mediaType = MediaType.valueOf(mimeType);
+		System.out.println("mediaType=" + mediaType);
+		headers.setContentType(mediaType);
+		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
+
+		return responseEntity;
+	}
+
+	private byte[] toByteArray(String filepath) {
+		System.out.println("private byte[] toByteArray(String filepath) {");
+		byte[] b = null;
+		InputStream fis = null;
+		try {
+
+			String realPath = context.getRealPath(filepath);// 取得絕對路徑
+			File file = new File(realPath);
+			long size = file.length();
+			b = new byte[(int) size];
+//				System.out.println("size = " + size);
+			fis = context.getResourceAsStream(filepath);
+
+			fis.read(b);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return b;
+	}
+
+	
 
 }

@@ -23,6 +23,10 @@ public class Homecontroller {
 	MemberService service; 
 	@Autowired
 	ServletContext context;
+	@RequestMapping(value = { "backStage"})
+	public String backStage(Model model) {
+		return "backStage/examples/dashboard";
+	}
 
 //---------------------------------------------------------------------------------------------------
 	// 首頁
@@ -69,5 +73,8 @@ public class Homecontroller {
 		return bean;
 	}
 	//--------------------------------------------------------------------------
+	
+	
+	
 	
 }

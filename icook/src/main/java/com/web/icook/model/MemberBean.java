@@ -38,10 +38,13 @@ public class MemberBean implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY,generator="generatorName")
 	@GenericGenerator(name = "generatorName", strategy = "native")
 	private Integer member_id;
+	
 	// 電子郵件(不重複)*
 	@Column(unique = true)
 	private String username;
-	// 密碼
+	
+	// 密碼(不重複)*
+	@Column(unique = true)
 	private String password;
 	// 暱稱(不重複)*
 	@Column(unique = true)
@@ -86,12 +89,11 @@ public class MemberBean implements Serializable {
 	@Transient
 	private MultipartFile cover_photo_tr;
 	
-	//@OneToMany(mappedBy="memberbean") to @OneToMany(mappedBy="memberbean" , fetch = FetchType.EAGER)
-	@OneToMany(mappedBy="memberbean" , fetch = FetchType.EAGER)
+	
+	@OneToMany(mappedBy="memberbean")
 	private Set<OrderBean> orders ;
 
-	//@OneToMany(mappedBy="memberbean") to @OneToMany(mappedBy="memberbean" , fetch = FetchType.EAGER)
-	@OneToMany(mappedBy="memberBean" , fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="memberBean")
 	private List<OrderItemBean> orderitems ;
 
 	// ------------------------------------------------------------------------
@@ -117,6 +119,31 @@ public class MemberBean implements Serializable {
 	@OneToMany(mappedBy="memberBean" ,fetch= FetchType.EAGER)
 	private Set<CollectiontBean> collectiontbean=new HashSet<>(0);
 	
+	@OneToMany(mappedBy = "article_member")
+	private Set<ArticleBean> Act = new LinkedHashSet<>();
+	
+	@OneToMany(mappedBy = "memberid_in_msgs")
+	private Set<MsgBoardBean> Msg = new LinkedHashSet<>();
+	
+	
+	
+	
+	public Set<ArticleBean> getAct() {
+		return Act;
+	}
+
+	public void setAct(Set<ArticleBean> act) {
+		Act = act;
+	}
+
+	public Set<MsgBoardBean> getMsg() {
+		return Msg;
+	}
+
+	public void setMsg(Set<MsgBoardBean> msg) {
+		Msg = msg;
+	}
+
 	public Set<RecipeBean> getRecipe() {
 		return recipe;
 	}
@@ -137,7 +164,7 @@ public class MemberBean implements Serializable {
 
 	}
 	
-
+//
 //	public MemberBean(Integer member_id, String username, String password, String nickname, Blob member_photo,
 //			Integer tracked_num, Integer recipe_num, Blob cover_photo, Date register_date, Boolean enabled,
 //			String fileName_member, String fileName_cover, Integer forum_num, String role,
