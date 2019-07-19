@@ -3,13 +3,10 @@ package com.web.icook.controller;
 import java.util.List;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -42,16 +39,11 @@ public class backStagecontroller {
 		System.out.println("======allProductForProductTable OUT==============");
 		return list;
 	}
-
-	
-	
 	
 	@RequestMapping(value = { "productTable"})
 	public String productTable(Model model) {
 		return "backStage/examples/productTable";
 	}
-	
-	
 	
 //---------------------------------------------------------------------------------------------------
 	@RequestMapping(value = { "backStageDashboard"})
@@ -76,6 +68,7 @@ public class backStagecontroller {
 	}
 	@RequestMapping(value = { "backStageTable"})
 	public String table(Model model) {
+		
 		return "backStage/examples/table";
 	}
 	@RequestMapping(value = { "backStageUpgrade"})

@@ -50,13 +50,13 @@
                     </a>
                 </div>
                 <ul class="nav">
-                    <li class="nav-item active">
+                    <li >
                         <a class="nav-link" href="backStageDashboard">
                             <i class="nc-icon nc-chart-pie-35"></i>
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <li class="nav-item active">
+                    <li>
                         <a class="nav-link" href="productTable">
                             <i class="nc-icon nc-chart-pie-35"></i>
                             <p>productTable</p>
@@ -68,10 +68,10 @@
                             <p>User Profile</p>
                         </a>
                     </li>
-                    <li>
+                    <li class="nav-item active">
                         <a class="nav-link" href="backStageTable">
                             <i class="nc-icon nc-notes"></i>
-                            <p>Table List</p>
+                            <p>訂單管理</p>
                         </a>
                     </li>
                     <li>

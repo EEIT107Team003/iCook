@@ -56,7 +56,7 @@
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <li class="nav-item active">
+                    <li>
                         <a class="nav-link" href="productTable">
                             <i class="nc-icon nc-chart-pie-35"></i>
                             <p>productTable</p>
@@ -71,7 +71,7 @@
                     <li>
                         <a class="nav-link" href="backStageTable">
                             <i class="nc-icon nc-notes"></i>
-                            <p>Table List</p>
+                            <p>訂單管理</p>
                         </a>
                     </li>
                     <li>
