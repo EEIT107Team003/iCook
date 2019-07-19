@@ -48,8 +48,8 @@ public class MsgBoardController {
 	IcookService arcicleservice;
 	@Autowired
 	MemberService memberservice;
-	
-	
+	@Autowired
+	MemberController c;
 	
 
 	@RequestMapping("/AjaxAllMsg")
@@ -70,7 +70,7 @@ public class MsgBoardController {
 		MsgBoardBean msgBoardbean = new MsgBoardBean();
 		request.setCharacterEncoding("UTF-8");
 		msgBoardbean.setMsgboard_content(msgboard_content);
-		MemberController c = new MemberController();
+		
 		System.out.println("catchnumcatchnumcatchnum==" + catchnum);
 		MemberBean mb = memberservice.selectByUsername(c.getPrincipal());
 		

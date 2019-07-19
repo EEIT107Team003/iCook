@@ -57,8 +57,8 @@ public class AticleController {
 	IcookMsgService msgservice;
 	@Autowired
 	MemberService memberservice;
-	
-
+	@Autowired
+	MemberController c;
 
 	@RequestMapping("/A_article")
 	public String A_article() {
@@ -237,7 +237,7 @@ public class AticleController {
 
 		/* 開始處理圖片檔案-start */
 		// 如果沒上傳圖片，則保持原本圖片
-		MemberController c = new MemberController();
+		
 		MemberBean mb = memberservice.selectByUsername(c.getPrincipal());
 		articlebean.setArticle_member(mb);
 		if (articlebean.getArticleImage() != null) {
