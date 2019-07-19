@@ -11,7 +11,6 @@ import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -55,9 +54,9 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/views/article/css/");
 		//秉諺 結束
 		//威翰套版前端畫面
-		registry.addResourceHandler("/js/**").addResourceLocations("/WEB-INF/views/frontend/js/");
-		registry.addResourceHandler("/bat/**").addResourceLocations("/WEB-INF/views/frontend/bat/");
-		registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/views/frontend/css/");
+		registry.addResourceHandler("/frontend_js/**").addResourceLocations("/WEB-INF/views/frontend/js/");
+		registry.addResourceHandler("/frontend_bat/**").addResourceLocations("/WEB-INF/views/frontend/bat/");
+		registry.addResourceHandler("/frontend_css/**").addResourceLocations("/WEB-INF/views/frontend/css/");
 		registry.addResourceHandler("/frontend_images/**").addResourceLocations("/WEB-INF/views/frontend/images/");
 
 	}
