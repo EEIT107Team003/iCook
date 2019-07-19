@@ -18,7 +18,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" ></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
 	
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/product_css/products.css">
+<link rel="stylesheet" type="text/css" href="/product_css/products.css">
 	
 <style>
 * {	
