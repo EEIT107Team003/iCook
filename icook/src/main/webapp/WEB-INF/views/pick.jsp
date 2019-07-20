@@ -40,7 +40,7 @@
 				<input class="form-control mr-sm-2" type="search"
 					placeholder="Search" aria-label="Search" name="title">
 				<button class="btn btn-outline-success my-2 my-sm-0" type="submit"
-					formaction="search?title=${ param.title }">Search</button>
+					formaction="${ pageContext.request.contextPath }/forum/search?title=${ param.title }">Search</button>
 			</form>
 			<ul class="navbar-nav ml-auto ">
 				<li class="nav-item active"><a class="nav-link" href="#">註冊
@@ -65,19 +65,23 @@
 		</div>
 	</nav>
 	<div class="panel panel-success container-fluid">
-		<div class="panel-heading"><a href="overview">文章總覽</a></div>
+		<div class="panel-heading">
+			<a href="${ pageContext.request.contextPath }/forum/overview">文章總覽</a>
+		</div>
 		<div class="panel-body">
-			<a class="navbar-brand" href="newPost">發表文章</a>
+			<a class="navbar-brand"
+				href="${ pageContext.request.contextPath }/forum/newPost">發表文章</a>
 			<div class="row">
 				<div class="col"></div>
 				<div class="col-8 table-responsive">
-					<c:forEach var="post" items="${ posts }">
+					<c:forEach var="post" items="${ posts }" varStatus="floor">
+
 						<div class="row" style="min-height: 415px; margin-bottom: 10px;">
 							<div class="col">
 								<img alt="" id="avatar_fpath50034"
 									src="https://avatar2.bahamut.com.tw/avataruserpic/w/i/wise0701/wise0701.png">
 							</div>
-							<div class="col-8" >
+							<div class="col-8">
 								<c:if test="${ post.article_id == post.harticle_id }">
 									<div style="min-height: 41.5px;">
 										<h5>${ post.title }</h5>
@@ -85,7 +89,7 @@
 									</div>
 								</c:if>
 								<div style="min-height: 62.25px;">
-									<span><strong>author</strong></span>&nbsp;&nbsp;<span><small>memeber_id</small></span>
+									<span><small>${ floor.count }樓</small></span>&nbsp;&nbsp;<span><strong>${ post.nickname }</strong></span>&nbsp;&nbsp;<span><small>${ post.username }</small></span>
 									<br> <span><small>${ post.editTime }</small></span>
 								</div>
 								<div style="min-height: 249px;">
@@ -94,35 +98,58 @@
 									</section>
 								</div>
 								<hr>
-								<div style="min-height: 62.25px; text-align:right" >
-									<button id="likebtn${post.article_id}"
-										class="btn btn-outline-success my-2 my-sm-0 btn-sm"
-										value=${ post.article_id }
-										style="float:left">${ post.likes } Like</button>										
-									<a href="reply?harticle_id=${ post.harticle_id }"
-										class="btn btn-outline-info btn-sm">回覆</a> <a
-										href="edit?harticle_id=${ post.harticle_id }&article_id=${ post.article_id }"
-										role="button" class="btn btn-outline-info btn-sm">編輯</a> <a
-										href="delete?harticle_id=${ post.harticle_id }&article_id=${ post.article_id }"
-										role="button" class="btn btn-outline-danger btn-sm">刪除</a>									
+								<div style="min-height: 70px">${ post.signature }</div>
+								<div style="min-height: 62.25px; text-align: right" id="btnrow${post.article_id}">
+									<a href='${ pageContext.request.contextPath }/forum/reply?harticle_id=${ post.harticle_id }' class='btn btn-outline-info btn-sm'>回覆</a>
 								</div>
+								<hr>
 							</div>
 							<div class="col"></div>
 						</div>
+						<c:forEach var="user" items="${ LoginOK }" >
 						<script type="text/javascript">
+						var memberId = ${ user.member_id };
+						var article_id = ${ post.article_id };
+							$.ajax({
+								url: "${ pageContext.request.contextPath }/forum/isLogin?article_id=${ post.article_id }",
+								type: "GET",								
+								success: function(data){
+									console.log(data);
+									var AmemberId = data;
+									if(memberId==AmemberId){										
+// 										$("#btnrow${post.article_id}").append(("<a href='${ pageContext.request.contextPath }/forum/reply?harticle_id=${ post.harticle_id }' class='btn btn-outline-info btn-sm'>回覆</a>"))
+										$("#btnrow${post.article_id}").append(("<a href='${ pageContext.request.contextPath }/forum/edit?harticle_id=${ post.harticle_id }&article_id=${ post.article_id }'role='button' class='btn btn-outline-info btn-sm'>編輯</a>"))
+										$("#btnrow${post.article_id}").append(("<input type='button' class='btn btn-outline-danger btn-sm'  onclick='deleteArticle()'  value='刪除'/>"))
+									} 
+									if(memberId != null){
+										$("#btnrow${post.article_id}").append(("<button id='likebtn${post.article_id}' class='btn btn-outline-success my-2 my-sm-0 btn-sm' value='${ post.article_id }' style='float: left'>${ post.likes }Like</button>"))
 										$("#likebtn${post.article_id}").click(function() {
-															$.ajax({
-																		url : "like?article_id=${post.article_id}",
-																		type : "GET",
-																		success: function(data){																			
-																				var likes = data;
-																				var newlikes = likes+" Like"
-																				$("#likebtn${post.article_id}").text(newlikes);																																							
-																		}
-																	});
-														});
-							</script>
+											$.ajax({
+														url : "${ pageContext.request.contextPath }/forum/like?article_id=${post.article_id}",
+														type : "GET",
+														success : function(data) {
+																							var likes = data;
+																							var newlikes = likes+ " Like"
+																							$("#likebtn${post.article_id}").text(newlikes);}});});
+									}
+								}
+							})
+						
+
+						
+							
+							function deleteArticle(){
+										let isDelete = confirm("確定刪除？")
+										if(isDelete){
+											window.location.replace("${ pageContext.request.contextPath }/forum/delete?harticle_id=${ post.harticle_id }&article_id=${ post.article_id }");
+										}
+							}
+							
+									
+					</script>
 					</c:forEach>
+					</c:forEach>
+
 				</div>
 				<div class="col"></div>
 			</div>

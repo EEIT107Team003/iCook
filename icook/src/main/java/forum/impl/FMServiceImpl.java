@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.web.icook.model.MemberBean;
+
 import forum.dao.IFMDao;
 import forum.model.ForumMainBean;
 import forum.service.IFMService;
@@ -25,18 +27,19 @@ public class FMServiceImpl implements IFMService {
 	}
 
 	@Override
-	public void insertArticle(ForumMainBean fmb) {
-		dao.insertArticle(fmb);
+	public void insertArticle(ForumMainBean fmb, MemberBean memberBean) {
+		System.out.println(memberBean.toString());
+		dao.insertArticle(fmb, memberBean);
 	}
 
 	@Override
-	public void insertReply(ForumMainBean replyFmb, Integer harticle_id) {
-		dao.insertReply(replyFmb, harticle_id);
+	public void insertReply(ForumMainBean replyFmb, Integer harticle_id, MemberBean memberBean) {
+		dao.insertReply(replyFmb, harticle_id, memberBean);
 	}
 
 	@Override
-	public void update(ForumMainBean newFmb, Integer article_id) {
-		dao.update(newFmb, article_id);
+	public void update(ForumMainBean newFmb, Integer article_id, MemberBean memberBean) {
+		dao.update(newFmb, article_id, memberBean);
 	}
 
 	@Override
@@ -75,8 +78,8 @@ public class FMServiceImpl implements IFMService {
 	}
 
 	@Override
-	public Integer like(Integer article_id) {
-		return dao.like(article_id);
+	public Integer like(Integer article_id, MemberBean memberBean) {
+		return dao.like(article_id, memberBean);
 		
 	}
 	

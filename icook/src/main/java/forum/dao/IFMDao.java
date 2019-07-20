@@ -2,19 +2,21 @@ package forum.dao;
 
 import java.util.List;
 
+import com.web.icook.model.MemberBean;
+
 import forum.model.ForumMainBean;
 
 public interface IFMDao {
 	
-	public void insertArticle(ForumMainBean fmb);
+	public void insertArticle(ForumMainBean fmb, MemberBean memberBean);
 	
-	public void insertReply(ForumMainBean replyFmb, Integer harticle_id);
+	public void insertReply(ForumMainBean replyFmb, Integer harticle_id, MemberBean memberBean);
 	
-	public void update(ForumMainBean newFmb, Integer article_id);
+	public void update(ForumMainBean newFmb, Integer article_id, MemberBean memberBean);
 	
 	public void delete(Integer article_id);
 	
-	public Integer like(Integer article_id);
+	public Integer like(Integer article_id, MemberBean memberBean);
 	
 	public List<ForumMainBean> getAllTopic();
 	
