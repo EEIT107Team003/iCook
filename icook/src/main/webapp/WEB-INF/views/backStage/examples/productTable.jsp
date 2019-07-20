@@ -53,7 +53,7 @@ float:left;
 width:30ch;
 }
 #searchSub{
-float:left;
+float:right;
 }
 
 </style>
@@ -142,12 +142,9 @@ float:left;
 
 	function search2() {
 		var txt2 = $("#show2 :selected").text();
-		//			console.log('txt2:'+txt2)
 		$.ajax({
 			success : function(data) {
-				//             console.log(typeof txt2+' ，showTxt(change) :' + txt2)
 				$("#fileName").val(txt2);
-				//             console.log('fileName :'+$("#fileName").val() );
 			},
 			error : function(data, textStatus, errorThrown) {
 				console.log(data);
@@ -155,9 +152,9 @@ float:left;
 		});
 	}
 	
+
 	
 	$("#searchSub").click(function() {
-		alert(777)
 		catchSelect1();	 
 		selectAll();
 	})
@@ -214,7 +211,7 @@ float:left;
 </head>
 
 <body>
-<h1>666</h1>
+<h1>44444</h1>
     <div class="wrapper">
         <div class="sidebar" data-image="backStage/assets/img/sidebar-5.jpg">
             <!--
@@ -391,7 +388,7 @@ float:left;
                                     <p class="card-category">Here is the background of the product</p>
 									<a href="${pageContext.request.contextPath}/products/add" style="width:10ch;height:4ch;" class="btn btn-secondary" 
 									role="button" aria-pressed="true">Insert</a>
-	                                <a href='productsEx.xls' >AllProductsExcel</a><br>
+							     	<a href="productsEx.xls" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true" style="line-height:5px;" >AllProductsExcel</a>
 									<section class="container">
 										<nav class="navbar navbar-light bg-light">
 											<form class="searchDiv"  method="GET" id="searchDiv"  action="productsByCategoryEx.xls"
@@ -407,15 +404,16 @@ float:left;
 											</select>
 													<input id="description" name="description" type="text"  style="height:5ch"
 														class="form-control mr-sm-2" placeholder="Search">
-															<input type="submit" class="btn btn-secondary" value="ProductsExcel"  style="margin-left:14ch;;height:5ch;">
+															<input type="submit" class="btn btn-secondary" value="ProductsExcel"  style="margin-left:35ch;;height:4ch;">
 														<input type="button" id="searchSub"
-									class="btn btn-secondary"  style="width:10ch;height:4ch;margin-top:1ch" value="Search">
+									class="btn btn-secondary"  style="width:10ch;height:4ch;margin-top:2ch;" value="Search">
 											</form>
 										</nav>
 									</section>
 								</div>
-								
-								<div class="card-body table-full-width table-responsive">
+								<p>
+								<p>
+								<p>
                                     <table class="table table-hover table-striped">
                                         <thead>
                                             <th>ID</th>
