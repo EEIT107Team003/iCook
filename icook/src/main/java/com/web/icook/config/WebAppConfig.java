@@ -11,14 +11,17 @@ import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
-import com.web.icook.controller.ExcelViewResolver;
+import com.web.icook.viewResolver.ExcelViewResolver;
+
+import forum.model.Users;
+
+import forum.model.Users;
 
 @Configuration
 
@@ -49,10 +52,10 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		//秉諺 開始
 		registry.addResourceHandler("/article/**/**").addResourceLocations("/WEB-INF/views/article/");
 		registry.addResourceHandler("/fonts/**").addResourceLocations("/WEB-INF/views/article/fonts/");
-		registry.addResourceHandler("/images/**").addResourceLocations("/WEB-INF/views/article/images/");
+//		registry.addResourceHandler("/images/**").addResourceLocations("/WEB-INF/views/article/images/");
 		registry.addResourceHandler("/scss/**").addResourceLocations("/WEB-INF/views/article/scss/");
-		registry.addResourceHandler("/js/**").addResourceLocations("/WEB-INF/views/article/js/");
-		registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/views/article/css/");
+//		registry.addResourceHandler("/js/**").addResourceLocations("/WEB-INF/views/article/js/");
+//		registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/views/article/css/");
 		//秉諺 結束
 		
 		//威翰套版前端畫面
@@ -60,7 +63,8 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/bat/**").addResourceLocations("/WEB-INF/views/frontend/bat/");
 		registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/views/frontend/css/");
 		registry.addResourceHandler("/images/**").addResourceLocations("/WEB-INF/views/frontend/images/");
-
+		//DengYao
+		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 	}
 
 	@Bean
@@ -91,4 +95,9 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		System.out.println("excelViewResolver");
 		return new ExcelViewResolver();
 	}
+	
+	@Bean
+	public Users getUsers() {
+		return new Users();
+	} //for livechat
 }

@@ -86,6 +86,7 @@
 								<c:forEach var="post" items="${ posts }">
 									<script>
 										console.log("${ post.article_id }")
+										console.log("${ post.harticle_id }")
 									</script>
 									<c:choose>
 										<c:when test="${ post.article_id == post.harticle_id }">
@@ -93,6 +94,7 @@
 
 												<div class="form-group" style="min-height: 80px;">
 													<label for="exampleFormControlInput1"></label>
+													<div><span style="color:red">${ errors.category }</span></div>
 													<div class="input-group-prepend">
 														<button class="btn btn-outline-secondary dropdown-toggle"
 															type="button" data-toggle="dropdown" aria-haspopup="true"
@@ -103,7 +105,7 @@
 															aria-label="Text input with dropdown button"
 															id="exampleFormControlInput1"
 															placeholder="name@example.com" value="${ head.title }"
-															path="title" />
+															path="title" /><span style="color:red">${ errors.title }</span>
 														<div class="dropdown-menu">
 															<a class="dropdown-item" id="1">問題</a> <a
 																class="dropdown-item" id="2">閒聊</a> <a
@@ -152,7 +154,7 @@
 								<c:forEach var="post" items="${ posts }">
 									<div class="form-group" style="min-height: 600px;">
 										<section>
-											<label for="exampleFormControlTextarea1">內文</label>
+											<label for="exampleFormControlTextarea1">內文</label>&nbsp;&nbsp;<p style="color:red">${ errors.text }</p>
 											<textarea class="form-control"
 												id="maintext" rows="3"
 												style="min-height: 400px" name="text">${ post.text }</textarea>
@@ -216,7 +218,7 @@
 			$("#category").attr("value", cg).text(cg);
 			$("#category2").attr("value", cg);
 		})
-
+		
 		CKEDITOR
 		.replace(
 		'maintext',

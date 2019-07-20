@@ -79,8 +79,7 @@ public class MemberBean implements Serializable {
 	private String role;
 	//收貨地址
 	private String address;
-
-	@JsonIgnore
+	
 	@XmlTransient
 	@Transient
 	private MultipartFile member_photo_tr;
@@ -107,8 +106,9 @@ public class MemberBean implements Serializable {
 	@JsonIgnore
 	private Set<MyTrackBean> tracked = new LinkedHashSet<>();
 	// ------------------------------------------------------------------------
-	@JsonIgnore
+
 	@OneToMany(mappedBy = "memberBean")
+	@JsonIgnore
 	private Set<ForumMainBean> article = new LinkedHashSet<>();
 
 	@OneToMany(mappedBy = "memberbean", cascade = CascadeType.ALL)

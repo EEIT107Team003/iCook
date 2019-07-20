@@ -436,4 +436,8 @@ public class MemberController {
 		}
 		return userName;
 	}
+	
+	public MemberBean getMemberBean(String username) {
+		return memberService.selectByUsername(username);
+	}
 }

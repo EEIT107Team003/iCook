@@ -76,22 +76,25 @@
 			<div class="row">
 				<div class="col"></div>
 				<div class="col-8 table-responsive">
-
+				
+				
 					<div class="row" style="min-height: 800px; margin-bottom: 10px;">
 						<div class="col"></div>
 						<div class="col-8" style="border: 2px groove #4dffff">
 							<form:form method='POST' modelAttribute='ForumMainBean'>
+							<c:forEach var="post" items="${ posts }">							
 								<div class="form-group" style="min-height: 80px;">
 									<label for="exampleFormControlInput1"></label>
-									<div class="input-group-prepend">
+									<div><span style="color:red">${ errors.category }</span></div>
+									<div class="input-group-prepend">										
 										<button class="btn btn-outline-secondary dropdown-toggle"
 											type="button" data-toggle="dropdown" aria-haspopup="true"
-											aria-expanded="false" id="category"  value="0" >分類</button>
-											<form:input type="hidden"  id="category2" name="category" value="" path="category"/>
-										<form:input type="text" class="form-control"
+											aria-expanded="false" id="category"  value="0" disabled="true">${ post.category }</button>
+											<form:input type="hidden"  id="category2" name="category" value="${ post.category }" path="category"/>
+										<input type="text" class="form-control"
 											aria-label="Text input with dropdown button"
 											id="exampleFormControlInput1" placeholder="name@example.com"
-											path="title" />
+											name="title" value="${ post.title }" disabled="true"> <span style="color:red">${ errors.title }</span>
 										<div class="dropdown-menu">
 											<a class="dropdown-item" id="1" >問題</a>
 											<a class="dropdown-item" id="2" >閒聊</a>
@@ -107,15 +110,15 @@
 								<!--    000 -->
 								<div class="form-group" style="min-height: 600px;">
 									<section>
-										<label for="exampleFormControlTextarea1">內文</label>
-										<form:textarea class="form-control"
+										<label for="exampleFormControlTextarea1">內文</label>&nbsp;&nbsp;<p style="color:red">${ errors.text }</p>
+										<textarea class="form-control"
 											id="maintext" rows="3"
-											style="min-height: 400px" path="text"></form:textarea>
+											style="min-height: 400px" name="text">${ post.text }</textarea>
 										<hr>
-										<label for="exampleFormControlTextarea1">簽名</label>
-										<form:textarea class="form-control"
+										<label for="exampleFormControlTextarea1"></label>
+										<textarea class="form-control"
 											id="signaturetext" rows="3"
-											style="min-height: 80px" path="signature"></form:textarea>
+											style="min-height: 80px" name="signature">${ post.signature }</textarea>
 									</section>
 								</div>
 								<hr>
@@ -125,42 +128,38 @@
 										class="btn btn-outline-danger my-2 my-sm-0 " id="reset"
 										name="buttons" type="reset" value="清除">
 								</div>
+								</c:forEach>
 							</form:form>
 						</div>
-						<div class="col"></div>
+						<div class="col"></div>						
 					</div>
+				
 
 				</div>
+				
 				<div class="col"></div>
 			</div>
 		</div>
 		<div class="container"></div>
 	</div>
-	<script>
-		$("#1").click(function(){var cg = document.getElementById("1").text; $("#category").attr("value", cg).text(cg); $("#category2").attr("value", cg);})
-		$("#2").click(function(){var cg = document.getElementById("2").text; $("#category").attr("value", cg).text(cg); $("#category2").attr("value", cg);})
-		$("#3").click(function(){var cg = document.getElementById("3").text; $("#category").attr("value", cg).text(cg); $("#category2").attr("value", cg);})
-		$("#4").click(function(){var cg = document.getElementById("4").text; $("#category").attr("value", cg).text(cg); $("#category2").attr("value", cg);})
-		$("#5").click(function(){var cg = document.getElementById("5").text; $("#category").attr("value", cg).text(cg); $("#category2").attr("value", cg);})
-		$("#6").click(function(){var cg = document.getElementById("6").text; $("#category").attr("value", cg).text(cg); $("#category2").attr("value", cg);})
-		
-		CKEDITOR
-		.replace(
-		'maintext',
-		{
-			extraPlugins : 'easyimage',
-			cloudServices_tokenUrl : 'https://40733.cke-cs.com/token/dev/Pno0Ld5ha3oNhABb0mnQBXWdL6FXy03CbisbDkPL9hJoOrvd8p0hpHlka5RA',
-			cloudServices_uploadUrl : 'https://40733.cke-cs.com/easyimage/upload/'
-		});
-		CKEDITOR
-		.replace(
-				'signaturetext',
-				{
-					extraPlugins : 'easyimage',
-					cloudServices_tokenUrl : 'https://40733.cke-cs.com/token/dev/Pno0Ld5ha3oNhABb0mnQBXWdL6FXy03CbisbDkPL9hJoOrvd8p0hpHlka5RA',
-					cloudServices_uploadUrl : 'https://40733.cke-cs.com/easyimage/upload/'
-				});
-	</script>
+<script>
+CKEDITOR
+.replace(
+'maintext',
+{
+	extraPlugins : 'easyimage',
+	cloudServices_tokenUrl : 'https://40733.cke-cs.com/token/dev/Pno0Ld5ha3oNhABb0mnQBXWdL6FXy03CbisbDkPL9hJoOrvd8p0hpHlka5RA',
+	cloudServices_uploadUrl : 'https://40733.cke-cs.com/easyimage/upload/'
+});
+CKEDITOR
+.replace(
+'signaturetext',
+{
+	extraPlugins : 'easyimage',
+	cloudServices_tokenUrl : 'https://40733.cke-cs.com/token/dev/Pno0Ld5ha3oNhABb0mnQBXWdL6FXy03CbisbDkPL9hJoOrvd8p0hpHlka5RA',
+	cloudServices_uploadUrl : 'https://40733.cke-cs.com/easyimage/upload/'
+});
+</script>
 </body>
 </html>
 

@@ -1,4 +1,4 @@
-package com.web.icook.controller;
+package com.web.icook.view;
   
 import java.util.List;
 import java.util.Map;
