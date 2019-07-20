@@ -106,6 +106,7 @@ public class MemberBean implements Serializable {
 	@JsonIgnore
 	private Set<MyTrackBean> tracked = new LinkedHashSet<>();
 	// ------------------------------------------------------------------------
+
 	@OneToMany(mappedBy = "memberBean")
 	@JsonIgnore
 	private Set<ForumMainBean> article = new LinkedHashSet<>();

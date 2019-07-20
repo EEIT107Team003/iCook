@@ -58,19 +58,18 @@ public class ProductBean implements Serializable {
 	private String fileName;
 	@Column(name = "product_remark")
 	private String remark;
-	@JsonBackReference(value="productBean")
-	@OneToMany(mappedBy = "productBean",orphanRemoval = true ,fetch = FetchType.EAGER )
+	@JsonBackReference(value="COproductBean")
+	@OneToMany(mappedBy = "COproductBean",orphanRemoval = true ,fetch = FetchType.EAGER )
 	@Cascade(value= {org.hibernate.annotations.CascadeType.SAVE_UPDATE,
 			         org.hibernate.annotations.CascadeType.DELETE})
 	private Set<CollectiontBean> collections = new HashSet<CollectiontBean>(0);
-
-	@JsonIgnoreProperties("productBean")
+	@JsonBackReference(value="productBean")
 	@OneToMany(fetch=FetchType.EAGER, mappedBy = "productBean"
 	        , cascade = CascadeType.ALL)
 	private List<OrderItemBean> carts = new ArrayList<OrderItemBean>(0);
 
 	
-public List<OrderItemBean> getCarts() {
+     public List<OrderItemBean> getCarts() {
 		return carts;
 	}
 

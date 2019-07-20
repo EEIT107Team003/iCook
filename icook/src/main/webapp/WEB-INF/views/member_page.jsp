@@ -48,32 +48,59 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap"
 	rel="stylesheet">
-<script>	
+<script>
+
 	$(document).ready(function() {
-		if($("#userId").val()!=null){
-		$.ajax({ 
-			url : "${pageContext.request.contextPath}/members/page/checkTracked",
-			type : "POST",
-			dataType : "json",
-			data:{member_id:$("#memberId").val()},
-			async : true,
-			success : function(data) {
-				var names = JSON.parse(JSON.stringify(data).split(","));
-				var txt = "";				
-				
-				if(names.length==0){
-					txt+="<button id=trackMe type=submit>加入追蹤</button>"
-					$("#trackbutton").html(txt);
+			$("#trackMe").click(function(){
+				if($("#userId").val().trim()!=""){
+					$.ajax({ 
+						url : "${pageContext.request.contextPath}/members/page/track",
+						type : "GET",
+						dataType : "json",
+						data:{member_id:$("#memberId").val()},
+						async : true,
+						success : function(data) {
+							var names = JSON.parse(JSON.stringify(data).split(","));
+							var txt = "";			
+							var txt2 = "";
+							
+							txt+="<button id=trackCancel name=trackCancel>取消追蹤</button>"
+							$("#trackbutton").html(txt);
+							
+							$("#tracked_num").html(names.length);
+						},
+						error : function(data, textStatus, errorThrown) {
+							console.log("error: "+data);
+						},
+					});
 				}else{
-					txt+="<button id=trackCancel type=submit>取消追蹤</button>"
-					$("#trackbutton").html(txt);
+					$("#trackMe_nologin").click();	
 				}
-			},
-			error : function(data, textStatus, errorThrown) {
-				console.log("error: "+data);
-			},
-		});
-	}
+			});
+		
+		
+		if($("#userId").val().trim()!=""){
+			$.ajax({ 
+				url : "${pageContext.request.contextPath}/members/page/checkTracked",
+				type : "POST",
+				dataType : "json",
+				data:{member_id:$("#memberId").val()},
+				async : true,
+				success : function(data) {
+					var names = JSON.parse(JSON.stringify(data).split(","));
+					var txt = "";				
+					if(names.length!=0){
+						txt+="<button id=trackCancel name=trackCancel>取消追蹤</button>"
+							$("#trackbutton").html(txt);
+					}
+				},
+				error : function(data, textStatus, errorThrown) {
+					console.log("error: "+data);
+				},
+			});
+		}
+		
+		
 		$.fn.serializeObject = function() {
 			var o = {};
 			var a = this.serializeArray();
@@ -90,8 +117,8 @@
 			return JSON.stringify(o);
 		};
 
-		var currentUrl = this.location.href
-		console.log(currentUrl);
+// 		var currentUrl = this.location.href
+// 		console.log(currentUrl);
 	});
 </script>
 
@@ -201,18 +228,21 @@ section {
 							class="fa fa-hacker-news"></i></a></li>
 				</ul>
 			</div>
-		</div>
-		<!--//container-->
-	</header>
-	<!--//header-->
-
+		</div><!--//container-->
+	</header><!--//header-->
 	
-	<form method="POST" action="${pageContext.request.contextPath}/members/page/track?member_id=${member.member_id}">
+<!-- 加入追蹤-----------------------------------------------------------------------	 -->
 		<div id="trackbutton">
-			<button id=trackMe type="submit">加入追蹤</button>
+			<button id="trackMe" name="trackMe">加入追蹤</button>
 		</div>
-	</form>
-
+	
+		<div style="display:none">
+			<form method="POST" action="${pageContext.request.contextPath}/members/page/track?member_id=${member.member_id}">
+				<button id=trackMe_nologin type="submit">加入追蹤</button>
+			</form>
+		</div>
+<!-- -----------------------------------------------------------------------	 -->
+		
 	<div class="container sections-wrapper">
 		<div class="row">
 			<div class="primary col-md-8 col-sm-12 col-xs-12">
@@ -251,9 +281,9 @@ section {
 									<th class="items">文章總數</th>
 								</tr>
 								<tr>
-									<th class="items">${member.recipe_num }</th>
-									<th class="items">${member.tracked_num }</th>
-									<th class="items">${member.forum_num }</th>
+									<th id="recipe_num" class="items">${member.recipe_num }</th>
+									<th id="tracked_num" class="items">${member.tracked_num }</th>
+									<th id="forum_num" class="items">${member.forum_num }</th>
 								</tr>
 							</table>
 						</div>
