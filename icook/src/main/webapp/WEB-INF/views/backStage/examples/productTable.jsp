@@ -35,14 +35,25 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="backStage/assets/css/demo.css" rel="stylesheet" />
 <style type="text/css">
+.container{
+padding: 0;
+margin: 0;
+}
+
 .container select{
+padding: 0;
+margin: 0;
 margin-top:2ch;
 font-size:10px;
-width:30ch;
+width:20ch;
 hight:10px;
+float:left;
 }
-.search {
-margin-top:5ch;
+#description{
+width:30ch;
+}
+#searchSub{
+float:left;
 }
 
 </style>
@@ -145,15 +156,30 @@ margin-top:5ch;
 	}
 	
 	
-	$$("#searchSub").click(function() {
-		alert(8888)
+	$("#searchSub").click(function() {
 		catchSelect1();	 
 		selectAll();
 	})
 	
+	
+		 $.fn.serializeObject = function() {
+	        var o = {};
+	        var a = this.serializeArray();
+	        $.each(a, function() {
+	            if (o[this.name]) {
+	                if (!o[this.name].push) {
+	                    o[this.name] = [o[this.name]];
+	                }
+	                o[this.name].push(this.value || '');
+	            } else {
+	                o[this.name] = this.value || '';
+	            }
+	        });
+	        return JSON.stringify(o);
+	    };
+	
 // ==============END Document
 	})
-	
 	
 	
 	 function selectAll(){
@@ -181,11 +207,13 @@ margin-top:5ch;
 					    }
 				     })
 	              }
+	
+	    
 </script>
 </head>
 
 <body>
-<h1>111111111</h1>
+<h1>666</h1>
     <div class="wrapper">
         <div class="sidebar" data-image="backStage/assets/img/sidebar-5.jpg">
             <!--
@@ -351,6 +379,7 @@ margin-top:5ch;
             }
         	
             </script>
+            
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
@@ -359,31 +388,32 @@ margin-top:5ch;
                                 <div class="card-header ">
                                     <h4 class="card-title">Striped Table with Hover</h4>
                                     <p class="card-category">Here is a subtitle for this table</p>
+									<a href="${pageContext.request.contextPath}/products/add" style="width:10ch;height:4ch;" class="btn btn-primary btn-lg active" 
+									role="button" aria-pressed="true" style>Insert</a>
 
 									<section class="container">
-											<select id="show" name="show"
-												class="form-control form-control-sm"><option
-													value="0" SELECTED id='ch'>請選擇</option></select> <select id="show2"
-												name="show2" class="form-control form-control-sm">
-											</select>
 										<nav class="navbar navbar-light bg-light">
-											<form class="searchDiv"  method="POST"
+											<form class="searchDiv"  method="POST" id="searchDiv"
 												class="form-inline">
 												<input id="fileName" name="fileName" type="hidden" /> <input
 													id="remark" name="remark" type="hidden" /><input
 													id="stock" name="stock" type="hidden" />
-													<input id="description" name="description" type="text"
-														class="form-control mr-sm-2" placeholder="Search"
-														aria-label="Search"></input>
-													<input type="button" id="searchSub" 
-														class="btn btn-outline-success my-2 my-sm-0"
-														value="Search">
+													
+													<select id="show" name="show"
+												class="form-control form-control-sm"><option
+													value="0" SELECTED id='ch'>請選擇</option></select> <select id="show2" 
+												name="show2" class="form-control form-control-sm">
+											</select>
+													<input id="description" name="description" type="text"  style="height:5ch;"
+														class="form-control mr-sm-2" placeholder="Search">
 											</form>
 										</nav>
+														<input type="button" id="searchSub"
+									class="btn btn-outline-success my-2 my-sm-0"  style="width:10ch;height:4ch;" value="Search">
 									</section>
-
 								</div>
-                                <div class="card-body table-full-width table-responsive">
+								
+								<div class="card-body table-full-width table-responsive">
                                     <table class="table table-hover table-striped">
                                         <thead>
                                             <th>ID</th>
