@@ -59,20 +59,10 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		//秉諺 結束
 		
 		//威翰套版前端畫面
-<<<<<<< HEAD
 		registry.addResourceHandler("/frontend_js/**").addResourceLocations("/WEB-INF/views/frontend/js/");
 		registry.addResourceHandler("/frontend_bat/**").addResourceLocations("/WEB-INF/views/frontend/bat/");
 		registry.addResourceHandler("/frontend_css/**").addResourceLocations("/WEB-INF/views/frontend/css/");
 		registry.addResourceHandler("/frontend_images/**").addResourceLocations("/WEB-INF/views/frontend/images/");
-		
-		//DengYao
-		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
-=======
-		registry.addResourceHandler("/js/**").addResourceLocations("/WEB-INF/views/frontend/js/");
-		registry.addResourceHandler("/bat/**").addResourceLocations("/WEB-INF/views/frontend/bat/");
-		registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/views/frontend/css/");
-		registry.addResourceHandler("/images/**").addResourceLocations("/WEB-INF/views/frontend/images/");
->>>>>>> branch 'master' of https://github.com/EEIT107Team003/iCook.git
 		
 		//DengYao
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
