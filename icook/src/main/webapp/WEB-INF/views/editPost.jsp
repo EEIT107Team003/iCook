@@ -24,6 +24,9 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	crossorigin="anonymous"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/ckeditor/ckeditor.js">
+</script>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -39,7 +42,8 @@
 			<form class="form-inline my-2 my-lg-0">
 				<input class="form-control mr-sm-2" type="search"
 					placeholder="Search" aria-label="Search" name="title">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit" formaction="search?title=${ param.title }">Search</button>
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit"
+					formaction="${ pageContext.request.contextPath }/forum/search?title=${ param.title }">Search</button>
 			</form>
 			<ul class="navbar-nav ml-auto ">
 				<li class="nav-item active"><a class="nav-link" href="#">註冊
@@ -63,22 +67,173 @@
 			</ul>
 		</div>
 	</nav>
-	<form:form method='POST' modelAttribute='ForumMainBean'>
-		<c:forEach var="post" items="${ posts }">
-			<div class="form-group">
-				<label for="exampleFormControlInput1">標題</label>
-				<form:input type="text" class="form-control"
-					id="exampleFormControlInput1" placeholder="name@example.com"
-					path="title" value="${ post.title }"></form:input>
+	<div class="panel panel-success container-fluid">
+		<div class="panel-heading">
+			<a href="${ pageContext.request.contextPath }/forum/overview">文章總覽</a>
+		</div>
+		<div class="panel-body">
+			<a class="navbar-brand" href="${ pageContext.request.contextPath }/forum/newPost">發表文章</a>
+			<div class="row">
+				<div class="col"></div>
+				<div class="col-8 table-responsive">
+
+					<div class="row" style="min-height: 800px; margin-bottom: 10px;">
+						<div class="col"></div>
+						<div class="col-8" style="border: 2px groove #4dffff">
+
+							<form:form method='POST' modelAttribute='ForumMainBean'>
+<!-- 首篇 -->
+								<c:forEach var="post" items="${ posts }">
+									<script>
+										console.log("${ post.article_id }")
+									</script>
+									<c:choose>
+										<c:when test="${ post.article_id == post.harticle_id }">
+											<c:forEach var="head" items="${ HeadFmb }">
+
+												<div class="form-group" style="min-height: 80px;">
+													<label for="exampleFormControlInput1"></label>
+													<div class="input-group-prepend">
+														<button class="btn btn-outline-secondary dropdown-toggle"
+															type="button" data-toggle="dropdown" aria-haspopup="true"
+															aria-expanded="false" id="category" value="0">${ head.category }</button>
+														<form:input type="hidden" id="category2" name="category"
+															value="${ head.category }" path="category" />
+														<form:input type="text" class="form-control"
+															aria-label="Text input with dropdown button"
+															id="exampleFormControlInput1"
+															placeholder="name@example.com" value="${ head.title }"
+															path="title" />
+														<div class="dropdown-menu">
+															<a class="dropdown-item" id="1">問題</a> <a
+																class="dropdown-item" id="2">閒聊</a> <a
+																class="dropdown-item" id="3">心得</a> <a
+																class="dropdown-item" id="4">食材</a> <a
+																class="dropdown-item" id="5">器具</a> <a
+																class="dropdown-item" id="6">自介</a>
+														</div>
+													</div>
+												</div>
+											</c:forEach>
+										</c:when>
+										<c:otherwise>
+<!-- 非首篇 -->
+											<c:forEach var="head" items="${ HeadFmb }">
+												<div class="form-group" style="min-height: 80px;">
+													<label for="exampleFormControlInput1"></label>
+													<div class="input-group-prepend">
+														<button class="btn btn-outline-secondary dropdown-toggle"
+															type="button" data-toggle="dropdown" aria-haspopup="true"
+															aria-expanded="false" id="category" value="0"
+															disabled="disabled">${ head.category }</button>
+														<form:input type="hidden" id="category2" name="category"
+															value="${ head.category }" path="category" />
+														<input type="text" class="form-control"
+															aria-label="Text input with dropdown button"
+															disabled="true" id="exampleFormControlInput1"
+															placeholder="name@example.com" value="${ head.title }" />
+														<form:input type="hidden" value="${ head.title }"
+															path="title" />
+														<div class="dropdown-menu"></div>
+													</div>
+												</div>
+											</c:forEach>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+								
+								
+								<!-- 標題部分結束 -->
+								<hr>
+								<div style="min-height: 0px;"></div>
+								<!--    000 -->
+
+
+								<c:forEach var="post" items="${ posts }">
+									<div class="form-group" style="min-height: 600px;">
+										<section>
+											<label for="exampleFormControlTextarea1">內文</label>
+											<textarea class="form-control"
+												id="maintext" rows="3"
+												style="min-height: 400px" name="text">${ post.text }</textarea>
+											<hr>
+											<label for="exampleFormControlTextarea1">簽名</label>
+											<textarea class="form-control"
+												id="signaturetext" rows="3"
+												style="min-height: 80px" name="signature">${ post.signature }</textarea>
+										</section>
+									</div>
+								</c:forEach>
+
+
+								<!-- 內文結束	 -->
+								<hr>
+								<div style="min-height: 120px; text-align: center">
+									<input class="btn btn-outline-success my-2 my-sm-0 " id="b1"
+										name="buttons" type="submit" value="送出"> <input
+										class="btn btn-outline-danger my-2 my-sm-0 " id="b1"
+										name="buttons" type="reset" value="清除">
+								</div>
+							</form:form>
+						</div>
+						<div class="col"></div>
+					</div>
+
+				</div>
+				<div class="col"></div>
 			</div>
-			<div class="form-group">
-				<label for="exampleFormControlTextarea1">內文</label>
-				<textarea class="form-control" rows="3"  name="text" >${ post.text }</textarea>
-				<label for="exampleFormControlTextarea1" >簽名</label>
-				<textarea class="form-control" rows="3"  name="signature">${ post.signature }</textarea>
-				<input id="b1" name="buttons" type="submit" value="送出">
-			</div>
-		</c:forEach>
-	</form:form>
+		</div>
+		<div class="container"></div>
+	</div>
+	<script>
+		$("#1").click(function() {
+			var cg = document.getElementById("1").text;
+			$("#category").attr("value", cg).text(cg);
+			$("#category2").attr("value", cg);
+		})
+		$("#2").click(function() {
+			var cg = document.getElementById("2").text;
+			$("#category").attr("value", cg).text(cg);
+			$("#category2").attr("value", cg);
+		})
+		$("#3").click(function() {
+			var cg = document.getElementById("3").text;
+			$("#category").attr("value", cg).text(cg);
+			$("#category2").attr("value", cg);
+		})
+		$("#4").click(function() {
+			var cg = document.getElementById("4").text;
+			$("#category").attr("value", cg).text(cg);
+			$("#category2").attr("value", cg);
+		})
+		$("#5").click(function() {
+			var cg = document.getElementById("5").text;
+			$("#category").attr("value", cg).text(cg);
+			$("#category2").attr("value", cg);
+		})
+		$("#6").click(function() {
+			var cg = document.getElementById("6").text;
+			$("#category").attr("value", cg).text(cg);
+			$("#category2").attr("value", cg);
+		})
+
+		CKEDITOR
+		.replace(
+		'maintext',
+		{
+			extraPlugins : 'easyimage',
+			cloudServices_tokenUrl : 'https://40733.cke-cs.com/token/dev/Pno0Ld5ha3oNhABb0mnQBXWdL6FXy03CbisbDkPL9hJoOrvd8p0hpHlka5RA',
+			cloudServices_uploadUrl : 'https://40733.cke-cs.com/easyimage/upload/'
+		});
+		CKEDITOR
+		.replace(
+		'signaturetext',
+		{
+			extraPlugins : 'easyimage',
+			cloudServices_tokenUrl : 'https://40733.cke-cs.com/token/dev/Pno0Ld5ha3oNhABb0mnQBXWdL6FXy03CbisbDkPL9hJoOrvd8p0hpHlka5RA',
+			cloudServices_uploadUrl : 'https://40733.cke-cs.com/easyimage/upload/'
+		});
+	</script>
 </body>
 </html>
+

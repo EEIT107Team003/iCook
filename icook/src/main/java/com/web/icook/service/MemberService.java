@@ -5,8 +5,6 @@ import java.util.List;
 import com.web.icook.model.MemberBean;
 import com.web.icook.model.MyTrackBean;
 
-
-
 public interface MemberService {
 
 	int insertMember(MemberBean bean);
@@ -24,10 +22,14 @@ public interface MemberService {
 	void updateCover_photo(MemberBean bean);
 
 	void trackById(MyTrackBean bean);
-	
+
 	MemberBean selectByNickname(String nickname);
-	
+
 	List<MyTrackBean> selectTrackerById(int member_Id);
-	
+
 	void updateMemberInfo(MemberBean bean, int member_id);
+
+	List<MyTrackBean> selectOneTrackerById(int member_Id, int tracked_id);
+	
+	List<MyTrackBean> selectTrackedById(int tracked_Id);
 }

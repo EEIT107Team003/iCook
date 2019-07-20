@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Member;
 import java.sql.Blob;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -37,11 +36,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.web.icook.model.MemberBean;
 import com.web.icook.model.MyTrackBean;
-import com.web.icook.model.ProductBean;
 import com.web.icook.service.MemberService;
-
-import recipe.model.RecipeBean;
-//import recipe.service.IProductService;
 
 @Controller
 public class MemberController {
@@ -60,10 +55,8 @@ public class MemberController {
 		if (!getPrincipal().equals("anonymousUser")) {
 			bean = memberService.selectByUsername(getPrincipal());
 			model.addAttribute("member", bean);
-
-//			List<MyTrackBean> list=memberService.selectTrackerById(bean.getMember_id());
-//			model.addAttribute("mytrack",list.size);
 		}
+		System.out.println("7777777777777777777777777");
 		return "user_page";
 	}
 
@@ -73,28 +66,27 @@ public class MemberController {
 	public List<MyTrackBean> myTrack() {
 		List<MyTrackBean> list = new ArrayList<MyTrackBean>();
 
-		if (!getPrincipal().equals("anonymousUser")) {
+//		if (!getPrincipal().equals("anonymousUser")) {
 			MemberBean bean = memberService.selectByUsername(getPrincipal());
 			list = memberService.selectTrackerById(bean.getMember_id());
-		}
-		
+//		}
+
 		return list;
 	}
 
 	// 修改個人簡介
 	@ResponseBody
-	@RequestMapping(value = "/user/updateResume",method = RequestMethod.POST)
-	public List<String> updateResume (@RequestBody MemberBean bean) {
+	@RequestMapping(value = "/user/updateResume", method = RequestMethod.POST)
+	public List<String> updateResume(@RequestBody MemberBean bean) {
 		MemberBean memberBean = memberService.selectByUsername(getPrincipal());
 		
-		String dd=bean.getResume();
+		String dd = bean.getResume();
 		memberBean.setResume(dd);
-		System.out.println(dd);
-		
+
 		memberService.updateMemberInfo(memberBean, memberBean.getMember_id());
 		return null;
 	}
-	
+
 	// 修改大頭貼
 	@RequestMapping(value = "/user/updateMemberPhoto", method = RequestMethod.GET)
 	public String updateMemberPhoto(Model model) {
@@ -138,9 +130,8 @@ public class MemberController {
 		List<MemberBean> list = new ArrayList<MemberBean>();
 		list.add(bean);
 
-		System.out.println("size : " + list.size());
 		for (MemberBean mb : list) {
-			System.out.println("Nickname : " + mb.getNickname());
+//			System.out.println("Nickname : " + mb.getNickname());
 		}
 		return list;
 	}
@@ -187,9 +178,9 @@ public class MemberController {
 		List<MemberBean> list = new ArrayList<MemberBean>();
 		list.add(bean);
 
-		System.out.println("size : " + list.size());
+//		System.out.println("size : " + list.size());
 		for (MemberBean mb : list) {
-			System.out.println("Nickname : " + mb.getNickname());
+//			System.out.println("Nickname : " + mb.getNickname());
 		}
 		return list;
 	}
@@ -211,32 +202,7 @@ public class MemberController {
 		return "result";
 	}
 
-	// 查詢全部
-	@RequestMapping("/user/result")
-	public String selectAllMember(Model model) {
-		List<MemberBean> list = memberService.selectAll();
-		model.addAttribute("members", list);
-		return "result";
-	}
-
-	// 查詢單筆
-	@RequestMapping(value = "/user/resultOne", method = RequestMethod.GET)
-	public String SelectMemberId(Model model) {
-		MemberBean bean = new MemberBean();
-		model.addAttribute("MemberBean", bean);
-		return "findOne";
-	}
-
-	@RequestMapping(value = "/user/resultOne", method = RequestMethod.POST)
-	public String listOne(@ModelAttribute("MemberBean") MemberBean bean, Model model, HttpServletRequest request) {
-		bean = memberService.selectByNickname(bean.getNickname().trim());
-		List<MemberBean> list = new ArrayList<>();
-		list.add(bean);
-		model.addAttribute("members", list);
-
-		return "result";
-	}
-
+//-------------------------------  members  ---------------------------------------------------------------------------
 	@RequestMapping("/members")
 	public String members(Model model) {
 		List<MemberBean> list = memberService.selectAll();
@@ -247,35 +213,50 @@ public class MemberController {
 	@RequestMapping(value = "/members/page")
 	public String member_page(Model model, @RequestParam("member_id") Integer member_id) {
 		MemberBean bean = memberService.selectById(member_id);
-		int tracked_num = bean.getTracked_num();
-		int recipe_num = bean.getRecipe_num();
-		int forum_num = bean.getForum_num();
-		model.addAttribute("member_id", member_id);
-		model.addAttribute("tracked_num", tracked_num);
-		model.addAttribute("recipe_num", recipe_num);
-		model.addAttribute("forum_num", forum_num);
+		model.addAttribute("member", bean);
 
 		return "member_page";
 	}
 
-	// 加入追蹤(會員)
+	//加入追蹤(非會員)
 	@RequestMapping(value = "/members/page/track", method = RequestMethod.POST)
 	public String trackMembers(Model model, @RequestParam("member_id") Integer member_id) {
+		return this.member_page(model, member_id);
+	}
+	
+	// 加入追蹤(會員)
+	@ResponseBody
+	@RequestMapping(value="/members/page/track", method = RequestMethod.GET)
+	public List<MyTrackBean> trackMember (@RequestParam(value="member_id")Integer member_id){
 		MemberBean member = memberService.selectByUsername(getPrincipal());
+		System.out.println(member_id);
 		MemberBean tracked = memberService.selectById(member_id);
-
 		MyTrackBean bean = new MyTrackBean();
 		bean.setMemberId(member);
 		bean.setTrackedId(tracked);
 		memberService.trackById(bean);
-
-		tracked.setTracked_num(tracked.getTracked_num() + 1);
+		
+		List<MyTrackBean> list=new ArrayList<MyTrackBean>();
+		list=memberService.selectTrackedById(tracked.getMember_id());		
+		System.out.println(member_id+"8888888888888888888889999999999999");
+		tracked.setTracked_num(list.size());
+//		//更新被追蹤者數量
 		memberService.updateMemberInfo(tracked, member_id);
-		return this.member_page(model, member_id);
+		return list;
 	}
-
+	
+	// 查詢特定追蹤者
+	@ResponseBody
+	@RequestMapping(value="/members/page/checkTracked", method = RequestMethod.POST)
+	public List<MyTrackBean> selectOneTrackerById (@RequestParam(value="member_id",required = false)Integer member_id){
+		MemberBean bean=memberService.selectByUsername(getPrincipal());
+		List<MyTrackBean> list =memberService.selectOneTrackerById(bean.getMember_id(), member_id);
+		return list;
+	}
+	
+	
 //	//我的食譜
-//	@RequestMapping(value="members/myrecipe")
+//	@RequestMapping(value="members/myrecipe") 
 //	public String MyRecipe(Model model) {
 //		List<RecipeBean> allRecipeBean=.getAllRecipe();
 //		
@@ -283,6 +264,8 @@ public class MemberController {
 //		
 //		return "member_page_myrecipe";
 //	}
+	
+//-------------------------------  無權限  ---------------------------------------------------------------------------
 
 	// 新增會員
 	@RequestMapping(value = "/addMember", method = RequestMethod.GET)
@@ -294,7 +277,7 @@ public class MemberController {
 
 	@RequestMapping(value = "/addMember", method = RequestMethod.POST)
 	public String addMember(@ModelAttribute("MemberBean") MemberBean bean, Model model, HttpServletRequest request) {
-		// 被追蹤、發表食譜、發文 數
+		// 被追蹤、發表食譜、發文數
 		bean.setTracked_num(0);
 		bean.setRecipe_num(0);
 		bean.setForum_num(0);
@@ -313,13 +296,13 @@ public class MemberController {
 			// 完整檔名
 			String originalFilename = memberImage.getOriginalFilename();
 			bean.setFileName_member(originalFilename);
-			System.out.println(originalFilename + "  --1");
+//			System.out.println(originalFilename + "  --1");
 			// 副檔名
 			String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
-			System.out.println(ext + "  --2");
+//			System.out.println(ext + "  --2");
 			// 跟目錄路徑
 			String rootDirectory = context.getRealPath("/");
-			System.out.println(rootDirectory + "  --3");
+//			System.out.println(rootDirectory + "  --3");
 			try {
 				byte[] b = memberImage.getBytes();
 				Blob blob = new SerialBlob(b);
@@ -329,6 +312,7 @@ public class MemberController {
 				throw new RuntimeException("檔案上傳發生異常:" + e.getMessage());
 			}
 		}
+		
 		memberService.insertMember(bean);
 
 		List<MemberBean> list = memberService.selectAll();
@@ -336,6 +320,7 @@ public class MemberController {
 
 		return "result";
 	}
+	
 
 	// 取得圖片(Member)-------------------------------------------------------------------
 	@RequestMapping(value = "/getMemberPhoto/{member_id}", method = RequestMethod.GET)
@@ -404,7 +389,7 @@ public class MemberController {
 		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
 		String mimeType = context.getMimeType(filename);
 		MediaType mediaType = MediaType.valueOf(mimeType);
-		System.out.println("mediaType=" + mediaType);
+//		System.out.println("mediaType=" + mediaType);
 		headers.setContentType(mediaType);
 		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
 
@@ -450,5 +435,9 @@ public class MemberController {
 			userName = principal.toString();
 		}
 		return userName;
+	}
+	
+	public MemberBean getMemberBean(String username) {
+		return memberService.selectByUsername(username);
 	}
 }

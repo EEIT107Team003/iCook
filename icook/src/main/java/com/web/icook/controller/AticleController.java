@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.web.icook.model.ArticleBean;
@@ -57,8 +58,8 @@ public class AticleController {
 	IcookMsgService msgservice;
 	@Autowired
 	MemberService memberservice;
-	
-
+	@Autowired
+	MemberController c;
 
 	@RequestMapping("/A_article")
 	public String A_article() {
@@ -70,6 +71,7 @@ public class AticleController {
 		
 		return "forward:/A_findAll";
 	}
+	
 
 //	@RequestMapping("/delete")
 //	public String delete() {
@@ -82,12 +84,14 @@ public class AticleController {
 //		// 修改
 //		return "updatepage";
 //	}
-//
-//	@RequestMapping("/select")
-//	public String select() {
-//		// 查詢
-//		return "selectpage";
-//	}
+	@ResponseBody
+	@RequestMapping({"/A_findThree"}) // 指向index href裡面
+	public String threelist(Model model) {
+		List<ArticleBean> list = arcicleservice.getThreeArticles();
+		model.addAttribute("ArticleThrees", list);
+		System.out.println("list.toString()"+list.toString());
+		return "article/A_articlemainpage"; // 指向success.jsp
+	}
 	
 	@RequestMapping("/A_findAll") // 指向index href裡面
 	public String list(Model model) {
@@ -139,6 +143,10 @@ public class AticleController {
         model.addAttribute("modelMsginsert",msgBoardbean);
         model.addAttribute("number",article_num);
 //		System.out.println("select方法getArticle_num()="+article_num);
+        //前三筆文章開始
+        List<ArticleBean> threelist = arcicleservice.getThreeArticles();
+		model.addAttribute("ArticleThrees", threelist);
+		//前三筆文章結束
 		
 		return "article/A_single";
 //		return "redirect:/select/Msginsert.action?bean="+ab;
@@ -161,7 +169,8 @@ public class AticleController {
 		model.addAttribute("MsgBoards", list);
 		
 		//等等MemberBean mb= memberservice.selectById(memberId);
-		
+		List<ArticleBean> threelist = arcicleservice.getThreeArticles();
+		model.addAttribute("ArticleThrees", threelist);
 		
 		return "article/A_single";
 		
@@ -237,7 +246,7 @@ public class AticleController {
 
 		/* 開始處理圖片檔案-start */
 		// 如果沒上傳圖片，則保持原本圖片
-		MemberController c = new MemberController();
+		
 		MemberBean mb = memberservice.selectByUsername(c.getPrincipal());
 		articlebean.setArticle_member(mb);
 		if (articlebean.getArticleImage() != null) {
@@ -264,12 +273,12 @@ public class AticleController {
 		arcicleservice.updateIcookArticle(articlebean);
 
 		// 將上傳的檔案移到指定的資料夾
-		return "redirect:/article/A_articlemainpage";/* 讓瀏覽器再次發出請求，呼叫successPage.jsp檔案 */
+		return "redirect:/A_articlemainpage";/* 讓瀏覽器再次發出請求，呼叫successPage.jsp檔案 */
 		
 	}// end of processAddNewProductForm mathod
 
 	/* 跟 <a href="insert">新增</a> 有關 */
-	@RequestMapping(value = "/user/A_insert", method = RequestMethod.GET)
+	@RequestMapping(value = "/A_insert", method = RequestMethod.GET)
 	public String getAddNewArticleForm(Model model) throws SerialException, SQLException {
 		
 
@@ -281,7 +290,7 @@ public class AticleController {
 		return "article/A_articleinster";/* 呼叫insert.jsp檔案 */
 	}
 
-	@RequestMapping(value = "/user/A_insert", method = RequestMethod.POST)
+	@RequestMapping(value = "/A_insert", method = RequestMethod.POST)
 	public String processAddNewProductForm(@ModelAttribute("Articlebean") ArticleBean articlebean, BindingResult result,
 			HttpServletRequest request) throws UnsupportedEncodingException {
 		request.setCharacterEncoding("UTF-8");

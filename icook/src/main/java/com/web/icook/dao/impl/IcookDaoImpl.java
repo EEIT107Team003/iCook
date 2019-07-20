@@ -1,5 +1,6 @@
 package com.web.icook.dao.impl;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,11 +29,8 @@ public class IcookDaoImpl implements IcookDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ArticleBean> getAllArticles() {
-//		MemberService memberservice = null;
-//		memberController c = new memberController();
-//		MemberBean mb = memberservice.selectByUsername(c.getPrincipal());
-		
-		String hql = "from ArticleBean as ab where ab.article_status = 1";
+
+		String hql = "from ArticleBean as ab where ab.article_status = 1 order by ab.article_date desc";
 		// 管理員權限		
 //		if (mb.getRole().equals("ROLE_ADMIN")) {
 //			 hql = "FROM ArticleBean";
@@ -61,7 +59,7 @@ public class IcookDaoImpl implements IcookDao {
 		oldBean.setArticle_member(articlebean.getArticle_member());
 		oldBean.setArticle_catergoary(articlebean.getArticle_catergoary());
 		oldBean.setArticle_content(articlebean.getArticle_content());
-		oldBean.setArticle_date(articlebean.getArticle_date());
+//		oldBean.setArticle_date(new Timestamp(System.currentTimeMillis()));
 		oldBean.setArticle_status(articlebean.getArticle_status());
 		oldBean.setArticle_title(articlebean.getArticle_title());
 
@@ -95,6 +93,19 @@ public class IcookDaoImpl implements IcookDao {
 		List<ArticleBean> abList = new ArrayList<>();
 		abList = session.createQuery(hql).setParameter("article_title", "%" + article_title + "%").getResultList();
 		return abList;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ArticleBean> getThreeArticles() {
+		String hql = "from ArticleBean as ab where ab.article_status = 1 order by ab.article_date desc";
+
+		Session session = null;
+		List<ArticleBean> list = new ArrayList<>();
+		session = factory.getCurrentSession();
+		list = session.createQuery(hql).setMaxResults(3).getResultList();
+
+		return list;
 	}
 
 }

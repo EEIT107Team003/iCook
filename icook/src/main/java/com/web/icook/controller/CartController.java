@@ -124,7 +124,7 @@ public class CartController {
 			model.addAttribute("LoginOK", mb);
 		}else {
 		}
-		return "cartPage";
+		return "icookCart";
 	}
 
 	@RequestMapping("/showOrder")

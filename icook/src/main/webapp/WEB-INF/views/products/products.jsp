@@ -165,30 +165,26 @@ width:30px;
 // ==========================================EXCEL================================================================
 		
 	
-	$.ajax({
-			url : "${pageContext.request.contextPath}/category",
-			type : "POST",
-			dataType : "json",
-			contentType : "application/json",
-			async : true,
-			success : function(data) {
-				var names = JSON.parse(JSON.stringify(data).split(","));
-				var txt = "";
-	            for (i in names) {
-					txt += "<option value='"+i+"'>" + names[i].name + "</option>";
-				}
-				$("#show3").append(txt);
-			},
-			error : function(data, textStatus, errorThrown) {
-				console.log(data);
-			},
-		});
+// 	$.ajax({
+// 			url : "${pageContext.request.contextPath}/category",
+// 			type : "POST",
+// 			dataType : "json",
+// 			contentType : "application/json",
+// 			async : true,
+// 			success : function(data) {
+// 				var names = JSON.parse(JSON.stringify(data).split(","));
+// 				var txt = "";
+// 	            for (i in names) {
+// 					txt += "<option value='"+i+"'>" + names[i].name + "</option>";
+// 				}
+// 				$("#show3").append(txt);
+// 			},
+// 			error : function(data, textStatus, errorThrown) {
+// 				console.log(data);
+// 			},
+// 		});
 
 
-
-		$(document).ready(function() {
-			selectAll();
-			page();
 		
 		
 			
@@ -241,6 +237,10 @@ width:30px;
 		
 // ==========================================SHOW change================================================================
 	
+
+	$(document).ready(function() {
+			selectAll();
+			page();
 	
 	function catchSelect1(){
 			var txt = $("#show :selected").text();
@@ -590,27 +590,27 @@ width:30px;
 				
 				
 				</div>
-				 <a href='productsEx.xls' >AllProductsExcel</a><br>
-				<div>
-					<div>
-						<select id="show3" name="show3" style="width: 30ch"
-							class="form-control form-control-sm"><option value="0"
-								SELECTED id='ch'>請選擇</option></select> <select id="show4" name="show4"
-							style="width: 30ch" class="form-control form-control-sm">
-						</select>
-					</div>
-					<form action="productsByCategoryEx.xls">
+<!-- 				 <a href='productsEx.xls' >AllProductsExcel</a><br> -->
+<!-- 				<div> -->
+<!-- 					<div> -->
+<!-- 						<select id="show3" name="show3" style="width: 30ch" -->
+<!-- 							class="form-control form-control-sm"><option value="0" -->
+<!-- 								SELECTED id='ch'>請選擇</option></select> <select id="show4" name="show4" -->
+<!-- 							style="width: 30ch" class="form-control form-control-sm"> -->
+<!-- 						</select> -->
+<!-- 					</div> -->
+<!-- 					<form action="productsByCategoryEx.xls"> -->
 
-						<input id="fileName2" name="fileName2" type="hidden" /> <input
-							id="remark2" name="remark2" type="hidden" />
-						<div>
-							<input id="description2" name="description2" type="text"
-								class="form-control mr-sm-2" placeholder="Search"
-								aria-label="Search"></input>
-						</div>
-						<input type="submit" value="ProductsExcel">
-					</form>
-				</div>
+<!-- 						<input id="fileName2" name="fileName2" type="hidden" /> <input -->
+<!-- 							id="remark2" name="remark2" type="hidden" /> -->
+<!-- 						<div> -->
+<!-- 							<input id="description2" name="description2" type="text" -->
+<!-- 								class="form-control mr-sm-2" placeholder="Search" -->
+<!-- 								aria-label="Search"></input> -->
+<!-- 						</div> -->
+<!-- 						<input type="submit" value="ProductsExcel"> -->
+<!-- 					</form> -->
+<!-- 				</div> -->
 				
 				<a href='${pageContext.request.contextPath}'>回首頁</a><BR> <br>
 			</section>

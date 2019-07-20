@@ -20,12 +20,37 @@
 	
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/product_css/products.css">
 	
+	
+<!-- 	====================================================================================== -->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="icon" href="images/favicon.ico">
+<link rel="shortcut icon" href="images/favicon.ico" />
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/zerogrid.css" type="text/css"
+	media="screen">
+<link rel="stylesheet" href="css/responsive.css" type="text/css"
+	media="screen">
+<link rel="stylesheet" href="css/prettyPhoto.css">
+<script src="js/jquery.js"></script>
+<script src="js/jquery-migrate-1.1.1.js"></script>
+<script src="js/superfish.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+<script src="js/sForm.js"></script>
+<script src="js/jquery.prettyPhoto.js"></script>
+<script src="js/css3-mediaqueries.js"></script>
 <style>
 * {	
 	padding: 0;
 	margin: 0;
 }
 
+.textDiv{
+margin: 0;
+}
+.textDiv p{
+font-size:20px;
+}
 .left {
 	width: 15%;
 	float: left;
@@ -40,15 +65,7 @@ body {
 	background-color: white;
 }
 
-header {
-	margin: auto;
-	background-color: #FFC8B4;
-}
 
-footer {
-	margin: auto;
-	background-color: #AAFFEE;
-}
 .search{
  border-right: 1px solid #cccccc ;
 }
@@ -204,24 +221,24 @@ width:30px;
 // ==========================================EXCEL================================================================
 		
 	
-	$.ajax({
-			url : "${pageContext.request.contextPath}/category",
-			type : "POST",
-			dataType : "json",
-			contentType : "application/json",
-			async : true,
-			success : function(data) {
-				var names = JSON.parse(JSON.stringify(data).split(","));
-				var txt = "";
-	            for (i in names) {
-					txt += "<option value='"+i+"'>" + names[i].name + "</option>";
-				}
-				$("#show3").append(txt);
-			},
-			error : function(data, textStatus, errorThrown) {
-				console.log(data);
-			},
-		});
+// 	$.ajax({
+// 			url : "${pageContext.request.contextPath}/category",
+// 			type : "POST",
+// 			dataType : "json",
+// 			contentType : "application/json",
+// 			async : true,
+// 			success : function(data) {
+// 				var names = JSON.parse(JSON.stringify(data).split(","));
+// 				var txt = "";
+// 	            for (i in names) {
+// 					txt += "<option value='"+i+"'>" + names[i].name + "</option>";
+// 				}
+// 				$("#show3").append(txt);
+// 			},
+// 			error : function(data, textStatus, errorThrown) {
+// 				console.log(data);
+// 			},
+// 		});
 
 
 
@@ -233,10 +250,14 @@ width:30px;
 			
 			 
 // 	<!-- =============================================Dataisl=================================================================		 -->
-			
+
+	$("a[data-gal^='prettyPhoto']").prettyPhoto({
+			theme : 'facebook'
+		});
+
+
+
 			getstock();
-
-
 
 			function getstock(){
 			        var names=parseInt("${product.stock}")
@@ -517,52 +538,51 @@ width:30px;
 
 	</script>
 	<header>
-	
-	<h1>HEADER</h1>
-	Working with server: <%= application.getServerInfo() %><br>
-    Servlet Specification: <%= application.getMajorVersion() %>.<%= application.getMinorVersion() %> <br>
-    JSP version: <%= JspFactory.getDefaultFactory().getEngineInfo().getSpecificationVersion() %><br>
-    Java Version: <%= System.getProperty("java.version") %><br>
-		</header>
+		<div class="zerogrid">
+			<div class="col-full">
+				<div class="wrap-col">
+					<h1>
+						<a href="index2"><img src="images/logo.png" alt="EXTERIOR"></a>
+					</h1>
+
+					<div class="menu_block">
+						<nav>
+							<ul class="sf-menu">
+								<li><a href="index2">ICook</a></li>
+								<li><a href="icookAboutUS">關於我們</a>
+									<ul>
+										<li><a href="icookContact">聯繫我們</a></li>
+									</ul></li>
+								<li><a href="icookMenu">查看食譜</a>
+									<ul>
+
+										<li><a href="#">cat1</a></li>
+										<li><a href="#">cat2</a></li>
+										<li><a href="#">cat3</a></li>
+									</ul>
+									<li><a href="icookLife">生活誌</a></li>
+									<li><a href="icookVideo">討論區</a></li>
+									<li class="with_ul current"><a href="icookProducts">市集</a>
+									<ul>
+											<li><a href="cartPage">購物車</a></li>
+										</ul></li>
+
+									<li><a href="icookLogin">會員專區</a>
+										<ul>
+											<li><a href="icookLogin">會員登入</a></li>
+											<li><a href="#">會員登出</a></li>
+											<li><a href="#">新增食譜</a></li>
+											<ul></li>
+
+								</ul>
+							</nav>
+							<div class="clear"></div>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
 		
-		
-	<c:out value="登入者${LoginOK.nickname}"></c:out>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="/icook">ICook!</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarTogglerDemo02"
-			aria-controls="navbarTogglerDemo02" aria-expanded="false"
-			aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-
-		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-
-				<li class="nav-item"><a class="nav-link" href='products'>市集</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="#">食譜</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">(修改商品)</a></li>
-				<li class="nav-item"><a class="nav-link" href='products/add'>(新增商品)</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="products/upd">(更新產品)</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="collections">查詢收藏</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="cartPage">購物車</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="checkOrders">檢視訂單(會員用)</a>
-				</li>
-				<li class="nav-item"><a class="nav-link"
-					href="adminCheckOrders">查看訂單(僅限admin的URL)</a></li>
-
-			</ul>
-			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" type="search" placeholder="查詢商品">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-			</form>
-		</div>
-	</nav>
+	</header>
 	<div class="allPage">
 		<div class="left">
 			<section class="container">
@@ -572,65 +592,84 @@ width:30px;
 				<label for='show'> 種類</label>
 
 				<div>
-					<select  id="show" name="show"  class="form-control form-control-sm"><option
-							value="0" SELECTED id='ch'>請選擇</option></select> <select id="show2" name="show2"class="form-control form-control-sm">
+					<select id="show" name="show" class="form-control form-control-sm"><option
+							value="0" SELECTED id='ch'>請選擇</option></select> <select id="show2"
+						name="show2" class="form-control form-control-sm">
 					</select>
 				</div>
 				<nav class="navbar navbar-light bg-light">
-				<form class="searchDiv" id="searchDiv" method="POST" class="form-inline">
-					<input id="fileName" name="fileName" type="hidden" /> <input
-						id="remark" name="remark" type="hidden" /><input id="stock" name="stock" type="hidden" />
-					<div>
-						<input id="description" name="description" type="text"  class="form-control mr-sm-2" placeholder="Search" aria-label="Search"></input>
-					</div>
-					<div>
-						  <input type="button"class="btn btn-outline-success my-2 my-sm-0" value="Search">
-					</div>
-				</form>
+					<form class="searchDiv" id="searchDiv" method="POST"
+						class="form-inline">
+						<input id="fileName" name="fileName" type="hidden" /> <input
+							id="remark" name="remark" type="hidden" /><input id="stock"
+							name="stock" type="hidden" />
+						<div>
+							<input id="description" name="description" type="text"
+								class="form-control mr-sm-2" placeholder="Search"
+								aria-label="Search"></input>
+						</div>
+						<div>
+							<input type="button" class="btn btn-outline-success my-2 my-sm-0"
+								value="Search">
+						</div>
+					</form>
 				</nav>
 			</section>
 			<section class="container">
-			
 
-				<a href='collections'>查詢收藏</a><BR> <br>
-				<a href='products/add'>新增產品資料</a>
+
+				<a href='collections'>查詢收藏</a><BR> <br> <a
+					href='products/add'>新增產品資料</a>
 				<div class="list-type1">
-				
-				<h1>鍋類</h1>
-				<ul style="cursor: pointer">
-					<li><a class="search">炒鍋</a></li>
-					<li><a class="search">平底鍋</a></li>
-					<li><a class="search">湯鍋</a></li>
-				</ul>
-				<h1>刀具</h1>
-				<ul style="cursor: pointer">
-					<li><a class="search">式剁刀</a></li>
-					<li><a class="search">牛排刀</a></li>
-				</ul>
-				<h1>食材</h1>
-				<ul style="cursor: pointer">
-					<li><a class="search">牛肉</a></li>
-					<li><a class="search">雞肉</a></li>
-					<li><a class="search">豬肉</a></li>
-					<li><a class="search">羊肉</a></li>
-				</ul>
-				<a href='${pageContext.request.contextPath}'>回首頁</a><BR> <br>
+
+					<h1>鍋類</h1>
+					<ul style="cursor: pointer">
+						<li><a class="search">炒鍋</a></li>
+						<li><a class="search">平底鍋</a></li>
+						<li><a class="search">湯鍋</a></li>
+					</ul>
+					<h1>刀具</h1>
+					<ul style="cursor: pointer">
+						<li><a class="search">式剁刀</a></li>
+						<li><a class="search">牛排刀</a></li>
+					</ul>
+					<h1>食材</h1>
+					<ul style="cursor: pointer">
+						<li><a class="search">牛肉</a></li>
+						<li><a class="search">雞肉</a></li>
+						<li><a class="search">豬肉</a></li>
+						<li><a class="search">羊肉</a></li>
+					</ul>
+					<a href='${pageContext.request.contextPath}'>回首頁</a><BR> <br>
 			</section>
 		</div>
-		
+
 
 		<div class="right">
-  
-<!-- =============================================Dataisl=================================================================		 -->
-       <section class="container">
+
+			<!-- =============================================Dataisl=================================================================		 -->
+
+			<section class="container">
 				<div class="row">
-				<div>
-					<img width='300' height='350'
-						src="<c:url value='/getProductPicture/${product.product_id}'/>" />
-				</div>
+					<div class="zerogrid" style="width: 100ch; margin: 0; padding: 0;">
+						<div class="portfolio">
+							<div class="col-1-2">
+								<div class="wrap-col">
+									<a
+										href="<c:url value='/getProductPicture/${product.product_id}'/>"
+										data-gal="prettyPhoto[1]"><span> <img
+											src="<c:url value='/getProductPicture/${product.product_id}'/>"
+											alt="" />
+									</span></a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
 					<div class="textDiv">
-						<h1>商品編號: ${product.product_id} </h1> 
-						<h1>${product.name}</h1>
+						<h1 style="font-size: 30px;">商品編號: ${product.product_id}</h1>
+						<h1 style="font-size: 30px;">${product.name}</h1>
 						<p>分類: ${product.categoriesbean.name}</p>
 						<p>顏色: ${product.color}</p>
 						<p>單價: ${product.price}</p>
@@ -646,11 +685,10 @@ width:30px;
 						<form method='POST' action="<c:url value='/product/addToCart'/>">
 							<input type="hidden" name="productId"
 								value="${product.product_id}" /> <input type="hidden"
-								name="price" value="${product.price}" /> 
-<%-- 								<c:set value="" var="quan1"/> --%>
-<%-- 						<c:out value="${quan1}"></c:out> --%>
-								<input type="hidden"
-								name="quan" id='quan' value="" /> 
+								name="price" value="${product.price}" />
+							<%-- 								<c:set value="" var="quan1"/> --%>
+							<%-- 						<c:out value="${quan1}"></c:out> --%>
+							<input type="hidden" name="quan" id='quan' value="" />
 							<div align="center">
 								<button type="button" class="btn btn-warning"
 									onclick="{location.href='/icook/cartPage'}" class="">去購物車</button>
@@ -660,23 +698,38 @@ width:30px;
 						</form>
 					</div>
 				</div>
+
+
+
 			</section>
+			<!-- =============================================Dataisl=================================================================		 -->
 
-<!-- =============================================Dataisl=================================================================		 -->
-
-				<form>
-			<div class="page">
+			<form>
+				<div class="page">
 					<ul class="pagination">
 					</ul>
-			</div>
-				</form>
+				</div>
+			</form>
 			<section id="right" class="rightMain"></section>
 		</div>
 		<div class="right"></div>
 	</div>
+	
 	<footer>
-	<h1>FOOTER</h1>
+		<div class="zerogrid">
+			<div class="col-full">
+				<div class="wrap-col">
+					&copy; Copyright &copy; 2013.Company name All rights reserved.<a
+						target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
+				</div>
+			</div>
+		</div>
 	</footer>
+	<div style="display: none">
+		<script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540'
+			language='JavaScript' charset='gb2312'></script>
+	</div>
+
 </body>
 </html>
 

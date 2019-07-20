@@ -113,7 +113,7 @@ public class MemberDAOimpl implements MemberDAO {
 		session.update(bean);
 	}
 
-	// 查詢追蹤者
+	// 查詢 我追蹤了誰
 	@Override
 	public List<MyTrackBean> selectTrackerById(int member_Id) {
 		String hql = "from MyTrackBean where member_Id=:member_Id";
@@ -123,7 +123,28 @@ public class MemberDAOimpl implements MemberDAO {
 
 		return list;
 	}
+	
+	// 查詢 我被誰追蹤
+	@Override
+	public List<MyTrackBean> selectTrackedById(int tracked_Id) {
+		String hql = "from MyTrackBean where tracked_Id=:tracked_Id";
+		List<MyTrackBean> list = new ArrayList<MyTrackBean>();
+		Session session = factory.getCurrentSession();
+		list = session.createQuery(hql).setParameter("tracked_Id", tracked_Id).getResultList();
 
+		return list;
+	}
+	
+	// 查詢特定追蹤者
+	@Override
+	public List<MyTrackBean> selectOneTrackerById(int member_Id,int tracked_id) {
+		String hql = "from MyTrackBean where (member_Id=:member_Id and tracked_id=:tracked_id)";
+		List<MyTrackBean> list = new ArrayList<MyTrackBean>();
+		Session session = factory.getCurrentSession();
+		list = session.createQuery(hql).setParameter("member_Id", member_Id).setParameter("tracked_id", tracked_id).getResultList();
+		
+		return list;
+	}
 	
 	private String getPrincipal() {
 		String userName = null;

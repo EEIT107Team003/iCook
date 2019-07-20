@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,29 +19,29 @@
 	rel="stylesheet">
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/open-iconic-bootstrap.min.css">
+	href="${pageContext.request.contextPath}/article/acss/open-iconic-bootstrap.min.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/animate.css">
+	href="${pageContext.request.contextPath}/article/acss/animate.css">
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/owl.carousel.min.css">
+	href="${pageContext.request.contextPath}/article/acss/owl.carousel.min.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/owl.theme.default.min.css">
+	href="${pageContext.request.contextPath}/article/acss/owl.theme.default.min.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/magnific-popup.css">
+	href="${pageContext.request.contextPath}/article/acss/magnific-popup.css">
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/aos.css">
+	href="${pageContext.request.contextPath}/article/acss/aos.css">
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/ionicons.min.css">
+	href="${pageContext.request.contextPath}/article/acss/ionicons.min.css">
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/flaticon.css">
+	href="${pageContext.request.contextPath}/article/acss/flaticon.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/icomoon.css">
+	href="${pageContext.request.contextPath}/article/acss/icomoon.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/style.css">
+	href="${pageContext.request.contextPath}/article/acss/style.css">
 <title>Stories - Free Bootstrap 4 Template by Colorlib</title>
 </head>
 <body>
@@ -48,7 +49,8 @@
 		class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light"
 		id="ftco-navbar">
 		<div class="container">
-			<a class="navbar-brand" href="index.html">Stories<span>.</span></a>
+			<a class="navbar-brand" href="index2"><img width="240" height="111.5" src="images/logo.png"
+								alt="EXTERIOR"></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#ftco-nav" aria-controls="ftco-nav"
 				aria-expanded="false" aria-label="Toggle navigation">
@@ -58,7 +60,9 @@
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a href="${pageContext.request.contextPath}/home" class="nav-link">Home</a></li>
-					<li class="nav-item"><a href="user/A_insert" class="nav-link">新增一篇文章</a></li>
+					<c:if test="${pageContext.request.userPrincipal.name == 'aa'||pageContext.request.userPrincipal.name =='dd'}">
+					<li class="nav-item"><a href="A_insert" class="nav-link">新增一篇文章</a></li>
+					</c:if>
 					<li class="nav-item active"><a href="A_findAll"
 						class="nav-link">Foods文章首頁</a></li>
 					<li class="nav-item"><a href="A_select" class="nav-link">查詢一篇文章</a></li>
@@ -70,7 +74,7 @@
 	<!-- END nav -->
 
 	<section class="hero-wrap hero-wrap-2"
-		style="background-image: url('images/bg_4.jpg');">
+		style="background-image: url('article/aimages/bg_4.jpg');">
 		<div class="overlay"></div>
 		<div class="container">
 			<div
@@ -104,7 +108,10 @@
 									<!-- 								寬800*高1000最佳像素 -->
 									<div class="text pt-3">
 										<p class="meta d-flex">
-											<span class="pr-3">${Article.article_catergoary}</span><span
+											<span class="pr-3">${Article.article_catergoary}</span>
+<%-- 											<fmt:parseDate var="parseDate" value="${Article.article_date}" pattern="yyyy-MM-dd HH:mm" parseLocale="Asia/Taipei" /> --%>
+											
+											<span
 												class="ml-auto pl-3"> ${Article.article_date} </span>
 										</p>
 										<h3>
@@ -126,7 +133,7 @@
 						<div class="col-md-4 ftco-animate">
 							<div class="blog-entry">
 								<a href="A_single.jsp" class="img-2"><img
-									src="images/blog-2.jpg" class="img-fluid"
+									src="article/aimages/blog-2.jpg" class="img-fluid"
 									alt="Colorlib Template"></a>
 								<div class="text pt-3">
 									<p class="meta d-flex">
@@ -147,7 +154,7 @@
 						<div class="col-md-4 ftco-animate">
 							<div class="blog-entry">
 								<a href="A_single.jsp" class="img-2"><img
-									src="images/blog-3.jpg" class="img-fluid"
+									src="article/aimages/blog-3.jpg" class="img-fluid"
 									alt="Colorlib Template"></a>
 								<div class="text pt-3">
 									<p class="meta d-flex">
@@ -168,7 +175,7 @@
 						<div class="col-md-4 ftco-animate">
 							<div class="blog-entry">
 								<a href="A_single.jsp" class="img-2"><img
-									src="images/blog-4.jpg" class="img-fluid"
+									src="article/aimages/blog-4.jpg" class="img-fluid"
 									alt="Colorlib Template"></a>
 								<div class="text pt-3">
 									<p class="meta d-flex">
@@ -189,7 +196,7 @@
 						<div class="col-md-4 ftco-animate">
 							<div class="blog-entry">
 								<a href="A_single.jsp" class="img-2"><img
-									src="images/blog-5.jpg" class="img-fluid"
+									src="article/aimages/blog-5.jpg" class="img-fluid"
 									alt="Colorlib Template"></a>
 								<div class="text pt-3">
 									<p class="meta d-flex">
@@ -210,7 +217,7 @@
 						<div class="col-md-4 ftco-animate">
 							<div class="blog-entry">
 								<a href="A_single.jsp" class="img-2"><img
-									src="images/blog-6.jpg" class="img-fluid"
+									src="article/aimages/blog-6.jpg" class="img-fluid"
 									alt="Colorlib Template"></a>
 								<div class="text pt-3">
 									<p class="meta d-flex">
@@ -231,7 +238,7 @@
 						<div class="col-md-4 ftco-animate">
 							<div class="blog-entry">
 								<a href="single.html" class="img-2"><img
-									src="images/blog-7.jpg" class="img-fluid"
+									src="article/aimages/blog-7.jpg" class="img-fluid"
 									alt="Colorlib Template"></a>
 								<div class="text pt-3">
 									<p class="meta d-flex">
@@ -252,7 +259,7 @@
 						<div class="col-md-4 ftco-animate">
 							<div class="blog-entry">
 								<a href="single.html" class="img-2"><img
-									src="images/blog-8.jpg" class="img-fluid"
+									src="article/aimages/blog-8.jpg" class="img-fluid"
 									alt="Colorlib Template"></a>
 								<div class="text pt-3">
 									<p class="meta d-flex">
@@ -273,7 +280,7 @@
 						<div class="col-md-4 ftco-animate">
 							<div class="blog-entry">
 								<a href="single.html" class="img-2"><img
-									src="images/blog-9.jpg" class="img-fluid"
+									src="article/aimages/blog-9.jpg" class="img-fluid"
 									alt="Colorlib Template"></a>
 								<div class="text pt-3">
 									<p class="meta d-flex">
@@ -313,7 +320,7 @@
 					<div class="sidebar-wrap">
 						<div class="sidebar-box p-4 about text-center ftco-animate">
 							<h2 class="heading mb-4">About Me</h2>
-							<img src="images/author.jpg" class="img-fluid"
+							<img src="article/aimages/author.jpg" class="img-fluid"
 								alt="Colorlib Template">
 							<div class="text pt-4">
 								<p>
@@ -347,21 +354,21 @@
 							<ul class="category-image">
 								<li><a href="#"
 									class="img d-flex align-items-center justify-content-center text-center"
-									style="background-image: url(images/category-1.jpg);">
+									style="background-image: url(article/aimages/category-1.jpg);">
 										<div class="text">
 											<h3>Foods</h3>
 										</div>
 								</a></li>
 								<li><a href="#"
 									class="img d-flex align-items-center justify-content-center text-center"
-									style="background-image: url(images/category-2.jpg);">
+									style="background-image: url(article/aimages/category-2.jpg);">
 										<div class="text">
 											<h3>Lifestyle</h3>
 										</div>
 								</a></li>
 								<li><a href="#"
 									class="img d-flex align-items-center justify-content-center text-center"
-									style="background-image: url(images/category-2.jpg);">
+									style="background-image: url(article/aimages/category-2.jpg);">
 										<div class="text">
 											<h3>Others</h3>
 										</div>
@@ -496,27 +503,27 @@
 	</div>
 
 
-	<script src="${pageContext.request.contextPath}/article/js/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/article/ajs/jquery.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/article/js/jquery-migrate-3.0.1.min.js"></script>
-	<script src="${pageContext.request.contextPath}/article/js/popper.min.js"></script>
-	<script src="${pageContext.request.contextPath}/article/js/bootstrap.min.js"></script>
+		src="${pageContext.request.contextPath}/article/ajs/jquery-migrate-3.0.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/article/ajs/popper.min.js"></script>
+	<script src="${pageContext.request.contextPath}/article/ajs/bootstrap.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/article/js/jquery.easing.1.3.js"></script>
+		src="${pageContext.request.contextPath}/article/ajs/jquery.easing.1.3.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/article/js/jquery.waypoints.min.js"></script>
+		src="${pageContext.request.contextPath}/article/ajs/jquery.waypoints.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/article/js/jquery.stellar.min.js"></script>
-	<script src="${pageContext.request.contextPath}/article/js/owl.carousel.min.js"></script>
+		src="${pageContext.request.contextPath}/article/ajs/jquery.stellar.min.js"></script>
+	<script src="${pageContext.request.contextPath}/article/ajs/owl.carousel.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/article/js/jquery.magnific-popup.min.js"></script>
-	<script src="${pageContext.request.contextPath}/article/js/aos.js"></script>
+		src="${pageContext.request.contextPath}/article/ajs/jquery.magnific-popup.min.js"></script>
+	<script src="${pageContext.request.contextPath}/article/ajs/aos.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/article/js/jquery.animateNumber.min.js"></script>
-	<script src="${pageContext.request.contextPath}/article/js/scrollax.min.js"></script>
+		src="${pageContext.request.contextPath}/article/ajs/jquery.animateNumber.min.js"></script>
+	<script src="${pageContext.request.contextPath}/article/ajs/scrollax.min.js"></script>
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-	<script src="${pageContext.request.contextPath}/article/js/google-map.js"></script>
-	<script src="${pageContext.request.contextPath}/article/js/main.js"></script>
+	<script src="${pageContext.request.contextPath}/article/ajs/google-map.js"></script>
+	<script src="${pageContext.request.contextPath}/article/ajs/main.js"></script>
 </body>
 </html>

@@ -7,6 +7,9 @@ import com.web.icook.model.ArticleBean;
 public interface IcookDao {
 
 	List<ArticleBean> getAllArticles();
+	
+	List<ArticleBean> getThreeArticles();
+
 
 	public void insertIcookArticle(ArticleBean articlebean);// 新增一筆資料
 

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+</head>
+<body>
+	<h2>NameCityPost</h2>
+	<button id="get">using .get</button>
+	<button id="ajax">using .ajax</button>
+	<div id="demo"></div>
+	<script>
+		$("#get").click(
+				function() {
+					$.get("NameCity.jsp?name=Henry&city=Taipei", function(data,
+							status) {
+						if (status == "success")
+							$("#demo").html(data);
+					});
+				});
+
+		$("#ajax").click(function() {
+			$.ajax({
+				url : "NameCity.jsp?name=Owen&city=Keelung",
+				type : "GET",
+				success : function(data) {
+					$("#demo").html(data);
+				}
+			});
+		});
+	</script>
+</body>
+</html>

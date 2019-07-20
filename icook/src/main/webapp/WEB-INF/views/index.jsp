@@ -67,6 +67,11 @@
 					
 					<li class="nav-item"><a class="nav-link" href="toAIOcheck">ecpay</a>
 				</li>
+				<li><span><a
+			class="nav-link" href="index2">去畫面首頁</a></span></li>
+				
+				<a href="#" class="btn btn-primary btn-lg btn-block"
+			onclick="window.open(' /icook/toAIOcheck', 'Paypal', config='height=500,width=500');">去印超商取貨條碼!</a>
 
 			</ul>
 			<form class="form-inline my-2 my-lg-0">
@@ -87,7 +92,7 @@
 		<p>其他會員</p>
 		<a href="members">會員首頁</a>
 		<%-- 	<a href="member?member_id=${member_id}">會員首頁</a> --%>
-		<a href="A_article">文章首頁</a>
+		<a href="A_articlemainpage">文章首頁</a>
 	</div>
 	
 		<label for='show'> 種類</label>
@@ -133,6 +138,7 @@ $("input[type='image']").click(function() {
 			</li>
 			<li class="nav-item"><a class="nav-link" href="adminCheckOrders">查看訂單(僅限admin的URL)</a>
 			</li>
+			
 		</ul>
 		<span><a class="nav-link" href="login">admin登入</a></span> <span><a
 			class="nav-link" href="logout">Logout登出</a></span> <span><a

@@ -39,29 +39,29 @@
 	rel="stylesheet">
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/open-iconic-bootstrap.min.css">
+	href="${pageContext.request.contextPath}/article/acss/open-iconic-bootstrap.min.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/animate.css">
+	href="${pageContext.request.contextPath}/article/acss/animate.css">
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/owl.carousel.min.css">
+	href="${pageContext.request.contextPath}/article/acss/owl.carousel.min.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/owl.theme.default.min.css">
+	href="${pageContext.request.contextPath}/article/acss/owl.theme.default.min.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/magnific-popup.css">
+	href="${pageContext.request.contextPath}/article/acss/magnific-popup.css">
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/aos.css">
+	href="${pageContext.request.contextPath}/article/acss/aos.css">
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/ionicons.min.css">
+	href="${pageContext.request.contextPath}/article/acss/ionicons.min.css">
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/flaticon.css">
+	href="${pageContext.request.contextPath}/article/acss/flaticon.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/icomoon.css">
+	href="${pageContext.request.contextPath}/article/acss/icomoon.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/style.css">
+	href="${pageContext.request.contextPath}/article/acss/style.css">
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
@@ -73,8 +73,8 @@
 		class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light"
 		id="ftco-navbar">
 		<div class="container">
-			<a class="navbar-brand" href="index.html">Stories<span>.</span></a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
+<a class="navbar-brand" href="index2"><img width="240" height="111.5" src="images/logo.png"
+								alt="EXTERIOR"></a>			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#ftco-nav" aria-controls="ftco-nav"
 				aria-expanded="false" aria-label="Toggle navigation">
 				<span class="oi oi-menu"></span> Menu
@@ -97,7 +97,7 @@
 	<!-- END nav -->
 
 	<section class="hero-wrap hero-wrap-2"
-		style="background-image: url('images/bg_4.jpg');">
+		style="background-image: url('article/aimages/bg_4.jpg');">
 		<div class="overlay"></div>
 		<div class="container">
 			<div
@@ -144,19 +144,17 @@
 						</div>
 					</div>
 
+<!-- 					編輯者資料 -->
 					<div class="about-author d-flex p-4 bg-light">
 						<div class="bio mr-5">
-							<img src="images/person_1.jpg" alt="Image placeholder"
+							<img width="200px" height="200px" src="<spring:url value='/MemberPhoto?member_id=${Article.article_member.member_id}' />" alt="Image placeholder"
 								class="img-fluid mb-4">
 						</div>
 						<div class="desc">
 
 							<!--               簡介 -->
-							<h3>George Washington</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-								Ducimus itaque, autem necessitatibus voluptate quod mollitia
-								delectus aut, sunt placeat nam vero culpa sapiente consectetur
-								similique, inventore eos fugit cupiditate numquam!</p>
+							<h3>Author:           ${Article.article_member.nickname}</h3>
+							<p>${Article.article_member.resume}</p>
 						</div>
 					</div>
 
@@ -245,7 +243,8 @@
 																	function(
 																			res) {
 
-																		$(".comment-list")
+																		$(
+																				".comment-list")
 																				.append(
 																						'<li class="comment"><div class="vcard bio"><img src="<spring:url value="/MemberPhoto?member_id='
 																								+ res[1]
@@ -256,10 +255,10 @@
 																								+ '</div><p>'
 																								+ res[0]
 																								+ '</p></div></li>');
-																								
-																		CKEDITOR.instances.editor2.setData('');
 
-										
+																		CKEDITOR.instances.editor2
+																				.setData('');
+
 																	})
 
 												});
@@ -297,73 +296,38 @@
 					</div>
 
 					<div class="sidebar-box ftco-animate">
+						news
 						<h3 class="heading mb-4">Recent Blog</h3>
-						<div class="block-21 mb-4 d-flex">
-							<a class="blog-img mr-4"
-								style="background-image: url(images/image_1.jpg);"></a>
+
+						<c:forEach var='ArticleThree' items='${ArticleThrees}'>
+							<div class="block-21 mb-4 d-flex">
+								<a class="blog-img mr-4" href="<spring:url value='/article?article_num=${ArticleThree.article_num}' />">
+								<img width="100px" height="100px"  src="<c:url value='/getartPicture/${ArticleThree.article_num}'/>">
+									 </a>
+							
+							
+							
 							<div class="text">
 								<h3>
-									<a href="#">Even the all-powerful Pointing has no control
-										about the blind texts</a>
+									<a href="<spring:url value='/article?article_num=${ArticleThree.article_num}' />">${ArticleThree.article_title}
+										</a>
 								</h3>
 								<div class="meta">
 									<div>
-										<a href="#"><span class="icon-calendar"></span> February
-											12, 2019</a>
+										<a href="#"><span class="icon-calendar"></span> 
+										${ArticleThree.article_date}	</a>
 									</div>
 									<div>
-										<a href="#"><span class="icon-person"></span> Admin</a>
+										<a href="#"><span class="icon-person"></span> ${ArticleThree.article_member.nickname}</a>
 									</div>
-									<div>
-										<a href="#"><span class="icon-chat"></span> 19</a>
-									</div>
+									
 								</div>
 							</div>
 						</div>
-						<div class="block-21 mb-4 d-flex">
-							<a class="blog-img mr-4"
-								style="background-image: url(images/image_2.jpg);"></a>
-							<div class="text">
-								<h3>
-									<a href="#">Even the all-powerful Pointing has no control
-										about the blind texts</a>
-								</h3>
-								<div class="meta">
-									<div>
-										<a href="#"><span class="icon-calendar"></span> February
-											12, 2019</a>
-									</div>
-									<div>
-										<a href="#"><span class="icon-person"></span> Admin</a>
-									</div>
-									<div>
-										<a href="#"><span class="icon-chat"></span> 19</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="block-21 mb-4 d-flex">
-							<a class="blog-img mr-4"
-								style="background-image: url(images/image_3.jpg);"></a>
-							<div class="text">
-								<h3>
-									<a href="#">Even the all-powerful Pointing has no control
-										about the blind texts</a>
-								</h3>
-								<div class="meta">
-									<div>
-										<a href="#"><span class="icon-calendar"></span> February
-											12, 2019</a>
-									</div>
-									<div>
-										<a href="#"><span class="icon-person"></span> Admin</a>
-									</div>
-									<div>
-										<a href="#"><span class="icon-chat"></span> 19</a>
-									</div>
-								</div>
-							</div>
-						</div>
+						</c:forEach>
+						
+						
+						
 					</div>
 
 					<div class="sidebar-box ftco-animate">
@@ -516,33 +480,33 @@
 
 
 	<script
-		src="${pageContext.request.contextPath}/article/js/jquery.min.js"></script>
+		src="${pageContext.request.contextPath}/article/ajs/jquery.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/article/js/jquery-migrate-3.0.1.min.js"></script>
+		src="${pageContext.request.contextPath}/article/ajs/jquery-migrate-3.0.1.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/article/js/popper.min.js"></script>
+		src="${pageContext.request.contextPath}/article/ajs/popper.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/article/js/bootstrap.min.js"></script>
+		src="${pageContext.request.contextPath}/article/ajs/bootstrap.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/article/js/jquery.easing.1.3.js"></script>
+		src="${pageContext.request.contextPath}/article/ajs/jquery.easing.1.3.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/article/js/jquery.waypoints.min.js"></script>
+		src="${pageContext.request.contextPath}/article/ajs/jquery.waypoints.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/article/js/jquery.stellar.min.js"></script>
+		src="${pageContext.request.contextPath}/article/ajs/jquery.stellar.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/article/js/owl.carousel.min.js"></script>
+		src="${pageContext.request.contextPath}/article/ajs/owl.carousel.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/article/js/jquery.magnific-popup.min.js"></script>
-	<script src="${pageContext.request.contextPath}/article/js/aos.js"></script>
+		src="${pageContext.request.contextPath}/article/ajs/jquery.magnific-popup.min.js"></script>
+	<script src="${pageContext.request.contextPath}/article/ajs/aos.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/article/js/jquery.animateNumber.min.js"></script>
+		src="${pageContext.request.contextPath}/article/ajs/jquery.animateNumber.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/article/js/scrollax.min.js"></script>
+		src="${pageContext.request.contextPath}/article/ajs/scrollax.min.js"></script>
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 	<script
-		src="${pageContext.request.contextPath}/article/js/google-map.js"></script>
-	<script src="${pageContext.request.contextPath}/article/js/main.js"></script>
+		src="${pageContext.request.contextPath}/article/ajs/google-map.js"></script>
+	<script src="${pageContext.request.contextPath}/article/ajs/main.js"></script>
 
 </body>
 
@@ -579,9 +543,7 @@
 <script>
 	
 	
-console.log('12345');		
-console.log(${username});	
-console.log(${Article.article_member.username});
+
 	
 </script>
 <script>

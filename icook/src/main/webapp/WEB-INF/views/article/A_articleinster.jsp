@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,29 +20,29 @@
 	rel="stylesheet">
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/open-iconic-bootstrap.min.css">
+	href="${pageContext.request.contextPath}/article/acss/open-iconic-bootstrap.min.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/animate.css">
+	href="${pageContext.request.contextPath}/article/acss/animate.css">
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/owl.carousel.min.css">
+	href="${pageContext.request.contextPath}/article/acss/owl.carousel.min.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/owl.theme.default.min.css">
+	href="${pageContext.request.contextPath}/article/acss/owl.theme.default.min.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/magnific-popup.css">
+	href="${pageContext.request.contextPath}/article/acss/magnific-popup.css">
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/aos.css">
+	href="${pageContext.request.contextPath}/article/acss/aos.css">
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/ionicons.min.css">
+	href="${pageContext.request.contextPath}/article/acss/ionicons.min.css">
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/flaticon.css">
+	href="${pageContext.request.contextPath}/article/acss/flaticon.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/icomoon.css">
+	href="${pageContext.request.contextPath}/article/acss/icomoon.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/style.css">
+	href="${pageContext.request.contextPath}/article/acss/style.css">
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
 </head>
@@ -50,7 +51,8 @@
 		class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light"
 		id="ftco-navbar">
 		<div class="container">
-			<a class="navbar-brand" href="index.html">Stories<span>.</span></a>
+			<a class="navbar-brand" href="index2"><img width="240" height="111.5" src="images/logo.png"
+								alt="EXTERIOR"></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#ftco-nav" aria-controls="ftco-nav"
 				aria-expanded="false" aria-label="Toggle navigation">
@@ -59,7 +61,8 @@
 
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a href="${pageContext.request.contextPath}/home" class="nav-link">Home</a></li>
+					<li class="nav-item"><a
+						href="${pageContext.request.contextPath}/home" class="nav-link">Home</a></li>
 					<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
 					<li class="nav-item"><a href="A_findAll" class="nav-link">Foods文章首頁</a></li>
 					<li class="nav-item"><a href="lifestyle.html" class="nav-link">Lifestyle</a></li>
@@ -71,8 +74,7 @@
 	<!-- END nav -->
 
 	<section class="hero-wrap hero-wrap-2"
-		style="background-image: url('images/bg_4.jpg');">
-		/icook/src/main/webapp/WEB-INF/views/article/images/bg_4.jpg
+		style="background-image: url('article/aimages/bg_4.jpg');">
 		<div class="overlay"></div>
 		<div class="container">
 			<div
@@ -94,15 +96,20 @@
 			<div class="row">
 				<div class="col-lg-8 order-lg-last ftco-animate">
 					<!--           title -->
-					<h2 class="mb-3">新增一篇文章</h2>
 
+
+
+
+					<h2 class="mb-3">新增一篇文章</h2>
+					
 					<form:form method="POST" modelAttribute="Articlebean"
 						class="bg-light p-5 contact-form" enctype="multipart/form-data">
 
-						<div class="form-group">
-							<form:input path="article_date" type="text" class="form-control"
-								placeholder="日期(西元年-月份-日期)" />
-						</div>
+<!-- 						<div class="form-group"> -->
+
+<%-- 							<form:input path="article_date" type="text" class="form-control"  --%>
+<%-- 								placeholder="日期(西元年-月份-日期)" /> --%>
+<!-- 						</div> -->
 						<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.error_Article_date}</div>
 						<div class="form-group">
 							<form:input path="article_title" type="text" class="form-control"
@@ -110,11 +117,11 @@
 						</div>
 						<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.error_Article_title}</div>
 
-<!-- 						<div class="form-group"> -->
-<%-- 							<form:input path="article_author" type="text" --%>
-<%-- 								class="form-control" placeholder="作者" /> --%>
-<!-- 						</div> -->
-<%-- 						<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.error_Article_author}</div> --%>
+						<!-- 						<div class="form-group"> -->
+						<%-- 							<form:input path="article_author" type="text" --%>
+						<%-- 								class="form-control" placeholder="作者" /> --%>
+						<!-- 						</div> -->
+						<%-- 						<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.error_Article_author}</div> --%>
 
 						<div class="form-group">
 							<form:select path="article_status" class="form-control">
@@ -183,7 +190,7 @@
 						<h3 class="heading mb-4">Recent Blog</h3>
 						<div class="block-21 mb-4 d-flex">
 							<a class="blog-img mr-4"
-								style="background-image: url(images/image_1.jpg);"></a>
+								style="background-image: url(article/aimages/image_1.jpg);"></a>
 							<div class="text">
 								<h3>
 									<a href="#">Even the all-powerful Pointing has no control
@@ -205,7 +212,7 @@
 						</div>
 						<div class="block-21 mb-4 d-flex">
 							<a class="blog-img mr-4"
-								style="background-image: url(images/image_2.jpg);"></a>
+								style="background-image: url(article/aimages/image_2.jpg);"></a>
 							<div class="text">
 								<h3>
 									<a href="#">Even the all-powerful Pointing has no control
@@ -227,7 +234,7 @@
 						</div>
 						<div class="block-21 mb-4 d-flex">
 							<a class="blog-img mr-4"
-								style="background-image: url(images/image_3.jpg);"></a>
+								style="background-image: url(article/aimages/image_3.jpg);"></a>
 							<div class="text">
 								<h3>
 									<a href="#">Even the all-powerful Pointing has no control
@@ -398,28 +405,34 @@
 	</div>
 
 
-	<script src="${pageContext.request.contextPath}/article/js/jquery.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/article/js/jquery-migrate-3.0.1.min.js"></script>
-	<script src="${pageContext.request.contextPath}/article/js/popper.min.js"></script>
-	<script src="${pageContext.request.contextPath}/article/js/bootstrap.min.js"></script>
+		src="${pageContext.request.contextPath}/article/ajs/jquery.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/article/js/jquery.easing.1.3.js"></script>
+		src="${pageContext.request.contextPath}/article/ajs/jquery-migrate-3.0.1.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/article/js/jquery.waypoints.min.js"></script>
+		src="${pageContext.request.contextPath}/article/ajs/popper.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/article/js/jquery.stellar.min.js"></script>
-	<script src="${pageContext.request.contextPath}/article/js/owl.carousel.min.js"></script>
+		src="${pageContext.request.contextPath}/article/ajs/bootstrap.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/article/js/jquery.magnific-popup.min.js"></script>
-	<script src="${pageContext.request.contextPath}/article/js/aos.js"></script>
+		src="${pageContext.request.contextPath}/article/ajs/jquery.easing.1.3.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/article/js/jquery.animateNumber.min.js"></script>
-	<script src="${pageContext.request.contextPath}/article/js/scrollax.min.js"></script>
+		src="${pageContext.request.contextPath}/article/ajs/jquery.waypoints.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/article/ajs/jquery.stellar.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/article/ajs/owl.carousel.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/article/ajs/jquery.magnific-popup.min.js"></script>
+	<script src="${pageContext.request.contextPath}/article/ajs/aos.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/article/ajs/jquery.animateNumber.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/article/ajs/scrollax.min.js"></script>
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-	<script src="${pageContext.request.contextPath}/article/js/google-map.js"></script>
-	<script src="${pageContext.request.contextPath}/article/js/main.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/article/ajs/google-map.js"></script>
+	<script src="${pageContext.request.contextPath}/article/ajs/main.js"></script>
 
 </body>
 

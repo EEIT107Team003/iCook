@@ -2,6 +2,8 @@ package recipe.model;
 
 import java.io.Serializable;
 import java.sql.Blob;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -10,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -27,9 +30,11 @@ import com.web.icook.model.MemberBean;
 //4.還要加一個儲存食材的資料表【】
 //【已完成】5.加上FK指向會員編號
 //@Transient JPA 使用@Transient來忽略Entity類別屬性映射至資料表
+//「食譜 recipe【已完成】」
 @Entity
 @Table(name = "recipe")
 public class RecipeBean implements Serializable {
+	// 食譜表格
 	// 多方，多方對應一方雙向。
 	// hql語法只能存取實際類別名稱 RecipeBean 跟 實際屬性名稱 pk_recipe_id。
 
@@ -44,6 +49,12 @@ public class RecipeBean implements Serializable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_member_id")
 	private MemberBean memberbean;// TODO 正確寫法，多中有個一。2-1
+
+	@OneToMany(mappedBy = "recipeBeanIngredients", cascade = CascadeType.ALL)
+	private List<RecipeIngredientsBean> recipeIngredients = new ArrayList<RecipeIngredientsBean>();// 一對多，「食譜食材」
+
+	@OneToMany(mappedBy = "recipeBeanUnit", cascade = CascadeType.ALL)
+	private List<RecipeUnit> recipeUnit = new ArrayList<RecipeUnit>();// 一對多，「單元食譜、食譜步驟【已完成】」
 
 	private String recipe_name;// 食譜名稱
 	private String recipe_quantity;// 食譜份量
@@ -64,6 +75,32 @@ public class RecipeBean implements Serializable {
 		// 空的建構子
 	}
 
+	@Override
+	public String toString() {
+		return "RecipeBean [pk_recipe_id=" + pk_recipe_id + ", memberbean=" + memberbean + ", recipeIngredients="
+				+ recipeIngredients + ", recipeUnit=" + recipeUnit + ", recipe_name=" + recipe_name
+				+ ", recipe_quantity=" + recipe_quantity + ", recipe_image=" + recipe_image + ", recipe_summary="
+				+ recipe_summary + ", recipe_time=" + recipe_time + ", recipe_note=" + recipe_note + ", recipe_date="
+				+ recipe_date + ", recipe_display=" + recipe_display + ", image_file=" + image_file + ", file_name="
+				+ file_name + ", recipe_click_rate=" + recipe_click_rate + "]";
+	}
+
+	public List<RecipeIngredientsBean> getRecipeIngredients() {
+		return recipeIngredients;
+	}
+
+	public void setRecipeIngredients(List<RecipeIngredientsBean> recipeIngredients) {
+		this.recipeIngredients = recipeIngredients;
+	}
+
+	public List<RecipeUnit> getRecipeUnit() {
+		return recipeUnit;
+	}
+
+	public void setRecipeUnit(List<RecipeUnit> recipeUnit) {
+		this.recipeUnit = recipeUnit;
+	}	
+	
 	public Integer getPk_recipe_id() {
 		// @GeneratedValue(strategy = GenerationType.SEQUENCE)//不使用，他不會從1開始。
 		// GenerationType.IDENTITY PK主鍵編號自動給定，從1開始，每新增一筆資料編號就加1。

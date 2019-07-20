@@ -11,14 +11,17 @@ import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
-import com.web.icook.controller.ExcelViewResolver;
+import com.web.icook.viewResolver.ExcelViewResolver;
+
+import forum.model.Users;
+
+import forum.model.Users;
 
 @Configuration
 
@@ -37,23 +40,36 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/product_css/**").addResourceLocations("/WEB-INF/views/products/css/");
-		registry.addResourceHandler("/product_image/**").addResourceLocations("/WEB-INF/views/products/images/");
-		registry.addResourceHandler("/backStage/**").addResourceLocations("/WEB-INF/views/backStage/");
 		registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/views/css/");
 		registry.addResourceHandler("/member_image/**").addResourceLocations("/WEB-INF/views/member_image/");
 		registry.addResourceHandler("/ckeditor/**").addResourceLocations("/WEB-INF/views/ckeditor/");
 		registry.addResourceHandler("/assets/**").addResourceLocations("/WEB-INF/views/assets/");
 		//		super.addResourceHandlers(registry);
+
+		
+		
+		//==========亘哲==============
+		registry.addResourceHandler("/product_css/**").addResourceLocations("/WEB-INF/views/products/css/");
+		registry.addResourceHandler("/product_image/**").addResourceLocations("/WEB-INF/views/products/images/");
+		registry.addResourceHandler("/backStage/**").addResourceLocations("/WEB-INF/views/backStage/");
+		//==========亘哲==============
 		
 		//秉諺 開始
 		registry.addResourceHandler("/article/**/**").addResourceLocations("/WEB-INF/views/article/");
 		registry.addResourceHandler("/fonts/**").addResourceLocations("/WEB-INF/views/article/fonts/");
-		registry.addResourceHandler("/images/**").addResourceLocations("/WEB-INF/views/article/images/");
-		registry.addResourceHandler("/scss/**").addResourceLocations("/WEB-INF/views/article/scss/");
-		registry.addResourceHandler("/js/**").addResourceLocations("/WEB-INF/views/article/js/");
-		registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/views/article/css/");
+		registry.addResourceHandler("/aimages/**").addResourceLocations("/WEB-INF/views/article/aimages/");
+		registry.addResourceHandler("/ascss/**").addResourceLocations("/WEB-INF/views/article/ascss/");
+		registry.addResourceHandler("/ajs/**").addResourceLocations("/WEB-INF/views/article/ajs/");
+		registry.addResourceHandler("/acss/**").addResourceLocations("/WEB-INF/views/article/acss/");
 		//秉諺 結束
+		
+		//威翰套版前端畫面
+		registry.addResourceHandler("/js/**").addResourceLocations("/WEB-INF/views/frontend/js/");
+		registry.addResourceHandler("/bat/**").addResourceLocations("/WEB-INF/views/frontend/bat/");
+		registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/views/frontend/css/");
+		registry.addResourceHandler("/images/**").addResourceLocations("/WEB-INF/views/frontend/images/");
+		//DengYao
+		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 	}
 
 	@Bean
@@ -84,4 +100,9 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		System.out.println("excelViewResolver");
 		return new ExcelViewResolver();
 	}
+	
+	@Bean
+	public Users getUsers() {
+		return new Users();
+	} //for livechat
 }
