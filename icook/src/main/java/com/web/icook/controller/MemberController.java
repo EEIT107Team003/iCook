@@ -256,7 +256,7 @@ public class MemberController {
 	
 	
 //	//我的食譜
-//	@RequestMapping(value="members/myrecipe")
+//	@RequestMapping(value="members/myrecipe") 
 //	public String MyRecipe(Model model) {
 //		List<RecipeBean> allRecipeBean=.getAllRecipe();
 //		
