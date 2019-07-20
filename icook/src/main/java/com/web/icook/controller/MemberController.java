@@ -55,11 +55,9 @@ public class MemberController {
 		if (!getPrincipal().equals("anonymousUser")) {
 			bean = memberService.selectByUsername(getPrincipal());
 			model.addAttribute("member", bean);
-
 		}
-		System.out.println("dsdssdsdsdsdss");
-//		return "user_page";
-		return "";
+		System.out.println("7777777777777777777777777");
+		return "user_page";
 	}
 
 	// 查詢我的追蹤
@@ -84,7 +82,6 @@ public class MemberController {
 		
 		String dd = bean.getResume();
 		memberBean.setResume(dd);
-//		System.out.println(dd);
 
 		memberService.updateMemberInfo(memberBean, memberBean.getMember_id());
 		return null;
@@ -133,7 +130,6 @@ public class MemberController {
 		List<MemberBean> list = new ArrayList<MemberBean>();
 		list.add(bean);
 
-//		System.out.println("size : " + list.size());
 		for (MemberBean mb : list) {
 //			System.out.println("Nickname : " + mb.getNickname());
 		}
@@ -222,11 +218,18 @@ public class MemberController {
 		return "member_page";
 	}
 
-	// 加入追蹤(會員)
+	//加入追蹤(非會員)
 	@RequestMapping(value = "/members/page/track", method = RequestMethod.POST)
 	public String trackMembers(Model model, @RequestParam("member_id") Integer member_id) {
-		System.out.println("sssssssssssssssssssssssssssssssssssssssss");
+		return this.member_page(model, member_id);
+	}
+	
+	// 加入追蹤(會員)
+	@ResponseBody
+	@RequestMapping(value="/members/page/track", method = RequestMethod.GET)
+	public List<MyTrackBean> trackMember (@RequestParam(value="member_id")Integer member_id){
 		MemberBean member = memberService.selectByUsername(getPrincipal());
+		System.out.println(member_id);
 		MemberBean tracked = memberService.selectById(member_id);
 		MyTrackBean bean = new MyTrackBean();
 		bean.setMemberId(member);
@@ -235,20 +238,19 @@ public class MemberController {
 		
 		List<MyTrackBean> list=new ArrayList<MyTrackBean>();
 		list=memberService.selectTrackedById(tracked.getMember_id());		
-		System.out.println("-----------"+list.size()+"-----------");
+		System.out.println(member_id+"8888888888888888888889999999999999");
 		tracked.setTracked_num(list.size());
-		//更新被追蹤者數量
+//		//更新被追蹤者數量
 		memberService.updateMemberInfo(tracked, member_id);
-		return this.member_page(model, member_id);
+		return list;
 	}
-
+	
 	// 查詢特定追蹤者
 	@ResponseBody
 	@RequestMapping(value="/members/page/checkTracked", method = RequestMethod.POST)
 	public List<MyTrackBean> selectOneTrackerById (@RequestParam(value="member_id",required = false)Integer member_id){
 		MemberBean bean=memberService.selectByUsername(getPrincipal());
 		List<MyTrackBean> list =memberService.selectOneTrackerById(bean.getMember_id(), member_id);
-//		System.out.println(member_id+" 544554545454545445");
 		return list;
 	}
 	

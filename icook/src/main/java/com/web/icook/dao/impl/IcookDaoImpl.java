@@ -59,7 +59,7 @@ public class IcookDaoImpl implements IcookDao {
 		oldBean.setArticle_member(articlebean.getArticle_member());
 		oldBean.setArticle_catergoary(articlebean.getArticle_catergoary());
 		oldBean.setArticle_content(articlebean.getArticle_content());
-		oldBean.setArticle_date(new Timestamp(System.currentTimeMillis()));
+//		oldBean.setArticle_date(new Timestamp(System.currentTimeMillis()));
 		oldBean.setArticle_status(articlebean.getArticle_status());
 		oldBean.setArticle_title(articlebean.getArticle_title());
 

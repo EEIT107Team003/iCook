@@ -14,6 +14,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 //顯示多筆訂單(不重複)
 //@Data
@@ -27,10 +30,11 @@ public class OrderBean {
 	//加的
 	private String description_all;
 	///////////////////////////////
-	@ManyToOne
 	//@JoinColumn(name="fk_MemberId")
+//	@JsonManagedReference(value="memberbean")
+	@ManyToOne
 	@JoinColumn(name="fk_MemberId",referencedColumnName="member_id" )
-	private MemberBean memberbean;
+	private MemberBean ODmemberbean;
 	/////////////////////////////
 	private String payment;
 	private Double	totalAmount;
@@ -43,6 +47,7 @@ public class OrderBean {
 	private String receiver_email;
 	private String receiver_tel;
 	//加了就部會噴lazy的錯了...雙邊要加,因為我要抓OrderItemBean.product,但是我沒加他就醫直lazy
+	@JsonBackReference(value="orderBean")
 	@OneToMany(mappedBy="orderBean",fetch=FetchType.EAGER)
 	private List<OrderItemBean> items = new ArrayList<>();
 	
@@ -78,7 +83,7 @@ public class OrderBean {
 		super();
 		this.orderNo = orderNo;
 		this.description_all = description_all;
-		this.memberbean = memberbean;
+		this.setODmemberbean(memberbean);
 		this.payment = payment;
 		this.totalAmount = totalAmount;
 		this.shippingAddress = shippingAddress;
@@ -112,12 +117,6 @@ public class OrderBean {
 	}
 	
 	
-	public MemberBean getMemberbean() {
-		return memberbean;
-	}
-	public void setMemberbean(MemberBean memberbean) {
-		this.memberbean = memberbean;
-	}
 	public Double getTotalAmount() {
 		return totalAmount;
 	}
@@ -153,6 +152,18 @@ public class OrderBean {
 	}
 	public void setItems(List<OrderItemBean> items) {
 		this.items = items;
+	}
+	public MemberBean getODmemberbean() {
+		return ODmemberbean;
+	}
+	public void setODmemberbean(MemberBean oDmemberbean) {
+		ODmemberbean = oDmemberbean;
+	}
+	public MemberBean getMemberbean() {
+		return ODmemberbean;
+	}
+	public void setMemberbean(MemberBean memberbean) {
+		this.ODmemberbean = memberbean;
 	}
 	
 }

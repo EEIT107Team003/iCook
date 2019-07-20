@@ -23,6 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import forum.model.ForumMainBean;
@@ -50,7 +51,7 @@ public class MemberBean implements Serializable {
 	@Column(unique = true)
 	private String nickname;
 	//會員簡介
-	@Column(columnDefinition = "VARCHAR (50)" )
+	@Column(length = 50 )
 	private String resume;
 	// 會員電話
 	private String member_phone_num;
@@ -89,11 +90,11 @@ public class MemberBean implements Serializable {
 	@Transient
 	private MultipartFile cover_photo_tr;
 	
-	
-	@OneToMany(mappedBy="memberbean")
+	@JsonBackReference(value="ODmemberbean")
+	@OneToMany(mappedBy="ODmemberbean",fetch= FetchType.EAGER)
 	private Set<OrderBean> orders ;
-
-	@OneToMany(mappedBy="memberBean")
+	@JsonBackReference(value="OTmemberBean")
+	@OneToMany(mappedBy="OTmemberBean",fetch= FetchType.EAGER)
 	private List<OrderItemBean> orderitems ;
 
 	// ------------------------------------------------------------------------
@@ -106,8 +107,8 @@ public class MemberBean implements Serializable {
 	@JsonIgnore
 	private Set<MyTrackBean> tracked = new LinkedHashSet<>();
 	// ------------------------------------------------------------------------
-	@OneToMany(mappedBy = "memberBean")
 	@JsonIgnore
+	@OneToMany(mappedBy = "memberBean")
 	private Set<ForumMainBean> article = new LinkedHashSet<>();
 
 	@OneToMany(mappedBy = "memberbean", cascade = CascadeType.ALL)
@@ -115,14 +116,14 @@ public class MemberBean implements Serializable {
 	private Set<RecipeBean> recipe = new LinkedHashSet<RecipeBean>();// 一中有個多，【一方】。
 	
 //	private Set<CollectRecipe> recipe_Collecter = new LinkedHashSet<>();
-
-	@OneToMany(mappedBy="memberBean" ,fetch= FetchType.EAGER)
+	@JsonBackReference(value="COmemberBean")
+	@OneToMany(mappedBy="COmemberBean" ,fetch= FetchType.EAGER)
 	private Set<CollectiontBean> collectiontbean=new HashSet<>(0);
-	
-	@OneToMany(mappedBy = "article_member")
+	@JsonBackReference(value="article_member")
+	@OneToMany(mappedBy = "article_member",fetch= FetchType.EAGER)
 	private Set<ArticleBean> Act = new LinkedHashSet<>();
-	
-	@OneToMany(mappedBy = "memberid_in_msgs")
+	@JsonBackReference(value="memberid_in_msgs")
+	@OneToMany(mappedBy = "memberid_in_msgs",fetch= FetchType.EAGER)
 	private Set<MsgBoardBean> Msg = new LinkedHashSet<>();
 	
 	

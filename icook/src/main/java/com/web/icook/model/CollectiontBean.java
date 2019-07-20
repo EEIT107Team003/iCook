@@ -29,26 +29,26 @@ public class CollectiontBean implements Serializable {
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_product_id")
-	private ProductBean productBean;
+	private ProductBean COproductBean;
 
 	@ManyToOne
 	@JoinColumn(name = "fk_member_id")
-	private MemberBean memberBean;
+	private MemberBean COmemberBean;
 
 	public ProductBean getProductBean() {
-		return productBean;
+		return COproductBean;
 	}
 
 	public void setProductBean(ProductBean productBean) {
-		this.productBean = productBean;
+		this.COproductBean = productBean;
 	}
 
 	public MemberBean getMemberBean() {
-		return memberBean;
+		return COmemberBean;
 	}
 
 	public void setMemberBean(MemberBean memberBean) {
-		this.memberBean = memberBean;
+		this.COmemberBean = memberBean;
 	}
 
 	public Integer getId() {
