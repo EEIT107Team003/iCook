@@ -192,52 +192,52 @@ width:30px;
 		
 		
 			
-		$("#show3").change(function() {
-			catchSelect1();	 
-			search3();
-		})
+// 		$("#show3").change(function() {
+// 			catchSelect1();	 
+// 			search3();
+// 		})
 		
-		function search3(){
-			var txt = $("#show3 :selected").text();
-// 			console.log('Txt 123: '+txt)
-			$("#remark2").val(txt);
-			$.ajax({                                    
-				url : "${pageContext.request.contextPath}/categories/" + txt,
-				type : "GET",
-				dataType : "json",
-				async : true,
-				contentType : "application/json",
-				success : function(data) {
-//                  console.log('remark2 :'+$("#remark2").val() );
-					var names = JSON.parse(JSON.stringify(data).split(","));
-// 		 			console.log(typeof names);
-					var txt = "<option value='-1' SELECTED id='cr'>請選擇</option>";
-					for (i in names) {
-// 						console.log(i + ' :' + names[i].name);
-						txt += "<option value='"+i+"'>" + names[i].name + "</option>";
-					}
-					$("#show4").html(txt);
-				},
-				error : function(data, textStatus, errorThrown) {
-					console.log(data);
-				},
-			});
-		}
+// 		function search3(){
+// 			var txt = $("#show3 :selected").text();
+// // 			console.log('Txt 123: '+txt)
+// 			$("#remark2").val(txt);
+// 			$.ajax({                                    
+// 				url : "${pageContext.request.contextPath}/categories/" + txt,
+// 				type : "GET",
+// 				dataType : "json",
+// 				async : true,
+// 				contentType : "application/json",
+// 				success : function(data) {
+// //                  console.log('remark2 :'+$("#remark2").val() );
+// 					var names = JSON.parse(JSON.stringify(data).split(","));
+// // 		 			console.log(typeof names);
+// 					var txt = "<option value='-1' SELECTED id='cr'>請選擇</option>";
+// 					for (i in names) {
+// // 						console.log(i + ' :' + names[i].name);
+// 						txt += "<option value='"+i+"'>" + names[i].name + "</option>";
+// 					}
+// 					$("#show4").html(txt);
+// 				},
+// 				error : function(data, textStatus, errorThrown) {
+// 					console.log(data);
+// 				},
+// 			});
+// 		}
 		
-		$("#show4").change(function() {
-			search4();
-		})
-		function search4(){
-			var txt4= $("#show4 :selected").text();
-			$.ajax({
-                success : function(data) {	
-                $("#fileName2").val(txt4);
-				},
-				error : function(data, textStatus, errorThrown) {
-					console.log(data);
-				},
-			});
-		}
+// 		$("#show4").change(function() {
+// 			search4();
+// 		})
+// 		function search4(){
+// 			var txt4= $("#show4 :selected").text();
+// 			$.ajax({
+//                 success : function(data) {	
+//                 $("#fileName2").val(txt4);
+// 				},
+// 				error : function(data, textStatus, errorThrown) {
+// 					console.log(data);
+// 				},
+// 			});
+// 		}
 		
 // ==========================================SHOW change================================================================
 	
@@ -435,11 +435,6 @@ width:30px;
 						             +"Details</a>"
 						             +"</form></nav></div></div></div>"
 					         }
-// 						             +"<a class='btn btn-sm btn-outline-secondary'   href=\" <c:url value=  '/products/product/addToCollection?id="+names[i].product_id+"'    /> \"    >" 
-// 						             +"新增收藏</a>"
-// 						             +"<a class='btn btn-sm btn-outline-secondary'   href=\" <c:url value=  '/products/products/upd?id="+names[i].product_id+"'    /> \"    >" 
-// 						             +"更新</a>"
-//	 						console.log("txt : "+txt)
 							$("#right").html(txt);
 					}
 			   	})
@@ -471,11 +466,6 @@ width:30px;
 						             +"</form></nav></div></div></div>"
 					         }
 
-// 						             +"<a class='btn btn-sm btn-outline-secondary'   href=\" <c:url value=  '/product/addToCollection?id="+names[i].product_id+"'    /> \"    >" 
-// 						             +"新增收藏</a>"
-// 						             +"<a class='btn btn-sm btn-outline-secondary'   href=\" <c:url value=  '/products/upd?id="+names[i].product_id+"'    /> \"    >" 
-// 						             +"更新</a>"
-//	 						console.log("txt : "+txt)
 							$("#right").html(txt);
 					    }
 				     })

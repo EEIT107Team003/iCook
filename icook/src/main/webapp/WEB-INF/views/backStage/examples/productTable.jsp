@@ -191,10 +191,15 @@ float:right;
 						var names = JSON.parse(JSON.stringify(data).split(","));
 						var ss=JSON.stringify(data).split(",")
 								txt="";
-						  for (i in names) {
+						   for (i in names) {
+	        	            	if(names[i].status==1)
+	        	            		names[i].status='上架中'
+	        	            	if(names[i].status==2)
+	        	            		names[i].status='下架中'
 	        					txt += "<tr>"
 	        					+"<td>"+names[i].product_id+"</td>"
 	        					+"<td>"+names[i].name+"</td>"
+	        					+"<td>"+names[i].categoriesbean.categorybean.name+" / "+names[i].categoriesbean.name+"</td>"
 	        					+"<td>"+names[i].price+"</td>"
 	        					+"<td>"+names[i].status+"</td>"
 	        					+"<td>"+names[i].stock+"</td>"
@@ -211,7 +216,6 @@ float:right;
 </head>
 
 <body>
-<h1>44444</h1>
     <div class="wrapper">
         <div class="sidebar" data-image="backStage/assets/img/sidebar-5.jpg">
             <!--
@@ -359,9 +363,14 @@ float:right;
         				var names = JSON.parse(JSON.stringify(data).split(","));
         				var txt = "";
         	            for (i in names) {
+        	            	if(names[i].status==1)
+        	            		names[i].status='上架中'
+        	            	if(names[i].status==2)
+        	            		names[i].status='下架中'
         					txt += "<tr>"
         					+"<td>"+names[i].product_id+"</td>"
         					+"<td>"+names[i].name+"</td>"
+        					+"<td>"+names[i].categoriesbean.categorybean.name+" / "+names[i].categoriesbean.name+"</td>"
         					+"<td>"+names[i].price+"</td>"
         					+"<td>"+names[i].status+"</td>"
         					+"<td>"+names[i].stock+"</td>"
@@ -386,9 +395,9 @@ float:right;
                                 <div class="card-header ">
                                     <h4 class="card-title">產品後台</h4>
                                     <p class="card-category">Here is the background of the product</p>
-									<a href="${pageContext.request.contextPath}/products/add" style="width:10ch;height:4ch;" class="btn btn-secondary" 
+									<a href="${pageContext.request.contextPath}/products/add" style="width:10ch;height:4ch;margin:1ch;" class="btn btn-secondary" 
 									role="button" aria-pressed="true">Insert</a>
-							     	<a href="productsEx.xls" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true" style="line-height:5px;" >AllProductsExcel</a>
+							     	<a href="productsEx.xls" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true" style="line-height:5px;margin:1ch;" >AllProductsExcel</a>
 									<section class="container">
 										<nav class="navbar navbar-light bg-light">
 											<form class="searchDiv"  method="GET" id="searchDiv"  action="productsByCategoryEx.xls"
@@ -418,6 +427,7 @@ float:right;
                                         <thead>
                                             <th>ID</th>
                                             <th>Name</th>
+                                            <th>Category</th>
                                             <th>Price</th>
                                             <th>status</th>
                                             <th>stock</th>

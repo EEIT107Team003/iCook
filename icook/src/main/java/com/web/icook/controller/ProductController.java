@@ -66,6 +66,33 @@ public class ProductController {
 
 	@Autowired
 	MemberService mservice;
+	
+	
+
+	@ResponseBody
+	@RequestMapping(value = "/SelectByCategoriesAndDescriptionForProduct/{txt}", method = RequestMethod.GET)
+	public List<ProductBean> SelectByCategoriesAndDescriptionForProduct(@PathVariable String txt) {
+		System.out.println("======SelectByCategoriesAndDescriptionForProduct IN==============");
+		System.out.println("txt: "+txt);	
+		String fileName = txt;// Categories.name AjAX後端抓不到 硬塞一個String去接
+		String remark = service.getOneCategory(txt).get(0).getCategorybean().getName();// Category.name AjAX後端抓不到 硬塞一個String去接
+		String description="";
+//        System.out.println("remark : "+remark);
+		//		String description = searchBean.getDescription().trim();
+//		if (searchBean.getStock() == null) {
+//			searchBean.setStock(1);
+//		}
+//		int stock = searchBean.getStock();
+//		System.out.println("pageValue :" + stock);
+//		System.out.println("remark :" + remark + "fileName :" + fileName + "，description :" + description);
+		List<ProductBean> list = service.SelectByCategoriesAndDescriptionForPage(remark, fileName, description);
+		for(ProductBean bb :list) {
+			System.out.println("id :"+bb.getProduct_id()
+			+"  description :"+bb.getDescription() +"Name"+bb.getRemark());
+		}
+		System.out.println("======SelectByCategoriesAndDescriptionForProduct OUT==============");
+		return list;
+	}
 
 	@RequestMapping(value = "/productsEx", method = RequestMethod.GET, produces = "application/vnd.ms-excel")
 	public String AllProductsExcel(Model model) {

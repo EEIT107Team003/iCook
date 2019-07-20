@@ -18,7 +18,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" ></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
 	
-<link rel="stylesheet" type="text/css" href="/product_css/products.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/product_css/products.css">
 	
 <style>
 * {	
@@ -119,7 +119,46 @@ width:30px;
 	
 // ================================起始畫面SHOW====================================
 	 firstShow();
+    selectLoacl();
     var count;
+
+    function selectLoacl(){
+		 var txt=String("${product.categoriesbean.name}")
+		 var txt2="${product.categoriesbean.categorybean.name}";
+		 console.log(txt)
+		 console.log(txt2)
+		 $.ajax({                                    
+				url : "${pageContext.request.contextPath}/SelectByCategoriesAndDescriptionForProduct/" + txt,
+				type : "GET",
+				dataType : "json",
+				async : true,
+				contentType : "application/json",
+				success : function(data) {
+					var names = JSON.parse(JSON.stringify(data).split(","));
+					var ss=JSON.stringify(data).split(",")
+							txt="";
+					for (i in names) {
+				             txt+=
+				            	  "<div class='col-sm-6 col-md-3' style='width: 200px; height: 250px;margin-bottom:50px;margin-right:50px'>"
+					             +"<div class=''>"
+					             +"<img width='125' height='175'src=   \" <c:url value=  '/getProductPicture/"+names[i].product_id+"'   /> \"     />"
+					             +"<div class=''  height='100' style='font-size: 8px; ''><p>"
+					             +"名稱  : "+names[i].name+"</p><p>價格 : "+names[i].price+"</p>"
+					             +"<nav class='navbar navbar-light bg-light'><form class='form-inline'>"
+					             +"<a class='mh6'   href=\" <c:url value=  '/product?id="+names[i].product_id+"'    /> \"    >" 
+					             +"Details</a>"
+					             +"</form></nav></div></div></div>"
+				         }
+						$("#right").html(txt);
+				},
+				error : function(data, textStatus, errorThrown) {
+					console.log(data);
+				},
+			});
+		 
+          }
+    
+    
     function firstShow(){
 	$.ajax({
 			url : "${pageContext.request.contextPath}/category",
@@ -184,9 +223,15 @@ width:30px;
 			},
 		});
 
+
+
+
 		$(document).ready(function() {
 
+
 			
+			
+			 
 // 	<!-- =============================================Dataisl=================================================================		 -->
 			
 			getstock();
@@ -194,7 +239,7 @@ width:30px;
 
 
 			function getstock(){
-			        var names=parseInt(${product.stock})
+			        var names=parseInt("${product.stock}")
 			        var txt=""
 			        for(var i=1;i<=names;i++) {
 						txt += "<option value='"+i+"'>" +i+ "</option>"
@@ -211,53 +256,6 @@ width:30px;
 			
 // 	<!-- =============================================Dataisl=================================================================		 -->	
 			
-		$("#show3").change(function() {
-			catchSelect1();	 
-			search3();
-		})
-		
-		function search3(){
-			var txt = $("#show3 :selected").text();
-// 			console.log('Txt 123: '+txt)
-			$("#remark2").val(txt);
-			$.ajax({                                    
-				url : "${pageContext.request.contextPath}/categories/" + txt,
-				type : "GET",
-				dataType : "json",
-				async : true,
-				contentType : "application/json",
-				success : function(data) {
-//                  console.log('remark2 :'+$("#remark2").val() );
-					var names = JSON.parse(JSON.stringify(data).split(","));
-// 		 			console.log(typeof names);
-					var txt = "<option value='-1' SELECTED id='cr'>請選擇</option>";
-					for (i in names) {
-// 						console.log(i + ' :' + names[i].name);
-						txt += "<option value='"+i+"'>" + names[i].name + "</option>";
-					}
-					$("#show4").html(txt);
-				},
-				error : function(data, textStatus, errorThrown) {
-					console.log(data);
-				},
-			});
-		}
-		
-		$("#show4").change(function() {
-			search4();
-		})
-		function search4(){
-			var txt4= $("#show4 :selected").text();
-			$.ajax({
-                success : function(data) {	
-                $("#fileName2").val(txt4);
-				},
-				error : function(data, textStatus, errorThrown) {
-					console.log(data);
-				},
-			});
-		}
-		
 // ==========================================SHOW change================================================================
 	
 	
@@ -276,9 +274,6 @@ width:30px;
 		}
 	
 	
-		$("#show2").change(function() {
-			search2();
-		})
 			
 	
 		$("#show").change(function() {
@@ -291,7 +286,7 @@ width:30px;
 // 			console.log('Txt 123: '+txt)
 			$("#remark").val(txt);
 			 $("#fileName").val("");
-// 			alert($("#remark").val());
+			alert($("#remark").val());
 			$.ajax({                                    
 				url : "${pageContext.request.contextPath}/categories/" + txt,
 				type : "GET",
@@ -315,6 +310,9 @@ width:30px;
 			});
 		}
 		
+		$("#show2").change(function() {
+			search2();
+		})
 			
 		function search2(){
 			var txt2= $("#show2 :selected").text();
@@ -616,31 +614,6 @@ width:30px;
 					<li><a class="search">豬肉</a></li>
 					<li><a class="search">羊肉</a></li>
 				</ul>
-				
-				
-				</div>
-				 <a href='productsEx.xls' >AllProductsExcel</a><br>
-				<div>
-					<div>
-						<select id="show3" name="show3" style="width: 30ch"
-							class="form-control form-control-sm"><option value="0"
-								SELECTED id='ch'>請選擇</option></select> <select id="show4" name="show4"
-							style="width: 30ch" class="form-control form-control-sm">
-						</select>
-					</div>
-					<form action="productsByCategoryEx.xls">
-
-						<input id="fileName2" name="fileName2" type="hidden" /> <input
-							id="remark2" name="remark2" type="hidden" />
-						<div>
-							<input id="description2" name="description2" type="text"
-								class="form-control mr-sm-2" placeholder="Search"
-								aria-label="Search"></input>
-						</div>
-						<input type="submit" value="ProductsExcel">
-					</form>
-				</div>
-				
 				<a href='${pageContext.request.contextPath}'>回首頁</a><BR> <br>
 			</section>
 		</div>
@@ -662,7 +635,6 @@ width:30px;
 						<p>顏色: ${product.color}</p>
 						<p>單價: ${product.price}</p>
 						<p>${product.description}</p>
-						<p>${collection.productBean.categoriesbean.name}</p>
 						請選擇數量:<select id="quantity" name="quantity" style="width: 10ch"
 							class="form-control form-control-sm"><option value="0"
 								SELECTED id='ch'>0</option></select> <a
