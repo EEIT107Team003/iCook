@@ -184,6 +184,8 @@ width:30px;
 			},
 		});
 
+
+
 		$(document).ready(function() {
 			selectAll();
 			page();
@@ -346,7 +348,7 @@ width:30px;
 			
 		}	
 			
-		$("#searchDiv").click(function() {
+		$("#searchSub").click(function() {
 			catchSelect1();	 
 // 			console.log($("#searchDiv").serializeObject());
 // 			alert($(".search").serializeObject())
@@ -565,7 +567,7 @@ width:30px;
 						<input id="description" name="description" type="text"  class="form-control mr-sm-2" placeholder="Search" aria-label="Search"></input>
 					</div>
 					<div>
-						  <input type="button"class="btn btn-outline-success my-2 my-sm-0" value="Search">
+						  <input type="button" id="searchSub"class="btn btn-outline-success my-2 my-sm-0" value="Search">
 					</div>
 				</form>
 				</nav>

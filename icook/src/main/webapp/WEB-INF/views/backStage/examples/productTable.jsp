@@ -34,54 +34,92 @@
     <link href="backStage/assets/css/light-bootstrap-dashboard.css?v=2.0.0 " rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="backStage/assets/css/demo.css" rel="stylesheet" />
-    
-    
-    <script type="text/javascript">
-    function catchSelect1(){
+<style type="text/css">
+.container select{
+margin-top:2ch;
+font-size:10px;
+width:30ch;
+hight:10px;
+}
+.search {
+margin-top:5ch;
+}
+
+</style>
+
+<script type="text/javascript">
+	firstShow();
+	
+	function firstShow() {
+		$.ajax({
+			url : "${pageContext.request.contextPath}/category",
+			type : "POST",
+			dataType : "json",
+			contentType : "application/json",
+			async : true,
+			success : function(data) {
+				var names = JSON.parse(JSON.stringify(data).split(","));
+				var txt = "";
+				for (i in names) {
+					txt += "<option value='"+i+"'>" + names[i].name
+							+ "</option>";
+				}
+				$("#show").append(txt);
+			},
+			error : function(data, textStatus, errorThrown) {
+				console.log(data);
+			},
+		});
+	}
+	
+	$(document).ready(function() {
+		
+
+
+	function catchSelect1() {
 		var txt = $("#show :selected").text();
-		if(txt=='請選擇'){
-			var clean=null
+		if (txt == '請選擇') {
+			var clean = null
 			$("#show2").html(clean);
 		}
 	}
 
-function cleanAllSelect(){
-	secondShow()		
-	var clean=null
+	function cleanAllSelect() {
+		secondShow()
+		var clean = null
 		$("#show2").html(clean);
 	}
-
 
 	$("#show2").change(function() {
 		search2();
 	})
-		
 
 	$("#show").change(function() {
-		catchSelect1();	 
+		catchSelect1();
 		search();
 	})
-	
-	function search(){
+
+	function search() {
 		var txt = $("#show :selected").text();
-//			console.log('Txt 123: '+txt)
+		//			console.log('Txt 123: '+txt)
 		$("#remark").val(txt);
-		 $("#fileName").val("");
-//			alert($("#remark").val());
-		$.ajax({                                    
+		$("#fileName").val("");
+		//			alert($("#remark").val());
+		$.ajax({
 			url : "${pageContext.request.contextPath}/categories/" + txt,
 			type : "GET",
 			dataType : "json",
 			async : true,
 			contentType : "application/json",
 			success : function(data) {
-//              console.log('remark :'+$("#remark").val() );
+				//              console.log('remark :'+$("#remark").val() );
 				var names = JSON.parse(JSON.stringify(data).split(","));
-//		 			console.log(typeof names);
+				//		 			console.log(typeof names);
 				var txt = "<option value='-1' SELECTED id='cr'>請選擇</option>";
 				for (i in names) {
-//						console.log(i + ' :' + names[i].name);
-					txt += "<option value='"+i+"'>" + names[i].name + "</option>";
+					//						console.log(i + ' :' + names[i].name);
+					txt += "<option value='"+i+"'>" + names[i].name
+							+ "</option>";
 				}
 				$("#show2").html(txt);
 			},
@@ -90,26 +128,64 @@ function cleanAllSelect(){
 			},
 		});
 	}
-	
-		
-	function search2(){
-		var txt2= $("#show2 :selected").text();
-//			console.log('txt2:'+txt2)
+
+	function search2() {
+		var txt2 = $("#show2 :selected").text();
+		//			console.log('txt2:'+txt2)
 		$.ajax({
-            success : function(data) {	
-//             console.log(typeof txt2+' ，showTxt(change) :' + txt2)
-            $("#fileName").val(txt2);
-//             console.log('fileName :'+$("#fileName").val() );
+			success : function(data) {
+				//             console.log(typeof txt2+' ，showTxt(change) :' + txt2)
+				$("#fileName").val(txt2);
+				//             console.log('fileName :'+$("#fileName").val() );
 			},
 			error : function(data, textStatus, errorThrown) {
 				console.log(data);
 			},
 		});
 	}
-    </script>
+	
+	
+	$$("#searchSub").click(function() {
+		alert(8888)
+		catchSelect1();	 
+		selectAll();
+	})
+	
+// ==============END Document
+	})
+	
+	
+	
+	 function selectAll(){
+				$.ajax({
+					url : "${pageContext.request.contextPath}/SelectByCategoriesAndDescription/",
+					type : "POST",
+					dataType : "json",
+					data :$("#searchDiv").serializeObject(),
+					contentType : "application/json",
+					success : function(data) {
+						var names = JSON.parse(JSON.stringify(data).split(","));
+						var ss=JSON.stringify(data).split(",")
+								txt="";
+						  for (i in names) {
+	        					txt += "<tr>"
+	        					+"<td>"+names[i].product_id+"</td>"
+	        					+"<td>"+names[i].name+"</td>"
+	        					+"<td>"+names[i].price+"</td>"
+	        					+"<td>"+names[i].status+"</td>"
+	        					+"<td>"+names[i].stock+"</td>"
+	        					+"<td><a class='btn btn-sm btn-outline-secondary'  href='${pageContext.request.contextPath}/products/upd?id="+names[i].product_id+"'    >Update</a> </td>"
+	        					+"</tr>";
+	        				}
+	        				$("#Main").html(txt);
+					    }
+				     })
+	              }
+</script>
 </head>
 
 <body>
+<h1>111111111</h1>
     <div class="wrapper">
         <div class="sidebar" data-image="backStage/assets/img/sidebar-5.jpg">
             <!--
@@ -285,29 +361,23 @@ function cleanAllSelect(){
                                     <p class="card-category">Here is a subtitle for this table</p>
 
 									<section class="container">
-										<div>
 											<select id="show" name="show"
 												class="form-control form-control-sm"><option
 													value="0" SELECTED id='ch'>請選擇</option></select> <select id="show2"
 												name="show2" class="form-control form-control-sm">
 											</select>
-										</div>
 										<nav class="navbar navbar-light bg-light">
-											<form class="searchDiv" id="searchDiv" method="POST"
+											<form class="searchDiv"  method="POST"
 												class="form-inline">
 												<input id="fileName" name="fileName" type="hidden" /> <input
 													id="remark" name="remark" type="hidden" /><input
 													id="stock" name="stock" type="hidden" />
-												<div>
 													<input id="description" name="description" type="text"
 														class="form-control mr-sm-2" placeholder="Search"
 														aria-label="Search"></input>
-												</div>
-												<div>
-													<input type="button"
+													<input type="button" id="searchSub" 
 														class="btn btn-outline-success my-2 my-sm-0"
 														value="Search">
-												</div>
 											</form>
 										</nav>
 									</section>
@@ -368,85 +438,6 @@ function cleanAllSelect(){
             </footer>
         </div>
     </div>
-    <!--   -->
-    <!-- <div class="fixed-plugin">
-    <div class="dropdown show-dropdown">
-        <a href="#" data-toggle="dropdown">
-            <i class="fa fa-cog fa-2x"> </i>
-        </a>
-
-        <ul class="dropdown-menu">
-			<li class="header-title"> Sidebar Style</li>
-            <li class="adjustments-line">
-                <a href="javascript:void(0)" class="switch-trigger">
-                    <p>Background Image</p>
-                    <label class="switch">
-                        <input type="checkbox" data-toggle="switch" checked="" data-on-color="primary" data-off-color="primary"><span class="toggle"></span>
-                    </label>
-                    <div class="clearfix"></div>
-                </a>
-            </li>
-            <li class="adjustments-line">
-                <a href="javascript:void(0)" class="switch-trigger background-color">
-                    <p>Filters</p>
-                    <div class="pull-right">
-                        <span class="badge filter badge-black" data-color="black"></span>
-                        <span class="badge filter badge-azure" data-color="azure"></span>
-                        <span class="badge filter badge-green" data-color="green"></span>
-                        <span class="badge filter badge-orange" data-color="orange"></span>
-                        <span class="badge filter badge-red" data-color="red"></span>
-                        <span class="badge filter badge-purple active" data-color="purple"></span>
-                    </div>
-                    <div class="clearfix"></div>
-                </a>
-            </li>
-            <li class="header-title">Sidebar Images</li>
-
-            <li class="active">
-                <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="../assets/img/sidebar-1.jpg" alt="" />
-                </a>
-            </li>
-            <li>
-                <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="../assets/img/sidebar-3.jpg" alt="" />
-                </a>
-            </li>
-            <li>
-                <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="..//assets/img/sidebar-4.jpg" alt="" />
-                </a>
-            </li>
-            <li>
-                <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="../assets/img/sidebar-5.jpg" alt="" />
-                </a>
-            </li>
-
-            <li class="button-container">
-                <div class="">
-                    <a href="http://www.creative-tim.com/product/light-bootstrap-dashboard" target="_blank" class="btn btn-info btn-block btn-fill">Download, it's free!</a>
-                </div>
-            </li>
-
-            <li class="header-title pro-title text-center">Want more components?</li>
-
-            <li class="button-container">
-                <div class="">
-                    <a href="http://www.creative-tim.com/product/light-bootstrap-dashboard-pro" target="_blank" class="btn btn-warning btn-block btn-fill">Get The PRO Version!</a>
-                </div>
-            </li>
-
-            <li class="header-title" id="sharrreTitle">Thank you for sharing!</li>
-
-            <li class="button-container">
-				<button id="twitter" class="btn btn-social btn-outline btn-twitter btn-round sharrre"><i class="fa fa-twitter"></i> · 256</button>
-                <button id="facebook" class="btn btn-social btn-outline btn-facebook btn-round sharrre"><i class="fa fa-facebook-square"></i> · 426</button>
-            </li>
-        </ul>
-    </div>
-</div>
- -->
 </body>
 <!--   Core JS Files   -->
 <script src="backStage/assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>

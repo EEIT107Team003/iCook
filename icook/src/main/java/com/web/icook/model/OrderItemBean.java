@@ -37,7 +37,7 @@ public class OrderItemBean  implements Serializable{
 //
 	@ManyToOne
 	@JoinColumn(name="fk_member_seqNo")
-	private MemberBean memberBean;
+	private MemberBean OTmemberBean;
 	
 	//測試,OrderController會用到
 //			@Override
@@ -50,10 +50,10 @@ public class OrderItemBean  implements Serializable{
 	
 	
 	public MemberBean getMemberBean() {
-		return memberBean;
+		return OTmemberBean;
 	}
 	public void setMemberBean(MemberBean memberBean) {
-		this.memberBean = memberBean;
+		this.OTmemberBean = memberBean;
 	}
 	public Integer getOrderItemId() {
 		return OrderItemId;
