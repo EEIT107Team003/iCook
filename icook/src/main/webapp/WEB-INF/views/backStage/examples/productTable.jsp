@@ -157,6 +157,7 @@ float:left;
 	
 	
 	$("#searchSub").click(function() {
+		alert(777)
 		catchSelect1();	 
 		selectAll();
 	})
@@ -386,14 +387,14 @@ float:left;
                         <div class="col-md-12">
                             <div class="card strpied-tabled-with-hover">
                                 <div class="card-header ">
-                                    <h4 class="card-title">Striped Table with Hover</h4>
-                                    <p class="card-category">Here is a subtitle for this table</p>
-									<a href="${pageContext.request.contextPath}/products/add" style="width:10ch;height:4ch;" class="btn btn-primary btn-lg active" 
-									role="button" aria-pressed="true" style>Insert</a>
-
+                                    <h4 class="card-title">產品後台</h4>
+                                    <p class="card-category">Here is the background of the product</p>
+									<a href="${pageContext.request.contextPath}/products/add" style="width:10ch;height:4ch;" class="btn btn-secondary" 
+									role="button" aria-pressed="true">Insert</a>
+	                                <a href='productsEx.xls' >AllProductsExcel</a><br>
 									<section class="container">
 										<nav class="navbar navbar-light bg-light">
-											<form class="searchDiv"  method="POST" id="searchDiv"
+											<form class="searchDiv"  method="GET" id="searchDiv"  action="productsByCategoryEx.xls"
 												class="form-inline">
 												<input id="fileName" name="fileName" type="hidden" /> <input
 													id="remark" name="remark" type="hidden" /><input
@@ -404,12 +405,13 @@ float:left;
 													value="0" SELECTED id='ch'>請選擇</option></select> <select id="show2" 
 												name="show2" class="form-control form-control-sm">
 											</select>
-													<input id="description" name="description" type="text"  style="height:5ch;"
+													<input id="description" name="description" type="text"  style="height:5ch"
 														class="form-control mr-sm-2" placeholder="Search">
+															<input type="submit" class="btn btn-secondary" value="ProductsExcel"  style="margin-left:14ch;;height:5ch;">
+														<input type="button" id="searchSub"
+									class="btn btn-secondary"  style="width:10ch;height:4ch;margin-top:1ch" value="Search">
 											</form>
 										</nav>
-														<input type="button" id="searchSub"
-									class="btn btn-outline-success my-2 my-sm-0"  style="width:10ch;height:4ch;" value="Search">
 									</section>
 								</div>
 								

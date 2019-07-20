@@ -83,9 +83,9 @@ public class ProductController {
 	@RequestMapping(value = "/productsByCategoryEx", method = RequestMethod.GET, produces = "application/vnd.ms-excel")
 	public String ProductsByCategoryExcel(HttpServletRequest request, HttpServletResponse resopnse, Model model) {
 		System.out.println("========productsByCategoryEx IN===========");
-		String remark = request.getParameter("remark2");
-		String fileName = request.getParameter("fileName2");
-		String description = request.getParameter("description2");
+		String remark = request.getParameter("remark");
+		String fileName = request.getParameter("fileName");
+		String description = request.getParameter("description");
 		List<ProductBean> list = service.SelectByCategoriesAndDescriptionForPage(remark, fileName, description);
 		model.addAttribute("productsByCategory", list);
 		System.out.println("========productsByCategoryEx OUT===========");
