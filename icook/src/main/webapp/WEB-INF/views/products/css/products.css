@@ -1,21 +1,50 @@
 @charset "UTF-8";
 
+.left{
+background-color: #CCEEFF;	
+}
 .container h1{
 font-weight:bold;
-	
+}
+.container text{
+width:39ch;
 }
 .container select{
-	width:40ch;
+	width:28ch;
 	height:5ch;
 	font-size: 10px;
 }
-
-.pagination input{
-margin:auto;
+.mainDiv{
+background-color: #CCEEFF;
+border: 1px solid 	#DDDDDD;
+height:40ch;
+width:26ch;
+border-radius: 15px;
+}
+.mainDiv img{
+margin-left:2ch;
+margin-top:2ch;
+height:23ch;
+width:22ch;
+	}
+	
+.mainText{
+margin:3px;
+background-color: #CCEEFF;
+height:10ch;
+}
+#pagination  input{
 width:10ch;
-background-color: #93C775;
+background-color: #DDDDDD;
 font-size: 15px;
-text-align: center;
+}
+
+.pageForProduct{
+padding-left:2ch;
+}
+
+.pageForProduct button{
+width:30px;
 }
 
 .list-type1{

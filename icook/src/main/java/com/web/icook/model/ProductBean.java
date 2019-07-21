@@ -87,6 +87,7 @@ public class ProductBean implements Serializable {
 	@XmlTransient
 	@Transient
 	private MultipartFile productImage;
+	
 
 	public MultipartFile getProductImage() {
 		return productImage;
@@ -202,6 +203,7 @@ public class ProductBean implements Serializable {
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
+
 
 
 }
