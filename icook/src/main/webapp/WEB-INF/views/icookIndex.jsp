@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -76,13 +79,6 @@
 		});
 
 	});
-	
-	
-	
-	
-	
-	
-	
 </script>
 <!--[if lt IE 8]>
        <div style=' clear: both; text-align:center; position: relative;'>
@@ -108,6 +104,8 @@
 						<h1>
 							<a href="index2"><img src="images/logo.png" height='200px' width='200px'
 								alt="EXTERIOR"></a>
+							<a href="index2"><img src="images/logo.png" alt="EXTERIOR"></a>
+							<a href="index2"><img src="images/logo.png" alt="EXTERIOR"></a>
 						</h1>
 
 						<div class="menu_block">
