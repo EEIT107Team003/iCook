@@ -139,7 +139,7 @@
 										<ul>
 									</li>		
 								</ul>
-							</nav>							
+							</nav>
 							<div class="clear"></div>
 						</div>
 						<div class="clear"></div>
