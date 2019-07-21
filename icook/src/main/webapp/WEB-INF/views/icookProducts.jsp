@@ -78,6 +78,7 @@
 									<li><a href="icookLogin">會員專區</a>
 										<ul>
 											<li><a href="icookLogin">會員登入</a></li>
+											<li><a href="checkOrders">查看訂單</a></li>
 											<li><a href="#">會員登出</a></li>
 											<li><a href="#">新增食譜</a></li>
 											<ul></li>
@@ -99,34 +100,34 @@
 				</div>
 				<div class="clear"></div>
 
-				<div class="row">
-					<div class="portfolio">
-						<div class="col-1-2">
-							<div class="wrap-col">
-								<a href="images/big3.jpg" data-gal="prettyPhoto[1]"><span><img
-										src="images/page4_img1.jpg" alt=""></span></a>
-							</div>
-						</div>
-						<div class="col-1-2">
-							<div class="wrap-col">
-								<a href="images/big2.jpg" data-gal="prettyPhoto[1]"><span><img
-										src="images/page4_img2.jpg" alt=""></span></a>
-							</div>
-						</div>
-						<div class="col-1-2">
-							<div class="wrap-col">
-								<a href="images/big4.jpg" data-gal="prettyPhoto[1]"><span><img
-										src="images/page4_img3.jpg" alt=""></span></a>
-							</div>
-						</div>
-						<div class="col-1-2">
-							<div class="wrap-col">
-								<a href="images/big1.jpg" data-gal="prettyPhoto[1]"><span><img
-										src="images/page4_img4.jpg" alt=""></span></a>
-							</div>
-						</div>
-					</div>
-				</div>
+<!-- 				<div class="row"> -->
+<!-- 					<div class="portfolio"> -->
+<!-- 						<div class="col-1-2"> -->
+<!-- 							<div class="wrap-col"> -->
+<!-- 								<a href="images/big3.jpg" data-gal="prettyPhoto[1]"><span><img -->
+<!-- 										src="images/page4_img1.jpg" alt=""></span></a> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 						<div class="col-1-2"> -->
+<!-- 							<div class="wrap-col"> -->
+<!-- 								<a href="images/big2.jpg" data-gal="prettyPhoto[1]"><span><img -->
+<!-- 										src="images/page4_img2.jpg" alt=""></span></a> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 						<div class="col-1-2"> -->
+<!-- 							<div class="wrap-col"> -->
+<!-- 								<a href="images/big4.jpg" data-gal="prettyPhoto[1]"><span><img -->
+<!-- 										src="images/page4_img3.jpg" alt=""></span></a> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 						<div class="col-1-2"> -->
+<!-- 							<div class="wrap-col"> -->
+<!-- 								<a href="images/big1.jpg" data-gal="prettyPhoto[1]"><span><img -->
+<!-- 										src="images/page4_img4.jpg" alt=""></span></a> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
 
 				<div class="row">
 					<div class="bottom_block">

@@ -101,6 +101,7 @@
 									<li><a href="icookLogin">會員專區</a>
 										<ul>
 											<li><a href="icookLogin">會員登入</a></li>
+											<li><a href="checkOrders">查看訂單</a></li>
 											<li><a href="#">會員登出</a></li>
 											<li><a href="#">新增食譜</a></li>
 											<ul></li>

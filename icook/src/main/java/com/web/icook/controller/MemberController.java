@@ -60,7 +60,9 @@ public class MemberController {
 			model.addAttribute("member", bean);
 		}
 
+
 		return "member/user_page";
+
 	}
 
 	// 查詢我的追蹤

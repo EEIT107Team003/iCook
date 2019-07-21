@@ -137,6 +137,7 @@
 									
 									<li><a href="icookLogin">會員專區</a>
 										<ul>
+<<<<<<< HEAD
 											<c:if test="${pageContext.request.userPrincipal.name==null}">
 												<li><a href="icookLogin">會員登入</a></li>
 												<li><a href="icookRegister">會員註冊</a></li>
@@ -144,6 +145,11 @@
 											<c:if test="${pageContext.request.userPrincipal.name!=null}">
 												<li><a href="index2" data-toggle="modal" data-target="#logout">會員登出</a></li>
 											</c:if>
+=======
+											<li><a href="icookLogin">會員登入</a></li>
+											<li><a href="checkOrders">查看訂單</a></li>
+											<li><a href="#">會員登出</a></li>
+>>>>>>> branch 'master' of https://github.com/EEIT107Team003/iCook.git
 											<li><a href="#">新增食譜</a></li>
 										<ul>
 									</li>		
