@@ -59,7 +59,7 @@ public class MemberController {
 		}
 		System.out.println("dsdssdsdsdsdss");
 //		return "user_page";
-		return "";
+		return "user_page";
 	}
 
 	// 查詢我的追蹤
@@ -68,10 +68,11 @@ public class MemberController {
 	public List<MyTrackBean> myTrack() {
 		List<MyTrackBean> list = new ArrayList<MyTrackBean>();
 
-//		if (!getPrincipal().equals("anonymousUser")) {
+		if (!getPrincipal().equals("anonymousUser")) {
 			MemberBean bean = memberService.selectByUsername(getPrincipal());
 			list = memberService.selectTrackerById(bean.getMember_id());
-//		}
+			System.out.println(list.size());
+		}
 
 		return list;
 	}
