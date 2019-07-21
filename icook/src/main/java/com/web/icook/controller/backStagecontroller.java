@@ -40,6 +40,10 @@ public class backStagecontroller {
 		return list;
 	}
 	
+	@RequestMapping(value = { "addSingleProduct"})
+	public String addSingleProduct(Model model) {
+		return "backStage/examples/addSingleProduct";
+	}
 	@RequestMapping(value = { "productTable"})
 	public String productTable(Model model) {
 		return "backStage/examples/productTable";

@@ -233,6 +233,12 @@ float:right;
                 </div>
                 <ul class="nav">
                     <li class="nav-item active">
+                        <a class="nav-link" href="addSingleProduct">
+                            <i class="nc-icon nc-chart-pie-35"></i>
+                            <p>addSingleProduct</p>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
                         <a class="nav-link" href="backStageDashboard">
                             <i class="nc-icon nc-chart-pie-35"></i>
                             <p>Dashboard</p>

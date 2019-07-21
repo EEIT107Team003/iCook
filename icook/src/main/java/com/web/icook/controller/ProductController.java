@@ -489,7 +489,7 @@ public class ProductController {
 			throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
 		}
 		System.out.println("Submit Form Finish============================================");
-		return "redirect:/products";
+		return "redirect:/productTable";
 	}
 
 }
