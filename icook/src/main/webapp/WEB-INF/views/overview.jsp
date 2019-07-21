@@ -7,210 +7,454 @@
 <spring:url value="/resources/js/lib/stomp.min.js" var="stomp" />
 <spring:url value="/resources/js/script.js" var="script" />
 <spring:url value="/resources/js/lib/bootstrap/css/chat.css" var="chatCSS"/>
+<%-- <spring:url value="/css/style.css" var="styleCSS"/> --%>
+<%-- <spring:url value="/css/slider.css" var="sliderCSS"/> --%>
+<%-- <spring:url value="/css/zerogrid.css" var="zerogridCSS"/> --%>
+<%-- <spring:url value="/css/responsive.css" var="responsiveCSS"/> --%>
+<%-- <spring:url value="/css/superfish.css" var="superfishCSS"/> --%>
+<%-- <spring:url value="/js/jquery.js" var="jqueryJS"/> --%>
+<%-- <spring:url value="/js/jquery-migrate-1.1.1.js" var="JM111JS"/> --%>
+<%-- <spring:url value="/js/superfish.js" var="superfishJS"/> --%>
+<%-- <spring:url value="/js/jquery.easing.1.3.js" var="JE13JS"/> --%>
+<%-- <spring:url value="/js/sForm.js" var="sFormJS"/> --%>
+<%-- <spring:url value="/js/jquery.carouFredSel-6.1.0-packed.js" var="JCFS610PJS"/> --%>
+<%-- <spring:url value="/js/tms-0.4.1.js" var="TMSJS"/> --%>
+<%-- <spring:url value="/js/css3-mediaqueries.js" var="CSSJS"/> --%>
+<spring:url value="/images/logo.png" var="logo"/>
+<spring:url value="/resources/css/table.css" var="table" />
+<spring:url value="/resources/css/open-iconic-bootstrap.min.css" var="oicbCSS"/>
+<spring:url value="/resources/css/animate.css" var="animateCSS"/>
+<spring:url value="/resources/css/owl.carousel.min.css" var="ocCSS"/>
+<spring:url value="/resources/css/owl.theme.default.min.css" var="otdCSS"/>
+<spring:url value="/resources/css/magnific-popup.css" var="mpCSS"/>
+<spring:url value="/resources/css/aos.css" var="aosCSS"/>
+<spring:url value="/resources/css/ionicons.min.css" var="ioniconsCSS"/>
+<spring:url value="/resources/css/bootstrap-datepicker.css" var="bdCSS"/>
+<spring:url value="/resources/css/jquery.timepicker.css" var="jtCSS"/>
+<spring:url value="/resources/css/flaticon.css" var="flaticonCSS"/>
+<spring:url value="/resources/css/icomoon.css" var="icomoonCSS"/>
+<spring:url value="/resources/css/style.css" var="styleRCSS"/>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>BootStrap練習</title>
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"
-	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-	crossorigin="anonymous"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-	crossorigin="anonymous"></script>
-<link rel="stylesheet" href=" ${ chatCSS } " >
-</head>
-<body>
-<!-- chat Script -->
-<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyB-CfYZb2rJeeycqL8F5Lo2zmCQAu1A0Sc",
-    authDomain: "soft1-6305e.firebaseapp.com",
-    databaseURL: "https://soft1-6305e.firebaseio.com",
-    projectId: "soft1-6305e",
-    storageBucket: "soft1-6305e.appspot.com",
-    messagingSenderId: "592333250349"
-  };
-  firebase.initializeApp(config);
-  //VARIABLE CON ACCESO A DATOS
+<html lang="en">
+  <head>
+    <title>Andrea - Free Bootstrap 4 Template by Colorlib</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
 
-  Var TableDeDatos=firebase.database().ref('soft1-6305e');
-</script>
-<!-- chat Script -->
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="${ pageContext.request.contextPath }">iCook</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarSupportedContent"
-			aria-controls="navbarSupportedContent" aria-expanded="false"
-			aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
+<link rel="stylesheet" href=" ${oicbCSS}">
+<link rel="stylesheet" href="${animateCSS}">   
+<link rel="stylesheet" href="${ocCSS}">
+<link rel="stylesheet" href="${otdCSS}">
+<link rel="stylesheet" href="${mpCSS}">
+<link rel="stylesheet" href="${aosCSS}">
+<link rel="stylesheet" href="${ioniconsCSS}">
+<link rel="stylesheet" href="${bdCSS}">
+<link rel="stylesheet" href="${jtCSS}">   
+<link rel="stylesheet" href="${flaticonCSS}">
+<link rel="stylesheet" href="${icomoonCSS}">
+<link rel="stylesheet" href="${styleRCSS}">
 
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" type="search"
-					placeholder="Search" aria-label="Search" name="title">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit"
-					formaction="${ pageContext.request.contextPath }/forum/search?title=${ param.title } ">Search</button>
-			</form>
-			<ul class="navbar-nav ml-auto ">
-				<li class="nav-item active"><a class="nav-link" href="#">註冊
-						<span class="sr-only">(current)</span>
-				</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">登入</a></li>
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-					role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false"> Dropdown </a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#">Action</a> <a
-							class="dropdown-item" href="#">Another action</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#">Something else here</a>
-					</div></li>
-				<li class="nav-item"><a class="nav-link disabled" href="#"
-					tabindex="-1" aria-disabled="true">市集</a></li>
-				<li class="nav-item"><a class="nav-link disabled" href="#"
-					tabindex="-1" aria-disabled="true">購物車</a></li>
-			</ul>
-		</div>
-	</nav>
-	<div class="panel panel-success container-fluid">
-		<div class="panel-heading">文章總覽</div>
-		<div class="panel-body">
-			<a class="navbar-brand"
-				href="${ pageContext.request.contextPath }/forum/newPost">發表文章</a>
-			<div class="row">
-				<div class="col"></div>
-				<div class="col-8 table-responsive">
-					<nav aria-label="breadcrumb">
-						<div aria-label="Basic example" style="float: left;">
-							<a class="btn btn-success"
-								href="${ pageContext.request.contextPath }/forum/overview">全部</a>
-							<a class="btn btn-success"
-								href="${ pageContext.request.contextPath }/forum/query?category=問題">問題</a>
-							<a class="btn btn-success"
-								href="${ pageContext.request.contextPath }/forum/query?category=閒聊">閒聊</a>
-							<a class="btn btn-success"
-								href="${ pageContext.request.contextPath }/forum/query?category=心得">心得</a>
-							<a class="btn btn-success"
-								href="${ pageContext.request.contextPath }/forum/query?category=自介">自介</a>
-							<a class="btn btn-success"
-								href="${ pageContext.request.contextPath }/forum/query?category=食材">食材</a>
-							<a class="btn btn-success"
-								href="${ pageContext.request.contextPath }/forum/query?category=器具">器具</a>
-						</div>
-					</nav>
-					<table class="table table-bordered table-hover">
-						<th class="table-success"
-							style="text-align: center; width: 100px;">喜歡</th>
-						<th class="table-success"
-							style="text-align: center; width: 800px;">標題</th>
-						<th class="table-success"
-							style="text-align: center; width: 100px;">人氣/回應</th>
-						<th class="table-success" style="text-align: center;">最後編輯時間</th>
-						<c:forEach var="post" items="${ posts }">
+  </head>
+  <body>
 
-							<tr>
-								<td style="vertical-align: middle;"><p
-										style="text-align: center;">
-										<span><small>${ post.category }</small></span><br> <small>${ post.likes }</small>
-									</p></td>
-								<td style="vertical-align: middle;"><p
-										style="text-align: center;">
-										<a style="color: black;"
-											href="${ pageContext.request.contextPath }/forum/pick?harticle_id=${ post.harticle_id }&article_id=${ post.article_id }">${ post.title }</a>
-									</p></td>
-								<td style="vertical-align: middle;"><p
-										style="text-align: center;">
-										<span><small>${ post.username }</small></span><br> <small>${ post.clicks }/${ post.replies }</small>
-									</p></td>
-								<td style="vertical-align: middle;"><p
-										style="text-align: center;">${ post.editTime }</p></td>
-							</tr>
+	<div id="colorlib-page">
+		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
+			<nav id="colorlib-main-menu" role="navigation">
+				<ul>
+					<li class="colorlib-active"><a href="${ pageContext.request.contextPath }">Home</a></li>
+					<li><a href="${ pageContext.request.contextPath }/forum/newPost">發表文章</a></li>
+					<li><a href="travel.html">Travel</a></li>
+					<li><a href="about.html">About</a></li>
+					<li><a href="contact.html">Contact</a></li>
+				</ul>
+			</nav>
 
-						</c:forEach>
-					</table>
+			<div class="colorlib-footer">
+				<h2 id="colorlib-logo" class="mb-4"><img src="${logo}"></h2>
+				<div class="mb-4">
+					<h3>Subscribe for newsletter</h3>
+					<form action="#" class="colorlib-subscribe-form">
+            <div class="form-group d-flex">
+            	<div class="icon"><span class="icon-paper-plane"></span></div>
+              <input type="text" class="form-control" placeholder="Enter Email Address">
+            </div>
+          </form>
 				</div>
-				<!--webchat -->
-				<div class="col-3" style="text-align:center">
-					<br>
-
-					<div aria-live="polite" aria-atomic="true"
-						style="position: relative; min-height: 200px;"
-						data-autohide="false">
-						<!-- Position it -->
-						<div style="text-align:center" id="response">
-<!-- <div style="position: absolute; top: 0; right: 0;" id="response"> -->
-							<!-- Then put toasts within -->
-<!-- 							<div class="toast" role="alert" aria-live="assertive" -->
-<!-- 								aria-atomic="true" data-autohide="false"> -->
-<!-- 								<div class="toast-header"> -->
-<!-- 									<img src="..." class="rounded mr-2" alt="..."> <strong -->
-<!-- 										class="mr-auto">Bootstrap</strong> <small class="text-muted">just -->
-<!-- 										now</small> -->
-<!-- 									<button type="button" class="ml-2 mb-1 close" -->
-<!-- 										data-dismiss="toast" aria-label="Close"> -->
-<!-- 										<span aria-hidden="true">&times;</span> -->
-<!-- 									</button> -->
-<!-- 								</div> -->
-<!-- 								<div class="toast-body">See? Just like this.</div> -->
-<!-- 							</div> -->
-
-<!-- 							<div class="toast" role="alert" aria-live="assertive" -->
-<!-- 								aria-atomic="true" data-autohide="false"> -->
-<!-- 								<div class="toast-header"> -->
-<!-- 									<img src="..." class="rounded mr-2" alt="..."> <strong -->
-<!-- 										class="mr-auto">Bootstrap</strong> <small class="text-muted">2 -->
-<!-- 										seconds ago</small> -->
-<!-- 									<button type="button" class="ml-2 mb-1 close" -->
-<!-- 										data-dismiss="toast" aria-label="Close"> -->
-<!-- 										<span aria-hidden="true">&times;</span> -->
-<!-- 									</button> -->
-<!-- 								</div> -->
-<!-- 								<div class="toast-body">Heads up, toasts will stack -->
-<!-- 									automatically</div> -->
-<!-- 							</div> -->
-							<div style="text-align: center">
-								<input type="text" id="text" placeholder="type something......" />
-								<button id="sendMessage" onclick="sendMessage();">Send</button>
-							</div>
-						</div>
-					</div>
-<!-- 					<div style="text-align: center"> -->
-<!-- 						<input type="text" id="text" placeholder="type something......" /> -->
-<!-- 						<button id="sendMessage" onclick="sendMessage()">Send</button> -->
-<!-- 					</div> -->
-
-				</div>
-				<!-- webcahr-->
+				<p class="pfooter"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+	  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+	  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
 			</div>
-		</div>
-		<div class="container"></div>
-	</div>
-	<script>
-		$(document).ready(function() {
-			$('.toast').toast('show');
-		});
-	</script>
-	<script src="${sockjs}"></script>
-	<script src="${stomp}"></script>
-	<c:forEach var="user" items="${ LoginOK }">
-		<input type="hidden" id="from" value=" ${user.username}" />
-		<script src="${script}"></script>
-	</c:forEach>
-</body>
+		</aside> <!-- END COLORLIB-ASIDE -->
+		<div id="colorlib-main">
+			<section class="ftco-section ftco-no-pt ftco-no-pb">
+	    	<div class="container">
+	    		<div class="row d-flex">
+	    			<div class="col-xl-8 py-5 px-md-5">
+	    				<div class="row pt-md-4">
+	    				
+	    				<c:forEach var="post" items="${ posts }">
+								<div class="col-md-12" style=" max-width: 700px; max-height: 310px;  word-break:break-all; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block;">
+									<div class="blog-entry ftco-animate d-md-flex">
+										<a href="single.html" class="img img-2"
+											style="background-image: url(images/image_1.jpg);"></a>
+										<div class="text text-2 pl-md-4">
+											<h3 class="mb-2">
+												<a href="single.html">${ post.title }</a>
+											</h3>
+											<div class="meta-wrap">
+												<p class="meta">
+													<span><i class="icon-calendar mr-2"></i>${ post.editTime }</span> <span><a href="single.html"><i
+															class="icon-folder-o mr-2"></i>${ post.category }</a></span> <span><i
+														class="icon-comment2 mr-2"></i>${ post.replies } Comment</span>
+												</p>
+											</div>
+											<p class="mb-4"  style="width:490px; max-width: 490px; max-height: 55px;  word-break:break-all; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block;">${ post.text }</p>
+											<p>
+												<a href="${ pageContext.request.contextPath }/forum/pick?harticle_id=${ post.harticle_id }&article_id=${ post.article_id }" class="btn-custom">Read More <span
+													class="ion-ios-arrow-forward"></span></a>
+											</p>
+										</div>
+									</div>
+								</div>
+						</c:forEach>
+								
+								<div class="col-md-12">
+									<div class="blog-entry ftco-animate d-md-flex">
+										<a href="single.html" class="img img-2" style="background-image: url(images/image_2.jpg);"></a>
+										<div class="text text-2 pl-md-4">
+				              <h3 class="mb-2"><a href="single.html">Great Things Never Came from Comfort Zone</a></h3>
+				              <div class="meta-wrap">
+												<p class="meta">
+				              		<span><i class="icon-calendar mr-2"></i>June 28, 2019</span>
+				              		<span><a href="single.html"><i class="icon-folder-o mr-2"></i>Travel</a></span>
+				              		<span><i class="icon-comment2 mr-2"></i>5 Comment</span>
+				              	</p>
+			              	</div>
+				              <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+				              <p><a href="#" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
+				            </div>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="blog-entry ftco-animate d-md-flex">
+										<a href="single.html" class="img img-2" style="background-image: url(images/image_3.jpg);"></a>
+										<div class="text text-2 pl-md-4">
+				              <h3 class="mb-2"><a href="single.html">Paths Are Made by Walking</a></h3>
+				              <div class="meta-wrap">
+												<p class="meta">
+				              		<span>Dec 14, 2018</span>
+				              		<span><a href="single.html">Lifestyle</a></span>
+				              		<span>5 Comment</span>
+				              	</p>
+			              	</div>
+				              <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+				              <p><a href="#" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
+				            </div>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="blog-entry ftco-animate d-md-flex">
+										<a href="single.html" class="img img-2" style="background-image: url(images/image_4.jpg);"></a>
+										<div class="text text-2 pl-md-4">
+				              <h3 class="mb-2"><a href="single.html">The Secret of Getting Ahead is Getting Started</a></h3>
+				              <div class="meta-wrap">
+												<p class="meta">
+				              		<span>Dec 14, 2018</span>
+				              		<span><a href="single.html">Nature</a></span>
+				              		<span>5 Comment</span>
+				              	</p>
+			              	</div>
+				              <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+				              <p><a href="#" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
+				            </div>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="blog-entry ftco-animate d-md-flex">
+										<a href="single.html" class="img img-2" style="background-image: url(images/image_5.jpg);"></a>
+										<div class="text text-2 pl-md-4">
+				              <h3 class="mb-2"><a href="single.html">You Can't Blame Gravity for Falling in Love</a></h3>
+				              <div class="meta-wrap">
+												<p class="meta">
+				              		<span>Dec 14, 2018</span>
+				              		<span><a href="single.html">Lifestyle</a></span>
+				              		<span>5 Comment</span>
+				              	</p>
+			              	</div>
+				              <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+				              <p><a href="#" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
+				            </div>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="blog-entry ftco-animate d-md-flex">
+										<a href="single.html" class="img img-2" style="background-image: url(images/image_6.jpg);"></a>
+										<div class="text text-2 pl-md-4">
+				              <h3 class="mb-2"><a href="single.html">You Can't Blame Gravity for Falling in Love</a></h3>
+				              <div class="meta-wrap">
+												<p class="meta">
+				              		<span>Dec 14, 2018</span>
+				              		<span><a href="single.html">Travel</a></span>
+				              		<span>5 Comment</span>
+				              	</p>
+			              	</div>
+				              <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+				              <p><a href="#" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
+				            </div>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="blog-entry ftco-animate d-md-flex">
+										<a href="single.html" class="img img-2" style="background-image: url(images/image_7.jpg);"></a>
+										<div class="text text-2 pl-md-4">
+				              <h3 class="mb-2"><a href="single.html">You Can't Blame Gravity for Falling in Love</a></h3>
+				              <div class="meta-wrap">
+												<p class="meta">
+				              		<span>Dec 14, 2018</span>
+				              		<span><a href="single.html">Travel</a></span>
+				              		<span>5 Comment</span>
+				              	</p>
+			              	</div>
+				              <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+				              <p><a href="#" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
+				            </div>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="blog-entry ftco-animate d-md-flex">
+										<a href="single.html" class="img img-2" style="background-image: url(images/image_8.jpg);"></a>
+										<div class="text text-2 pl-md-4">
+				              <h3 class="mb-2"><a href="single.html">You Can't Blame Gravity for Falling in Love</a></h3>
+				              <div class="meta-wrap">
+												<p class="meta">
+				              		<span><i class="icon-calendar mr-2"></i>June 28, 2019</span>
+				              		<span><a href="single.html"><i class="icon-folder-o mr-2"></i>Travel</a></span>
+				              		<span><i class="icon-comment2 mr-2"></i>5 Comment</span>
+				              	</p>
+			              	</div>
+				              <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+				              <p><a href="#" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
+				            </div>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="blog-entry ftco-animate d-md-flex">
+										<a href="single.html" class="img img-2" style="background-image: url(images/image_9.jpg);"></a>
+										<div class="text text-2 pl-md-4">
+				              <h3 class="mb-2"><a href="single.html">You Can't Blame Gravity for Falling in Love</a></h3>
+				              <div class="meta-wrap">
+												<p class="meta">
+				              		<span><i class="icon-calendar mr-2"></i>June 28, 2019</span>
+				              		<span><a href="single.html"><i class="icon-folder-o mr-2"></i>Travel</a></span>
+				              		<span><i class="icon-comment2 mr-2"></i>5 Comment</span>
+				              	</p>
+			              	</div>
+				              <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+				              <p><a href="#" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
+				            </div>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="blog-entry ftco-animate d-md-flex">
+										<a href="single.html" class="img img-2" style="background-image: url(images/image_10.jpg);"></a>
+										<div class="text text-2 pl-md-4">
+				              <h3 class="mb-2"><a href="single.html">You Can't Blame Gravity for Falling in Love</a></h3>
+				              <div class="meta-wrap">
+												<p class="meta">
+				              		<span>Dec 14, 2018</span>
+				              		<span><a href="single.html">Lifestyle</a></span>
+				              		<span>5 Comment</span>
+				              	</p>
+			              	</div>
+				              <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+				              <p><a href="#" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
+				            </div>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="blog-entry ftco-animate d-md-flex">
+										<a href="single.html" class="img img-2" style="background-image: url(images/image_11.jpg);"></a>
+										<div class="text text-2 pl-md-4">
+				              <h3 class="mb-2"><a href="single.html">You Can't Blame Gravity for Falling in Love</a></h3>
+				              <div class="meta-wrap">
+												<p class="meta">
+				              		<span><i class="icon-calendar mr-2"></i>June 28, 2019</span>
+				              		<span><a href="single.html"><i class="icon-folder-o mr-2"></i>Travel</a></span>
+				              		<span><i class="icon-comment2 mr-2"></i>5 Comment</span>
+				              	</p>
+			              	</div>
+				              <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+				              <p><a href="#" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
+				            </div>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="blog-entry ftco-animate d-md-flex">
+										<a href="single.html" class="img img-2" style="background-image: url(images/image_12.jpg);"></a>
+										<div class="text text-2 pl-md-4">
+				              <h3 class="mb-2"><a href="single.html">You Can't Blame Gravity for Falling in Love</a></h3>
+				              <div class="meta-wrap">
+												<p class="meta">
+				              		<span><i class="icon-calendar mr-2"></i>June 28, 2019</span>
+				              		<span><a href="single.html"><i class="icon-folder-o mr-2"></i>Travel</a></span>
+				              		<span><i class="icon-comment2 mr-2"></i>5 Comment</span>
+				              	</p>
+			              	</div>
+				              <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+				              <p><a href="#" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
+				            </div>
+									</div>
+								</div>
+			    		</div><!-- END-->
+			    		<div class="row">
+			          <div class="col">
+			            <div class="block-27">
+			              <ul>
+			                <li><a href="#">&lt;</a></li>
+			                <li class="active"><span>1</span></li>
+			                <li><a href="#">2</a></li>
+			                <li><a href="#">3</a></li>
+			                <li><a href="#">4</a></li>
+			                <li><a href="#">5</a></li>
+			                <li><a href="#">&gt;</a></li>
+			              </ul>
+			            </div>
+			          </div>
+			        </div>
+			    	</div>
+	    			<div class="col-xl-4 sidebar ftco-animate bg-light pt-5">
+	            <div class="sidebar-box pt-md-4">
+	              <form action="${ pageContext.request.contextPath }/forum/search?title=${ param.title }" class="search-form">
+	                <div class="form-group">
+	                  <span class="icon icon-search"></span>
+	                  <input type="text"  name="title" class="form-control" placeholder="Type a keyword and hit enter">
+	                </div>
+	              </form>
+	            </div>
+	            <div class="sidebar-box ftco-animate">
+	            	<h3 class="sidebar-heading">Categories</h3>
+	              <ul class="categories">
+	                <li><a href="${ pageContext.request.contextPath }/forum/overview">All <span>(6)</span></a></li>
+	                <li><a href="${ pageContext.request.contextPath }/forum/query?category=問題">問題 <span>(8)</span></a></li>
+	                <li><a href="${ pageContext.request.contextPath }/forum/query?category=閒聊">閒聊 <span>(2)</span></a></li>
+	                <li><a href="${ pageContext.request.contextPath }/forum/query?category=心得">心得 <span>(2)</span></a></li>
+	                <li><a href="${ pageContext.request.contextPath }/forum/query?category=自介">自介 <span>(7)</span></a></li>
+	                <li><a href="${ pageContext.request.contextPath }/forum/query?category=食材">食材 <span>(7)</span></a></li>
+	                <li><a href="${ pageContext.request.contextPath }/forum/query?category=器具">器具 <span>(7)</span></a></li>
+	              </ul>
+	            </div>
+
+	            <div class="sidebar-box ftco-animate">
+	              <h3 class="sidebar-heading">Popular Articles</h3>
+	              <div class="block-21 mb-4 d-flex">
+	                <a class="blog-img mr-4" style="background-image: url(images/image_1.jpg);"></a>
+	                <div class="text">
+	                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control</a></h3>
+	                  <div class="meta">
+	                    <div><a href="#"><span class="icon-calendar"></span> June 28, 2019</a></div>
+	                    <div><a href="#"><span class="icon-person"></span> Dave Lewis</a></div>
+	                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+	                  </div>
+	                </div>
+	              </div>
+	              <div class="block-21 mb-4 d-flex">
+	                <a class="blog-img mr-4" style="background-image: url(images/image_2.jpg);"></a>
+	                <div class="text">
+	                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control</a></h3>
+	                  <div class="meta">
+	                    <div><a href="#"><span class="icon-calendar"></span> June 28, 2019</a></div>
+	                    <div><a href="#"><span class="icon-person"></span> Dave Lewis</a></div>
+	                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+	                  </div>
+	                </div>
+	              </div>
+	              <div class="block-21 mb-4 d-flex">
+	                <a class="blog-img mr-4" style="background-image: url(images/image_3.jpg);"></a>
+	                <div class="text">
+	                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control</a></h3>
+	                  <div class="meta">
+	                    <div><a href="#"><span class="icon-calendar"></span> June 28, 2019</a></div>
+	                    <div><a href="#"><span class="icon-person"></span> Dave Lewis</a></div>
+	                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+
+	            <div class="sidebar-box ftco-animate">
+	              <h3 class="sidebar-heading">Tag Cloud</h3>
+	              <ul class="tagcloud">
+	                <a href="#" class="tag-cloud-link">animals</a>
+	                <a href="#" class="tag-cloud-link">human</a>
+	                <a href="#" class="tag-cloud-link">people</a>
+	                <a href="#" class="tag-cloud-link">cat</a>
+	                <a href="#" class="tag-cloud-link">dog</a>
+	                <a href="#" class="tag-cloud-link">nature</a>
+	                <a href="#" class="tag-cloud-link">leaves</a>
+	                <a href="#" class="tag-cloud-link">food</a>
+	              </ul>
+	            </div>
+
+							<div class="sidebar-box subs-wrap img py-4" style="background-image: url(images/bg_1.jpg);">
+								<div class="overlay"></div>
+								<h3 class="mb-4 sidebar-heading">Newsletter</h3>
+								<p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia</p>
+	              <form action="#" class="subscribe-form">
+	                <div class="form-group">
+	                  <input type="text" class="form-control" placeholder="Email Address">
+	                  <input type="submit" value="Subscribe" class="mt-2 btn btn-white submit">
+	                </div>
+	              </form>
+	            </div>
+
+	            <div class="sidebar-box ftco-animate">
+	            	<h3 class="sidebar-heading">Archives</h3>
+	              <ul class="categories">
+	              	<li><a href="#">Decob14 2018 <span>(10)</span></a></li>
+	                <li><a href="#">September 2018 <span>(6)</span></a></li>
+	                <li><a href="#">August 2018 <span>(8)</span></a></li>
+	                <li><a href="#">July 2018 <span>(2)</span></a></li>
+	                <li><a href="#">June 2018 <span>(7)</span></a></li>
+	                <li><a href="#">May 2018 <span>(5)</span></a></li>
+	              </ul>
+	            </div>
+
+
+	            <div class="sidebar-box ftco-animate">
+	              <h3 class="sidebar-heading">Paragraph</h3>
+	              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut.</p>
+	            </div>
+	          </div><!-- END COL -->
+	    		</div>
+	    	</div>
+	    </section>
+		</div><!-- END COLORLIB-MAIN -->
+	</div><!-- END COLORLIB-PAGE -->
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+  <script src=<spring:url value="/resources/js/jquery.min.js"/>></script>
+  <script src=<spring:url value="/resources/js/jquery-migrate-3.0.1.min.js"/>></script>
+  <script src=<spring:url value="/resources/js/popper.min.js"/>></script>
+  <script src=<spring:url value="/resources/js/bootstrap.min.js"/>></script>
+  <script src=<spring:url value="/resources/js/jquery.easing.1.3.js"/>></script>
+  <script src=<spring:url value="/resources/js/jquery.waypoints.min.js"/>></script>
+  <script src=<spring:url value="/resources/js/jquery.stellar.min.js"/>></script>
+  <script src=<spring:url value="/resources/js/owl.carousel.min.js" />></script>
+  <script src=<spring:url value="/resources/js/jquery.magnific-popup.min.js"/>></script>
+  <script src=<spring:url value="/resources/js/aos.js"/>></script>
+  <script src=<spring:url value="/resources/js/jquery.animateNumber.min.js"/>></script>
+  <script src=<spring:url value="/resources/js/scrollax.min.js"/>></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src=<spring:url value="/resources/js/google-map.js"/>></script>
+  <script src=<spring:url value="/resources/js/main.js"/>></script>
+    
+  </body>
 </html>
