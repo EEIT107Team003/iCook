@@ -103,7 +103,7 @@ fieldset {
                         <a class="nav-link" href="backStageUser">
                             <i class="nc-icon nc-circle-09"></i>
                             <p>User Profile</p>
-                        </a>
+                        </a>q
                     </li>
                     <li>
                         <a class="nav-link" href="backStageTable">
@@ -391,7 +391,7 @@ fieldset {
 		</form:form>
 	</section>
 	</div>
-	
+	</div>
 	<script>
 	//使用ckediror需要加入            replace對應到textarea的id 
 	CKEDITOR
@@ -427,7 +427,7 @@ fieldset {
                                     Blog
                                 </a>
                             </li>
-                        </ul>
+                        </ul>，
                         <p class="copyright text-center">
                             ©
                             <script>
@@ -437,6 +437,7 @@ fieldset {
                         </p>
                     </nav>
                 </div>
+                
             </footer>
         </div>
 </body>
