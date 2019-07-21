@@ -341,6 +341,14 @@ public class OrderController {
 		model.addAttribute("orders_list", orders);
 		return "OrdersPage";
 	}
+	@RequestMapping("/icookCheckOrders")
+	public String icookCheckOrders(Model model, HttpSession session) {
+	
+		return "icookCheckOrders";
+	}
+	
+	
+	
 
 	// 進入後台才有的url
 	// admin查看所有訂單

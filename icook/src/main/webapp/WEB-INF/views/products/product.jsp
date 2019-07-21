@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ page import="java.util.*, java.io.*" %>
+<%@ page import="java.util.*, java.io.*"%>
 
 <html>
 <head>
@@ -14,14 +14,17 @@
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 <title>Products</title>
 <!-- 	============================================================================================== -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" ></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
-	
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 <link rel="stylesheet" type="text/css" href="/product_css/products.css">
-	
+
 <style>
-* {	
+* {
 	padding: 0;
 	margin: 0;
 }
@@ -49,8 +52,9 @@ footer {
 	margin: auto;
 	background-color: #AAFFEE;
 }
-.search{
- border-right: 1px solid #cccccc ;
+
+.search {
+	border-right: 1px solid #cccccc;
 }
 
 .container {
@@ -60,18 +64,19 @@ footer {
 .allPage {
 	overflow: auto;
 	width: 100%;
-	margin-bottom:10ch;
-	margin-top:3ch;
-}
-.page{
-margin:auto;
-margin-left: 50ch;
-}
-.page button{
-margin-left: 3ch;
-width:30px;
+	margin-bottom: 10ch;
+	margin-top: 3ch;
 }
 
+.page {
+	margin: auto;
+	margin-left: 50ch;
+}
+
+.page button {
+	margin-left: 3ch;
+	width: 30px;
+}
 
 /* ======================MainShow=================================== */
 .field {
@@ -82,7 +87,7 @@ width:30px;
 	opacity: 100;
 	width: 50px;
 	filter: alpha(opacity = 100);
-	margin:auto;
+	margin: auto;
 }
 
 .mainBlock {
@@ -95,11 +100,11 @@ width:30px;
 
 .divA {
 	position: relative;
-	margin:auto;
+	margin: auto;
 }
 
 .divA img {
-      margin:auto;
+	margin: auto;
 	-webkit-transition: opacity 2s linear;
 	-moz-transition: opacity 2s linear;
 	-o-transition: opacity 2s linear;
@@ -109,8 +114,6 @@ width:30px;
 }
 
 /* ============================================================= */
-
-
 </style>
 </head>
 <body>
@@ -190,9 +193,6 @@ width:30px;
 // 	<!-- =============================================Dataisl=================================================================		 -->
 			
 			getstock();
-
-
-
 			function getstock(){
 			        var names=parseInt(${product.stock})
 			        var txt=""
@@ -206,10 +206,7 @@ width:30px;
 				var txt = $("#quantity :selected").val();
 				$("#quan").val(txt);
 			})
-
-			
-			
-// 	<!-- =============================================Dataisl=================================================================		 -->	
+s// 	<!-- =============================================Dataisl=================================================================		 -->	
 			
 		$("#show3").change(function() {
 			catchSelect1();	 
@@ -519,15 +516,18 @@ width:30px;
 
 	</script>
 	<header>
-	
-	<h1>HEADER</h1>
-	Working with server: <%= application.getServerInfo() %><br>
-    Servlet Specification: <%= application.getMajorVersion() %>.<%= application.getMinorVersion() %> <br>
-    JSP version: <%= JspFactory.getDefaultFactory().getEngineInfo().getSpecificationVersion() %><br>
-    Java Version: <%= System.getProperty("java.version") %><br>
-		</header>
-		
-		
+
+		<h1>HEADER</h1>
+		Working with server:
+		<%=application.getServerInfo()%><br> Servlet Specification:
+		<%=application.getMajorVersion()%>.<%=application.getMinorVersion()%>
+		<br> JSP version:
+		<%=JspFactory.getDefaultFactory().getEngineInfo().getSpecificationVersion()%><br>
+		Java Version:
+		<%=System.getProperty("java.version")%><br>
+	</header>
+
+
 	<c:out value="登入者${LoginOK.nickname}"></c:out>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="/icook">ICook!</a>
@@ -574,52 +574,58 @@ width:30px;
 				<label for='show'> 種類</label>
 
 				<div>
-					<select  id="show" name="show"  class="form-control form-control-sm"><option
-							value="0" SELECTED id='ch'>請選擇</option></select> <select id="show2" name="show2"class="form-control form-control-sm">
+					<select id="show" name="show" class="form-control form-control-sm"><option
+							value="0" SELECTED id='ch'>請選擇</option></select> <select id="show2"
+						name="show2" class="form-control form-control-sm">
 					</select>
 				</div>
 				<nav class="navbar navbar-light bg-light">
-				<form class="searchDiv" id="searchDiv" method="POST" class="form-inline">
-					<input id="fileName" name="fileName" type="hidden" /> <input
-						id="remark" name="remark" type="hidden" /><input id="stock" name="stock" type="hidden" />
-					<div>
-						<input id="description" name="description" type="text"  class="form-control mr-sm-2" placeholder="Search" aria-label="Search"></input>
-					</div>
-					<div>
-						  <input type="button"class="btn btn-outline-success my-2 my-sm-0" value="Search">
-					</div>
-				</form>
+					<form class="searchDiv" id="searchDiv" method="POST"
+						class="form-inline">
+						<input id="fileName" name="fileName" type="hidden" /> <input
+							id="remark" name="remark" type="hidden" /><input id="stock"
+							name="stock" type="hidden" />
+						<div>
+							<input id="description" name="description" type="text"
+								class="form-control mr-sm-2" placeholder="Search"
+								aria-label="Search"></input>
+						</div>
+						<div>
+							<input type="button" class="btn btn-outline-success my-2 my-sm-0"
+								value="Search">
+						</div>
+					</form>
 				</nav>
 			</section>
 			<section class="container">
-			
 
-				<a href='collections'>查詢收藏</a><BR> <br>
-				<a href='products/add'>新增產品資料</a>
+
+				<a href='collections'>查詢收藏</a><BR> <br> <a
+					href='products/add'>新增產品資料</a>
 				<div class="list-type1">
-				
-				<h1>鍋類</h1>
-				<ul style="cursor: pointer">
-					<li><a class="search">炒鍋</a></li>
-					<li><a class="search">平底鍋</a></li>
-					<li><a class="search">湯鍋</a></li>
-				</ul>
-				<h1>刀具</h1>
-				<ul style="cursor: pointer">
-					<li><a class="search">式剁刀</a></li>
-					<li><a class="search">牛排刀</a></li>
-				</ul>
-				<h1>食材</h1>
-				<ul style="cursor: pointer">
-					<li><a class="search">牛肉</a></li>
-					<li><a class="search">雞肉</a></li>
-					<li><a class="search">豬肉</a></li>
-					<li><a class="search">羊肉</a></li>
-				</ul>
-				
-				
+
+					<h1>鍋類</h1>
+					<ul style="cursor: pointer">
+						<li><a class="search">炒鍋</a></li>
+						<li><a class="search">平底鍋</a></li>
+						<li><a class="search">湯鍋</a></li>
+					</ul>
+					<h1>刀具</h1>
+					<ul style="cursor: pointer">
+						<li><a class="search">式剁刀</a></li>
+						<li><a class="search">牛排刀</a></li>
+					</ul>
+					<h1>食材</h1>
+					<ul style="cursor: pointer">
+						<li><a class="search">牛肉</a></li>
+						<li><a class="search">雞肉</a></li>
+						<li><a class="search">豬肉</a></li>
+						<li><a class="search">羊肉</a></li>
+					</ul>
+
+
 				</div>
-				 <a href='productsEx.xls' >AllProductsExcel</a><br>
+				<a href='productsEx.xls'>AllProductsExcel</a><br>
 				<div>
 					<div>
 						<select id="show3" name="show3" style="width: 30ch"
@@ -640,23 +646,23 @@ width:30px;
 						<input type="submit" value="ProductsExcel">
 					</form>
 				</div>
-				
+
 				<a href='${pageContext.request.contextPath}'>回首頁</a><BR> <br>
 			</section>
 		</div>
-		
+
 
 		<div class="right">
-  
-<!-- =============================================Dataisl=================================================================		 -->
-       <section class="container">
+
+			<!-- =============================================Dataisl=================================================================		 -->
+			<section class="container">
 				<div class="row">
-				<div>
-					<img width='300' height='350'
-						src="<c:url value='/getProductPicture/${product.product_id}'/>" />
-				</div>
+					<div>
+						<img width='300' height='350'
+							src="<c:url value='/getProductPicture/${product.product_id}'/>" />
+					</div>
 					<div class="textDiv">
-						<h1>商品編號: ${product.product_id} </h1> 
+						<h1>商品編號: ${product.product_id}</h1>
 						<h1>${product.name}</h1>
 						<p>分類: ${product.categoriesbean.name}</p>
 						<p>顏色: ${product.color}</p>
@@ -674,11 +680,10 @@ width:30px;
 						<form method='POST' action="<c:url value='/product/addToCart'/>">
 							<input type="hidden" name="productId"
 								value="${product.product_id}" /> <input type="hidden"
-								name="price" value="${product.price}" /> 
-<%-- 								<c:set value="" var="quan1"/> --%>
-<%-- 						<c:out value="${quan1}"></c:out> --%>
-								<input type="hidden"
-								name="quan" id='quan' value="" /> 
+								name="price" value="${product.price}" />
+							<%-- 								<c:set value="" var="quan1"/> --%>
+							<%-- 						<c:out value="${quan1}"></c:out> --%>
+							<input type="hidden" name="quan" id='quan' value="" />
 							<div align="center">
 								<button type="button" class="btn btn-warning"
 									onclick="{location.href='/icook/cartPage'}" class="">去購物車</button>
@@ -690,20 +695,20 @@ width:30px;
 				</div>
 			</section>
 
-<!-- =============================================Dataisl=================================================================		 -->
+			<!-- =============================================Dataisl=================================================================		 -->
 
-				<form>
-			<div class="page">
+			<form>
+				<div class="page">
 					<ul class="pagination">
 					</ul>
-			</div>
-				</form>
+				</div>
+			</form>
 			<section id="right" class="rightMain"></section>
 		</div>
 		<div class="right"></div>
 	</div>
 	<footer>
-	<h1>FOOTER</h1>
+		<h1>FOOTER</h1>
 	</footer>
 </body>
 </html>

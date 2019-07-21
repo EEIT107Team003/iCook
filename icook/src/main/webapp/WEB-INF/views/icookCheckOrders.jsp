@@ -70,12 +70,12 @@
 										</ul>
 									<li><a href="icookLife">生活誌</a></li>
 									<li><a href="icookVideo">討論區</a></li>
-									<li  class="with_ul current"><a href="icookProducts">市集</a>
+									<li  ><a href="icookProducts">市集</a>
 									<ul>
 											<li><a href="cartPage">購物車</a></li>
 										</ul></li>
 
-									<li><a href="icookLogin">會員專區</a>
+									<li><a href="icookLogin" class="with_ul current">會員專區</a>
 										<ul>
 											<li><a href="icookLogin">會員登入</a></li>
 											<li><a href="checkOrders">查看訂單</a></li>
@@ -100,34 +100,34 @@
 				</div>
 				<div class="clear"></div>
 
-<!-- 				<div class="row"> -->
-<!-- 					<div class="portfolio"> -->
-<!-- 						<div class="col-1-2"> -->
-<!-- 							<div class="wrap-col"> -->
-<!-- 								<a href="images/big3.jpg" data-gal="prettyPhoto[1]"><span><img -->
-<!-- 										src="images/page4_img1.jpg" alt=""></span></a> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 						<div class="col-1-2"> -->
-<!-- 							<div class="wrap-col"> -->
-<!-- 								<a href="images/big2.jpg" data-gal="prettyPhoto[1]"><span><img -->
-<!-- 										src="images/page4_img2.jpg" alt=""></span></a> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 						<div class="col-1-2"> -->
-<!-- 							<div class="wrap-col"> -->
-<!-- 								<a href="images/big4.jpg" data-gal="prettyPhoto[1]"><span><img -->
-<!-- 										src="images/page4_img3.jpg" alt=""></span></a> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 						<div class="col-1-2"> -->
-<!-- 							<div class="wrap-col"> -->
-<!-- 								<a href="images/big1.jpg" data-gal="prettyPhoto[1]"><span><img -->
-<!-- 										src="images/page4_img4.jpg" alt=""></span></a> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
+				<div class="row">
+					<div class="portfolio">
+						<div class="col-1-2">
+							<div class="wrap-col">
+								<a href="images/big3.jpg" data-gal="prettyPhoto[1]"><span><img
+										src="images/page4_img1.jpg" alt=""></span></a>
+							</div>
+						</div>
+						<div class="col-1-2">
+							<div class="wrap-col">
+								<a href="images/big2.jpg" data-gal="prettyPhoto[1]"><span><img
+										src="images/page4_img2.jpg" alt=""></span></a>
+							</div>
+						</div>
+						<div class="col-1-2">
+							<div class="wrap-col">
+								<a href="images/big4.jpg" data-gal="prettyPhoto[1]"><span><img
+										src="images/page4_img3.jpg" alt=""></span></a>
+							</div>
+						</div>
+						<div class="col-1-2">
+							<div class="wrap-col">
+								<a href="images/big1.jpg" data-gal="prettyPhoto[1]"><span><img
+										src="images/page4_img4.jpg" alt=""></span></a>
+							</div>
+						</div>
+					</div>
+				</div>
 
 				<div class="row">
 					<div class="bottom_block">
