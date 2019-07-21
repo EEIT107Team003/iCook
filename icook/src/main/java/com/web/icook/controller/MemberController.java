@@ -60,7 +60,7 @@ public class MemberController {
 			model.addAttribute("member", bean);
 		}
 
-		return "user_page";
+		return "member/user_page";
 	}
 
 	// 查詢我的追蹤
@@ -108,7 +108,7 @@ public class MemberController {
 		MemberBean bean = memberService.selectByUsername(getPrincipal());
 		model.addAttribute("MemberBean", bean);
 
-		return "user";
+		return "member/user";
 	}
 
 	@RequestMapping(value = "/user/updateMemberPhoto", method = RequestMethod.POST)
@@ -157,7 +157,7 @@ public class MemberController {
 		MemberBean bean = memberService.selectByUsername(getPrincipal());
 		model.addAttribute("MemberBean", bean);
 
-		return "user";
+		return "member/user";
 	}
 
 	@RequestMapping(value = "/user/updateCoverPhoto", method = RequestMethod.POST)
@@ -214,7 +214,7 @@ public class MemberController {
 	public String members(Model model) {
 		List<MemberBean> list = memberService.selectAll();
 		model.addAttribute("members", list);
-		return "members";
+		return "member/members";
 	}
 
 	@RequestMapping(value = "/members/page")
@@ -222,7 +222,7 @@ public class MemberController {
 		MemberBean bean = memberService.selectById(member_id);
 		model.addAttribute("member", bean);
 
-		return "member_page";
+		return "member/member_page";
 	}
 
 	//加入追蹤(非會員)
@@ -292,9 +292,10 @@ public class MemberController {
 	// 新增會員
 	@RequestMapping(value = "/addMember", method = RequestMethod.GET)
 	public String addMember(Model model) {
+		System.out.println("sssssssssssssssssssssssss");
 		MemberBean bean = new MemberBean();
 		model.addAttribute("MemberBean", bean);
-		return "addMember";
+		return "member/addMember";
 	}
 
 	@RequestMapping(value = "/addMember", method = RequestMethod.POST)
@@ -310,7 +311,7 @@ public class MemberController {
 		// 設定註冊時間
 		Date date = new Date(System.currentTimeMillis());
 		bean.setRegister_date(date);
-		// 是否水桶
+		// 是否有效
 		bean.setEnabled(true);
 		// 權限(預設為會員)
 		bean.setRole("ROLE_MEMBER");
@@ -344,7 +345,7 @@ public class MemberController {
 		List<MemberBean> list = memberService.selectAll();
 		model.addAttribute("members", list);
 
-		return "result";
+		return "member/result";
 	}
 	
 

@@ -10,13 +10,13 @@ public class securityController {
 	// 會員登入
 	@GetMapping("/login_page")
 	public String login(Model model) {
-		return "login";
+		return "member/login";
 	}
 
 	// 會員登出
 	@GetMapping("/logout_page")
 	public String logout(Model model) {
-		return "logout";
+		return "member/logout";
 	}
 
 }
