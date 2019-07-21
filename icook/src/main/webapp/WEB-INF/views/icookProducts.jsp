@@ -170,16 +170,16 @@
 	</div>
 	<!--==============================footer=================================-->
 
-<!-- 	<footer> -->
-<!-- 		<div class="zerogrid"> -->
-<!-- 			<div class="col-full"> -->
-<!-- 				<div class="wrap-col"> -->
-<!-- 					&copy; Copyright &copy; 2013.Company name All rights reserved.<a -->
-<!-- 						target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	</footer> -->
+	<footer>
+		<div class="zerogrid">
+			<div class="col-full">
+				<div class="wrap-col">
+					&copy; Copyright &copy; 2013.Company name All rights reserved.<a
+						target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
+				</div>
+			</div>
+		</div>
+	</footer>
 	<div style="display: none">
 		<script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540'
 			language='JavaScript' charset='gb2312'></script>
