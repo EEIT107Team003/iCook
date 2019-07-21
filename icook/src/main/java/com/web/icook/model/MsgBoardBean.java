@@ -5,7 +5,6 @@ import java.sql.Clob;
 import java.sql.Timestamp;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -64,7 +63,6 @@ public class MsgBoardBean implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(columnDefinition = "nvarchar(max) not null")
 	public Integer getMsgboard_num() {
 		return msgboard_num;
 	}

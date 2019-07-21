@@ -20,29 +20,29 @@
 	rel="stylesheet">
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/open-iconic-bootstrap.min.css">
+	href="${pageContext.request.contextPath}/article/acss/open-iconic-bootstrap.min.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/animate.css">
+	href="${pageContext.request.contextPath}/article/acss/animate.css">
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/owl.carousel.min.css">
+	href="${pageContext.request.contextPath}/article/acss/owl.carousel.min.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/owl.theme.default.min.css">
+	href="${pageContext.request.contextPath}/article/acss/owl.theme.default.min.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/magnific-popup.css">
+	href="${pageContext.request.contextPath}/article/acss/magnific-popup.css">
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/aos.css">
+	href="${pageContext.request.contextPath}/article/acss/aos.css">
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/ionicons.min.css">
+	href="${pageContext.request.contextPath}/article/acss/ionicons.min.css">
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/flaticon.css">
+	href="${pageContext.request.contextPath}/article/acss/flaticon.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/icomoon.css">
+	href="${pageContext.request.contextPath}/article/acss/icomoon.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/article/css/style.css">
+	href="${pageContext.request.contextPath}/article/acss/style.css">
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
 </head>
@@ -51,7 +51,8 @@
 		class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light"
 		id="ftco-navbar">
 		<div class="container">
-			<a class="navbar-brand" href="index.html">Stories<span>.</span></a>
+			<a class="navbar-brand" href="index2"><img width="240" height="111.5" src="images/logo.png"
+								alt="EXTERIOR"></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#ftco-nav" aria-controls="ftco-nav"
 				aria-expanded="false" aria-label="Toggle navigation">
@@ -73,7 +74,7 @@
 	<!-- END nav -->
 
 	<section class="hero-wrap hero-wrap-2"
-		style="background-image: url('article/images/bg_4.jpg');">
+		style="background-image: url('article/aimages/bg_4.jpg');">
 		<div class="overlay"></div>
 		<div class="container">
 			<div
@@ -189,7 +190,7 @@
 						<h3 class="heading mb-4">Recent Blog</h3>
 						<div class="block-21 mb-4 d-flex">
 							<a class="blog-img mr-4"
-								style="background-image: url(article/images/image_1.jpg);"></a>
+								style="background-image: url(article/aimages/image_1.jpg);"></a>
 							<div class="text">
 								<h3>
 									<a href="#">Even the all-powerful Pointing has no control
@@ -211,7 +212,7 @@
 						</div>
 						<div class="block-21 mb-4 d-flex">
 							<a class="blog-img mr-4"
-								style="background-image: url(article/images/image_2.jpg);"></a>
+								style="background-image: url(article/aimages/image_2.jpg);"></a>
 							<div class="text">
 								<h3>
 									<a href="#">Even the all-powerful Pointing has no control
@@ -233,7 +234,7 @@
 						</div>
 						<div class="block-21 mb-4 d-flex">
 							<a class="blog-img mr-4"
-								style="background-image: url(article/images/image_3.jpg);"></a>
+								style="background-image: url(article/aimages/image_3.jpg);"></a>
 							<div class="text">
 								<h3>
 									<a href="#">Even the all-powerful Pointing has no control
@@ -405,33 +406,33 @@
 
 
 	<script
-		src="${pageContext.request.contextPath}/article/js/jquery.min.js"></script>
+		src="${pageContext.request.contextPath}/article/ajs/jquery.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/article/js/jquery-migrate-3.0.1.min.js"></script>
+		src="${pageContext.request.contextPath}/article/ajs/jquery-migrate-3.0.1.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/article/js/popper.min.js"></script>
+		src="${pageContext.request.contextPath}/article/ajs/popper.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/article/js/bootstrap.min.js"></script>
+		src="${pageContext.request.contextPath}/article/ajs/bootstrap.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/article/js/jquery.easing.1.3.js"></script>
+		src="${pageContext.request.contextPath}/article/ajs/jquery.easing.1.3.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/article/js/jquery.waypoints.min.js"></script>
+		src="${pageContext.request.contextPath}/article/ajs/jquery.waypoints.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/article/js/jquery.stellar.min.js"></script>
+		src="${pageContext.request.contextPath}/article/ajs/jquery.stellar.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/article/js/owl.carousel.min.js"></script>
+		src="${pageContext.request.contextPath}/article/ajs/owl.carousel.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/article/js/jquery.magnific-popup.min.js"></script>
-	<script src="${pageContext.request.contextPath}/article/js/aos.js"></script>
+		src="${pageContext.request.contextPath}/article/ajs/jquery.magnific-popup.min.js"></script>
+	<script src="${pageContext.request.contextPath}/article/ajs/aos.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/article/js/jquery.animateNumber.min.js"></script>
+		src="${pageContext.request.contextPath}/article/ajs/jquery.animateNumber.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/article/js/scrollax.min.js"></script>
+		src="${pageContext.request.contextPath}/article/ajs/scrollax.min.js"></script>
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 	<script
-		src="${pageContext.request.contextPath}/article/js/google-map.js"></script>
-	<script src="${pageContext.request.contextPath}/article/js/main.js"></script>
+		src="${pageContext.request.contextPath}/article/ajs/google-map.js"></script>
+	<script src="${pageContext.request.contextPath}/article/ajs/main.js"></script>
 
 </body>
 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -121,7 +122,7 @@
 											<li><a href="#">cat3</a></li>
 										</ul>
 									<li><a href="icookLife">生活誌</a></li>
-									<li><a href="icookVideo">討論區</a></li>
+									<li><a href="forum/overview">討論區</a></li>
 									<li><a href="A_articlemainpage">文章區</a></li>
 									<li><a href="icookProducts">市集</a><ul>
 									

@@ -48,32 +48,37 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap"
 	rel="stylesheet">
-<script>	
+<script>
+
 	$(document).ready(function() {
-		if($("#userId").val()!=null){
-		$.ajax({ 
-			url : "${pageContext.request.contextPath}/members/page/checkTracked",
-			type : "POST",
-			dataType : "json",
-			data:{member_id:$("#memberId").val()},
-			async : true,
-			success : function(data) {
-				var names = JSON.parse(JSON.stringify(data).split(","));
-				var txt = "";				
-				
-				if(names.length==0){
-					txt+="<button id=trackMe type=submit>加入追蹤</button>"
-					$("#trackbutton").html(txt);
-				}else{
-					txt+="<button id=trackCancel type=submit>取消追蹤</button>"
-					$("#trackbutton").html(txt);
-				}
-			},
-			error : function(data, textStatus, errorThrown) {
-				console.log("error: "+data);
-			},
-		});
-	}
+		if($("#userId").val().trim()!=""){
+			$.ajax({ 
+				url : "${pageContext.request.contextPath}/members/page/checkTracked",
+				type : "POST",
+				dataType : "json",
+				data:{member_id:$("#memberId").val()},
+				async : true,
+				success : function(data) {
+					var names = JSON.parse(JSON.stringify(data).split(","));
+					var txt = "";				
+					if(names.length!=0){
+						txt+="<input type='button' id='trackCancel' name='trackCancel' value='取消追蹤' onclick='trackCancel()';/>"
+						$("#trackbutton").html(txt);
+					}else{
+						txt+="<input type='button' id='trackMe' name='trackMe' value='加入追蹤' onclick='trackMe()';/>"
+						$("#trackbutton").html(txt);	
+					}
+				},
+				error : function(data, textStatus, errorThrown) {
+					console.log("error: "+data);
+				},
+			});
+		}else{
+			var txt = "";
+			txt+="<input type='button' id='trackMe' name='trackMe' value='加入追蹤' onclick='trackMe()';/>"
+				$("#trackbutton").html(txt);
+		}
+		
 		$.fn.serializeObject = function() {
 			var o = {};
 			var a = this.serializeArray();
@@ -89,10 +94,58 @@
 			});
 			return JSON.stringify(o);
 		};
-
-		var currentUrl = this.location.href
-		console.log(currentUrl);
 	});
+	
+	
+	function trackMe(){
+		if($("#userId").val().trim()!=""){
+			$.ajax({ 
+				url : "${pageContext.request.contextPath}/members/page/track",
+				type : "GET",
+				dataType : "json",
+				data:{member_id:$("#memberId").val()},
+				async : true,
+				success : function(data) {
+					var names = JSON.parse(JSON.stringify(data).split(","));
+					var txt = "";			
+					
+					txt+="<input type='button' id='trackCancel' name='trackCancel' value='取消追蹤' onclick='trackCancel()';/>"
+					$("#trackbutton").html(txt);
+					
+					$("#tracked_num").html(names.length);
+				},
+				error : function(data, textStatus, errorThrown) {
+					console.log("error: "+data);
+				},
+			});
+		}else{
+			$("#trackMe_nologin").click();	
+		}
+	};			
+	
+	function trackCancel(){
+		if($("#userId").val().trim()!=""){
+			$.ajax({ 
+				url : "${pageContext.request.contextPath}/members/page/TrackCancel",
+				type : "GET",
+				dataType : "json",
+				data:{member_id:$("#memberId").val()},
+				async : true,
+				success : function(data) {
+					var names = JSON.parse(JSON.stringify(data).split(","));
+					var txt = "";
+					txt+="<input type='button' id='trackMe' name='trackMe' value='加入追蹤' onclick='trackMe()';/>"
+						$("#trackbutton").html(txt);
+						
+						$("#tracked_num").html(names.length);
+				},
+				error : function(data, textStatus, errorThrown) {
+					console.log("error: "+data);
+				},
+			});
+		}
+	};		
+
 </script>
 
 <style>
@@ -201,18 +254,19 @@ section {
 							class="fa fa-hacker-news"></i></a></li>
 				</ul>
 			</div>
-		</div>
-		<!--//container-->
-	</header>
-	<!--//header-->
-
+		</div><!--//container-->
+	</header><!--//header-->
 	
-	<form method="POST" action="${pageContext.request.contextPath}/members/page/track?member_id=${member.member_id}">
-		<div id="trackbutton">
-			<button id=trackMe type="submit">加入追蹤</button>
+<!-- 加入追蹤-----------------------------------------------------------------------	 -->
+		<div id="trackbutton"></div>
+	
+		<div style="display:none">
+			<form method="POST" action="${pageContext.request.contextPath}/members/page/track?member_id=${member.member_id}">
+				<button id=trackMe_nologin type="submit">加入追蹤</button>
+			</form>
 		</div>
-	</form>
-
+<!-- -----------------------------------------------------------------------	 -->
+		
 	<div class="container sections-wrapper">
 		<div class="row">
 			<div class="primary col-md-8 col-sm-12 col-xs-12">
@@ -221,7 +275,7 @@ section {
 					</li>
 					<li><a href="user_mycollectrecipe" data-toggle="tab">我的收藏</a>
 					</li>
-					<li><a id="user_mytrack" data-toggle="tab">我的追蹤</a></li>
+<!-- 					<li><a id="user_mytrack" data-toggle="tab">我的追蹤</a></li> -->
 					<li><a href="user_myforum" data-toggle="tab">我的文章</a></li>
 				</ul>
 
@@ -251,9 +305,9 @@ section {
 									<th class="items">文章總數</th>
 								</tr>
 								<tr>
-									<th class="items">${member.recipe_num }</th>
-									<th class="items">${member.tracked_num }</th>
-									<th class="items">${member.forum_num }</th>
+									<th id="recipe_num" class="items">${member.recipe_num }</th>
+									<th id="tracked_num" class="items">${member.tracked_num }</th>
+									<th id="forum_num" class="items">${member.forum_num }</th>
 								</tr>
 							</table>
 						</div>

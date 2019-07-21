@@ -61,42 +61,15 @@ public class MemberServiceimpl implements MemberService {
 		dao.updateCover_photo(bean);
 	}
 
-	//追蹤會員
-	@Override
-	public void trackById(MyTrackBean bean) {
-		 dao.trackById(bean);
-	}
-
 	//尋找單筆資料(nickname)
 	@Override
 	public MemberBean selectByNickname(String nickname) {
 		return dao.selectByNickname(nickname);
-	}
-
-	// 查詢 我追蹤了誰
-	@Override
-	public List<MyTrackBean> selectTrackerById(int member_Id) {
-		// TODO Auto-generated method stub
-		return dao.selectTrackerById(member_Id);
 	}
 	
 	// 更新會員資料(2)
 	@Override
 	public void updateMemberInfo(MemberBean bean, int member_id) {
 		dao.updateMemberInfo(bean, member_id);
-	}
-
-	// 查詢特定追蹤者
-	@Override
-	public List<MyTrackBean> selectOneTrackerById(int member_Id, int tracked_id) {
-		// TODO Auto-generated method stub
-		return dao.selectOneTrackerById(member_Id, tracked_id);
-	}
-
-	// 查詢 我被誰追蹤
-	@Override
-	public List<MyTrackBean> selectTrackedById(int tracked_Id) {
-		// TODO Auto-generated method stub
-		return dao.selectTrackedById(tracked_Id);
 	}
 }

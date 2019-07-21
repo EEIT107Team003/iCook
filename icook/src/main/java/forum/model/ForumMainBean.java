@@ -24,8 +24,9 @@ import com.web.icook.model.MemberBean;
 public class ForumMainBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
-	private 	String							nickname;					//作者
+	
+	private	String							username;					//作者帳號
+	private 	String							nickname;					//作者暱稱
 	private 	String							board;						//討論板名稱
 	private 	String							category;					//分類
 	private 	String							title;							//標題
@@ -49,10 +50,10 @@ public class ForumMainBean implements Serializable {
 	}
 
 
-	public ForumMainBean(String nickname, String board, String category, String title, String text, String signature,
+	public ForumMainBean(String username, String nickname, String board, String category, String title, String text, String signature,
 			Integer clicks, Integer likes, Timestamp postTime, Timestamp editTime, Integer replies, Integer harticle_id,
 			Integer article_id, MemberBean memberBean) {
-		super();
+		this.username = username;
 		this.nickname = nickname;
 		this.board = board;
 		this.category = category;
@@ -244,7 +245,7 @@ public class ForumMainBean implements Serializable {
 	}
 
 
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="member_id")
 	public MemberBean getMemberBean() {
 		return memberBean;
@@ -254,6 +255,16 @@ public class ForumMainBean implements Serializable {
 
 	public void setMemberBean(MemberBean memberBean) {
 		this.memberBean = memberBean;
+	}
+
+
+	public String getUsername() {
+		return username;
+	}
+
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 

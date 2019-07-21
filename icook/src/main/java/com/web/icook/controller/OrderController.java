@@ -35,7 +35,6 @@ import com.web.icook.dao.OrderItemDao;
 import com.web.icook.model.MemberBean;
 import com.web.icook.model.OrderBean;
 import com.web.icook.model.OrderItemBean;
-import com.web.icook.model.ProductBean;
 import com.web.icook.service.MemberService;
 import com.web.icook.service.OrderService;
 
@@ -92,6 +91,10 @@ public class OrderController {
 //		session.setAttribute("orderItemBeanSet", orderItemBeanSet);
 //		return "information";
 //	}
+	
+
+	
+
 	
 	
 	@RequestMapping(value = "/orders", method = RequestMethod.GET, produces = "application/vnd.ms-excel")
@@ -345,10 +348,10 @@ public class OrderController {
 	public String adminAllOrders(Model model, HttpSession session) {
 		String requestURI = (String) session.getAttribute("requestURI");
 		
-		MemberBean mb=null;
-		if (mcontroller.getPrincipal().equals("Admin@gmail.com")) {
-			mb = mservice.selectByUsername(mcontroller.getPrincipal());
-			model.addAttribute("LoginOK", mb);
+//		MemberBean mb=null;
+//		if (mcontroller.getPrincipal().equals("Admin@gmail.com")) {
+//			mb = mservice.selectByUsername(mcontroller.getPrincipal());
+//			model.addAttribute("LoginOK", mb);
 			
 			List<OrderBean> orders = new ArrayList<>();
 			orders = odao.getAllOrders();
@@ -386,12 +389,24 @@ public class OrderController {
 			
 //------------------------------------計算完畢-------------------------------------------------
 			model.addAttribute("orders_list", orders);
-			return "adminCheckOrders";
-		}
-		else {
-			return "redirect:/login_page";// 此處要改跳轉至登入畫面
-		}
+//			return "adminCheckOrders";
+			return "backStage/examples/table";
+//		}
+//		else {
+//			return "redirect:/login_page";// 此處要改跳轉至登入畫面
+//		}
 	}
+	
+	
+	
+//	@RequestMapping("searchOrdersByNickName")
+//	public String searchOrdersByNickName(Model model) {
+//		
+//		odao.getOrderItemsByMemberSeqNo(memerSeqNo);
+//		
+//		
+//		return "backStage/examples/table";
+//	}
 
 	// 查看系統所有訂單,一定是從orderPage跳轉到此頁,此頁無法直接到達
 	@RequestMapping(value = "/adminCheckOrderDetails", method = RequestMethod.POST)
@@ -402,7 +417,8 @@ public class OrderController {
 		OrderBean admin_ob = odao.get_One_Order_by_OrderNo(OrderNo);
 		List<OrderItemBean> admin_oib = admin_ob.getItems();
 		model.addAttribute("orderItems_List", admin_oib);
-		return "adminCheckOrderDetails";
+//		return "adminCheckOrderDetails";
+		return "backStage/examples/detailTable";
 	}
 
 	// 查看會員所有訂單,一定是從orderPage跳轉到此頁,此頁無法直接到達
@@ -440,5 +456,4 @@ public class OrderController {
 		// String shippingDateF=sdf.format(shippingDate);
 		return shippingDate;
 	}
-
 }

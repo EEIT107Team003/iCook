@@ -24,6 +24,9 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	crossorigin="anonymous"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/ckeditor/ckeditor.js">
+</script>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -40,7 +43,7 @@
 				<input class="form-control mr-sm-2" type="search"
 					placeholder="Search" aria-label="Search" name="title">
 				<button class="btn btn-outline-success my-2 my-sm-0" type="submit"
-					formaction="search?title=${ param.title }">Search</button>
+					formaction="${ pageContext.request.contextPath }/forum/search?title=${ param.title }">Search</button>
 			</form>
 			<ul class="navbar-nav ml-auto ">
 				<li class="nav-item active"><a class="nav-link" href="#">註冊
@@ -66,10 +69,10 @@
 	</nav>
 	<div class="panel panel-success container-fluid">
 		<div class="panel-heading">
-			<a href="overview">文章總覽</a>
+			<a href="${ pageContext.request.contextPath }/forum/overview">文章總覽</a>
 		</div>
 		<div class="panel-body">
-			<a class="navbar-brand" href="newPost">發表文章</a>
+			<a class="navbar-brand" href="${ pageContext.request.contextPath }/forum/newPost">發表文章</a>
 			<div class="row">
 				<div class="col"></div>
 				<div class="col-8 table-responsive">
@@ -106,20 +109,20 @@
 									<section>
 										<label for="exampleFormControlTextarea1">內文</label>
 										<form:textarea class="form-control"
-											id="exampleFormControlTextarea1" rows="3"
+											id="maintext" rows="3"
 											style="min-height: 400px" path="text"></form:textarea>
 										<hr>
 										<label for="exampleFormControlTextarea1">簽名</label>
 										<form:textarea class="form-control"
-											id="exampleFormControlTextarea1" rows="3"
+											id="signaturetext" rows="3"
 											style="min-height: 80px" path="signature"></form:textarea>
 									</section>
 								</div>
 								<hr>
 								<div style="min-height: 120px; text-align: center">
-									<input class="btn btn-outline-success my-2 my-sm-0 " id="b1"
+									<input class="btn btn-outline-success my-2 my-sm-0 " id="submit"
 										name="buttons" type="submit" value="送出"> <input
-										class="btn btn-outline-danger my-2 my-sm-0 " id="b1"
+										class="btn btn-outline-danger my-2 my-sm-0 " id="reset"
 										name="buttons" type="reset" value="清除">
 								</div>
 							</form:form>
@@ -139,7 +142,24 @@
 		$("#3").click(function(){var cg = document.getElementById("3").text; $("#category").attr("value", cg).text(cg); $("#category2").attr("value", cg);})
 		$("#4").click(function(){var cg = document.getElementById("4").text; $("#category").attr("value", cg).text(cg); $("#category2").attr("value", cg);})
 		$("#5").click(function(){var cg = document.getElementById("5").text; $("#category").attr("value", cg).text(cg); $("#category2").attr("value", cg);})
-		$("#6").click(function(){var cg = document.getElementById("6").text; $("#category").attr("value", cg).text(cg); $("#category2").attr("value", cg);})		
+		$("#6").click(function(){var cg = document.getElementById("6").text; $("#category").attr("value", cg).text(cg); $("#category2").attr("value", cg);})
+		
+		CKEDITOR
+		.replace(
+		'maintext',
+		{
+			extraPlugins : 'easyimage',
+			cloudServices_tokenUrl : 'https://40733.cke-cs.com/token/dev/Pno0Ld5ha3oNhABb0mnQBXWdL6FXy03CbisbDkPL9hJoOrvd8p0hpHlka5RA',
+			cloudServices_uploadUrl : 'https://40733.cke-cs.com/easyimage/upload/'
+		});
+		CKEDITOR
+		.replace(
+				'signaturetext',
+				{
+					extraPlugins : 'easyimage',
+					cloudServices_tokenUrl : 'https://40733.cke-cs.com/token/dev/Pno0Ld5ha3oNhABb0mnQBXWdL6FXy03CbisbDkPL9hJoOrvd8p0hpHlka5RA',
+					cloudServices_uploadUrl : 'https://40733.cke-cs.com/easyimage/upload/'
+				});
 	</script>
 </body>
 </html>
