@@ -139,7 +139,7 @@ public class OrderController {
 		model.addAttribute("inputEmail4", inputEmail4);
 		model.addAttribute("tel", tel);
 		model.addAttribute("orderItems_List", items);
-		return "ezship";
+		return "icookezship";
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -281,7 +281,7 @@ public class OrderController {
 		session.removeAttribute("shoppingCart");
 		//要把變數清空不然還會存留上次購物的內容在map
 		cart.clear();
-		return "finishOrderPage";
+		return "icookFinishOrderPage";
 	}
 	
 	//管理員設定收到款
@@ -339,13 +339,9 @@ public class OrderController {
 		List<OrderBean> orders = new ArrayList<>();
 		orders = odao.getOrdersbyMemberSeqNo(mb.getMember_id());
 		model.addAttribute("orders_list", orders);
-		return "OrdersPage";
+		return "icookMemberCheckOrders";
 	}
-	@RequestMapping("/icookCheckOrders")
-	public String icookCheckOrders(Model model, HttpSession session) {
 	
-		return "icookCheckOrders";
-	}
 	
 	
 	
@@ -386,7 +382,7 @@ public class OrderController {
 				Long diffDays=diffLong/(1000 * 60 * 60 * 24);
 				//測試
 				System.out.println("diffDays="+diffDays);
-				if(diffDays<1) {
+				if(diffDays>1) {
 					needShipOutOrderNo.add(ob.getOrderNo());
 				}
 				//測試
@@ -445,10 +441,10 @@ public class OrderController {
 				model.addAttribute("FrontSeqOrderNo", FrontSeqNoForOrderByMember);
 				//顯示系統單號
 //				model.addAttribute("OrderNo", buyerSyetemSeqNo);
-				return "OrderDetails";
+				return "icookMemberCheckOrderDetails";
 			}
 		}
-		return "OrdersPage";
+		return "icookMemberCheckOrders";
 	}
 
 	// 處理日期+2天問題 method

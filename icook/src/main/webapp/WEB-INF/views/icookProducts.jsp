@@ -96,38 +96,38 @@
 		<div class="content">
 			<div class="zerogrid">
 				<div class="col-full">
-					<h2>Portfolio</h2>
+					<h2>portfolio</h2>
 				</div>
 				<div class="clear"></div>
 
-<!-- 				<div class="row"> -->
-<!-- 					<div class="portfolio"> -->
-<!-- 						<div class="col-1-2"> -->
-<!-- 							<div class="wrap-col"> -->
-<!-- 								<a href="images/big3.jpg" data-gal="prettyPhoto[1]"><span><img -->
-<!-- 										src="images/page4_img1.jpg" alt=""></span></a> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 						<div class="col-1-2"> -->
-<!-- 							<div class="wrap-col"> -->
-<!-- 								<a href="images/big2.jpg" data-gal="prettyPhoto[1]"><span><img -->
-<!-- 										src="images/page4_img2.jpg" alt=""></span></a> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 						<div class="col-1-2"> -->
-<!-- 							<div class="wrap-col"> -->
-<!-- 								<a href="images/big4.jpg" data-gal="prettyPhoto[1]"><span><img -->
-<!-- 										src="images/page4_img3.jpg" alt=""></span></a> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 						<div class="col-1-2"> -->
-<!-- 							<div class="wrap-col"> -->
-<!-- 								<a href="images/big1.jpg" data-gal="prettyPhoto[1]"><span><img -->
-<!-- 										src="images/page4_img4.jpg" alt=""></span></a> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
+				<div class="row">
+					<div class="portfolio">
+						<div class="col-1-2">
+							<div class="wrap-col">
+								<a href="images/big3.jpg" data-gal="prettyPhoto[1]"><span><img
+										src="images/page4_img1.jpg" alt=""></span></a>
+							</div>
+						</div>
+						<div class="col-1-2">
+							<div class="wrap-col">
+								<a href="images/big2.jpg" data-gal="prettyPhoto[1]"><span><img
+										src="images/page4_img2.jpg" alt=""></span></a>
+							</div>
+						</div>
+						<div class="col-1-2">
+							<div class="wrap-col">
+								<a href="images/big4.jpg" data-gal="prettyPhoto[1]"><span><img
+										src="images/page4_img3.jpg" alt=""></span></a>
+							</div>
+						</div>
+						<div class="col-1-2">
+							<div class="wrap-col">
+								<a href="images/big1.jpg" data-gal="prettyPhoto[1]"><span><img
+										src="images/page4_img4.jpg" alt=""></span></a>
+							</div>
+						</div>
+					</div>
+				</div>
 
 				<div class="row">
 					<div class="bottom_block">
@@ -169,16 +169,16 @@
 	</div>
 	<!--==============================footer=================================-->
 
-	<footer>
-		<div class="zerogrid">
-			<div class="col-full">
-				<div class="wrap-col">
-					&copy; Copyright &copy; 2013.Company name All rights reserved.<a
-						target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
-				</div>
-			</div>
-		</div>
-	</footer>
+<!-- 	<footer> -->
+<!-- 		<div class="zerogrid"> -->
+<!-- 			<div class="col-full"> -->
+<!-- 				<div class="wrap-col"> -->
+<!-- 					&copy; Copyright &copy; 2013.Company name All rights reserved.<a -->
+<!-- 						target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</footer> -->
 	<div style="display: none">
 		<script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540'
 			language='JavaScript' charset='gb2312'></script>

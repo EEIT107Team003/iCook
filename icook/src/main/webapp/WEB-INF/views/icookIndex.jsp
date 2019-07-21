@@ -101,7 +101,7 @@
 				<div class="col-full">
 					<div class="wrap-col">
 						<h1>
-							<a href="index2"><img src="images/logo.png"
+							<a href="index2"><img src="images/logo.png" height='200px' width='200px'
 								alt="EXTERIOR"></a>
 						</h1>
 

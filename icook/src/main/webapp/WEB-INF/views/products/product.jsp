@@ -686,7 +686,7 @@ s// 	<!-- =============================================Dataisl==================
 							<input type="hidden" name="quan" id='quan' value="" />
 							<div align="center">
 								<button type="button" class="btn btn-warning"
-									onclick="{location.href='/icook/cartPage'}" class="">去購物車</button>
+									onclick="{location.href='/icook/icookCartPage'}" class="">去購物車</button>
 								<input class="btn btn-warning" type="submit" value="加入購物車" />
 							</div>
 

@@ -65,7 +65,6 @@ td , th{
 	</nav>
 	<h1>
 		<c:out value="會員ID:${LoginOK.member_id}的第${FrontSeqOrderNo}筆消費"></c:out><hr/>
-<%-- 		<c:out value="訂單編號:${OrderNo}"/> --%>
 	</h1>
 	<div class="outer">
 		<table class="table table-hover">

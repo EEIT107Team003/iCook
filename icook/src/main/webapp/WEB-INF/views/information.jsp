@@ -150,7 +150,7 @@ h1 {
 		</header>
 
 	<div class="progress">
-		<div class="progress-bar progress-bar-striped bg-info"
+		<div class="progress-bar progress-bar-striped bg-success"
 			role="progressbar" style="width: 75%" aria-valuenow="75"
 			aria-valuemin="0" aria-valuemax="100"></div>
 	</div>
@@ -357,7 +357,7 @@ h1 {
 				<input type="hidden" name="finalDecision" value="確定送出">
 				<button type="button"
 					onclick="{if(confirm('確定離開嗎?\r\n您的資料將不會記住喔'))location.href='/icook/cartPage'}"
-					class="btn btn-info btn-lg btnSeperate1">回購物車</button>
+					class="btn btn-success btn-lg btnSeperate1">回購物車</button>
 
 				<!-- 				<input type="submit" value="去付款" -->
 				<!-- 					class="btn btn-primary btn-lg btnSeperate2" /> -->
@@ -375,7 +375,7 @@ h1 {
 					<c:when test="${!empty shoppingCart}">
 						<!-- 如果 -->
 						<input type="button" name="OrderBtn" value="確定送出"
-							class="btn btn-info btn-lg btnSeperate2"
+							class="btn btn-success btn-lg btnSeperate2"
 							onclick="reconfirmOrder()">
 					</c:when>
 					<c:when test="${empty shoppingCart}">
