@@ -28,7 +28,7 @@ form {
 </head>
 <body bgcolor='black'>
 	<form:form method="POST" modelAttribute="Articlebean"
-		class='form-horizontal' enctype="multipart/form-data" ">
+		class='form-horizontal' enctype="multipart/form-data"">
 		<table border="3px" bgcolor='#CCEEFF'>
 			<thead>
 				<tr>
@@ -58,7 +58,7 @@ form {
 				<tr>
 					<td width="120" height="40">是否隱藏</td>
 					<td width="600" height="40" align="left"><form:select
-							path="article_status" >
+							path="article_status">
 							<option value="1">公開</option>
 							<option value="2">隱藏</option>
 							<option value="3">不開放留言</option>
@@ -106,13 +106,13 @@ form {
 
 
 <script>
-CKEDITOR
-.replace(
-		'editor1',
-		{
-			extraPlugins : 'easyimage',
-			cloudServices_tokenUrl : 'https://40733.cke-cs.com/token/dev/Pno0Ld5ha3oNhABb0mnQBXWdL6FXy03CbisbDkPL9hJoOrvd8p0hpHlka5RA',
-			cloudServices_uploadUrl : 'https://40733.cke-cs.com/easyimage/upload/'
-		});
+	CKEDITOR
+			.replace(
+					'editor1',
+					{
+						extraPlugins : 'easyimage',
+						cloudServices_tokenUrl : 'https://40733.cke-cs.com/token/dev/Pno0Ld5ha3oNhABb0mnQBXWdL6FXy03CbisbDkPL9hJoOrvd8p0hpHlka5RA',
+						cloudServices_uploadUrl : 'https://40733.cke-cs.com/easyimage/upload/'
+					});
 </script>
 </html>
