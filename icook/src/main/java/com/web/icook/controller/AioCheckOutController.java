@@ -4,23 +4,18 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import ecpay.payment.integration.AllInOne;
-import ecpay.payment.integration.domain.AioCheckOutALL;
-import ecpay.payment.integration.domain.AioCheckOutATM;
 import ecpay.payment.integration.domain.AioCheckOutBARCODE;
-import ecpay.payment.integration.domain.AioCheckOutCVS;
-import ecpay.payment.integration.domain.AioCheckOutDevide;
 import ecpay.payment.integration.domain.AioCheckOutOneTime;
-import ecpay.payment.integration.domain.AioCheckOutPeriod;
-import ecpay.payment.integration.domain.AioCheckOutWebATM;
 import ecpay.payment.integration.domain.InvoiceObj;
 import ecpay.payment.integration.exception.EcpayException;
 
@@ -168,7 +163,6 @@ public class AioCheckOutController {
 		} catch(EcpayException e){
 			throw new Error(e.getNewExceptionMessage());
 		}
-		
 	}
 	
 //	@RequestMapping(value = "frontEnd/aioCheckOut/aioCheckOutCVS", method = RequestMethod.GET)
@@ -268,42 +262,42 @@ public class AioCheckOutController {
 //		
 //	}
 //	
-//	@RequestMapping(value = "frontEnd/aioCheckOut/aioCheckOutOneTime", method = RequestMethod.GET)
-//	public ModelAndView aioCheckOutOneTime(){
-//		return new ModelAndView("aioCheckOutOneTime", "command", new AioCheckOutOneTime());
-//	}
-//	
-//	
-//	@RequestMapping(value = "frontEnd/aioCheckOut/aioCheckOutOneTime", method = RequestMethod.POST, produces="text/html;charset=UTF-8")
-//	public @ResponseBody String aioCheckOutDevide(AioCheckOutOneTime aio){
-//		all = new AllInOne("");
-//		System.out.println(aio.getRemark());
-//		InvoiceObj invoice = new InvoiceObj();
-//		//�������}�o��
-//		invoice = null;
-//		//�t�Өt�Φۦ沣��
-//		aio.setMerchantTradeNo(UUID.randomUUID().toString().replaceAll("-", "").substring(0, 20));
-//		Date date = new Date();
-//		//�t�ӥi�ۦ�M�w����ɶ�
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
-//		aio.setMerchantTradeDate(sdf.format(date));
-//		//�q�t��DB���X���ӫ~��T
-//		aio.setItemName("item1");
-//		aio.setTotalAmount("50");
-//		aio.setTradeDesc("item desc");
-//		//�t�ӥi�ۦ�M�w�O�_���𼷴�
-//		aio.setHoldTradeAMT("0");
-//		//��ݳ]�w�I�ڧ����q���^�Ǻ��}
-//		aio.setReturnURL("http://211.23.128.214:5000");
-//		try{
-//			String html = all.aioCheckOut(aio, invoice);
-//			System.out.println(html);
-//			return html;
-//		} catch(EcpayException e){
-//			throw new Error(e.getNewExceptionMessage());
-//		}
-//		
-//	}
+	@RequestMapping(value = "frontEnd/aioCheckOut/aioCheckOutOneTime", method = RequestMethod.GET)
+	public ModelAndView aioCheckOutOneTime(){
+		return new ModelAndView("aioCheckOutOneTime", "command", new AioCheckOutOneTime());
+	}
+	
+	
+	@RequestMapping(value = "frontEnd/aioCheckOut/aioCheckOutOneTime", method = RequestMethod.POST, produces="text/html;charset=UTF-8")
+	public @ResponseBody String aioCheckOutDevide(AioCheckOutOneTime aio,HttpSession session){
+		all = new AllInOne("");
+		System.out.println(aio.getRemark());
+		InvoiceObj invoice = new InvoiceObj();
+		//�������}�o��
+		invoice = null;
+		//�t�Өt�Φۦ沣��
+		aio.setMerchantTradeNo(UUID.randomUUID().toString().replaceAll("-", "").substring(0, 20));
+		Date date = new Date();
+		//�t�ӥi�ۦ�M�w����ɶ�
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+		aio.setMerchantTradeDate(sdf.format(date));
+		//�q�t��DB���X���ӫ~��T
+		aio.setItemName(session.getAttribute("orderNo").toString()+"號訂單");
+		aio.setTotalAmount(session.getAttribute("orderAmount").toString());
+		aio.setTradeDesc("item desc");
+		//�t�ӥi�ۦ�M�w�O�_���𼷴�
+		//aio.setHoldTradeAMT("0");
+		//��ݳ]�w�I�ڧ����q���^�Ǻ��}
+		aio.setReturnURL("http://211.23.128.214:5000");
+		try{
+			String html = all.aioCheckOut(aio, invoice);
+			System.out.println(html);
+			return html;
+		} catch(EcpayException e){
+			throw new Error(e.getNewExceptionMessage());
+		}
+		
+	}
 //	
 //	@RequestMapping(value = "frontEnd/aioCheckOut/aioCheckOutPeriod", method = RequestMethod.GET)
 //	public ModelAndView aioCheckOutPeriod(){

@@ -180,6 +180,13 @@ public class OrderController {
 		}
 		@SuppressWarnings("unchecked")
 		Map<Integer, OrderItemBean> cart = (Map<Integer, OrderItemBean>) session.getAttribute("shoppingCart");
+		
+		//防止訂購完按超商付款他會網頁會refresh跳到此會空值出錯
+		if(cart==null) {
+			return "redirect:/products";
+		}
+		
+		
 		List<OrderItemBean> items = new ArrayList<>();
 		//--------------------------此欄資訊不會寫入DB而是用在發送email--------------------------
 		String custName=request.getParameter("lastName")+"先生/小姐"+request.getParameter("FirstName");
@@ -204,6 +211,7 @@ public class OrderController {
 		ob.setMemberbean(mb);
 		odao.insertOrder(ob);
 		// System.out.println(cart);
+		
 		Set<Integer> key_set = cart.keySet();
 		for (Integer k : key_set) {
 			OrderItemBean oi_product = cart.get(k);// 直接用特定key去抓特定Value
@@ -277,10 +285,22 @@ public class OrderController {
 //多個收件人，RecipientType.TO平常發送，CC抄送，BCC是暗送（就是別的收件人看不到)
 		Transport.send(msg);
 		//--------------------------------------結束email---------------------------------------
+		
+
 		model.addAttribute("orderNo",ob.getOrderNo());
 		session.removeAttribute("shoppingCart");
 		//要把變數清空不然還會存留上次購物的內容在map
 		cart.clear();
+		//為了把值給綠界
+		
+		//ecpay內部運作只收Integer,Double會出錯
+		int AmountInt=(int) Math.round(ob.getTotalAmount());
+		Integer AmountInteger = new Integer(AmountInt);
+		String AmountString = AmountInteger.toString();
+//		System.out.println("orderAmount="+AmountString);
+//		System.out.println(AmountString instanceof String);
+		session.setAttribute("orderAmount",AmountString );
+		session.setAttribute("orderNo",ob.getOrderNo());
 		return "icookFinishOrderPage";
 	}
 	

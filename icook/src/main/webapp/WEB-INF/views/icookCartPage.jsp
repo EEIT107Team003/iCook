@@ -135,9 +135,9 @@
 			</div>
 			<table id="tfhover" class="table table-striped table-hover">
 				<tr>
-					<th>產品號asxafffffdddfdddff</th>
-					<th>圖片sdcsdc</th>
-					<th>數量sdcsdc</th>
+					<th>產品號a</th>
+					<th>圖片a</th>
+					<th>數量a</th>
 					<th>單價</th>
 					<th>小計</th>
 					<th></th>
@@ -172,14 +172,14 @@
 					<tr>
 						<td>${cart.value.productBean.product_id}</td>
 						<td><img width='30' height='30'
-							src="<c:url value='/getProduct/${cart.value.productBean.product_id}'/>" /></td>
+							src="<c:url value='/getProductPicture/${cart.value.productBean.product_id}'/>" /></td>
 						<td>${cart.value.quantity}</td>
 						<td>${cart.value.productBean.price}</td>
 						<td>${cart.value.subtotal}</td>
 						<td><button type='button' class="btn btn-primary"
 								id='${cart.value.productBean.product_id}'
 								onclick='editorId(this)'>
-								<i class="fas fa-edit"></i>修改kkKkk(改下拉)
+								<i class="fas fa-edit"></i>修改
 							</button></td>
 						<td><button type='button' class="btn btn-danger"
 								id='${cart.value.productBean.product_id}' onclick='deleId(this)'>

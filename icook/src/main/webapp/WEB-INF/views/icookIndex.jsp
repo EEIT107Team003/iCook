@@ -128,9 +128,7 @@
 									<li><a href="icookLife">生活誌</a></li>
 									<li><a href="forum/overview">討論區</a></li>
 									<li><a href="A_articlemainpage">文章區</a></li>
-									<li><a href="icookProducts">市集</a><ul>
-									
-									
+									<li><a href="products">市集</a><ul>
 										<li><a href="cartPage">購物車</a></li>
 									</ul></li>
 									

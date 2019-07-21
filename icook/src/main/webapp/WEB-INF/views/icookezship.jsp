@@ -161,12 +161,12 @@
 				<table width="100%" border="0" cellspacing="0" cellpadding="0"
 					style="border-collapse: collapse">
 					<tr>
-						<td align="center">
-							<!-- 												<a class="btn btn-info btn-lg" --> <a
-							align="center" class="btn btn-outline-info btn-lg"
-							href="https://map.ezship.com.tw/ezship_map_web.jsp?suID=buyer@myweb.com.tw&processID=155922&stCate=<%=s_stCate%>&stCode=<%=s_stCode%>&rtURL=http://localhost:8080/icook/check">---請先選擇收貨門市---</a>
-							<%-- 												                <a href="https://map.ezship.com.tw/ezship_map_web.jsp?suID=buyer@myweb.com.tw&processID=155922&stCate=<%=s_stCate%>&stCode=<%=s_stCode%>&rtURL=https://www.ezship.com.tw/emap/ezship_simulation_mappg_hy.jsp&webPara=simulationpage">選擇門市</a> --%>
-						</td>
+<!-- 						<td align="center"> -->
+<!-- 																			<a class="btn btn-info btn-lg" <a -->
+<!-- 							align="center" class="btn btn-outline-info btn-lg" -->
+<%-- 							href="https://map.ezship.com.tw/ezship_map_web.jsp?suID=buyer@myweb.com.tw&processID=155922&stCate=<%=s_stCate%>&stCode=<%=s_stCode%>&rtURL=http://localhost:8080/icook/check">---請先選擇收貨門市---</a> --%>
+<%-- 																			                <a href="https://map.ezship.com.tw/ezship_map_web.jsp?suID=buyer@myweb.com.tw&processID=155922&stCate=<%=s_stCate%>&stCode=<%=s_stCode%>&rtURL=https://www.ezship.com.tw/emap/ezship_simulation_mappg_hy.jsp&webPara=simulationpage">選擇門市</a> --%>
+<!-- 						</td> -->
 					</tr>
 				</table>
 				<%-- 				<c:out value="登入者${LoginOK.nickname}"></c:out> --%>
@@ -186,7 +186,7 @@
 <%-- 							href="https://map.ezship.com.tw/ezship_map_web.jsp?suID=buyer@myweb.com.tw&processID=155922&stCate=<%=s_stCate%>&stCode=<%=s_stCode%>&rtURL=http://localhost:8080/icook/check">---請先選擇收貨門市---</a> --%>
 							<button type="button"					
 							onclick="{location.href='https://map.ezship.com.tw/ezship_map_web.jsp?suID=buyer@myweb.com.tw&processID=155922&stCate=<%=s_stCate%>&stCode=<%=s_stCode%>&rtURL=http://localhost:8080/icook/check'}"
-							class="btn btn-outline-success btn-lg btnSeperate1">---請先選擇收貨門市---</button>
+							class="btn btn-outline-success btn-lg btnSeperate1">選擇門市</button>
 					</div>
 				</div>
 			</div>

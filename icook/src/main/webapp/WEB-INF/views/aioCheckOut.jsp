@@ -54,15 +54,15 @@
 <!-- 		</tr> -->
 <!-- 	</table> -->
 <!-- </form> -->
-<!-- <form method = "GET"  action = "aioCheckOut/aioCheckOutOneTime"> -->
-<!-- 	<table> -->
-<!-- 		<tr> -->
-<!-- 			<td> -->
-<!-- 				<input type = "submit" value = "信用卡一次付清"/> -->
-<!-- 			</td> -->
-<!-- 		</tr> -->
-<!-- 	</table> -->
-<!-- </form> -->
+<form method = "GET"  action = "frontEnd/aioCheckOut/aioCheckOutOneTime">
+	<table>
+		<tr>
+			<td>
+				<input type = "submit" value = "信用卡一次付清"/>
+			</td>
+		</tr>
+	</table>
+</form>
 <!-- <form method = "GET"  action = "aioCheckOut/aioCheckOutPeriod"> -->
 <!-- 	<table> -->
 <!-- 		<tr> -->

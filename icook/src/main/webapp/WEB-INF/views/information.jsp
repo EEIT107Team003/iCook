@@ -200,7 +200,7 @@ h1 {
 					<tr>
 						<td>${cart.value.productBean.product_id}</td>
 						<td><img width='30' height='30'
-							src="<c:url value='/getPicture/${cart.value.productBean.product_id}' />" /></td>
+							src="<c:url value='/getProductPicture/${cart.value.productBean.product_id}' />" /></td>
 						<td>${cart.value.quantity}</td>
 						<td>${cart.value.productBean.price}</td>
 						<td>${cart.value.subtotal}</td>

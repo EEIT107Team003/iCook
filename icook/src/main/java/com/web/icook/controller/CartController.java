@@ -39,7 +39,16 @@ public class CartController {
 
 	@Autowired
 	MemberController mcontroller;
+	
+//	@RequestMapping("/backStage")
+//	public String backStage(Model model) {
+//		return "index";
+//	}
 
+	
+	
+	
+	
 	// 測試
 	@RequestMapping("/finishOrderPage")
 	public String tofinishOrderPage(Model model) {
@@ -50,17 +59,25 @@ public class CartController {
 	}
 
 	@RequestMapping("/icookFinishOrderPage")
-	public String icookFinishOrderPage(Model model) {
+	public String icookFinishOrderPage(Model model,HttpSession session) {
 		// 測試
+		
+		
+		//測試綠界只收int
+//		int AmountInt=100;
+//		Integer AmountInteger = new Integer(AmountInt);
+//		String AmountString = "33號";
+//		session.setAttribute("orderAmount",AmountInteger );
+//		session.setAttribute("orderNo",AmountString );
 //		boolean status=odao.setPaymentOK(13);
 //		model.addAttribute("status", status);
 		return "icookFinishOrderPage";
 	}
 
-	@RequestMapping("/thankyou")
-	public String thankyou() {
-		return "thankyouPage2";
-	}
+//	@RequestMapping("/thankyou")
+//	public String thankyou() {
+//		return "thankyouPage2";
+//	}
 
 	@RequestMapping("/realPaypal")
 	public String realPaypal() {

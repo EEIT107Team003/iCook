@@ -115,9 +115,9 @@ th, td {
 	</div>
 	<table id="tfhover" class="table table-striped table-hover">
 		<tr>
-			<th>產品號asxa</th>
-			<th>圖片sdcsdc</th>
-			<th>數量sdcsdc</th>
+			<th>產品號</th>
+			<th>圖片</th>
+			<th>數量</th>
 			<th>單價</th>
 			<th>小計</th>
 			<c:set var="contains" value="no" />
