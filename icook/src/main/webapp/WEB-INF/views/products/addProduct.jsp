@@ -63,7 +63,9 @@ fieldset {
 .des{
    margin-left:22ch;   
 }
-
+.formmIn{
+font-size:20px;
+}
 
 </style>
 <title>Products</title>
@@ -323,7 +325,7 @@ fieldset {
 		style="height: 1px; border: none; color: #333; background-color: #333;">
 	<section >
 		<!--       三個地方要完全一樣 -->
-		<form:form method='POST' modelAttribute="productBeanObject"
+		<form:form method='POST' modelAttribute="productBeanObject" class="formmIn"
 			 enctype="multipart/form-data" >
 			<!-- 		                  	enctype="multipart/form-data"一定要加這個屬性才可以使用上傳檔案這個功能 -->
 			
@@ -370,9 +372,9 @@ fieldset {
 
 				<div class="formGroup">
 					<label for="productImage">圖片 : </label>
-					<form:input id="productImage" path="productImage" type='file'/>
+					<form:input id="productImage" path="productImage" type='file' accept="image/gif, image/jpeg, image/png"/>
 				</div>
-
+				<div id="uploadImg"></div>
 					<div class="formGroup">
 						<label for="m1"><input type="radio" name="gender" value="1" >   上架   </label>
 						<label> <input type="radio" name="gender" value="2">    下架         </label>
@@ -389,6 +391,37 @@ fieldset {
 				
 			</fieldset>
 		</form:form>
+		
+		
+<script>
+
+$("#productImage").change(function(){
+	  readURL(this);
+	  var txt="<img id='preview_progressbarTW_img' src='#' style='margin-left:5ch;' width='300px' height='300px' />"
+	  $("#uploadImg").html(txt);
+	});
+
+ 
+
+function readURL(input){
+
+  if(input.files && input.files[0]){
+
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+
+       $("#preview_progressbarTW_img").attr('src', e.target.result);
+
+    }
+
+    reader.readAsDataURL(input.files[0]);
+
+  }
+
+}
+
+</script>
 	</section>
 	</div>
 	</div>

@@ -47,13 +47,16 @@
 fieldset {
 /*     padding-left: 5cm; */
 	border: 1px solid rgb(255, 232, 57);
-    margin-left:10ch;
-    margin-top:3ch;
+    margin-left:3ch;
+    margin-top:1ch;
     padding:2ch; 
 }
 .left{
 float:left;
-width: 55%;
+width: 60%;
+}
+.left select {
+clear:left;
 }
 .right{
 float:right;
@@ -76,6 +79,9 @@ border: 1px solid rgb(255, 232, 57);
 text-align: center;
 }
 
+#formUp{
+font-size:20px;
+}
 
 </style>
 <title>Products</title>
@@ -329,7 +335,7 @@ text-align: center;
 
 		<section>
 			<!--       三個地方要完全一樣 -->
-			<form:form method='POST' modelAttribute="productBeanObject"
+			<form:form method='POST' modelAttribute="productBeanObject" id="formUp"
 				enctype="multipart/form-data">
 				<!-- 		                  	enctype="multipart/form-data"一定要加這個屬性才可以使用上傳檔案這個功能 -->
 
@@ -344,7 +350,6 @@ text-align: center;
 						<label for='name'>名稱描述 : </label>
 						<form:input id="name" path="name" type='text' />
 					</div>
-
 					<div class="formGroup">
 						<label for="exampleFormControlSelect1">種類 :</label> <select
 							class="form-control" id="exampleFormControlSelect1"
@@ -379,7 +384,7 @@ text-align: center;
 						<label for="productImage">圖片 : </label>
 						<form:input id="productImage" path="productImage" type='file' />
 					</div>
-
+                    <div id="uploadImg"></div>
                     <div class="formGroup">
 						<label for="m1"><input type="radio" name="gender" value="1" >   上架   </label>
 						<label> <input type="radio" name="gender" value="2">    下架         </label>
@@ -397,6 +402,37 @@ text-align: center;
 				</fieldset>
 			</form:form>
 		</section>
+		
+				
+<script>
+
+$("#productImage").change(function(){
+  readURL(this);
+  var txt="<img id='preview_progressbarTW_img' src='#' style='margin-left:5ch;' width='300px' height='300px' />"
+  $("#uploadImg").html(txt);
+});
+
+ 
+
+function readURL(input){
+
+  if(input.files && input.files[0]){
+
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+
+       $("#preview_progressbarTW_img").attr('src', e.target.result);
+
+    }
+
+    reader.readAsDataURL(input.files[0]);
+
+  }
+
+}
+
+</script>
 		<div class="right">
 			<fieldset >
 				<h1 class="pre">Previous Product</h1>

@@ -68,6 +68,7 @@ public class ProductController {
 	MemberService mservice;
 	
 	
+	
 
 	@ResponseBody
 	@RequestMapping(value = "/SelectByCategoriesAndDescriptionForProduct/{txt}", method = RequestMethod.GET)
