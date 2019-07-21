@@ -1,0 +1,14 @@
+@charset "UTF-8";
+.left{
+ background-color: #000000;
+   padding: 0px;
+   margin: 0px;
+ }
+
+#gradient
+{
+  width: 80%;
+  height: 200px;
+  padding: 0px;
+  margin: 0px;
+}

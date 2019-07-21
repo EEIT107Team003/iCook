@@ -19,6 +19,9 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
 	
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/product_css/products.css">
+
+
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/product_css/products.css">
 <!-- 	========================================================================================= -->
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -45,7 +48,7 @@
 }
 
 .left {
-	width: 15%;
+	width: 20%;
 	float: left;
 }
 
@@ -77,6 +80,7 @@ body {
 
 /* ======================MainShow=================================== */
 .field {
+    margin-left:3px;
 	padding: 10px;
 }
 
@@ -101,23 +105,26 @@ body {
 }
 
 .divA img {
-      margin:auto;
+     margin-left:10px;
+     margin:auto;
 	-webkit-transition: opacity 2s linear;
 	-moz-transition: opacity 2s linear;
 	-o-transition: opacity 2s linear;
 	transition: opacity 1s linear;
-	width: 30cm;
-	height: 230px;
+	width: 40cm;
+	height: 270px;
 }
 
 /* ============================================================= */
 
 
 </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+	
 </head>
 <body>
 	<script>
-	
+
 // ================================起始畫面SHOW====================================
     var count;
 	firstShow();
@@ -443,9 +450,10 @@ body {
 			
 
 	</script>
+	<h1>222</h1>
 	<div class="main">
 	<!--==============================header=================================-->
-		<header>
+		<header id="gradient">
 			<div class="zerogrid">
 				<div class="col-full">
 					<div class="wrap-col">
@@ -497,22 +505,21 @@ body {
 		</header>
 	<div class="allPage">
 		<div class="left">
+			  <div id="gradient" ></div>
 			<section class="container">
 				<div>
 					<select  id="show" name="show"  class="form-control form-control-sm"><option
 							value="0" SELECTED id='ch'>請選擇</option></select> <select id="show2" name="show2"class="form-control form-control-sm">
 					</select>
 				</div>
-				<nav class="navbar navbar-light bg-light">
 				<form class="searchDiv" id="searchDiv" method="POST" class="form-inline">
 					<input id="fileName" name="fileName" type="hidden" /> <input
 						id="remark" name="remark" type="hidden" /><input id="stock" name="stock" type="hidden" />
 					<div style="width:26ch;">
-						<input id="description" name="description" type="text"  style="width:20ch;" class="form-control mr-sm-2" placeholder="Search" ></input>
+						<input id="description" name="description" type="text"   class="form-control mr-sm-2" placeholder="Search" ></input>
 						  <input type="button" id="searchSub"class="btn btn-outline-success my-2 my-sm-0" value="Search">
 					</div>
 				</form>
-				</nav>
 			</section>
 			<section class="container">
 				<div class="list-type1">

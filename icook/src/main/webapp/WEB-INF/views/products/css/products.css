@@ -7,10 +7,10 @@ background-color: #CCEEFF;
 font-weight:bold;
 }
 .container text{
-width:50ch;
+width:39ch;
 }
 .container select{
-	width:35ch;
+	width:28ch;
 	height:5ch;
 	font-size: 10px;
 }
@@ -24,7 +24,7 @@ border-radius: 15px;
 .mainDiv img{
 margin-left:2ch;
 margin-top:2ch;
-height:21ch;
+height:23ch;
 width:22ch;
 	}
 	

@@ -265,7 +265,7 @@ public class ProductController {
 //  ResponseEntity代表一個所有回應的東西(狀態列:Status Line、回應標頭  Response Header、 回應本體 Response Body)
 //  會直接挑過Dispatcher 直接回應給Browser	。@PathVariable("可省略，但上面大括號內德變數要跟後面的變數一樣")
 	public ResponseEntity<byte[]> getPicture(HttpServletResponse resp, @PathVariable Integer product_Id) {
-//		System.out.println("getPicture================");
+		System.out.println("getProductPicture================");
 //             回應本體的資料型態                   
 		String filePath = "/resources/images/NoImage.jpg";
 //                           設定預設圖路徑
