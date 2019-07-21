@@ -47,7 +47,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
    	    http.authorizeRequests()
    	    .antMatchers("/","/login_page","/addMember","/member").permitAll() //不用登入即可使用
-   	    .antMatchers("/user/**","/members/page/track","/checkOrders/**","/icook/toEZship/**","/icookCartPage/**","/cartPage/**")
+   	    .antMatchers("/user/**","/members/page/track","/checkOrders/**","/icook/toEZship/**","/icookCartPage/**","/cartPage/**", "/forum/newPost", "/forum/reply", "/forum/edit", "/forum/delete", "/forum/like")
    	    .hasAnyRole("ADMIN", "MEMBER") //只要登入成功,便可使用(權限:"ADMIN"或"MEMBER")
    	    .and()
    	    .csrf().disable() //關閉CSRF檢查
