@@ -73,14 +73,7 @@ body {
 	margin-bottom:10ch;
 	margin-top:3ch;
 }
-.pageForProduct{
-margin:auto;
-margin-left: 5ch;
-}
-.pageForProduct button{
-margin-left: 3ch;
-width:30px;
-}
+
 
 /* ======================MainShow=================================== */
 .field {
@@ -89,7 +82,7 @@ width:30px;
 
 .mainShow {
 	opacity: 100;
-	width: 50px;
+	width: 100px;
 	filter: alpha(opacity = 100);
 	margin:auto;
 }
@@ -113,8 +106,8 @@ width:30px;
 	-moz-transition: opacity 2s linear;
 	-o-transition: opacity 2s linear;
 	transition: opacity 1s linear;
-	width: 10cm;
-	height: 200px;
+	width: 30cm;
+	height: 230px;
 }
 
 /* ============================================================= */
@@ -123,7 +116,6 @@ width:30px;
 </style>
 </head>
 <body>
-
 	<script>
 	
 // ================================起始畫面SHOW====================================
@@ -388,7 +380,7 @@ width:30px;
 //	 				             console.log(i + ' :' + names[i]	);
 					             txt+=
 					            	  "<div class='col-sm-6 col-md-3' style='width: 200px; height: 250px;margin-bottom:20px'>"
-						             +"<div class=''>"
+						             +"<div class='mainDiv'>"
 						             +"<img width='100' height='150'src=   \" <c:url value=  '/getProductPicture/"+names[i].product_id+"'   /> \"     />"
 						             +"<div class=''  height='100' style='font-size: 8px; ''><p>"
 						             +"名稱 :"+names[i].name+"</p><p>價格 : "+names[i].price+"</p>"
@@ -417,10 +409,10 @@ width:30px;
 							for (i in names) {
 //	 				             console.log(i + ' :' + names[i]	);
 					             txt+=
-					            	  "<div class='col-sm-6 col-md-3' style='width: 200px; height: 250px;margin-bottom:50px;margin-right:50px'>"
-						             +"<div class=''>"
-						             +"<img width='125' height='175'src=   \" <c:url value=  '/getProductPicture/"+names[i].product_id+"'   /> \"     />"
-						             +"<div class=''  height='100' style='font-size: 8px; ''><p>"
+					            	  "<div class='col-sm-6 col-md-3' style='width: 200px; height: 250px;margin-bottom:80px;margin-right:50px'>"
+						             +"<div class='mainDiv'>"
+						             +"<img src=   \" <c:url value=  '/getProductPicture/"+names[i].product_id+"'   /> \"     />"
+						             +"<div class='mainText'  style='font-size: 8px; ''><p>"
 						             +"名稱  : "+names[i].name+"</p><p>價格 : "+names[i].price+"</p>"
 						             +"<nav class='navbar navbar-light bg-light'><form class='form-inline'>"
 						             +"<a class='mh6'   href=\" <c:url value=  '/product?id="+names[i].product_id+"'    /> \"    >" 
@@ -515,10 +507,8 @@ width:30px;
 				<form class="searchDiv" id="searchDiv" method="POST" class="form-inline">
 					<input id="fileName" name="fileName" type="hidden" /> <input
 						id="remark" name="remark" type="hidden" /><input id="stock" name="stock" type="hidden" />
-					<div>
-						<input id="description" name="description" type="text"  class="form-control mr-sm-2" placeholder="Search" aria-label="Search"></input>
-					</div>
-					<div>
+					<div style="width:26ch;">
+						<input id="description" name="description" type="text"  style="width:20ch;" class="form-control mr-sm-2" placeholder="Search" ></input>
 						  <input type="button" id="searchSub"class="btn btn-outline-success my-2 my-sm-0" value="Search">
 					</div>
 				</form>
