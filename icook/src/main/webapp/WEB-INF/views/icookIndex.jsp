@@ -102,8 +102,7 @@
 				<div class="col-full">
 					<div class="wrap-col">
 						<h1>
-							<a href="index2"><img src="images/logo.png" height='200px' width='200px'
-								alt="EXTERIOR"></a>
+							<a href="index2"><img src="images/logo.png" alt="EXTERIOR"></a>
 						</h1>
 
 						<div class="menu_block">
@@ -140,7 +139,8 @@
 										<ul>
 									</li>		
 								</ul>
-							</nav>							<div class="clear"></div>
+							</nav>							
+							<div class="clear"></div>
 						</div>
 						<div class="clear"></div>
 					</div>
