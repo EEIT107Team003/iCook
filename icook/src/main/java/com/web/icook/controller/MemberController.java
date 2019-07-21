@@ -60,8 +60,7 @@ public class MemberController {
 			model.addAttribute("member", bean);
 		}
 
-
-		return "member/user_page";
+		return "member/icookUser";
 
 	}
 
