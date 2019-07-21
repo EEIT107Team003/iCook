@@ -90,13 +90,14 @@
 						<div class="clear"></div>
 					</div>
 				</div>
+				</div>
 		</header>
 		<!--=======content================================-->
 
 		<div class="content">
 			<div class="zerogrid">
 				<div class="col-full">
-					<h2>portfolio</h2>
+					<h2>Portfolio</h2>
 				</div>
 				<div class="clear"></div>
 
