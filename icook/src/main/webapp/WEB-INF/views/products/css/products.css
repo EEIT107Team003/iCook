@@ -10,12 +10,10 @@ font-weight:bold;
 	font-size: 10px;
 }
 
-.pagination input{
-margin:auto;
+#pagination  input{
 width:10ch;
 background-color: #93C775;
 font-size: 15px;
-text-align: center;
 }
 
 .list-type1{

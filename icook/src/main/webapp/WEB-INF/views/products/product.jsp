@@ -537,8 +537,8 @@ width:30px;
 		    
 
 	</script>
+	<div class="main">
 	<header>
-		<div class="zerogrid">
 			<div class="col-full">
 				<div class="wrap-col">
 					<h1>
@@ -583,6 +583,8 @@ width:30px;
 				</div>
 		
 	</header>
+		
+		
 	<div class="allPage">
 		<div class="left">
 			<section class="container">
@@ -641,6 +643,7 @@ width:30px;
 						<li><a class="search">羊肉</a></li>
 					</ul>
 					<a href='${pageContext.request.contextPath}'>回首頁</a><BR> <br>
+					</div>
 			</section>
 		</div>
 
@@ -651,12 +654,13 @@ width:30px;
 
 			<section class="container">
 				<div class="row">
+				
 					<div class="zerogrid" style="width: 100ch; margin: 0; padding: 0;">
 						<div class="portfolio">
 							<div class="col-1-2">
 								<div class="wrap-col">
 									<a
-										href="<c:url value='/getProductPicture/${product.product_id}'/>"
+										href="images/big3.jpg"
 										data-gal="prettyPhoto[1]"><span> <img
 											src="<c:url value='/getProductPicture/${product.product_id}'/>"
 											alt="" />
@@ -699,7 +703,7 @@ width:30px;
 					</div>
 				</div>
 
-
+	           	
 
 			</section>
 			<!-- =============================================Dataisl=================================================================		 -->
@@ -714,8 +718,11 @@ width:30px;
 		</div>
 		<div class="right"></div>
 	</div>
-	
-	<footer>
+</div>
+
+
+
+	<footer >
 		<div class="zerogrid">
 			<div class="col-full">
 				<div class="wrap-col">
@@ -724,12 +731,11 @@ width:30px;
 				</div>
 			</div>
 		</div>
-	</footer>
+	</footer >
 	<div style="display: none">
 		<script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540'
 			language='JavaScript' charset='gb2312'></script>
 	</div>
-
 </body>
 </html>
 
