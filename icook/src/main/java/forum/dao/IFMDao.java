@@ -29,5 +29,7 @@ public interface IFMDao {
 	public List<ForumMainBean> getByCategory(String category);
 	
 	public List<ForumMainBean> getByPK(Integer article_id);
+
+	List<ForumMainBean> getByMember_id(Integer member_id);
 	
 }

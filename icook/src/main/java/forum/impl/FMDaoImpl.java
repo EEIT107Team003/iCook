@@ -156,6 +156,16 @@ public class FMDaoImpl implements IFMDao {
 		fmbList = session.createQuery(hql).setParameter("article_id", article_id).getResultList();
 		return fmbList;
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ForumMainBean> getByMember_id(Integer member_id) {
+		String hql = "from ForumMainBean where member_id = :member_id";
+		Session session = factory.getCurrentSession();
+		List<ForumMainBean> fmbList = new ArrayList<>();
+		fmbList = session.createQuery(hql).setParameter("member_id", member_id).getResultList();
+		return fmbList;
+	}
 
 	@Override
 	public Integer like(Integer article_id, MemberBean memberBean) {
