@@ -103,20 +103,7 @@
 		<a href="insert">新增食譜</a>
 		<a href="recipe">所有食譜</a>
 <hr>
-點擊圖片並上傳 測試一
-   <label for="image">
-      <input type="file" name="image" id="image" style="display:none;"/>
-      <img src="http://upload.wikimedia.org/wikipedia/commons/c/ca/Button-Lightblue.svg" width="30px"/>
-   </label>
-<hr>
-點擊圖片並上傳 測試二
-<input type="image" src="http://upload.wikimedia.org/wikipedia/commons/c/ca/Button-Lightblue.svg" width="30px"/>
-<input type="file" id="my_file" style="display: none;" />
-<script>
-$("input[type='image']").click(function() {
-    $("input[id='my_file']").click();
-});
-</script>
+
 	<table border="1" style="margin: 0px auto;">
 		<tr height="52" bgcolor="lightblue" align="center">
 			<td width="350"><p align="left" /> <a href='products'>查詢所有產品資料</a><BR>
