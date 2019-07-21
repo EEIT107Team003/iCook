@@ -106,7 +106,7 @@
 						</h1>
 
 						<div class="menu_block">
-								<nav>
+							<nav>
 								<ul class="sf-menu">
 									<li class="with_ul current"><a href="index2">ICook</a></li>
 									<li><a href="icookAboutUS">關於我們</a>
