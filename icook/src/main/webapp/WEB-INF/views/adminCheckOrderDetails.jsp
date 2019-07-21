@@ -90,7 +90,7 @@ td , th{
 					<td>${orderItem.memberBean.member_id}</td>
 					<td>${orderItem.orderBean.orderNo}</td>
 						<td><img width='50' height='50'
-				src="<c:url value='/getPicture/${orderItem.productBean.product_id}'/>"/></td>
+				src="<c:url value='/getProductPicture/${orderItem.productBean.product_id}'/>"/></td>
 						<td>${orderItem.productBean.product_id}</td>
 						<td>${orderItem.productBean.categoriesbean.name}</td>
 						<td>${orderItem.productBean.description}</td>

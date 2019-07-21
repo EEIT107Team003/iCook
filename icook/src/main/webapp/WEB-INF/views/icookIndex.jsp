@@ -19,7 +19,10 @@
 	media="screen">
 <link rel="stylesheet" href="css/responsive.css" type="text/css"
 	media="screen">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	crossorigin="anonymous">
 <script src="js/jquery.js"></script>
 <script src="js/jquery-migrate-1.1.1.js"></script>
 <script src="js/superfish.js"></script>
@@ -29,8 +32,14 @@
 <script src="js/tms-0.4.1.js"></script>
 <script src="js/css3-mediaqueries.js"></script>
 <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+	integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+	integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+	crossorigin="anonymous"></script>
 <script>
 	$(window).load(function() {
 		$('.slider')._TMS({
@@ -113,11 +122,22 @@
 										<ul>
 											<li><a href="icookContact">聯繫我們</a></li>
 										</ul></li>
-									<li><a href="<c:url value='/recipe/recipeIndex' /> ">查看食譜</a>
+									<li><a href="icookMenu">查看食譜</a>
+										<ul>
+											<li><a href="#">cat1</a></li>
+											<li><a href="#">cat2</a></li>
+											<li><a href="#">cat3</a></li>
+										</ul></li>
 									<li><a href="icookLife">生活誌</a></li>
 									<li><a href="forum/overview">討論區</a></li>
-									<li><a href="A_articlemainpage">文章區</a></li>
-									<li><a href="products">市集</a>
+									<li><a href="A_articlemainpage">文章區</a>
+										<ul>
+											<li><a href="A_article">test</a></li>
+
+										</ul></li>
+
+
+									<li><a href="icookProducts">市集</a>
 									<ul>
 
 
@@ -134,10 +154,13 @@
 												<li><a href="index2" data-toggle="modal" data-target="#logout">會員登出</a></li>
 											</c:if>
 												<li><a href="checkOrders">查看訂單</a></li>
-												<li><a href="#">新增食譜</a></li>
+												<li><a href="icookAddRecipe">新增食譜</a></li>
 												<li><a href="backStage">後台</a></li>
 										<ul>
 									</li>		
+											<li><a href="checkOrders">查看訂單</a></li>
+											<li><a href="#">新增食譜</a></li>
+											<ul></li>
 								</ul>
 							</nav>
 							<div class="clear"></div>
