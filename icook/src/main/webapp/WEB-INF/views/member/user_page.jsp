@@ -133,6 +133,7 @@
 //	 					txt+=names[i].trackedId.nickname+"<br>"
 // 					alert(data);
 					$("#member_resume").html(resume);
+					$("#change_reaume").val(resume);
 					$('#myModal').modal('hide');
 					
 				},
@@ -155,6 +156,7 @@
 				success : function(data) {
 					$("#member_nickname").html(c_nickname);
 					$("#member_resume").html(c_resume);
+					$("#resume").val(c_resume);					
 					$('#myModal_changeInfo').modal('hide');
 					
 				},
@@ -290,14 +292,6 @@
 					</label>
 					<input id=submit1 type="submit" value="送出" style="display: none;">
 				</form:form>
-<%-- 				<form id=updateMemberPhoto method="POST" enctype="multipart/form-data"> --%>
-<!-- 					<label id="member_photo_label" for="member_photo_tr" style="float: left">  -->
-<!-- 						<input type="file" name="member_photo_tr" id="member_photo_tr" style="display: none;" />  -->
-<!-- 						<img class="profile-image img-responsive pull-left member_photo" -->
-<!-- 							id="member_photo_image" -->
-<%-- 							src="<c:url value='/getMemberPhoto/${member.member_id}' />" /> --%>
-<!-- 					</label> -->
-<%-- 				</form> --%>
 
 				<div class="profile-content pull-left member_info">
 					<h1 id="member_nickname">${member.nickname}</h1>
@@ -310,8 +304,7 @@
 						<li class="last-item"><a href="#"><i
 								class="fa fa-hacker-news"></i></a></li>
 					</ul>
-				</div>
-				<!--//profile-->
+				</div><!--//profile-->
         </div><!--//container-->
     </header><!--//header-->
     
@@ -335,7 +328,7 @@
 							</tr>
 							<tr>
 								<td><label for="username">電子郵件: </label></td>
-								<td><input id="change_username" name="username" type="text" disabled="disabled" value="${member.username}" /></td>
+								<td><input id="change_username" name="username" type="text" disabled="disabled" value="${member.username}" style="color: gray;"/></td>
 							</tr>
 							<tr>
 								<td><label for="change_member_phone_num">聯絡電話: </label></td>
@@ -347,7 +340,7 @@
 							</tr>
 							<tr>
 								<td><label for="change_reaume">個人簡介: </label></td>
-				            	<td><textarea id="change_reaume" name="resume" style="min-height: 40px; max-height: 200px; min-width:80%; max-width:80%">${member.resume}</textarea></td>
+				            	<td><textarea id="change_reaume" name="resume" style="min-height: 40px; max-height: 200px; min-width:80%; max-width:80%;">${member.resume}</textarea></td>
 							</tr>
 						</table>
 					</form>
@@ -388,6 +381,7 @@
 	    </div>
 	</div>
 </div>
+
 <!-- -----------------------------------------------------------------------	 -->
 <!-- 更改封面圖片-----------------------------------------------------------------------	 -->
 	<div class="user_control">

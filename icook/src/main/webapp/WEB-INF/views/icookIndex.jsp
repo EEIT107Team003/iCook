@@ -16,6 +16,7 @@
 	media="screen">
 <link rel="stylesheet" href="css/responsive.css" type="text/css"
 	media="screen">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 <script src="js/jquery.js"></script>
 <script src="js/jquery-migrate-1.1.1.js"></script>
 <script src="js/superfish.js"></script>
@@ -24,6 +25,9 @@
 <script src="js/jquery.carouFredSel-6.1.0-packed.js"></script>
 <script src="js/tms-0.4.1.js"></script>
 <script src="js/css3-mediaqueries.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 <script>
 	$(window).load(function() {
 		$('.slider')._TMS({
@@ -93,6 +97,7 @@
 
     <![endif]-->
 </head>
+
 <body>
 	<div class="main">
 		<!--==============================header=================================-->
@@ -132,12 +137,22 @@
 									
 									<li><a href="icookLogin">會員專區</a>
 										<ul>
+<<<<<<< HEAD
+											<c:if test="${pageContext.request.userPrincipal.name==null}">
+												<li><a href="icookLogin">會員登入</a></li>
+												<li><a href="icookRegister">會員註冊</a></li>
+											</c:if>
+											<c:if test="${pageContext.request.userPrincipal.name!=null}">
+												<li><a href="index2" data-toggle="modal" data-target="#logout">會員登出</a></li>
+											</c:if>
+=======
 											<li><a href="icookLogin">會員登入</a></li>
 											<li><a href="checkOrders">查看訂單</a></li>
 											<li><a href="#">會員登出</a></li>
+>>>>>>> branch 'master' of https://github.com/EEIT107Team003/iCook.git
 											<li><a href="#">新增食譜</a></li>
-											<ul></li>
-											
+										<ul>
+									</li>		
 								</ul>
 							</nav>
 							<div class="clear"></div>
@@ -159,7 +174,53 @@
 			</div>
 		</div>
 		<!--=======content================================-->
+		
+			<!-- 		------------------------------------------------------------------------ -->
 
+<!-- 確認登出 -->
+
+	<div class="modal fade" id="logout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	    <div class="modal-dialog">
+	        <div class="modal-content">
+	            <div class="modal-header" style="border-bottom: 1px solid; ">
+	        		<h4 class="modal-title" id="myModalLabel" style="float: left">您即將登出享食天堂</h4>
+	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	            </div>
+	            <div class="modal-body" style="width: 100%">
+					<form method="post" action="perform_logout">
+				        <button type="submit">確定登出</button>
+				    </form>
+	            </div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+<!-- <div class="modal fade" id="logout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> -->
+<!-- 	<div class="modal-dialog"> -->
+<!-- 		<div class="modal-content"> -->
+<!-- 					<div class="modal-header"> -->
+<!-- 						<button type="button" class="close" data-dismiss="modal" -->
+<!-- 							aria-hidden="true">×</button> -->
+<!-- 						<h4 class="modal-title" id="myModalLabel">您即將登出享食天堂</h4> -->
+
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			<div class="modal-body"> -->
+<!-- 				<form method="post" action="perform_logout"> -->
+<!-- 			        <button type="submit">確定登出</button> -->
+<!-- 			    </form> -->
+<!-- 			</div> -->
+<!-- 			<div class="modal-footer"> -->
+<!-- 				<button type="button" class="btn btn-default" data-dismiss="modal">取消</button> -->
+<!-- 			</div> -->
+<!-- 		</div>/.modal-content -->
+<!-- 	</div>/.modal -->
+<!-- </div> -->
+
+<!-- 		------------------------------------------------------------------------ -->
+		
 		<div class="content page1">
 			<div class="zerogrid">
 				<div class="row">
@@ -298,6 +359,7 @@
 			</div>
 		</div>
 	</div>
+		
 	<!--==============================footer=================================-->
 
 	<footer>

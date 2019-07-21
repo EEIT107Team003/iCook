@@ -54,13 +54,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
    	    .rememberMe()
    	    .and()
    	    .formLogin() 
-	        .loginPage("/login_page")
+	        .loginPage("/icookLogin")
 	        .loginProcessingUrl("/perform_login")
 	        .failureUrl("/login_page?error")
 	        .usernameParameter("username").passwordParameter("password")
         .and()
 	        .logout()
 	        .logoutUrl("/perform_logout")
-	        .logoutSuccessUrl("/"); 
+	        .logoutSuccessUrl("/index2"); 
 	}
 }
