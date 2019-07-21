@@ -49,8 +49,8 @@
 		class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light"
 		id="ftco-navbar">
 		<div class="container">
-			<a class="navbar-brand" href="index2"><img width="240" height="111.5" src="images/logo.png"
-								alt="EXTERIOR"></a>
+			<a class="navbar-brand" href="index2"><img width="240"
+				height="111.5" src="images/logo.png" alt="EXTERIOR"></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#ftco-nav" aria-controls="ftco-nav"
 				aria-expanded="false" aria-label="Toggle navigation">
@@ -59,14 +59,19 @@
 
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a href="${pageContext.request.contextPath}/home" class="nav-link">Home</a></li>
-					<c:if test="${pageContext.request.userPrincipal.name == 'aa'||pageContext.request.userPrincipal.name =='dd'}">
-					<li class="nav-item"><a href="A_insert" class="nav-link">新增一篇文章</a></li>
+					<li class="nav-item"><a
+						href="${pageContext.request.contextPath}/home" class="nav-link">Home</a></li>
+					<c:if
+						test="${pageContext.request.userPrincipal.name == 'aa'||pageContext.request.userPrincipal.name =='dd'}">
+						<li class="nav-item"><a href="A_insert" class="nav-link">新增一篇文章</a></li>
 					</c:if>
+					<li class="with_ul current"><a href="index2">ICook</a></li>
 					<li class="nav-item active"><a href="A_findAll"
 						class="nav-link">Foods文章首頁</a></li>
-					<li class="nav-item"><a href="A_select" class="nav-link">查詢一篇文章</a></li>
-					<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+					<li class="nav-item"><a href="icookLogin" class="nav-link">會員專區</a></li>
+					<li class="nav-item"><a href="cartPage" class="nav-link">購物車</a></li>
+					<li class="nav-item"><a href="icookLife" class="nav-link">生活誌</a></li>
+
 				</ul>
 			</div>
 		</div>
@@ -101,21 +106,26 @@
 						<c:forEach var='Article' items='${Articles}'>
 							<div class="col-md-4 ftco-animate">
 								<div class="blog-entry">
-									<a href="<spring:url value='/article?article_num=${Article.article_num}' />" class="img-2"> <img
-										class="img-fluid" alt="Colorlib Template"
-										style="width: 600px; height: 335px"
+									<a
+										href="<spring:url value='/article?article_num=${Article.article_num}' />"
+										class="img-2"> <img class="img-fluid"
+										alt="Colorlib Template" style="width: 600px; height: 335px"
 										src="<c:url value='/getartPicture/${Article.article_num}'/>"></a>
 									<!-- 								寬800*高1000最佳像素 -->
 									<div class="text pt-3">
+									
 										<p class="meta d-flex">
-											<span class="pr-3">${Article.article_catergoary}</span>
-<%-- 											<fmt:parseDate var="parseDate" value="${Article.article_date}" pattern="yyyy-MM-dd HH:mm" parseLocale="Asia/Taipei" /> --%>
-											
-											<span
-												class="ml-auto pl-3"> ${Article.article_date} </span>
+											<span class="pr-3">${Article.article_date}</span>
+<%-- 											<fmt:parseDate var="parseDate" --%>
+<%-- 												value="${Article.article_date}" pattern="yyyy-MM-dd HH:mm" --%>
+<%-- 												parseLocale="Asia/Taipei" /> --%>
+
+<%-- 											<span class="ml-auto pl-3"> ${Article.article_date} </span> --%>
 										</p>
+										
 										<h3>
-											<a href="<spring:url value='/article?article_num=${Article.article_num}' />">${Article.article_title}</a>
+											<a
+												href="<spring:url value='/article?article_num=${Article.article_num}' />">${Article.article_title}</a>
 										</h3>
 										<p class="mb-0">
 											<a
@@ -335,15 +345,16 @@
 
 
 						<div class="sidebar-box p-4 ftco-animate">
-							<form action="findArctile?article_title=${param.article_title}" class="search-form">
+							<form action="findArctile?article_title=${param.article_title}"
+								class="search-form">
 								<div class="form-group">
 									<span class="icon icon-search"></span> <input type="text"
-									name="article_title" class="form-control" placeholder="Search" 
-									formaction=""/>
-									
-									
-								</div>																													
-																															
+										name="article_title" class="form-control" placeholder="Search"
+										formaction="" />
+
+
+								</div>
+
 							</form>
 						</div>
 
@@ -363,7 +374,7 @@
 									class="img d-flex align-items-center justify-content-center text-center"
 									style="background-image: url(article/aimages/category-2.jpg);">
 										<div class="text">
-											<h3>Lifestyle</h3>
+											<h3>Kitchenware</h3>
 										</div>
 								</a></li>
 								<li><a href="#"
@@ -503,27 +514,33 @@
 	</div>
 
 
-	<script src="${pageContext.request.contextPath}/article/ajs/jquery.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/article/ajs/jquery.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/article/ajs/jquery-migrate-3.0.1.min.js"></script>
-	<script src="${pageContext.request.contextPath}/article/ajs/popper.min.js"></script>
-	<script src="${pageContext.request.contextPath}/article/ajs/bootstrap.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/article/ajs/popper.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/article/ajs/bootstrap.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/article/ajs/jquery.easing.1.3.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/article/ajs/jquery.waypoints.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/article/ajs/jquery.stellar.min.js"></script>
-	<script src="${pageContext.request.contextPath}/article/ajs/owl.carousel.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/article/ajs/owl.carousel.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/article/ajs/jquery.magnific-popup.min.js"></script>
 	<script src="${pageContext.request.contextPath}/article/ajs/aos.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/article/ajs/jquery.animateNumber.min.js"></script>
-	<script src="${pageContext.request.contextPath}/article/ajs/scrollax.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/article/ajs/scrollax.min.js"></script>
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-	<script src="${pageContext.request.contextPath}/article/ajs/google-map.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/article/ajs/google-map.js"></script>
 	<script src="${pageContext.request.contextPath}/article/ajs/main.js"></script>
 </body>
 </html>

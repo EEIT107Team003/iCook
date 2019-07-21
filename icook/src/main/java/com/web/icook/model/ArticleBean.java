@@ -3,6 +3,7 @@ package com.web.icook.model;
 import java.io.Serializable;
 import java.sql.Blob;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -35,8 +36,8 @@ public class ArticleBean implements Serializable {
 	// 作者
 	private MemberBean article_member;
 	// 時間
-	private Date article_date;
-
+//	private Timestamp article_date;
+	private Timestamp article_date=new Timestamp(System.currentTimeMillis());
 	// 狀態
 	private String article_status;
 
@@ -85,12 +86,12 @@ public class ArticleBean implements Serializable {
 		this.article_title = article_title;
 	}
 
-	public Date getArticle_date() {
+	public Timestamp getArticle_date() {
 		return article_date;
 	}
 
-	public void setArticle_date(Date article_date) {
-		this.article_date = article_date;
+	public void setArticle_date(Timestamp timestamp) {
+		this.article_date = timestamp;
 	}
 
 	public String getArticle_status() {

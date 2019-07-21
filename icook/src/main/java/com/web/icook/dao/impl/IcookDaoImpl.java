@@ -46,8 +46,9 @@ public class IcookDaoImpl implements IcookDao {
 
 	@Override
 	public void insertIcookArticle(ArticleBean articlebean) {
-		System.out.println("bean=" + articlebean.toString());
+//		System.out.println("bean=" + articlebean.toString());
 		Session session = factory.getCurrentSession();
+		articlebean.setArticle_date(new Timestamp(System.currentTimeMillis()));
 		session.save(articlebean);
 
 	}
