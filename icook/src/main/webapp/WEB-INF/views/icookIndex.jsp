@@ -156,7 +156,7 @@
 											<li><a href="cartPage">購物車</a></li>
 										</ul></li>
 
-									<li><a href="user">會員專區</a>
+									<li><a href="user">會員專區 </a>
 										<ul>
 											<c:if test="${pageContext.request.userPrincipal.name==null}">
 												<li><a href="icookLogin">會員登入</a></li>

@@ -66,5 +66,11 @@ public class IcookServiceImpl implements IcookService {
 		// TODO Auto-generated method stub
 		return dao.getThreeArticles();
 	}
+	@Transactional
+	@Override
+	public List<ArticleBean> getByArticle_Catergory(String article_catergoary) {
+		// TODO Auto-generated method stub
+		return dao.getByArticle_Catergory(article_catergoary);
+	}
 
 }

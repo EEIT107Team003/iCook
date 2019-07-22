@@ -33,13 +33,8 @@ public class Homecontroller {
 	@RequestMapping(value = { "/", "home" })
 	public String home(Model model) {
 		if (getPrincipal() != "anonymousUser") {
-			String nickname = service.selectByUsername(getPrincipal()).getNickname();
-			int member_id = service.selectByUsername(getPrincipal()).getMember_id();
-			model.addAttribute("user", nickname);
-			model.addAttribute("member_id", member_id);
-			System.out.println(member_id);
-		} else {
-			model.addAttribute(getPrincipal());
+			MemberBean bean=service.selectByUsername(getPrincipal());
+			model.addAttribute("bean", bean);
 		}
 		return "icookIndex";
 	}

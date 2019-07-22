@@ -134,7 +134,7 @@
 						</div>
 						<div class="form-group">
 							<form:select path="article_catergoary">
-								<option value="食安新聞">食物新聞</option>
+								<option value="食安新聞">美食新聞</option>
 								<option value="廚具新聞">廚具新聞</option>
 								<option value="其他">其他</option>
 							</form:select>
@@ -152,10 +152,10 @@
 						<!-- 	測試跑馬燈 -->
 
 						<div class="form-group">
-			<form>
-				<input id="messageField" type="text" class="form-control">
+<%-- 			<form> --%>
+<!-- 				<input id="messageField" type="text" class="form-control"> -->
 <!-- 				 <input onclick="sendMsg();" value="send" type="button" > -->
-			</form>
+<%-- 			</form> --%>
 
 			<div id="msg-box"
 				style="width: 500px; height: 400px; background: #eee; overflow: auto;" ></div></div>
@@ -475,6 +475,7 @@
 					webSocket.onerror = function wserror(message) {
 						console.log("error: " + message);
 					}
+					
 	</script>
 
 

@@ -78,18 +78,6 @@ public class AticleController {
 		return "forward:/A_findAll";
 	}
 	
-
-//	@RequestMapping("/delete")
-//	public String delete() {
-//		// 刪除
-//		return "deletepage";
-//	}
-//
-//	@RequestMapping("/update")
-//	public String update() {
-//		// 修改
-//		return "updatepage";
-//	}
 	@ResponseBody
 	@RequestMapping({"/A_findThree"}) // 指向index href裡面
 	public String threelist(Model model) {
@@ -158,7 +146,7 @@ public class AticleController {
 //		return "redirect:/select/Msginsert.action?bean="+ab;
 //		return "redirect:/findone?id="+article_num;
 //		return "findone?id="+article_num;
-	}// end of processAddNewProductForm mathod
+	}
 	
 	//return "redirect:/emp/update.action?id=" + id
 	@RequestMapping("/article")
@@ -364,7 +352,7 @@ public class AticleController {
 	
 	@RequestMapping(value = "/getartPicture/{article_num}", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> getartPicture(HttpServletResponse resp, @PathVariable int article_num) {
-		String filepath = "/resources/images/NoImage.jpg";
+		String filePath = "/resources/images/NoImage.png";
 
 		byte[] media = null;
 		HttpHeaders headers = new HttpHeaders();
@@ -376,22 +364,6 @@ public class AticleController {
 			filename = articlebean.getFileName();
 			
 			
-//			if(filename.indexOf("jfif") > 0 )
-//			{
-//				String jfif="jfif";
-//				String jpg="jpg";
-//				filename=filename.replace(jfif, jpg).trim();
-//			}
-//			
-			
-			
-//			if (blob != null) {
-//				System.out.println("bean.getFileName()=" + bean.getFileName());
-//				filename = midBean.getFileName().trim();
-//			}
-			
-			System.out.println("/getartPicture/num = " + article_num);
-			
 			if (blob != null) {
 				try {
 					filename = articlebean.getFileName().trim();
@@ -401,12 +373,12 @@ public class AticleController {
 					throw new RuntimeException("ProductController的getartPicture()發生SQLException: " + e.getMessage());
 				}
 			} else {
-				media = toByteArray(filepath);
-				filename = filepath;
+				media = toByteArray(filePath);
+				filename = filePath;
 			}
 		} else {
-			media = toByteArray(filepath);
-			filename = filepath;
+			media = toByteArray(filePath);
+			filename = filePath;
 		}
 		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
 //		System.out.println("filename=" + filename + "*");
@@ -419,18 +391,18 @@ public class AticleController {
 		return responseEntity;
 	}
 
-	private byte[] toByteArray(String filepath) {
-		System.out.println("private byte[] toByteArray(String filepath) {");
+	private byte[] toByteArray(String filePath) {
+		
 		byte[] b = null;
 		InputStream fis = null;
 		try {
 
-			String realPath = context.getRealPath(filepath);// 取得絕對路徑
+			String realPath = context.getRealPath(filePath);// 取得絕對路徑
 			File file = new File(realPath);
 			long size = file.length();
 			b = new byte[(int) size];
 //			System.out.println("size = " + size);
-			fis = context.getResourceAsStream(filepath);
+			fis = context.getResourceAsStream(filePath);
 
 			fis.read(b);
 		} catch (FileNotFoundException e) {
@@ -452,7 +424,15 @@ public class AticleController {
 		return "/article/A_articlesearch"; // 指向success.jsp
 	}
 	
-	
+	@RequestMapping(value = "/findArctiCatergory")
+	public String findArctiCatergory( @RequestParam("article_catergoary") String  article_catergoary, Model model) {
+		
+		
+		System.out.println("article_catergoary="+article_catergoary);
+		List<ArticleBean> list = arcicleservice.getByArticle_Catergory(article_catergoary);
+		model.addAttribute("Articles", list);
+		return "/article/A_articlesearch"; // 指向success.jsp
+	}
 	
 	
 	

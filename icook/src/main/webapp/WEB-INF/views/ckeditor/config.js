@@ -47,6 +47,13 @@ CKEDITOR.editorConfig = function( config ) {
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 	
 	
+	config.extraPlugins = 'uploadfile' ;
+	
+	config.extraPlugins = 'uploadimage' ;
+	config.imageUploadUrl = 'https://40733.cke-cs.com/easyimage/upload/';
+	config.embed_provider = 'https://40733.cke-cs.com/easyimage/upload/'
+	
+	
 
 	
 	

@@ -570,103 +570,207 @@ td {
 					</div>
 					
 	</div>				
-	<div class="content" style="margin: 50px ">
-			<div class="zerogrid">
-				<div class="container sections-wrapper" style="background-color: white;border: 1px solid black;">
-			        <div class="row">
-			            <div class="primary col-md-8 col-sm-12 col-xs-12" style="float:left;border:1px,solid,#dcdcdc;box-shadow:4px 4px 3px 4px rgba(20%,20%,40%,0.5);">
-							<ul id="myTab" class="nav nav-tabs" >
-								<li class="active">
-									<a href="user_myrecipe" data-toggle="tab">我的食譜</a>
-								</li>
-								<li>
-									<a href="user_mycollectrecipe" data-toggle="tab">我的收藏</a>
-								</li>
-								<li>
-									<a id="user_mytrack" data-toggle="tab">我的追蹤</a>
-								</li>
-								<li>
-									<a id="user_myforum" data-toggle="tab">我的文章</a>
-								</li>
-							</ul>
+<!-- 	<div class="content" style="margin: 50px "> -->
+<!-- 			<div class="zerogrid"> -->
+<!-- 				<div class="container sections-wrapper" style="background-color: white;border: 1px solid black;"> -->
+<!-- 			        <div class="row"> -->
+<!-- 			            <div class="primary col-md-8 col-sm-12 col-xs-12" style="float:left;border:1px,solid,#dcdcdc;box-shadow:4px 4px 3px 4px rgba(20%,20%,40%,0.5);"> -->
+<!-- 							<ul id="myTab" class="nav nav-tabs" > -->
+<!-- 								<li class="active"> -->
+<!-- 									<a href="user_myrecipe" data-toggle="tab">我的食譜</a> -->
+<!-- 								</li> -->
+<!-- 								<li> -->
+<!-- 									<a href="user_mycollectrecipe" data-toggle="tab">我的收藏</a> -->
+<!-- 								</li> -->
+<!-- 								<li> -->
+<!-- 									<a id="user_mytrack" data-toggle="tab">我的追蹤</a> -->
+<!-- 								</li> -->
+<!-- 								<li> -->
+<!-- 									<a id="user_myforum" data-toggle="tab">我的文章</a> -->
+<!-- 								</li> -->
+<!-- 							</ul> -->
 			
-							<section class="about section">
-								<div class="section-inner">
-									<div id="myTabContent" class="tab-content">
-			<!-- 							<div class="tab-pane fade in active" id="user_contain"> -->
-										<div  id="user_contain">
-			<!--                 				<iframe src="hw1.html" frameborder="0" class="HWView" id="aa">dsdsds</iframe> -->
-			            				</div>
-									</div>
-								</div><!--//section-inner-->                 
-							</section><!--//section-->
-			            </div><!--//primary-->
-			            <div class="secondary col-md-4 col-sm-12 col-xs-12"  style="float:right; height:155px; border:1px,solid,#dcdcdc; box-shadow:4px 4px 3px 4px rgba(20%,20%,40%,0.5);">
-			                 <aside class="info aside section">
-			                    <div class="section-inner">
-			                        <h2 class="heading sr-only">Basic Information</h2>
-			                        <div class="content">
-			                        	<table width="100%">
-			                        		<tr>
-			                        			<th class="items">食譜數量</th>
-			                        			<th class="items">被追蹤數</th>
-			                        			<th class="items">文章總數</th>
-			                        		</tr>
-			                        		<tr>
-			                        			<th id="recipe_num" class="items">${member.recipe_num }</th>
-												<th id="tracked_num" class="items">${member.tracked_num }</th>
-												<th id="forum_num" class="items">${member.forum_num }</th>
-			                        		</tr>
-			                        	</table>
-			                        </div><!--//content-->  
-			                    </div><!--//section-inner-->                 
-			                </aside><!--//aside-->
-			            </div><!--//secondary-->    
-			        </div><!--//row-->
-  				 </div><!--//masonry-->
+<!-- 							<section class="about section"> -->
+<!-- 								<div class="section-inner"> -->
+<!-- 									<div id="myTabContent" class="tab-content"> -->
+<!-- 			<!-- 							<div class="tab-pane fade in active" id="user_contain"> --> -->
+<!-- 										<div  id="user_contain"> -->
+<!-- 			<!--                 				<iframe src="hw1.html" frameborder="0" class="HWView" id="aa">dsdsds</iframe> --> -->
+<!-- 			            				</div> -->
+<!-- 									</div> -->
+<!-- 								</div>//section-inner                  -->
+<!-- 							</section>//section -->
+<!-- 			            </div>//primary -->
+<!-- 			            <div class="secondary col-md-4 col-sm-12 col-xs-12"  style="float:right; height:155px; border:1px,solid,#dcdcdc; box-shadow:4px 4px 3px 4px rgba(20%,20%,40%,0.5);"> -->
+<!-- 			                 <aside class="info aside section"> -->
+<!-- 			                    <div class="section-inner"> -->
+<!-- 			                        <h2 class="heading sr-only">Basic Information</h2> -->
+<!-- 			                        <div class="content"> -->
+<!-- 			                        	<table width="100%"> -->
+<!-- 			                        		<tr> -->
+<!-- 			                        			<th class="items">食譜數量</th> -->
+<!-- 			                        			<th class="items">被追蹤數</th> -->
+<!-- 			                        			<th class="items">文章總數</th> -->
+<!-- 			                        		</tr> -->
+<!-- 			                        		<tr> -->
+<%-- 			                        			<th id="recipe_num" class="items">${member.recipe_num }</th> --%>
+<%-- 												<th id="tracked_num" class="items">${member.tracked_num }</th> --%>
+<%-- 												<th id="forum_num" class="items">${member.forum_num }</th> --%>
+<!-- 			                        		</tr> -->
+<!-- 			                        	</table> -->
+<!-- 			                        </div>//content   -->
+<!-- 			                    </div>//section-inner                  -->
+<!-- 			                </aside>//aside -->
+<!-- 			            </div>//secondary     -->
+<!-- 			        </div>//row -->
+<!--   				 </div>//masonry -->
 
 
-				<div class="row">
-					<div class="bottom_block">
-						<div class="col-1-2">
-							<h3>Follow Us</h3>
-							<div class="socials">
-								<a href="#"></a> <a href="#"></a> <a href="#"></a>
-							</div>
-							<nav>
-								<ul>
-									<li><a href="index.html">Home</a></li>
-									<li><a href="index-1.html">About Us</a></li>
-									<li><a href="index-2.html">Menu</a></li>
-									<li><a href="index-3.html">Portfolio</a></li>
-									<li class="current"><a href="index-4.html">News </a></li>
-									<li><a href="index-5.html">Contacts</a></li>
-								</ul>
-							</nav>
+<!-- 				<div class="row"> -->
+<!-- 					<div class="bottom_block"> -->
+<!-- 						<div class="col-1-2"> -->
+<!-- 							<h3>Follow Us</h3> -->
+<!-- 							<div class="socials"> -->
+<!-- 								<a href="#"></a> <a href="#"></a> <a href="#"></a> -->
+<!-- 							</div> -->
+<!-- 							<nav> -->
+<!-- 								<ul> -->
+<!-- 									<li><a href="index.html">Home</a></li> -->
+<!-- 									<li><a href="index-1.html">About Us</a></li> -->
+<!-- 									<li><a href="index-2.html">Menu</a></li> -->
+<!-- 									<li><a href="index-3.html">Portfolio</a></li> -->
+<!-- 									<li class="current"><a href="index-4.html">News </a></li> -->
+<!-- 									<li><a href="index-5.html">Contacts</a></li> -->
+<!-- 								</ul> -->
+<!-- 							</nav> -->
+<!-- 						</div> -->
+<!-- 						<div class="col-1-2"> -->
+<!-- 							<h3>Email Updates</h3> -->
+<!-- 							<p class="col1"> -->
+<!-- 								Join our digital mailing list and get news<br> deals and be -->
+<!-- 								first to know about events -->
+<!-- 							</p> -->
+<%-- 							<form id="newsletter"> --%>
+<!-- 								<div class="success">Your subscribe request has been sent!</div> -->
+<!-- 								<label class="email"> <input type="email" -->
+<!-- 									value="Enter e-mail address"> <a href="#" class="btn" -->
+<!-- 									data-type="submit">subscribe</a> <span class="error">*This -->
+<!-- 										is not a valid email address.</span> -->
+<!-- 								</label> -->
+<%-- 							</form> --%>
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	<div class="container sections-wrapper"> -->
+<!--         <div class="row"> -->
+<!--             <div class="primary col-md-8 col-sm-12 col-xs-12"> -->
+<!-- 				<ul id="myTab" class="nav nav-tabs" > -->
+<!-- 					<li class="active"> -->
+<!-- 						<a href="user_myrecipe" data-toggle="tab">我的食譜</a> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<a href="user_mycollectrecipe" data-toggle="tab">我的收藏</a> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<a id="user_mytrack" data-toggle="tab">我的追蹤</a> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<a href="user_myforum" data-toggle="tab">我的文章</a> -->
+<!-- 					</li> -->
+<!-- 				</ul> -->
+
+<!-- 				<section class="about section"> -->
+<!-- 					<div class="section-inner"> -->
+<!-- 						<div id="myTabContent" class="tab-content"> -->
+<!-- <!-- 							<div class="tab-pane fade in active" id="user_contain"> --> -->
+<!-- 							<div  id="user_contain"> -->
+<!-- <!--                 				<iframe src="hw1.html" frameborder="0" class="HWView" id="aa">dsdsds</iframe> --> -->
+<!--             				</div> -->
+<!-- 						</div> -->
+<!-- 					</div>//section-inner                  -->
+<!-- 				</section>//section -->
+<!--             </div>//primary -->
+<!--             <div class="secondary col-md-4 col-sm-12 col-xs-12"> -->
+<!--                  <aside class="info aside section"> -->
+<!--                     <div class="section-inner"> -->
+<!--                         <h2 class="heading sr-only">Basic Information</h2> -->
+<!--                         <div class="content"> -->
+<!--                         	<table width="100%"> -->
+<!--                         		<tr> -->
+<!--                         			<th class="items">食譜數量</th> -->
+<!--                         			<th class="items">被追蹤數</th> -->
+<!--                         			<th class="items">文章總數</th> -->
+<!--                         		</tr> -->
+<!--                         		<tr> -->
+<%--                         			<th class="items">${member.recipe_num }</th> --%>
+<%--                         			<th class="items">${member.tracked_num }</th> --%>
+<%--                         			<th class="items">${member.forum_num }</th> --%>
+<!--                         		</tr> -->
+<!--                         	</table> -->
+<!--                         </div>//content   -->
+<!--                     </div>//section-inner                  -->
+<!--                 </aside>//aside -->
+<!--             </div>//secondary     -->
+<!--         </div>//row -->
+<!--     </div>//masonry -->
+
+	<div class="container sections-wrapper">
+        <div class="row">
+            <div class="primary col-md-8 col-sm-12 col-xs-12">
+				<ul id="myTab" class="nav nav-tabs" >
+					<li class="active">
+						<a href="user_myrecipe" data-toggle="tab">我的食譜</a>
+					</li>
+					<li>
+						<a href="user_mycollectrecipe" data-toggle="tab">我的收藏</a>
+					</li>
+					<li>
+						<a id="user_mytrack" data-toggle="tab">我的追蹤</a>
+					</li>
+					<li>
+						<a href="user_myforum" data-toggle="tab">我的文章</a>
+					</li>
+				</ul>
+
+				<section class="about section">
+					<div class="section-inner">
+						<div id="myTabContent" class="tab-content">
+<!-- 							<div class="tab-pane fade in active" id="user_contain"> -->
+							<div  id="user_contain">
+<!--                 				<iframe src="hw1.html" frameborder="0" class="HWView" id="aa">dsdsds</iframe> -->
+            				</div>
 						</div>
-						<div class="col-1-2">
-							<h3>Email Updates</h3>
-							<p class="col1">
-								Join our digital mailing list and get news<br> deals and be
-								first to know about events
-							</p>
-							<form id="newsletter">
-								<div class="success">Your subscribe request has been sent!</div>
-								<label class="email"> <input type="email"
-									value="Enter e-mail address"> <a href="#" class="btn"
-									data-type="submit">subscribe</a> <span class="error">*This
-										is not a valid email address.</span>
-								</label>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	
+					</div><!--//section-inner-->                 
+				</section><!--//section-->
+            </div><!--//primary-->
+            <div class="secondary col-md-4 col-sm-12 col-xs-12">
+                 <aside class="info aside section">
+                    <div class="section-inner">
+                        <h2 class="heading sr-only">Basic Information</h2>
+                        <div class="content">
+                        	<table width="100%">
+                        		<tr>
+                        			<th class="items">食譜數量</th>
+                        			<th class="items">被追蹤數</th>
+                        			<th class="items">文章總數</th>
+                        		</tr>
+                        		<tr>
+                        			<th class="items">${member.recipe_num }</th>
+                        			<th class="items">${member.tracked_num }</th>
+                        			<th class="items">${member.forum_num }</th>
+                        		</tr>
+                        	</table>
+                        </div><!--//content-->  
+                    </div><!--//section-inner-->                 
+                </aside><!--//aside-->
+            </div><!--//secondary-->    
+        </div><!--//row-->
+    </div><!--//masonry-->
 	<!--==============================footer=================================-->
 
-	<footer style="background-color: #5fa022">
+	<footer>
 		<div class="zerogrid">
 			<div class="col-full">
 				<div class="wrap-col">
