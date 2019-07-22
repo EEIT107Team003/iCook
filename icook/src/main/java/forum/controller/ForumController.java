@@ -55,12 +55,16 @@ public class ForumController {
 	@RequestMapping(value = "/forum", method = RequestMethod.GET)
 	public String backHome(Model model) {
 		System.out.println("成功返回首頁");
+		List<ForumMainBean> fmbList = service.getAllTopic();
+		List<ForumMainBean> popFmb = service.getPopularArticle();
 		if (!getPrincipal().equals("anonymousUser")) {
 			MemberBean mb = ms.selectByUsername(getPrincipal());
 			List<MemberBean> mbList = new ArrayList<>();
 			mbList.add(mb);
 			model.addAttribute("LoginOK", mbList);
 		}
+		model.addAttribute("posts", fmbList);
+		model.addAttribute("populars", popFmb);
 		return "redirect:/forum/overview";
 		// 任何返回首頁的按鈕呼叫這個方法
 	}
@@ -116,6 +120,7 @@ public class ForumController {
 	@RequestMapping(value = "/forum/overview")
 	public String overview(Model model) {
 		List<ForumMainBean> fmbList = service.getAllTopic();
+		List<ForumMainBean> popFmb = service.getPopularArticle();
 //		List<String> authors = new ArrayList<String>();
 //		List<String> nicknames = new ArrayList<String>();
 //		for(int i = 0; i < fmbList.size(); i++) {			
@@ -123,24 +128,28 @@ public class ForumController {
 //			nicknames.add(fmbList.get(i).getMemberBean().getNickname());
 //		}
 		if (!getPrincipal().equals("anonymousUser")) {
-			MemberBean mb = ms.selectByUsername(getPrincipal());
+			MemberBean mb = ms.selectByUsername(getPrincipal());			
 			List<MemberBean> mbList = new ArrayList<>();
 			mbList.add(mb);
 			model.addAttribute("LoginOK", mbList);
 		}
 		model.addAttribute("posts", fmbList);
+		model.addAttribute("populars", popFmb);
 //		model.addAttribute("authors", authors);
 //		model.addAttribute("nicknames", nicknames);
 		return "overview";
 		// 呼叫文章總覽的View
+	
 	}
 
 	@RequestMapping(value = "/forum/pick")
 	public String specificPost(@RequestParam("harticle_id") Integer harticle_id, Integer article_id, Model model) {
 		System.out.println("成功呼叫specificPost");
 		List<ForumMainBean> HeadFmb = service.getByPK(harticle_id);
+		List<ForumMainBean> popFmb = service.getPopularArticle();
 		model.addAttribute("HeadFmb", HeadFmb);
 		model.addAttribute("posts", service.getThread(harticle_id));
+		model.addAttribute("populars", popFmb);
 		if (!getPrincipal().equals("anonymousUser")) {
 			MemberBean mb = ms.selectByUsername(getPrincipal());
 			List<MemberBean> mbList = new ArrayList<>();

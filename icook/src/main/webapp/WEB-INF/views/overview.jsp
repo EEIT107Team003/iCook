@@ -8,19 +8,6 @@
 <spring:url value="/resources/js/script.js" var="script" />
 <spring:url value="/resources/js/lib/bootstrap/css/chat.css" var="chatCSS"/>
 <spring:url value="/resources/css/chat.css" var="chatroomCSS" />
-<%-- <spring:url value="/css/style.css" var="styleCSS"/> --%>
-<%-- <spring:url value="/css/slider.css" var="sliderCSS"/> --%>
-<%-- <spring:url value="/css/zerogrid.css" var="zerogridCSS"/> --%>
-<%-- <spring:url value="/css/responsive.css" var="responsiveCSS"/> --%>
-<%-- <spring:url value="/css/superfish.css" var="superfishCSS"/> --%>
-<%-- <spring:url value="/js/jquery.js" var="jqueryJS"/> --%>
-<%-- <spring:url value="/js/jquery-migrate-1.1.1.js" var="JM111JS"/> --%>
-<%-- <spring:url value="/js/superfish.js" var="superfishJS"/> --%>
-<%-- <spring:url value="/js/jquery.easing.1.3.js" var="JE13JS"/> --%>
-<%-- <spring:url value="/js/sForm.js" var="sFormJS"/> --%>
-<%-- <spring:url value="/js/jquery.carouFredSel-6.1.0-packed.js" var="JCFS610PJS"/> --%>
-<%-- <spring:url value="/js/tms-0.4.1.js" var="TMSJS"/> --%>
-<%-- <spring:url value="/js/css3-mediaqueries.js" var="CSSJS"/> --%>
 <spring:url value="/images/logo.png" var="logo"/>
 <spring:url value="/resources/css/table.css" var="table" />
 <spring:url value="/resources/css/open-iconic-bootstrap.min.css" var="oicbCSS"/>
@@ -114,11 +101,11 @@
 	    				<c:forEach var="post" items="${ posts }">
 								<div class="col-md-12" style=" max-width: 700px; max-height: 310px;  word-break:break-all; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block;">
 									<div class="blog-entry ftco-animate d-md-flex">
-										<a href="single.html" class="img img-2"
-											style="background-image: url(images/image_1.jpg);"></a>
+										<a href="${ pageContext.request.contextPath }/forum/pick?harticle_id=${ post.harticle_id }&article_id=${ post.article_id }" class="img img-2"
+											style="background-image: url(<c:url value='/getMemberPhoto/${post.memberBean.member_id}'/>);"></a>
 										<div class="text text-2 pl-md-4">
 											<h3 class="mb-2">
-												<a href="single.html">${ post.title }</a>
+												<a href="${ pageContext.request.contextPath }/forum/pick?harticle_id=${ post.harticle_id }&article_id=${ post.article_id }">${ post.title }</a>
 											</h3>
 											<div class="meta-wrap">
 												<p class="meta">
@@ -362,61 +349,27 @@
 	                <li><a href="${ pageContext.request.contextPath }/forum/query?category=器具">器具 <span>(7)</span></a></li>
 	              </ul>
 	            </div>
-	            <div class="sidebar-box ftco-animate">
-	          
+	            
+	            <div class="sidebar-box ftco-animate">	          
 	              <h3 class="sidebar-heading">Popular Articles</h3>
+	              <c:forEach var="pop" items="${ populars }">	             	              
 	              <div class="block-21 mb-4 d-flex">
-	                <a class="blog-img mr-4" style="background-image: url(images/image_1.jpg);"></a>
+	                <a class="blog-img mr-4" style="background-image: url(<c:url value='/getMemberPhoto/${pop.memberBean.member_id}'/>);"></a>
 	                <div class="text">
-	                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control</a></h3>
-	                  <div class="meta">
-	                    <div><a href="#"><span class="icon-calendar"></span> June 28, 2019</a></div>
-	                    <div><a href="#"><span class="icon-person"></span> Dave Lewis</a></div>
-	                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-	                  </div>
-	                </div>
-	              </div>
-	              
-	              
-	              <div class="block-21 mb-4 d-flex">
-	                <a class="blog-img mr-4" style="background-image: url(images/image_2.jpg);"></a>
-	                <div class="text">
-	                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control</a></h3>
-	                  <div class="meta">
-	                    <div><a href="#"><span class="icon-calendar"></span> June 28, 2019</a></div>
-	                    <div><a href="#"><span class="icon-person"></span> Dave Lewis</a></div>
-	                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-	                  </div>
-	                </div>
-	              </div>
-	              <div class="block-21 mb-4 d-flex">
-	                <a class="blog-img mr-4" style="background-image: url(images/image_3.jpg);"></a>
-	                <div class="text">
-	                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control</a></h3>
-	                  <div class="meta">
-	                    <div><a href="#"><span class="icon-calendar"></span> June 28, 2019</a></div>
-	                    <div><a href="#"><span class="icon-person"></span> Dave Lewis</a></div>
-	                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-	                  </div>
-	                </div>
-	              </div>
+	                  <h3 class="heading"><a href="${ pageContext.request.contextPath }/forum/pick?harticle_id=${ pop.harticle_id }&article_id=${ pop.article_id }">${ pop.title }</a></h3>
+	                  <div class="meta">	                  
+	                    <div><span class="icon-calendar"></span> ${ pop.postTime }</div>
+	                    <div><span class="icon-person"></span> ${ pop.nickname }</div>
+	                    <div><span class="icon-chat"></span> ${ pop.replies } </div>	                    
+	                  </div>	                  
+	                </div>	                	                
 	            </div>
+	            </c:forEach>
 
-	            <div class="sidebar-box ftco-animate">
-	              <h3 class="sidebar-heading">Tag Cloud</h3>
-	              <ul class="tagcloud">
-	                <a href="#" class="tag-cloud-link">animals</a>
-	                <a href="#" class="tag-cloud-link">human</a>
-	                <a href="#" class="tag-cloud-link">people</a>
-	                <a href="#" class="tag-cloud-link">cat</a>
-	                <a href="#" class="tag-cloud-link">dog</a>
-	                <a href="#" class="tag-cloud-link">nature</a>
-	                <a href="#" class="tag-cloud-link">leaves</a>
-	                <a href="#" class="tag-cloud-link">food</a>
-	              </ul>
-	            </div>
 
-							<div class="sidebar-box subs-wrap img py-4" style="background-image: url(images/bg_1.jpg);">
+	            
+
+							<div class="sidebar-box subs-wrap img py-4" style="background-image: url();">
 								<div class="overlay"></div>
 								<h3 class="mb-4 sidebar-heading">Newsletter</h3>
 								<p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia</p>
@@ -428,23 +381,7 @@
 	              </form>
 	            </div>
 
-	            <div class="sidebar-box ftco-animate">
-	            	<h3 class="sidebar-heading">Archives</h3>
-	              <ul class="categories">
-	              	<li><a href="#">Decob14 2018 <span>(10)</span></a></li>
-	                <li><a href="#">September 2018 <span>(6)</span></a></li>
-	                <li><a href="#">August 2018 <span>(8)</span></a></li>
-	                <li><a href="#">July 2018 <span>(2)</span></a></li>
-	                <li><a href="#">June 2018 <span>(7)</span></a></li>
-	                <li><a href="#">May 2018 <span>(5)</span></a></li>
-	              </ul>
-	            </div>
-
-
-	            <div class="sidebar-box ftco-animate">
-	              <h3 class="sidebar-heading">Paragraph</h3>
-	              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut.</p>
-	            </div>
+	            
 	            
 <!-- 	            chat -->
 	              <div class="fixed"> <div class="col-md-9 col-md-offset-3"  style="width:547.5px; height:400px;">

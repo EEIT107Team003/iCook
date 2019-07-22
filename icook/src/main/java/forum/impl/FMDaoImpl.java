@@ -180,5 +180,15 @@ public class FMDaoImpl implements IFMDao {
 		System.out.println(fmb.getLikes());
 		return fmb.getLikes();
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ForumMainBean> getPopularArticle() {
+		String hql = "from ForumMainBean as fmb where fmb.article_id = fmb.harticle_id order by fmb.clicks desc";
+		Session session = factory.getCurrentSession();
+		List<ForumMainBean> fmbList = new ArrayList<>();
+		fmbList = session.createQuery(hql).setMaxResults(3).list();
+		return fmbList;
+	}
 
 }
