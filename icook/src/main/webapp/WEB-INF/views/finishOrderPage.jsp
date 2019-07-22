@@ -52,9 +52,9 @@ div.panel {
 	</div>
 	<c:out value="登入者${LoginOK.nickname}"></c:out>
 	<div class='text'>
-		<h1>訂單完成! </h1>
+		<h1>訂單完成!  已發送訂單確認信</h1>
 		<h1>訂單編號:<c:out value="${orderNo}" /></h1>
-				<h3>謝謝老版  Thank you, 已發送訂單確認信</h3>
+<!-- 				<h3>謝謝老版  Thank you, 已發送訂單確認信</h3> -->
 				<h3>請記得您剛才的訂單編號: <c:out value="${orderNo}"/>號  並在付款時備註讓我們知道喔!</h3>
 		<a href="#" class="btn btn-primary btn-lg btn-block"
 			onclick="window.open(' /icook/realPaypal ', 'Paypal', config='height=500,width=500');">試試用Paypal付款!</a>

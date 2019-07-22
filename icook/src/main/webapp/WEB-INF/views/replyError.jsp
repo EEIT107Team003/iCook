@@ -167,8 +167,8 @@
 											<input type="text" class="form-control"
 											aria-label="Text input with dropdown button"
 											id="exampleFormControlInput1" placeholder="name@example.com"
-											name="title" value="${ post.title }" disabled="true">
-
+											value="${ post.title }" disabled="true">
+											<form:input type="hidden"   name="title" value="${ post.title }" path="title"/>
 											<div class="dropdown-menu">
 										
 											</div>

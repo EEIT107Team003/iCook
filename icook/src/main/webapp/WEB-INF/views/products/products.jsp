@@ -19,10 +19,9 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
 	
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/product_css/products.css">
-
-
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/product_css/products.css">
-<!-- 	========================================================================================= -->
+	
+	
+<!-- 	====================================================================================== -->
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
 <link rel="icon" href="images/favicon.ico">
@@ -32,50 +31,17 @@
 	media="screen">
 <link rel="stylesheet" href="css/responsive.css" type="text/css"
 	media="screen">
-	
+<link rel="stylesheet" href="css/prettyPhoto.css">
 <script src="js/jquery.js"></script>
 <script src="js/jquery-migrate-1.1.1.js"></script>
-<script src="js/superfish.js"></script>
+<!-- <script src="js/superfish.js"></script> -->
 <script src="js/jquery.easing.1.3.js"></script>
-<script src="js/sForm.js"></script>
-<script src="js/jquery.carouFredSel-6.1.0-packed.js"></script>
-<script src="js/tms-0.4.1.js"></script>
+<!-- <script src="js/sForm.js"></script> -->
+<script src="js/jquery.prettyPhoto.js"></script>
 <script src="js/css3-mediaqueries.js"></script>
 <style>
-* {	
-	padding: 0;
-	margin: 0;
-}
-
-.left {
-	width: 20%;
-	float: left;
-}
-
-.right {
-	width: 80%;
-	float: right;
-}
-
-body {
-	background-color: white;
-}
 
 
-.search{
- border-right: 1px solid #cccccc ;
-}
-
-.container {
-	margin-left: 5ch;
-}
-
-.allPage {
-	overflow: auto;
-	width: 100%;
-	margin-bottom:10ch;
-	margin-top:3ch;
-}
 
 
 /* ======================MainShow=================================== */
@@ -111,8 +77,8 @@ body {
 	-moz-transition: opacity 2s linear;
 	-o-transition: opacity 2s linear;
 	transition: opacity 1s linear;
-	width: 40cm;
-	height: 270px;
+	width: 45cm;
+	height: 500px;
 }
 
 /* ============================================================= */
@@ -450,16 +416,14 @@ body {
 			
 
 	</script>
-	<h1>222</h1>
 	<div class="main">
 	<!--==============================header=================================-->
-		<header id="gradient">
+	<header>
 			<div class="zerogrid">
 				<div class="col-full">
 					<div class="wrap-col">
 						<h1>
-							<a href="index2"><img src="images/logo.png"
-								alt="EXTERIOR"></a>
+							<a href="index2"><img src="images/logo.png" alt="EXTERIOR"></a>
 						</h1>
 
 						<div class="menu_block">
@@ -467,33 +431,35 @@ body {
 								<ul class="sf-menu">
 									<li class="with_ul current"><a href="index2">ICook</a></li>
 									<li><a href="icookAboutUS">關於我們</a>
-									<ul>
-									<li><a href="icookContact">聯繫我們</a></li>
-									</ul>
-									</li>
-									<li><a href="icookMenu">查看食譜</a>
 										<ul>
-
-											<li><a href="#">cat1</a></li>
-											<li><a href="#">cat2</a></li>
-											<li><a href="#">cat3</a></li>
-										</ul>
+											<li><a href="icookContact">聯繫我們</a></li>
+										</ul></li>
+									<li><a href="<c:url value='/recipe/recipeIndex' /> ">查看食譜</a>
 									<li><a href="icookLife">生活誌</a></li>
 									<li><a href="forum/overview">討論區</a></li>
 									<li><a href="A_articlemainpage">文章區</a></li>
-									<li><a href="icookProducts">市集</a><ul>
-									
-									
-										<li><a href="cartPage">購物車</a></li>
-									</ul></li>
-									
+									<li><a href="products">市集</a>
+									<ul>
+
+
+											<li><a href="cartPage">購物車</a></li>
+										</ul></li>
+
 									<li><a href="icookLogin">會員專區</a>
 										<ul>
-											<li><a href="icookLogin">會員登入</a></li>
-											<li><a href="#">會員登出</a></li>
-											<li><a href="#">新增食譜</a></li>
-											</ul></li>
-											
+											<c:if test="${pageContext.request.userPrincipal.name==null}">
+												<li><a href="icookLogin">會員登入</a></li>
+												<li><a href="icookRegister">會員註冊</a></li>
+											</c:if>
+											<c:if test="${pageContext.request.userPrincipal.name!=null}">
+												<li><a href="index2" data-toggle="modal" data-target="#logout">會員登出</a></li>
+											</c:if>
+												<li><a href="checkOrders">查看訂單</a></li>
+												<li><a href="#">新增食譜</a></li>
+												<li><a href="backStage">後台</a></li>
+										</ul>
+
+									</li>		
 								</ul>
 							</nav>
 							<div class="clear"></div>
@@ -503,6 +469,8 @@ body {
 				</div>
 			</div>
 		</header>
+		
+		
 	<div class="allPage">
 		<div class="left">
 			  <div id="gradient" ></div>
@@ -516,8 +484,8 @@ body {
 					<input id="fileName" name="fileName" type="hidden" /> <input
 						id="remark" name="remark" type="hidden" /><input id="stock" name="stock" type="hidden" />
 					<div style="width:26ch;">
-						<input id="description" name="description" type="text"   class="form-control mr-sm-2" placeholder="Search" ></input>
-						  <input type="button" id="searchSub"class="btn btn-outline-success my-2 my-sm-0" value="Search">
+						<input id="description" name="description" type="text"   class="form-control mr-sm-2" placeholder="請輸入產品名稱關鍵字" ></input>
+						  <input type="button" id="searchSub"class="btn btn-outline-success my-2 my-sm-0" value="收尋">
 					</div>
 				</form>
 			</section>
@@ -567,7 +535,7 @@ body {
 					mainImgs[counter].className = "mainBlock";
 					counter++;
                     					
-					if(counter==8){
+					if(counter==6){
 						counter=1  //不可打分號，會一直跑進回圈內
 					}
 					
@@ -587,7 +555,7 @@ body {
 				<div class="divA">
 					<img id="Mai00" class="mainShow"
 						src="${pageContext.request.contextPath}/product_image/img01.JPG" alt="" />
-					<c:forEach var="i" begin="2" end="8">
+					<c:forEach var="i" begin="1" end="6">
 						<img id="Mai00" class="mainBlock"
 							src="${pageContext.request.contextPath}/product_image/img0${i}.JPG"
 							alt="" />

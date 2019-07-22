@@ -426,7 +426,6 @@ public class ProductController {
 		System.out.println("product_id======================================" + product_id);
 
 		MultipartFile productImage = bb.getProductImage();
-		System.out.println("productImage : "+productImage);
 		String originalFilename = productImage.getOriginalFilename();
 		bb.setFileName(originalFilename);
 		String ext = null;
@@ -439,7 +438,7 @@ public class ProductController {
 		System.out.println("=====input start");
 		InputStream ins = productImage.getInputStream();
 		OutputStream ous = new FileOutputStream(
-				"C:\\springMVC\\workspace\\icookProject\\src\\main\\webapp\\WEB-INF\\views\\images\\pictures"
+				"C:\\Users\\屁股\\git\\repository\\icook\\src\\main\\webapp\\WEB-INF\\views\\products\\images\\savePicture"
 						+ originalFilename + ext);
 		int lenght = -1;
 		byte[] tmp = new byte[81920];
@@ -461,10 +460,6 @@ public class ProductController {
 		if (productImage != null && !productImage.isEmpty()) {
 			try {
 				byte[] b = productImage.getBytes();
-				System.out.println("b : "+b);
-				for(byte s :b) {
-					System.out.println("s : "+s);
-				}
 				Blob blob = new SerialBlob(b);
 				bb.setImage(blob);
 			} catch (Exception e) {

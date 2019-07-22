@@ -1,31 +1,48 @@
 @charset "UTF-8";
-
+.pageForProduct{
+	font-size: 10px;
+}
 .left{
 background-color: #CCEEFF;	
 }
+.container {
+margin-left: 2ch;
+}
+
 .container h1{
 font-weight:bold;
+font-size: 30px;
 }
-.container text{
-width:39ch;
+#description{
+font-size: 18px;
+margin-left:4ch;
+width:30ch;
+}
+#searchSub{
+font-size: 18px;
+margin-left:4ch;
+width:30ch;	
 }
 .container select{
-	width:28ch;
-	height:5ch;
-	font-size: 10px;
+margin-left:4ch;
+margin-top:1ch;
+margin-bottom:2ch;
+width:30ch;
+height:5ch;
+font-size: 18px;
 }
 .mainDiv{
 background-color: #CCEEFF;
 border: 1px solid 	#DDDDDD;
 height:40ch;
-width:26ch;
+width:28ch;
 border-radius: 15px;
 }
 .mainDiv img{
-margin-left:2ch;
+margin-left:3ch;
 margin-top:2ch;
 height:23ch;
-width:22ch;
+width:23ch;
 	}
 	
 .mainText{
@@ -47,10 +64,46 @@ padding-left:2ch;
 width:30px;
 }
 
+
+.search{
+ border-right: 1px solid #cccccc ;
+}
+
+
+
+* {
+	padding: 0;
+	margin: 0;
+}
+
+
+
+.allPage {
+	overflow: auto;
+	width: 100%;
+	margin-bottom:10ch;
+	margin-top:3ch;
+}
+
+.left {
+	width: 20%;
+	float: left;
+}
+
+.right {
+	width: 80%;
+	float: right;
+}
+
+
+
+
+
 .list-type1{
-font-size:15px;	
-width:150px;
-margin:0 auto;
+font-size:25px;	
+width:300px;
+margin:auto;
+
 }
 
 .list-type1 ol{
@@ -66,12 +119,15 @@ margin-bottom: 4em;
 margin: 0 0 0 2em;
 }
 
+.list-type1 li{
+margin-top:40px;;
+	}
 .list-type1 a{
 position: relative;
 display: block;
 padding: .4em .4em .4em 2em;
 *padding: .4em;
-margin: .5em 0;
+/* margin: .5em 0; */
 background: #93C775;
 color: #000;
 text-decoration: none;
@@ -79,6 +135,7 @@ text-decoration: none;
 -webkit-border-radius: .3em;
 border-radius: 10em;
 transition: all .2s ease-in-out;
+margin-left:2px;;
 }
 
 .list-type1 a:hover{
@@ -123,8 +180,8 @@ color:#666666;
 transition: all 0.5s;
 position: relative; 
 font-size:25px;
-width:150px;	
-line-height:35px;
+width:200px;	
+line-height:40px;
 text-align:center;
 font-style:oblique;
 

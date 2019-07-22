@@ -40,10 +40,6 @@
 <script src="js/jquery.prettyPhoto.js"></script>
 <script src="js/css3-mediaqueries.js"></script>
 <style>
-* {	
-	padding: 0;
-	margin: 0;
-}
 
 .textDiv{
 margin: 0;
@@ -51,81 +47,7 @@ margin: 0;
 .textDiv p{
 font-size:20px;
 }
-.left {
-	width: 15%;
-	float: left;
-}
 
-.right {
-	width: 80%;
-	float: right;
-}
-
-body {
-	background-color: white;
-}
-
-
-.search{
- border-right: 1px solid #cccccc ;
-}
-
-.container {
-	margin-left: 5ch;
-}
-
-.allPage {
-	overflow: auto;
-	width: 100%;
-	margin-bottom:10ch;
-	margin-top:3ch;
-}
-.page{
-margin:auto;
-margin-left: 50ch;
-}
-.page button{
-margin-left: 3ch;
-width:30px;
-}
-
-
-/* ======================MainShow=================================== */
-.field {
-	padding: 10px;
-}
-
-.mainShow {
-	opacity: 100;
-	width: 50px;
-	filter: alpha(opacity = 100);
-	margin:auto;
-}
-
-.mainBlock {
-	position: absolute;
-	width: 100px;
-	opacity: 0;
-	top: 0;
-	left: 0;
-}
-
-.divA {
-	position: relative;
-	margin:auto;
-}
-
-.divA img {
-      margin:auto;
-	-webkit-transition: opacity 2s linear;
-	-moz-transition: opacity 2s linear;
-	-o-transition: opacity 2s linear;
-	transition: opacity 1s linear;
-	width: 10cm;
-	height: 200px;
-}
-
-/* ============================================================= */
 
 
 </style>
@@ -156,10 +78,10 @@ width:30px;
 							txt="";
 					for (i in names) {
 				             txt+=
-				            	  "<div class='col-sm-6 col-md-3' style='width: 200px; height: 250px;margin-bottom:50px;margin-right:50px'>"
-					             +"<div class=''>"
-					             +"<img width='125' height='175'src=   \" <c:url value=  '/getProductPicture/"+names[i].product_id+"'   /> \"     />"
-					             +"<div class=''  height='100' style='font-size: 8px; ''><p>"
+				            	  "<div class='col-sm-6 col-md-3' style='width: 200px; height: 250px;margin-bottom:80px;margin-right:50px'>"
+					             +"<div class='mainDiv'>"
+					             +"<img src=   \" <c:url value=  '/getProductPicture/"+names[i].product_id+"'   /> \"     />"
+					             +"<div class='mainText'  style='font-size: 8px; ''><p>"
 					             +"名稱  : "+names[i].name+"</p><p>價格 : "+names[i].price+"</p>"
 					             +"<nav class='navbar navbar-light bg-light'><form class='form-inline'>"
 					             +"<a class='mh6'   href=\" <c:url value=  '/product?id="+names[i].product_id+"'    /> \"    >" 
@@ -463,13 +385,13 @@ width:30px;
 							for (i in names) {
 //	 				             console.log(i + ' :' + names[i]	);
 					             txt+=
-					            	  "<div class='col-sm-6 col-md-3' style='width: 200px; height: 250px;margin-bottom:20px'>"
-						             +"<div class=''>"
-						             +"<img width='100' height='150'src=   \" <c:url value=  '/getProductPicture/"+names[i].product_id+"'   /> \"     />"
-						             +"<div class=''  height='100' style='font-size: 8px; ''><p>"
-						             +"名稱 :"+names[i].name+"</p><p>價格 : "+names[i].price+"</p>"
+					            	  "<div class='col-sm-6 col-md-3' style='width: 200px; height: 250px;margin-bottom:80px;margin-right:50px'>"
+						             +"<div class='mainDiv'>"
+						             +"<img src=   \" <c:url value=  '/getProductPicture/"+names[i].product_id+"'   /> \"     />"
+						             +"<div class='mainText'  style='font-size: 8px; ''><p>"
+						             +"名稱  : "+names[i].name+"</p><p>價格 : "+names[i].price+"</p>"
 						             +"<nav class='navbar navbar-light bg-light'><form class='form-inline'>"
-						             +"<a class='mh6'   href=\" <c:url value=  '/products/product?id="+names[i].product_id+"'    /> \"    >" 
+						             +"<a class='mh6'   href=\" <c:url value=  '/product?id="+names[i].product_id+"'    /> \"    >" 
 						             +"Details</a>"
 						             +"</form></nav></div></div></div>"
 					         }
@@ -498,10 +420,10 @@ width:30px;
 							for (i in names) {
 //	 				             console.log(i + ' :' + names[i]	);
 					             txt+=
-					            	  "<div class='col-sm-6 col-md-3' style='width: 200px; height: 250px;margin-bottom:50px;margin-right:50px'>"
-						             +"<div class=''>"
-						             +"<img width='125' height='175'src=   \" <c:url value=  '/getProductPicture/"+names[i].product_id+"'   /> \"     />"
-						             +"<div class=''  height='100' style='font-size: 8px; ''><p>"
+					            	  "<div class='col-sm-6 col-md-3' style='width: 200px; height: 250px;margin-bottom:80px;margin-right:50px'>"
+						             +"<div class='mainDiv'>"
+						             +"<img src=   \" <c:url value=  '/getProductPicture/"+names[i].product_id+"'   /> \"     />"
+						             +"<div class='mainText'  style='font-size: 8px; ''><p>"
 						             +"名稱  : "+names[i].name+"</p><p>價格 : "+names[i].price+"</p>"
 						             +"<nav class='navbar navbar-light bg-light'><form class='form-inline'>"
 						             +"<a class='mh6'   href=\" <c:url value=  '/product?id="+names[i].product_id+"'    /> \"    >" 
@@ -539,41 +461,47 @@ width:30px;
 	</script>
 	<div class="main">
 	<header>
-			<div class="col-full">
-				<div class="wrap-col">
-					<h1>
-						<a href="index2"><img src="images/logo.png" alt="EXTERIOR"></a>
-					</h1>
+			<div class="zerogrid">
+				<div class="col-full">
+					<div class="wrap-col">
+						<h1>
+							<a href="index2"><img src="images/logo.png" alt="EXTERIOR"></a>
+						</h1>
 
-					<div class="menu_block">
-						<nav>
-							<ul class="sf-menu">
-								<li><a href="index2">ICook</a></li>
-								<li><a href="icookAboutUS">關於我們</a>
-									<ul>
-										<li><a href="icookContact">聯繫我們</a></li>
-									</ul></li>
-								<li><a href="icookMenu">查看食譜</a>
-									<ul>
-
-										<li><a href="#">cat1</a></li>
-										<li><a href="#">cat2</a></li>
-										<li><a href="#">cat3</a></li>
-									</ul>
+						<div class="menu_block">
+							<nav>
+								<ul class="sf-menu">
+									<li class="with_ul current"><a href="index2">ICook</a></li>
+									<li><a href="icookAboutUS">關於我們</a>
+										<ul>
+											<li><a href="icookContact">聯繫我們</a></li>
+										</ul></li>
+									<li><a href="<c:url value='/recipe/recipeIndex' /> ">查看食譜</a>
 									<li><a href="icookLife">生活誌</a></li>
-									<li><a href="icookVideo">討論區</a></li>
-									<li class="with_ul current"><a href="icookProducts">市集</a>
+									<li><a href="forum/overview">討論區</a></li>
+									<li><a href="A_articlemainpage">文章區</a></li>
+									<li><a href="products">市集</a>
 									<ul>
+
+
 											<li><a href="cartPage">購物車</a></li>
 										</ul></li>
 
 									<li><a href="icookLogin">會員專區</a>
 										<ul>
-											<li><a href="icookLogin">會員登入</a></li>
-											<li><a href="#">會員登出</a></li>
-											<li><a href="#">新增食譜</a></li>
-											<ul></li>
+											<c:if test="${pageContext.request.userPrincipal.name==null}">
+												<li><a href="icookLogin">會員登入</a></li>
+												<li><a href="icookRegister">會員註冊</a></li>
+											</c:if>
+											<c:if test="${pageContext.request.userPrincipal.name!=null}">
+												<li><a href="index2" data-toggle="modal" data-target="#logout">會員登出</a></li>
+											</c:if>
+												<li><a href="checkOrders">查看訂單</a></li>
+												<li><a href="#">新增食譜</a></li>
+												<li><a href="backStage">後台</a></li>
+										</ul>
 
+									</li>		
 								</ul>
 							</nav>
 							<div class="clear"></div>
@@ -581,8 +509,8 @@ width:30px;
 						<div class="clear"></div>
 					</div>
 				</div>
-		
-	</header>
+			</div>
+		</header>
 		
 		
 	<div class="allPage">
@@ -591,7 +519,6 @@ width:30px;
 				<div>
 					<h1>產品清單</h1>
 				</div>
-				<label for='show'> 種類</label>
 
 				<div>
 					<select id="show" name="show" class="form-control form-control-sm"><option
@@ -599,29 +526,18 @@ width:30px;
 						name="show2" class="form-control form-control-sm">
 					</select>
 				</div>
-				<nav class="navbar navbar-light bg-light">
-					<form class="searchDiv" id="searchDiv" method="POST"
-						class="form-inline">
-						<input id="fileName" name="fileName" type="hidden" /> <input
-							id="remark" name="remark" type="hidden" /><input id="stock"
-							name="stock" type="hidden" />
-						<div>
-							<input id="description" name="description" type="text"
-								class="form-control mr-sm-2" placeholder="Search"
-								aria-label="Search"></input>
-						</div>
-						<div>
-							<input type="button" class="btn btn-outline-success my-2 my-sm-0"
-								value="Search">
-						</div>
-					</form>
-				</nav>
+					<form class="searchDiv" id="searchDiv" method="POST" class="form-inline">
+					<input id="fileName" name="fileName" type="hidden" /> <input
+						id="remark" name="remark" type="hidden" /><input id="stock" name="stock" type="hidden" />
+					<div style="width:26ch;">
+						<input id="description" name="description" type="text"   class="form-control mr-sm-2" placeholder="請輸入產品名稱關鍵字" ></input>
+						  <input type="button" id="searchSub"class="btn btn-outline-success my-2 my-sm-0" value="收尋">
+					</div>
+				</form>
 			</section>
 			<section class="container">
 
 
-				<a href='collections'>查詢收藏</a><BR> <br> <a
-					href='products/add'>新增產品資料</a>
 				<div class="list-type1">
 
 					<h1>鍋類</h1>
@@ -738,3 +654,4 @@ width:30px;
 	</div>
 </body>
 </html>
+

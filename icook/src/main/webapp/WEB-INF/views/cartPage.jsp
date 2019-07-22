@@ -6,10 +6,23 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 <head>
-<!-- <link rel="stylesheet" -->
-<!-- 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" -->
-<!-- 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" -->
-<!-- 	crossorigin="anonymous"> -->
+<!-- 	bootstrap -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	crossorigin="anonymous"></script>
+<!-- 	bootstrap -->
 <link rel='stylesheet'
 	href='${pageContext.request.contextPath}/css/fontawesome-free/css/all.min.css'
 	type="text/css" />
@@ -37,26 +50,6 @@
 			window.location.href = '/icook/deleteCart?id=';
 		}
 	}
-	
-	
-// 	$(document).ready(function(){
-// 		getStock();
-// 		function getStock(){
-// 			var names = parseInt(${cart.value.productBean.stock})
-// 			var txt = "";
-// 			for(var i=1;i<names;i++){
-// 				txt+="<option value= '"+i+"'>" +i+"</option>"
-// 			}
-// 			$("#quantity").append(txt);
-// 		}
-// 		$("#quantity").change(function(){
-// 			var txt = $("#quantity :selected").val();
-// 			$("#quan").val(txt);
-// 		})
-// 	})
-	
-	
-	
 </script>
 <style type="text/css">
 th, td {
@@ -67,56 +60,78 @@ th, td {
 
 <body>
 	<c:out value="登入者${LoginOK.nickname}"></c:out>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="/icook">ICook!</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarTogglerDemo02"
-			aria-controls="navbarTogglerDemo02" aria-expanded="false"
-			aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
+	<!--==============================header=================================-->
+	<header>
+		<div class="zerogrid">
+			<div class="col-full">
+				<div class="wrap-col">
+					<h1>
+						<a href="index2"><img src="images/logo.png" alt="EXTERIOR"></a>
+					</h1>
 
-		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-				<li class="nav-item"><a class="nav-link" href='/icook/products'>市集</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">食譜</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">修改商品</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">新增商品</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">更新產品資料</a></li>
-				<li class="nav-item"><a class="nav-link" href="">查詢收藏</a></li>
+					<div class="menu_block">
+						<nav>
+							<ul class="sf-menu">
+								<li><a href="index2">ICook</a></li>
+								<li><a href="icookAboutUS">關於我們</a>
+									<ul>
+										<li><a href="icookContact">聯繫我們</a></li>
+									</ul></li>
+								<li><a href="icookMenu">查看食譜</a>
+									<ul>
 
-			</ul>
-			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" type="search"
-					placeholder="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-			</form>
-		</div>
-	</nav>
+										<li><a href="#">cat1</a></li>
+										<li><a href="#">cat2</a></li>
+										<li><a href="#">cat3</a></li>
+									</ul>
+								<li><a href="icookLife">生活誌</a></li>
+								<li><a href="icookVideo">討論區</a></li>
+								<li class="with_ul current"><a href="icookProducts">市集</a>
+									<ul>
+										<li><a href="cartPage">購物車</a></li>
+									</ul></li>
+
+								<li><a href="icookLogin">會員專區</a>
+									<ul>
+										<li><a href="icookLogin">會員登入</a></li>
+										<li><a href="checkOrders">查看訂單</a></li>
+										<li><a href="#">會員登出</a></li>
+										<li><a href="#">新增食譜</a></li>
+										<ul></li>
+
+							</ul>
+						</nav>
+						<div class="clear"></div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+	</header>
+	<!--=======content================================-->
 	<div class="progress">
-		<div class="progress-bar progress-bar-striped"
-			role="progressbar" style="width: 25%" aria-valuenow="25"
-			aria-valuemin="0" aria-valuemax="100"></div>
+		<div class="progress-bar progress-bar-striped" role="progressbar"
+			style="width: 25%" aria-valuenow="25" aria-valuemin="0"
+			aria-valuemax="100"></div>
 	</div>
 	<table id="tfhover" class="table table-striped table-hover">
 		<tr>
-			<th>產品號asxa</th>
-			<th>圖片sdcsdc</th>
-			<th>數量sdcsdc</th>
+			<th>產品號</th>
+			<th>圖片</th>
+			<th>數量</th>
 			<th>單價</th>
 			<th>小計</th>
 			<c:set var="contains" value="no" />
 			<c:if test="${empty shoppingCart}">
 				<c:set var="contains" value="yes" />
 				<script type="text/javascript">
-				
+					
 				</script>
 			</c:if>
 
 			<c:choose>
 				<c:when test="${contains=='yes'}">
 					<script type="text/javascript">
-	
+						
 					</script>
 					<td><button type="button" class="btn btn-outline-light"></button></td>
 				</c:when>
@@ -153,9 +168,8 @@ th, td {
 			<c:set value="${sum + cart.value.subtotal}" var='sum' />
 		</c:forEach>
 		<form method='POST' action="<c:url value='/product/addToCart'/>">
-			kkkk<input type="hidden" name="productId"
-				value="${product.product_id}" /> <input type="hidden" name="price"
-				value="${product.price}" />
+			<input type="hidden" name="productId" value="${product.product_id}" />
+			<input type="hidden" name="price" value="${product.price}" />
 			<%-- 								<c:set value="" var="quan1"/> --%>
 			<%-- 						<c:out value="${quan1}"></c:out> --%>
 			<input type="hidden" name="quan" id='quan' value="" />

@@ -158,7 +158,7 @@ td, th {
 								action="<c:url value='/adminCheckOrderDetails?id=${OrderBean.memberbean.member_id}'/>">
 								<input type="hidden" name="adminCheck" value="admin" /> <input
 									type="hidden" name="OrderNo" value="${OrderBean.orderNo}" /> <input
-									class="btn btn-outline-info" type="submit" value="檢視該訂單" />
+									class="btn btn-outline-success" type="submit" value="檢視該訂單" />
 							</form>
 						</td>
 						<td>${OrderBean.orderDate}</td>

@@ -39,7 +39,7 @@ public class AllInOneBase {
 //			doc = EcpayFunction.xmlParser(configPath);
 			/* when using testing code*/
 //			String paymentConfPath = "./src/main/resources/payment_conf.xml";XXXXXXXXXXXXXX錯!!!!!
-			String paymentConfPath = "C:\\Users\\User\\git\\repository\\icook\\src\\payment_conf.xml";
+			String paymentConfPath = "C:\\Users\\屁股\\git\\repository\\icook\\src\\payment_conf.xml";
 			doc = EcpayFunction.xmlParser(paymentConfPath);
 			
 			doc.getDocumentElement().normalize();
