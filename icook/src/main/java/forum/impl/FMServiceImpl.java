@@ -82,6 +82,11 @@ public class FMServiceImpl implements IFMService {
 		return dao.like(article_id, memberBean);
 		
 	}
+
+	@Override
+	public List<ForumMainBean> getByMember_id(Integer member_id) {
+		return dao.getByMember_id(member_id);
+	}
 	
 	
 

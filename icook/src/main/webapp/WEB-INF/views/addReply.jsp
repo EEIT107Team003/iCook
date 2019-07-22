@@ -156,7 +156,7 @@
 											aria-expanded="false" id="category"  value="0"  disabled="disabled">${ head.category }</button>
 											<form:input type="hidden"  id="category2" name="category" value="${ head.category }" path="category"/>
 								
-									<form:input type="text" class="form-control" placeholder="TOPIC"  path="title" min="1" max="25" required="required" value="${ head.title }" readonly="readonly" disabled="true"/>
+									<form:input type="text" class="form-control" placeholder="TOPIC"  path="title" min="1" max="25" required="required" value="${ head.title }"  disabled="true"/>
 									</c:forEach>
 									<div class="dropdown-menu">
 											

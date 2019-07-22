@@ -39,6 +39,9 @@ import com.web.icook.model.MyTrackBean;
 import com.web.icook.service.MemberService;
 import com.web.icook.service.MyTrackService;
 
+import forum.model.ForumMainBean;
+import forum.service.IFMService;
+
 @Controller
 public class MemberController {
 //	private int member_id;
@@ -48,7 +51,9 @@ public class MemberController {
 	MyTrackService myTrackService;
 	@Autowired
 	ServletContext context;
-
+	@Autowired
+	IFMService ifmService; 
+	
 //	@Autowired
 //	IProductService productService;
 
@@ -73,6 +78,20 @@ public class MemberController {
 		if (!getPrincipal().equals("anonymousUser")) {
 			MemberBean bean = memberService.selectByUsername(getPrincipal());
 			list = myTrackService.selectTrackerById(bean.getMember_id());
+		}
+		return list;
+	}
+
+	// 查詢我的文章
+	@ResponseBody
+	@RequestMapping(value = "/user/myforum", method = RequestMethod.POST)
+	public List<ForumMainBean> myForum() {
+		List<ForumMainBean> list = new ArrayList<ForumMainBean>();
+		
+		if (!getPrincipal().equals("anonymousUser")) {
+			MemberBean bean = memberService.selectByUsername(getPrincipal());
+			list = ifmService.getByMember_id(bean.getMember_id());
+			System.out.println(list.size());
 		}
 		return list;
 	}
@@ -223,7 +242,7 @@ public class MemberController {
 		MemberBean bean = memberService.selectById(member_id);
 		model.addAttribute("member", bean);
 
-		return "member/member_page";
+		return "member/icookMembers";
 	}
 
 	//加入追蹤(非會員)

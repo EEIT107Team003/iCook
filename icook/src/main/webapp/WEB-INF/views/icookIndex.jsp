@@ -145,7 +145,7 @@
 											</c:if>
 												<li><a href="checkOrders">查看訂單</a></li>
 												<li><a href="#">新增食譜</a></li>
-										<ul>
+										</ul>
 									</li>		
 								</ul>
 							</nav>

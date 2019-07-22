@@ -29,4 +29,6 @@ public interface IFMService {
 	public List<ForumMainBean> getByCategory(String category);
 	
 	public List<ForumMainBean> getByPK(Integer article_id);
+	
+	public List<ForumMainBean> getByMember_id(Integer member_id);
 }
