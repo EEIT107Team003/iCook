@@ -5,37 +5,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-<script>
-	
-	$(document).ready(function(){
-		$.ajax({
-			url : "${pageContext.request.contextPath}/category",
-			type : "GET",
-			dataType : "json",
-			contentType : "application/json",
-			async : true,
-			success : function(data) {
-				var names = JSON.parse(JSON.stringify(data).split(","));
-				var txt = "";
-				console.log(names);
-	            for (i in names) {
-					txt += "<option value='"+i+"'>" + names[i].nickname + "</option>";
-				}
-				$("#show").append(txt);
-			},
-			error : function(data, textStatus, errorThrown) {
-				console.log(data);
-			},
-		});
-		
-	});
+	<script>
+		$(document).ready(
+				function() {
+					$.ajax({
+						url : "${pageContext.request.contextPath}/category",
+						type : "GET",
+						dataType : "json",
+						contentType : "application/json",
+						async : true,
+						success : function(data) {
+							var names = JSON.parse(JSON.stringify(data).split(
+									","));
+							var txt = "";
+							console.log(names);
+							for (i in names) {
+								txt += "<option value='"+i+"'>"
+										+ names[i].nickname + "</option>";
+							}
+							$("#show").append(txt);
+						},
+						error : function(data, textStatus, errorThrown) {
+							console.log(data);
+						},
+					});
+
+				});
 	</script>
-<c:out value="登入者${LoginOK.member_id}"></c:out>
+	<c:out value="登入者${LoginOK.member_id}"></c:out>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="/icook">ICook!</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -47,31 +50,22 @@
 
 		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-
 				<li class="nav-item"><a class="nav-link" href='products'>市集</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="#">食譜</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">(修改商品)</a></li>
-				<li class="nav-item"><a class="nav-link" href='products/add'>(新增商品)</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="products/upd">(更新產品)</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="collections">查詢收藏</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="cartPage">購物車</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="checkOrders">檢視訂單(會員用)</a>
-				</li>
 				<li class="nav-item"><a class="nav-link"
-					href="adminCheckOrders">查看訂單(僅限admin的URL)</a></li>
-					
-					<li class="nav-item"><a class="nav-link" href="toAIOcheck">ecpay</a>
+					href="icookCartPage">(測試)畫面購物車</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="icookezship">(測試)畫面選店</a></li>
+
+				<li class="nav-item"><a class="nav-link" href="toAIOcheck">(測試)ecpay</a>
 				</li>
-				<li><span><a
-			class="nav-link" href="index2">去畫面首頁</a></span></li>
-				
+				<li><span><a class="nav-link" href="index2">去畫面首頁</a></span></li>
+					<span style='border: solid 1px black'> </span> <span><a
+			class="nav-link" href="finishOrderPage">測試finishOrderPage</a></span> <span><a
+			class="nav-link" href="icookFinishOrderPage">(測試)畫面感謝頁</a></span> <span><a
+			class="nav-link" href="information">(測試)information</a></span> <span>
 				<a href="#" class="btn btn-primary btn-lg btn-block"
-			onclick="window.open(' /icook/toAIOcheck', 'Paypal', config='height=500,width=500');">去印超商取貨條碼!</a>
+					onclick="window.open(' /icook/toAIOcheck', 'Paypal', config='height=500,width=500');">去印超商取貨條碼!</a>
 
 			</ul>
 			<form class="form-inline my-2 my-lg-0">
@@ -86,23 +80,22 @@
 		<hr>
 		<a href="logout_page">會員登出</a>
 		<hr>
-		<a href="addMember">新增會員</a>
-		 <a href="user">會員首頁</a>
+		<a href="addMember">新增會員</a> <a href="user">會員首頁</a>
 		<hr>
 		<p>其他會員</p>
 		<a href="members">會員首頁</a>
 		<%-- 	<a href="member?member_id=${member_id}">會員首頁</a> --%>
 		<a href="A_articlemainpage">文章首頁</a>
 	</div>
-	
-		<label for='show'> 種類</label>
+
+	<label for='show'> 種類</label>
 	<div>
 		<select id="show" name="show"><option value="0" SELECTED>請選擇</option></select>
 	</div>
-		<hr>
-		<a href="insert">新增食譜</a>
-		<a href="recipe">所有食譜</a>
-<hr>
+	<hr>
+	<a href="insert">新增食譜</a>
+	<a href="recipe">所有食譜</a>
+	<hr>
 
 	<table border="1" style="margin: 0px auto;">
 		<tr height="52" bgcolor="lightblue" align="center">
@@ -114,29 +107,7 @@
 	<div>
 		<p>---------------------------------------------------------------------</p>
 
-		<span style='border: solid 1px black'> </span> <span><a
-			class="nav-link" href="login">顧客登入</a></span>
-		<ul>
-			<li class="nav-item"><a class="nav-link" href='products'>市集</a>
-			</li>
-			<li class="nav-item"><a class="nav-link" href="cartPage">購物車</a>
-			</li>
-			<li class="nav-item"><a class="nav-link" href="checkOrders">檢視訂單(會員用)</a>
-			</li>
-			<li class="nav-item"><a class="nav-link" href="adminCheckOrders">查看訂單(僅限admin的URL)</a>
-			</li>
-			
-		</ul>
-		<span><a class="nav-link" href="login">admin登入</a></span> <span><a
-			class="nav-link" href="logout">Logout登出</a></span> <span><a
-			class="nav-link" href="payment">payment page</a></span> <span><a
-			class="nav-link" href="testEL1">測試testEL1</a></span> <span><a
-			class="nav-link" href="ezship">測試ezship</a></span> <span><a
-			class="nav-link" href="ezship2">測試ezship收到參數編碼</a></span> <span><a
-			class="nav-link" href="finishOrderPage">測試finishOrderPage</a></span> <span><a
-			class="nav-link" href="information">測試information</a></span> <span><a
-			class="nav-link" href="toAIOcheck">aioCheckOutOneTime</a></span> <span><a
-			class="nav-link" href="frontEnd/aioCheckOut/aioCheckOutALL">aioCheckOut</a></span>
+	
 		<p>---------------------------------------------------------------------</p>
 	</div>
 </body>
