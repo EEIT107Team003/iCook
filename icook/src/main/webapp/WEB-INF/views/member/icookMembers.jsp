@@ -69,6 +69,39 @@
 			txt+="<input type='button' id='trackMe' name='trackMe' value='加入追蹤' onclick='trackMe()';/>"
 				$("#trackbutton").html(txt);
 		}
+	
+		$("#user_myforum").click(function(){
+// 			alert("fdfdfdfdfdfdfdfd");
+			$.ajax({
+				url : "${pageContext.request.contextPath}/members/page/myforum",
+				type : "POST",
+				dataType : "json",
+				data:{member_id:$("#memberId").val()},
+				async : true,
+				success : function(data) {
+					var names = JSON.parse(JSON.stringify(data).split(","));
+					var txt = "";
+					for (i in names) {
+						txt+=
+							"<div class=contain_myforum>"
+								+"<div class=contain_myforum_Info>"
+									+"<div width=100%>"
+										+"<a href=${pageContext.request.contextPath}/forum/pick?harticle_id="+names[i].harticle_id+"&article_id="+names[i].article_id+" class=contain_mytrack_title>"+"["+names[i].category+"] "+names[i].title+"</a>"
+									+"</div>"	
+								+"<div class=contain_myforum_time>發文時間: "+formatDate(names[i].editTime)+"</div>"
+								+"</div>"
+								+"<hr style=clear: both;border-style: dashed;>"
+							+"</div>"
+						console.log(names[i].title);
+					};
+//						$("#forum_num").html(names.length)
+					$("#user_contain").html(txt);
+				},
+				error : function(data, textStatus, errorThrown) {
+					console.log("error: "+data);
+				},
+			});
+		});
 		
 		$.fn.serializeObject = function() {
 			var o = {};
@@ -86,39 +119,6 @@
 			return JSON.stringify(o);
 		};
 	});
-	
-	$("#user_myforum").click(function(){
-		$.ajax({
-			url : "${pageContext.request.contextPath}/members/page/myforum",
-			type : "POST",
-			dataType : "json",
-			data:{member_id:$("#memberId").val()},
-			async : true,
-			success : function(data) {
-				var names = JSON.parse(JSON.stringify(data).split(","));
-				var txt = "";
-				for (i in names) {
-					txt+=
-						"<div class=contain_myforum>"
-							+"<div class=contain_myforum_Info>"
-								+"<div width=100%>"
-									+"<a href=forum/pick?harticle_id="+names[i].harticle_id+"&article_id="+names[i].article_id+" class=contain_mytrack_title>"+"["+names[i].category+"] "+names[i].title+"</a>"
-								+"</div>"	
-							+"<div class=contain_myforum_time>發文時間: "+formatDate(names[i].editTime)+"</div>"
-							+"</div>"
-							+"<hr style=clear: both;border-style: dashed;>"
-						+"</div>"
-					console.log(names[i].title);
-				};
-//					$("#forum_num").html(names.length)
-				$("#user_contain").html(txt);
-			},
-			error : function(data, textStatus, errorThrown) {
-				console.log("error: "+data);
-			},
-		});
-	});
-	
 	
 	function trackMe(){
 		if($("#userId").val().trim()!=""){
@@ -193,6 +193,7 @@
 	    }
 	    return yyyy + "-" + mm + "-" + dd+" , "+HH+":"+min+":"+sec;
 	}
+
 	 
 </script>
 
@@ -279,6 +280,22 @@
 	height: 70%;
 	font-family: 'Noto Sans TC', sans-serif;
 }
+.contain_myforum_Info {
+	height: 100px;
+	width: 100%;
+	margin-left: 20px;
+}
+
+.contain_myforum_time { 
+	width:100%;
+	color:gray;
+	margin-top:50px;
+	vertical-align:bottom;
+	text-align:right;
+	font-family: 'Noto Sans TC', sans-serif;
+	float: right;
+}
+/* ------------------------------------------------------------------------------------------ */
 
 section {
 	border: 1px solid rgb(220, 220, 220);
@@ -409,7 +426,7 @@ section {
 								<li><a href="user_mycollectrecipe" data-toggle="tab">我的收藏</a>
 								</li>
 <!-- 								<li><a id="user_mytrack" data-toggle="tab">我的追蹤</a></li> -->
-								<li><a href="user_myforum" data-toggle="tab">我的文章</a></li>
+								<li><a id="user_myforum" data-toggle="tab">我的文章</a></li>
 							</ul>
 
 							<section class="about section">

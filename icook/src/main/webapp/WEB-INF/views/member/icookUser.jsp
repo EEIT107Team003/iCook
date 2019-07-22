@@ -259,7 +259,7 @@ td {
 							"<div class=contain_myforum>"
 								+"<div class=contain_myforum_Info>"
 									+"<div width=100%>"
-										+"<a href=forum/pick?harticle_id="+names[i].harticle_id+"&article_id="+names[i].article_id+" class=contain_mytrack_title>"+"["+names[i].category+"] "+names[i].title+"</a>"
+										+"<a href=${pageContext.request.contextPath}/forum/pick?harticle_id="+names[i].harticle_id+"&article_id="+names[i].article_id+" class=contain_mytrack_title>"+"["+names[i].category+"] "+names[i].title+"</a>"
 									+"</div>"	
 								+"<div class=contain_myforum_time>發文時間: "+formatDate(names[i].editTime)+"</div>"
 								+"</div>"
