@@ -322,15 +322,14 @@ public class MemberController {
 //-------------------------------  無權限  ---------------------------------------------------------------------------
 
 	// 新增會員
-	@RequestMapping(value = "/addMember", method = RequestMethod.GET)
+	@RequestMapping(value = "/icookRegister", method = RequestMethod.GET)
 	public String addMember(Model model) {
-		System.out.println("sssssssssssssssssssssssss");
 		MemberBean bean = new MemberBean();
 		model.addAttribute("MemberBean", bean);
 		return "member/addMember";
 	}
 
-	@RequestMapping(value = "/addMember", method = RequestMethod.POST)
+	@RequestMapping(value = "/icookRegister", method = RequestMethod.POST)
 	public String addMember(@ModelAttribute("MemberBean") MemberBean bean, Model model, HttpServletRequest request) {
 		// 連絡電話
 		bean.setMember_phone_num("未輸入");
@@ -377,7 +376,7 @@ public class MemberController {
 		List<MemberBean> list = memberService.selectAll();
 		model.addAttribute("members", list);
 
-		return "member/result";
+		return "icookIndex";
 	}
 
 	// 取得圖片(Member)-------------------------------------------------------------------

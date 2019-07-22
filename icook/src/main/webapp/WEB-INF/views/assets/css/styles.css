@@ -10,7 +10,7 @@
 body {
   font-family: 'Lato', arial, sans-serif;
   color: #434343;
-  background: #dae3e7;
+  background: #5fa022;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -499,7 +499,7 @@ iframe {
   font-size: 14px;
 }
 .footer a {
-  color: #fff;
+  color: #5fa022;
 }
 .footer .fa-heart {
   color: #fb866a;

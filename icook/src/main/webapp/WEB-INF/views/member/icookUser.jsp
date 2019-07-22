@@ -366,7 +366,7 @@ td {
 </script>
 
 </head>
-<body style="background-color: white">
+<body>
 	<div class="main">
 		<!--==============================header=================================-->
 		<header>
@@ -657,7 +657,7 @@ td {
 	
 	<!--==============================footer=================================-->
 
-	<footer>
+	<footer style="background-color: #5fa022">
 		<div class="zerogrid">
 			<div class="col-full">
 				<div class="wrap-col">
