@@ -30,15 +30,25 @@ public class CartController {
 	@Autowired
 	OrderService service;
 	// 測試
-	
+
 	@Autowired
 	ProductService pservice;
-	
+
 	@Autowired
 	MemberService mservice;
 
 	@Autowired
 	MemberController mcontroller;
+	
+//	@RequestMapping("/backStage")
+//	public String backStage(Model model) {
+//		return "index";
+//	}
+
+	
+	
+	
+	
 	// 測試
 	@RequestMapping("/finishOrderPage")
 	public String tofinishOrderPage(Model model) {
@@ -48,10 +58,26 @@ public class CartController {
 		return "finishOrderPage";
 	}
 
-	@RequestMapping("/thankyou")
-	public String thankyou() {
-		return "thankyouPage2";
+	@RequestMapping("/icookFinishOrderPage")
+	public String icookFinishOrderPage(Model model,HttpSession session) {
+		// 測試
+		
+		
+		//測試綠界只收int
+//		int AmountInt=100;
+//		Integer AmountInteger = new Integer(AmountInt);
+//		String AmountString = "33號";
+//		session.setAttribute("orderAmount",AmountInteger );
+//		session.setAttribute("orderNo",AmountString );
+//		boolean status=odao.setPaymentOK(13);
+//		model.addAttribute("status", status);
+		return "icookFinishOrderPage";
 	}
+
+//	@RequestMapping("/thankyou")
+//	public String thankyou() {
+//		return "thankyouPage2";
+//	}
 
 	@RequestMapping("/realPaypal")
 	public String realPaypal() {
@@ -91,6 +117,7 @@ public class CartController {
 
 		return "information";
 	}
+
 //	@RequestMapping("/aioCheckOutOneTime")
 //	public String aioCheckOutOneTime() {
 //		
@@ -98,7 +125,7 @@ public class CartController {
 //	}
 	@RequestMapping("/toAIOcheck")
 	public String aioCheckOut() {
-		
+
 		return "aioCheckOut";
 	}
 
@@ -106,6 +133,11 @@ public class CartController {
 	@RequestMapping("/ezship2")
 	public String chosedEZ(Model model, HttpSession session) {
 		return "ezship2";
+	}
+	// 選擇了EZ要先填資料
+	@RequestMapping("/icookezship")
+	public String icookezship(Model model, HttpSession session) {
+		return "icookezship";
 	}
 
 	// 測試
@@ -115,16 +147,28 @@ public class CartController {
 		return "inforamation";
 	}
 
-	//非測試,市集>購物車
+	// 非測試,市集>購物車
 	@RequestMapping("/cartPage")
 	public String gotoCart(Model model, HttpSession session) {
 		MemberBean mb;
 		if (!mcontroller.getPrincipal().equals("anonymousUser")) {
 			mb = mservice.selectByUsername(mcontroller.getPrincipal());
 			model.addAttribute("LoginOK", mb);
-		}else {
+		} else {
 		}
-		return "icookCart";
+		return "icookCartPage";
+	}
+
+	// 非測試,市集>購物車
+	@RequestMapping("/icookCartPage")
+	public String icookCartPage(Model model, HttpSession session) {
+		MemberBean mb;
+		if (!mcontroller.getPrincipal().equals("anonymousUser")) {
+			mb = mservice.selectByUsername(mcontroller.getPrincipal());
+			model.addAttribute("LoginOK", mb);
+		} else {
+		}
+		return "icookCartPage";
 	}
 
 	@RequestMapping("/showOrder")
@@ -134,22 +178,22 @@ public class CartController {
 
 	Map<Integer, OrderItemBean> cart = new HashMap<>();
 
-	@RequestMapping(value="/product/addToCart")
+	@RequestMapping(value = "/product/addToCart")
 	private String addToCart(@RequestParam(value = "productId", required = false) Integer productId,
 //			@RequestParam(value = "quantity") Integer quantity, Model model, HttpSession session) {
-		 Model model, HttpSession session, HttpServletRequest req) {
-		String quantityString =req.getParameter("quan");
-		if(quantityString=="") {
+			Model model, HttpSession session, HttpServletRequest req) {
+		String quantityString = req.getParameter("quan");
+		if (quantityString == "") {
 			cart.remove(productId);
 			return "redirect:/product?id=" + productId;
 		}
-		Integer quantity= Integer.parseInt(quantityString);
-		//-----------------------------測試是否抓到登入會員------------------------------
-		//成功
+		Integer quantity = Integer.parseInt(quantityString);
+		// -----------------------------測試是否抓到登入會員------------------------------
+		// 成功
 //		String username=mcontroller.getPrincipal();
 //		MemberBean mb=mservice.selectByUsername(username);
 //		System.out.println(mb.getUsername());
-		//-------------------------------------------------------------------------------
+		// -------------------------------------------------------------------------------
 		Set<OrderItemBean> oibSet = new HashSet<>();
 		OrderItemBean oib;
 		ProductBean pb;
@@ -181,12 +225,12 @@ public class CartController {
 		if (productId == null) {
 			session.removeAttribute("shoppingCart");
 			cart.clear();
-			return "redirect:/cartPage";
+			return "redirect:/icookCartPage";
 		} else if (productId != null) {
 			cart.remove(productId);
-			return "redirect:/cartPage";
+			return "redirect:/icookCartPage";
 		} else {
-			return "redirect:/cartPage";
+			return "redirect:/icookCartPage";
 		}
 	}
 

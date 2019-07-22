@@ -7,6 +7,7 @@
 <spring:url value="/resources/js/lib/stomp.min.js" var="stomp" />
 <spring:url value="/resources/js/script.js" var="script" />
 <spring:url value="/resources/js/lib/bootstrap/css/chat.css" var="chatCSS"/>
+<spring:url value="/resources/css/chat.css" var="chatroomCSS" />
 <%-- <spring:url value="/css/style.css" var="styleCSS"/> --%>
 <%-- <spring:url value="/css/slider.css" var="sliderCSS"/> --%>
 <%-- <spring:url value="/css/zerogrid.css" var="zerogridCSS"/> --%>
@@ -58,6 +59,19 @@
 <link rel="stylesheet" href="${icomoonCSS}">
 <link rel="stylesheet" href="${styleRCSS}">
 
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<style>
+.fixed {
+  position: fixed;
+  bottom: 0;
+  right: 0;;
+  background-color: white;
+  text-align:right;
+}
+</style>
   </head>
   <body>
 
@@ -348,8 +362,8 @@
 	                <li><a href="${ pageContext.request.contextPath }/forum/query?category=器具">器具 <span>(7)</span></a></li>
 	              </ul>
 	            </div>
-
 	            <div class="sidebar-box ftco-animate">
+	          
 	              <h3 class="sidebar-heading">Popular Articles</h3>
 	              <div class="block-21 mb-4 d-flex">
 	                <a class="blog-img mr-4" style="background-image: url(images/image_1.jpg);"></a>
@@ -362,6 +376,8 @@
 	                  </div>
 	                </div>
 	              </div>
+	              
+	              
 	              <div class="block-21 mb-4 d-flex">
 	                <a class="blog-img mr-4" style="background-image: url(images/image_2.jpg);"></a>
 	                <div class="text">
@@ -429,6 +445,30 @@
 	              <h3 class="sidebar-heading">Paragraph</h3>
 	              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut.</p>
 	            </div>
+	            
+<!-- 	            chat -->
+	              <div class="fixed"> <div class="col-md-9 col-md-offset-3"  style="width:547.5px; height:400px;">
+            <div class="panel panel-primary" style="width:300px; height:400px;">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-comment"></span> 廣場尬聊
+                    
+                </div>
+                <div class="panel-body" style="min-height:280px; text-align:right;" id="response">
+                    <ul class="chat"> </ul>
+                </div>
+                <div class="panel-footer">
+                    <div class="input-group">
+                        <input id="text" type="text" class="form-control input-sm" placeholder="說點什麼......" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-warning btn-sm" id="sendMessage"  onclick="sendMessage();"> 送出</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div></div>
+<!--         chat -->
+        
+        
 	          </div><!-- END COL -->
 	    		</div>
 	    	</div>
@@ -455,6 +495,12 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src=<spring:url value="/resources/js/google-map.js"/>></script>
   <script src=<spring:url value="/resources/js/main.js"/>></script>
-    
+  <script src=<spring:url value="/resources/js/chat.js" />></script>
+    <script src="${sockjs}"></script>
+	<script src="${stomp}"></script>
+	<c:forEach var="user" items="${ LoginOK }">
+		<input type="hidden" id="from" value=" ${user.username}" />
+		<script src="${script}"></script>
+	</c:forEach>
   </body>
 </html>

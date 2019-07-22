@@ -41,7 +41,7 @@ public class Homecontroller {
 		} else {
 			model.addAttribute(getPrincipal());
 		}
-		return "icookIndex";
+		return "index";
 	}
 
 	// 取得登入帳號(username)

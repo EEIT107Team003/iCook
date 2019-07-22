@@ -139,7 +139,7 @@ public class OrderController {
 		model.addAttribute("inputEmail4", inputEmail4);
 		model.addAttribute("tel", tel);
 		model.addAttribute("orderItems_List", items);
-		return "ezship";
+		return "icookezship";
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -180,6 +180,13 @@ public class OrderController {
 		}
 		@SuppressWarnings("unchecked")
 		Map<Integer, OrderItemBean> cart = (Map<Integer, OrderItemBean>) session.getAttribute("shoppingCart");
+		
+		//防止訂購完按超商付款他會網頁會refresh跳到此會空值出錯
+		if(cart==null) {
+			return "redirect:/products";
+		}
+		
+		
 		List<OrderItemBean> items = new ArrayList<>();
 		//--------------------------此欄資訊不會寫入DB而是用在發送email--------------------------
 		String custName=request.getParameter("lastName")+"先生/小姐"+request.getParameter("FirstName");
@@ -204,6 +211,7 @@ public class OrderController {
 		ob.setMemberbean(mb);
 		odao.insertOrder(ob);
 		// System.out.println(cart);
+		
 		Set<Integer> key_set = cart.keySet();
 		for (Integer k : key_set) {
 			OrderItemBean oi_product = cart.get(k);// 直接用特定key去抓特定Value
@@ -277,11 +285,23 @@ public class OrderController {
 //多個收件人，RecipientType.TO平常發送，CC抄送，BCC是暗送（就是別的收件人看不到)
 		Transport.send(msg);
 		//--------------------------------------結束email---------------------------------------
+		
+
 		model.addAttribute("orderNo",ob.getOrderNo());
 		session.removeAttribute("shoppingCart");
 		//要把變數清空不然還會存留上次購物的內容在map
 		cart.clear();
-		return "finishOrderPage";
+		//為了把值給綠界
+		
+		//ecpay內部運作只收Integer,Double會出錯
+		int AmountInt=(int) Math.round(ob.getTotalAmount());
+		Integer AmountInteger = new Integer(AmountInt);
+		String AmountString = AmountInteger.toString();
+//		System.out.println("orderAmount="+AmountString);
+//		System.out.println(AmountString instanceof String);
+		session.setAttribute("orderAmount",AmountString );
+		session.setAttribute("orderNo",ob.getOrderNo());
+		return "icookFinishOrderPage";
 	}
 	
 	//管理員設定收到款
@@ -339,13 +359,9 @@ public class OrderController {
 		List<OrderBean> orders = new ArrayList<>();
 		orders = odao.getOrdersbyMemberSeqNo(mb.getMember_id());
 		model.addAttribute("orders_list", orders);
-		return "OrdersPage";
+		return "icookMemberCheckOrders";
 	}
-	@RequestMapping("/icookCheckOrders")
-	public String icookCheckOrders(Model model, HttpSession session) {
 	
-		return "icookCheckOrders";
-	}
 	
 	
 	
@@ -386,7 +402,7 @@ public class OrderController {
 				Long diffDays=diffLong/(1000 * 60 * 60 * 24);
 				//測試
 				System.out.println("diffDays="+diffDays);
-				if(diffDays<1) {
+				if(diffDays>1) {
 					needShipOutOrderNo.add(ob.getOrderNo());
 				}
 				//測試
@@ -445,10 +461,10 @@ public class OrderController {
 				model.addAttribute("FrontSeqOrderNo", FrontSeqNoForOrderByMember);
 				//顯示系統單號
 //				model.addAttribute("OrderNo", buyerSyetemSeqNo);
-				return "OrderDetails";
+				return "icookMemberCheckOrderDetails";
 			}
 		}
-		return "OrdersPage";
+		return "icookMemberCheckOrders";
 	}
 
 	// 處理日期+2天問題 method

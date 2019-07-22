@@ -135,17 +135,19 @@
 							<c:forEach var="post" items="${ posts }" varStatus="floor">
 
 								<div class="row pt-md-4">
+								<c:if test="${ post.article_id == post.harticle_id }">
 									<div
 										style="min-width: 680px; min-height: 60px; text-align: center;">
 										<h1 class="mb-3">${ post.title }</h1>
 									</div>
+									</c:if>
 
 									<div style="min-height: 249px; min-width: 680px;">
 										<section>
 											<article>${ post.text }</article>
 										</section>
 									</div>
-
+									
 
 									<div class="tag-widget post-tag-container mb-5 mt-5">
 										<div  id="btnrow${post.article_id}" style="text-align:right;">
@@ -155,31 +157,27 @@
 
 									<div class="about-author d-flex p-4 bg-light">
 										<div class="bio mr-5">
-											<img src="images/person_1.jpg" alt="Image placeholder"
+											<img src="https://pbs.twimg.com/profile_images/1143465892614774784/kWanqizl_400x400.jpg" alt="Image placeholder"
 												class="img-fluid mb-4">
 										</div>
 										<div class="desc" style="min-width:510px; min-height:162px;">
 											<h3>${ post.nickname }</h3>
 											<p>自我介紹OUO</p>
-										</div>
-									</div>
+											<c:if test="${ post.article_id == post.harticle_id }"><br><br><h3 class="mb-5 font-weight-bold">${ post.replies } Comments</h3></c:if>											
+										</div>																		
+									</div>										
 
 
-									<div class="pt-5 mt-5">
-										<h3 class="mb-5 font-weight-bold">${ post.replies } Comments</h3>
-										<ul class="comment-list">
-										
-										
+									<div class="pt-5 mt-5">										
+										<ul class="comment-list">								
 											<li class="comment">
-												<div class="vcard bio">
-													<img src="images/person_1.jpg" alt="Image placeholder">
+												<div class="vcard bio">													
 												</div>
 												<div class="comment-body">
-													<h3>${ post.nickname }</h3>
-													<div class="meta">{ post.editTime }</div>
-													<p>${ post.text }</p>
-													<p>
-														<a href="#" class="reply">Reply</a>
+													<h3></h3>
+													<div class="meta"></div>
+													<p></p>
+													<p>														
 													</p>
 												</div>
 											</li>
@@ -187,36 +185,7 @@
 <!-- 											
 										<!-- END comment-list -->
 
-									<form:form method='POST' modelAttribute='ForumMainBean'>
-										<div class="comment-form-wrap pt-5" style="min-width:694px; min-height:952px;">
-											<h3 class="mb-5">快速回覆</h3>
-											<form action="#" class="p-3 p-md-5 bg-light">
-											<c:forEach var="head" items="${ HeadFmb }">
-												<div class="form-group">
-													<label for="name">主題</label> 
-													<input type="text" class="form-control"  value="${ head.title }"   readonly="readonly" name="title">
-													<input type="hidden" class="form-control" value="${ head.category }" name="category">
-												</div>
-											</c:forEach>												
-												<div class="form-group">
-													<label for="website">簽名</label> <input type="url"
-														class="form-control"  name="signature">
-												</div>
-
-												<div class="form-group">
-													<label for="message">內文</label>
-													<textarea  cols="30" rows="10"
-														class="form-control" name="text"></textarea>
-												</div>
-												<div class="form-group">
-													<input type="submit" value="Post Comment"
-														class="btn py-3 px-4 btn-primary">
-												</div>
-
-											</form>
-										</div>
-										
-										</form:form>										
+									
 										</ul>
 									</div>
 									

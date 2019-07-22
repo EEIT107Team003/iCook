@@ -205,8 +205,8 @@ public class ForumController {
 			error.put("text", "內文不得留空");
 		}
 		if (error.isEmpty()) {
-			fmb.setText(request.getParameter("text"));
-			fmb.setSignature(request.getParameter("signature"));
+//			fmb.setText(request.getParameter("text"));
+//			fmb.setSignature(request.getParameter("signature"));
 			service.update(fmb, article_id, memberBean);
 			return this.specificPost(harticle_id, article_id, model);
 		} else {

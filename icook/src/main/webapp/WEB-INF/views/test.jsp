@@ -1,135 +1,250 @@
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<spring:url value="/resources/js/lib/bootstrap/css/chat.css"
-	var="chatCSS" />
-<!------ Include the above in your HEAD tag ---------->
-
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="zh-TW">
 <head>
-<!-- Scripts jQuery, bootstrap -->
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
-	integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ=="
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>Document</title>
+	<link rel="stylesheet" href=<spring:url value="/resources/css/rolling.css"/>>
+	<link rel="stylesheet" href=<spring:url value="/resources/css/chatstyle.css"/>>
+	<script src=<spring:url value="/resources/js/rolling.js"/>></script>
+	<script src=<spring:url value="/resources/js/Public.js"/>></script>
+	<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
 	crossorigin="anonymous"></script>
-
-<!-- Estilos  bootstrap, chat-->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<link rel="stylesheet" href=" ${ chatCSS } ">
-
-<!-- área de código Firebase y lectura de Mensajes-->
-
-<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
-<script>
-	// Initialize Firebase
-	var config = {
-		apiKey : "AIzaSyB-CfYZb2rJeeycqL8F5Lo2zmCQAu1A0Sc",
-		authDomain : "soft1-6305e.firebaseapp.com",
-		databaseURL : "https://soft1-6305e.firebaseio.com",
-		projectId : "soft1-6305e",
-		storageBucket : "soft1-6305e.appspot.com",
-		messagingSenderId : "592333250349"
-	};
-	firebase.initializeApp(config);
-	//VARIABLE CON ACCESO A DATOS
-
-	Var
-	TableDeDatos = firebase.database().ref('soft1-6305e');
-</script>
-
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	crossorigin="anonymous"></script>
 </head>
-<body>
-
-	<div class="container">
-		<div class="row">
-			<!-- inicio de la caja de chat con bootstrap -->
-			<div class="col-md-6 col-md-offset-3">
-				<div class="panel panel-primary">
-					<div class="panel-heading">
-						<span class="glyphicon glyphicon-comment"></span> Chat
-						<div class="btn-group pull-right">
-							<button type="button"
-								class="btn btn-default btn-xs dropdown-toggle"
-								data-toggle="dropdown">
-								<span class="glyphicon glyphicon-chevron-down"></span>
-							</button>
-							<ul class="dropdown-menu slidedown">
-								<li><a href="http://develoteca.com"><span
-										class="glyphicon glyphicon-refresh"> </span>Develoteca</a></li>
-								<li><a href="https://www.youtube.com/user/dimit28"><span
-										class="glyphicon glyphicon-ok-sign"> </span>Youtube</a></li>
-
+<body class="room">
+	<div class="scrollbar-macosx">
+		<div class="header">
+			<div class="toptext">
+				<a href="index.html">
+					<span class="glyphicon glyphicon-arrow-left"></span> 返回大厅
+				</a>
+			</div>
+			<ul class="topnavlist">
+				<li class="userlist">
+					<a><span class="glyphicon glyphicon-th-list"></span>用户列表</a>
+					<div class="popover fade bottom in">
+						<div class="arrow"></div>
+						<h3 class="popover-title">在线用户18人</h3>
+						<div class="popover-content scrollbar-macosx">
+							<ul>
+								<li>
+									<img src="images/user/12.png" alt="portrait_1">
+									<b>美国队长</b>
+								</li>
+								<li>
+									<img src="images/user/12.png" alt="portrait_1">
+									<b>美国队长</b>
+								</li>
+								<li>
+									<img src="images/user/12.png" alt="portrait_1">
+									<b>美国队长</b>
+								</li>
+								<li>
+									<img src="images/user/12.png" alt="portrait_1">
+									<b>美国队长</b>
+								</li>
+								<li>
+									<img src="images/user/12.png" alt="portrait_1">
+									<b>美国队长</b>
+								</li>
+								<li>
+									<img src="images/user/12.png" alt="portrait_1">
+									<b>美国队长</b>
+								</li>
+								<li>
+									<img src="images/user/12.png" alt="portrait_1">
+									<b>美国队长</b>
+								</li>
+								<li>
+									<img src="images/user/12.png" alt="portrait_1">
+									<b>美国队长</b>
+								</li>
+								<li>
+									<img src="images/user/12.png" alt="portrait_1">
+									<b>美国队长</b>
+								</li>
+								<li>
+									<img src="images/user/12.png" alt="portrait_1">
+									<b>美国队长</b>
+								</li>
+								<li>
+									<img src="images/user/12.png" alt="portrait_1">
+									<b>美国队长</b>
+								</li>
+								<li>
+									<img src="images/user/12.png" alt="portrait_1">
+									<b>美国队长</b>
+								</li>
+								<li>
+									<img src="images/user/12.png" alt="portrait_1">
+									<b>美国队长</b>
+								</li>
+								<li>
+									<img src="images/user/12.png" alt="portrait_1">
+									<b>美国队长</b>
+								</li>
+								<li>
+									<img src="images/user/12.png" alt="portrait_1">
+									<b>美国队长</b>
+								</li>
+								<li>
+									<img src="images/user/12.png" alt="portrait_1">
+									<b>美国队长</b>
+								</li>
+								<li>
+									<img src="images/user/12.png" alt="portrait_1">
+									<b>美国队长</b>
+								</li>
+								<li>
+									<img src="images/user/12.png" alt="portrait_1">
+									<b>美国队长</b>
+								</li>
 							</ul>
 						</div>
 					</div>
-					<div class="panel-body">
-						<ul class="chat">
-						</ul>
-					</div>
-					<div class="panel-footer">
-						<div class="input-group">
-							<input id="Mensaje" type="text" class="form-control input-sm"
-								placeholder="Escribe un mensaje..." /> <span
-								class="input-group-btn">
-								<button class="btn btn-warning btn-sm" id="btnEnviar">
-									Enviar</button>
-							</span>
+				</li>
+			</ul>
+			<div class="clapboard hidden"></div>
+		</div>
+		<div class="main container">
+			<div class="col-md-12">
+				<ul class="chat_info">
+					<li class="left">
+						<img src="images/user/12.png" alt="">
+						<b>美国队长</b>
+						<i>09:14</i>
+						<div>怎么没人聊天的</div>
+					</li>
+					<li class="systeminfo">
+						<span>【绿巨人】加入了房间</span>
+					</li>
+					<li class="left">
+						<img src="images/user/12.png" alt="">
+						<b>美国队长</b>
+						<i>09:15</i>
+						<div>嗨起来！！！</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="input">
+			<div class="center">
+				<div class="tools">
+
+					<span class="glyphicon glyphicon-heart face_btn"></span>
+					<span class="glyphicon glyphicon-picture imgFileico"></span>
+
+					<input type="file" class="imgFileBtn hidden" accept="image/*">
+					<div class="faces popover fade top in">
+						<div class="arrow"></div>
+						<h3 class="popover-title">表情包</h3>
+						<div class="popover-content scrollbar-macosx">
+							<img src="images/face/1.gif" alt="1">
+							<img src="images/face/2.gif" alt="2">
+							<img src="images/face/3.gif" alt="3">
+							<img src="images/face/4.gif" alt="4">
+							<img src="images/face/5.gif" alt="5">
+							<img src="images/face/6.gif" alt="6">
+							<img src="images/face/7.gif" alt="7">
+							<img src="images/face/8.gif" alt="8">
+							<img src="images/face/9.gif" alt="9">
+							<img src="images/face/10.gif" alt="10">
+							<img src="images/face/11.gif" alt="11">
+							<img src="images/face/12.gif" alt="">
+							<img src="images/face/13.gif" alt="">
+							<img src="images/face/14.gif" alt="">
+							<img src="images/face/15.gif" alt="">
+							<img src="images/face/16.gif" alt="">
+							<img src="images/face/17.gif" alt="">
+							<img src="images/face/18.gif" alt="">
+							<img src="images/face/19.gif" alt="">
+							<img src="images/face/20.gif" alt="">
+							<img src="images/face/21.gif" alt="">
+							<img src="images/face/22.gif" alt="">
+							<img src="images/face/23.gif" alt="">
+							<img src="images/face/24.gif" alt="">
+							<img src="images/face/25.gif" alt="">
+							<img src="images/face/26.gif" alt="">
+							<img src="images/face/27.gif" alt="">
+							<img src="images/face/28.gif" alt="">
+							<img src="images/face/29.gif" alt="">
+							<img src="images/face/30.gif" alt="">
+							<img src="images/face/31.gif" alt="">
+							<img src="images/face/32.gif" alt="">
+							<img src="images/face/33.gif" alt="">
+							<img src="images/face/34.gif" alt="">
+							<img src="images/face/35.gif" alt="">
+							<img src="images/face/36.gif" alt="">
+							<img src="images/face/37.gif" alt="">
+							<img src="images/face/38.gif" alt="">
+							<img src="images/face/39.gif" alt="">
+							<img src="images/face/40.gif" alt="">
+							<img src="images/face/41.gif" alt="">
+							<img src="images/face/42.gif" alt="">
+							<img src="images/face/43.gif" alt="">
+							<img src="images/face/44.gif" alt="">
+							<img src="images/face/45.gif" alt="">
+							<img src="images/face/46.gif" alt="">
+							<img src="images/face/47.gif" alt="">
+							<img src="images/face/48.gif" alt="">
+							<img src="images/face/49.gif" alt="">
+							<img src="images/face/50.gif" alt="">
+							<img src="images/face/51.gif" alt="">
+							<img src="images/face/52.gif" alt="">
+							<img src="images/face/53.gif" alt="">
+							<img src="images/face/54.gif" alt="">
+							<img src="images/face/55.gif" alt="">
+							<img src="images/face/56.gif" alt="">
+							<img src="images/face/57.gif" alt="">
+							<img src="images/face/58.gif" alt="">
+							<img src="images/face/59.gif" alt="">
+							<img src="images/face/60.gif" alt="">
+							<img src="images/face/61.gif" alt="">
+							<img src="images/face/62.gif" alt="">
+							<img src="images/face/63.gif" alt="">
+							<img src="images/face/64.gif" alt="">
+							<img src="images/face/65.gif" alt="">
+							<img src="images/face/66.gif" alt="">
+							<img src="images/face/67.gif" alt="">
+							<img src="images/face/68.gif" alt="">
+							<img src="images/face/69.gif" alt="">
+							<img src="images/face/70.gif" alt="">
+							<img src="images/face/71.gif" alt="">
+							<img src="images/face/72.gif" alt="">
+							<img src="images/face/73.gif" alt="">
+							<img src="images/face/74.gif" alt="">
+							<img src="images/face/75.gif" alt="">
 						</div>
 					</div>
 				</div>
+				<div class="text">
+					<div class="col-xs-10 col-sm-11">
+						<input type="text" class="form-control" placeholder="输入聊天信息...">
+					</div>
+					<div class="col-xs-2 col-sm-1">
+						<a id="subxx" role="button"><span class="glyphicon glyphicon-share-alt"></span></a>
+					</div>
+				</div>
 			</div>
-			<!--  Fin de la caja de chat con bootstrap -->
 		</div>
 	</div>
-	<!-- template del item del chat (Oculto: para agarrar un clon y llenarlo e insertar en el chat)-->
-	<li style="display: none" id="plantilla" class="left clearfix"><span
-		class="chat-img pull-left"> <img
-			src="http://placehold.it/50/55C1E7/fff&text=U" class="img-circle" />
-	</span>
-		<div class="chat-body clearfix">
-			<div class="header">
-				<strong class="primary-font Nombre">Jack Sparrow</strong> <small
-					class="pull-right text-muted"><span
-					class="glyphicon glyphicon-asterisk Tiempo"></span> 12/02/2015 </small>
-			</div>
-			<p class="Mensaje">Mensaje</p>
-		</div></li>
-
-
-	<!-- Scripts de acción al botón -->
-	<script>
-		var Nombre = prompt("Nombre:");
-
-		$('#btnEnviar').click(function() {
-			var formatofecha = new date();
-			var d = formatofecha.getUTCDate();
-			var m = formatofecha.getMonth() + 1;
-			var y = formatofecga.getFullYear();
-			var h = formatofecha.getHours();
-			var min = formatofecha.getMinutes();
-
-			Fecha = d + "/" + m + "/" + y + "  " + h + ":"
-			min;
-
-			TabladeBaseDatos.push({
-				Nombre : Nombre,
-				Mensaje : $("#Mensaje").val(),
-				Fecha : Fecha
-			});
-		});
-	</script>
 </body>
 </html>
