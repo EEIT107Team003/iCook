@@ -154,9 +154,12 @@
 												<li><a href="index2" data-toggle="modal"
 													data-target="#logout">會員登出</a></li>
 											</c:if>
-											<li><a href="checkOrders">查看訂單</a></li>
-											<li><a href="#">新增食譜</a></li>
-											<ul></li>
+												<li><a href="checkOrders">查看訂單</a></li>
+												<li><a href="icookAddRecipe">新增食譜</a></li>
+												<li><a href="backStage">後台</a></li>
+										<ul>
+									</li>		
+
 								</ul>
 							</nav>
 							<div class="clear"></div>
