@@ -66,7 +66,6 @@ public class MemberController {
 		}
 
 		return "member/icookUser";
-
 	}
 
 	// 查詢我的追蹤
