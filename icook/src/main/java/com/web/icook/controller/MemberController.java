@@ -383,7 +383,7 @@ public class MemberController {
 	// 取得圖片(Member)-------------------------------------------------------------------
 	@RequestMapping(value = "/getMemberPhoto/{member_id}", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> getMemberPhoto(HttpServletResponse resp, @PathVariable Integer member_id) {
-		String filePath = "/resources/images/NoImage.jpg";
+		String filePath = "/resources/images/NoImage.png";
 		byte[] media = null;
 		HttpHeaders headers = new HttpHeaders();
 		String filename = "";
