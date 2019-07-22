@@ -44,13 +44,27 @@
 <script src="js/sForm.js"></script>
 <script src="js/jquery.prettyPhoto.js"></script>
 <script src="js/css3-mediaqueries.js"></script>
-
+<!-- google font -->
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+<!-- google font -->
 <script type="text/javascript">
 	function to_detail(obj) {
 
 		window.location.href = '/icookProject/orderdetails?id=' + obj.id;
 	}
 </script>
+<style>
+.shrink{
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-top: 5%;
+}
+td, th{
+	text-align:center;
+	font-size: 20px;
+	font-family: 'Noto Sans TC', sans-serif;
+}
+</style>
 
 <!--[if lt IE 8]>
        <div style=' clear: both; text-align:center; position: relative;'>
@@ -121,60 +135,68 @@
 				<c:out value="會員ID:${LoginOK.member_id}的第${FrontSeqOrderNo}筆消費"></c:out>
 				<hr />
 			</h1>
-			<div class="outer">
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th scope="col">圖示</th>
-							<th scope="col">產品號</th>
-							<th scope="col">種類</th>
-							<th scope="col">描述</th>
-							<th scope="col">尺寸</th>
-							<th scope="col">顏色</th>
-							<th scope="col">單價</th>
-							<th scope="col">數量</th>
-							<th scope="col">小計</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var='orderItem' items='${orderItems_List}'>
+
+			<div class='shrink'>
+				<div class="outer">
+					<table class="table table-hover">
+						<thead>
 							<tr>
-								<td><img width='50' height='50'
-									src="<c:url value='/getPicture/${orderItem.productBean.product_id}'/>" /></td>
-								<td>${orderItem.productBean.product_id}</td>
-								<td>${orderItem.productBean.categoriesbean.name}</td>
-								<td>${orderItem.productBean.description}</td>
-								<td>${orderItem.productBean.unit_size}</td>
-								<td>${orderItem.productBean.color}</td>
-								<td>${orderItem.productBean.price}</td>
-								<td>${orderItem.quantity}</td>
-								<td>${orderItem.subtotal}</td>
+								<td scope="col" colspan="9">送貨地址/分店資訊:<c:out value="${orderAddress}"/></td>
 							</tr>
-							<c:set var='sum' value="${sum+ orderItem.subtotal}" />
-						</c:forEach>
+							<tr>
+								<td scope="col"></td>
+							</tr>
+							<tr>
+								<th scope="col">圖示</th>
+								<th scope="col">產品號</th>
+								<th scope="col">種類</th>
+								<th scope="col">描述</th>
+								<th scope="col">尺寸</th>
+								<th scope="col">顏色</th>
+								<th scope="col">單價</th>
+								<th scope="col">數量</th>
+								<th scope="col">小計</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var='orderItem' items='${orderItems_List}'>
+								<tr>
+									<td><img width='50' height='50'
+										src="<c:url value='/getProductPicture/${orderItem.productBean.product_id}'/>" /></td>
+									<td>${orderItem.productBean.product_id}</td>
+									<td>${orderItem.productBean.categoriesbean.name}</td>
+									<td>${orderItem.productBean.description}</td>
+									<td>${orderItem.productBean.unit_size}</td>
+									<td>${orderItem.productBean.color}</td>
+									<td>${orderItem.productBean.price}</td>
+									<td>${orderItem.quantity}</td>
+									<td>${orderItem.subtotal}</td>
+								</tr>
+								<c:set var='sum' value="${sum+ orderItem.subtotal}" />
+							</c:forEach>
 
-						<tr>
-							<td><input type="button" class="btn btn-outline-success"
-								name="back" value="返回" onClick="javascript:history.back();"></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td><h5>
-									合計:
-									<c:out value="${sum}" />
-								</h5></td>
-						</tr>
-					</tbody>
-				</table>
-				<table>
-
-				</table>
+							<tr>
+								<td><input type="button" class="btn btn-outline-success"
+									name="back" value="返回" onClick="javascript:history.back();"></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><h5>
+										合計:
+										<c:out value="${sum}" />
+									</h5></td>
+							</tr>
+						</tbody>
+					</table>
+					<h1></h1>
+				</div>
 			</div>
 		</div>
+
 		<!--==============================footer=================================-->
 
 		<footer>

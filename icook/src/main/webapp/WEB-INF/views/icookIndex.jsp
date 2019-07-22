@@ -31,7 +31,7 @@
 <script src="js/jquery.carouFredSel-6.1.0-packed.js"></script>
 <script src="js/tms-0.4.1.js"></script>
 <script src="js/css3-mediaqueries.js"></script>
-<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
 	integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
@@ -154,9 +154,12 @@
 												<li><a href="index2" data-toggle="modal"
 													data-target="#logout">會員登出</a></li>
 											</c:if>
-											<li><a href="checkOrders">查看訂單</a></li>
-											<li><a href="#">新增食譜</a></li>
-											<ul></li>
+												<li><a href="checkOrders">查看訂單</a></li>
+												<li><a href="icookAddRecipe">新增食譜</a></li>
+												<li><a href="backStage">後台</a></li>
+										<ul>
+									</li>		
+
 								</ul>
 							</nav>
 							<div class="clear"></div>

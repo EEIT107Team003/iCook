@@ -255,20 +255,19 @@ td {
 					var names = JSON.parse(JSON.stringify(data).split(","));
 					var txt = "";
 					for (i in names) {
-// 						txt+=names[i].trackedId.nickname+"<br>"
 						txt+=
 							"<div class=contain_myforum>"
 								+"<div class=contain_myforum_Info>"
 									+"<div width=100%>"
-										+"<a href=forum/pick?harticle_id="+names[i].harticle_id+"&article_id="+names[i].article_id+" class=contain_mytrack_title>"+"["+names[i].category+"] "+names[i].title+"</a>"
+										+"<a href=${pageContext.request.contextPath}/forum/pick?harticle_id="+names[i].harticle_id+"&article_id="+names[i].article_id+" class=contain_mytrack_title>"+"["+names[i].category+"] "+names[i].title+"</a>"
 									+"</div>"	
 								+"<div class=contain_myforum_time>發文時間: "+formatDate(names[i].editTime)+"</div>"
 								+"</div>"
 								+"<hr style=clear: both;border-style: dashed;>"
 							+"</div>"
-						
 						console.log(names[i].title);
 					};
+// 					$("#forum_num").html(names.length)
 					$("#user_contain").html(txt);
 				},
 				error : function(data, textStatus, errorThrown) {
@@ -287,8 +286,6 @@ td {
 				contentType : "application/json",
 				async : true,
 				success : function(data) {
-//	 					txt+=names[i].trackedId.nickname+"<br>"
-// 					alert(data);
 					$("#member_resume").html(resume);
 					$("#change_reaume").val(resume);
 					$('#myModal').modal('hide');
@@ -369,7 +366,7 @@ td {
 </script>
 
 </head>
-<body style="background-color: white">
+<body>
 	<div class="main">
 		<!--==============================header=================================-->
 		<header>
@@ -607,9 +604,9 @@ td {
 			                        			<th class="items">文章總數</th>
 			                        		</tr>
 			                        		<tr>
-			                        			<th class="items">${member.recipe_num }</th>
-			                        			<th class="items">${member.tracked_num }</th>
-			                        			<th class="items">${member.forum_num }</th>
+			                        			<th id="recipe_num" class="items">${member.recipe_num }</th>
+												<th id="tracked_num" class="items">${member.tracked_num }</th>
+												<th id="forum_num" class="items">${member.forum_num }</th>
 			                        		</tr>
 			                        	</table>
 			                        </div><!--//content-->  
@@ -660,7 +657,7 @@ td {
 	
 	<!--==============================footer=================================-->
 
-	<footer>
+	<footer style="background-color: #5fa022">
 		<div class="zerogrid">
 			<div class="col-full">
 				<div class="wrap-col">

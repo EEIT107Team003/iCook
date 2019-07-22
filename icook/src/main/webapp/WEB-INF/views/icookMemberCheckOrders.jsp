@@ -44,13 +44,31 @@
 <script src="js/sForm.js"></script>
 <script src="js/jquery.prettyPhoto.js"></script>
 <script src="js/css3-mediaqueries.js"></script>
-
+<!-- google font -->
+<link
+	href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap"
+	rel="stylesheet">
+<!-- google font -->
 <script type="text/javascript">
 	function to_detail(obj) {
 
 		window.location.href = '/icookProject/orderdetails?id=' + obj.id;
 	}
 </script>
+
+<style>
+.shrink {
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-top: 5%;
+}
+
+td, th {
+	text-align: center;
+	font-size: 20px;
+	font-family: 'Noto Sans TC', sans-serif;
+}
+</style>
 
 <!--[if lt IE 8]>
        <div style=' clear: both; text-align:center; position: relative;'>
@@ -117,73 +135,82 @@
 		<!--=======content================================-->
 
 		<div class="content">
-			<h1>
-				<c:out value="會員ID:${LoginOK.nickname}的訂單"></c:out>
-			</h1>
-			<div class="outer">
-				<table class="table table-hover">
-					<thead>
+
+
+			<div class='shrink'>
+				<h1>
+					<c:out value="會員ID:${LoginOK.nickname}的訂單"></c:out>
+				</h1>
+				<div class="outer">
+					<table class="table table-hover">
+						<thead>
 						<tr>
-							<th scope="col">序號</th>
-							<th scope="col">訂單詳情</th>
-							<th scope="col">取貨單號</th>
-							<th scope="col">訂購日期</th>
-							<th scope="col">預計出貨時間</th>
-							<th scope="col">應付金額</th>
-							<th scope="col">取貨地址</th>
-							<th scope="col">發票</th>
-							<th scope="col">付款驗證</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var='OrderBean' items='${orders_list}'>
-							<c:set value="${sum+1}" var='sum' />
-							<tr>
-								<td><c:out value="${sum}" /></td>
-								<td><form method='POST'
-										action="<c:url value='/orderdetails?id=${OrderBean.memberbean.member_id}&orderNo=${OrderBean.orderNo}'/>">
-										<input type="hidden" name="memberCheck"
-											value="${OrderBean.memberbean.member_id}" /> <input
-											type="hidden" name="SeqOrderNoForMember" value="${sum}" /> <input
-											class="btn btn-outline-success" type="submit" value="檢視該訂單" />
-									</form></td>
-								<td>${OrderBean.orderNo}</td>
-								<td>${OrderBean.orderDate}</td>
-								<td>${OrderBean.shippingDate}</td>
-								<td>${OrderBean.totalAmount}</td>
-								<td>${OrderBean.shippingAddress}</td>
-								<td>${OrderBean.invoiceTitle}</td>
-
-								<c:set var="contains" value="no" />
-								<c:if test="${OrderBean.payment eq 'OK'}">
-									<c:set var="contains" value="yes" />
-									<script type="text/javascript">
-										
-									</script>
-								</c:if>
-								<c:choose>
-									<c:when test="${contains=='yes'}">
-										<script type="text/javascript">
-											
-										</script>
-										<i class="fas fa-check"></i>
-										<td class="btn btn-success">已查核</td>
-									</c:when>
-									<c:otherwise>
-										<script type="text/javascript">
-											
-										</script>
-										<td class="btn btn-warning">查核中</td>
-									</c:otherwise>
-								</c:choose>
-								<c:set var="contains" value="no" />
-
-								<td></td>
+								<th scope="col">序號</th>
 							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+							<tr>
+								<th scope="col">序號</th>
+								<th scope="col">訂單詳情</th>
+								<th scope="col">取貨單號</th>
+								<th scope="col">訂購日期</th>
+								<th scope="col">預計出貨時間</th>
+								<th scope="col">應付金額</th>
+<!-- 								<th scope="col">取貨地址</th> -->
+								<th scope="col">發票</th>
+								<th scope="col">付款驗證</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var='OrderBean' items='${orders_list}'>
+								<c:set value="${sum+1}" var='sum' />
+								<tr>
+									<td><c:out value="${sum}" /></td>
+									<td><form method='POST'
+											action="<c:url value='/orderdetails?id=${OrderBean.memberbean.member_id}&orderNo=${OrderBean.orderNo}'/>">
+											<input type="hidden" name="memberCheck"
+												value="${OrderBean.memberbean.member_id}" /> <input
+												type="hidden" name="SeqOrderNoForMember" value="${sum}" />
+											<input class="btn btn-outline-success" type="submit"
+												value="檢視該訂單" />
+										</form></td>
+									<td>${OrderBean.orderNo}</td>
+									<td>${OrderBean.orderDate}</td>
+									<td>${OrderBean.shippingDate}</td>
+									<td>${OrderBean.totalAmount}</td>
+<%-- 									<td>${OrderBean.shippingAddress}</td> --%>
+									<td>${OrderBean.invoiceTitle}</td>
+
+									<c:set var="contains" value="no" />
+									<c:if test="${OrderBean.payment eq 'OK'}">
+										<c:set var="contains" value="yes" />
+										<script type="text/javascript">
+											
+										</script>
+									</c:if>
+									<c:choose>
+										<c:when test="${contains=='yes'}">
+											<script type="text/javascript">
+												
+											</script>
+											<i class="fas fa-check"></i>
+											<td class="btn btn-success">已查核</td>
+										</c:when>
+										<c:otherwise>
+											<script type="text/javascript">
+												
+											</script>
+											<td class="btn btn-warning">查核中</td>
+										</c:otherwise>
+									</c:choose>
+									<c:set var="contains" value="no" />
+
+									<td></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
 			</div>
+
 		</div>
 		<!--==============================footer=================================-->
 
