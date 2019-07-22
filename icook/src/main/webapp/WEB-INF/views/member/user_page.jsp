@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
@@ -19,22 +19,10 @@
     <link rel="shortcut icon" href="favicon.ico">  
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'> 
-<!--     Global CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/bootstrap/css/bootstrap.min.css">   
-<!--     Plugins CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/font-awesome/css/font-awesome.css">
-<!--     github acitivity css -->
-<!--     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/octicons/2.0.2/octicons.min.css"> -->
-<!--     <link rel="stylesheet" href="http://caseyscarborough.github.io/github-activity/github-activity-0.1.0.min.css"> -->
-<!--     Theme CSS   -->
     <link id="theme-style" rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/styles.css">
-<!--     HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!--     [if lt IE 9]>
-<!--       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> -->
-<!--       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> -->
-<!--     <![endif]--> 
-<!-- <!--     CSS字型 --> 
-<link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 <script>
 	$(document).ready(function() {
 		$("#member_photo_file").click(function(){
@@ -133,6 +121,7 @@
 //	 					txt+=names[i].trackedId.nickname+"<br>"
 // 					alert(data);
 					$("#member_resume").html(resume);
+					$("#change_reaume").val(resume);
 					$('#myModal').modal('hide');
 					
 				},
@@ -155,6 +144,7 @@
 				success : function(data) {
 					$("#member_nickname").html(c_nickname);
 					$("#member_resume").html(c_resume);
+					$("#resume").val(c_resume);					
 					$('#myModal_changeInfo').modal('hide');
 					
 				},
@@ -290,14 +280,6 @@
 					</label>
 					<input id=submit1 type="submit" value="送出" style="display: none;">
 				</form:form>
-<%-- 				<form id=updateMemberPhoto method="POST" enctype="multipart/form-data"> --%>
-<!-- 					<label id="member_photo_label" for="member_photo_tr" style="float: left">  -->
-<!-- 						<input type="file" name="member_photo_tr" id="member_photo_tr" style="display: none;" />  -->
-<!-- 						<img class="profile-image img-responsive pull-left member_photo" -->
-<!-- 							id="member_photo_image" -->
-<%-- 							src="<c:url value='/getMemberPhoto/${member.member_id}' />" /> --%>
-<!-- 					</label> -->
-<%-- 				</form> --%>
 
 				<div class="profile-content pull-left member_info">
 					<h1 id="member_nickname">${member.nickname}</h1>
@@ -310,8 +292,7 @@
 						<li class="last-item"><a href="#"><i
 								class="fa fa-hacker-news"></i></a></li>
 					</ul>
-				</div>
-				<!--//profile-->
+				</div><!--//profile-->
         </div><!--//container-->
     </header><!--//header-->
     
@@ -335,7 +316,7 @@
 							</tr>
 							<tr>
 								<td><label for="username">電子郵件: </label></td>
-								<td><input id="change_username" name="username" type="text" disabled="disabled" value="${member.username}" /></td>
+								<td><input id="change_username" name="username" type="text" disabled="disabled" value="${member.username}" style="color: gray;"/></td>
 							</tr>
 							<tr>
 								<td><label for="change_member_phone_num">聯絡電話: </label></td>
@@ -347,7 +328,7 @@
 							</tr>
 							<tr>
 								<td><label for="change_reaume">個人簡介: </label></td>
-				            	<td><textarea id="change_reaume" name="resume" style="min-height: 40px; max-height: 200px; min-width:80%; max-width:80%">${member.resume}</textarea></td>
+				            	<td><textarea id="change_reaume" name="resume" style="min-height: 40px; max-height: 200px; min-width:80%; max-width:80%;">${member.resume}</textarea></td>
 							</tr>
 						</table>
 					</form>
@@ -388,6 +369,7 @@
 	    </div>
 	</div>
 </div>
+
 <!-- -----------------------------------------------------------------------	 -->
 <!-- 更改封面圖片-----------------------------------------------------------------------	 -->
 	<div class="user_control">

@@ -58,7 +58,7 @@ public class ForumController {
 			mbList.add(mb);
 			model.addAttribute("LoginOK", mbList);
 		}
-		return "redirect:/overview";
+		return "redirect:/forum/overview";
 		// 任何返回首頁的按鈕呼叫這個方法
 	}
 
@@ -93,7 +93,7 @@ public class ForumController {
 			service.insertArticle(fmb, memberBean);
 			List<ForumMainBean> fmbList = service.getAllTopic();
 			model.addAttribute("posts", fmbList);
-			return "overview";
+			return this.backHome(model);
 		} else {
 			List<ForumMainBean> fmbError = new ArrayList<>();
 			fmbError.add(fmb);
@@ -129,6 +129,8 @@ public class ForumController {
 	@RequestMapping(value = "/forum/pick")
 	public String specificPost(@RequestParam("harticle_id") Integer harticle_id, Integer article_id, Model model) {
 		System.out.println("成功呼叫specificPost");
+		List<ForumMainBean> HeadFmb = service.getByPK(harticle_id);
+		model.addAttribute("HeadFmb", HeadFmb);
 		model.addAttribute("posts", service.getThread(harticle_id));
 		if (!getPrincipal().equals("anonymousUser")) {
 			MemberBean mb = ms.selectByUsername(getPrincipal());

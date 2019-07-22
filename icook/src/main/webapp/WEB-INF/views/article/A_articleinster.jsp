@@ -133,9 +133,8 @@
 						</div>
 						<div class="form-group">
 							<form:select path="article_catergoary">
-								<option value="食安新聞">食安新聞</option>
+								<option value="食安新聞">食物新聞</option>
 								<option value="廚具新聞">廚具新聞</option>
-								<option value="最新消息">最新消息</option>
 								<option value="其他">其他</option>
 							</form:select>
 						</div>

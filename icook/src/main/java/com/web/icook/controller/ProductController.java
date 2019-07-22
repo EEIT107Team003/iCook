@@ -66,6 +66,38 @@ public class ProductController {
 
 	@Autowired
 	MemberService mservice;
+	
+	@RequestMapping(value = "/MultiplePicture", method = RequestMethod.GET)
+	public List<ProductBean> MultiplePicture() {
+		System.out.println("==========MultiplePicture=============");
+		return null;
+	}
+	
+
+	@ResponseBody
+	@RequestMapping(value = "/SelectByCategoriesAndDescriptionForProduct/{txt}", method = RequestMethod.GET)
+	public List<ProductBean> SelectByCategoriesAndDescriptionForProduct(@PathVariable String txt) {
+		System.out.println("======SelectByCategoriesAndDescriptionForProduct IN==============");
+		System.out.println("txt: "+txt);	
+		String fileName = txt;// Categories.name AjAX後端抓不到 硬塞一個String去接
+		String remark = service.getOneCategory(txt).get(0).getCategorybean().getName();// Category.name AjAX後端抓不到 硬塞一個String去接
+		String description="";
+//        System.out.println("remark : "+remark);
+		//		String description = searchBean.getDescription().trim();
+//		if (searchBean.getStock() == null) {
+//			searchBean.setStock(1);
+//		}
+//		int stock = searchBean.getStock();
+//		System.out.println("pageValue :" + stock);
+//		System.out.println("remark :" + remark + "fileName :" + fileName + "，description :" + description);
+		List<ProductBean> list = service.SelectByCategoriesAndDescriptionForPage(remark, fileName, description);
+		for(ProductBean bb :list) {
+			System.out.println("id :"+bb.getProduct_id()
+			+"  description :"+bb.getDescription() +"Name"+bb.getRemark());
+		}
+		System.out.println("======SelectByCategoriesAndDescriptionForProduct OUT==============");
+		return list;
+	}
 
 	@RequestMapping(value = "/productsEx", method = RequestMethod.GET, produces = "application/vnd.ms-excel")
 	public String AllProductsExcel(Model model) {
@@ -83,9 +115,9 @@ public class ProductController {
 	@RequestMapping(value = "/productsByCategoryEx", method = RequestMethod.GET, produces = "application/vnd.ms-excel")
 	public String ProductsByCategoryExcel(HttpServletRequest request, HttpServletResponse resopnse, Model model) {
 		System.out.println("========productsByCategoryEx IN===========");
-		String remark = request.getParameter("remark2");
-		String fileName = request.getParameter("fileName2");
-		String description = request.getParameter("description2");
+		String remark = request.getParameter("remark");
+		String fileName = request.getParameter("fileName");
+		String description = request.getParameter("description");
 		List<ProductBean> list = service.SelectByCategoriesAndDescriptionForPage(remark, fileName, description);
 		model.addAttribute("productsByCategory", list);
 		System.out.println("========productsByCategoryEx OUT===========");
@@ -238,7 +270,7 @@ public class ProductController {
 //  ResponseEntity代表一個所有回應的東西(狀態列:Status Line、回應標頭  Response Header、 回應本體 Response Body)
 //  會直接挑過Dispatcher 直接回應給Browser	。@PathVariable("可省略，但上面大括號內德變數要跟後面的變數一樣")
 	public ResponseEntity<byte[]> getPicture(HttpServletResponse resp, @PathVariable Integer product_Id) {
-//		System.out.println("getPicture================");
+		System.out.println("getProductPicture================");
 //             回應本體的資料型態                   
 		String filePath = "/resources/images/NoImage.jpg";
 //                           設定預設圖路徑
@@ -394,6 +426,7 @@ public class ProductController {
 		System.out.println("product_id======================================" + product_id);
 
 		MultipartFile productImage = bb.getProductImage();
+		System.out.println("productImage : "+productImage);
 		String originalFilename = productImage.getOriginalFilename();
 		bb.setFileName(originalFilename);
 		String ext = null;
@@ -428,6 +461,10 @@ public class ProductController {
 		if (productImage != null && !productImage.isEmpty()) {
 			try {
 				byte[] b = productImage.getBytes();
+				System.out.println("b : "+b);
+				for(byte s :b) {
+					System.out.println("s : "+s);
+				}
 				Blob blob = new SerialBlob(b);
 				bb.setImage(blob);
 			} catch (Exception e) {
@@ -462,7 +499,7 @@ public class ProductController {
 			throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
 		}
 		System.out.println("Submit Form Finish============================================");
-		return "redirect:/products";
+		return "redirect:/productTable";
 	}
 
 }

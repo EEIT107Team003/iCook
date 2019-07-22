@@ -8,8 +8,8 @@
 </head>
 <body>
 <h1>Logout</h1>
-   <form method="post" action="perform_logout">
-        <button type="submit">確定要登出嗎？</button>
-    </form>
+<!--    <form method="post" action="perform_logout"> -->
+<!--         <button type="submit">確定要登出嗎？</button> -->
+<!--     </form> -->
 </body>
 </html>

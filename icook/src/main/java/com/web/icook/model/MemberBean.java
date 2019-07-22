@@ -104,7 +104,6 @@ public class MemberBean implements Serializable {
 	@OneToMany(mappedBy = "trackedId",fetch= FetchType.LAZY)
 	@JsonIgnore
 	private Set<MyTrackBean> tracked = new LinkedHashSet<>();
-	// ------------------------------------------------------------------------
 
 	@OneToMany(mappedBy = "memberBean")
 	@JsonIgnore

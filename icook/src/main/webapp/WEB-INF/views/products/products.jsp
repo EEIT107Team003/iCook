@@ -19,7 +19,28 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
 	
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/product_css/products.css">
+
+
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/product_css/products.css">
+<!-- 	========================================================================================= -->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="icon" href="images/favicon.ico">
+<link rel="shortcut icon" href="images/favicon.ico" />
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/zerogrid.css" type="text/css"
+	media="screen">
+<link rel="stylesheet" href="css/responsive.css" type="text/css"
+	media="screen">
 	
+<script src="js/jquery.js"></script>
+<script src="js/jquery-migrate-1.1.1.js"></script>
+<script src="js/superfish.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+<script src="js/sForm.js"></script>
+<script src="js/jquery.carouFredSel-6.1.0-packed.js"></script>
+<script src="js/tms-0.4.1.js"></script>
+<script src="js/css3-mediaqueries.js"></script>
 <style>
 * {	
 	padding: 0;
@@ -27,7 +48,7 @@
 }
 
 .left {
-	width: 15%;
+	width: 20%;
 	float: left;
 }
 
@@ -40,15 +61,7 @@ body {
 	background-color: white;
 }
 
-header {
-	margin: auto;
-	background-color: #FFC8B4;
-}
 
-footer {
-	margin: auto;
-	background-color: #AAFFEE;
-}
 .search{
  border-right: 1px solid #cccccc ;
 }
@@ -63,24 +76,17 @@ footer {
 	margin-bottom:10ch;
 	margin-top:3ch;
 }
-.page{
-margin:auto;
-margin-left: 5ch;
-}
-.page button{
-margin-left: 3ch;
-width:30px;
-}
 
 
 /* ======================MainShow=================================== */
 .field {
+    margin-left:3px;
 	padding: 10px;
 }
 
 .mainShow {
 	opacity: 100;
-	width: 50px;
+	width: 100px;
 	filter: alpha(opacity = 100);
 	margin:auto;
 }
@@ -99,24 +105,26 @@ width:30px;
 }
 
 .divA img {
-      margin:auto;
+     margin-left:10px;
+     margin:auto;
 	-webkit-transition: opacity 2s linear;
 	-moz-transition: opacity 2s linear;
 	-o-transition: opacity 2s linear;
 	transition: opacity 1s linear;
-	width: 10cm;
-	height: 200px;
+	width: 40cm;
+	height: 270px;
 }
 
 /* ============================================================= */
 
 
 </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+	
 </head>
 <body>
-
 	<script>
-	
+
 // ================================起始畫面SHOW====================================
     var count;
 	firstShow();
@@ -184,58 +192,13 @@ width:30px;
 			},
 		});
 
+
+
 		$(document).ready(function() {
 			selectAll();
 			page();
 		
 		
-			
-		$("#show3").change(function() {
-			catchSelect1();	 
-			search3();
-		})
-		
-		function search3(){
-			var txt = $("#show3 :selected").text();
-// 			console.log('Txt 123: '+txt)
-			$("#remark2").val(txt);
-			$.ajax({                                    
-				url : "${pageContext.request.contextPath}/categories/" + txt,
-				type : "GET",
-				dataType : "json",
-				async : true,
-				contentType : "application/json",
-				success : function(data) {
-//                  console.log('remark2 :'+$("#remark2").val() );
-					var names = JSON.parse(JSON.stringify(data).split(","));
-// 		 			console.log(typeof names);
-					var txt = "<option value='-1' SELECTED id='cr'>請選擇</option>";
-					for (i in names) {
-// 						console.log(i + ' :' + names[i].name);
-						txt += "<option value='"+i+"'>" + names[i].name + "</option>";
-					}
-					$("#show4").html(txt);
-				},
-				error : function(data, textStatus, errorThrown) {
-					console.log(data);
-				},
-			});
-		}
-		
-		$("#show4").change(function() {
-			search4();
-		})
-		function search4(){
-			var txt4= $("#show4 :selected").text();
-			$.ajax({
-                success : function(data) {	
-                $("#fileName2").val(txt4);
-				},
-				error : function(data, textStatus, errorThrown) {
-					console.log(data);
-				},
-			});
-		}
 		
 // ==========================================SHOW change================================================================
 	
@@ -346,7 +309,7 @@ width:30px;
 			
 		}	
 			
-		$("#searchDiv").click(function() {
+		$("#searchSub").click(function() {
 			catchSelect1();	 
 // 			console.log($("#searchDiv").serializeObject());
 // 			alert($(".search").serializeObject())
@@ -375,7 +338,7 @@ width:30px;
 				         }
 						txt+="<li class='page-item'><input type = 'button' id='Next'   value='&raquo;' onclick='NextClick()' class='page-link'/></li>"
 // 						console.log("count"+count);
-						$(".pagination").html(txt);
+						$("#pagination").html(txt);
 				    }
 			     })
               }
@@ -424,7 +387,7 @@ width:30px;
 //	 				             console.log(i + ' :' + names[i]	);
 					             txt+=
 					            	  "<div class='col-sm-6 col-md-3' style='width: 200px; height: 250px;margin-bottom:20px'>"
-						             +"<div class=''>"
+						             +"<div class='mainDiv'>"
 						             +"<img width='100' height='150'src=   \" <c:url value=  '/getProductPicture/"+names[i].product_id+"'   /> \"     />"
 						             +"<div class=''  height='100' style='font-size: 8px; ''><p>"
 						             +"名稱 :"+names[i].name+"</p><p>價格 : "+names[i].price+"</p>"
@@ -433,11 +396,6 @@ width:30px;
 						             +"Details</a>"
 						             +"</form></nav></div></div></div>"
 					         }
-// 						             +"<a class='btn btn-sm btn-outline-secondary'   href=\" <c:url value=  '/products/product/addToCollection?id="+names[i].product_id+"'    /> \"    >" 
-// 						             +"新增收藏</a>"
-// 						             +"<a class='btn btn-sm btn-outline-secondary'   href=\" <c:url value=  '/products/products/upd?id="+names[i].product_id+"'    /> \"    >" 
-// 						             +"更新</a>"
-//	 						console.log("txt : "+txt)
 							$("#right").html(txt);
 					}
 			   	})
@@ -458,10 +416,10 @@ width:30px;
 							for (i in names) {
 //	 				             console.log(i + ' :' + names[i]	);
 					             txt+=
-					            	  "<div class='col-sm-6 col-md-3' style='width: 200px; height: 250px;margin-bottom:50px;margin-right:50px'>"
-						             +"<div class=''>"
-						             +"<img width='125' height='175'src=   \" <c:url value=  '/getProductPicture/"+names[i].product_id+"'   /> \"     />"
-						             +"<div class=''  height='100' style='font-size: 8px; ''><p>"
+					            	  "<div class='col-sm-6 col-md-3' style='width: 200px; height: 250px;margin-bottom:80px;margin-right:50px'>"
+						             +"<div class='mainDiv'>"
+						             +"<img src=   \" <c:url value=  '/getProductPicture/"+names[i].product_id+"'   /> \"     />"
+						             +"<div class='mainText'  style='font-size: 8px; ''><p>"
 						             +"名稱  : "+names[i].name+"</p><p>價格 : "+names[i].price+"</p>"
 						             +"<nav class='navbar navbar-light bg-light'><form class='form-inline'>"
 						             +"<a class='mh6'   href=\" <c:url value=  '/product?id="+names[i].product_id+"'    /> \"    >" 
@@ -469,11 +427,6 @@ width:30px;
 						             +"</form></nav></div></div></div>"
 					         }
 
-// 						             +"<a class='btn btn-sm btn-outline-secondary'   href=\" <c:url value=  '/product/addToCollection?id="+names[i].product_id+"'    /> \"    >" 
-// 						             +"新增收藏</a>"
-// 						             +"<a class='btn btn-sm btn-outline-secondary'   href=\" <c:url value=  '/products/upd?id="+names[i].product_id+"'    /> \"    >" 
-// 						             +"更新</a>"
-//	 						console.log("txt : "+txt)
 							$("#right").html(txt);
 					    }
 				     })
@@ -494,89 +447,82 @@ width:30px;
 		        });
 		        return JSON.stringify(o);
 		    };
-		    
+			
 
 	</script>
-	<header>
-	
-	<h1>HEADER</h1>
-	Working with server: <%= application.getServerInfo() %><br>
-    Servlet Specification: <%= application.getMajorVersion() %>.<%= application.getMinorVersion() %> <br>
-    JSP version: <%= JspFactory.getDefaultFactory().getEngineInfo().getSpecificationVersion() %><br>
-    Java Version: <%= System.getProperty("java.version") %><br>
+	<h1>222</h1>
+	<div class="main">
+	<!--==============================header=================================-->
+		<header id="gradient">
+			<div class="zerogrid">
+				<div class="col-full">
+					<div class="wrap-col">
+						<h1>
+							<a href="index2"><img src="images/logo.png"
+								alt="EXTERIOR"></a>
+						</h1>
+
+						<div class="menu_block">
+							<nav>
+								<ul class="sf-menu">
+									<li class="with_ul current"><a href="index2">ICook</a></li>
+									<li><a href="icookAboutUS">關於我們</a>
+									<ul>
+									<li><a href="icookContact">聯繫我們</a></li>
+									</ul>
+									</li>
+									<li><a href="icookMenu">查看食譜</a>
+										<ul>
+
+											<li><a href="#">cat1</a></li>
+											<li><a href="#">cat2</a></li>
+											<li><a href="#">cat3</a></li>
+										</ul>
+									<li><a href="icookLife">生活誌</a></li>
+									<li><a href="forum/overview">討論區</a></li>
+									<li><a href="A_articlemainpage">文章區</a></li>
+									<li><a href="icookProducts">市集</a><ul>
+									
+									
+										<li><a href="cartPage">購物車</a></li>
+									</ul></li>
+									
+									<li><a href="icookLogin">會員專區</a>
+										<ul>
+											<li><a href="icookLogin">會員登入</a></li>
+											<li><a href="#">會員登出</a></li>
+											<li><a href="#">新增食譜</a></li>
+											</ul></li>
+											
+								</ul>
+							</nav>
+							<div class="clear"></div>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div>
 		</header>
-		
-		
-	<c:out value="登入者${LoginOK.nickname}"></c:out>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="/icook">ICook!</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarTogglerDemo02"
-			aria-controls="navbarTogglerDemo02" aria-expanded="false"
-			aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-
-		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-
-				<li class="nav-item"><a class="nav-link" href='products'>市集</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="#">食譜</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">(修改商品)</a></li>
-				<li class="nav-item"><a class="nav-link" href='products/add'>(新增商品)</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="products/upd">(更新產品)</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="collections">查詢收藏</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="cartPage">購物車</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="checkOrders">檢視訂單(會員用)</a>
-				</li>
-				<li class="nav-item"><a class="nav-link"
-					href="adminCheckOrders">查看訂單(僅限admin的URL)</a></li>
-
-			</ul>
-			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" type="search" placeholder="查詢商品">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-			</form>
-		</div>
-	</nav>
 	<div class="allPage">
 		<div class="left">
+			  <div id="gradient" ></div>
 			<section class="container">
-				<div>
-					<h1>產品清單</h1>
-				</div>
-				<label for='show'> 種類</label>
-
 				<div>
 					<select  id="show" name="show"  class="form-control form-control-sm"><option
 							value="0" SELECTED id='ch'>請選擇</option></select> <select id="show2" name="show2"class="form-control form-control-sm">
 					</select>
 				</div>
-				<nav class="navbar navbar-light bg-light">
 				<form class="searchDiv" id="searchDiv" method="POST" class="form-inline">
 					<input id="fileName" name="fileName" type="hidden" /> <input
 						id="remark" name="remark" type="hidden" /><input id="stock" name="stock" type="hidden" />
-					<div>
-						<input id="description" name="description" type="text"  class="form-control mr-sm-2" placeholder="Search" aria-label="Search"></input>
-					</div>
-					<div>
-						  <input type="button"class="btn btn-outline-success my-2 my-sm-0" value="Search">
+					<div style="width:26ch;">
+						<input id="description" name="description" type="text"   class="form-control mr-sm-2" placeholder="Search" ></input>
+						  <input type="button" id="searchSub"class="btn btn-outline-success my-2 my-sm-0" value="Search">
 					</div>
 				</form>
-				</nav>
 			</section>
 			<section class="container">
-			
-
-				<a href='collections'>查詢收藏</a><BR> <br>
-				<a href='products/add'>新增產品資料</a>
 				<div class="list-type1">
-				
 				<h1>鍋類</h1>
 				<ul style="cursor: pointer">
 					<li><a class="search">炒鍋</a></li>
@@ -597,27 +543,6 @@ width:30px;
 				</ul>
 				
 				
-				</div>
-				 <a href='productsEx.xls' >AllProductsExcel</a><br>
-				<div>
-					<div>
-						<select id="show3" name="show3" style="width: 30ch"
-							class="form-control form-control-sm"><option value="0"
-								SELECTED id='ch'>請選擇</option></select> <select id="show4" name="show4"
-							style="width: 30ch" class="form-control form-control-sm">
-						</select>
-					</div>
-					<form action="productsByCategoryEx.xls">
-
-						<input id="fileName2" name="fileName2" type="hidden" /> <input
-							id="remark2" name="remark2" type="hidden" />
-						<div>
-							<input id="description2" name="description2" type="text"
-								class="form-control mr-sm-2" placeholder="Search"
-								aria-label="Search"></input>
-						</div>
-						<input type="submit" value="ProductsExcel">
-					</form>
 				</div>
 				
 				<a href='${pageContext.request.contextPath}'>回首頁</a><BR> <br>
@@ -670,8 +595,8 @@ width:30px;
 				</div>
 			</fieldset>
 				<form>
-			<div class="page">
-					<ul class="pagination">
+			<div class="pageForProduct">
+					<ul class="pagination justify-content-center" id="pagination">
 					</ul>
 			</div>
 				</form>
@@ -679,8 +604,21 @@ width:30px;
 		</div>
 		<div class="right"></div>
 	</div>
-	<footer>
-	<h1>FOOTER</h1>
-	</footer>
+	</div>
+	<footer >
+		<div class="zerogrid">
+			<div class="col-full">
+				<div class="wrap-col">
+					&copy; Copyright &copy; 2013.Company name All rights reserved.<a
+						target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
+				</div>
+			</div>
+		</div>
+	</footer >
+	<div style="display: none">
+		<script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540'
+			language='JavaScript' charset='gb2312'></script>
+	</div>
+
 </body>
 </html>
