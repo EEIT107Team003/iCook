@@ -385,6 +385,7 @@ font-size:20px;
 						<form:input id="productImage" path="productImage" type='file' accept="image/gif, image/jpeg, image/png" />
 					</div>
                     <div id="uploadImg"></div>
+                    <form>
                      <div>
 						<input type="file" id="progressbarTWInput"
 							accept="image/gif, image/jpeg, image/png"multiple ></input>
@@ -393,6 +394,7 @@ font-size:20px;
 							<p>目前沒有圖片</p>
 						</div>
                      </div>
+                     
                     <div class="formGroup">
 						<label for="m1"><input type="radio" name="gender" value="1" >   上架   </label>
 						<label> <input type="radio" name="gender" value="2">    下架         </label>
@@ -406,6 +408,7 @@ font-size:20px;
 					<div class="formGroup">
 						<input id="btnAdd" type='submit' class='btn btn-primary' />
 					</div>
+					</form>
 				</fieldset>
 			</form:form>
 
@@ -426,7 +429,9 @@ $("#progressbarTWInput").change(function(){
 	      var reader = new FileReader();
 	      reader.onload = function (e) {
 	        var img = $("<img width='150px' height='150px'>").attr('src', e.target.result);
+	        var Formimg = $("<input id='productImage_"+i+"' type='file' accept='image/gif,image/jpeg,image/png' />' ");
 	        $("#preview").append(img);
+	        $("#preview").append(Formimg);
 	      }
 	      reader.readAsDataURL(input.files[i]);
 	    }
