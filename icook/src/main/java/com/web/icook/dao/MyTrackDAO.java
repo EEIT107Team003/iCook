@@ -1,4 +1,4 @@
-package com.web.icook.dao.impl;
+package com.web.icook.dao;
 
 import java.util.List;
 

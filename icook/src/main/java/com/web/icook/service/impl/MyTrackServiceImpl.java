@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.web.icook.dao.MemberDAO;
-import com.web.icook.dao.impl.MyTrackDAO;
+import com.web.icook.dao.MyTrackDAO;
 import com.web.icook.model.MyTrackBean;
 import com.web.icook.service.MyTrackService;
 

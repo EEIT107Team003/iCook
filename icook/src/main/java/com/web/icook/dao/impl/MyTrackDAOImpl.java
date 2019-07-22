@@ -1,4 +1,4 @@
-package com.web.icook.dao;
+package com.web.icook.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
 
-import com.web.icook.dao.impl.MyTrackDAO;
+import com.web.icook.dao.MyTrackDAO;
 import com.web.icook.model.MyTrackBean;
 
 @Repository
@@ -28,7 +28,7 @@ public class MyTrackDAOImpl implements MyTrackDAO {
 	// 查詢 我追蹤了誰
 	@Override
 	public List<MyTrackBean> selectTrackerById(int member_Id) {
-		String hql = "from MyTrackBean where member_Id=:member_Id";
+		String hql = "from MyTrackBean where member_Id=:member_Id order by trackTime desc";
 		List<MyTrackBean> list = new ArrayList<MyTrackBean>();
 		Session session = factory.getCurrentSession();
 		list = session.createQuery(hql).setParameter("member_Id", member_Id).getResultList();

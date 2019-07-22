@@ -157,10 +157,11 @@ public class FMDaoImpl implements IFMDao {
 		return fmbList;
 	}
 	
+	//07.22 江慶庭 -查詢member_id
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ForumMainBean> getByMember_id(Integer member_id) {
-		String hql = "from ForumMainBean where member_id = :member_id";
+		String hql = "from ForumMainBean where member_id = :member_id order by editTime desc";
 		Session session = factory.getCurrentSession();
 		List<ForumMainBean> fmbList = new ArrayList<>();
 		fmbList = session.createQuery(hql).setParameter("member_id", member_id).getResultList();

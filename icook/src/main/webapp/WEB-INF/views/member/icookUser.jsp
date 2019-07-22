@@ -255,7 +255,6 @@ td {
 					var names = JSON.parse(JSON.stringify(data).split(","));
 					var txt = "";
 					for (i in names) {
-// 						txt+=names[i].trackedId.nickname+"<br>"
 						txt+=
 							"<div class=contain_myforum>"
 								+"<div class=contain_myforum_Info>"
@@ -266,9 +265,9 @@ td {
 								+"</div>"
 								+"<hr style=clear: both;border-style: dashed;>"
 							+"</div>"
-						
 						console.log(names[i].title);
 					};
+// 					$("#forum_num").html(names.length)
 					$("#user_contain").html(txt);
 				},
 				error : function(data, textStatus, errorThrown) {
@@ -287,8 +286,6 @@ td {
 				contentType : "application/json",
 				async : true,
 				success : function(data) {
-//	 					txt+=names[i].trackedId.nickname+"<br>"
-// 					alert(data);
 					$("#member_resume").html(resume);
 					$("#change_reaume").val(resume);
 					$('#myModal').modal('hide');
@@ -607,9 +604,9 @@ td {
 			                        			<th class="items">文章總數</th>
 			                        		</tr>
 			                        		<tr>
-			                        			<th class="items">${member.recipe_num }</th>
-			                        			<th class="items">${member.tracked_num }</th>
-			                        			<th class="items">${member.forum_num }</th>
+			                        			<th id="recipe_num" class="items">${member.recipe_num }</th>
+												<th id="tracked_num" class="items">${member.tracked_num }</th>
+												<th id="forum_num" class="items">${member.forum_num }</th>
 			                        		</tr>
 			                        	</table>
 			                        </div><!--//content-->  
