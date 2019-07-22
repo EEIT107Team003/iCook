@@ -53,7 +53,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-// TODO mainpage裡面的推播功能
+// TODO 
 @Controller
 public class AticleController {
 	@Autowired
