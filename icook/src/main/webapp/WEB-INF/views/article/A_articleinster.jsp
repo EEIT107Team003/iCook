@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://cdn.bootcss.com/web-socket-js/1.0.0/web_socket.js"></script>
 <title>Stories - Free Bootstrap 4 Template by Colorlib</title>
 <meta charset="utf-8">
 <meta name="viewport"
@@ -147,6 +148,17 @@
 								path="article_content" id="editor1" />
 						</div>
 						<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.error_Article_content}</div>
+
+						<!-- 	測試跑馬燈 -->
+
+						<div class="form-group">
+			<form>
+				<input id="messageField" type="text" class="form-control">
+<!-- 				 <input onclick="sendMsg();" value="send" type="button" > -->
+			</form>
+
+			<div id="msg-box"
+				style="width: 500px; height: 400px; background: #eee; overflow: auto;" ></div></div>
 
 
 
@@ -436,6 +448,34 @@
 </body>
 
 
+	<script>
+					var webSocket = new WebSocket("ws:/localhost:8080/icook/ArtBroadcast");
+					var msgField = document.getElementById("messageField");
+					var divMsg = document.getElementById("msg-box");
+					var Broadcast = document.getElementById("ArcBroadcast");
+					function sendMsg() {
+						var msgToSend = msgField.value;
+						webSocket.send(msgToSend);
+						msgField.value = "";
+					}
+
+					webSocket.onmessage = function(message) {
+						divMsg.innerHTML += "<marquee direction='right' height='30' scrollamount='8' behavior='alternate'>" + message.data+"</marquee>";
+						divtoday.innerHTML+=message.data;
+					}
+
+					webSocket.onopen = function() {
+						console.log("connection opened");
+					};
+
+					webSocket.onclose = function() {
+						console.log("connection closed");
+					};
+
+					webSocket.onerror = function wserror(message) {
+						console.log("error: " + message);
+					}
+	</script>
 
 
 

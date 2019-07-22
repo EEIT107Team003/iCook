@@ -7,6 +7,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://cdn.bootcss.com/web-socket-js/1.0.0/web_socket.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -78,6 +80,7 @@
 	</nav>
 	<!-- END nav -->
 
+		
 	<section class="hero-wrap hero-wrap-2"
 		style="background-image: url('article/aimages/bg_4.jpg');">
 		<div class="overlay"></div>
@@ -98,6 +101,24 @@
 
 
 	<section class="ftco-section">
+	
+	<!-- 	跑馬燈 測試成功排版問題-->
+	<marquee direction="left" height="30" scrollamount="8"
+		behavior="alternate" id="ArcBroadcast" style="color: green;"></marquee>
+<%-- 		<form> --%>
+<!-- 				<input id="messageField" type="text" > <input -->
+<!-- 					onclick="sendMsg();" value="send" type="button" > -->
+<%-- 			</form> --%>
+
+			<div id="msg-box"
+				style="width: 500px; height: 400px; background: #eee; overflow: auto;" ></div></div>
+		
+	
+	
+	
+	
+	
+	
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-9">
@@ -542,5 +563,35 @@
 	<script
 		src="${pageContext.request.contextPath}/article/ajs/google-map.js"></script>
 	<script src="${pageContext.request.contextPath}/article/ajs/main.js"></script>
+	<script>
+					var webSocket = new WebSocket("ws:/localhost:8080/icook/ArtBroadcast");
+					var msgField = document.getElementById("messageField");
+					var divMsg = document.getElementById("msg-box");
+					var Broadcast = document.getElementById("ArcBroadcast");
+					function sendMsg() {
+						var msgToSend = msgField.value;
+						webSocket.send(msgToSend);
+						msgField.value = "";
+					}
+
+					webSocket.onmessage = function(message) {
+						divMsg.innerHTML += "<marquee direction='right' height='30' scrollamount='8' behavior='alternate'>" + message.data+"</marquee>";
+						divtoday.innerHTML+=message.data;
+					}
+
+					webSocket.onopen = function() {
+						console.log("connection opened");
+					};
+
+					webSocket.onclose = function() {
+						console.log("connection closed");
+					};
+
+					webSocket.onerror = function wserror(message) {
+						console.log("error: " + message);
+					}
+	</script>
+	
+	
 </body>
 </html>

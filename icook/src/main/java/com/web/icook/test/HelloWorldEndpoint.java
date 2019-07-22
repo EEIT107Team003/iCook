@@ -1,4 +1,5 @@
 package com.web.icook.test;
+
 import java.io.IOException;
 import java.util.Collections;
 import java.util.HashSet;
@@ -24,14 +25,8 @@ public class HelloWorldEndpoint {
 	@OnOpen
 	public void onOpen(Session session) {
 		System.out.printf("Session opened, id: %s%n", session.getId());
-		 sessions.add(session);
-		 
-		try {
+		sessions.add(session);
 
-			session.getBasicRemote().sendText("Hi there, we are successfully connected.");
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		}
 	}
 
 	@OnMessage
@@ -40,7 +35,7 @@ public class HelloWorldEndpoint {
 		for (Session openSession : sessions)
 			try {
 				System.out.println("session.getId()==" + session.getId());
-				openSession.getBasicRemote().sendText(String.format("準備要給所有人We received your message: %s%n", message));
+				openSession.getBasicRemote().sendText("最新消息:" + message);
 //				session.getBasicRemote().sendText(String.format("準備要給所有人We received your message: %s%n", message));
 			} catch (IOException ex) {
 				ex.printStackTrace();
