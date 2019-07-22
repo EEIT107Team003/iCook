@@ -361,11 +361,9 @@ public class OrderController {
 		model.addAttribute("orders_list", orders);
 		return "icookMemberCheckOrders";
 	}
-	
-	
-	
-	
 
+	
+	
 	// 進入後台才有的url
 	// admin查看所有訂單
 	@RequestMapping("/adminCheckOrders")
@@ -458,6 +456,7 @@ public class OrderController {
 			ob = it.next();
 			if (ob.getOrderNo() == orderNo) {
 				model.addAttribute("orderItems_List", ob.getItems());
+				model.addAttribute("orderAddress", ob.getShippingAddress());
 				model.addAttribute("FrontSeqOrderNo", FrontSeqNoForOrderByMember);
 				//顯示系統單號
 //				model.addAttribute("OrderNo", buyerSyetemSeqNo);

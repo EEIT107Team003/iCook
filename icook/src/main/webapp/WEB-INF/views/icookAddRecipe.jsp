@@ -8,6 +8,10 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
+<!-- 	JQuery -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- 	JQuery -->
 <!-- 	bootstrap -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -46,22 +50,85 @@
 <script src="js/css3-mediaqueries.js"></script>
 
 <script type="text/javascript">
-	// 	function editorId(obj) {
-	// 		window.location.href = '/icook/product?id=' + obj.id;
-	// 	}
-	// 	function deleId(obj) {
-	// 		// 		var msg = "真的要刪除嗎\n\n請確認！";
-	// 		// 		if (confirm(msg) == true) {
-	// 		window.location.href = '/icook/deleteCart?id=' + obj.id;
-	// 		//		}
-	// 	}
+	// 	let countIngredients = 1;//食譜食材
+	// 	let countUnit = 1;//食譜步驟
 
-	// 	function deleteAll() {
-	// 		var msg = "確定要刪除所有嗎?";
-	// 		if (confirm(msg) == true) {
-	// 			window.location.href = '/icook/deleteCart?id=';
+	// 	function alertTest(){
+	// 	alert("hello world");
+	// }
+
+	
+// 	$(document).ready(function(){
+		
+// 		for(let i=0;i<IngradientFirstRow;i++){
+			
+			
+// 		}
+// 	})
+	
+	
+	
+	
+	let count = 2;
+	function addCurrentRow1() {
+
+		//新增一列
+		// 		countIngredients++;
+		let trcomp = "";
+		// 		trcomp +="<button>請按</button>";
+		trcomp += "<div id='addDiv";
+		trcomp +=count;
+		trcomp +="' class='form-row '>";
+		trcomp += "<div class='form-group col-md-6'>";
+		trcomp += count;
+		trcomp += "<label for='inputCity'>食材名稱</label>";
+		trcomp += "<input type='text' class='form-control' id='inputCity'>";
+		trcomp += "</div>";
+		trcomp += "<div class='form-group col-md-4'>";
+		trcomp += "份量 <input type='text' class='form-control' id='inputEmail4' placeholder='''> <label for='inputState'></label>";
+		trcomp += "</div>";
+		trcomp += "<button style='margin-left: 20px; margin-top: 17px; width: 70px; height: 40px; font-size: 20px' type='submit' class='btn btn-danger' onclick='deleteRow(this)'>刪除</button>";
+		// 		trcomp +="<button style='margin-left: 20px; margin-top: 17px; width: 70px; height: 40px; font-size: 20px' type='submit' class='btn btn-primary'>新增步驟</button>";
+		trcomp += "</div>";
+		$("#IngradientFirstRow").append(trcomp);
+		count++;
+	}
+
+	function deleteRow(obj) {
+		let divId = obj.parentNode.id;
+// 		let ParentOfRemoveElement=obj.parentNode.parentNode;
+		let el = document.getElementById(divId);
+		el.parentNode.removeChild( el );
+// 		ParentOfRemoveElement.remove(divId);
+	}
+
+	// 	function deleteCurrentRow2(obj) {
+	// 		//刪除一列
+	// 		if (1 == countUnit) {
+	// 			//資料筆數不可為0
+	// 			return;
+	// 		}
+	// 		let isDelete = confirm("確定要刪除嗎？");
+	// 		if (isDelete) {
+	// 			countUnit = countUnit - 1;
+	// 			let tr = obj.parentNode.parentNode;
+	// 			let tbody = tr.parentNode;
+	// 			tbody.removeChild(tr);
 	// 		}
 	// 	}
+
+	//      翔宇原版
+	// 		let trcomp = "<tr align='center'>";
+	// 		trcomp += "<td><input type='text' name='ingredients2' /></td>";
+	// 		trcomp += "<td><input type='text' name='quantity2'></input></td>";
+	// 		trcomp += "<td>";
+	// 		trcomp += "<button type='button' onclick='deleteCurrentRow1(this)'>";
+	// 		trcomp += "<font color='red'>刪除</font>";
+	// 		trcomp += "</button>";
+	// 		trcomp += "</td>";
+	// 		trcomp += "</tr>";
+	// 		$("#recipe_ingredients tbody tr:last-child").after(trcomp);
+	//jQuery 裡面 $("#aa") 指的是 id="aa" 的元素
 </script>
 <!--[if lt IE 8]>
        <div style=' clear: both; text-align:center; position: relative;'>
@@ -103,7 +170,7 @@
 										<ul>
 											<li><a href="icookContact">聯繫我們</a></li>
 										</ul></li>
-									<li ><a href=icookCRecipe>查看食譜</a>
+									<li><a href=icookCRecipe>查看食譜</a>
 										<ul>
 
 											<li><a href="#">cat1</a></li>
@@ -177,7 +244,13 @@
 								class="form-control" id="inputEmail4" placeholder="">
 						</div>
 					</div>
-					<div class="form-row">
+
+					<!-- 					新增的區域 -->
+					<!-- 					新增的區域 -->
+					<!-- 					新增的區域 -->
+					<!-- 					新增的區域 -->
+					<!-- 					新增的區域 -->
+					<div class="form-row IngradientFirstRow" id='IngradientFirstRow'>
 						<div class="form-group col-md-6">
 							<label for="inputCity">食材名稱</label> <input type="text"
 								class="form-control" id="inputCity">
@@ -186,14 +259,19 @@
 							份量 <input type="text" class="form-control" id="inputEmail4"
 								placeholder=""> <label for="inputState"></label>
 						</div>
+						<!-- 						<button onclick="addCurrentRow1()">請按</button> -->
 						<button
 							style="margin-left: 20px; margin-top: 17px; width: 70px; height: 40px; font-size: 20px"
-							type="submit" class="btn btn-danger">刪除</button>
-						<!-- 						<span style="visibility:hidden; background-color:Blue">隐藏区域</span> -->
-						<button
+							class="btn btn-danger">刪除</button>
+						<button onclick='addCurrentRow1()'
 							style="margin-left: 20px; margin-top: 17px; width: 70px; height: 40px; font-size: 20px"
 							type="submit" class="btn btn-primary">新增步驟</button>
 					</div>
+					<!-- 					新增的區域 -->
+					<!-- 					新增的區域 -->
+					<!-- 					新增的區域 -->
+					<!-- 					新增的區域 -->
+					<!-- 					新增的區域 -->
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="inputCity">食材名稱</label> <input type="text"
