@@ -198,8 +198,8 @@ float:right;
 	        	            		names[i].status='下架中'
 	        					txt += "<tr>"
 	        					+"<td>"+names[i].product_id+"</td>"
+	        					+"<td><img width='130px' height='130px'  src='${pageContext.request.contextPath}/getProductPicture/"+names[i].product_id+"'></td>"
 	        					+"<td>"+names[i].name+"</td>"
-	        					+"<td><img width='100' height='150'src=   \" <c:url value=  '/getProductPicture/"+names[i].product_id+"'   /> \</td>"
 	        					+"<td>"+names[i].categoriesbean.categorybean.name+" / "+names[i].categoriesbean.name+"</td>"
 	        					+"<td>"+names[i].price+"</td>"
 	        					+"<td>"+names[i].status+"</td>"
@@ -394,7 +394,6 @@ float:right;
             }
         	
             </script>
-            <h1>2222222222222</h1>
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
