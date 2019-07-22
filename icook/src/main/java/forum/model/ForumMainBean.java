@@ -24,24 +24,23 @@ public class ForumMainBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String username; // 作者帳號
-	private String nickname; // 作者暱稱
-	private String board; // 討論板名稱
-	private String category; // 分類
-	private String title; // 標題
+	private String username; 			// 作者帳號
+	private String nickname; 			// 作者暱稱
+	private String board; 				// 討論板名稱
+	private String category; 			// 分類
+	private String title; 				// 標題
 	@Lob
 	@Basic(fetch = FetchType.EAGER)
-	private String text; // 內文
-	private String signature; // 簽名
-	private Integer clicks; // 點擊數
-	private Integer likes; // 喜歡數
-	private Timestamp postTime; // 發表時間
-	private Timestamp editTime; // 編輯時間
-	private Integer replies; // 回應數
-//	private	Integer							member_id;				//會員ID
-	private Integer harticle_id; // 首篇文章編號
-	private Integer article_id; // 文章編號
-	private MemberBean memberBean;
+	private String text; 				// 內文
+	private String signature; 			// 簽名
+	private Integer clicks; 			// 點擊數
+	private Integer likes; 				// 喜歡數
+	private Timestamp postTime; 		// 發表時間
+	private Timestamp editTime; 		// 編輯時間
+	private Integer replies; 			// 回應數
+	private Integer harticle_id; 		// 首篇文章編號
+	private Integer article_id; 		// 文章編號
+	private MemberBean memberBean;		// 關聯會員物件
 
 	public ForumMainBean() {
 
@@ -155,15 +154,6 @@ public class ForumMainBean implements Serializable {
 		this.replies = replies;
 	}
 
-//	public Integer getMember_id() {
-//		return member_id;
-//	}
-//
-//
-//
-//	public void setMember_id(Integer member_id) {
-//		this.member_id = member_id;
-//	}
 
 	public Integer getHarticle_id() {
 		return harticle_id;
@@ -204,15 +194,12 @@ public class ForumMainBean implements Serializable {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	
+	@Override
+	public String toString() {
+		return "ForumMainBean [memberBean=" + memberBean + "]";
+	}
 
-//	@OneToMany(mappedBy = "fmbAnno", cascade = {CascadeType.ALL})
-//	public Set<ForumReplyBean> getForumReplyBean() {
-//		return ForumReplyBean;
-//	}
-//
-//	public void setForumReplyBean(Set<ForumReplyBean> forumReplyBean) {
-//		ForumReplyBean = forumReplyBean;
-//	}
-//	
+
 
 }

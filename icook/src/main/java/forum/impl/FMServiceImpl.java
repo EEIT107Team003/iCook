@@ -89,6 +89,11 @@ public class FMServiceImpl implements IFMService {
 		return dao.getByMember_id(member_id);
 	}
 	
+	@Override
+	public List<ForumMainBean> getPopularArticle() {
+		return dao.getPopularArticle();
+	}
+	
 	
 
 }
