@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -76,13 +79,6 @@
 		});
 
 	});
-	
-	
-	
-	
-	
-	
-	
 </script>
 <!--[if lt IE 8]>
        <div style=' clear: both; text-align:center; position: relative;'>
@@ -106,8 +102,7 @@
 				<div class="col-full">
 					<div class="wrap-col">
 						<h1>
-							<a href="index2"><img src="images/logo.png"
-								alt="EXTERIOR"></a>
+							<a href="index2"><img src="images/logo.png" alt="EXTERIOR"></a>
 						</h1>
 
 						<div class="menu_block">
@@ -115,26 +110,21 @@
 								<ul class="sf-menu">
 									<li class="with_ul current"><a href="index2">ICook</a></li>
 									<li><a href="icookAboutUS">關於我們</a>
-									<ul>
-									<li><a href="icookContact">聯繫我們</a></li>
-									</ul>
-									</li>
-									<li><a href="icookMenu">查看食譜</a>
 										<ul>
-											<li><a href="#">cat1</a></li>
-											<li><a href="#">cat2</a></li>
-											<li><a href="#">cat3</a></li>
-										</ul>
+											<li><a href="icookContact">聯繫我們</a></li>
+										</ul></li>
+									<li><a href="<c:url value='/recipe/recipeIndex' /> ">查看食譜</a>
 									<li><a href="icookLife">生活誌</a></li>
 									<li><a href="forum/overview">討論區</a></li>
 									<li><a href="A_articlemainpage">文章區</a></li>
-									<li><a href="icookProducts">市集</a><ul>
-									
-									
-										<li><a href="cartPage">購物車</a></li>
-									</ul></li>
-									
-									<li><a href="user">會員專區</a>
+									<li><a href="products">市集</a>
+									<ul>
+
+
+											<li><a href="cartPage">購物車</a></li>
+										</ul></li>
+
+									<li><a href="icookLogin">會員專區</a>
 										<ul>
 											<c:if test="${pageContext.request.userPrincipal.name==null}">
 												<li><a href="icookLogin">會員登入</a></li>
@@ -145,7 +135,12 @@
 											</c:if>
 												<li><a href="checkOrders">查看訂單</a></li>
 												<li><a href="#">新增食譜</a></li>
+
+										
+
+												<li><a href="backStage">後台</a></li>
 										</ul>
+
 									</li>		
 								</ul>
 							</nav>

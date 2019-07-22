@@ -85,7 +85,7 @@
 	text-align: center;
 	width: 33.3%;
 }
-
+/* contain ------------------------------------------------------------------------------------------ */
 .contain_mytrack {
 	border: 1px solid black;
 	width: 100%;
@@ -124,6 +124,22 @@
 	font-family: 'Noto Sans TC', sans-serif;
 }
 
+.contain_myforum_Info {
+	height: 100px;
+	width: 100%;
+	margin-left: 20px;
+}
+
+.contain_myforum_time { 
+	width:100%;
+	color:gray;
+	margin-top:50px;
+	vertical-align:bottom;
+	text-align:right;
+	font-family: 'Noto Sans TC', sans-serif;
+	float: right;
+}
+/* ------------------------------------------------------------------------------------------ */
 section {
 	border: 1px solid rgb(220, 220, 220);
 	border-top: 0px
@@ -242,15 +258,12 @@ td {
 // 						txt+=names[i].trackedId.nickname+"<br>"
 						txt+=
 							"<div class=contain_myforum>"
-// 								+"<div>"
-// 									+"<img class=contain_mytrack_photo src=<c:url value='/getMemberPhoto/"+names[i].trackedId.member_id+"' /> />"
-// 								+"</div>"
-								+"<div class=contain_mytrack_Info style="+"height:175px"+">"
+								+"<div class=contain_myforum_Info>"
 									+"<div width=100%>"
-									+"<a href=forum/pick?harticle_id="+names[i].harticle_id+"&article_id="+names[i].article_id+" class=contain_mytrack_title>"+"["+names[i].category+"] "+names[i].title+"</a>"
-									+"</div>"		
-// 									+"<div class=contain_mytrack_summary>個人簡介:"+names[i].trackedId.resume+"</div>"
-// 									+"</div>"
+										+"<a href=forum/pick?harticle_id="+names[i].harticle_id+"&article_id="+names[i].article_id+" class=contain_mytrack_title>"+"["+names[i].category+"] "+names[i].title+"</a>"
+									+"</div>"	
+								+"<div class=contain_myforum_time>發文時間: "+formatDate(names[i].editTime)+"</div>"
+								+"</div>"
 								+"<hr style=clear: both;border-style: dashed;>"
 							+"</div>"
 						
@@ -326,6 +339,33 @@ td {
 		        return JSON.stringify(o);
 		    };
 	});	
+
+	function formatDate(longDate){
+	    var date = new Date(longDate);
+	    var yyyy = date.getFullYear();
+	    var mm = date.getMonth() + 1;
+	    if (mm < 10) {
+	        mm = "0" + mm;
+	    }
+	    var dd = date.getDate();
+	    if (dd < 10) {
+	        dd = "0" + dd;
+	    }
+	    var HH = date.getHours();
+	    if (HH < 10) {
+	        HH = "0" + HH;
+	    }
+	    var min = date.getMinutes();
+	    if (min < 10) {
+	        min = "0" + min;
+	    }
+	    var sec = date.getSeconds();
+	    if (sec < 10) {
+	    	sec = "0" + sec;
+	    }
+	    return yyyy + "-" + mm + "-" + dd+" , "+HH+":"+min+":"+sec;
+	}
+	 
 </script>
 
 </head>

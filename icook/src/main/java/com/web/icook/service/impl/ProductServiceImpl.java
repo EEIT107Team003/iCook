@@ -21,7 +21,9 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public List<CategoriesBean> getOneCategory(String categoriesName) {
-		return dao.getOneCategory(categoriesName);
+		List<CategoriesBean> assa=dao.getOneCategory(categoriesName);
+			System.out.println(assa.get(0).getProductBean().size());	
+		return  assa;
 	}
 
     
@@ -39,16 +41,10 @@ public class ProductServiceImpl implements ProductService {
     }
 	@Override
 	public List<ProductBean> SelectByCategoriesAndDescription(String remark,String name, String description) {
-		System.out.println("====service== :"+remark);
 		return dao.SelectByCategoriesAndDescription(remark,name,description);
 	}
     
-
 	
-//	@Override
-//	public List<ProductBean> gteAllProductByCategories(String name) {
-//		return dao.gteAllProductByCategories(name);
-//	}
     @Override
     public List<CategoriesBean> getAllCategories(String name) {
     	return dao.getAllCategories(name);

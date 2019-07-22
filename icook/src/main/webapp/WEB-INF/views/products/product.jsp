@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ page import="java.util.*, java.io.*"%>
+<%@ page import="java.util.*, java.io.*" %>
 
 <html>
 <head>
@@ -14,21 +14,43 @@
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 <title>Products</title>
 <!-- 	============================================================================================== -->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-<link rel="stylesheet" type="text/css" href="/product_css/products.css">
-
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" ></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
+	
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/product_css/products.css">
+	
+	
+<!-- 	====================================================================================== -->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="icon" href="images/favicon.ico">
+<link rel="shortcut icon" href="images/favicon.ico" />
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/zerogrid.css" type="text/css"
+	media="screen">
+<link rel="stylesheet" href="css/responsive.css" type="text/css"
+	media="screen">
+<link rel="stylesheet" href="css/prettyPhoto.css">
+<script src="js/jquery.js"></script>
+<script src="js/jquery-migrate-1.1.1.js"></script>
+<script src="js/superfish.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+<script src="js/sForm.js"></script>
+<script src="js/jquery.prettyPhoto.js"></script>
+<script src="js/css3-mediaqueries.js"></script>
 <style>
-* {
+* {	
 	padding: 0;
 	margin: 0;
 }
 
+.textDiv{
+margin: 0;
+}
+.textDiv p{
+font-size:20px;
+}
 .left {
 	width: 15%;
 	float: left;
@@ -43,18 +65,9 @@ body {
 	background-color: white;
 }
 
-header {
-	margin: auto;
-	background-color: #FFC8B4;
-}
 
-footer {
-	margin: auto;
-	background-color: #AAFFEE;
-}
-
-.search {
-	border-right: 1px solid #cccccc;
+.search{
+ border-right: 1px solid #cccccc ;
 }
 
 .container {
@@ -64,19 +77,18 @@ footer {
 .allPage {
 	overflow: auto;
 	width: 100%;
-	margin-bottom: 10ch;
-	margin-top: 3ch;
+	margin-bottom:10ch;
+	margin-top:3ch;
+}
+.page{
+margin:auto;
+margin-left: 50ch;
+}
+.page button{
+margin-left: 3ch;
+width:30px;
 }
 
-.page {
-	margin: auto;
-	margin-left: 50ch;
-}
-
-.page button {
-	margin-left: 3ch;
-	width: 30px;
-}
 
 /* ======================MainShow=================================== */
 .field {
@@ -87,7 +99,7 @@ footer {
 	opacity: 100;
 	width: 50px;
 	filter: alpha(opacity = 100);
-	margin: auto;
+	margin:auto;
 }
 
 .mainBlock {
@@ -100,11 +112,11 @@ footer {
 
 .divA {
 	position: relative;
-	margin: auto;
+	margin:auto;
 }
 
 .divA img {
-	margin: auto;
+      margin:auto;
 	-webkit-transition: opacity 2s linear;
 	-moz-transition: opacity 2s linear;
 	-o-transition: opacity 2s linear;
@@ -114,6 +126,8 @@ footer {
 }
 
 /* ============================================================= */
+
+
 </style>
 </head>
 <body>
@@ -122,7 +136,46 @@ footer {
 	
 // ================================起始畫面SHOW====================================
 	 firstShow();
+    selectLoacl();
     var count;
+
+    function selectLoacl(){
+		 var txt=String("${product.categoriesbean.name}")
+		 var txt2="${product.categoriesbean.categorybean.name}";
+		 console.log(txt)
+		 console.log(txt2)
+		 $.ajax({                                    
+				url : "${pageContext.request.contextPath}/SelectByCategoriesAndDescriptionForProduct/" + txt,
+				type : "GET",
+				dataType : "json",
+				async : true,
+				contentType : "application/json",
+				success : function(data) {
+					var names = JSON.parse(JSON.stringify(data).split(","));
+					var ss=JSON.stringify(data).split(",")
+							txt="";
+					for (i in names) {
+				             txt+=
+				            	  "<div class='col-sm-6 col-md-3' style='width: 200px; height: 250px;margin-bottom:50px;margin-right:50px'>"
+					             +"<div class=''>"
+					             +"<img width='125' height='175'src=   \" <c:url value=  '/getProductPicture/"+names[i].product_id+"'   /> \"     />"
+					             +"<div class=''  height='100' style='font-size: 8px; ''><p>"
+					             +"名稱  : "+names[i].name+"</p><p>價格 : "+names[i].price+"</p>"
+					             +"<nav class='navbar navbar-light bg-light'><form class='form-inline'>"
+					             +"<a class='mh6'   href=\" <c:url value=  '/product?id="+names[i].product_id+"'    /> \"    >" 
+					             +"Details</a>"
+					             +"</form></nav></div></div></div>"
+				         }
+						$("#right").html(txt);
+				},
+				error : function(data, textStatus, errorThrown) {
+					console.log(data);
+				},
+			});
+		 
+          }
+    
+    
     function firstShow(){
 	$.ajax({
 			url : "${pageContext.request.contextPath}/category",
@@ -168,33 +221,46 @@ footer {
 // ==========================================EXCEL================================================================
 		
 	
-	$.ajax({
-			url : "${pageContext.request.contextPath}/category",
-			type : "POST",
-			dataType : "json",
-			contentType : "application/json",
-			async : true,
-			success : function(data) {
-				var names = JSON.parse(JSON.stringify(data).split(","));
-				var txt = "";
-	            for (i in names) {
-					txt += "<option value='"+i+"'>" + names[i].name + "</option>";
-				}
-				$("#show3").append(txt);
-			},
-			error : function(data, textStatus, errorThrown) {
-				console.log(data);
-			},
-		});
+// 	$.ajax({
+// 			url : "${pageContext.request.contextPath}/category",
+// 			type : "POST",
+// 			dataType : "json",
+// 			contentType : "application/json",
+// 			async : true,
+// 			success : function(data) {
+// 				var names = JSON.parse(JSON.stringify(data).split(","));
+// 				var txt = "";
+// 	            for (i in names) {
+// 					txt += "<option value='"+i+"'>" + names[i].name + "</option>";
+// 				}
+// 				$("#show3").append(txt);
+// 			},
+// 			error : function(data, textStatus, errorThrown) {
+// 				console.log(data);
+// 			},
+// 		});
+
+
+
 
 		$(document).ready(function() {
 
+
 			
+			
+			 
 // 	<!-- =============================================Dataisl=================================================================		 -->
-			
+
+	$("a[data-gal^='prettyPhoto']").prettyPhoto({
+			theme : 'facebook'
+		});
+
+
+
 			getstock();
+
 			function getstock(){
-			        var names=parseInt(${product.stock})
+			        var names=parseInt("${product.stock}")
 			        var txt=""
 			        for(var i=1;i<=names;i++) {
 						txt += "<option value='"+i+"'>" +i+ "</option>"
@@ -206,55 +272,11 @@ footer {
 				var txt = $("#quantity :selected").val();
 				$("#quan").val(txt);
 			})
-s// 	<!-- =============================================Dataisl=================================================================		 -->	
+
 			
-		$("#show3").change(function() {
-			catchSelect1();	 
-			search3();
-		})
-		
-		function search3(){
-			var txt = $("#show3 :selected").text();
-// 			console.log('Txt 123: '+txt)
-			$("#remark2").val(txt);
-			$.ajax({                                    
-				url : "${pageContext.request.contextPath}/categories/" + txt,
-				type : "GET",
-				dataType : "json",
-				async : true,
-				contentType : "application/json",
-				success : function(data) {
-//                  console.log('remark2 :'+$("#remark2").val() );
-					var names = JSON.parse(JSON.stringify(data).split(","));
-// 		 			console.log(typeof names);
-					var txt = "<option value='-1' SELECTED id='cr'>請選擇</option>";
-					for (i in names) {
-// 						console.log(i + ' :' + names[i].name);
-						txt += "<option value='"+i+"'>" + names[i].name + "</option>";
-					}
-					$("#show4").html(txt);
-				},
-				error : function(data, textStatus, errorThrown) {
-					console.log(data);
-				},
-			});
-		}
-		
-		$("#show4").change(function() {
-			search4();
-		})
-		function search4(){
-			var txt4= $("#show4 :selected").text();
-			$.ajax({
-                success : function(data) {	
-                $("#fileName2").val(txt4);
-				},
-				error : function(data, textStatus, errorThrown) {
-					console.log(data);
-				},
-			});
-		}
-		
+			
+// 	<!-- =============================================Dataisl=================================================================		 -->	
+			
 // ==========================================SHOW change================================================================
 	
 	
@@ -273,9 +295,6 @@ s// 	<!-- =============================================Dataisl==================
 		}
 	
 	
-		$("#show2").change(function() {
-			search2();
-		})
 			
 	
 		$("#show").change(function() {
@@ -288,7 +307,7 @@ s// 	<!-- =============================================Dataisl==================
 // 			console.log('Txt 123: '+txt)
 			$("#remark").val(txt);
 			 $("#fileName").val("");
-// 			alert($("#remark").val());
+			alert($("#remark").val());
 			$.ajax({                                    
 				url : "${pageContext.request.contextPath}/categories/" + txt,
 				type : "GET",
@@ -312,6 +331,9 @@ s// 	<!-- =============================================Dataisl==================
 			});
 		}
 		
+		$("#show2").change(function() {
+			search2();
+		})
 			
 		function search2(){
 			var txt2= $("#show2 :selected").text();
@@ -515,56 +537,54 @@ s// 	<!-- =============================================Dataisl==================
 		    
 
 	</script>
+	<div class="main">
 	<header>
+			<div class="col-full">
+				<div class="wrap-col">
+					<h1>
+						<a href="index2"><img src="images/logo.png" alt="EXTERIOR"></a>
+					</h1>
 
-		<h1>HEADER</h1>
-		Working with server:
-		<%=application.getServerInfo()%><br> Servlet Specification:
-		<%=application.getMajorVersion()%>.<%=application.getMinorVersion()%>
-		<br> JSP version:
-		<%=JspFactory.getDefaultFactory().getEngineInfo().getSpecificationVersion()%><br>
-		Java Version:
-		<%=System.getProperty("java.version")%><br>
+					<div class="menu_block">
+						<nav>
+							<ul class="sf-menu">
+								<li><a href="index2">ICook</a></li>
+								<li><a href="icookAboutUS">關於我們</a>
+									<ul>
+										<li><a href="icookContact">聯繫我們</a></li>
+									</ul></li>
+								<li><a href="icookMenu">查看食譜</a>
+									<ul>
+
+										<li><a href="#">cat1</a></li>
+										<li><a href="#">cat2</a></li>
+										<li><a href="#">cat3</a></li>
+									</ul>
+									<li><a href="icookLife">生活誌</a></li>
+									<li><a href="icookVideo">討論區</a></li>
+									<li class="with_ul current"><a href="icookProducts">市集</a>
+									<ul>
+											<li><a href="cartPage">購物車</a></li>
+										</ul></li>
+
+									<li><a href="icookLogin">會員專區</a>
+										<ul>
+											<li><a href="icookLogin">會員登入</a></li>
+											<li><a href="#">會員登出</a></li>
+											<li><a href="#">新增食譜</a></li>
+											<ul></li>
+
+								</ul>
+							</nav>
+							<div class="clear"></div>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+		
 	</header>
-
-
-	<c:out value="登入者${LoginOK.nickname}"></c:out>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="/icook">ICook!</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarTogglerDemo02"
-			aria-controls="navbarTogglerDemo02" aria-expanded="false"
-			aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-
-		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-
-				<li class="nav-item"><a class="nav-link" href='products'>市集</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="#">食譜</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">(修改商品)</a></li>
-				<li class="nav-item"><a class="nav-link" href='products/add'>(新增商品)</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="products/upd">(更新產品)</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="collections">查詢收藏</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="cartPage">購物車</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="checkOrders">檢視訂單(會員用)</a>
-				</li>
-				<li class="nav-item"><a class="nav-link"
-					href="adminCheckOrders">查看訂單(僅限admin的URL)</a></li>
-
-			</ul>
-			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" type="search" placeholder="查詢商品">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-			</form>
-		</div>
-	</nav>
+		
+		
 	<div class="allPage">
 		<div class="left">
 			<section class="container">
@@ -622,32 +642,8 @@ s// 	<!-- =============================================Dataisl==================
 						<li><a class="search">豬肉</a></li>
 						<li><a class="search">羊肉</a></li>
 					</ul>
-
-
-				</div>
-				<a href='productsEx.xls'>AllProductsExcel</a><br>
-				<div>
-					<div>
-						<select id="show3" name="show3" style="width: 30ch"
-							class="form-control form-control-sm"><option value="0"
-								SELECTED id='ch'>請選擇</option></select> <select id="show4" name="show4"
-							style="width: 30ch" class="form-control form-control-sm">
-						</select>
+					<a href='${pageContext.request.contextPath}'>回首頁</a><BR> <br>
 					</div>
-					<form action="productsByCategoryEx.xls">
-
-						<input id="fileName2" name="fileName2" type="hidden" /> <input
-							id="remark2" name="remark2" type="hidden" />
-						<div>
-							<input id="description2" name="description2" type="text"
-								class="form-control mr-sm-2" placeholder="Search"
-								aria-label="Search"></input>
-						</div>
-						<input type="submit" value="ProductsExcel">
-					</form>
-				</div>
-
-				<a href='${pageContext.request.contextPath}'>回首頁</a><BR> <br>
 			</section>
 		</div>
 
@@ -655,20 +651,33 @@ s// 	<!-- =============================================Dataisl==================
 		<div class="right">
 
 			<!-- =============================================Dataisl=================================================================		 -->
+
 			<section class="container">
 				<div class="row">
-					<div>
-						<img width='300' height='350'
-							src="<c:url value='/getProductPicture/${product.product_id}'/>" />
+				
+					<div class="zerogrid" style="width: 100ch; margin: 0; padding: 0;">
+						<div class="portfolio">
+							<div class="col-1-2">
+								<div class="wrap-col">
+									<a
+										href="images/big3.jpg"
+										data-gal="prettyPhoto[1]"><span> <img
+											src="<c:url value='/getProductPicture/${product.product_id}'/>"
+											alt="" />
+									</span></a>
+								</div>
+							</div>
+						</div>
 					</div>
+
+
 					<div class="textDiv">
-						<h1>商品編號: ${product.product_id}</h1>
-						<h1>${product.name}</h1>
+						<h1 style="font-size: 30px;">商品編號: ${product.product_id}</h1>
+						<h1 style="font-size: 30px;">${product.name}</h1>
 						<p>分類: ${product.categoriesbean.name}</p>
 						<p>顏色: ${product.color}</p>
 						<p>單價: ${product.price}</p>
 						<p>${product.description}</p>
-						<p>${collection.productBean.categoriesbean.name}</p>
 						請選擇數量:<select id="quantity" name="quantity" style="width: 10ch"
 							class="form-control form-control-sm"><option value="0"
 								SELECTED id='ch'>0</option></select> <a
@@ -693,8 +702,10 @@ s// 	<!-- =============================================Dataisl==================
 						</form>
 					</div>
 				</div>
-			</section>
 
+	           	
+
+			</section>
 			<!-- =============================================Dataisl=================================================================		 -->
 
 			<form>
@@ -707,9 +718,23 @@ s// 	<!-- =============================================Dataisl==================
 		</div>
 		<div class="right"></div>
 	</div>
-	<footer>
-		<h1>FOOTER</h1>
-	</footer>
+</div>
+
+
+
+	<footer >
+		<div class="zerogrid">
+			<div class="col-full">
+				<div class="wrap-col">
+					&copy; Copyright &copy; 2013.Company name All rights reserved.<a
+						target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
+				</div>
+			</div>
+		</div>
+	</footer >
+	<div style="display: none">
+		<script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540'
+			language='JavaScript' charset='gb2312'></script>
+	</div>
 </body>
 </html>
-
