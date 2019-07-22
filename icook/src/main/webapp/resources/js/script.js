@@ -50,6 +50,7 @@ function sendMessage() {
 	var from = document.getElementById('from').value;
     var text = document.getElementById('text').value;
     stompClient.send("/forum/overview/app/chat", {}, JSON.stringify({'from': from, 'text': text}));
+    $("#text").val("");
 }
 
 function serviceMessage(hint) {
@@ -65,46 +66,21 @@ function serviceMessage(hint) {
 function showMessageOutput(messageOutput) {
     var response = document.getElementById('response');
     var p = document.createElement('p');
-    var divTT= document.createElement('div');
+    p.style.wordWrap = 'break-word';
+    if(messageOutput.from == document.getElementById('from').value){
+    	p.style.textAlign="right";
+    } else {
+    	p.style.textAlign="left";
+    }
     
-    divTT.class= 'toast';
-    divTT.id= 'divTT';
-    divTT.style.textAlign= 'left';
-    divTT.style.width= '250px';
-    divTT.style.height= '85px';
-    divTT.style.backgroundColor= '#02df82';
-    divTT.style.margin= 'auto';
-
-    var divTH = document.createElement('div');
-    divTH.class= "toast-header";
-    divTH.id= "divTH";
+    //製造回應元素
     
-    var divImg = document.createElement('img');
-    divImg.src= '...';
-    divImg.class= 'rounded mr-2';
-    divImg.alt= '...';
-
-    var username = document.createElement('strong');
-    username.style.margin= 'auto';
-    username.text= 'username';
-
-    var time = document.createElement('small');
-    time.id= 'time'
-    time.style.float = "right";
-    
-
-    var divTB = document.createElement('div');
-    divTB.class= 'toast-body';
-    divTB.text = 'message';
-    divTB.id= 'divTB';
-    
-    var blank = document.createElement('br');
 
     if (messageOutput.from !== 'service msg') {
-//        p.appendChild(document.createTextNode(messageOutput.from + ": " + messageOutput.text + " (" + messageOutput.time + ")"));
-        username.appendChild(document.createTextNode(messageOutput.from));
-        time.appendChild(document.createTextNode(messageOutput.time));
-        divTB.appendChild(document.createTextNode(messageOutput.text));
+        p.appendChild(document.createTextNode(messageOutput.from + ": " + messageOutput.text + " (" + messageOutput.time + ")"));
+//        username.appendChild(document.createTextNode(messageOutput.from));
+//        time.appendChild(document.createTextNode(messageOutput.time));
+//        divTB.appendChild(document.createTextNode(messageOutput.text));
 
     } else {
 
@@ -124,19 +100,8 @@ function showMessageOutput(messageOutput) {
                 break;
         }
     }
-//   $("#response").append(("<div class='toast' role='alert' aria-live='assertive' aria-atomic='true' data-autohide='false'><div class='toast-header'><img src='...' class='rounded mr-2' alt='...'><strong class='mr-auto'>Bootstrap</strong><small class='text-muted'>justnow</small></div><div class='toast-body'>See? Just like this.</div>"))
-//    $("#response").append(("<div class='toast' role='alert' aria-live='assertive' aria-atomic='true' data-autohide='false'><div class='toast-header'><img src='...' class='rounded mr-2' alt='...'><strong class='mr-auto'>" + messageOutput.from +"</strong><small class='text-muted'>" + messageOutput.time + "</small></div><div class='toast-body'>" + messageOutput.text + "</div>"))
-    response.appendChild(divTT);
-    $("#divTT").attr('aria-live','assertive');
-    $("#divTT").attr('aria-atomic','true');
-    $("#divTT").attr('data-autohide','false');
-    divTT.appendChild(divTH);
-    divTH.appendChild(divImg);
-    divTH.appendChild(username);
-    $("#username").attr('class','mr-auto');
-    divTH.appendChild(time);
-    divTT.appendChild(divTB);
-    response.appendChild(blank);
+    //塞入回應元素
+    response.appendChild(p);
     
     
     if (messageOutput.users.length > 0) {
