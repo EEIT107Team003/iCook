@@ -309,9 +309,9 @@ public class AticleController {
 			errorMessage.put("error_Article_content", "必須輸入文章");
 		}
 		
-		if(articlebean.getArticle_date()==null) {
-			errorMessage.put("error_Article_date", "必須輸入日期");
-		}	
+//		if(articlebean.getArticle_date()==null) {
+//			errorMessage.put("error_Article_date", "必須輸入日期");
+//		}	
 		if(articlebean.getArticle_title()==null||articlebean.getArticle_title().trim().length()==0) {
 			errorMessage.put("error_Article_title", "必須輸入標題");
 		}

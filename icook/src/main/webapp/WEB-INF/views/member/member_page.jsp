@@ -51,34 +51,6 @@
 <script>
 
 	$(document).ready(function() {
-			$("#trackMe").click(function(){
-				if($("#userId").val().trim()!=""){
-					$.ajax({ 
-						url : "${pageContext.request.contextPath}/members/page/track",
-						type : "GET",
-						dataType : "json",
-						data:{member_id:$("#memberId").val()},
-						async : true,
-						success : function(data) {
-							var names = JSON.parse(JSON.stringify(data).split(","));
-							var txt = "";			
-							var txt2 = "";
-							
-							txt+="<button id=trackCancel name=trackCancel>取消追蹤</button>"
-							$("#trackbutton").html(txt);
-							
-							$("#tracked_num").html(names.length);
-						},
-						error : function(data, textStatus, errorThrown) {
-							console.log("error: "+data);
-						},
-					});
-				}else{
-					$("#trackMe_nologin").click();	
-				}
-			});
-		
-		
 		if($("#userId").val().trim()!=""){
 			$.ajax({ 
 				url : "${pageContext.request.contextPath}/members/page/checkTracked",
@@ -90,16 +62,22 @@
 					var names = JSON.parse(JSON.stringify(data).split(","));
 					var txt = "";				
 					if(names.length!=0){
-						txt+="<button id=trackCancel name=trackCancel>取消追蹤</button>"
-							$("#trackbutton").html(txt);
+						txt+="<input type='button' id='trackCancel' name='trackCancel' value='取消追蹤' onclick='trackCancel()';/>"
+						$("#trackbutton").html(txt);
+					}else{
+						txt+="<input type='button' id='trackMe' name='trackMe' value='加入追蹤' onclick='trackMe()';/>"
+						$("#trackbutton").html(txt);	
 					}
 				},
 				error : function(data, textStatus, errorThrown) {
 					console.log("error: "+data);
 				},
 			});
+		}else{
+			var txt = "";
+			txt+="<input type='button' id='trackMe' name='trackMe' value='加入追蹤' onclick='trackMe()';/>"
+				$("#trackbutton").html(txt);
 		}
-		
 		
 		$.fn.serializeObject = function() {
 			var o = {};
@@ -116,10 +94,58 @@
 			});
 			return JSON.stringify(o);
 		};
-
-// 		var currentUrl = this.location.href
-// 		console.log(currentUrl);
 	});
+	
+	
+	function trackMe(){
+		if($("#userId").val().trim()!=""){
+			$.ajax({ 
+				url : "${pageContext.request.contextPath}/members/page/track",
+				type : "GET",
+				dataType : "json",
+				data:{member_id:$("#memberId").val()},
+				async : true,
+				success : function(data) {
+					var names = JSON.parse(JSON.stringify(data).split(","));
+					var txt = "";			
+					
+					txt+="<input type='button' id='trackCancel' name='trackCancel' value='取消追蹤' onclick='trackCancel()';/>"
+					$("#trackbutton").html(txt);
+					
+					$("#tracked_num").html(names.length);
+				},
+				error : function(data, textStatus, errorThrown) {
+					console.log("error: "+data);
+				},
+			});
+		}else{
+			$("#trackMe_nologin").click();	
+		}
+	};			
+	
+	function trackCancel(){
+		if($("#userId").val().trim()!=""){
+			$.ajax({ 
+				url : "${pageContext.request.contextPath}/members/page/TrackCancel",
+				type : "GET",
+				dataType : "json",
+				data:{member_id:$("#memberId").val()},
+				async : true,
+				success : function(data) {
+					var names = JSON.parse(JSON.stringify(data).split(","));
+					var txt = "";
+					txt+="<input type='button' id='trackMe' name='trackMe' value='加入追蹤' onclick='trackMe()';/>"
+						$("#trackbutton").html(txt);
+						
+						$("#tracked_num").html(names.length);
+				},
+				error : function(data, textStatus, errorThrown) {
+					console.log("error: "+data);
+				},
+			});
+		}
+	};		
+
 </script>
 
 <style>
@@ -232,9 +258,7 @@ section {
 	</header><!--//header-->
 	
 <!-- 加入追蹤-----------------------------------------------------------------------	 -->
-		<div id="trackbutton">
-			<button id="trackMe" name="trackMe">加入追蹤</button>
-		</div>
+		<div id="trackbutton"></div>
 	
 		<div style="display:none">
 			<form method="POST" action="${pageContext.request.contextPath}/members/page/track?member_id=${member.member_id}">
@@ -251,7 +275,7 @@ section {
 					</li>
 					<li><a href="user_mycollectrecipe" data-toggle="tab">我的收藏</a>
 					</li>
-					<li><a id="user_mytrack" data-toggle="tab">我的追蹤</a></li>
+<!-- 					<li><a id="user_mytrack" data-toggle="tab">我的追蹤</a></li> -->
 					<li><a href="user_myforum" data-toggle="tab">我的文章</a></li>
 				</ul>
 

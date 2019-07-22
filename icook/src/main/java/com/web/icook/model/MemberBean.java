@@ -39,46 +39,45 @@ public class MemberBean implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY,generator="generatorName")
 	@GenericGenerator(name = "generatorName", strategy = "native")
 	private Integer member_id;
-	
 	// 電子郵件(不重複)*
 	@Column(unique = true)
 	private String username;
-	
-	// 密碼(不重複)*
-	@Column(unique = true)
+	// 密碼
 	private String password;
-	// 暱稱(不重複)*
-	@Column(unique = true)
+	// 暱稱
 	private String nickname;
-	//會員簡介
-	@Column(length = 50 )
-	private String resume;
 	// 會員電話
 	private String member_phone_num;
+	//收貨地址
+	private String address;
+	//會員簡介
+	@Column(columnDefinition="varchar(50)")
+	private String resume;
+	
 	// 大頭貼
 	@JsonIgnore
 	private Blob member_photo;
-	// 被追蹤數
-	private Integer tracked_num;
-	// 發表食譜數量
-	private Integer recipe_num;
 	// 封面圖片
 	@JsonIgnore
 	private Blob cover_photo;
-	// 註冊時間
-	private Date register_date;
-	// 是否水桶(0.公開 1.隱藏)
-	private Boolean enabled;
 	// 大頭貼檔名
 	private String fileName_member;
 	// 個人封面檔名
 	private String fileName_cover;
+	
+	// 被追蹤數
+	private Integer tracked_num;
 	// 發文篇數
 	private Integer forum_num;
+	// 發表食譜數量
+	private Integer recipe_num;
+	
+	// 註冊時間
+	private Date register_date;
+	// 是否水桶(0.公開 1.隱藏)
+	private Boolean enabled;
 	// 權限
 	private String role;
-	//收貨地址
-	private String address;
 	
 	@XmlTransient
 	@Transient
@@ -106,8 +105,8 @@ public class MemberBean implements Serializable {
 	@JsonIgnore
 	private Set<MyTrackBean> tracked = new LinkedHashSet<>();
 
-	@JsonIgnore
 	@OneToMany(mappedBy = "memberBean")
+	@JsonIgnore
 	private Set<ForumMainBean> article = new LinkedHashSet<>();
 
 	@OneToMany(mappedBy = "memberbean", cascade = CascadeType.ALL)

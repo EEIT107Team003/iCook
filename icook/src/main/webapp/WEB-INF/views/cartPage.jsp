@@ -2,14 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
-
 <head>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
+<!-- <link rel="stylesheet" -->
+<!-- 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" -->
+<!-- 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" -->
+<!-- 	crossorigin="anonymous"> -->
 <link rel='stylesheet'
 	href='${pageContext.request.contextPath}/css/fontawesome-free/css/all.min.css'
 	type="text/css" />
@@ -37,6 +37,26 @@
 			window.location.href = '/icook/deleteCart?id=';
 		}
 	}
+	
+	
+// 	$(document).ready(function(){
+// 		getStock();
+// 		function getStock(){
+// 			var names = parseInt(${cart.value.productBean.stock})
+// 			var txt = "";
+// 			for(var i=1;i<names;i++){
+// 				txt+="<option value= '"+i+"'>" +i+"</option>"
+// 			}
+// 			$("#quantity").append(txt);
+// 		}
+// 		$("#quantity").change(function(){
+// 			var txt = $("#quantity :selected").val();
+// 			$("#quan").val(txt);
+// 		})
+// 	})
+	
+	
+	
 </script>
 <style type="text/css">
 th, td {
@@ -58,8 +78,7 @@ th, td {
 
 		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-				<li class="nav-item"><a class="nav-link"
-					href='/icook/products'>市集</a></li>
+				<li class="nav-item"><a class="nav-link" href='/icook/products'>市集</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">食譜</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">修改商品</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">新增商品</a></li>
@@ -75,18 +94,17 @@ th, td {
 		</div>
 	</nav>
 	<div class="progress">
-		<div class="progress-bar progress-bar-striped bg-info"
+		<div class="progress-bar progress-bar-striped"
 			role="progressbar" style="width: 25%" aria-valuenow="25"
 			aria-valuemin="0" aria-valuemax="100"></div>
 	</div>
 	<table id="tfhover" class="table table-striped table-hover">
 		<tr>
-			<th>產品號</th>
-			<th>圖片</th>
-			<th>數量</th>
+			<th>產品號asxa</th>
+			<th>圖片sdcsdc</th>
+			<th>數量sdcsdc</th>
 			<th>單價</th>
 			<th>小計</th>
-			<th></th>
 			<c:set var="contains" value="no" />
 			<c:if test="${empty shoppingCart}">
 				<c:set var="contains" value="yes" />
@@ -119,13 +137,13 @@ th, td {
 			<tr>
 				<td>${cart.value.productBean.product_id}</td>
 				<td><img width='30' height='30'
-					src="<c:url value='/getPicture/${cart.value.productBean.product_id}' />" /></td>
+					src="<c:url value='/getProduct/${cart.value.productBean.product_id}'/>" /></td>
 				<td>${cart.value.quantity}</td>
 				<td>${cart.value.productBean.price}</td>
 				<td>${cart.value.subtotal}</td>
 				<td><button type='button' class="btn btn-primary"
 						id='${cart.value.productBean.product_id}' onclick='editorId(this)'>
-						<i class="fas fa-edit"></i>確認修改(改下拉)
+						<i class="fas fa-edit"></i>修改kkKkk(改下拉)
 					</button></td>
 				<td><button type='button' class="btn btn-danger"
 						id='${cart.value.productBean.product_id}' onclick='deleId(this)'>
@@ -134,6 +152,14 @@ th, td {
 			</tr>
 			<c:set value="${sum + cart.value.subtotal}" var='sum' />
 		</c:forEach>
+		<form method='POST' action="<c:url value='/product/addToCart'/>">
+			kkkk<input type="hidden" name="productId"
+				value="${product.product_id}" /> <input type="hidden" name="price"
+				value="${product.price}" />
+			<%-- 								<c:set value="" var="quan1"/> --%>
+			<%-- 						<c:out value="${quan1}"></c:out> --%>
+			<input type="hidden" name="quan" id='quan' value="" />
+		</form>
 		<tr>
 			<th></th>
 			<th></th>
