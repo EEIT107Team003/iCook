@@ -67,7 +67,11 @@ public class ProductController {
 	@Autowired
 	MemberService mservice;
 	
-	
+	@RequestMapping(value = "/MultiplePicture", method = RequestMethod.GET)
+	public List<ProductBean> MultiplePicture() {
+		System.out.println("==========MultiplePicture=============");
+		return null;
+	}
 	
 
 	@ResponseBody

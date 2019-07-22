@@ -382,9 +382,17 @@ font-size:20px;
 
 					<div class="formGroup">
 						<label for="productImage">圖片 : </label>
-						<form:input id="productImage" path="productImage" type='file' />
+						<form:input id="productImage" path="productImage" type='file' accept="image/gif, image/jpeg, image/png" />
 					</div>
                     <div id="uploadImg"></div>
+                     <div>
+						<input type="file" id="progressbarTWInput"
+							accept="image/gif, image/jpeg, image/png"multiple ></input>
+						<div id="preview"
+							style="width: 100%; height: 300px; overflow: scroll;">
+							<p>目前沒有圖片</p>
+						</div>
+                     </div>
                     <div class="formGroup">
 						<label for="m1"><input type="radio" name="gender" value="1" >   上架   </label>
 						<label> <input type="radio" name="gender" value="2">    下架         </label>
@@ -398,17 +406,42 @@ font-size:20px;
 					<div class="formGroup">
 						<input id="btnAdd" type='submit' class='btn btn-primary' />
 					</div>
-
 				</fieldset>
 			</form:form>
-		</section>
+
+		    </section>
 		
 				
 <script>
 
+
+$("#progressbarTWInput").change(function(){
+	  $("#preview").html(""); // 清除預覽
+	  readURLIMGS(this);
+	});
+
+	function readURLIMGS(input){
+	  if (input.files && input.files.length >= 0) {
+	    for(var i = 0; i < input.files.length; i ++){
+	      var reader = new FileReader();
+	      reader.onload = function (e) {
+	        var img = $("<img width='150px' height='150px'>").attr('src', e.target.result);
+	        $("#preview").append(img);
+	      }
+	      reader.readAsDataURL(input.files[i]);
+	    }
+	  }else{
+	     var noPictures = $("<p>目前沒有圖片</p>");
+	     $("#preview").append(noPictures);
+	  }
+	}
+
+
+	
+	
 $("#productImage").change(function(){
   readURL(this);
-  var txt="<img id='preview_progressbarTW_img' src='#' style='margin-left:5ch;' width='300px' height='300px' />"
+  var txt="<img id='preview_progressbarTW_img' src='#' style='margin-left:5ch;' width='150px' height='150px' />"
   $("#uploadImg").html(txt);
 });
 
