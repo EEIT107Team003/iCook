@@ -116,8 +116,7 @@ td, th {
 				<div class="col-full">
 					<div class="wrap-col">
 						<h1>
-							<a href="index2"><img src="images/logo.png" height='200px'
-								width='80%' alt="EXTERIOR"></a>
+							<a href="index2"><img src="images/logo.png" alt="EXTERIOR"></a>
 						</h1>
 
 						<div class="menu_block">
@@ -130,25 +129,41 @@ td, th {
 										</ul></li>
 									<li><a href="icookMenu">查看食譜</a>
 										<ul>
-
 											<li><a href="#">cat1</a></li>
 											<li><a href="#">cat2</a></li>
 											<li><a href="#">cat3</a></li>
-										</ul>
+										</ul></li>
 									<li><a href="icookLife">生活誌</a></li>
-									<li><a href="icookVideo">討論區</a></li>
-									<li><a href="icookProducts">市集</a>
+									<li><a href="forum/overview">討論區</a></li>
+									<li><a href="A_articlemainpage">文章區</a>
 										<ul>
-											<li class="with_ul current"><a href="cartPage">購物車</a></li>
+											<li><a href="A_article">test</a></li>
+
 										</ul></li>
 
-									<li><a href="icookLogin">會員專區</a>
+
+									<li><a href="products">市集</a>
 										<ul>
-											<li><a href="icookLogin">會員登入</a></li>
-											<li><a href="checkOrders">查看訂單</a></li>
-											<li><a href="#">會員登出</a></li>
-											<li><a href="#">新增食譜</a></li>
+
+
+											<li><a href="cartPage">購物車</a></li>
 										</ul></li>
+
+									<li><a href="user">會員專區 </a>
+										<ul>
+											<c:if test="${pageContext.request.userPrincipal.name==null}">
+												<li><a href="icookLogin">會員登入</a></li>
+												<li><a href="icookRegister">會員註冊</a></li>
+											</c:if>
+											<c:if test="${pageContext.request.userPrincipal.name!=null}">
+												<li><a href="index2" data-toggle="modal"
+													data-target="#logout">會員登出</a></li>
+											</c:if>
+											<li><a href="checkOrders">查看訂單</a></li>
+											<li><a href="icookAddRecipe">新增食譜</a></li>
+											<li><a href="backStage">後台</a></li>
+											<ul></li>
+
 								</ul>
 							</nav>
 							<div class="clear"></div>
@@ -159,6 +174,29 @@ td, th {
 			</div>
 		</header>
 		<!--=======content================================-->
+			<!-- 確認登出 -->
+
+		<div class="modal fade" id="logout" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header" style="border-bottom: 1px solid;">
+						<h4 class="modal-title" id="myModalLabel" style="float: left">您即將登出享食天堂</h4>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">×</button>
+					</div>
+					<div class="modal-body" style="width: 100%">
+						<form method="post" action="perform_logout">
+							<button type="submit">確定登出</button>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
 		<div class="progress">
 			<div class="progress-bar progress-bar-striped bg-success"
 				role="progressbar" style="width: 25%" aria-valuenow="25"
@@ -376,8 +414,8 @@ td, th {
 			<div class="zerogrid">
 				<div class="col-full">
 					<div class="wrap-col">
-						&copy; Copyright &copy; 2013.Company name All rights reserved.<a
-							target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
+<!-- 						&copy; Copyright &copy; 2013.Company name All rights reserved.<a -->
+<!-- 							target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a> -->
 					</div>
 				</div>
 			</div>
