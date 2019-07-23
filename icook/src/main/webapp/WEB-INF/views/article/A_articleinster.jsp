@@ -45,7 +45,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/article/acss/style.css">
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
+	src="${pageContext.request.contextPath}/article/ckeditor/ckeditor.js"></script>
 </head>
 <body>
 	<nav
