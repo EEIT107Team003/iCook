@@ -83,9 +83,15 @@ public class FMServiceImpl implements IFMService {
 		
 	}
 
+	//07.22 江慶庭 -查詢member_id
 	@Override
 	public List<ForumMainBean> getByMember_id(Integer member_id) {
 		return dao.getByMember_id(member_id);
+	}
+	
+	@Override
+	public List<ForumMainBean> getPopularArticle() {
+		return dao.getPopularArticle();
 	}
 	
 	

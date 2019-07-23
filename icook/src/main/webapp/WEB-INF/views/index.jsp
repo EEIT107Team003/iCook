@@ -12,6 +12,30 @@
 </head>
 <body>
 	<script>
+		$(document).ready(
+				function() {
+					$.ajax({
+						url : "${pageContext.request.contextPath}/category",
+						type : "GET",
+						dataType : "json",
+						contentType : "application/json",
+						async : true,
+						success : function(data) {
+							var names = JSON.parse(JSON.stringify(data).split(
+									","));
+							var txt = "";
+							console.log(names);
+							for (i in names) {
+								txt += "<option value='"+i+"'>"
+										+ names[i].nickname + "</option>";
+							}
+							$("#show").append(txt);
+						},
+						error : function(data, textStatus, errorThrown) {
+							console.log(data);
+						},
+					});
+				});
 	</script>
 	<c:out value="登入者${LoginOK.member_id}"></c:out>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">

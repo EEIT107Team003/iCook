@@ -30,6 +30,8 @@ public interface IFMDao {
 	
 	public List<ForumMainBean> getByPK(Integer article_id);
 
-	List<ForumMainBean> getByMember_id(Integer member_id);
+	public List<ForumMainBean> getByMember_id(Integer member_id);
+	
+	public List<ForumMainBean> getPopularArticle();
 	
 }

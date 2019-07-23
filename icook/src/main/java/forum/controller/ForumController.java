@@ -28,6 +28,9 @@ import forum.service.IFMService;
 
 @Controller
 public class ForumController {
+	// 07.22 江慶庭 -更新memberbean.forum_num
+	@Autowired
+	MemberService memberService;
 
 	private IFMService service;
 
@@ -52,12 +55,16 @@ public class ForumController {
 	@RequestMapping(value = "/forum", method = RequestMethod.GET)
 	public String backHome(Model model) {
 		System.out.println("成功返回首頁");
+		List<ForumMainBean> fmbList = service.getAllTopic();
+		List<ForumMainBean> popFmb = service.getPopularArticle();
 		if (!getPrincipal().equals("anonymousUser")) {
 			MemberBean mb = ms.selectByUsername(getPrincipal());
 			List<MemberBean> mbList = new ArrayList<>();
 			mbList.add(mb);
 			model.addAttribute("LoginOK", mbList);
 		}
+		model.addAttribute("posts", fmbList);
+		model.addAttribute("populars", popFmb);
 		return "redirect:/forum/overview";
 		// 任何返回首頁的按鈕呼叫這個方法
 	}
@@ -93,6 +100,12 @@ public class ForumController {
 			service.insertArticle(fmb, memberBean);
 			List<ForumMainBean> fmbList = service.getAllTopic();
 			model.addAttribute("posts", fmbList);
+
+			// 07.22 江慶庭 -更新memberbean.forum_num
+			List<ForumMainBean> memberList = service.getByMember_id(memberBean.getMember_id());
+			memberBean.setForum_num(memberList.size());
+			memberService.updateMemberInfo(memberBean, memberBean.getMember_id());
+
 			return this.backHome(model);
 		} else {
 			List<ForumMainBean> fmbError = new ArrayList<>();
@@ -107,6 +120,7 @@ public class ForumController {
 	@RequestMapping(value = "/forum/overview")
 	public String overview(Model model) {
 		List<ForumMainBean> fmbList = service.getAllTopic();
+		List<ForumMainBean> popFmb = service.getPopularArticle();
 //		List<String> authors = new ArrayList<String>();
 //		List<String> nicknames = new ArrayList<String>();
 //		for(int i = 0; i < fmbList.size(); i++) {			
@@ -114,24 +128,28 @@ public class ForumController {
 //			nicknames.add(fmbList.get(i).getMemberBean().getNickname());
 //		}
 		if (!getPrincipal().equals("anonymousUser")) {
-			MemberBean mb = ms.selectByUsername(getPrincipal());
+			MemberBean mb = ms.selectByUsername(getPrincipal());			
 			List<MemberBean> mbList = new ArrayList<>();
 			mbList.add(mb);
 			model.addAttribute("LoginOK", mbList);
 		}
 		model.addAttribute("posts", fmbList);
+		model.addAttribute("populars", popFmb);
 //		model.addAttribute("authors", authors);
 //		model.addAttribute("nicknames", nicknames);
 		return "overview";
 		// 呼叫文章總覽的View
+	
 	}
 
 	@RequestMapping(value = "/forum/pick")
 	public String specificPost(@RequestParam("harticle_id") Integer harticle_id, Integer article_id, Model model) {
 		System.out.println("成功呼叫specificPost");
 		List<ForumMainBean> HeadFmb = service.getByPK(harticle_id);
+		List<ForumMainBean> popFmb = service.getPopularArticle();
 		model.addAttribute("HeadFmb", HeadFmb);
 		model.addAttribute("posts", service.getThread(harticle_id));
+		model.addAttribute("populars", popFmb);
 		if (!getPrincipal().equals("anonymousUser")) {
 			MemberBean mb = ms.selectByUsername(getPrincipal());
 			List<MemberBean> mbList = new ArrayList<>();
@@ -148,6 +166,7 @@ public class ForumController {
 		model.addAttribute("HeadFmb", HeadFmb);
 		ForumMainBean fmb = new ForumMainBean();
 		model.addAttribute("ForumMainBean", fmb);
+		
 		return "addReply";
 		// 呼叫新增回覆的View
 	}
@@ -164,6 +183,10 @@ public class ForumController {
 		if (error.isEmpty()) {
 			fmb.setHarticle_id(harticle_id);
 			service.insertReply(fmb, harticle_id, memberBean);
+			MemberBean bean = memberService.selectByUsername(getPrincipal());
+			List<ForumMainBean> memberList = service.getByMember_id(bean.getMember_id());
+			bean.setForum_num(memberList.size());
+			memberService.updateMemberInfo(bean, bean.getMember_id());
 			return "redirect:/forum/" + this.specificPost(harticle_id, article_id, model) + "?harticle_id="
 					+ harticle_id;
 		} else {
@@ -222,13 +245,24 @@ public class ForumController {
 	}
 
 	@RequestMapping(value = "/forum/delete", method = RequestMethod.GET)
-	public String deletePost(@RequestParam("article_id") Integer article_id, Integer harticle_id, Model model
-			) {		
+	public String deletePost(@RequestParam("article_id") Integer article_id, Integer harticle_id, Model model) {
 		service.delete(article_id);
 		if (!service.getThread(harticle_id).isEmpty()) {
+			// 07.22 江慶庭 -更新memberbean.forum_num
+			MemberBean memberBean = memberService.selectByUsername(getPrincipal());
+			List<ForumMainBean> memberList = service.getByMember_id(memberBean.getMember_id());
+			memberBean.setForum_num(memberList.size());
+			memberService.updateMemberInfo(memberBean, memberBean.getMember_id());
+
 			return "redirect:/forum/" + this.specificPost(harticle_id, article_id, model) + "?harticle_id="
 					+ harticle_id;
 		}
+		// 07.22 江慶庭 -更新memberbean.forum_num
+		MemberBean memberBean = memberService.selectByUsername(getPrincipal());
+		List<ForumMainBean> memberList = service.getByMember_id(memberBean.getMember_id());
+		memberBean.setForum_num(memberList.size());
+		memberService.updateMemberInfo(memberBean, memberBean.getMember_id());
+
 		return "redirect:/forum/" + this.overview(model);
 		// 刪除文章，成功後判斷討論串有無貼文挑選合適的View
 	}
@@ -281,10 +315,10 @@ public class ForumController {
 	public Integer getMemberId(@RequestParam Integer article_id) {
 		System.out.println(article_id);
 		List<ForumMainBean> fmbList = service.getByPK(article_id);
-		if(!(fmbList.isEmpty())) {
+		if (!(fmbList.isEmpty())) {
 			ForumMainBean fmb = fmbList.get(0);
 			Integer memberId = fmb.getMemberBean().getMember_id();
-			return memberId;			
+			return memberId;
 		}
 		return null;
 	}

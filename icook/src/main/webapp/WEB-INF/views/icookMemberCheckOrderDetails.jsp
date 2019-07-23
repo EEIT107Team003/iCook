@@ -44,6 +44,7 @@
 <script src="js/sForm.js"></script>
 <script src="js/jquery.prettyPhoto.js"></script>
 <script src="js/css3-mediaqueries.js"></script>
+<<<<<<< HEAD
 
 <script type="text/javascript">
 	function to_detail(obj) {
@@ -175,6 +176,161 @@
 				</table>
 			</div>
 		</div>
+=======
+<!-- google font -->
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+<!-- google font -->
+<script type="text/javascript">
+	function to_detail(obj) {
+
+		window.location.href = '/icookProject/orderdetails?id=' + obj.id;
+	}
+</script>
+<style>
+.shrink{
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-top: 5%;
+}
+td, th{
+	text-align:center;
+	font-size: 20px;
+	font-family: 'Noto Sans TC', sans-serif;
+}
+</style>
+
+<!--[if lt IE 8]>
+       <div style=' clear: both; text-align:center; position: relative;'>
+         <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+           <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+         </a>
+      </div>
+    <![endif]-->
+<!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <link rel="stylesheet" media="screen" href="css/ie.css">
+    <![endif]-->
+</head>
+<body>
+	<div class="main">
+		<!--==============================header=================================-->
+		<header>
+			<div class="zerogrid">
+				<div class="col-full">
+					<div class="wrap-col">
+						<h1>
+							<a href="index2"><img src="images/logo.png" height='200px'
+								width='80%' alt="EXTERIOR"></a>
+						</h1>
+
+						<div class="menu_block">
+							<nav>
+								<ul class="sf-menu">
+									<li><a href="index2">ICook</a></li>
+									<li><a href="icookAboutUS">關於我們</a>
+										<ul>
+											<li><a href="icookContact">聯繫我們</a></li>
+										</ul></li>
+									<li><a href="icookMenu">查看食譜</a>
+										<ul>
+
+											<li><a href="#">cat1</a></li>
+											<li><a href="#">cat2</a></li>
+											<li><a href="#">cat3</a></li>
+										</ul>
+									<li><a href="icookLife">生活誌</a></li>
+									<li><a href="icookVideo">討論區</a></li>
+									<li><a href="icookProducts">市集</a>
+										<ul>
+											<li class="with_ul current"><a href="cartPage">購物車</a></li>
+										</ul></li>
+
+									<li><a href="icookLogin">會員專區</a>
+										<ul>
+											<li><a href="icookLogin">會員登入</a></li>
+											<li><a href="checkOrders">查看訂單</a></li>
+											<li><a href="#">會員登出</a></li>
+											<li><a href="#">新增食譜</a></li>
+										</ul></li>
+								</ul>
+							</nav>
+							<div class="clear"></div>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<!--=======content================================-->
+
+		<div class="content">
+			<h1>
+				<c:out value="會員ID:${LoginOK.member_id}的第${FrontSeqOrderNo}筆消費"></c:out>
+				<hr />
+			</h1>
+
+			<div class='shrink'>
+				<div class="outer">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<td scope="col" colspan="9">送貨地址/分店資訊:<c:out value="${orderAddress}"/></td>
+							</tr>
+							<tr>
+								<td scope="col"></td>
+							</tr>
+							<tr>
+								<th scope="col">圖示</th>
+								<th scope="col">產品號</th>
+								<th scope="col">種類</th>
+								<th scope="col">描述</th>
+								<th scope="col">尺寸</th>
+								<th scope="col">顏色</th>
+								<th scope="col">單價</th>
+								<th scope="col">數量</th>
+								<th scope="col">小計</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var='orderItem' items='${orderItems_List}'>
+								<tr>
+									<td><img width='50' height='50'
+										src="<c:url value='/getProductPicture/${orderItem.productBean.product_id}'/>" /></td>
+									<td>${orderItem.productBean.product_id}</td>
+									<td>${orderItem.productBean.categoriesbean.name}</td>
+									<td>${orderItem.productBean.description}</td>
+									<td>${orderItem.productBean.unit_size}</td>
+									<td>${orderItem.productBean.color}</td>
+									<td>${orderItem.productBean.price}</td>
+									<td>${orderItem.quantity}</td>
+									<td>${orderItem.subtotal}</td>
+								</tr>
+								<c:set var='sum' value="${sum+ orderItem.subtotal}" />
+							</c:forEach>
+
+							<tr>
+								<td><input type="button" class="btn btn-outline-success"
+									name="back" value="返回" onClick="javascript:history.back();"></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><h5>
+										合計:
+										<c:out value="${sum}" />
+									</h5></td>
+							</tr>
+						</tbody>
+					</table>
+					<h1></h1>
+				</div>
+			</div>
+		</div>
+
+>>>>>>> branch 'master' of https://github.com/EEIT107Team003/iCook.git
 		<!--==============================footer=================================-->
 
 		<footer>

@@ -77,7 +77,7 @@ font-size:20px;
 </head>
 <body>
    <div class="wrapper">
-        <div class="sidebar" data-image="backStage/assets/img/sidebar-5.jpg">
+        <div class="sidebar">
             <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 

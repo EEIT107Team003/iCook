@@ -109,4 +109,14 @@ public class IcookDaoImpl implements IcookDao {
 		return list;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ArticleBean> getByArticle_Catergory(String article_catergoary) {
+		String hql = "from ArticleBean as ab where ab.article_catergoary = :article_catergoary";
+		Session session = factory.getCurrentSession();
+		List<ArticleBean> abList = new ArrayList<>();
+		abList = session.createQuery(hql).setParameter("article_catergoary", article_catergoary).getResultList();
+		return abList;
+	}
+
 }

@@ -44,10 +44,12 @@ public class CartController {
 //	public String backStage(Model model) {
 //		return "index";
 //	}
+	@RequestMapping("/icookAddRecipe")
+	public String receipe() {
 
-	
-	
-	
+		return "icookAddRecipe";
+	}
+
 	
 	// 測試
 	@RequestMapping("/finishOrderPage")

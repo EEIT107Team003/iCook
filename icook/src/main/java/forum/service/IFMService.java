@@ -31,4 +31,6 @@ public interface IFMService {
 	public List<ForumMainBean> getByPK(Integer article_id);
 	
 	public List<ForumMainBean> getByMember_id(Integer member_id);
+	
+	public List<ForumMainBean> getPopularArticle();
 }

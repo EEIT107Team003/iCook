@@ -1,6 +1,7 @@
 package com.web.icook.model;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -21,6 +22,8 @@ public class MyTrackBean implements Serializable {
 	private MemberBean memberId;
 	//被追蹤者
 	private MemberBean trackedId;
+	//追蹤時間
+	private Timestamp trackTime;
 	
 	public MyTrackBean() {
 	}
@@ -50,5 +53,13 @@ public class MyTrackBean implements Serializable {
 
 	public void setTrackedId(MemberBean trackedId) {
 		this.trackedId = trackedId;
+	}
+
+	public Timestamp getTrackTime() {
+		return trackTime;
+	}
+
+	public void setTrackTime(Timestamp trackTime) {
+		this.trackTime = trackTime;
 	}
 }

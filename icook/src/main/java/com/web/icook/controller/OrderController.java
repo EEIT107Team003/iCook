@@ -363,9 +363,6 @@ public class OrderController {
 	}
 	
 	
-	
-	
-
 	// 進入後台才有的url
 	// admin查看所有訂單
 	@RequestMapping("/adminCheckOrders")
@@ -409,6 +406,32 @@ public class OrderController {
 				System.out.println("urgentOrderNo="+ob.getOrderNo());
 			}
 			model.addAttribute("urgentOrders_No", needShipOutOrderNo);
+//			Iterator<OrderBean> iter1 = orders.iterator();
+//			List<Integer> needShipOutOrderNo = new ArrayList<>();
+//			while (iter1.hasNext()) {
+//				OrderBean ob = iter1.next();
+//				Date checkDate = new Date();
+//				//test
+//				Long Long_OrderDate=ob.getOrderDate().getTime();//why nullpointer!!!!
+//				Long Long_todaycheckDate=checkDate.getTime();
+//				System.out.println("OrderDate="+Long_OrderDate);
+//				System.out.println("checkDate="+Long_todaycheckDate);
+//				Long diffDateLong=Long_todaycheckDate-Long_OrderDate;
+//				System.out.println("diffDateLong="+diffDateLong);
+//				Long diffDateDay=diffDateLong/(1000 * 60 * 60 * 24);
+//				System.out.println("diffDateDay="+diffDateDay);
+//				System.out.println("四捨五入="+Math.ceil(diffDateLong/(1000 * 60 * 60 * 24)));;
+//				Long diffLong=checkDate.getTime()-ob.getOrderDate().getTime();
+//				Long diffDays=diffLong/(1000 * 60 * 60 * 24);
+//				//測試
+//				System.out.println("diffDays="+diffDays);
+//				if(diffDays>1) {
+//					needShipOutOrderNo.add(ob.getOrderNo());
+//				}
+//				//測試
+//				System.out.println("urgentOrderNo="+ob.getOrderNo());
+//			}
+//			model.addAttribute("urgentOrders_No", needShipOutOrderNo);
 			
 			
 //------------------------------------計算完畢-------------------------------------------------
@@ -458,6 +481,7 @@ public class OrderController {
 			ob = it.next();
 			if (ob.getOrderNo() == orderNo) {
 				model.addAttribute("orderItems_List", ob.getItems());
+				model.addAttribute("orderAddress", ob.getShippingAddress());
 				model.addAttribute("FrontSeqOrderNo", FrontSeqNoForOrderByMember);
 				//顯示系統單號
 //				model.addAttribute("OrderNo", buyerSyetemSeqNo);

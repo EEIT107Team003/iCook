@@ -18,5 +18,7 @@ public interface IcookService {
 	public ArticleBean getIcookArticle(int article_num);// 查詢單筆資料
 
 	List<ArticleBean> getByArticle_Title(String article_title);// 依標題搜尋
+	
+	List<ArticleBean> getByArticle_Catergory(String article_catergoary);
 
 }

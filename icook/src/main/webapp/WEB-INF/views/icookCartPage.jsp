@@ -135,9 +135,9 @@
 			</div>
 			<table id="tfhover" class="table table-striped table-hover">
 				<tr>
-					<th>產品號a</th>
-					<th>圖片a</th>
-					<th>數量a</th>
+					<th>產品號</th>
+					<th>圖片</th>
+					<th>數量</th>
 					<th>單價</th>
 					<th>小計</th>
 					<th></th>
