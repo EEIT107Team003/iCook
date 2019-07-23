@@ -78,6 +78,9 @@ td, th{
 	font-size: 20px;
 	font-family: 'Noto Sans TC', sans-serif;
 }
+td{
+	line-height:100px;
+}
 </style>
 
 <!--[if lt IE 8]>
@@ -212,7 +215,7 @@ td, th{
 						<tbody>
 							<c:forEach var='orderItem' items='${orderItems_List}'>
 								<tr>
-									<td><img width='50' height='50'
+									<td><img width='150' height='150'
 										src="<c:url value='/getProductPicture/${orderItem.productBean.product_id}'/>" /></td>
 									<td>${orderItem.productBean.product_id}</td>
 									<td>${orderItem.productBean.categoriesbean.name}</td>

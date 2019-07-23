@@ -8,10 +8,16 @@
 <html>
 <head>
 <script src="https://cdn.bootcss.com/web-socket-js/1.0.0/web_socket.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
 <title>Stories - Free Bootstrap 4 Template by Colorlib</title>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	crossorigin="anonymous">
 
 <link
 	href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,900"
@@ -149,7 +155,7 @@
 						</div>
 						<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.error_Article_content}</div>
 
-					
+
 
 						<div class="form-group">
 
@@ -171,11 +177,8 @@
 
 
 					</form:form>
-	<!-- 	測試跑馬燈 -->
-					
-						<input id="messageField" type="text" class="form-control" value="123456789">
-<!-- 						<input onclick="sendMsg();" value="send" type="button"> -->
-					
+
+
 				</div>
 				<!-- .col-md-8 -->
 				<div class="col-lg-4 sidebar pr-lg-5 ftco-animate">
@@ -452,19 +455,32 @@
 
 <script>
 	var webSocket = new WebSocket("ws:/localhost:8080/icook/ArtBroadcast");
-	var msgField = document.getElementById("messageField");
-	var divMsg = document.getElementById("msg-box");
-	var Broadcast = document.getElementById("ArcBroadcast");
+	var newnew = "有一則新消息"
 	function sendMsg() {
-		var msgToSend = msgField.value;
+		var msgToSend = newnew.value;
 		webSocket.send(msgToSend);
-		msgField.value = "";
 	}
 
 	webSocket.onmessage = function(message) {
-		divMsg.innerHTML += "<marquee direction='right' height='30' scrollamount='8' behavior='alternate'>"
-				+ message.data + "</marquee>";
-		divtoday.innerHTML += message.data;
+		$.notify({
+			title : '<strong>好標題</strong>',
+			icon : 'glyphicon glyphicon-star',
+			message : "飛進來了!"
+		}, {
+			type : 'info',
+			animate : {
+				enter : 'animated fadeInUp',
+				exit : 'animated fadeOutRight'
+			},
+			placement : {
+				from : "bottom",
+				align : "right"
+			},
+			offset : 20,
+			spacing : 10,
+			z_index : 1031,
+		});
+
 	}
 
 	webSocket.onopen = function() {
@@ -493,4 +509,17 @@
 						cloudServices_uploadUrl : 'https://40733.cke-cs.com/easyimage/upload/'
 					});
 </script>
+
+
+
+<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+		integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+		crossorigin="anonymous"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/article/bootstrap-notify-master/bootstrap-notify.min.js"></script>
+
 </html>
