@@ -58,18 +58,6 @@ public class MemberController {
 //	@Autowired
 //	IProductService productService;
 
-	@RequestMapping("/mm")
-	public String members(Model model, @RequestParam("member_id") Integer member_id) {
-		if (!getPrincipal().equals("anonymousUser")) {
-			return null;
-		} else {
-			MemberBean bean = memberService.selectById(member_id);
-			model.addAttribute("member", bean);
-
-			return "member/icookMembers";
-		}
-	}
-
 	// 會員首頁
 	@RequestMapping("/user")
 	public String user(@ModelAttribute("MemberBean") MemberBean bean, Model model) {
@@ -80,21 +68,6 @@ public class MemberController {
 		return "member/icookUser";
 	}
 
-	@RequestMapping(value = "/members/page")
-	public String member_page(Model model, @RequestParam("member_id") Integer member_id) {
-		int user_id = 0;
-		if((!getPrincipal().equals("anonymousUser"))) {			
-			user_id=memberService.selectByUsername(getPrincipal()).getMember_id();
-		}
-		
-		if (member_id == user_id) {
-			return "redirect:/user";
-		} else {
-			MemberBean bean = memberService.selectById(member_id);
-			model.addAttribute("member", bean);
-			return "member/icookMembers";
-		}
-	}
 
 	// 查詢我的追蹤
 	@ResponseBody
@@ -257,6 +230,23 @@ public class MemberController {
 //	}
 
 //-------------------------------  members  ---------------------------------------------------------------------------
+	//前往會員頁
+	@RequestMapping(value = "/members/page")
+	public String member_page(Model model, @RequestParam("member_id") Integer member_id) {
+		int user_id = 0;
+		if ((!getPrincipal().equals("anonymousUser"))) {
+			user_id = memberService.selectByUsername(getPrincipal()).getMember_id();
+		}
+		
+		if (member_id == user_id) {
+			return "redirect:/user";
+		} else {
+			MemberBean bean = memberService.selectById(member_id);
+			model.addAttribute("member", bean);
+			return "member/icookMembers";
+		}
+	}
+	
 	// 加入追蹤(非會員)
 	@RequestMapping(value = "/members/page/track", method = RequestMethod.POST)
 	public String trackMembers(Model model, @RequestParam("member_id") Integer member_id) {
