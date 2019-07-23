@@ -52,8 +52,8 @@
 		class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light"
 		id="ftco-navbar">
 		<div class="container">
-			<a class="navbar-brand" href="index2"><img width="240" height="111.5" src="images/logo.png"
-								alt="EXTERIOR"></a>
+			<a class="navbar-brand" href="index2"><img width="240"
+				height="111.5" src="images/logo.png" alt="EXTERIOR"></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#ftco-nav" aria-controls="ftco-nav"
 				aria-expanded="false" aria-label="Toggle navigation">
@@ -102,15 +102,15 @@
 
 
 					<h2 class="mb-3">新增一篇文章</h2>
-					
+
 					<form:form method="POST" modelAttribute="Articlebean"
 						class="bg-light p-5 contact-form" enctype="multipart/form-data">
 
-<!-- 						<div class="form-group"> -->
+						<!-- 						<div class="form-group"> -->
 
-<%-- 							<form:input path="article_date" type="text" class="form-control"  --%>
-<%-- 								placeholder="日期(西元年-月份-日期)" /> --%>
-<!-- 						</div> -->
+						<%-- 							<form:input path="article_date" type="text" class="form-control"  --%>
+						<%-- 								placeholder="日期(西元年-月份-日期)" /> --%>
+						<!-- 						</div> -->
 						<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.error_Article_date}</div>
 						<div class="form-group">
 							<form:input path="article_title" type="text" class="form-control"
@@ -149,16 +149,14 @@
 						</div>
 						<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.error_Article_content}</div>
 
-						<!-- 	測試跑馬燈 -->
+					
 
 						<div class="form-group">
-<%-- 			<form> --%>
-<!-- 				<input id="messageField" type="text" class="form-control"> -->
-<!-- 				 <input onclick="sendMsg();" value="send" type="button" > -->
-<%-- 			</form> --%>
 
-			<div id="msg-box"
-				style="width: 500px; height: 400px; background: #eee; overflow: auto;" ></div></div>
+
+							<div id="msg-box"
+								style="width: 500px; height: 400px; background: #eee; overflow: auto;"></div>
+						</div>
 
 
 
@@ -167,13 +165,17 @@
 
 
 						<div class="form-group">
-							<input type="submit" value="Send Article"
+							<input type="submit" value="Send Article" onclick="sendMsg();"
 								class="btn btn-primary py-3 px-5">
 						</div>
 
 
 					</form:form>
-
+	<!-- 	測試跑馬燈 -->
+					
+						<input id="messageField" type="text" class="form-control" value="123456789">
+<!-- 						<input onclick="sendMsg();" value="send" type="button"> -->
+					
 				</div>
 				<!-- .col-md-8 -->
 				<div class="col-lg-4 sidebar pr-lg-5 ftco-animate">
@@ -448,35 +450,35 @@
 </body>
 
 
-	<script>
-					var webSocket = new WebSocket("ws:/localhost:8080/icook/ArtBroadcast");
-					var msgField = document.getElementById("messageField");
-					var divMsg = document.getElementById("msg-box");
-					var Broadcast = document.getElementById("ArcBroadcast");
-					function sendMsg() {
-						var msgToSend = msgField.value;
-						webSocket.send(msgToSend);
-						msgField.value = "";
-					}
+<script>
+	var webSocket = new WebSocket("ws:/localhost:8080/icook/ArtBroadcast");
+	var msgField = document.getElementById("messageField");
+	var divMsg = document.getElementById("msg-box");
+	var Broadcast = document.getElementById("ArcBroadcast");
+	function sendMsg() {
+		var msgToSend = msgField.value;
+		webSocket.send(msgToSend);
+		msgField.value = "";
+	}
 
-					webSocket.onmessage = function(message) {
-						divMsg.innerHTML += "<marquee direction='right' height='30' scrollamount='8' behavior='alternate'>" + message.data+"</marquee>";
-						divtoday.innerHTML+=message.data;
-					}
+	webSocket.onmessage = function(message) {
+		divMsg.innerHTML += "<marquee direction='right' height='30' scrollamount='8' behavior='alternate'>"
+				+ message.data + "</marquee>";
+		divtoday.innerHTML += message.data;
+	}
 
-					webSocket.onopen = function() {
-						console.log("connection opened");
-					};
+	webSocket.onopen = function() {
+		console.log("connection opened");
+	};
 
-					webSocket.onclose = function() {
-						console.log("connection closed");
-					};
+	webSocket.onclose = function() {
+		console.log("connection closed");
+	};
 
-					webSocket.onerror = function wserror(message) {
-						console.log("error: " + message);
-					}
-					
-	</script>
+	webSocket.onerror = function wserror(message) {
+		console.log("error: " + message);
+	}
+</script>
 
 
 
