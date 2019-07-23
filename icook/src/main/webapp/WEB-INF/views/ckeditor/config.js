@@ -3,12 +3,6 @@
  * For licensing, see https://ckeditor.com/legal/ckeditor-oss-license
  */
 
-
-
-
-
-
-
 CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here.
 	// For complete reference see:
@@ -29,26 +23,16 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
 		{ name: 'styles' },
 		{ name: 'colors' },
-		
-		{ name: 'youtube' }
+		{ name: 'about' }
 	];
 
 	// Remove some buttons provided by the standard plugins, which are
 	// not needed in the Standard(s) toolbar.
 	config.removeButtons = 'Underline,Subscript,Superscript';
-	config.extraPlugins = 'youtube';
-	config.extraPlugins = 'videoembed';
-	config.youtube_width = '640';
-	config.youtube_height = '480';
+
 	// Set the most common block elements.
 	config.format_tags = 'p;h1;h2;h3;pre';
 
 	// Simplify the dialog windows.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
-	
-	
-
-	
-	
-	
 };

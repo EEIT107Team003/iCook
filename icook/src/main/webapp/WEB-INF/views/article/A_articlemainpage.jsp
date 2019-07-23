@@ -47,37 +47,37 @@
 <title>Stories - Free Bootstrap 4 Template by Colorlib</title>
 </head>
 <body>
-	<nav
-		class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light"
-		id="ftco-navbar">
-		<div class="container">
-			<a class="navbar-brand" href="index2"><img width="240"
-				height="111.5" src="images/logo.png" alt="EXTERIOR"></a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#ftco-nav" aria-controls="ftco-nav"
-				aria-expanded="false" aria-label="Toggle navigation">
-				<span class="oi oi-menu"></span> Menu
-			</button>
+<!-- 	<nav -->
+<!-- 		class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" -->
+<!-- 		id="ftco-navbar"> -->
+<!-- 		<div class="container"> -->
+<!-- 			<a class="navbar-brand" href="index2"><img width="240" -->
+<!-- 				height="111.5" src="images/logo.png" alt="EXTERIOR"></a> -->
+<!-- 			<button class="navbar-toggler" type="button" data-toggle="collapse" -->
+<!-- 				data-target="#ftco-nav" aria-controls="ftco-nav" -->
+<!-- 				aria-expanded="false" aria-label="Toggle navigation"> -->
+<!-- 				<span class="oi oi-menu"></span> Menu -->
+<!-- 			</button> -->
 
-			<div class="collapse navbar-collapse" id="ftco-nav">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a
-						href="${pageContext.request.contextPath}/home" class="nav-link">Home</a></li>
-					<c:if
-						test="${pageContext.request.userPrincipal.name == 'aa'||pageContext.request.userPrincipal.name =='dd'}">
-						<li class="nav-item"><a href="A_insert" class="nav-link">新增一篇文章</a></li>
-					</c:if>
-					<li class="with_ul current"><a href="index2">ICook</a></li>
-					<li class="nav-item active"><a href="A_findAll"
-						class="nav-link">Foods文章首頁</a></li>
-					<li class="nav-item"><a href="icookLogin" class="nav-link">會員專區</a></li>
-					<li class="nav-item"><a href="cartPage" class="nav-link">購物車</a></li>
-					<li class="nav-item"><a href="icookLife" class="nav-link">生活誌</a></li>
+<!-- 			<div class="collapse navbar-collapse" id="ftco-nav"> -->
+<!-- 				<ul class="navbar-nav ml-auto"> -->
+<!-- 					<li class="nav-item"><a -->
+<%-- 						href="${pageContext.request.contextPath}/home" class="nav-link">Home</a></li> --%>
+<%-- 					<c:if --%>
+<%-- 						test="${pageContext.request.userPrincipal.name == 'aa'||pageContext.request.userPrincipal.name =='dd'}"> --%>
+<!-- 						<li class="nav-item"><a href="A_insert" class="nav-link">新增一篇文章</a></li> -->
+<%-- 					</c:if> --%>
+<!-- 					<li class="with_ul current"><a href="index2">ICook</a></li> -->
+<!-- 					<li class="nav-item active"><a href="A_findAll" -->
+<!-- 						class="nav-link">Foods文章首頁</a></li> -->
+<!-- 					<li class="nav-item"><a href="icookLogin" class="nav-link">會員專區</a></li> -->
+<!-- 					<li class="nav-item"><a href="cartPage" class="nav-link">購物車</a></li> -->
+<!-- 					<li class="nav-item"><a href="icookLife" class="nav-link">生活誌</a></li> -->
 
-				</ul>
-			</div>
-		</div>
-	</nav>
+<!-- 				</ul> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</nav> -->
 	<!-- END nav -->
 
 		
@@ -103,8 +103,8 @@
 	<section class="ftco-section">
 	
 	<!-- 	跑馬燈 測試成功排版問題-->
-<!-- 	<marquee direction="left" height="30" scrollamount="8" -->
-<!-- 		behavior="alternate" id="ArcBroadcast" style="color: green;"></marquee> -->
+	<marquee direction="left" height="30" scrollamount="8"
+		behavior="alternate" id="ArcBroadcast" style="color: green;"></marquee>
 <%-- 		<form> --%>
 <!-- 				<input id="messageField" type="text" > <input -->
 <!-- 					onclick="sendMsg();" value="send" type="button" > -->
