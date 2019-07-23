@@ -475,6 +475,7 @@
 					webSocket.onerror = function wserror(message) {
 						console.log("error: " + message);
 					}
+					
 	</script>
 
 
