@@ -32,33 +32,33 @@
 		</tr>
 	</table>
 
+	<marquee direction="left" height="30" scrollamount="8" behavior="alternate" 
+	id="ArcBroadcast" style="color:green;"></marquee>
 
 		<div>
 			<form>
-				<input id="messageField" type="text"> <input
-					onclick="sendMsg();" value="send" type="button">
+				<input id="messageField" type="text" > <input
+					onclick="sendMsg();" value="send" type="button" >
 			</form>
 
 			<div id="msg-box"
-				style="width: 500px; height: 400px; background: #eee; overflow: auto;"></div>
+				style="width: 500px; height: 400px; background: #eee; overflow: auto;" ></div>
 
 
 	<script>
 					var webSocket = new WebSocket("ws:/localhost:8080/icook/hello");
 					var msgField = document.getElementById("messageField");
 					var divMsg = document.getElementById("msg-box");
-
+					var Broadcast = document.getElementById("ArcBroadcast");
 					function sendMsg() {
 						var msgToSend = msgField.value;
 						webSocket.send(msgToSend);
-						divMsg.innerHTML += "<div style='color:red'>Client> "
-								+ msgToSend + "</div>"
 						msgField.value = "";
 					}
 
 					webSocket.onmessage = function(message) {
-						divMsg.innerHTML += "Server> : " + message.data;
-
+						divMsg.innerHTML += "<marquee direction='right' height='30' scrollamount='8' behavior='alternate'>" + message.data+"</marquee>";
+						divtoday.innerHTML+=message.data;
 					}
 
 					webSocket.onopen = function() {
