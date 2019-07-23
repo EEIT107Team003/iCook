@@ -404,7 +404,45 @@
 					<!-- 					<div class="hor_separator"></div> -->
 				</div>
 
-				
+				<div class='subscribe'>
+					<div class="row">
+						<div class="bottom_block">
+							<div class="col-1-2">
+								<h3>追蹤我們</h3>
+								<div class="socials">
+									<a href="#"></a> <a href="#"></a> <a href="#"></a>
+								</div>
+								<nav>
+									<!-- 								<ul> -->
+									<!-- 									<li class="current"><a href="index.html">Home</a></li> -->
+									<!-- 									<li><a href="index-1.html">About Us</a></li> -->
+									<!-- 									<li><a href="index-2.html">Menu</a></li> -->
+									<!-- 									<li><a href="index-3.html">Portfolio</a></li> -->
+									<!-- 									<li><a href="index-4.html">News </a></li> -->
+									<!-- 									<li><a href="index-5.html">Contacts</a></li> -->
+									<!-- 								</ul> -->
+								</nav>
+							</div>
+
+							<div class="col-1-2">
+								<h3>Email 訂閱</h3>
+								<p class="col1">
+									訂閱我們讓你每天都能夠做自己喜愛的料理吧<br>
+								</p>
+
+
+							</div>
+							<div></div>
+							<form id="newsletter">
+								<label class="email"> <input type="email"
+									value="Enter e-mail address"> <a href="#" class="btn"
+									data-type="submit">訂閱</a>
+								</label>
+							</form>
+						</div>
+					</div>
+				</div>
+
 
 			</div>
 		</div>

@@ -87,7 +87,7 @@
 }
 /* contain ------------------------------------------------------------------------------------------ */
 .contain_mytrack {
-	border: 1px solid black;
+	border: 1px solid #c7c7c7;
 	width: 100%;
 	height: 130px;
 	margin-bottom: 10px;
@@ -189,8 +189,8 @@ td {
 					console.log("error: "+data);
 				},
 			});
-		});
-		
+		});	
+	
 		$("#cover_photo_image").click(function(){
 			$.ajax({
 				url : "${pageContext.request.contextPath}/user/updateCoverPhotos",
@@ -231,7 +231,7 @@ td {
 								+"<div>"
 									+"<img class=contain_mytrack_photo src=<c:url value='/getMemberPhoto/"+names[i].trackedId.member_id+"' /> />"
 								+"</div>"
-								+"<div class=contain_mytrack_Info style="+"height:175px; background-color: yellow;"+">"
+								+"<div class=contain_mytrack_Info style="+"height:175px;"+">"
 									+"<div width=100%>"
 									+"<a href=members/page?member_id="+names[i].trackedId.member_id+" class=contain_mytrack_title>"+ names[i].trackedId.nickname+"</a>"
 									+"</div>"		
@@ -262,7 +262,6 @@ td {
 					for (i in names) {
 						txt+=
 							"<div class=contain_myforum>"
-								+"<div class=contain_myforum_Info>"
 									+"<div width=100%>"
 										+"<a href=${pageContext.request.contextPath}/forum/pick?harticle_id="+names[i].harticle_id+"&article_id="+names[i].article_id+" class=contain_mytrack_title>"+"["+names[i].category+"] "+names[i].title+"</a>"
 									+"</div>"	
@@ -575,19 +574,19 @@ td {
 					
 	</div>				
 	<div class="content" style="margin-top: 50px ; ">
-			<div style="width: 100%; text-align: center;">
+			<div style="width: 100%; ">
 				<div class="container sections-wrapper"
-					style="background-color: white; border: 1px solid black">
+					style="background-color: white; border: 1px, solid, #c7c7c7">
 					<div class="row">
 						<div class="primary col-md-8 col-sm-12 col-xs-12"
-							style="float: left; border: 1px, solid, #dcdcdc; box-shadow: 4px 4px 3px 4px rgba(20%, 20%, 40%, 0.5);">
+							style="float: left; border: 1px, solid, #c7c7c7; box-shadow: 4px 4px 3px 4px rgba(20%, 20%, 40%, 0.5);">
 							<ul id="myTab" class="nav nav-tabs">
-								<li class="active"><a href="user_myrecipe"
-									data-toggle="tab">我的食譜</a></li>
+								<li class="active">
+								<a href="user_myrecipe" data-toggle="tab">我的食譜</a></li>
 								<li><a href="user_mycollectrecipe" data-toggle="tab">我的收藏</a>
 								</li>
-								<li><a id="user_mytrack" data-toggle="tab">我的追蹤</a></li>
-								<li><a id="user_myforum" data-toggle="tab">我的文章</a></li>
+								<li><a href="" id="user_mytrack" data-toggle="tab">我的追蹤</a></li>
+								<li><a href="" id="user_myforum" data-toggle="tab">我的文章</a></li>
 							</ul>
 
 							<section class="about section">
@@ -635,35 +634,11 @@ td {
 				</div>
 				<!--//masonry-->
 			</div>
-
-	<div>
-		<div class='subscribe'>
-				<div class="row" style="text-align: center;">
-					<div class="bottom_block follow">
-						<div class="col-1-2" style="float: left;" >
-							<h3>追蹤我們</h3>
-							<div class="socials">
-								<a href="#"></a> 
-								<a href="#"></a> 
-								<a href="#"></a>
-							</div>
-							<nav></nav>
-						</div>
-						<div class="col-1-2"style="float: left;">
-							<h3>Email 訂閱</h3>
-							<p class="col1">
-								訂閱我們讓你每天都能夠做自己喜愛的料理吧<br>
-							</p>
-						</div>
-						<div></div>
-						<form id="newsletter">
-							<label class="email"> <input type="email"
-								value="Enter e-mail address"> <a href="#" class="btn"
-								data-type="submit">訂閱</a>
-							</label>
-						</form>
-					</div>
-				</div>
+		<div>
+	<div >
+		<br>
+		
+				
 			</div>
 		</div>
 		</div>

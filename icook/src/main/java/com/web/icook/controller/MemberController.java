@@ -329,7 +329,7 @@ public class MemberController {
 	public String addMember(Model model) {
 		MemberBean bean = new MemberBean();
 		model.addAttribute("MemberBean", bean);
-		return "member/addMember";
+		return "member/icookRegister";
 	}
 
 	@RequestMapping(value = "/icookRegister", method = RequestMethod.POST)

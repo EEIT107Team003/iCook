@@ -288,6 +288,10 @@
 }
 /* ------------------------------------------------------------------------------------------ */
 
+td {
+	margin: 3px;
+}
+
 section {
 	border: 1px solid rgb(220, 220, 220);
 	border-top: 0px
@@ -306,8 +310,7 @@ section {
 				<div class="col-full">
 					<div class="wrap-col">
 						<h1>
-							<a href="${pageContext.request.contextPath}/index2">
-							<img src="${pageContext.request.contextPath}/images/logo.png" alt="EXTERIOR" ></a>
+							<a href="index2"><img src="${pageContext.request.contextPath}/images/logo.png" alt="EXTERIOR" ></a>
 						</h1>
 
 						<div class="menu_block">
@@ -323,27 +326,37 @@ section {
 											<li><a href="#">cat1</a></li>
 											<li><a href="#">cat2</a></li>
 											<li><a href="#">cat3</a></li>
-										</ul>
-									<li  class="with_ul current"><a href="${pageContext.request.contextPath}/icookLife">生活誌</a></li>
-									<li><a href="${pageContext.request.contextPath}/icookVideo">討論區</a></li>
-									<li><a href="${pageContext.request.contextPath}/icookProducts">市集</a>
-									<ul>
+										</ul></li>
+									<li><a href="${pageContext.request.contextPath}/icookLife">生活誌</a></li>
+									<li><a href="${pageContext.request.contextPath}/forum/overview">討論區</a></li>
+									<li><a href="${pageContext.request.contextPath}/A_articlemainpage">文章區</a>
+										<ul>
+											<li><a href="${pageContext.request.contextPath}/A_article">test</a></li>
+
+										</ul></li>
+
+
+									<li><a href="${pageContext.request.contextPath}/products">市集</a>
+										<ul>
+
 											<li><a href="${pageContext.request.contextPath}/cartPage">購物車</a></li>
 										</ul></li>
 
-									<li><a href="${pageContext.request.contextPath}/icookLogin">會員專區</a>
+									<li><a href="${pageContext.request.contextPath}/user">會員專區</a>
 										<ul>
 											<c:if test="${pageContext.request.userPrincipal.name==null}">
-												<li><a href="icookLogin">會員登入</a></li>
-												<li><a href="icookRegister">會員註冊</a></li>
+												<li><a href="${pageContext.request.contextPath}/icookLogin">會員登入</a></li>
+												<li><a href="${pageContext.request.contextPath}/icookRegister">會員註冊</a></li>
 											</c:if>
 											<c:if test="${pageContext.request.userPrincipal.name!=null}">
-												<li><a href="index2" data-toggle="modal" data-target="#logout">會員登出</a></li>
+												<li><a href="${pageContext.request.contextPath}/index2" data-toggle="modal"
+													data-target="#logout">會員登出</a></li>
 											</c:if>
-												<li><a href="checkOrders">查看訂單</a></li>
-												<li><a href="#">新增食譜</a></li>
-										</ul>
-									</li>
+											<li><a href="${pageContext.request.contextPath}/checkOrders">查看訂單</a></li>
+											<li><a href="${pageContext.request.contextPath}/icookAddRecipe">新增食譜</a></li>
+											<li><a href="${pageContext.request.contextPath}/backStage">後台</a></li>
+											</ul></li>
+
 								</ul>
 							</nav>
 							<div class="clear"></div>
@@ -352,7 +365,7 @@ section {
 					</div>
 				</div>
 			</div>
-		</header>
+		</header>		
 <!-- 確認登出 -->
 
 	<div class="modal fade" id="logout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -376,7 +389,7 @@ section {
 		<!--=======content================================-->
 		<div>
 			<div class="member_info">
-				<div >
+				<div style="text-align: center;" >
 					<label>
 						<img class="profile-image img-responsive pull-left member_photo"
 							id="member_photo_image"
@@ -404,13 +417,14 @@ section {
 			</form>
 		</div>
 		
-		<div class="content" style="margin: 50px">
-			<div class="zerogrid">
+		
+			<div class="content" style="margin-top: 50px ; ">
+			<div style="width: 100%; ">
 				<div class="container sections-wrapper"
-					style="background-color: white; border: 1px solid black;">
+					style="background-color: white; border: 1px, solid, #c7c7c7">
 					<div class="row">
 						<div class="primary col-md-8 col-sm-12 col-xs-12"
-							style="float: left; border: 1px, solid, #dcdcdc; box-shadow: 4px 4px 3px 4px rgba(20%, 20%, 40%, 0.5);">
+							style="float: left; border: 1px, solid, #c7c7c7; box-shadow: 4px 4px 3px 4px rgba(20%, 20%, 40%, 0.5);">
 							<ul id="myTab" class="nav nav-tabs">
 								<li class="active"><a href="user_myrecipe"
 									data-toggle="tab">我的食譜</a></li>
@@ -437,7 +451,7 @@ section {
 								<div class="section-inner">
 									<h2 class="heading sr-only">Basic Information</h2>
 									<div class="content">
-										<table width="100%">
+										<table width="100%" style="margin-top: 40px">
 											<tr>
 												<th class="items">食譜數量</th>
 												<th class="items">被追蹤數</th>
@@ -461,37 +475,16 @@ section {
 					<!--//row-->
 				</div>
 				<!--//masonry-->
-
-
-					<div class="row" style="width: 100%">
-					<div class="bottom_block" style="width: 100%">
-					<div style="margin-left: 37%">
-						<div class="col-1-2" style="float: left;margin-right: 200px ">
-							<h3>Follow Us</h3>
-							<div class="socials">
-								<a href="#"></a> <a href="#"></a> <a href="#"></a>
-							</div>
-						</div>
-						<div class="col-1-2" style="float: left;">
-							<h3>Email Updates</h3>
-							<p class="col1">
-								Join our digital mailing list and get news<br> deals and be
-								first to know about events
-							</p>
-							<form id="newsletter">
-								<div class="success">Your subscribe request has been sent!</div>
-								<label class="email"> <input type="email"
-									value="Enter e-mail address"> <a href="#" class="btn"
-									data-type="submit">subscribe</a> <span class="error">*This
-										is not a valid email address.</span>
-								</label>
-							</form>
-						</div>
-					</div>
-					</div>
-				</div>
+			</div>
+		<div>
+	<div >
+		<br>
+		
+				
 			</div>
 		</div>
+		</div>
+		
 
 
 		<!--==============================footer=================================-->
@@ -499,10 +492,10 @@ section {
 	<footer>
 		<div class="zerogrid">
 			<div class="col-full">
-				<div class="wrap-col">
-					&copy; Copyright &copy; 2013.Company name All rights reserved.<a
-						target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
-				</div>
+<!-- 				<div class="wrap-col"> -->
+<!-- 					&copy; Copyright &copy; 2013.Company name All rights reserved.<a -->
+<!-- 						target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a> -->
+<!-- 				</div> -->
 			</div>
 		</div>
 	</footer>
