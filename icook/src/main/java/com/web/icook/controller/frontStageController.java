@@ -9,44 +9,51 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.web.icook.model.MemberBean;
 import com.web.icook.service.MemberService;
+
 @Controller
 public class frontStageController {
 	@Autowired
-	MemberService memberService; 
-	
+	MemberService memberService;
+
 	@RequestMapping("/index2")
 	public String toIndex2(Model model) {
 		if (getPrincipal() != "anonymousUser") {
-			MemberBean bean= memberService.selectByUsername(getPrincipal());
+			MemberBean bean = memberService.selectByUsername(getPrincipal());
 			model.addAttribute("bean", bean);
 		}
 		return "icookIndex";
 	}
+
 	@RequestMapping("/icookLogin")
 	public String toicookLogin() {
 		return "icookLogin";
 	}
+
 	@RequestMapping("/icookContact")
 	public String icookContact() {
 		return "icookContact";
 	}
+
 	@RequestMapping("/icookAboutUS")
 	public String icookAboutUS() {
 		return "icookAboutUS";
 	}
+
 	@RequestMapping("/icookMenu")
 	public String icookMenu() {
 		return "icookMenu";
 	}
+
 	@RequestMapping("/icookProducts")
 	public String icookProducts() {
 		return "icookProducts";
 	}
+
 	@RequestMapping("/icookLife")
 	public String icookLife() {
 		return "icookLife";
 	}
-	
+
 	// 取得登入帳號(username)
 	private String getPrincipal() {
 		String userName = null;
