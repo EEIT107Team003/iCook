@@ -169,7 +169,6 @@
 				</div>
 			</div>
 		</header>
-		<h1>${bean.username}+"dsdsdsdsdsdsdsdsdsds"</h1>
 		<div class="slider-relative">
 			<div class="slider-block">
 				<div class="slider">
