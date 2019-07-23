@@ -15,6 +15,8 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" ></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
 
 <!-- ========================================================================== -->
 
@@ -369,10 +371,13 @@ font-size:20px;
 					<label for="stock">庫存 : </label>
 					<form:input id="stock" path="stock" type='text' />
 				</div>
-
 				<div class="formGroup">
 					<label for="productImage">圖片 : </label>
 					<form:input id="productImage" path="productImage" type='file' accept="image/gif, image/jpeg, image/png"/>
+				</div>
+				<div class="formGroup">
+					<label for="productPuctureOne">圖片2 : </label>
+					<form:input id="productPuctureOne" path="productPuctureOne" type='file' accept="image/gif, image/jpeg, image/png"/>
 				</div>
 				<div id="uploadImg"></div>
 					<div class="formGroup">
@@ -380,7 +385,7 @@ font-size:20px;
 						<label> <input type="radio" name="gender" value="2">    下架         </label>
 					</div>
 					
-					<div class="formGroup">
+				<div class="formGroup">
 						<label for="description">商品描述 :</label>
 						<textarea id="" class="form-control" name="description" rows="6"></textarea>
 					</div>

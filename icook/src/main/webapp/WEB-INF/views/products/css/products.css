@@ -3,7 +3,10 @@
 	font-size: 10px;
 }
 .left{
-background-color: #CCEEFF;	
+background-color: #CCEEFF;
+border: 1px solid 	#DDDDDD;
+border-radius: 15px;
+padding-top:10px;	
 }
 .container {
 margin-left: 2ch;
@@ -34,9 +37,9 @@ font-size: 18px;
 .mainDiv{
 background-color: #CCEEFF;
 border: 1px solid 	#DDDDDD;
+border-radius: 15px;
 height:40ch;
 width:28ch;
-border-radius: 15px;
 }
 .mainDiv img{
 margin-left:3ch;
@@ -69,14 +72,10 @@ width:30px;
  border-right: 1px solid #cccccc ;
 }
 
-
-
 * {
 	padding: 0;
 	margin: 0;
 }
-
-
 
 .allPage {
 	overflow: auto;
@@ -95,10 +94,6 @@ width:30px;
 	float: right;
 }
 
-
-
-
-
 .list-type1{
 font-size:25px;	
 width:300px;
@@ -110,7 +105,7 @@ margin:auto;
 counter-reset: li;
 list-style: none;
 *list-style: decimal;
-font-size: 20px;
+font-size: 25px;
 font-family: 'Raleway', sans-serif;
 padding: 0;
 margin-bottom: 4em;
@@ -136,6 +131,7 @@ text-decoration: none;
 border-radius: 10em;
 transition: all .2s ease-in-out;
 margin-left:2px;;
+
 }
 
 .list-type1 a:hover{

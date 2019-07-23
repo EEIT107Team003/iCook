@@ -204,7 +204,7 @@ float:right;
 	        					+"<td>"+names[i].price+"</td>"
 	        					+"<td>"+names[i].status+"</td>"
 	        					+"<td>"+names[i].stock+"</td>"
-	        					+"<td><a class='btn btn-sm btn-outline-secondary'  href='${pageContext.request.contextPath}/products/upd?id="+names[i].product_id+"'    >Update</a> </td>"
+	        					+"<td><a  href='${pageContext.request.contextPath}/products/upd?id="+names[i].product_id+"'><img style='width:100px;height:100px;margin-top:30px;'src='product_image/updateImage.jpg' border='0'></a></td>"
 	        					+"</tr>";
 	        				}
 	        				$("#Main").html(txt);
@@ -382,7 +382,7 @@ float:right;
         					+"<td>"+names[i].price+"</td>"
         					+"<td>"+names[i].status+"</td>"
         					+"<td>"+names[i].stock+"</td>"
-        					+"<td><a class='btn btn-sm btn-outline-secondary'  href='${pageContext.request.contextPath}/products/upd?id="+names[i].product_id+"'    >Update</a> </td>"
+        					+"<td><a  href='${pageContext.request.contextPath}/products/upd?id="+names[i].product_id+"'><img style='width:100px;height:100px;margin-top:30px;'src='product_image/updateImage.jpg' border='0'></a></td>"
         					+"</tr>";
         				}
         				$("#Main").html(txt);

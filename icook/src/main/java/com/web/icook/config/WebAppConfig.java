@@ -52,6 +52,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/product_css/**").addResourceLocations("/WEB-INF/views/products/css/");
 		registry.addResourceHandler("/product_js/**").addResourceLocations("/WEB-INF/views/products/js/");
 		registry.addResourceHandler("/product_image/**").addResourceLocations("/WEB-INF/views/products/images/");
+		registry.addResourceHandler("/product_pathImage/**").addResourceLocations("C:/Users\\User/icookPictures/");
 		registry.addResourceHandler("/backStage/**").addResourceLocations("/WEB-INF/views/backStage/");
 		//==========亘哲==============
 		

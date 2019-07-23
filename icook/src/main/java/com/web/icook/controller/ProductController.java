@@ -67,12 +67,6 @@ public class ProductController {
 	@Autowired
 	MemberService mservice;
 	
-	@RequestMapping(value = "/MultiplePicture", method = RequestMethod.GET)
-	public List<ProductBean> MultiplePicture() {
-		System.out.println("==========MultiplePicture=============");
-		return null;
-	}
-	
 
 	@ResponseBody
 	@RequestMapping(value = "/SelectByCategoriesAndDescriptionForProduct/{txt}", method = RequestMethod.GET)
@@ -82,14 +76,6 @@ public class ProductController {
 		String fileName = txt;// Categories.name AjAX後端抓不到 硬塞一個String去接
 		String remark = service.getOneCategory(txt).get(0).getCategorybean().getName();// Category.name AjAX後端抓不到 硬塞一個String去接
 		String description="";
-//        System.out.println("remark : "+remark);
-		//		String description = searchBean.getDescription().trim();
-//		if (searchBean.getStock() == null) {
-//			searchBean.setStock(1);
-//		}
-//		int stock = searchBean.getStock();
-//		System.out.println("pageValue :" + stock);
-//		System.out.println("remark :" + remark + "fileName :" + fileName + "，description :" + description);
 		List<ProductBean> list = service.SelectByCategoriesAndDescriptionForPage(remark, fileName, description);
 		for(ProductBean bb :list) {
 			System.out.println("id :"+bb.getProduct_id()
@@ -270,7 +256,7 @@ public class ProductController {
 //  ResponseEntity代表一個所有回應的東西(狀態列:Status Line、回應標頭  Response Header、 回應本體 Response Body)
 //  會直接挑過Dispatcher 直接回應給Browser	。@PathVariable("可省略，但上面大括號內德變數要跟後面的變數一樣")
 	public ResponseEntity<byte[]> getPicture(HttpServletResponse resp, @PathVariable Integer product_Id) {
-		System.out.println("getProductPicture================");
+//		System.out.println("getProductPicture================");
 //             回應本體的資料型態                   
 		String filePath = "/resources/images/NoImage.jpg";
 //                           設定預設圖路徑
@@ -345,7 +331,7 @@ public class ProductController {
 //限定輸入欄位	
 	@InitBinder
 	public void whiteListing(WebDataBinder binder) {
-		binder.setAllowedFields("product_id，", "description", "unit_size", "price", "color", "stock", "productImage");
+		binder.setAllowedFields("product_id，", "description", "unit_size", "price", "color", "stock", "productImage","productPuctureOne");
 	}
 
 	@RequestMapping(value = "/products/upd", method = RequestMethod.GET)
@@ -391,8 +377,9 @@ public class ProductController {
 	}
 
 //submit表單
+	@SuppressWarnings("resource")
 	@RequestMapping(value = { "/products/add", "/products/upd" }, method = RequestMethod.POST)
-	public String processAddNewProductForm(@ModelAttribute("productBeanObject") ProductBean bb,
+	public String processAddProductForm(@ModelAttribute("productBeanObject") ProductBean bb,
 			@RequestParam String product_id, Model model, BindingResult result, HttpServletRequest request)
 			throws IOException {
 		System.out.println("\nSubmit Form Start============================================");
@@ -426,6 +413,7 @@ public class ProductController {
 		System.out.println("product_id======================================" + product_id);
 
 		MultipartFile productImage = bb.getProductImage();
+		MultipartFile productPuctureOne = bb.getProductPuctureOne();
 		String originalFilename = productImage.getOriginalFilename();
 		bb.setFileName(originalFilename);
 		String ext = null;
@@ -435,13 +423,34 @@ public class ProductController {
 		// ext :抓檔案副檔名 從" . "以後含點都取
 
 		// -----------------------------------------寫入寫出-----------------------------------------------------------------------
+		List<ProductBean>list =service.getAllProducts();
+		int totalcounts=0;
+		for(ProductBean  bean:list ) {
+			totalcounts++;
+		}
+		totalcounts++;//計算總Products數並加一給outputStream 當作圖片命名用
+		String rootDirectory = context.getRealPath("/");
+		String contextPath=context.getContextPath();
 		System.out.println("=====input start");
+		System.out.println("contextPath :"+contextPath);
+		System.out.println("ID :"+product_id);
+		originalFilename=product_id;
 		InputStream ins = productImage.getInputStream();
-		OutputStream ous = new FileOutputStream(
-				"C:\\Users\\屁股\\git\\repository\\icook\\src\\main\\webapp\\WEB-INF\\views\\products\\images\\savePicture"
-						+ originalFilename + ext);
+		OutputStream ous = new FileOutputStream("C:\\Users\\屁股\\Desktop\\icookPictures"
+						+ totalcounts+"_1" + ext);
 		int lenght = -1;
 		byte[] tmp = new byte[81920];
+
+		while ((lenght = ins.read(tmp)) != -1) {
+			ous.write(tmp, 0, lenght);
+		}
+		
+		ins=productPuctureOne.getInputStream();
+		ous = new FileOutputStream("C:\\Users\\屁股\\Desktop\\icookPictures/"
+				+ totalcounts+"_2" + ext);
+		bb.setProductPuctureOnePath("C:\\Users\\屁股\\Desktop\\icookPictures/"
+				+ totalcounts+"_2" + ext);
+		tmp  = new byte[81920];
 
 		while ((lenght = ins.read(tmp)) != -1) {
 			ous.write(tmp, 0, lenght);
@@ -450,7 +459,7 @@ public class ProductController {
 		ous.close();
 		System.out.println("=====outputf finish");
 		// -----------------------------------------寫入寫出-----------------------------------------------------------------------
-		String rootDirectory = context.getRealPath("/");
+		
 
 		String Nameof_contextOath = context.getContextPath();
 		String getServletPath = request.getServletPath();

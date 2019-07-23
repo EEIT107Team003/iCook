@@ -16,7 +16,7 @@ public interface ProductDao {
 	
 	public List<ProductBean>     getAllProducts();
 	public List<CategoryBean>    getAllCategory();
-	public List<CategoriesBean>    getOneCategory              (String categoriesName);
+	public List<CategoriesBean>  getOneCategory              (String categoriesName);
 	public List<CategoriesBean>  getAllCategories            (String name);
 //	public List<ProductBean>     gteAllProductByCategories   (String name);
 	public List<ProductBean>     SelectByCategoriesAndDescription   (String remark,String name,String description);

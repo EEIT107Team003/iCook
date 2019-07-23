@@ -26,7 +26,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "Product")
@@ -58,6 +57,7 @@ public class ProductBean implements Serializable {
 	private String fileName;
 	@Column(name = "product_remark")
 	private String remark;
+	private String productPuctureOnePath;
 	@JsonBackReference(value="COproductBean")
 	@OneToMany(mappedBy = "COproductBean",orphanRemoval = true ,fetch = FetchType.EAGER )
 	@Cascade(value= {org.hibernate.annotations.CascadeType.SAVE_UPDATE,
@@ -88,6 +88,18 @@ public class ProductBean implements Serializable {
 	@Transient
 	private MultipartFile productImage;
 	
+	@JsonIgnore
+	@XmlTransient
+	@Transient
+	private MultipartFile productPuctureOne;
+	
+	public String getProductPuctureOnePath() {
+		return productPuctureOnePath;
+	}
+
+	public void setProductPuctureOnePath(String productPuctureOnePath) {
+		this.productPuctureOnePath = productPuctureOnePath;
+	}
 
 	public MultipartFile getProductImage() {
 		return productImage;
@@ -202,6 +214,14 @@ public class ProductBean implements Serializable {
 
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+
+	public MultipartFile getProductPuctureOne() {
+		return productPuctureOne;
+	}
+
+	public void setProductPuctureOne(MultipartFile productPuctureOne) {
+		this.productPuctureOne = productPuctureOne;
 	}
 
 

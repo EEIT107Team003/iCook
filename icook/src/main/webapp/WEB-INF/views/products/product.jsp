@@ -594,7 +594,7 @@ font-size:20px;
 						<p>顏色: ${product.color}</p>
 						<p>單價: ${product.price}</p>
 						<p>${product.description}</p>
-						請選擇數量:<select id="quantity" name="quantity" style="width: 10ch"
+						請選擇數量:<select id="quantity" name="quantity" style="width: 15ch"
 							class="form-control form-control-sm"><option value="0"
 								SELECTED id='ch'>0</option></select> <a
 							href="<spring:url value='/products' />" class="btn btn-default">
@@ -606,8 +606,6 @@ font-size:20px;
 							<input type="hidden" name="productId"
 								value="${product.product_id}" /> <input type="hidden"
 								name="price" value="${product.price}" />
-							<%-- 								<c:set value="" var="quan1"/> --%>
-							<%-- 						<c:out value="${quan1}"></c:out> --%>
 							<input type="hidden" name="quan" id='quan' value="" />
 							<div align="center">
 								<button type="button" class="btn btn-warning"

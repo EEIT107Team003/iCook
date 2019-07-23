@@ -46,7 +46,7 @@
 
 fieldset {
 /*     padding-left: 5cm; */
-	border: 1px solid rgb(255, 232, 57);
+/* 	border: 1px solid rgb(255, 232, 57); */
     margin-left:3ch;
     margin-top:1ch;
     padding:2ch; 
@@ -64,7 +64,7 @@ width: 30%;
 margin-right:10ch;
 }
 .rightIN{
-border: 1px solid rgb(255, 232, 57);
+/* border: 1px solid rgb(255, 232, 57); */
 }
 .content{
    overflow:auto;  
@@ -76,7 +76,7 @@ border: 1px solid rgb(255, 232, 57);
 }
 
 .pre{
-text-align: center;
+text-align: left;
 }
 
 #formUp{
@@ -235,6 +235,7 @@ font-size:20px;
 	<script>
 		$(document).ready(function() {
 			
+			
 			function catchSelect1(){
 				var txt = $("#exampleFormControlSelect1 :selected").text();
 				if(txt=='請選擇'){
@@ -347,8 +348,8 @@ font-size:20px;
 							id="staticEmail" value="編號 :${productBeanObject.product_id}">
 					</div>
 					<div class="formGroup">
-						<label for='name'>名稱描述 : </label>
-						<form:input id="name" path="name" type='text' />
+						<label for='name'>名稱 : </label>
+						<form:input id="name" path="name" type='text' value="${previousbean.name}"/>
 					</div>
 					<div class="formGroup">
 						<label for="exampleFormControlSelect1">種類 :</label> <select
@@ -364,36 +365,34 @@ font-size:20px;
 
 					<div class="formGroup">
 						<label for='unit_size'>單位 : </label>
-						<form:input id="unit_size" path="unit_size" type='text' />
+						<form:input id="unit_size" path="unit_size" type='text' value="${previousbean.unit_size}"/>
 					</div>
 					<div class="formGroup">
 						<label for="price">價格 : </label>
-						<form:input id="price" path="price" type='text' />
+						<form:input id="price" path="price" type='text' value="${previousbean.price}"/>
 					</div>
 					<div class="formGroup">
 						<label for="color">顏色 : </label>
-						<form:input id="color" path="color" type='text' />
+						<form:input id="color" path="color" type='text'  value="${previousbean.color}"/>
 					</div>
 
 					<div class="formGroup">
 						<label for="stock">庫存 : </label>
-						<form:input id="stock" path="stock" type='text' />
+						<form:input id="stock" path="stock" type='text'  value="${previousbean.stock}"/>
 					</div>
-
 					<div class="formGroup">
 						<label for="productImage">圖片 : </label>
 						<form:input id="productImage" path="productImage" type='file' accept="image/gif, image/jpeg, image/png" />
 					</div>
                     <div id="uploadImg"></div>
-                    <form>
-                     <div>
-						<input type="file" id="progressbarTWInput"
-							accept="image/gif, image/jpeg, image/png"multiple ></input>
-						<div id="preview"
-							style="width: 100%; height: 300px; overflow: scroll;">
-							<p>目前沒有圖片</p>
-						</div>
-                     </div>
+<!--                      <div> -->
+<!-- 						<input type="file" id="progressbarTWInput" -->
+<!-- 							accept="image/gif, image/jpeg, image/png"multiple ></input> -->
+<!-- 						<div id="preview" -->
+<!-- 							style="width: 100%; height: 300px; overflow: scroll;"> -->
+<!-- 							<p>目前沒有圖片</p> -->
+<!-- 						</div> -->
+<!--                      </div> -->
                      
                     <div class="formGroup">
 						<label for="m1"><input type="radio" name="gender" value="1" >   上架   </label>
@@ -408,7 +407,6 @@ font-size:20px;
 					<div class="formGroup">
 						<input id="btnAdd" type='submit' class='btn btn-primary' />
 					</div>
-					</form>
 				</fieldset>
 			</form:form>
 
@@ -418,28 +416,28 @@ font-size:20px;
 <script>
 
 
-$("#progressbarTWInput").change(function(){
-	  $("#preview").html(""); // 清除預覽
-	  readURLIMGS(this);
-	});
+// $("#progressbarTWInput").change(function(){
+// 	  $("#preview").html(""); // 清除預覽
+// 	  readURLIMGS(this);
+// 	});
 
-	function readURLIMGS(input){
-	  if (input.files && input.files.length >= 0) {
-	    for(var i = 0; i < input.files.length; i ++){
-	      var reader = new FileReader();
-	      reader.onload = function (e) {
-	        var img = $("<img width='150px' height='150px'>").attr('src', e.target.result);
-	        var Formimg = $("<input id='productImage_"+i+"' type='file' accept='image/gif,image/jpeg,image/png' />' ");
-	        $("#preview").append(img);
-	        $("#preview").append(Formimg);
-	      }
-	      reader.readAsDataURL(input.files[i]);
-	    }
-	  }else{
-	     var noPictures = $("<p>目前沒有圖片</p>");
-	     $("#preview").append(noPictures);
-	  }
-	}
+// 	function readURLIMGS(input){
+// 	  if (input.files && input.files.length >= 0) {
+// 	    for(var i = 0; i < input.files.length; i ++){
+// 	      var reader = new FileReader();
+// 	      reader.onload = function (e) {
+// 	        var img = $("<img width='150px' height='150px'>").attr('src', e.target.result);
+// 	        var Formimg = $("<input id='productImage_"+i+"' type='file' accept='image/gif,image/jpeg,image/png' />' ");
+// 	        $("#preview").append(img);
+// 	        $("#preview").append(Formimg);
+// 	      }
+// 	      reader.readAsDataURL(input.files[i]);
+// 	    }
+// 	  }else{
+// 	     var noPictures = $("<p>目前沒有圖片</p>");
+// 	     $("#preview").append(noPictures);
+// 	  }
+// 	}
 
 
 	
@@ -473,22 +471,37 @@ function readURL(input){
 </script>
 		<div class="right">
 			<fieldset >
+				<c:choose>
+				<c:when test="${previousbean.status==1}">
+				 <c:set var="status">上架中</c:set>。
+				</c:when>
+				<c:otherwise>
+				<c:set var="status">下架中</c:set>。
+				</c:otherwise>
+				</c:choose>
+				
 				<h1 class="pre">Previous Product</h1>
 				<div class="pre">
-					<img width='100' height='100'
+					<img width='250' height='200'
 						src="<c:url value='/getProductPicture/${previousbean.product_id}' />" />
 				</div >
 				<div class="pre">
-				<h2>編碼     :${previousbean.product_id}</h2>
-				<h2>名稱描述:${previousbean.name}</h2>
-				<h2>種類     :${previousbean.categoriesbean.categorybean.name}</h2>
-				<h2>        ${previousbean.categoriesbean.name}</h2>
-				<h4>單位      :${previousbean.unit_size}</h4>
-				<h4>color  :${previousbean.color}</h4>
-				<h4>price  :${previousbean.price}</h4>
-				<h4>stock  :${previousbean.stock}</h4>
-				<h4>status :${previousbean.status}</h4>
+				<h2>編碼      :  ${previousbean.product_id}</h2>
+				<h2>名稱      :  ${previousbean.name}</h2>
+				<h2>種類      :  ${previousbean.categoriesbean.categorybean.name} / ${previousbean.categoriesbean.name}</h2>
+				<h4>單位      :  ${previousbean.unit_size}</h4>
+				<h4>顏色      : ${previousbean.color}</h4>
+				<h4>價格      : ${previousbean.price}</h4>
+				<h4>庫存      : ${previousbean.stock}</h4>
+				<h4>狀態      : ${status}</h4>
+				<h4>路徑      : ${previousbean.productPuctureOnePath}</h4>
+					<div class="pre">
+					<img width='250' height='200'
+						src="${previousbean.productPuctureOnePath}" />
+				</div >
 				</div>
+				
+				
 				<div class="pre">
 					<p>${previousbean.description}</p>
 				</div>
