@@ -159,6 +159,11 @@ section {
 td {
 	margin: 3px;
 }
+
+.subscribe {
+	margin-right: 100px;
+	margin-left: 260px;
+}
 </style>
 <script>
 	$(document).ready(function() {
@@ -366,7 +371,7 @@ td {
 </script>
 
 </head>
-<body style="background-color: white">
+<body >
 	<div class="main">
 		<!--==============================header=================================-->
 		<header>
@@ -392,27 +397,37 @@ td {
 											<li><a href="#">cat1</a></li>
 											<li><a href="#">cat2</a></li>
 											<li><a href="#">cat3</a></li>
-										</ul>
-									<li  class="with_ul current"><a href="icookLife">生活誌</a></li>
-									<li><a href="icookVideo">討論區</a></li>
-									<li><a href="icookProducts">市集</a>
-									<ul>
+										</ul></li>
+									<li><a href="icookLife">生活誌</a></li>
+									<li><a href="forum/overview">討論區</a></li>
+									<li><a href="A_articlemainpage">文章區</a>
+										<ul>
+											<li><a href="A_article">test</a></li>
+
+										</ul></li>
+
+
+									<li><a href="products">市集</a>
+										<ul>
+
 											<li><a href="cartPage">購物車</a></li>
 										</ul></li>
 
-									<li><a href="icookLogin">會員專區</a>
+									<li><a href="user">會員專區</a>
 										<ul>
 											<c:if test="${pageContext.request.userPrincipal.name==null}">
 												<li><a href="icookLogin">會員登入</a></li>
 												<li><a href="icookRegister">會員註冊</a></li>
 											</c:if>
 											<c:if test="${pageContext.request.userPrincipal.name!=null}">
-												<li><a href="index2" data-toggle="modal" data-target="#logout">會員登出</a></li>
+												<li><a href="index2" data-toggle="modal"
+													data-target="#logout">會員登出</a></li>
 											</c:if>
-												<li><a href="checkOrders">查看訂單</a></li>
-												<li><a href="#">新增食譜</a></li>
-										</ul>
-									</li>
+											<li><a href="checkOrders">查看訂單</a></li>
+											<li><a href="icookAddRecipe">新增食譜</a></li>
+											<li><a href="backStage">後台</a></li>
+											<ul></li>
+
 								</ul>
 							</nav>
 							<div class="clear"></div>
@@ -421,8 +436,7 @@ td {
 					</div>
 				</div>
 			</div>
-		</header>
-		
+		</header>		
 		<!-- 確認登出 -->
 
 	<div class="modal fade" id="logout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -622,35 +636,63 @@ td {
 				</div>
 				<!--//masonry-->
 			</div>
-			
-			<div class="row">
-					<div class="bottom_block" style="width: 100%">
-					<div style="margin-left: 37%">
-						<div class="col-1-2" style="float: left;margin-right: 200px ">
-							<h3>Follow Us</h3>
+
+
+		<div class='subscribe'>
+				<div class="row">
+					<div class="bottom_block follow">
+						<div class="col-1-2 seperateLeft" >
+							<h3>追蹤我們</h3>
 							<div class="socials">
 								<a href="#"></a> <a href="#"></a> <a href="#"></a>
 							</div>
+							<nav></nav>
 						</div>
-						<div class="col-1-2" style="float: left;">
-							<h3>Email Updates</h3>
+						<div class="col-1-2 seperateRight">
+							<h3>Email 訂閱</h3>
 							<p class="col1">
-								Join our digital mailing list and get news<br> deals and be
-								first to know about events
+								訂閱我們讓你每天都能夠做自己喜愛的料理吧<br>
 							</p>
-							<form id="newsletter">
-								<div class="success">Your subscribe request has been sent!</div>
-								<label class="email"> <input type="email"
-									value="Enter e-mail address"> <a href="#" class="btn"
-									data-type="submit">subscribe</a> <span class="error">*This
-										is not a valid email address.</span>
-								</label>
-							</form>
 						</div>
-					</div>
+						<div></div>
+						<form id="newsletter">
+							<label class="email"> <input type="email"
+								value="Enter e-mail address"> <a href="#" class="btn"
+								data-type="submit">訂閱</a>
+							</label>
+						</form>
 					</div>
 				</div>
 			</div>
+	
+			<!-- 			<div class="row"> -->
+<!-- 					<div class="bottom_block" style="width: 100%"> -->
+<!-- 					<div style="margin-left: 37%"> -->
+<!-- 						<div class="col-1-2" style="float: left;margin-right: 200px "> -->
+<!-- 							<h3>Follow Us</h3> -->
+<!-- 							<div class="socials"> -->
+<!-- 								<a href="#"></a> <a href="#"></a> <a href="#"></a> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 						<div class="col-1-2" style="float: left;"> -->
+<!-- 							<h3>Email Updates</h3> -->
+<!-- 							<p class="col1"> -->
+<!-- 								Join our digital mailing list and get news<br> deals and be -->
+<!-- 								first to know about events -->
+<!-- 							</p> -->
+<%-- 							<form id="newsletter"> --%>
+<!-- 								<div class="success">Your subscribe request has been sent!</div> -->
+<!-- 								<label class="email"> <input type="email" -->
+<!-- 									value="Enter e-mail address"> <a href="#" class="btn" -->
+<!-- 									data-type="submit">subscribe</a> <span class="error">*This -->
+<!-- 										is not a valid email address.</span> -->
+<!-- 								</label> -->
+<%-- 							</form> --%>
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 		</div>
 
 	<!--==============================footer=================================-->

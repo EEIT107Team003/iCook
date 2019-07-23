@@ -22,9 +22,9 @@
 	media="screen">
 <link rel="stylesheet" href="css/responsive.css" type="text/css"
 	media="screen">
-	
-	
-	
+
+
+
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -40,6 +40,27 @@
 <script src="js/sForm.js"></script>
 <script src="js/jquery.carouFredSel-6.1.0-packed.js"></script>
 <script src="js/css3-mediaqueries.js"></script>
+
+
+<!-- google font -->
+<link
+	href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap"
+	rel="stylesheet">
+<!-- google font -->
+<!-- 彈跳視窗 -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	crossorigin="anonymous">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+	integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+	integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+	crossorigin="anonymous"></script>
+<!-- 彈跳視窗 -->
 <style>
 .outer {
 	margin: 50px 20%;
@@ -59,13 +80,29 @@ h1 {
 
 #info {
 	margin: auto;
-	line-height: 200%
+	line-height: 200%;
+	margin-top: 50px;
+}
+
+td, th {
+	text-align: center;
+	font-size: 20px;
+	font-family: 'Noto Sans TC', sans-serif;
+	line-height: 30px;
+}
+
+label {
+	font-size: 40px;
+	font-family: 'Noto Sans TC', sans-serif;
+}
+
+li {
+	font-size: 20px;
+	font-family: 'Noto Sans TC', sans-serif;
 }
 </style>
 
 <script type="text/javascript">
-
-
 	window.history.forward(1);
 
 	function reconfirmOrder() {
@@ -102,53 +139,91 @@ h1 {
 </head>
 
 <body>
-		<!--==============================header=================================-->
-		<header>
-			<div class="zerogrid">
-				<div class="col-full">
-					<div class="wrap-col">
-						<h1>
-							<a href="index2"><img src="images/logo.png" alt="EXTERIOR"></a>
-						</h1>
+	<!--==============================header=================================-->
+	<header>
+		<div class="zerogrid">
+			<div class="col-full">
+				<div class="wrap-col">
+					<h1>
+						<a href="index2"><img src="images/logo.png" alt="EXTERIOR"></a>
+					</h1>
 
-						<div class="menu_block">
-							<nav>
-								<ul class="sf-menu">
-									<li><a href="index2">ICook</a></li>
-									<li class="with_ul current"><a href="icookAboutUS">關於我們</a>
-										<ul>
-											<li><a href="icookContact">聯繫我們</a></li>
-										</ul></li>
-									<li><a href="icookMenu">查看食譜</a>
-										<ul>
-
-											<li><a href="#">cat1</a></li>
-											<li><a href="#">cat2</a></li>
-											<li><a href="#">cat3</a></li>
-										</ul>
-									<li><a href="icookLife">生活誌</a></li>
-									<li><a href="icookVideo">討論區</a></li>
-									<li><a href="icookProducts">市集</a>
+					<div class="menu_block">
+						<nav>
+							<ul class="sf-menu">
+								<li><a href="index2">ICook</a></li>
+								<li><a href="icookAboutUS">關於我們</a>
 									<ul>
-											<li><a href="cartPage">購物車</a></li>
-										</ul></li>
+										<li><a href="icookContact">聯繫我們</a></li>
+									</ul></li>
+								<li><a href="icookMenu">查看食譜</a>
+									<ul>
+										<li><a href="#">cat1</a></li>
+										<li><a href="#">cat2</a></li>
+										<li><a href="#">cat3</a></li>
+									</ul></li>
+								<li><a href="icookLife">生活誌</a></li>
+								<li><a href="forum/overview">討論區</a></li>
+								<li><a href="A_articlemainpage">文章區</a>
+									<ul>
+										<li><a href="A_article">test</a></li>
 
-									<li><a href="icookLogin">會員專區</a>
-										<ul>
+									</ul></li>
+
+
+								<li><a href="products">市集</a>
+									<ul>
+
+
+										<li><a href="cartPage">購物車</a></li>
+									</ul></li>
+
+								<li><a href="user">會員專區 </a>
+									<ul>
+										<c:if test="${pageContext.request.userPrincipal.name==null}">
 											<li><a href="icookLogin">會員登入</a></li>
-											<li><a href="#">會員登出</a></li>
-											<li><a href="#">新增食譜</a></li>
-											<ul></li>
+											<li><a href="icookRegister">會員註冊</a></li>
+										</c:if>
+										<c:if test="${pageContext.request.userPrincipal.name!=null}">
+											<li><a href="index2" data-toggle="modal"
+												data-target="#logout">會員登出</a></li>
+										</c:if>
+										<li><a href="checkOrders">查看訂單</a></li>
+										<li><a href="icookAddRecipe">新增食譜</a></li>
+										<li><a href="backStage">後台</a></li>
+										<ul></li>
 
-								</ul>
-							</nav>
-							<div class="clear"></div>
-						</div>
+							</ul>
+						</nav>
 						<div class="clear"></div>
 					</div>
+					<div class="clear"></div>
 				</div>
-		</header>
+			</div>
+		</div>
+	</header>
+	<!-- 確認登出 -->
 
+	<div class="modal fade" id="logout" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header" style="border-bottom: 1px solid;">
+					<h4 class="modal-title" id="myModalLabel" style="float: left">您即將登出享食天堂</h4>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+				</div>
+				<div class="modal-body" style="width: 100%">
+					<form method="post" action="perform_logout">
+						<button type="submit">確定登出</button>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="progress">
 		<div class="progress-bar progress-bar-striped bg-success"
 			role="progressbar" style="width: 75%" aria-valuenow="75"
@@ -199,7 +274,7 @@ h1 {
 				<c:forEach var='cart' items='${shoppingCart}'>
 					<tr>
 						<td>${cart.value.productBean.product_id}</td>
-						<td><img width='30' height='30'
+						<td><img width='150' height='150'
 							src="<c:url value='/getProductPicture/${cart.value.productBean.product_id}' />" /></td>
 						<td>${cart.value.quantity}</td>
 						<td>${cart.value.productBean.price}</td>
@@ -238,8 +313,6 @@ h1 {
 			<!-- 				<option value="3">Three</option> -->
 			<!-- 			</select> -->
 			<div class="form-group col-md-6"></div>
-			<br>
-
 			<div class="form-row">
 
 				<div class="form-group col-md-6">
@@ -274,6 +347,7 @@ h1 {
 				</div>
 				<div class="form-group" id='info'>
 					<label for="inputAddress">超商資訊</label>
+					<div style="visibility: hidden">區塊中的內容</div>
 					<!-- 					 <input type="text" -->
 					<!-- 						disabled="disabled" class="form-control" name="shippingAddress"/> -->
 					<%-- 						value='<c:out value="${address_string}"/>'> --%>
@@ -394,6 +468,26 @@ h1 {
 			</div>
 		</div>
 	</form>
+	<!--==============================footer=================================-->
+
+	<footer>
+		<div class="zerogrid">
+			<div class="col-full">
+				<div class="wrap-col" style="visibility: hidden">
+					&copy; Copyright &copy; 2013.Company name All rights reserved.<a
+						target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<div style="display: none">
+		<script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540'
+			language='JavaScript' charset='gb2312'></script>
+	</div>
+
+
+
+
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

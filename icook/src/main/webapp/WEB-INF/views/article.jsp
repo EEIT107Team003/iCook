@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>會員訂單頁</title>
+<title>article</title>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -25,10 +25,46 @@
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	crossorigin="anonymous"></script>
 <!-- 	bootstrap -->
-<!-- fontawesome-free -->
-<script type="text/javascript"
-	src='${pageContext.request.contextPath}/css/fontawesome-free/js/all.min.js'></script>
-<!-- fontawesome-free -->
+
+<!-- 秉諺 -->
+<link
+	href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,900"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i,900,900i"
+	rel="stylesheet">
+
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/article/acss/open-iconic-bootstrap.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/article/acss/animate.css">
+
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/article/acss/owl.carousel.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/article/acss/owl.theme.default.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/article/acss/magnific-popup.css">
+
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/article/acss/aos.css">
+
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/article/acss/ionicons.min.css">
+
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/article/acss/flaticon.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/article/acss/icomoon.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/article/acss/style.css">
+<!-- 秉諺 -->
+
+
+
+
+<!-- aaaaaa -->
+<!-- 套版 -->
 <link rel="icon" href="images/favicon.ico">
 <link rel="shortcut icon" href="images/favicon.ico" />
 <link rel="stylesheet" href="css/style.css">
@@ -45,9 +81,7 @@
 <script src="js/jquery.prettyPhoto.js"></script>
 <script src="js/css3-mediaqueries.js"></script>
 <!-- google font -->
-<link
-	href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 <!-- google font -->
 <!-- 彈跳視窗 -->
 <link rel="stylesheet"
@@ -69,16 +103,14 @@
 		window.location.href = '/icookProject/orderdetails?id=' + obj.id;
 	}
 </script>
-
 <style>
-.shrink {
+.shrink{
 	margin-left: 10%;
 	margin-right: 10%;
 	margin-top: 5%;
 }
-
-td, th {
-	text-align: center;
+td, th{
+	text-align:center;
 	font-size: 20px;
 	font-family: 'Noto Sans TC', sans-serif;
 }
@@ -160,8 +192,8 @@ td, th {
 					</div>
 				</div>
 			</div>
-		</header>	
-			<!--=======content================================-->
+		</header>
+		<!--=======content================================-->
 		<!-- 確認登出 -->
 
 		<div class="modal fade" id="logout" tabindex="-1" role="dialog"
@@ -186,91 +218,80 @@ td, th {
 		</div>
 
 		<div class="content">
-
+			<h1>
+				<c:out value="會員ID:${LoginOK.member_id}的第${FrontSeqOrderNo}筆消費"></c:out>
+				<hr />
+			</h1>
 
 			<div class='shrink'>
-				<h1>
-					<c:out value="會員ID:${LoginOK.nickname}的訂單"></c:out>
-				</h1>
 				<div class="outer">
 					<table class="table table-hover">
 						<thead>
-<!-- 						<tr> -->
-<!-- 								<th scope="col">序號</th> -->
-<!-- 							</tr> -->
 							<tr>
-								<th scope="col">序號</th>
-								<th scope="col">訂單詳情</th>
-								<th scope="col">取貨單號</th>
-								<th scope="col">訂購日期</th>
-								<th scope="col">預計出貨時間</th>
-								<th scope="col">應付金額</th>
-<!-- 								<th scope="col">取貨地址</th> -->
-								<th scope="col">發票</th>
-								<th scope="col">付款驗證</th>
+								<td scope="col" colspan="9">送貨地址/分店資訊:<c:out value="${orderAddress}"/></td>
+							</tr>
+							<tr>
+								<td scope="col"></td>
+							</tr>
+							<tr>
+								<th scope="col">圖示</th>
+								<th scope="col">產品號</th>
+								<th scope="col">種類</th>
+								<th scope="col">描述</th>
+								<th scope="col">尺寸</th>
+								<th scope="col">顏色</th>
+								<th scope="col">單價</th>
+								<th scope="col">數量</th>
+								<th scope="col">小計</th>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var='OrderBean' items='${orders_list}'>
-								<c:set value="${sum+1}" var='sum' />
+							<c:forEach var='orderItem' items='${orderItems_List}'>
 								<tr>
-									<td><c:out value="${sum}" /></td>
-									<td><form method='POST'
-											action="<c:url value='/orderdetails?id=${OrderBean.memberbean.member_id}&orderNo=${OrderBean.orderNo}'/>">
-											<input type="hidden" name="memberCheck"
-												value="${OrderBean.memberbean.member_id}" /> <input
-												type="hidden" name="SeqOrderNoForMember" value="${sum}" />
-											<input class="btn btn-outline-success" type="submit"
-												value="檢視該訂單" />
-										</form></td>
-									<td>${OrderBean.orderNo}</td>
-									<td>${OrderBean.orderDate}</td>
-									<td>${OrderBean.shippingDate}</td>
-									<td>${OrderBean.totalAmount}</td>
-<%-- 									<td>${OrderBean.shippingAddress}</td> --%>
-									<td>${OrderBean.invoiceTitle}</td>
-
-									<c:set var="contains" value="no" />
-									<c:if test="${OrderBean.payment eq 'OK'}">
-										<c:set var="contains" value="yes" />
-										<script type="text/javascript">
-											
-										</script>
-									</c:if>
-									<c:choose>
-										<c:when test="${contains=='yes'}">
-											<script type="text/javascript">
-												
-											</script>
-											<i class="fas fa-check"></i>
-											<td class="btn btn-success">已查核</td>
-										</c:when>
-										<c:otherwise>
-											<script type="text/javascript">
-												
-											</script>
-											<td class="btn btn-warning">查核中</td>
-										</c:otherwise>
-									</c:choose>
-									<c:set var="contains" value="no" />
-
-									<td></td>
+									<td><img width='50' height='50'
+										src="<c:url value='/getProductPicture/${orderItem.productBean.product_id}'/>" /></td>
+									<td>${orderItem.productBean.product_id}</td>
+									<td>${orderItem.productBean.categoriesbean.name}</td>
+									<td>${orderItem.productBean.description}</td>
+									<td>${orderItem.productBean.unit_size}</td>
+									<td>${orderItem.productBean.color}</td>
+									<td>${orderItem.productBean.price}</td>
+									<td>${orderItem.quantity}</td>
+									<td>${orderItem.subtotal}</td>
 								</tr>
+								<c:set var='sum' value="${sum+ orderItem.subtotal}" />
 							</c:forEach>
+
+							<tr>
+								<td><input type="button" class="btn btn-outline-success"
+									name="back" value="返回" onClick="javascript:history.back();"></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><h5>
+										合計:
+										<c:out value="${sum}" />
+									</h5></td>
+							</tr>
 						</tbody>
 					</table>
+					<h1></h1>
 				</div>
 			</div>
-
 		</div>
+
 		<!--==============================footer=================================-->
 
 		<footer>
 			<div class="zerogrid">
 				<div class="col-full">
 					<div class="wrap-col">
-						<!-- 						&copy; Copyright &copy; 2013.Company name All rights reserved.<a -->
-						<!-- 							target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a> -->
+<!-- 						&copy; Copyright &copy; 2013.Company name All rights reserved.<a -->
+<!-- 							target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a> -->
 					</div>
 				</div>
 			</div>

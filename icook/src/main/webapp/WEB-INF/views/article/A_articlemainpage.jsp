@@ -391,34 +391,35 @@
 		src="${pageContext.request.contextPath}/article/ajs/google-map.js"></script>
 	<script src="${pageContext.request.contextPath}/article/ajs/main.js"></script>
 	<script>
-					var webSocket = new WebSocket("ws:/localhost:8080/icook/ArtBroadcast");
-					var msgField = document.getElementById("messageField");
-					var divMsg = document.getElementById("msg-box");
-					var Broadcast = document.getElementById("ArcBroadcast");
-					function sendMsg() {
-						var msgToSend = msgField.value;
-						webSocket.send(msgToSend);
-						msgField.value = "";
-					}
+		var webSocket = new WebSocket("ws:/localhost:8080/icook/ArtBroadcast");
+		var msgField = document.getElementById("messageField");
+		var divMsg = document.getElementById("msg-box");
+		var Broadcast = document.getElementById("ArcBroadcast");
+		function sendMsg() {
+			var msgToSend = msgField.value;
+			webSocket.send(msgToSend);
+			msgField.value = "";
+		}
 
-					webSocket.onmessage = function(message) {
-						divMsg.innerHTML += "<marquee direction='right' height='30' scrollamount='8' behavior='alternate'>" + message.data+"</marquee>";
-						divtoday.innerHTML+=message.data;
-					}
+		webSocket.onmessage = function(message) {
+			divMsg.innerHTML += "<marquee direction='right' height='30' scrollamount='8' behavior='alternate'>"
+					+ message.data + "</marquee>";
+			divtoday.innerHTML += message.data;
+		}
 
-					webSocket.onopen = function() {
-						console.log("connection opened");
-					};
+		webSocket.onopen = function() {
+			console.log("connection opened");
+		};
 
-					webSocket.onclose = function() {
-						console.log("connection closed");
-					};
+		webSocket.onclose = function() {
+			console.log("connection closed");
+		};
 
-					webSocket.onerror = function wserror(message) {
-						console.log("error: " + message);
-					}
+		webSocket.onerror = function wserror(message) {
+			console.log("error: " + message);
+		}
 	</script>
-	
-	
+
+
 </body>
 </html>

@@ -26,16 +26,7 @@
 <script src="${pageContext.request.contextPath}/js/css3-mediaqueries.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Responsive HTML5 Website landing Page for Developers">
-    <meta name="author" content="3rd Wave Media">    
-    <link rel="shortcut icon" href="favicon.ico">   
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'> 
-<%--     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/bootstrap/css/bootstrap.min.css">    --%>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/font-awesome/css/font-awesome.css">
-    <link id="theme-style" rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/styles.css">
+
 	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 
 
@@ -304,7 +295,7 @@ section {
 </style>
 
 </head>
-<body style="background-color: white">
+<body style="background-color: #55a237">
 <input id="memberId" name="memberId" type="hidden" value="${member.member_id}"/>
 	<input id="userId" name="userId" type="hidden" value="${pageContext.request.userPrincipal.name}"/>
 	<div class="main">
@@ -472,25 +463,16 @@ section {
 				<!--//masonry-->
 
 
-				<div class="row">
-					<div class="bottom_block">
-						<div class="col-1-2">
+					<div class="row" style="width: 100%">
+					<div class="bottom_block" style="width: 100%">
+					<div style="margin-left: 37%">
+						<div class="col-1-2" style="float: left;margin-right: 200px ">
 							<h3>Follow Us</h3>
 							<div class="socials">
 								<a href="#"></a> <a href="#"></a> <a href="#"></a>
 							</div>
-							<nav>
-								<ul>
-									<li><a href="index.html">Home</a></li>
-									<li><a href="index-1.html">About Us</a></li>
-									<li><a href="index-2.html">Menu</a></li>
-									<li><a href="index-3.html">Portfolio</a></li>
-									<li class="current"><a href="index-4.html">News </a></li>
-									<li><a href="index-5.html">Contacts</a></li>
-								</ul>
-							</nav>
 						</div>
-						<div class="col-1-2">
+						<div class="col-1-2" style="float: left;">
 							<h3>Email Updates</h3>
 							<p class="col1">
 								Join our digital mailing list and get news<br> deals and be
@@ -506,13 +488,14 @@ section {
 							</form>
 						</div>
 					</div>
+					</div>
 				</div>
 			</div>
 		</div>
 
 
 		<!--==============================footer=================================-->
-
+<div style="background-color: #55a237">
 	<footer>
 		<div class="zerogrid">
 			<div class="col-full">
@@ -527,6 +510,7 @@ section {
 	<div style="display: none">
 		<script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540'
 			language='JavaScript' charset='gb2312'></script>
+	</div>
 	</div>
 </body>
 </html>
