@@ -51,6 +51,12 @@ public class CartController {
 
 		return "icookAddRecipe";
 	}
+	
+//	@RequestMapping("/icookRecipe2")
+//	public String icookRecipe2() {
+//		
+//		return "icookRecipe2";
+//	}
 
 
 	

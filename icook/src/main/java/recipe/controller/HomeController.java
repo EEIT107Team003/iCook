@@ -50,6 +50,11 @@ public class HomeController {
 		this.servletContext = servletContext;
 	}
 
+	@RequestMapping(value = "/xxx_one")
+	public String xxx_one() {
+		return "xxx_one_icookAddRecipe";
+	}
+
 	@RequestMapping(value = "/recipe/search", method = RequestMethod.POST)
 	public String recipeSearch(Model model, HttpServletRequest request) throws UnsupportedEncodingException {
 		request.setCharacterEncoding("UTF-8");

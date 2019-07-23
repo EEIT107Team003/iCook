@@ -32,6 +32,9 @@ public class Homecontroller {
 	// 首頁
 	@RequestMapping(value = { "/", "home" })
 	public String home(Model model) {
+		// TODO 這裡要用 equals() 比較字串是否相等才對。
+		// TODO 所以要更正成 if(!getPrincipal().equals("anonymousUser")) {} 才對。
+		// edit by Hsiang-Yu Kuo
 		if (getPrincipal() != "anonymousUser") {
 			MemberBean bean=service.selectByUsername(getPrincipal());
 			model.addAttribute("bean", bean);
