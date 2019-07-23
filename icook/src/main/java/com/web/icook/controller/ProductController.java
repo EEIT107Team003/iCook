@@ -258,7 +258,7 @@ public class ProductController {
 	public ResponseEntity<byte[]> getPicture(HttpServletResponse resp, @PathVariable Integer product_Id) {
 //		System.out.println("getProductPicture================");
 //             回應本體的資料型態                   
-		String filePath = "/resources/images/NoImage.jpg";
+		String filePath = "/resources/images/NoImage.png";
 //                           設定預設圖路徑
 		byte[] media = null;
 		HttpHeaders headers = new HttpHeaders();
@@ -435,22 +435,24 @@ public class ProductController {
 		System.out.println("contextPath :"+contextPath);
 		System.out.println("ID :"+product_id);
 		originalFilename=product_id;
-		InputStream ins = productImage.getInputStream();
-		OutputStream ous = new FileOutputStream("C:\\Users\\屁股\\Desktop\\icookPictures"
-						+ totalcounts+"_1" + ext);
+		
+		InputStream ins=productPuctureOne.getInputStream();
+		OutputStream ous = new FileOutputStream(
+				"C:\\Users\\屁股\\git\\repository\\icook\\src\\main\\webapp\\WEB-INF\\views\\products\\images/savedPicture/"
+				+ totalcounts+"_2" + ext);
+		bb.setProductPuctureOnePath("/product_pathImage/"
+				+ totalcounts+"_2" + ext);
+		byte[]  tmp  = new byte[81920];
 		int lenght = -1;
-		byte[] tmp = new byte[81920];
-
 		while ((lenght = ins.read(tmp)) != -1) {
 			ous.write(tmp, 0, lenght);
 		}
 		
-		ins=productPuctureOne.getInputStream();
-		ous = new FileOutputStream("C:\\Users\\屁股\\Desktop\\icookPictures/"
-				+ totalcounts+"_2" + ext);
-		bb.setProductPuctureOnePath("C:\\Users\\屁股\\Desktop\\icookPictures/"
-				+ totalcounts+"_2" + ext);
-		tmp  = new byte[81920];
+		
+		ins = productImage.getInputStream();
+		ous = new FileOutputStream("C:/Users/屁股/git/repository/icook/src/main/webapp/WEB-INF/views/products/images/savedPicture/"
+						+ totalcounts+"_1" + ext);
+		tmp = new byte[81920];
 
 		while ((lenght = ins.read(tmp)) != -1) {
 			ous.write(tmp, 0, lenght);

@@ -585,8 +585,18 @@ font-size:20px;
 							</div>
 						</div>
 					</div>
-
-
+                 		<img width='250' height='200'
+						src="/icook${product.productPuctureOnePath}" />
+						
+						当前WEB应用的物理路径：<%=application.getRealPath("/")%><BR>
+                                          当前你求请的JSP文件的物理路径：<%=application.getRealPath(request.getRequestURI())%><BR>
+						
+                     <h1>${product.productPuctureOnePath}</h1>
+                     
+                     
+                     
+                     
+                     
 					<div class="textDiv">
 						<h1 style="font-size: 30px;">商品編號: ${product.product_id}</h1>
 						<h1 style="font-size: 30px;">${product.name}</h1>

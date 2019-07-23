@@ -494,13 +494,22 @@ function readURL(input){
 				<h4>價格      : ${previousbean.price}</h4>
 				<h4>庫存      : ${previousbean.stock}</h4>
 				<h4>狀態      : ${status}</h4>
-				<h4>路徑      : ${previousbean.productPuctureOnePath}</h4>
+				<h4>路徑      : ..${previousbean.productPuctureOnePath}</h4>
+				当前WEB应用的物理路径：<%=application.getRealPath("/")%><BR>
+当前你求请的JSP文件的物理路径：<%=application.getRealPath(request.getRequestURI())%><BR>
+
 					<div class="pre">
 					<img width='250' height='200'
-						src="${previousbean.productPuctureOnePath}" />
+						src="..${previousbean.productPuctureOnePath}" />
+						
+						
+						
+						
+						
+						
+<!-- 						src="../product_pathImage/Users/icookImages/123_1.JPG" /> -->
 				</div >
 				</div>
-				
 				
 				<div class="pre">
 					<p>${previousbean.description}</p>

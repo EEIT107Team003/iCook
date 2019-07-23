@@ -549,7 +549,6 @@
 			</script>
 
 		<div class="right">
-
            
 			<fieldset class="field">
 				<div class="divA">
