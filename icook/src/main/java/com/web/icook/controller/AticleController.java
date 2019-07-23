@@ -417,8 +417,6 @@ public class AticleController {
 	
 	@RequestMapping(value = "/findArctile")
 	public String findArctile( @RequestParam("article_title") String  article_title, Model model) {
-		
-		
 		System.out.println("article_title="+article_title);
 		List<ArticleBean> list = arcicleservice.getByArticle_Title(article_title);
 		model.addAttribute("Articles", list);
@@ -426,18 +424,10 @@ public class AticleController {
 	}
 	
 	@RequestMapping(value = "/findArctiCatergory")
-	public String findArctiCatergory( @RequestParam("article_catergoary") String  article_catergoary, Model model) {
-		
-		
+	public String findArctiCatergory( @RequestParam("article_catergoary") String  article_catergoary, Model model) {	
 		System.out.println("article_catergoary="+article_catergoary);
 		List<ArticleBean> list = arcicleservice.getByArticle_Catergory(article_catergoary);
 		model.addAttribute("Articles", list);
 		return "/article/A_articlesearch"; // 指向success.jsp
 	}
-	
-	
-	
-	
-	
-
 }

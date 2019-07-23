@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,22 +39,48 @@
 	integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
 	crossorigin="anonymous"></script>
 <!-- 彈跳視窗 -->
-<!--[if lt IE 8]>
-       <div style=' clear: both; text-align:center; position: relative;'>
-         <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
-           <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
-         </a>
-      </div>
-    <![endif]-->
-<!--[if lt IE 9]>
-      <script src="js/html5shiv.js"></script>
-      <link rel="stylesheet" media="screen" href="css/ie.css">
-    <![endif]-->
+
+<script>
+	$(function (){
+	    function format_float(num, pos){
+	        var size = Math.pow(10, pos);
+	        return Math.round(num * size) / size;
+	    };
+	
+		function preview(input) {
+	        if (input.files && input.files[0]) {
+	            var reader = new FileReader();
+	        	reader.onload = function (e) {
+	            $('#member_photo_image').attr('src', e.target.result);
+	        };
+	            reader.readAsDataURL(input.files[0]);
+	        };
+	    };
+		 
+	    $("#member_photo_file").change(function (){
+	        preview(this);
+	    });
+	});			
+</script>
+
+<style>
+	.member_photo {
+		width: 175px;
+		height: 175px;
+		border-radius: 50%;
+		border: 2px solid black;
+	}
+	td{
+		vertical-align: middle;
+	}
+
+</style>    
+
 </head>
-<body>
+<body style="background-color:#55a237 ">
 	<div class="main">
 		<!--==============================header=================================-->
-	<header>
+		<header>
 			<div class="zerogrid">
 				<div class="col-full">
 					<div class="wrap-col">
@@ -102,8 +131,8 @@
 											<li><a href="checkOrders">查看訂單</a></li>
 											<li><a href="icookAddRecipe">新增食譜</a></li>
 											<li><a href="backStage">後台</a></li>
-											<ul></li>
-
+										</ul>
+									</li>
 								</ul>
 							</nav>
 							<div class="clear"></div>
@@ -114,8 +143,7 @@
 			</div>
 		</header>
 		<!--=======content================================-->
-				<!-- 確認登出 -->
-
+		<!-- 確認登出 -->
 		<div class="modal fade" id="logout" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -136,7 +164,6 @@
 				</div>
 			</div>
 		</div>
-		
 
 		<div class="content">
 			<div class="zerogrid">
@@ -148,45 +175,48 @@
 					</div>
 					<div class="col-2-5">
 						<div class="wrap-col">
-							<h2>響食客登入</h2>
-
-							<form id="form">
-								<div class="success_wrapper">
-									<div class="success">
-										Contact form submitted!<br> <strong>We will be
-											in touch soon.</strong>
-									</div>
-								</div>
-								<fieldset>
-									<label class="name"> <input type="text" value="Name:">
-										<br class="clear"> <span class="error error-empty">*This
-											is not a valid name.</span><span class="empty error-empty">*This
-											field is required.</span>
-									</label> <label class="email"> <input type="text"
-										value="E-mail:"> <br class="clear"> <span
-										class="error error-empty">*This is not a valid email
-											address.</span><span class="empty error-empty">*This field is
-											required.</span>
-									</label> <label class="phone"> <input type="tel" value="Phone:">
-										<br class="clear"> <span class="error error-empty">*This
-											is not a valid phone number.</span><span class="empty error-empty">*This
-											field is required.</span>
-									</label> <label class="message"> <textarea>Message:</textarea>
-										<br class="clear"> <span class="error">*The
-											message is too short.</span> <span class="empty">*This field
-											is required.</span>
-									</label>
-									<div class="clear"></div>
-									<div class="btns">
-										<a data-type="reset" class="btn">clear</a><a
-											data-type="submit" class="btn">send</a>
-										<div class="clear"></div>
-									</div>
-								</fieldset>
-							</form>
-						</div>
-					</div>
-				</div>
+							<h2>加入享食客</h2>
+									
+			<form:form method="POST" modelAttribute="MemberBean"
+					enctype="multipart/form-data">
+					<fieldset>
+						<div>
+							<label for="member_photo_file"> 
+									<form:input type="file" path="member_photo_tr" name="member_photo_file"
+										id="member_photo_file" style="display: none;" /> 
+										<img class="profile-image img-responsive pull-left member_photo" 
+ 										id="member_photo_image" style="background-color:white;margin: 20px;"  
+ 										src="<c:url value='resources\images\NoImage.png' />" />
+ 							</label> 	
+						</div>	
+							<table>
+								<tr> 
+									<td><label for="nickname">暱稱:</label></td>
+									<td>
+										<form:input id="nickname" path="nickname" type="text" />
+									</td>					 
+								</tr>
+								<tr>
+									<td><label for="username">電子郵件:</label></td>
+									<td>
+										<form:input id="username" path="username" type="text" />
+									</td>
+								</tr> 
+								<tr>
+									<td><label for="password">密碼:</label></td>
+									<td>
+										<form:input id="password" path="password" type="text" />
+									</td>
+								</tr> 
+							</table>
+				
+						<div class="clear"></div>
+						<input id=submit type="submit" value="送出">
+					</fieldset>
+				</form:form>
+			</div>
+		</div>
+	</div>
 
 				<div class="row">
 					<div class="bottom_block">
@@ -231,10 +261,10 @@
 	<footer>
 		<div class="zerogrid">
 			<div class="col-full">
-				<div class="wrap-col">
-					&copy; Copyright &copy; 2013.Company name All rights reserved.<a
-						target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
-				</div>
+<!-- 				<div class="wrap-col"> -->
+<!-- 					&copy; Copyright &copy; 2013.Company name All rights reserved.<a -->
+<!-- 						target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a> -->
+<!-- 				</div> -->
 			</div>
 		</div>
 	</footer>
