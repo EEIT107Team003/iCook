@@ -67,6 +67,7 @@ public class AticleController {
 	@Autowired
 	MemberController c;
 
+	
 	@RequestMapping("/A_article")
 	public String A_article() {
 		
