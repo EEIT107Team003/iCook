@@ -103,22 +103,16 @@
 	<section class="ftco-section">
 	
 	<!-- 	跑馬燈 測試成功排版問題-->
-	<marquee direction="left" height="30" scrollamount="8"
-		behavior="alternate" id="ArcBroadcast" style="color: green;"></marquee>
+<!-- 	<marquee direction="left" height="30" scrollamount="8" -->
+<!-- 		behavior="alternate" id="ArcBroadcast" style="color: green;"></marquee> -->
 <%-- 		<form> --%>
 <!-- 				<input id="messageField" type="text" > <input -->
 <!-- 					onclick="sendMsg();" value="send" type="button" > -->
 <%-- 			</form> --%>
 
 			<div id="msg-box"
-				style="width: 500px; height: 400px; background: #eee; overflow: auto;" ></div></div>
-		
-	
-	
-	
-	
-	
-	
+				style="width: 500px; height: 400px; background: #eee; overflow: auto;" ></div>
+				</div>
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-9">
@@ -159,177 +153,9 @@
 								</div>
 							</div>
 						</c:forEach>
+</div>
 
-
-						<div class="col-md-4 ftco-animate">
-							<div class="blog-entry">
-								<a href="A_single.jsp" class="img-2"><img
-									src="article/aimages/blog-2.jpg" class="img-fluid"
-									alt="Colorlib Template"></a>
-								<div class="text pt-3">
-									<p class="meta d-flex">
-										<span class="pr-3">Dessert</span><span class="ml-auto pl-3">March
-											01, 2018</span>
-									</p>
-									<h3>
-										<a href="A_single.jsp">Tasty &amp; Delicious Foods</a>
-									</h3>
-									<p class="mb-0">
-										<a href="A_single.jsp" class="btn btn-black py-2">Read
-											More <span class="icon-arrow_forward ml-4"></span>
-										</a>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 ftco-animate">
-							<div class="blog-entry">
-								<a href="A_single.jsp" class="img-2"><img
-									src="article/aimages/blog-3.jpg" class="img-fluid"
-									alt="Colorlib Template"></a>
-								<div class="text pt-3">
-									<p class="meta d-flex">
-										<span class="pr-3">Dessert</span><span class="ml-auto pl-3">March
-											01, 2018</span>
-									</p>
-									<h3>
-										<a href="A_single.jsp">Tasty &amp; Delicious Foods</a>
-									</h3>
-									<p class="mb-0">
-										<a href="A_single.jsp" class="btn btn-black py-2">Read
-											More <span class="icon-arrow_forward ml-4"></span>
-										</a>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 ftco-animate">
-							<div class="blog-entry">
-								<a href="A_single.jsp" class="img-2"><img
-									src="article/aimages/blog-4.jpg" class="img-fluid"
-									alt="Colorlib Template"></a>
-								<div class="text pt-3">
-									<p class="meta d-flex">
-										<span class="pr-3">Dessert</span><span class="ml-auto pl-3">March
-											01, 2018</span>
-									</p>
-									<h3>
-										<a href="A_single.jsp">Tasty &amp; Delicious Foods</a>
-									</h3>
-									<p class="mb-0">
-										<a href="A_single.jsp" class="btn btn-black py-2">Read
-											More <span class="icon-arrow_forward ml-4"></span>
-										</a>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 ftco-animate">
-							<div class="blog-entry">
-								<a href="A_single.jsp" class="img-2"><img
-									src="article/aimages/blog-5.jpg" class="img-fluid"
-									alt="Colorlib Template"></a>
-								<div class="text pt-3">
-									<p class="meta d-flex">
-										<span class="pr-3">Dessert</span><span class="ml-auto pl-3">March
-											01, 2018</span>
-									</p>
-									<h3>
-										<a href="A_single.jsp">Tasty &amp; Delicious Foods</a>
-									</h3>
-									<p class="mb-0">
-										<a href="A_single.jsp" class="btn btn-black py-2">Read
-											More <span class="icon-arrow_forward ml-4"></span>
-										</a>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 ftco-animate">
-							<div class="blog-entry">
-								<a href="A_single.jsp" class="img-2"><img
-									src="article/aimages/blog-6.jpg" class="img-fluid"
-									alt="Colorlib Template"></a>
-								<div class="text pt-3">
-									<p class="meta d-flex">
-										<span class="pr-3">Dessert</span><span class="ml-auto pl-3">March
-											01, 2018</span>
-									</p>
-									<h3>
-										<a href="single.html">Tasty &amp; Delicious Foods</a>
-									</h3>
-									<p class="mb-0">
-										<a href="single.html" class="btn btn-black py-2">Read More
-											<span class="icon-arrow_forward ml-4"></span>
-										</a>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 ftco-animate">
-							<div class="blog-entry">
-								<a href="single.html" class="img-2"><img
-									src="article/aimages/blog-7.jpg" class="img-fluid"
-									alt="Colorlib Template"></a>
-								<div class="text pt-3">
-									<p class="meta d-flex">
-										<span class="pr-3">Dessert</span><span class="ml-auto pl-3">March
-											01, 2018</span>
-									</p>
-									<h3>
-										<a href="single.html">Tasty &amp; Delicious Foods</a>
-									</h3>
-									<p class="mb-0">
-										<a href="single.html" class="btn btn-black py-2">Read More
-											<span class="icon-arrow_forward ml-4"></span>
-										</a>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 ftco-animate">
-							<div class="blog-entry">
-								<a href="single.html" class="img-2"><img
-									src="article/aimages/blog-8.jpg" class="img-fluid"
-									alt="Colorlib Template"></a>
-								<div class="text pt-3">
-									<p class="meta d-flex">
-										<span class="pr-3">Dessert</span><span class="ml-auto pl-3">March
-											01, 2018</span>
-									</p>
-									<h3>
-										<a href="single.html">Tasty &amp; Delicious Foods</a>
-									</h3>
-									<p class="mb-0">
-										<a href="single.html" class="btn btn-black py-2">Read More
-											<span class="icon-arrow_forward ml-4"></span>
-										</a>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 ftco-animate">
-							<div class="blog-entry">
-								<a href="single.html" class="img-2"><img
-									src="article/aimages/blog-9.jpg" class="img-fluid"
-									alt="Colorlib Template"></a>
-								<div class="text pt-3">
-									<p class="meta d-flex">
-										<span class="pr-3">Dessert</span><span class="ml-auto pl-3">March
-											01, 2018</span>
-									</p>
-									<h3>
-										<a href="single.html">Tasty &amp; Delicious Foods</a>
-									</h3>
-									<p class="mb-0">
-										<a href="single.html" class="btn btn-black py-2">Read More
-											<span class="icon-arrow_forward ml-4"></span>
-										</a>
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
+					
 					<div class="row mt-5">
 						<div class="col text-center">
 							<div class="block-27">
@@ -384,25 +210,26 @@
 						<div class="sidebar-box categories text-center ftco-animate">
 							<h2 class="heading mb-4">Categories</h2>
 							<ul class="category-image">
-								<li><a href="#"
+								<li><a href="<spring:url value='/findArctiCatergory?article_catergoary=食安新聞' />" 
 									class="img d-flex align-items-center justify-content-center text-center"
 									style="background-image: url(article/aimages/category-1.jpg);">
 										<div class="text">
-											<h3>Foods</h3>
+											<h3>美食新聞</h3>
+											
 										</div>
 								</a></li>
-								<li><a href="#"
+								<li><a href="<spring:url value='/findArctiCatergory?article_catergoary=廚具新聞' />"
 									class="img d-flex align-items-center justify-content-center text-center"
 									style="background-image: url(article/aimages/category-2.jpg);">
 										<div class="text">
-											<h3>Kitchenware</h3>
+											<h3>廚具新聞</h3>
 										</div>
 								</a></li>
-								<li><a href="#"
+								<li><a href="<spring:url value='/findArctiCatergory?article_catergoary=其他' />"
 									class="img d-flex align-items-center justify-content-center text-center"
 									style="background-image: url(article/aimages/category-2.jpg);">
 										<div class="text">
-											<h3>Others</h3>
+											<h3>其他</h3>
 										</div>
 								</a></li>
 							</ul>
