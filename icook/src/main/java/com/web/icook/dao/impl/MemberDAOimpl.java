@@ -81,11 +81,14 @@ public class MemberDAOimpl implements MemberDAO {
 	// 尋找單筆資料(username)
 	@Override
 	public MemberBean selectByUsername(String username) {
-		String hql = "FROM MemberBean where username=:username";
-		Session session = factory.getCurrentSession();
-		MemberBean bean = (MemberBean) session.createQuery(hql).setParameter("username", username).getSingleResult();
-
-		return bean;
+		if(!getPrincipal().equals("anonymousUser")) {
+			String hql = "FROM MemberBean where username=:username";
+			Session session = factory.getCurrentSession();
+			MemberBean bean = (MemberBean) session.createQuery(hql).setParameter("username", username).getSingleResult();
+			return bean;
+		}else {
+			return null;
+		}
 	}
 
 	// 尋找單筆資料(nickname)
