@@ -160,10 +160,10 @@ td {
 	margin: 3px;
 }
 
-.subscribe {
-	margin-right: 100px;
-	margin-left: 260px;
-}
+/* .subscribe { */
+/* 	margin-right: 100px; */
+/* 	margin-left: 260px; */
+/* } */
 </style>
 <script>
 	$(document).ready(function() {
@@ -371,7 +371,7 @@ td {
 </script>
 
 </head>
-<body >
+<body style="background-color: #55a237">
 	<div class="main">
 		<!--==============================header=================================-->
 		<header>
@@ -393,7 +393,6 @@ td {
 										</ul></li>
 									<li><a href="icookMenu">查看食譜</a>
 										<ul>
-
 											<li><a href="#">cat1</a></li>
 											<li><a href="#">cat2</a></li>
 											<li><a href="#">cat3</a></li>
@@ -426,7 +425,7 @@ td {
 											<li><a href="checkOrders">查看訂單</a></li>
 											<li><a href="icookAddRecipe">新增食譜</a></li>
 											<li><a href="backStage">後台</a></li>
-											<ul></li>
+											</ul></li>
 
 								</ul>
 							</nav>
@@ -637,18 +636,20 @@ td {
 				<!--//masonry-->
 			</div>
 
-
+	<div>
 		<div class='subscribe'>
-				<div class="row">
+				<div class="row" style="text-align: center;">
 					<div class="bottom_block follow">
-						<div class="col-1-2 seperateLeft" >
+						<div class="col-1-2" style="float: left;" >
 							<h3>追蹤我們</h3>
 							<div class="socials">
-								<a href="#"></a> <a href="#"></a> <a href="#"></a>
+								<a href="#"></a> 
+								<a href="#"></a> 
+								<a href="#"></a>
 							</div>
 							<nav></nav>
 						</div>
-						<div class="col-1-2 seperateRight">
+						<div class="col-1-2"style="float: left;">
 							<h3>Email 訂閱</h3>
 							<p class="col1">
 								訂閱我們讓你每天都能夠做自己喜愛的料理吧<br>
@@ -664,46 +665,14 @@ td {
 					</div>
 				</div>
 			</div>
-	
-			<!-- 			<div class="row"> -->
-<!-- 					<div class="bottom_block" style="width: 100%"> -->
-<!-- 					<div style="margin-left: 37%"> -->
-<!-- 						<div class="col-1-2" style="float: left;margin-right: 200px "> -->
-<!-- 							<h3>Follow Us</h3> -->
-<!-- 							<div class="socials"> -->
-<!-- 								<a href="#"></a> <a href="#"></a> <a href="#"></a> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 						<div class="col-1-2" style="float: left;"> -->
-<!-- 							<h3>Email Updates</h3> -->
-<!-- 							<p class="col1"> -->
-<!-- 								Join our digital mailing list and get news<br> deals and be -->
-<!-- 								first to know about events -->
-<!-- 							</p> -->
-<%-- 							<form id="newsletter"> --%>
-<!-- 								<div class="success">Your subscribe request has been sent!</div> -->
-<!-- 								<label class="email"> <input type="email" -->
-<!-- 									value="Enter e-mail address"> <a href="#" class="btn" -->
-<!-- 									data-type="submit">subscribe</a> <span class="error">*This -->
-<!-- 										is not a valid email address.</span> -->
-<!-- 								</label> -->
-<%-- 							</form> --%>
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
+		</div>
 		</div>
 
 	<!--==============================footer=================================-->
 
-	<footer>
+	<footer style="background-color: #55a237">
 		<div class="zerogrid">
 			<div class="col-full">
-				<div class="wrap-col">
-					&copy; Copyright &copy; 2013.Company name All rights reserved.<a
-						target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
-				</div>
 			</div>
 		</div>
 	</footer>
