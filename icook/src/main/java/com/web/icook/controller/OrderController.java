@@ -92,10 +92,6 @@ public class OrderController {
 //		return "information";
 //	}
 	
-
-	
-
-	
 	
 	@RequestMapping(value = "/orders", method = RequestMethod.GET, produces = "application/vnd.ms-excel")
 	public String AllProductsExcel(Model model) {
@@ -270,12 +266,15 @@ public class OrderController {
 		msg.setSubject("icook 下單成功!");
 //		msg.setSubject("我是主題");
 		Integer ordersuccessNo=ob.getOrderNo();
-		String content="\"<span style='color:black'>訂單編號\"+"+ordersuccessNo+"\"下單成功!</span><br>\"+\r\n" + 
-				"				'試試使用paypal付款!<br><form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_top\"><br>'+\r\n" + 
-				"		'<input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\"><br>'+\r\n" + 
-				"		'<input type=\"hidden\" name=\"hosted_button_id\" value=\"5KUTFZ9H3G9Q8\"><br>'+\r\n" + 
-				"		'<input type=\"image\" src=\"https://www.paypalobjects.com/en_US/TW/i/btn/btn_buynowCC_LG_wCUP.gif\" border=\"0\" name=\"submit\" alt=\"PayPal - The safer, easier way to pay online!\"><br>'+\r\n" + 
-				"		'<img alt=\"\" border=\"0\" src=\"https://www.paypalobjects.com/en_US/i/scr/pixel.gif\" width=\"1\" height=\"1\"><br></form><br>'+’icook愛廚感謝您’";
+//		String content2="購物成功!下單單號為"+ordersuccessNo;
+		String content="訂單編號"+ordersuccessNo+"下單成功!\r\n\n"+"享食天堂感謝您!\n\n\n<a href=\"localhost:8080/icook/\">";
+//		<img src=\"images/icooklogo.jpg\" alt=\"icooklogo\"></a>
+//		String content="\"<span style='color:black'>訂單編號\"+"+ordersuccessNo+"\"下單成功!</span><br>\"+\r\n" + 
+//				"				'試試使用paypal付款!<br><form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_top\"><br>'+\r\n" + 
+//				"		'<input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\"><br>'+\r\n" + 
+//				"		'<input type=\"hidden\" name=\"hosted_button_id\" value=\"5KUTFZ9H3G9Q8\"><br>'+\r\n" + 
+//				"		'<input type=\"image\" src=\"https://www.paypalobjects.com/en_US/TW/i/btn/btn_buynowCC_LG_wCUP.gif\" border=\"0\" name=\"submit\" alt=\"PayPal - The safer, easier way to pay online!\"><br>'+\r\n" + 
+//				"		'<img alt=\"\" border=\"0\" src=\"https://www.paypalobjects.com/en_US/i/scr/pixel.gif\" width=\"1\" height=\"1\"><br></form><br>'+’icook愛廚感謝您’";
 		msg.setContent(content	,"text/html;charset=utf-8");
 		//讀不到值!!!!!!!!!!!!!
 		msg.setRecipients(RecipientType.TO, InternetAddress.parse(custEmail));

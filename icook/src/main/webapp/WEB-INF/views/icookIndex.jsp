@@ -19,10 +19,7 @@
 	media="screen">
 <link rel="stylesheet" href="css/responsive.css" type="text/css"
 	media="screen">
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-	crossorigin="anonymous">
+
 <script src="js/jquery.js"></script>
 <script src="js/jquery-migrate-1.1.1.js"></script>
 <script src="js/superfish.js"></script>
@@ -31,7 +28,11 @@
 <script src="js/jquery.carouFredSel-6.1.0-packed.js"></script>
 <script src="js/tms-0.4.1.js"></script>
 <script src="js/css3-mediaqueries.js"></script>
-
+<!-- 彈跳視窗 -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	crossorigin="anonymous">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
 	integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
@@ -40,7 +41,10 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
 	integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
 	crossorigin="anonymous"></script>
+<!-- 彈跳視窗 -->
+
 <script>
+<!-- 彈跳視窗 -->
 	$(window).load(function() {
 		$('.slider')._TMS({
 			show : 0,
@@ -101,6 +105,14 @@
       <link rel="stylesheet" media="screen" href="css/ie.css">
 
     <![endif]-->
+
+<style type="text/css">
+.subscribe {
+	margin-right: 100px;
+	margin-left: 260px;
+}
+</style>
+
 </head>
 
 <body>
@@ -117,7 +129,7 @@
 						<div class="menu_block">
 							<nav>
 								<ul class="sf-menu">
-									<li class="with_ul current"><a href="index2">ICook</a></li>
+									<li><a href="index2">ICook</a></li>
 									<li><a href="icookAboutUS">關於我們</a>
 										<ul>
 											<li><a href="icookContact">聯繫我們</a></li>
@@ -137,8 +149,8 @@
 										</ul></li>
 
 
-									<li><a href="icookProducts">市集</a>
-									<ul>
+									<li><a href="products">市集</a>
+										<ul>
 
 
 											<li><a href="cartPage">購物車</a></li>
@@ -154,11 +166,10 @@
 												<li><a href="index2" data-toggle="modal"
 													data-target="#logout">會員登出</a></li>
 											</c:if>
-												<li><a href="checkOrders">查看訂單</a></li>
-												<li><a href="icookAddRecipe">新增食譜</a></li>
-												<li><a href="backStage">後台</a></li>
-										<ul>
-									</li>		
+											<li><a href="checkOrders">查看訂單</a></li>
+											<li><a href="icookAddRecipe">新增食譜</a></li>
+											<li><a href="backStage">後台</a></li>
+											<ul></li>
 
 								</ul>
 							</nav>
@@ -235,22 +246,20 @@
 				<div class="row">
 					<div class="col-3-5">
 						<div class="wrap-col">
-							<h2>Welcome</h2>
+							<h2>歡迎光臨</h2>
 							<div class="page1_block col1">
 								<div class="col-1-3">
-									<img src="images/welcome_img.png" alt="">
+									<img src="images/food.gif" alt="">
 								</div>
 								<div class="col-2-3">
 									<div class="extra_wrapper">
 										<p>
-											<span class="col2"><a
-												href="http://blog.templatemonster.com/free-website-templates/"
-												rel="nofollow">Click here</a></span> for more info about this free
-											website template created by TemplateMonster.com
+											<span class="col2"> <!-- 												href="http://blog.templatemonster.com/free-website-templates/" -->
+												<!-- 												rel="nofollow">Click here</a> -->
+											</span>
+											歡迎來到全台灣最大的食譜入口平台,響時天堂提供了最新最富有創意的料理食譜,我們蒐集並提供的食譜老少咸宜,在家或者在外面烹調都可以輕易上手.
 										</p>
-										Aenean nonummy hendrerit mau rellus porta. Fusce suscipit
-										varius m sociis natoque penaibet magni parturient montes
-										nasetur ridiculumula dui. <br> <a href="#" class="btn">more</a>
+										請跟著我們的食譜步驟,展開一系列的美食奇幻之旅吧! <br> <a href="#" class="btn">去看食譜!</a>
 									</div>
 								</div>
 								<div class="clear"></div>
@@ -259,15 +268,12 @@
 					</div>
 					<div class="col-2-5">
 						<div class="wrap-col">
-							<h2>Features</h2>
+							<h2>關注</h2>
 							<ul class="list">
-								<li><a href="#">Unlimited consultations and/or planning</a></li>
-								<li><a href="#">Expert advice on traditions, customs,
-										aetiquette</a></li>
-								<li><a href="#">Determine and stay within budget</a></li>
-								<li><a href="#">Choosing the right Wedding Venue</a></li>
-								<li><a href="#">Provide preferred vendor's list</a></li>
-								<li><a href="#">Assist with wedding scheme and design</a></li>
+								<li>200多種各國特色的料理以及私房廚藝</li>
+								<li>最精緻最生動的教學,讓你立馬看完之後就能上手!</li>
+								<li>多位長期合作的美食部落客綜合評鑑優等網站</li>
+								<li>每周至少推出10道精選料理</li>
 							</ul>
 						</div>
 					</div>
@@ -280,48 +286,51 @@
 						<div class="wrap-col">
 							<div class="car_wrap">
 								<h2>特選食譜</h2>
+
+								<div style="visibility: hidden">區塊中的內容</div>
+								<div style="visibility: hidden">區塊中的內容</div>
 								<a href="#" class="prev"></a><a href="#" class="next"></a>
 								<ul class="carousel1">
 									<li><div>
-											<img src="images/page1_img1.jpg" alt="">
+											<img src="images/seafood.jpg" alt="">
 											<div class="col1 upp">
-												<a href="#">kim Lorem ipsum doamet consectet</a>
+												<a href="#">爆炒海瓜子</a>
 											</div>
 											<span> Dorem ipsum dolor amet consectetur</span>
-											<div class="price">45$</div>
+											<!-- 											<div class="price">45$</div> -->
 										</div></li>
 									<li><div>
-											<img src="images/page1_img2.jpg" alt="">
+											<img src="images/noodle.jpg" alt="">
 											<div class="col1 upp">
-												<a href="#">Lorem ipsum doamet consectet</a>
+												<a href="#">蚵仔麵線</a>
 											</div>
 											<span> Dorem ipsum dolor amet consectetur</span>
-											<div class="price">45$</div>
+											<!-- 											<div class="price">45$</div> -->
 										</div></li>
 									<li><div>
-											<img src="images/page1_img3.jpg" alt="">
+											<img src="images/Omlette.jpg" alt="">
 											<div class="col1 upp">
-												<a href="#">Lorem ipsum doamet consectet</a>
+												<a href="#">蛋包飯</a>
 											</div>
 											<span> Dorem ipsum dolor amet consectetur</span>
-											<div class="price">45$</div>
+											<!-- 											<div class="price">45$</div> -->
 										</div></li>
 									<li><div>
-											<img src="images/page1_img4.jpg" alt="">
+											<img src="images/meat.jpg" alt="">
 											<div class="col1 upp">
-												<a href="#">Lorem ipsum doamet consectet</a>
+												<a href="#">梅干扣肉</a>
 											</div>
 											<span> Dorem ipsum dolor amet consectetur</span>
-											<div class="price">45$</div>
+											<!-- 											<div class="price">45$</div> -->
 										</div></li>
-									<li><div>
-											<img src="images/page1_img3.jpg" alt="">
-											<div class="col1 upp">
-												<a href="#">Lorem ipsum doamet consectet kim</a>
-											</div>
-											<span> Dorem ipsum dolor amet consectetur</span>
-											<div class="price">45$</div>
-										</div></li>
+									<!-- 									<li><div> -->
+									<!-- 											<img src="images/duck.jpg" alt=""> -->
+									<!-- 											<div class="col1 upp"> -->
+									<!-- 												<a href="#">Lorem ipsum doamet consectet kim</a> -->
+									<!-- 											</div> -->
+									<!-- 											<span> Dorem ipsum dolor amet consectetur</span> -->
+									<!-- 											<div class="price">45$</div> -->
+									<!-- 										</div></li> -->
 								</ul>
 							</div>
 						</div>
@@ -331,40 +340,110 @@
 					<div class="hor_separator"></div>
 				</div>
 				<div class="row">
-					<div class="bottom_block">
-						<div class="col-1-2">
-							<h3>Follow Us</h3>
-							<div class="socials">
-								<a href="#"></a> <a href="#"></a> <a href="#"></a>
-							</div>
-							<nav>
-								<ul>
-									<li class="current"><a href="index.html">Home</a></li>
-									<li><a href="index-1.html">About Us</a></li>
-									<li><a href="index-2.html">Menu</a></li>
-									<li><a href="index-3.html">Portfolio</a></li>
-									<li><a href="index-4.html">News </a></li>
-									<li><a href="index-5.html">Contacts</a></li>
+					<div class="col-full">
+						<div class="wrap-col">
+							<div class="car_wrap">
+								<h2>特選食譜</h2>
+
+								<div style="visibility: hidden">區塊中的內容</div>
+								<div style="visibility: hidden">區塊中的內容</div>
+								<a href="#" class="prev"></a><a href="#" class="next"></a>
+								<ul class="carousel1">
+									<li><div>
+											<img src="images/seafood.jpg" alt="">
+											<div class="col1 upp">
+												<a href="#">爆炒海瓜子</a>
+											</div>
+											<span>海瓜子洗淨。 蒜頭切片、辣椒切段、蔥切斜段、薑絲準備好。
+												油兩大匙爆香鍋，加入蒜頭、薑絲.....</span>
+											<!-- 											<div class="price">45$</div> -->
+										</div></li>
+									<li><div>
+											<img src="images/noodle.jpg" alt="">
+											<div class="col1 upp">
+												<a href="#">蚵仔麵線</a>
+											</div>
+											<span>備一大鍋放水+全部食材+酌料1→一起煮至紅麵線軟爛
+
+
+												再加入食材2一起拌勻煮滾，再用酌料1的太白粉水勾芡 起鍋前倒些香油…</span>
+											<!-- 											<div class="price">45$</div> -->
+										</div></li>
+									<li><div>
+											<img src="images/Omlette.jpg" alt="">
+											<div class="col1 upp">
+												<a href="#">蛋包飯</a>
+											</div>
+											<span> 蛋包飯長的可愛又好吃, 一直都是很受歡迎的料理之一! 蛋包飯要包得好看, 一定要快! 狠!
+												準! ...</span>
+											<!-- 											<div class="price">45$</div> -->
+										</div></li>
+									<li><div>
+											<img src="images/meat.jpg" alt="">
+											<div class="col1 upp">
+												<a href="#">梅干扣肉</a>
+											</div>
+											<span>梅乾菜洗淨切碎，蒜末、辣椒末用剛剛煎肉的油下去炒香油不夠可以加點。拌炒出香氣，加醬油、冰糖、...</span>
+											<!-- 											<div class="price">45$</div> -->
+										</div></li>
+									<!-- 									<li><div> -->
+									<!-- 											<img src="images/duck.jpg" alt=""> -->
+									<!-- 											<div class="col1 upp"> -->
+									<!-- 												<a href="#">Lorem ipsum doamet consectet kim</a> -->
+									<!-- 											</div> -->
+									<!-- 											<span> Dorem ipsum dolor amet consectetur</span> -->
+									<!-- 											<div class="price">45$</div> -->
+									<!-- 										</div></li> -->
 								</ul>
-							</nav>
+							</div>
 						</div>
-						<div class="col-1-2">
-							<h3>Email Updates</h3>
-							<p class="col1">
-								Join our digital mailing list and get news<br> deals and be
-								first to know about events
-							</p>
+					</div>
+				</div>
+
+				<div class="col-full">
+					<!-- 					<div class="hor_separator"></div> -->
+				</div>
+
+				<div class='subscribe'>
+					<div class="row">
+						<div class="bottom_block">
+							<div class="col-1-2">
+								<h3>追蹤我們</h3>
+								<div class="socials">
+									<a href="#"></a> <a href="#"></a> <a href="#"></a>
+								</div>
+								<nav>
+									<!-- 								<ul> -->
+									<!-- 									<li class="current"><a href="index.html">Home</a></li> -->
+									<!-- 									<li><a href="index-1.html">About Us</a></li> -->
+									<!-- 									<li><a href="index-2.html">Menu</a></li> -->
+									<!-- 									<li><a href="index-3.html">Portfolio</a></li> -->
+									<!-- 									<li><a href="index-4.html">News </a></li> -->
+									<!-- 									<li><a href="index-5.html">Contacts</a></li> -->
+									<!-- 								</ul> -->
+								</nav>
+							</div>
+
+							<div class="col-1-2">
+								<h3>Email 訂閱</h3>
+								<p class="col1">
+									訂閱我們讓你每天都能夠做自己喜愛的料理吧<br>
+								</p>
+
+
+							</div>
+							<div></div>
 							<form id="newsletter">
-								<div class="success">Your subscribe request has been sent!</div>
 								<label class="email"> <input type="email"
 									value="Enter e-mail address"> <a href="#" class="btn"
-									data-type="submit">subscribe</a> <span class="error">*This
-										is not a valid email address.</span>
+									data-type="submit">訂閱</a>
 								</label>
 							</form>
 						</div>
 					</div>
 				</div>
+
+
 			</div>
 		</div>
 	</div>
@@ -374,10 +453,10 @@
 	<footer>
 		<div class="zerogrid">
 			<div class="col-full">
-				<div class="wrap-col">
-					&copy; Copyright &copy; 2013.Company name All rights reserved.<a
-						target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
-				</div>
+				<!-- 				<div class="wrap-col"> -->
+				<!-- 					&copy; Copyright &copy; 2013.Company name All rights reserved.<a -->
+				<!-- 						target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a> -->
+				<!-- 				</div> -->
 			</div>
 		</div>
 	</footer>

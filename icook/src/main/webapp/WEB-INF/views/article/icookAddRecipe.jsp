@@ -48,8 +48,22 @@
 <script src="js/sForm.js"></script>
 <script src="js/jquery.prettyPhoto.js"></script>
 <script src="js/css3-mediaqueries.js"></script>
-
+<!-- 彈跳視窗 -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	crossorigin="anonymous">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+	integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+	integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+	crossorigin="anonymous"></script>
+<!-- 彈跳視窗 -->
 <script type="text/javascript">
+
 	// 	let countIngredients = 1;//食譜食材
 	// 	let countUnit = 1;//食譜步驟
 
@@ -158,8 +172,7 @@
 				<div class="col-full">
 					<div class="wrap-col">
 						<h1>
-							<a href="index2"><img src="images/logo.png" height='200px'
-								width='80%' alt="EXTERIOR"></a>
+							<a href="index2"><img src="images/logo.png" alt="EXTERIOR"></a>
 						</h1>
 
 						<div class="menu_block">
@@ -170,27 +183,43 @@
 										<ul>
 											<li><a href="icookContact">聯繫我們</a></li>
 										</ul></li>
-									<li><a href=icookCRecipe>查看食譜</a>
+									<li><a href="icookMenu">查看食譜</a>
 										<ul>
-
 											<li><a href="#">cat1</a></li>
 											<li><a href="#">cat2</a></li>
 											<li><a href="#">cat3</a></li>
-										</ul>
+										</ul></li>
 									<li><a href="icookLife">生活誌</a></li>
-									<li><a href="icookVideo">討論區</a></li>
-									<li><a href="icookProducts">市集</a>
+									<li><a href="forum/overview">討論區</a></li>
+									<li><a href="A_articlemainpage">文章區</a>
 										<ul>
+											<li><a href="A_article">test</a></li>
+
+										</ul></li>
+
+
+									<li><a href="products">市集</a>
+										<ul>
+
+
 											<li><a href="cartPage">購物車</a></li>
 										</ul></li>
 
-									<li class="with_ul current"><a href="icookLogin">會員專區</a>
+									<li><a href="user">會員專區</a>
 										<ul>
-											<li><a href="icookLogin">會員登入</a></li>
+											<c:if test="${pageContext.request.userPrincipal.name==null}">
+												<li><a href="icookLogin">會員登入</a></li>
+												<li><a href="icookRegister">會員註冊</a></li>
+											</c:if>
+											<c:if test="${pageContext.request.userPrincipal.name!=null}">
+												<li><a href="index2" data-toggle="modal"
+													data-target="#logout">會員登出</a></li>
+											</c:if>
 											<li><a href="checkOrders">查看訂單</a></li>
-											<li><a href="#">會員登出</a></li>
-											<li><a href="#">新增食譜</a></li>
-										</ul></li>
+											<li><a href="icookAddRecipe">新增食譜</a></li>
+											<li><a href="backStage">後台</a></li>
+											<ul></li>
+
 								</ul>
 							</nav>
 							<div class="clear"></div>
@@ -201,6 +230,31 @@
 			</div>
 		</header>
 		<!--=======content================================-->
+		<!-- 確認登出 -->
+
+		<!-- 確認登出 -->
+
+		<div class="modal fade" id="logout" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header" style="border-bottom: 1px solid;">
+						<h4 class="modal-title" id="myModalLabel" style="float: left">您即將登出享食天堂</h4>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">×</button>
+					</div>
+					<div class="modal-body" style="width: 100%">
+						<form method="post" action="perform_logout">
+							<button type="submit">確定登出</button>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
 
 		<div class="content">
 			<div class='form'>

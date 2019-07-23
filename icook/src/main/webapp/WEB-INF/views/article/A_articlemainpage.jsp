@@ -98,8 +98,13 @@
 	<!-- 			</div> -->
 	<!-- 		</div> -->
 	<!-- 	</nav> -->
+<<<<<<< HEAD
 	<!-- 	END nav -->
+=======
+	<!-- END nav -->
+>>>>>>> branch 'master' of https://github.com/EEIT107Team003/iCook.git
 
+<<<<<<< HEAD
 	<header>
 		<div class="zerogrid">
 			<div class="col-full">
@@ -155,6 +160,22 @@
 						<div class="clear"></div>
 					</div>
 					<div class="clear"></div>
+=======
+
+	<section class="hero-wrap hero-wrap-2"
+		style="background-image: url('article/aimages/bg_4.jpg');">
+		<div class="overlay"></div>
+		<div class="container">
+			<div
+				class="row no-gutters slider-text align-items-end justify-content-center">
+				<div class="col-md-9 ftco-animate pb-5 text-center">
+					<h1 class="mb-3 bread">Foods</h1>
+					<p class="breadcrumbs">
+						<span class="mr-2"><a href="index.html">Home <i
+								class="ion-ios-arrow-forward"></i></a></span> <span>Foods <i
+							class="ion-ios-arrow-forward"></i></span>
+					</p>
+>>>>>>> branch 'master' of https://github.com/EEIT107Team003/iCook.git
 				</div>
 			</div>
 		</div>
@@ -181,14 +202,56 @@
 		</section>
 
 
+<<<<<<< HEAD
 		<section class="ftco-section">
 
 
+=======
+	<section class="ftco-section">
+>>>>>>> branch 'master' of https://github.com/EEIT107Team003/iCook.git
 
+<<<<<<< HEAD
 			<div id="msg-box"
 				style="width: 500px; height: 400px; background: #eee; overflow: auto;"></div>
+=======
+		<!-- 	跑馬燈 測試成功排版問題-->
+		<marquee direction="left" height="30" scrollamount="8"
+			behavior="alternate" id="ArcBroadcast" style="color: green;"></marquee>
+		<%-- 		<form> --%>
+		<!-- 				<input id="messageField" type="text" > <input -->
+		<!-- 					onclick="sendMsg();" value="send" type="button" > -->
+		<%-- 			</form> --%>
 
+		<div id="msg-box"
+			style="width: 500px; height: 400px; background: #eee; overflow: auto;"></div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-9">
+					<div class="row">
+>>>>>>> branch 'master' of https://github.com/EEIT107Team003/iCook.git
 
+<<<<<<< HEAD
+=======
+						<c:forEach var='Article' items='${Articles}'>
+							<div class="col-md-4 ftco-animate">
+								<div class="blog-entry">
+									<a
+										href="<spring:url value='/article?article_num=${Article.article_num}' />"
+										class="img-2"> <img class="img-fluid"
+										alt="Colorlib Template" style="width: 600px; height: 335px"
+										src="<c:url value='/getartPicture/${Article.article_num}'/>"></a>
+									<!-- 								寬800*高1000最佳像素 -->
+									<div class="text pt-3">
+
+										<p class="meta d-flex">
+											<span class="pr-3">${Article.article_date}</span>
+											<%-- 											<fmt:parseDate var="parseDate" --%>
+											<%-- 												value="${Article.article_date}" pattern="yyyy-MM-dd HH:mm" --%>
+											<%-- 												parseLocale="Asia/Taipei" /> --%>
+>>>>>>> branch 'master' of https://github.com/EEIT107Team003/iCook.git
+
+<<<<<<< HEAD
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-9">
@@ -221,12 +284,35 @@
 												</a>
 											</p>
 										</div>
+=======
+											<%-- 											<span class="ml-auto pl-3"> ${Article.article_date} </span> --%>
+										</p>
+
+										<h3>
+											<a
+												href="<spring:url value='/article?article_num=${Article.article_num}' />">${Article.article_title}</a>
+										</h3>
+										<p class="mb-0">
+											<a
+												href="<spring:url value='/article?article_num=${Article.article_num}' />"
+												class="btn btn-black py-2">Read More <span
+												class="icon-arrow_forward ml-4"></span>
+											</a>
+										</p>
+>>>>>>> branch 'master' of https://github.com/EEIT107Team003/iCook.git
 									</div>
 								</div>
+<<<<<<< HEAD
 							</c:forEach>
 						</div>
+=======
+							</div>
+						</c:forEach>
+					</div>
+>>>>>>> branch 'master' of https://github.com/EEIT107Team003/iCook.git
 
 
+<<<<<<< HEAD
 						<div class="row mt-5">
 							<div class="col text-center">
 								<div class="block-27">
@@ -305,6 +391,19 @@
 												<h3>其他</h3>
 											</div>
 									</a></li>
+=======
+					<div class="row mt-5">
+						<div class="col text-center">
+							<div class="block-27">
+								<ul>
+									<li><a href="#">&lt;</a></li>
+									<li class="active"><span>1</span></li>
+									<li><a href="#">2</a></li>
+									<li><a href="#">3</a></li>
+									<li><a href="#">4</a></li>
+									<li><a href="#">5</a></li>
+									<li><a href="#">&gt;</a></li>
+>>>>>>> branch 'master' of https://github.com/EEIT107Team003/iCook.git
 								</ul>
 							</div>
 						</div>
@@ -337,6 +436,73 @@
 										</div>
 									</form>
 								</div>
+<<<<<<< HEAD
+=======
+
+							</form>
+						</div>
+
+
+
+						<div class="sidebar-box categories text-center ftco-animate">
+							<h2 class="heading mb-4">Categories</h2>
+							<ul class="category-image">
+								<li><a
+									href="<spring:url value='/findArctiCatergory?article_catergoary=食安新聞' />"
+									class="img d-flex align-items-center justify-content-center text-center"
+									style="background-image: url(article/aimages/category-1.jpg);">
+										<div class="text">
+											<h3>美食新聞</h3>
+
+										</div>
+								</a></li>
+								<li><a
+									href="<spring:url value='/findArctiCatergory?article_catergoary=廚具新聞' />"
+									class="img d-flex align-items-center justify-content-center text-center"
+									style="background-image: url(article/aimages/category-2.jpg);">
+										<div class="text">
+											<h3>廚具新聞</h3>
+										</div>
+								</a></li>
+								<li><a
+									href="<spring:url value='/findArctiCatergory?article_catergoary=其他' />"
+									class="img d-flex align-items-center justify-content-center text-center"
+									style="background-image: url(article/aimages/category-2.jpg);">
+										<div class="text">
+											<h3>其他</h3>
+										</div>
+								</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<section class="ftco-subscribe ftco-section bg-light">
+		<div class="overlay">
+			<div class="container">
+				<div class="row d-flex justify-content-center">
+					<div
+						class="col-md-8 text-wrap text-center heading-section ftco-animate">
+						<h2 class="mb-4">
+							<span>Subcribe to our Newsletter</span>
+						</h2>
+						<p>A small river named Duden flows by their place and supplies
+							it with the necessary regelialia. It is a paradisematic country,
+							in which roasted parts of sentences fly into your mouth.</p>
+						<div class="row d-flex justify-content-center mt-4 mb-4">
+							<div class="col-md-8">
+								<form action="#" class="subscribe-form">
+									<div class="form-group d-flex">
+										<input type="text" class="form-control"
+											placeholder="Enter email address"> <input
+											type="submit" value="Subscribe" class="submit px-3">
+									</div>
+								</form>
+>>>>>>> branch 'master' of https://github.com/EEIT107Team003/iCook.git
 							</div>
 						</div>
 					</div>
@@ -467,13 +633,32 @@
 	<script src="${pageContext.request.contextPath}/article/ajs/main.js"></script>
 	<script>
 		var webSocket = new WebSocket("ws:/localhost:8080/icook/ArtBroadcast");
+<<<<<<< HEAD
+=======
+		var msgField = document.getElementById("messageField");
+		var divMsg = document.getElementById("msg-box");
+		var Broadcast = document.getElementById("ArcBroadcast");
+		function sendMsg() {
+			var msgToSend = msgField.value;
+			webSocket.send(msgToSend);
+			msgField.value = "";
+		}
+>>>>>>> branch 'master' of https://github.com/EEIT107Team003/iCook.git
 
+<<<<<<< HEAD
 		var newnew = "有一則新消息"
 		function sendMsg() {
 			var msgToSend = newnew.value;
 			webSocket.send(msgToSend);
+=======
+		webSocket.onmessage = function(message) {
+			divMsg.innerHTML += "<marquee direction='right' height='30' scrollamount='8' behavior='alternate'>"
+					+ message.data + "</marquee>";
+			divtoday.innerHTML += message.data;
+>>>>>>> branch 'master' of https://github.com/EEIT107Team003/iCook.git
 		}
 
+<<<<<<< HEAD
 		webSocket.onmessage = function() {
 			$.notify({
 				title : '<strong>好標題</strong>',
@@ -493,9 +678,21 @@
 				spacing : 10,
 				z_index : 1031,
 			});
+=======
+		webSocket.onopen = function() {
+			console.log("connection opened");
+		};
+>>>>>>> branch 'master' of https://github.com/EEIT107Team003/iCook.git
 
+<<<<<<< HEAD
 		}
+=======
+		webSocket.onclose = function() {
+			console.log("connection closed");
+		};
+>>>>>>> branch 'master' of https://github.com/EEIT107Team003/iCook.git
 
+<<<<<<< HEAD
 		webSocket.onopen = function() {
 			console.log("connection opened");
 		};
@@ -504,11 +701,14 @@
 			console.log("connection closed");
 		};
 
+=======
+>>>>>>> branch 'master' of https://github.com/EEIT107Team003/iCook.git
 		webSocket.onerror = function wserror(message) {
 			console.log("error: " + message);
 		}
 	</script>
 
+<<<<<<< HEAD
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
 		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
@@ -519,6 +719,8 @@
 		crossorigin="anonymous"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/article/bootstrap-notify-master/bootstrap-notify.min.js"></script>
+=======
+>>>>>>> branch 'master' of https://github.com/EEIT107Team003/iCook.git
 
 </body>
 </html>
