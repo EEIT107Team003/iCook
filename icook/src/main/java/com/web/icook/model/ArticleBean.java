@@ -6,6 +6,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -59,7 +60,14 @@ public class ArticleBean implements Serializable {
 	// --------------------------------------------------------------------------
 	// --------------------------------------------------------------------------
 	private Set<MsgBoardBean> msg_art_num = new LinkedHashSet<>();
-
+	
+	
+	
+	
+	
+	
+	
+	
 	@OneToMany(mappedBy = "artuclenum_in_msg")
 	public Set<MsgBoardBean> getMsg_art_num() {
 		return msg_art_num;
@@ -172,4 +180,12 @@ public class ArticleBean implements Serializable {
 		this.article_member = article_member;
 	}
 
+
+
+
+
+
+
+
+	
 }

@@ -20,5 +20,6 @@ public interface IcookService {
 	List<ArticleBean> getByArticle_Title(String article_title);// 依標題搜尋
 	
 	List<ArticleBean> getByArticle_Catergory(String article_catergoary);
+	public List<ArticleBean>     SelectByPages   (int page);
 
 }
