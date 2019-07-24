@@ -384,6 +384,11 @@ font-size:20px;
 						<label for="productImage">圖片 : </label>
 						<form:input id="productImage" path="productImage" type='file' accept="image/gif, image/jpeg, image/png" />
 					</div>
+					<div class="formGroup">
+						<label for="productPuctureOne">圖片2 : </label>
+						<form:input id="productPuctureOne" path="productPuctureOne" type='file' accept="image/gif, image/jpeg, image/png"/>
+					</div>
+					
                     <div id="uploadImg"></div>
 <!--                      <div> -->
 <!-- 						<input type="file" id="progressbarTWInput" -->

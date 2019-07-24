@@ -414,6 +414,7 @@ public class ProductController {
 
 		MultipartFile productImage = bb.getProductImage();
 		MultipartFile productPuctureOne = bb.getProductPuctureOne();
+		System.out.println("productPuctureOne :"+productPuctureOne);
 		String originalFilename = productImage.getOriginalFilename();
 		bb.setFileName(originalFilename);
 		String ext = null;
@@ -435,22 +436,22 @@ public class ProductController {
 		System.out.println("contextPath :"+contextPath);
 		System.out.println("ID :"+product_id);
 		originalFilename=product_id;
-		
+		int lenght = -1;
+		byte[]  tmp  = new byte[81920];
+		if(productPuctureOne.getInputStream()!=null) {
 		InputStream ins=productPuctureOne.getInputStream();
 		OutputStream ous = new FileOutputStream(
 				"C:\\Users\\屁股\\git\\repository\\icook\\src\\main\\webapp\\WEB-INF\\views\\products\\images/savedPicture/"
 				+ totalcounts+"_2" + ext);
 		bb.setProductPuctureOnePath("/product_pathImage/"
 				+ totalcounts+"_2" + ext);
-		byte[]  tmp  = new byte[81920];
-		int lenght = -1;
 		while ((lenght = ins.read(tmp)) != -1) {
 			ous.write(tmp, 0, lenght);
+		  }
 		}
 		
-		
-		ins = productImage.getInputStream();
-		ous = new FileOutputStream("C:/Users/屁股/git/repository/icook/src/main/webapp/WEB-INF/views/products/images/savedPicture/"
+		InputStream ins = productImage.getInputStream();
+		OutputStream ous = new FileOutputStream("C:/Users/屁股/git/repository/icook/src/main/webapp/WEB-INF/views/products/images/savedPicture/"
 						+ totalcounts+"_1" + ext);
 		tmp = new byte[81920];
 
