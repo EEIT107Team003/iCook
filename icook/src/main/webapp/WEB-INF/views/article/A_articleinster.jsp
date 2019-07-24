@@ -246,73 +246,39 @@
 					</div>
 
 					<div class="sidebar-box ftco-animate">
+						news
 						<h3 class="heading mb-4">Recent Blog</h3>
-						<div class="block-21 mb-4 d-flex">
-							<a class="blog-img mr-4"
-								style="background-image: url(article/aimages/image_1.jpg);"></a>
+						
+<!-- 						最新三比 -->
+						<c:forEach var="<c:url value='/getartPicture/${Article.article_num}'/>" items='${ArticleThrees}'>
+							<div class="block-21 mb-4 d-flex">
+								<a class="blog-img mr-4" href="<spring:url value='/article?article_num=${ArticleThree.article_num}' />">
+								<img width="100px" height="100px"  src="<c:url value='/getartPicture/${ArticleThree.article_num}'/>">
+									 </a>
+							
+							
+							
 							<div class="text">
 								<h3>
-									<a href="#">Even the all-powerful Pointing has no control
-										about the blind texts</a>
+									<a href="<spring:url value='/article?article_num=${ArticleThree.article_num}' />">${ArticleThree.article_title}
+										</a>
 								</h3>
 								<div class="meta">
 									<div>
-										<a href="#"><span class="icon-calendar"></span> February
-											12, 2019</a>
+										<a href="#"><span class="icon-calendar"></span> 
+										${ArticleThree.article_date}	</a>
 									</div>
 									<div>
-										<a href="#"><span class="icon-person"></span> Admin</a>
+										<a href="#"><span class="icon-person"></span> ${ArticleThree.article_member.nickname}</a>
 									</div>
-									<div>
-										<a href="#"><span class="icon-chat"></span> 19</a>
-									</div>
+									
 								</div>
 							</div>
 						</div>
-						<div class="block-21 mb-4 d-flex">
-							<a class="blog-img mr-4"
-								style="background-image: url(article/aimages/image_2.jpg);"></a>
-							<div class="text">
-								<h3>
-									<a href="#">Even the all-powerful Pointing has no control
-										about the blind texts</a>
-								</h3>
-								<div class="meta">
-									<div>
-										<a href="#"><span class="icon-calendar"></span> February
-											12, 2019</a>
-									</div>
-									<div>
-										<a href="#"><span class="icon-person"></span> Admin</a>
-									</div>
-									<div>
-										<a href="#"><span class="icon-chat"></span> 19</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="block-21 mb-4 d-flex">
-							<a class="blog-img mr-4"
-								style="background-image: url(article/aimages/image_3.jpg);"></a>
-							<div class="text">
-								<h3>
-									<a href="#">Even the all-powerful Pointing has no control
-										about the blind texts</a>
-								</h3>
-								<div class="meta">
-									<div>
-										<a href="#"><span class="icon-calendar"></span> February
-											12, 2019</a>
-									</div>
-									<div>
-										<a href="#"><span class="icon-person"></span> Admin</a>
-									</div>
-									<div>
-										<a href="#"><span class="icon-chat"></span> 19</a>
-									</div>
-								</div>
-							</div>
-						</div>
+						</c:forEach>
+						
+						
+						
 					</div>
 
 					<div class="sidebar-box ftco-animate">
