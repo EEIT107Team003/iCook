@@ -87,7 +87,7 @@
 }
 /* contain ------------------------------------------------------------------------------------------ */
 .contain_mytrack {
-	border: 1px solid black;
+	border: 1px solid #c7c7c7;
 	width: 100%;
 	height: 130px;
 	margin-bottom: 10px;
@@ -159,6 +159,11 @@ section {
 td {
 	margin: 3px;
 }
+
+/* .subscribe { */
+/* 	margin-right: 100px; */
+/* 	margin-left: 260px; */
+/* } */
 </style>
 <script>
 	$(document).ready(function() {
@@ -184,8 +189,8 @@ td {
 					console.log("error: "+data);
 				},
 			});
-		});
-		
+		});	
+	
 		$("#cover_photo_image").click(function(){
 			$.ajax({
 				url : "${pageContext.request.contextPath}/user/updateCoverPhotos",
@@ -226,7 +231,7 @@ td {
 								+"<div>"
 									+"<img class=contain_mytrack_photo src=<c:url value='/getMemberPhoto/"+names[i].trackedId.member_id+"' /> />"
 								+"</div>"
-								+"<div class=contain_mytrack_Info style="+"height:175px; background-color: yellow;"+">"
+								+"<div class=contain_mytrack_Info style="+"height:175px;"+">"
 									+"<div width=100%>"
 									+"<a href=members/page?member_id="+names[i].trackedId.member_id+" class=contain_mytrack_title>"+ names[i].trackedId.nickname+"</a>"
 									+"</div>"		
@@ -257,7 +262,6 @@ td {
 					for (i in names) {
 						txt+=
 							"<div class=contain_myforum>"
-								+"<div class=contain_myforum_Info>"
 									+"<div width=100%>"
 										+"<a href=${pageContext.request.contextPath}/forum/pick?harticle_id="+names[i].harticle_id+"&article_id="+names[i].article_id+" class=contain_mytrack_title>"+"["+names[i].category+"] "+names[i].title+"</a>"
 									+"</div>"	
@@ -366,7 +370,7 @@ td {
 </script>
 
 </head>
-<body style="background-color: white">
+<body style="background-color: #55a237">
 	<div class="main">
 		<!--==============================header=================================-->
 		<header>
@@ -375,12 +379,12 @@ td {
 				<div class="col-full">
 					<div class="wrap-col">
 						<h1>
-							<a href="index2"><img src="images/logo.png" alt="EXTERIOR" ></a>
+							<a  style="height:200px" href="${pageContext.request.contextPath}/index2"><img src="${pageContext.request.contextPath}/images/logo.png" style="width: 200px ;right: 200px ;border-radius: 50%;" alt="EXTERIOR"></a>
 						</h1>
 
 						<div class="menu_block">
 							<nav>
-								<ul class="sf-menu">
+								<ul class="sf-menu"  style="padding-top:55px">
 									<li><a href="index2">ICook</a></li>
 									<li><a href="icookAboutUS">關於我們</a>
 										<ul>
@@ -404,7 +408,6 @@ td {
 									<li><a href="products">市集</a>
 										<ul>
 
-
 											<li><a href="cartPage">購物車</a></li>
 										</ul></li>
 
@@ -421,7 +424,7 @@ td {
 											<li><a href="checkOrders">查看訂單</a></li>
 											<li><a href="icookAddRecipe">新增食譜</a></li>
 											<li><a href="backStage">後台</a></li>
-											<ul></li>
+											</ul></li>
 
 								</ul>
 							</nav>
@@ -570,213 +573,81 @@ td {
 					</div>
 					
 	</div>				
-<!-- 	<div class="content" style="margin: 50px "> -->
-<!-- 			<div class="zerogrid"> -->
-<!-- 				<div class="container sections-wrapper" style="background-color: white;border: 1px solid black;"> -->
-<!-- 			        <div class="row"> -->
-<!-- 			            <div class="primary col-md-8 col-sm-12 col-xs-12" style="float:left;border:1px,solid,#dcdcdc;box-shadow:4px 4px 3px 4px rgba(20%,20%,40%,0.5);"> -->
-<!-- 							<ul id="myTab" class="nav nav-tabs" > -->
-<!-- 								<li class="active"> -->
-<!-- 									<a href="user_myrecipe" data-toggle="tab">我的食譜</a> -->
-<!-- 								</li> -->
-<!-- 								<li> -->
-<!-- 									<a href="user_mycollectrecipe" data-toggle="tab">我的收藏</a> -->
-<!-- 								</li> -->
-<!-- 								<li> -->
-<!-- 									<a id="user_mytrack" data-toggle="tab">我的追蹤</a> -->
-<!-- 								</li> -->
-<!-- 								<li> -->
-<!-- 									<a id="user_myforum" data-toggle="tab">我的文章</a> -->
-<!-- 								</li> -->
-<!-- 							</ul> -->
-			
-<!-- 							<section class="about section"> -->
-<!-- 								<div class="section-inner"> -->
-<!-- 									<div id="myTabContent" class="tab-content"> -->
-<!-- 			<!-- 							<div class="tab-pane fade in active" id="user_contain"> --> -->
-<!-- 										<div  id="user_contain"> -->
-<!-- 			<!--                 				<iframe src="hw1.html" frameborder="0" class="HWView" id="aa">dsdsds</iframe> --> -->
-<!-- 			            				</div> -->
-<!-- 									</div> -->
-<!-- 								</div>//section-inner                  -->
-<!-- 							</section>//section -->
-<!-- 			            </div>//primary -->
-<!-- 			            <div class="secondary col-md-4 col-sm-12 col-xs-12"  style="float:right; height:155px; border:1px,solid,#dcdcdc; box-shadow:4px 4px 3px 4px rgba(20%,20%,40%,0.5);"> -->
-<!-- 			                 <aside class="info aside section"> -->
-<!-- 			                    <div class="section-inner"> -->
-<!-- 			                        <h2 class="heading sr-only">Basic Information</h2> -->
-<!-- 			                        <div class="content"> -->
-<!-- 			                        	<table width="100%"> -->
-<!-- 			                        		<tr> -->
-<!-- 			                        			<th class="items">食譜數量</th> -->
-<!-- 			                        			<th class="items">被追蹤數</th> -->
-<!-- 			                        			<th class="items">文章總數</th> -->
-<!-- 			                        		</tr> -->
-<!-- 			                        		<tr> -->
-<%-- 			                        			<th id="recipe_num" class="items">${member.recipe_num }</th> --%>
-<%-- 												<th id="tracked_num" class="items">${member.tracked_num }</th> --%>
-<%-- 												<th id="forum_num" class="items">${member.forum_num }</th> --%>
-<!-- 			                        		</tr> -->
-<!-- 			                        	</table> -->
-<!-- 			                        </div>//content   -->
-<!-- 			                    </div>//section-inner                  -->
-<!-- 			                </aside>//aside -->
-<!-- 			            </div>//secondary     -->
-<!-- 			        </div>//row -->
-<!--   				 </div>//masonry -->
+	<div class="content" style="margin-top: 50px ; ">
+			<div style="width: 100%; ">
+				<div class="container sections-wrapper"
+					style="background-color: white; border: 1px, solid, #c7c7c7">
+					<div class="row">
+						<div class="primary col-md-8 col-sm-12 col-xs-12"
+							style="float: left; border: 1px, solid, #c7c7c7; box-shadow: 4px 4px 3px 4px rgba(20%, 20%, 40%, 0.5);">
+							<ul id="myTab" class="nav nav-tabs">
+								<li class="active">
+								<a href="user_myrecipe" data-toggle="tab">我的食譜</a></li>
+								<li><a href="user_mycollectrecipe" data-toggle="tab">我的收藏</a>
+								</li>
+								<li><a href="" id="user_mytrack" data-toggle="tab">我的追蹤</a></li>
+								<li><a href="" id="user_myforum" data-toggle="tab">我的文章</a></li>
+							</ul>
 
-
-<!-- 				<div class="row"> -->
-<!-- 					<div class="bottom_block"> -->
-<!-- 						<div class="col-1-2"> -->
-<!-- 							<h3>Follow Us</h3> -->
-<!-- 							<div class="socials"> -->
-<!-- 								<a href="#"></a> <a href="#"></a> <a href="#"></a> -->
-<!-- 							</div> -->
-<!-- 							<nav> -->
-<!-- 								<ul> -->
-<!-- 									<li><a href="index.html">Home</a></li> -->
-<!-- 									<li><a href="index-1.html">About Us</a></li> -->
-<!-- 									<li><a href="index-2.html">Menu</a></li> -->
-<!-- 									<li><a href="index-3.html">Portfolio</a></li> -->
-<!-- 									<li class="current"><a href="index-4.html">News </a></li> -->
-<!-- 									<li><a href="index-5.html">Contacts</a></li> -->
-<!-- 								</ul> -->
-<!-- 							</nav> -->
-<!-- 						</div> -->
-<!-- 						<div class="col-1-2"> -->
-<!-- 							<h3>Email Updates</h3> -->
-<!-- 							<p class="col1"> -->
-<!-- 								Join our digital mailing list and get news<br> deals and be -->
-<!-- 								first to know about events -->
-<!-- 							</p> -->
-<%-- 							<form id="newsletter"> --%>
-<!-- 								<div class="success">Your subscribe request has been sent!</div> -->
-<!-- 								<label class="email"> <input type="email" -->
-<!-- 									value="Enter e-mail address"> <a href="#" class="btn" -->
-<!-- 									data-type="submit">subscribe</a> <span class="error">*This -->
-<!-- 										is not a valid email address.</span> -->
-<!-- 								</label> -->
-<%-- 							</form> --%>
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	<div class="container sections-wrapper"> -->
-<!--         <div class="row"> -->
-<!--             <div class="primary col-md-8 col-sm-12 col-xs-12"> -->
-<!-- 				<ul id="myTab" class="nav nav-tabs" > -->
-<!-- 					<li class="active"> -->
-<!-- 						<a href="user_myrecipe" data-toggle="tab">我的食譜</a> -->
-<!-- 					</li> -->
-<!-- 					<li> -->
-<!-- 						<a href="user_mycollectrecipe" data-toggle="tab">我的收藏</a> -->
-<!-- 					</li> -->
-<!-- 					<li> -->
-<!-- 						<a id="user_mytrack" data-toggle="tab">我的追蹤</a> -->
-<!-- 					</li> -->
-<!-- 					<li> -->
-<!-- 						<a href="user_myforum" data-toggle="tab">我的文章</a> -->
-<!-- 					</li> -->
-<!-- 				</ul> -->
-
-<!-- 				<section class="about section"> -->
-<!-- 					<div class="section-inner"> -->
-<!-- 						<div id="myTabContent" class="tab-content"> -->
-<!-- <!-- 							<div class="tab-pane fade in active" id="user_contain"> --> -->
-<!-- 							<div  id="user_contain"> -->
-<!-- <!--                 				<iframe src="hw1.html" frameborder="0" class="HWView" id="aa">dsdsds</iframe> --> -->
-<!--             				</div> -->
-<!-- 						</div> -->
-<!-- 					</div>//section-inner                  -->
-<!-- 				</section>//section -->
-<!--             </div>//primary -->
-<!--             <div class="secondary col-md-4 col-sm-12 col-xs-12"> -->
-<!--                  <aside class="info aside section"> -->
-<!--                     <div class="section-inner"> -->
-<!--                         <h2 class="heading sr-only">Basic Information</h2> -->
-<!--                         <div class="content"> -->
-<!--                         	<table width="100%"> -->
-<!--                         		<tr> -->
-<!--                         			<th class="items">食譜數量</th> -->
-<!--                         			<th class="items">被追蹤數</th> -->
-<!--                         			<th class="items">文章總數</th> -->
-<!--                         		</tr> -->
-<!--                         		<tr> -->
-<%--                         			<th class="items">${member.recipe_num }</th> --%>
-<%--                         			<th class="items">${member.tracked_num }</th> --%>
-<%--                         			<th class="items">${member.forum_num }</th> --%>
-<!--                         		</tr> -->
-<!--                         	</table> -->
-<!--                         </div>//content   -->
-<!--                     </div>//section-inner                  -->
-<!--                 </aside>//aside -->
-<!--             </div>//secondary     -->
-<!--         </div>//row -->
-<!--     </div>//masonry -->
-
-	<div class="container sections-wrapper">
-        <div class="row">
-            <div class="primary col-md-8 col-sm-12 col-xs-12">
-				<ul id="myTab" class="nav nav-tabs" >
-					<li class="active">
-						<a href="user_myrecipe" data-toggle="tab">我的食譜</a>
-					</li>
-					<li>
-						<a href="user_mycollectrecipe" data-toggle="tab">我的收藏</a>
-					</li>
-					<li>
-						<a id="user_mytrack" data-toggle="tab">我的追蹤</a>
-					</li>
-					<li>
-						<a href="user_myforum" data-toggle="tab">我的文章</a>
-					</li>
-				</ul>
-
-				<section class="about section">
-					<div class="section-inner">
-						<div id="myTabContent" class="tab-content">
-<!-- 							<div class="tab-pane fade in active" id="user_contain"> -->
-							<div  id="user_contain">
-<!--                 				<iframe src="hw1.html" frameborder="0" class="HWView" id="aa">dsdsds</iframe> -->
-            				</div>
+							<section class="about section">
+								<div class="section-inner">
+									<div id="myTabContent" class="tab-content">
+										<!-- 							<div class="tab-pane fade in active" id="user_contain"> -->
+										<div id="user_contain">
+											<!--                 				<iframe src="hw1.html" frameborder="0" class="HWView" id="aa">dsdsds</iframe> -->
+										</div>
+									</div>
+								</div>
+								<!--//section-inner-->
+							</section>
+							<!--//section-->
 						</div>
-					</div><!--//section-inner-->                 
-				</section><!--//section-->
-            </div><!--//primary-->
-            <div class="secondary col-md-4 col-sm-12 col-xs-12">
-                 <aside class="info aside section">
-                    <div class="section-inner">
-                        <h2 class="heading sr-only">Basic Information</h2>
-                        <div class="content">
-                        	<table width="100%">
-                        		<tr>
-                        			<th class="items">食譜數量</th>
-                        			<th class="items">被追蹤數</th>
-                        			<th class="items">文章總數</th>
-                        		</tr>
-                        		<tr>
-                        			<th class="items">${member.recipe_num }</th>
-                        			<th class="items">${member.tracked_num }</th>
-                        			<th class="items">${member.forum_num }</th>
-                        		</tr>
-                        	</table>
-                        </div><!--//content-->  
-                    </div><!--//section-inner-->                 
-                </aside><!--//aside-->
-            </div><!--//secondary-->    
-        </div><!--//row-->
-    </div><!--//masonry-->
+						<!--//primary-->
+						<div class="secondary col-md-4 col-sm-12 col-xs-12"
+							style="float: right; height: 155px; border: 1px, solid, #dcdcdc; box-shadow: 4px 4px 3px 4px rgba(20%, 20%, 40%, 0.5);">
+							<aside class="info aside section">
+								<div class="section-inner">
+									<h2 class="heading sr-only">Basic Information</h2>
+									<div class="content">
+										<table width="100%">
+											<tr>
+												<th class="items">食譜數量</th>
+												<th class="items">被追蹤數</th>
+												<th class="items">文章總數</th>
+											</tr>
+											<tr>
+												<th id="recipe_num" class="items">${member.recipe_num }</th>
+												<th id="tracked_num" class="items">${member.tracked_num }</th>
+												<th id="forum_num" class="items">${member.forum_num }</th>
+											</tr>
+										</table>
+									</div>
+									<!--//content-->
+								</div>
+								<!--//section-inner-->
+							</aside>
+							<!--//aside-->
+						</div>
+						<!--//secondary-->
+					</div>
+					<!--//row-->
+				</div>
+				<!--//masonry-->
+			</div>
+		<div>
+	<div >
+		<br>
+		
+				
+			</div>
+		</div>
+		</div>
+
 	<!--==============================footer=================================-->
 
-	<footer>
+	<footer style="background-color: #55a237">
 		<div class="zerogrid">
 			<div class="col-full">
-				<div class="wrap-col">
-					&copy; Copyright &copy; 2013.Company name All rights reserved.<a
-						target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
-				</div>
 			</div>
 		</div>
 	</footer>
