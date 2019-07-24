@@ -56,11 +56,31 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
    	    .formLogin() 
 	        .loginPage("/icookLogin")
 	        .loginProcessingUrl("/perform_login")
-	        .failureUrl("/login_page?error")
+	        .failureUrl("/icookLogin?error")
 	        .usernameParameter("username").passwordParameter("password")
         .and()
 	        .logout()
 	        .logoutUrl("/perform_logout")
 	        .logoutSuccessUrl("/index2"); 
+   	    
+   	 http.authorizeRequests()
+	    .antMatchers("/").permitAll() //不用登入即可使用
+	    .antMatchers("/backStage/**")
+	    .hasAnyRole("ADMIN") //只要登入成功,便可使用(權限:"ADMIN"或"MEMBER")
+	    .and()
+	    .csrf().disable() //關閉CSRF檢查
+	    .rememberMe()
+	    .and()
+	    .formLogin() 
+	        .loginPage("/icookAdminLogin")
+	        .loginProcessingUrl("/perform_Adminlogin")
+	        .defaultSuccessUrl("/backStage")
+	        .failureUrl("/icookAdminLogin?error")
+	        .usernameParameter("username").passwordParameter("password")
+     .and()
+	        .logout()
+	        .logoutUrl("/perform_logout")
+	        .logoutSuccessUrl("/index2"); 
 	}
+	
 }

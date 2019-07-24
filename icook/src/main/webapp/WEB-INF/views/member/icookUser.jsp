@@ -478,8 +478,8 @@ td {
 							<h2 id="member_resume" class="desc" style="font-size: 10px">${member.resume}</h2>
 						</div>	
 					</div>
-					<div style="height: 500px ;width: 100%">
-						<img class="profile-image img-responsive pull-left" style="height: 100%;width: 80%"
+					<div style="height: 500px ;width: 80% ;float: right;">
+						<img class="profile-image img-responsive pull-left" style="height: 100%;width: 100%"
 								id="cover_photo"  src="<c:url value='/getCoverPhoto/${member.member_id}' />" />
 					</div>
 				</div>

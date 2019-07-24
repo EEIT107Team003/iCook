@@ -144,9 +144,9 @@
 					</div>
 					<div class="col-2-5">
 						<div class="wrap-col">
-							<h2>享食客登入</h2>
+							<h2>管理員登入</h2>
 							
-				<form id="form" action="perform_login" method="POST">
+				<form id="form" action="perform_Adminlogin" method="POST">
 					<div class="success_wrapper">
 						<div class="success">Contact form submitted!<br>
 							<strong>We will be in touch soon.</strong>
@@ -155,7 +155,7 @@
 					<fieldset>				
 					<table>
 						<tr> 
-							<td><p>Email:</p></td>
+							<td><p>帳號:</p></td>
 							<td>
 								<label class="email" for="username">
 									 <input type="text" id="username" name="username"> 

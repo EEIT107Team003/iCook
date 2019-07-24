@@ -3,10 +3,13 @@ package recipe.model;
 import java.io.Serializable;
 import java.sql.Blob;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,7 +21,9 @@ import javax.persistence.Transient;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.web.icook.model.MemberBean;
+import com.web.icook.model.MyCollectRecipeBean;
 
 //POJO類別
 //永續類別都定義在model套件裡面
@@ -56,6 +61,12 @@ public class RecipeBean implements Serializable {
 	@OneToMany(mappedBy = "recipeBeanUnit", cascade = CascadeType.ALL)
 	private List<RecipeUnit> recipeUnit = new ArrayList<RecipeUnit>();// 一對多，「單元食譜、食譜步驟【已完成】」
 
+//收藏食譜 (by江慶庭)---------------------------------------
+	@JsonBackReference(value = "cr_reciept_id")
+	@OneToMany(mappedBy = "cr_reciept_id", fetch = FetchType.EAGER)
+	private Set<MyCollectRecipeBean> collectRecipe = new LinkedHashSet<>();
+//---------------------------------------	
+
 	private String recipe_name;// 食譜名稱
 	private String recipe_quantity;// 食譜份量
 	private Blob recipe_image;// 食譜圖片
@@ -85,6 +96,14 @@ public class RecipeBean implements Serializable {
 				+ file_name + ", recipe_click_rate=" + recipe_click_rate + "]";
 	}
 
+	public Set<MyCollectRecipeBean> getCollectRecipe() {
+		return collectRecipe;
+	}
+
+	public void setCollectRecipe(Set<MyCollectRecipeBean> collectRecipe) {
+		this.collectRecipe = collectRecipe;
+	}
+
 	public List<RecipeIngredientsBean> getRecipeIngredients() {
 		return recipeIngredients;
 	}
@@ -99,8 +118,8 @@ public class RecipeBean implements Serializable {
 
 	public void setRecipeUnit(List<RecipeUnit> recipeUnit) {
 		this.recipeUnit = recipeUnit;
-	}	
-	
+	}
+
 	public Integer getPk_recipe_id() {
 		// @GeneratedValue(strategy = GenerationType.SEQUENCE)//不使用，他不會從1開始。
 		// GenerationType.IDENTITY PK主鍵編號自動給定，從1開始，每新增一筆資料編號就加1。

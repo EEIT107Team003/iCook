@@ -36,7 +36,7 @@ public class MemberBean implements Serializable {
 
 	// 會員編號(不重複)*
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY,generator="generatorName")
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "generatorName")
 	@GenericGenerator(name = "generatorName", strategy = "native")
 	private Integer member_id;
 	// 電子郵件(不重複)*
@@ -48,12 +48,12 @@ public class MemberBean implements Serializable {
 	private String nickname;
 	// 會員電話
 	private String member_phone_num;
-	//收貨地址
+	// 收貨地址
 	private String address;
-	//會員簡介
-	@Column(columnDefinition="varchar(50)")
+	// 會員簡介
+	@Column(columnDefinition = "varchar(50)")
 	private String resume;
-	
+
 	// 大頭貼
 	@JsonIgnore
 	private Blob member_photo;
@@ -64,44 +64,44 @@ public class MemberBean implements Serializable {
 	private String fileName_member;
 	// 個人封面檔名
 	private String fileName_cover;
-	
+
 	// 被追蹤數
 	private Integer tracked_num;
 	// 發文篇數
 	private Integer forum_num;
 	// 發表食譜數量
 	private Integer recipe_num;
-	
+
 	// 註冊時間
 	private Date register_date;
 	// 是否水桶(0.公開 1.隱藏)
 	private Boolean enabled;
 	// 權限
 	private String role;
-	
+
 	@XmlTransient
 	@Transient
 	private MultipartFile member_photo_tr;
-	
+
 	@JsonIgnore
 	@XmlTransient
 	@Transient
 	private MultipartFile cover_photo_tr;
-	
-	@JsonBackReference(value="ODmemberbean")
-	@OneToMany(mappedBy="ODmemberbean",fetch= FetchType.EAGER)
-	private Set<OrderBean> orders ;
-	@JsonBackReference(value="OTmemberBean")
-	@OneToMany(mappedBy="OTmemberBean",fetch= FetchType.EAGER)
-	private List<OrderItemBean> orderitems ;
+
+	@JsonBackReference(value = "ODmemberbean")
+	@OneToMany(mappedBy = "ODmemberbean", fetch = FetchType.EAGER)
+	private Set<OrderBean> orders;
+	@JsonBackReference(value = "OTmemberBean")
+	@OneToMany(mappedBy = "OTmemberBean", fetch = FetchType.EAGER)
+	private List<OrderItemBean> orderitems;
 
 	// ------------------------------------------------------------------------
 
 	@OneToMany(mappedBy = "memberId", fetch = FetchType.LAZY)
 	@JsonIgnore
 	private Set<MyTrackBean> tracker = new LinkedHashSet<>();
-	
-	@OneToMany(mappedBy = "trackedId",fetch= FetchType.LAZY)
+
+	@OneToMany(mappedBy = "trackedId", fetch = FetchType.LAZY)
 	@JsonIgnore
 	private Set<MyTrackBean> tracked = new LinkedHashSet<>();
 
@@ -112,21 +112,30 @@ public class MemberBean implements Serializable {
 	@OneToMany(mappedBy = "memberbean", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private Set<RecipeBean> recipe = new LinkedHashSet<RecipeBean>();// 一中有個多，【一方】。
-	
+
 //	private Set<CollectRecipe> recipe_Collecter = new LinkedHashSet<>();
-	@JsonBackReference(value="COmemberBean")
-	@OneToMany(mappedBy="COmemberBean" ,fetch= FetchType.EAGER)
-	private Set<CollectiontBean> collectiontbean=new HashSet<>(0);
-	@JsonBackReference(value="article_member")
-	@OneToMany(mappedBy = "article_member",fetch= FetchType.EAGER)
+	@JsonBackReference(value = "COmemberBean")
+	@OneToMany(mappedBy = "COmemberBean", fetch = FetchType.EAGER)
+	private Set<CollectiontBean> collectiontbean = new HashSet<>(0);
+	@JsonBackReference(value = "article_member")
+	@OneToMany(mappedBy = "article_member", fetch = FetchType.EAGER)
 	private Set<ArticleBean> Act = new LinkedHashSet<>();
-	@JsonBackReference(value="memberid_in_msgs")
-	@OneToMany(mappedBy = "memberid_in_msgs",fetch= FetchType.EAGER)
+	@JsonBackReference(value = "memberid_in_msgs")
+	@OneToMany(mappedBy = "memberid_in_msgs", fetch = FetchType.EAGER)
 	private Set<MsgBoardBean> Msg = new LinkedHashSet<>();
-	
-	
-	
-	
+
+	@JsonBackReference(value = "cr_member_id")
+	@OneToMany(mappedBy = "cr_member_id", fetch = FetchType.EAGER)
+	private Set<MyCollectRecipeBean> collectRecipe = new LinkedHashSet<>();
+
+	public Set<MyCollectRecipeBean> getCollectRecipe() {
+		return collectRecipe;
+	}
+
+	public void setCollectRecipe(Set<MyCollectRecipeBean> collectRecipe) {
+		this.collectRecipe = collectRecipe;
+	}
+
 	public Set<ArticleBean> getAct() {
 		return Act;
 	}
@@ -151,18 +160,18 @@ public class MemberBean implements Serializable {
 		this.recipe = recipe;
 	}
 
-		public Set<CollectiontBean> getCollectiontbean() {
-			return collectiontbean;
-		}
+	public Set<CollectiontBean> getCollectiontbean() {
+		return collectiontbean;
+	}
 
-		public void setCollectiontbean(Set<CollectiontBean> collectiontbean) {
-			this.collectiontbean = collectiontbean;
-		}
-	
+	public void setCollectiontbean(Set<CollectiontBean> collectiontbean) {
+		this.collectiontbean = collectiontbean;
+	}
+
 	public MemberBean() {
 
 	}
-	
+
 //
 //	public MemberBean(Integer member_id, String username, String password, String nickname, Blob member_photo,
 //			Integer tracked_num, Integer recipe_num, Blob cover_photo, Date register_date, Boolean enabled,
@@ -361,7 +370,6 @@ public class MemberBean implements Serializable {
 		this.article = article;
 	}
 
-
 	public String getMember_phone_num() {
 		return member_phone_num;
 	}
@@ -385,7 +393,7 @@ public class MemberBean implements Serializable {
 	public void setResume(String resume) {
 		this.resume = resume;
 	}
-	
+
 	public Set<OrderBean> getOrders() {
 		return orders;
 	}
