@@ -5,6 +5,7 @@ import java.util.List;
 import com.web.icook.model.MemberBean;
 
 import forum.model.ForumMainBean;
+import forum.model.ReportBean;
 
 public interface IFMDao {
 	
@@ -33,5 +34,9 @@ public interface IFMDao {
 	public List<ForumMainBean> getByMember_id(Integer member_id);
 	
 	public List<ForumMainBean> getPopularArticle();
+	
+	public void report(ReportBean rtb, ForumMainBean fmb);
+	
+	public List<ReportBean> getAllReport();
 	
 }

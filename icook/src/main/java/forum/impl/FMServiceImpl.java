@@ -12,6 +12,7 @@ import com.web.icook.model.MemberBean;
 
 import forum.dao.IFMDao;
 import forum.model.ForumMainBean;
+import forum.model.ReportBean;
 import forum.service.IFMService;
 
 @Service
@@ -92,6 +93,16 @@ public class FMServiceImpl implements IFMService {
 	@Override
 	public List<ForumMainBean> getPopularArticle() {
 		return dao.getPopularArticle();
+	}
+
+	@Override
+	public void report(ReportBean rtb, ForumMainBean fmb) {		
+		dao.report(rtb, fmb);
+	}
+
+	@Override
+	public List<ReportBean> getAllReport() {
+		return dao.getAllReport();
 	}
 	
 	

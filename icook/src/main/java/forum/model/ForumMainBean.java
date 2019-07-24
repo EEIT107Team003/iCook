@@ -2,6 +2,8 @@ package forum.model;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -13,8 +15,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.web.icook.model.MemberBean;
 
 //注意，使用Hibernate生成SQL Table 時 ，要將text、signature 設定成varchar(max)
@@ -41,6 +45,12 @@ public class ForumMainBean implements Serializable {
 	private Integer harticle_id; 		// 首篇文章編號
 	private Integer article_id; 		// 文章編號
 	private MemberBean memberBean;		// 關聯會員物件
+	
+	
+	
+	private	Set<ReportBean> reportArticle = new LinkedHashSet<>();
+
+	
 
 	public ForumMainBean() {
 
@@ -64,6 +74,7 @@ public class ForumMainBean implements Serializable {
 		this.harticle_id = harticle_id;
 		this.article_id = article_id;
 		this.memberBean = memberBean;
+		
 	}
 
 	public String getNickname() {
@@ -198,6 +209,16 @@ public class ForumMainBean implements Serializable {
 	@Override
 	public String toString() {
 		return "ForumMainBean [memberBean=" + memberBean + "]";
+	}
+	
+	@OneToMany(mappedBy = "fmb")
+	@JsonIgnore
+	public Set<ReportBean> getReportArticle() {
+		return reportArticle;
+	}
+
+	public void setReportArticle(Set<ReportBean> reportArticle) {
+		this.reportArticle = reportArticle;
 	}
 
 
