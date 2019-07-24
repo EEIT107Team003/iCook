@@ -202,19 +202,6 @@
 
 						<div class="col-1-2"></div>
 						<br>
-
-						<!-- 						<div class="col-1-2"> -->
-						<!-- 							<div class="wrap-col"> -->
-						<!-- 								<a href="images/big4.jpg" data-gal="prettyPhoto[1]"><span><img -->
-						<!-- 										src="images/page4_img3.jpg" alt=""></span></a> -->
-						<!-- 							</div> -->
-						<!-- 						</div> -->
-						<!-- 						<div class="col-1-2"> -->
-						<!-- 							<div class="wrap-col"> -->
-						<!-- 								<a href="images/big1.jpg" data-gal="prettyPhoto[1]"><span><img -->
-						<!-- 										src="images/page4_img4.jpg" alt=""></span></a> -->
-						<!-- 							</div> -->
-						<!-- 						</div> -->
 					</div>
 				</div>
 
@@ -238,37 +225,6 @@
 								</a>
 							</div>
 						</div>
-						<!-- 						<div class="col-1-2"> -->
-						<!-- 							<h3>Follow Us</h3> -->
-						<!-- 							<div class="socials"> -->
-						<!-- 								<a href="#"></a> <a href="#"></a> <a href="#"></a> -->
-						<!-- 							</div> -->
-						<!-- 							<nav> -->
-						<!-- 								<ul> -->
-						<!-- 									<li><a href="index.html">Home</a></li> -->
-						<!-- 									<li><a href="index-1.html">About Us</a></li> -->
-						<!-- 									<li><a href="index-2.html">Menu</a></li> -->
-						<!-- 									<li class="current"><a href="index-3.html">Portfolio</a></li> -->
-						<!-- 									<li><a href="index-4.html">News </a></li> -->
-						<!-- 									<li><a href="index-5.html">Contacts</a></li> -->
-						<!-- 								</ul> -->
-						<!-- 							</nav> -->
-						<!-- 						</div> -->
-						<!-- 						<div class="col-1-2"> -->
-						<!-- 							<h3>Email Updates</h3> -->
-						<!-- 							<p class="col1"> -->
-						<!-- 								Join our digital mailing list and get news<br> deals and be -->
-						<!-- 								first to know about events -->
-						<!-- 							</p> -->
-						<!-- 							<form id="newsletter"> -->
-						<!-- 								<div class="success">Your subscribe request has been sent!</div> -->
-						<!-- 								<label class="email"> <input type="email" -->
-						<!-- 									value="Enter e-mail address"> <a href="#" class="btn" -->
-						<!-- 									data-type="submit">subscribe</a> <span class="error">*This -->
-						<!-- 										is not a valid email address.</span> -->
-						<!-- 								</label> -->
-						<!-- 							</form> -->
-						<!-- 						</div> -->
 					</div>
 				</div>
 			</div>

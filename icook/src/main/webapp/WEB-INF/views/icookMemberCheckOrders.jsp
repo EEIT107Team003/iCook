@@ -8,6 +8,11 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!-- JQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- JQuery -->
+
 <!-- 	bootstrap -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -64,10 +69,28 @@
 	crossorigin="anonymous"></script>
 <!-- 彈跳視窗 -->
 <script type="text/javascript">
-	function to_detail(obj) {
 
-		window.location.href = '/icookProject/orderdetails?id=' + obj.id;
-	}
+getMemberOrders();
+function getMemberOrders(){
+	$ajax({
+		url:"{pageContext.request.contextPath}/ajaxCheckMemberOrders",
+		type:"GET",
+		dataType:"json",
+		contentType:"application/json",
+		async:true,
+		succes:function(data){
+			var names = JSON.parse(JSON.stringify(data).split(","));
+			var txt = "";
+			for(i in names){
+				txt+=""
+			}
+		}
+	})
+	
+}
+
+
+	
 </script>
 
 <style>
@@ -87,18 +110,6 @@ td, th {
 margin-left:'100px';
 }
 </style>
-
-<!--[if lt IE 8]>
-       <div style=' clear: both; text-align:center; position: relative;'>
-         <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
-           <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
-         </a>
-      </div>
-    <![endif]-->
-<!--[if lt IE 9]>
-      <script src="js/html5shiv.js"></script>
-      <link rel="stylesheet" media="screen" href="css/ie.css">
-    <![endif]-->
 </head>
 <body>
 	<div class="main">
@@ -202,9 +213,6 @@ margin-left:'100px';
 				<div class="outer">
 					<table class="table table-hover">
 						<thead>
-							<!-- 						<tr> -->
-							<!-- 								<th scope="col">序號</th> -->
-							<!-- 							</tr> -->
 							<tr>
 								<th scope="col">序號</th>
 								<th scope="col">訂單詳情</th>
@@ -271,14 +279,19 @@ margin-left:'100px';
 			</div>
 
 		</div>
+		
+		
+<!-- 		ajax -->
+		<p>ajax專區</p>
+		
+		
+		
 		<!--==============================footer=================================-->
 
 		<footer>
 			<div class="zerogrid">
 				<div class="col-full">
 					<div class="wrap-col">
-						<!-- 						&copy; Copyright &copy; 2013.Company name All rights reserved.<a -->
-						<!-- 							target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a> -->
 					</div>
 				</div>
 			</div>
