@@ -104,7 +104,7 @@ td, th {
 	text-align: center;
 	font-size: 20px;
 	font-family: 'Noto Sans TC', sans-serif;
-	 line-height:50px;
+	line-height: 50px;
 }
 </style>
 </head>
@@ -116,12 +116,15 @@ td, th {
 				<div class="col-full">
 					<div class="wrap-col">
 						<h1>
-							<a style="height:200px" href="${pageContext.request.contextPath}/index2"><img src="${pageContext.request.contextPath}/images/logo.png" style="width: 200px ;right: 200px ;border-radius: 50%;" alt="EXTERIOR"></a>
+							<a style="height: 200px"
+								href="${pageContext.request.contextPath}/index2"><img
+								src="${pageContext.request.contextPath}/images/logo.png"
+								style="width: 200px; right: 200px; border-radius: 50%;"
+								alt="EXTERIOR"></a>
 						</h1>
-
 						<div class="menu_block">
 							<nav>
-								<ul class="sf-menu"  style="padding-top:55px">
+								<ul class="sf-menu" style="padding-top: 55px">
 									<li><a href="index2">ICook</a></li>
 									<li><a href="icookAboutUS">關於我們</a>
 										<ul>
@@ -174,7 +177,7 @@ td, th {
 			</div>
 		</header>
 		<!--=======content================================-->
-			<!-- 確認登出 -->
+		<!-- 確認登出 -->
 
 		<div class="modal fade" id="logout" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel" aria-hidden="true">
@@ -196,7 +199,7 @@ td, th {
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="progress">
 			<div class="progress-bar progress-bar-striped bg-success"
 				role="progressbar" style="width: 25%" aria-valuenow="25"
@@ -414,8 +417,8 @@ td, th {
 			<div class="zerogrid">
 				<div class="col-full">
 					<div class="wrap-col">
-<!-- 						&copy; Copyright &copy; 2013.Company name All rights reserved.<a -->
-<!-- 							target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a> -->
+						<!-- 						&copy; Copyright &copy; 2013.Company name All rights reserved.<a -->
+						<!-- 							target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a> -->
 					</div>
 				</div>
 			</div>

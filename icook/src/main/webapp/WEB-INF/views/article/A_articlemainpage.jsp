@@ -102,7 +102,12 @@
 			<div class="col-full">
 				<div class="wrap-col">
 					<h1>
-<a  style="height:200px" href="${pageContext.request.contextPath}/index2"><img src="${pageContext.request.contextPath}/images/logo.png" style="width: 200px ;right: 200px ;border-radius: 50%;" alt="EXTERIOR"></a>					</h1>
+						<a style="height: 200px"
+							href="${pageContext.request.contextPath}/index2"><img
+							src="${pageContext.request.contextPath}/images/logo.png"
+							style="width: 200px; right: 200px; border-radius: 50%;"
+							alt="EXTERIOR"></a>
+					</h1>
 
 					<div class="menu_block">
 						<nav>
@@ -132,7 +137,7 @@
 										<li><a href="checkOrders">查看訂單</a></li>
 										<li><a href="#">會員登出</a></li>
 										<li><a href="#">新增食譜</a></li>
-										</ul></li>
+									</ul></li>
 
 								<c:if
 									test="${pageContext.request.userPrincipal.name == 'aa'||pageContext.request.userPrincipal.name =='dd'}">
@@ -251,24 +256,33 @@
 						</div>
 					</div>
 
+
+					<!-- 相關網站 -->
 					<div class="col-lg-3">
 						<div class="sidebar-wrap">
-							<div class="sidebar-box p-4 about text-center ftco-animate">
-								<h2 class="heading mb-4">About Me</h2>
-								<img src="article/aimages/author.jpg" class="img-fluid"
-									alt="Colorlib Template">
-								<div class="text pt-4">
-									<p>
-										Hi! My name is <strong>Cathy Deon</strong>, behind the word
-										mountains, far from the countries Vokalia and Consonantia,
-										there live the blind texts. Separated they live in
-										Bookmarksgrove right at the coast of the Semantics, a large
-										language ocean.
-									</p>
-								</div>
+							<div>
+
+								<h3 align="center">相關網站</h3>
+								<br>
+								<ul class="category-image">
+
+									<li style="height: 220.75px; height: 140px;"><a
+										href="http://www.tcetva.tw/"> <img
+											src="${pageContext.request.contextPath}/article/aimages/news1.jpg ">
+									</a></li>
+									<li style="height: 220.75px; height: 140px;"><a
+										href="https://travel-shop.top-link.com.tw/"><img
+											src="${pageContext.request.contextPath}/article/aimages/news2.jpg ">
+									</a></li>
+									<li style="height: 220.75px; height: 140px;"><a
+										href="https://safood.tw/japan-exhibition"><img
+											src="${pageContext.request.contextPath}/article/aimages/news3.jpg ">
+
+									</a></li>
+								</ul>
 							</div>
 
-
+							<br> <br> <br>
 							<div class="sidebar-box p-4 ftco-animate">
 								<form action="findArctile?article_title=${param.article_title}"
 									class="search-form">
@@ -307,7 +321,7 @@
 									<li><a
 										href="<spring:url value='/findArctiCatergory?article_catergoary=其他' />"
 										class="img d-flex align-items-center justify-content-center text-center"
-										style="background-image: url(article/aimages/category-2.jpg);">
+										style="background-image: url(article/aimages/category-3.jpg);">
 											<div class="text">
 												<h3>其他</h3>
 											</div>

@@ -69,15 +69,15 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="backStageTable">
+                        <a class="nav-link" href="adminCheckOrders">
                             <i class="nc-icon nc-notes"></i>
                             <p>訂單管理</p>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="backStageTypography">
+                        <a class="nav-link" href="adminCheckOrders">
                             <i class="nc-icon nc-paper-2"></i>
-                            <p>Typography</p>
+                            <p>XXXX</p>
                         </a>
                     </li>
                     <li>
