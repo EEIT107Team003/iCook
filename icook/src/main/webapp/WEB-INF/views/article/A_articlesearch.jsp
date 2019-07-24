@@ -41,34 +41,85 @@
 	href="${pageContext.request.contextPath}/article/acss/icomoon.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/article/acss/style.css">
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+<script src="https://cdn.bootcss.com/web-socket-js/1.0.0/web_socket.js"></script>
+
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	crossorigin="anonymous">
+	
+	
+<!-- 套版使用 -->
+<link rel="icon" href="images/favicon.ico">
+<link rel="shortcut icon" href="images/favicon.ico" />
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/zerogrid.css" type="text/css"
+	media="screen">
+<link rel="stylesheet" href="css/responsive.css" type="text/css"
+	media="screen">
+<link rel="stylesheet" href="css/prettyPhoto.css">	
+	
 <title>Stories - Free Bootstrap 4 Template by Colorlib</title>
 </head>
 <body>
-	<nav
-		class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light"
-		id="ftco-navbar">
-		<div class="container">
-			<a class="navbar-brand" href="index2"><img width="240" height="111.5" src="images/logo.png"
-								alt="EXTERIOR"></a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#ftco-nav" aria-controls="ftco-nav"
-				aria-expanded="false" aria-label="Toggle navigation">
-				<span class="oi oi-menu"></span> Menu
-			</button>
+	<header>
+		<div class="zerogrid">
+			<div class="col-full">
+				<div class="wrap-col">
+					<h1>
+<a  style="height:200px" href="${pageContext.request.contextPath}/index2"><img src="${pageContext.request.contextPath}/images/logo.png" style="width: 200px ;right: 200px ;border-radius: 50%;" alt="EXTERIOR"></a>					</h1>
 
-			<div class="collapse navbar-collapse" id="ftco-nav">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-					<li class="nav-item"><a href="A_insert" class="nav-link">新增一篇文章</a></li>
-					<li class="nav-item active"><a href="A_findAll"
-						class="nav-link">Foods文章首頁</a></li>
-					<li class="nav-item"><a href="A_select" class="nav-link">查詢一篇文章</a></li>
-					<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-				</ul>
+					<div class="menu_block">
+						<nav>
+							<ul class="sf-menu">
+								<li><a href="index2">ICook</a></li>
+								<li><a href="icookAboutUS">關於我們</a>
+									<ul>
+										<li class="with_ul current"><a href="icookContact">聯繫我們</a></li>
+									</ul></li>
+								<li><a href="icookMenu">查看食譜</a>
+									<ul>
+
+										<li><a href="#">cat1</a></li>
+										<li><a href="#">cat2</a></li>
+										<li><a href="#">cat3</a></li>
+									</ul>
+								<li><a href="icookLife">生活誌</a></li>
+								<li><a href="icookVideo">討論區</a></li>
+								<li><a href="icookProducts">市集</a>
+									<ul>
+										<li><a href="cartPage">購物車</a></li>
+									</ul></li>
+								<li><a href="A_findAll">文章區</a></li>
+								<li><a href="icookLogin">會員專區</a>
+									<ul>
+										<li><a href="icookLogin">會員登入</a></li>
+										<li><a href="checkOrders">查看訂單</a></li>
+										<li><a href="#">會員登出</a></li>
+										<li><a href="#">新增食譜</a></li>
+										</ul></li>
+
+								<c:if
+									test="${pageContext.request.userPrincipal.name == 'aa'||pageContext.request.userPrincipal.name =='dd'}">
+									<li><a href="A_insert">新增一篇文章</a></li>
+								</c:if>
+							</ul>
+
+
+						</nav>
+						<div class="clear"></div>
+					</div>
+					<div class="clear"></div>
+				</div>
 			</div>
-		</div>
-	</nav>
-	<!-- END nav -->
+	</header>
+
+	<div style="background-color: white;">
+
 
 	<section class="hero-wrap hero-wrap-2"
 		style="background-image: url('article/aimages/bg_4.jpg');">
@@ -124,12 +175,12 @@
 						</c:forEach>
 
 
-						
-						
-						
-						
-					
-					
+
+
+
+
+
+
 					</div>
 					<div class="row mt-5">
 						<div class="col text-center">
@@ -170,12 +221,12 @@
 							<form action="" class="search-form">
 								<div class="form-group">
 									<span class="icon icon-search"></span> <input type="text"
-									name="article_title" class="form-control" placeholder="Search" 
-									formaction="findArctile?article_title=${ param.article_title }"/>
-									
-									
-								</div>																													
-																															
+										name="article_title" class="form-control" placeholder="Search"
+										formaction="findArctile?article_title=${ param.article_title }" />
+
+
+								</div>
+
 							</form>
 						</div>
 
@@ -184,22 +235,25 @@
 						<div class="sidebar-box categories text-center ftco-animate">
 							<h2 class="heading mb-4">Categories</h2>
 							<ul class="category-image">
-								<li><a href="<spring:url value='/findArctiCatergory?article_catergoary=食安新聞' />" 
+								<li><a
+									href="<spring:url value='/findArctiCatergory?article_catergoary=食安新聞' />"
 									class="img d-flex align-items-center justify-content-center text-center"
 									style="background-image: url(article/aimages/category-1.jpg);">
 										<div class="text">
 											<h3>美食新聞</h3>
-											
+
 										</div>
 								</a></li>
-								<li><a href="<spring:url value='/findArctiCatergory?article_catergoary=廚具新聞' />"
+								<li><a
+									href="<spring:url value='/findArctiCatergory?article_catergoary=廚具新聞' />"
 									class="img d-flex align-items-center justify-content-center text-center"
 									style="background-image: url(article/aimages/category-2.jpg);">
 										<div class="text">
 											<h3>廚具新聞</h3>
 										</div>
 								</a></li>
-								<li><a href="<spring:url value='/findArctiCatergory?article_catergoary=其他' />"
+								<li><a
+									href="<spring:url value='/findArctiCatergory?article_catergoary=其他' />"
 									class="img d-flex align-items-center justify-content-center text-center"
 									style="background-image: url(article/aimages/category-2.jpg);">
 										<div class="text">
@@ -214,7 +268,7 @@
 		</div>
 	</section>
 
-
+</div>
 	<section class="ftco-subscribe ftco-section bg-light">
 		<div class="overlay">
 			<div class="container">
@@ -336,27 +390,91 @@
 	</div>
 
 
-	<script src="${pageContext.request.contextPath}/article/ajs/jquery.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/article/ajs/jquery.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/article/ajs/jquery-migrate-3.0.1.min.js"></script>
-	<script src="${pageContext.request.contextPath}/article/ajs/popper.min.js"></script>
-	<script src="${pageContext.request.contextPath}/article/ajs/bootstrap.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/article/ajs/popper.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/article/ajs/bootstrap.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/article/ajs/jquery.easing.1.3.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/article/ajs/jquery.waypoints.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/article/ajs/jquery.stellar.min.js"></script>
-	<script src="${pageContext.request.contextPath}/article/ajs/owl.carousel.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/article/ajs/owl.carousel.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/article/ajs/jquery.magnific-popup.min.js"></script>
 	<script src="${pageContext.request.contextPath}/article/ajs/aos.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/article/ajs/jquery.animateNumber.min.js"></script>
-	<script src="${pageContext.request.contextPath}/article/ajs/scrollax.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/article/ajs/scrollax.min.js"></script>
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-	<script src="${pageContext.request.contextPath}/article/ajs/google-map.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/article/ajs/google-map.js"></script>
 	<script src="${pageContext.request.contextPath}/article/ajs/main.js"></script>
+
+	<script>
+		var webSocket = new WebSocket("ws:/localhost:8080/icook/ArtBroadcast");
+		var newnew = "有一則新消息"
+		function sendMsg() {
+			var msgToSend = newnew.value;
+			webSocket.send(msgToSend);
+
+		}
+
+		webSocket.onmessage = function(message) {
+			$.notify({
+				title : '<strong>新消息</strong>',
+				icon : 'glyphicon glyphicon-star',
+				message : "有一篇文章發表摟，快去看看!"
+			}, {
+				type : 'info',
+				animate : {
+					enter : 'animated fadeInUp',
+					exit : 'animated fadeOutRight'
+				},
+				placement : {
+					from : "bottom",
+					align : "right"
+				},
+				offset : 20,
+				spacing : 10,
+				z_index : 1031,
+			});
+
+		}
+
+		webSocket.onopen = function() {
+			console.log("connection opened");
+		};
+
+		webSocket.onclose = function() {
+			console.log("connection closed");
+		};
+
+		webSocket.onerror = function wserror(message) {
+			console.log("error: " + message);
+		}
+	</script>
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+		integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+		crossorigin="anonymous"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/article/bootstrap-notify-master/bootstrap-notify.min.js"></script>
+
+
+
 </body>
 </html>

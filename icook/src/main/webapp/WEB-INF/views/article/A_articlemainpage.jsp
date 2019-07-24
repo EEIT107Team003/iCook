@@ -61,16 +61,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
 <title>Stories - Free Bootstrap 4 Template by Colorlib</title>
 </head>
 <body>
@@ -112,8 +102,7 @@
 			<div class="col-full">
 				<div class="wrap-col">
 					<h1>
-						<a href="index2"><img src="images/logo.png" alt="EXTERIOR"></a>
-					</h1>
+<a  style="height:200px" href="${pageContext.request.contextPath}/index2"><img src="${pageContext.request.contextPath}/images/logo.png" style="width: 200px ;right: 200px ;border-radius: 50%;" alt="EXTERIOR"></a>					</h1>
 
 					<div class="menu_block">
 						<nav>
@@ -495,9 +484,9 @@
 
 		webSocket.onmessage = function(message) {
 			$.notify({
-				title : '<strong>好標題</strong>',
+				title : '<strong>新消息</strong>',
 				icon : 'glyphicon glyphicon-star',
-				message : "飛進來了!"
+				message : "有一篇文章發表摟，快去看看!"
 			}, {
 				type : 'info',
 				animate : {
@@ -515,8 +504,25 @@
 
 		}
 
-		webSocket.onopen = function() {
-			console.log("connection opened");
+		webSocket.onopen = function(message) {
+			$.notify({
+				title : '<strong>歡迎來到想食天堂</strong>',
+				icon : 'glyphicon glyphicon-star',
+				message : '--------文章影音區'
+			}, {
+				type : 'info',
+				animate : {
+					enter : 'animated fadeInUp',
+					exit : 'animated fadeOutRight'
+				},
+				placement : {
+					from : "bottom",
+					align : "right"
+				},
+				offset : 20,
+				spacing : 10,
+				z_index : 1031,
+			});
 		};
 
 		webSocket.onclose = function() {
