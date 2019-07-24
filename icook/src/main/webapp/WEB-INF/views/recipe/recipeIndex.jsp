@@ -25,11 +25,13 @@
 <style type="text/css">
 </style>
 </head>
-<body bgcolor="#ffffce">
+<!--<body bgcolor="#ffffce">-->
+<body>
 	<div align="center">
 		<h1>recipeIndex</h1>
 		<h2>食譜首頁</h2>
-		<table border="1" width="50%" bgcolor="#ffffb9">
+		<!--<table border="0" width="50%" bgcolor="#ffffb9">-->
+		<table border="0" width="50%">
 			<tr align="center">
 				<%--align="center" 置中設定--%>
 				<td><a href="<c:url value='/recipe/recipeInsert' />"
