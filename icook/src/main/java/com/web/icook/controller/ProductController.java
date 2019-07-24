@@ -331,8 +331,9 @@ public class ProductController {
 //限定輸入欄位	
 	@InitBinder
 	public void whiteListing(WebDataBinder binder) {
-		binder.setAllowedFields("product_id，", "description", "unit_size", "price", "color", "stock", "productImage","productPuctureOne");
-	}
+		binder.setAllowedFields("product_id，", "description", "unit_size", "price", "color", "stock", "productImage","productPictureOne"
+		,"productPictureTwo","productPictureThree");
+		}
 
 	@RequestMapping(value = "/products/upd", method = RequestMethod.GET)
 	public String updateProduct(Model model, @RequestParam("id") Integer id) {
@@ -413,8 +414,12 @@ public class ProductController {
 		System.out.println("product_id======================================" + product_id);
 
 		MultipartFile productImage = bb.getProductImage();
-		MultipartFile productPuctureOne = bb.getProductPuctureOne();
-		System.out.println("productPuctureOne :"+productPuctureOne);
+		MultipartFile productPictureOne = bb.getProductPictureOne();
+		System.out.println("productPuctureOne :"+productPictureOne);
+		MultipartFile productPictureTwo = bb.getProductPictureTwo();
+		System.out.println("productPuctureTwo :"+productPictureTwo);
+		MultipartFile productPictureThree = bb.getProductPictureThree();
+		System.out.println("productPuctureThree :"+productPictureThree);
 		String originalFilename = productImage.getOriginalFilename();
 		bb.setFileName(originalFilename);
 		String ext = null;
@@ -438,16 +443,38 @@ public class ProductController {
 		originalFilename=product_id;
 		int lenght = -1;
 		byte[]  tmp  = new byte[81920];
-		if(productPuctureOne.getInputStream()!=null) {
-		InputStream ins=productPuctureOne.getInputStream();
+		if(productPictureOne!=null) {
+		InputStream ins=productPictureOne.getInputStream();
 		OutputStream ous = new FileOutputStream(
 				"C:\\Users\\屁股\\git\\repository\\icook\\src\\main\\webapp\\WEB-INF\\views\\products\\images/savedPicture/"
 				+ totalcounts+"_2" + ext);
-		bb.setProductPuctureOnePath("/product_pathImage/"
+		bb.setProductPictureOnePath("/product_pathImage/"
 				+ totalcounts+"_2" + ext);
 		while ((lenght = ins.read(tmp)) != -1) {
 			ous.write(tmp, 0, lenght);
 		  }
+		}
+		if(productPictureTwo!=null) {
+			InputStream ins=productPictureTwo.getInputStream();
+			OutputStream ous = new FileOutputStream(
+					"C:\\Users\\屁股\\git\\repository\\icook\\src\\main\\webapp\\WEB-INF\\views\\products\\images/savedPicture/"
+							+ totalcounts+"_3" + ext);
+			bb.setProductPictureTwoPath("/product_pathImage/"
+					+ totalcounts+"_3" + ext);
+			while ((lenght = ins.read(tmp)) != -1) {
+				ous.write(tmp, 0, lenght);
+			}
+		}
+		if(productPictureThree!=null) {
+			InputStream ins=productPictureThree.getInputStream();
+			OutputStream ous = new FileOutputStream(
+					"C:\\Users\\屁股\\git\\repository\\icook\\src\\main\\webapp\\WEB-INF\\views\\products\\images/savedPicture/"
+							+ totalcounts+"_4" + ext);
+			bb.setProductPictureThreePath("/product_pathImage/"
+					+ totalcounts+"_4" + ext);
+			while ((lenght = ins.read(tmp)) != -1) {
+				ous.write(tmp, 0, lenght);
+			}
 		}
 		
 		InputStream ins = productImage.getInputStream();
@@ -458,6 +485,7 @@ public class ProductController {
 		while ((lenght = ins.read(tmp)) != -1) {
 			ous.write(tmp, 0, lenght);
 		}
+		
 		ins.close();
 		ous.close();
 		System.out.println("=====outputf finish");

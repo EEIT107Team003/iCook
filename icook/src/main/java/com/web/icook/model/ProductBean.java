@@ -57,7 +57,9 @@ public class ProductBean implements Serializable {
 	private String fileName;
 	@Column(name = "product_remark")
 	private String remark;
-	private String productPuctureOnePath;
+	private String productPictureOnePath;
+	private String productPictureTwoPath;
+	private String productPictureThreePath;
 	@JsonBackReference(value="COproductBean")
 	@OneToMany(mappedBy = "COproductBean",orphanRemoval = true ,fetch = FetchType.EAGER )
 	@Cascade(value= {org.hibernate.annotations.CascadeType.SAVE_UPDATE,
@@ -91,15 +93,18 @@ public class ProductBean implements Serializable {
 	@JsonIgnore
 	@XmlTransient
 	@Transient
-	private MultipartFile productPuctureOne;
+	private MultipartFile productPictureOne;
 	
-	public String getProductPuctureOnePath() {
-		return productPuctureOnePath;
-	}
-
-	public void setProductPuctureOnePath(String productPuctureOnePath) {
-		this.productPuctureOnePath = productPuctureOnePath;
-	}
+	@JsonIgnore
+	@XmlTransient
+	@Transient
+	private MultipartFile productPictureTwo;
+	
+	@JsonIgnore
+	@XmlTransient
+	@Transient
+	private MultipartFile productPictureThree;
+	
 
 	public MultipartFile getProductImage() {
 		return productImage;
@@ -216,12 +221,52 @@ public class ProductBean implements Serializable {
 		this.status = status;
 	}
 
-	public MultipartFile getProductPuctureOne() {
-		return productPuctureOne;
+	public String getProductPictureOnePath() {
+		return productPictureOnePath;
 	}
 
-	public void setProductPuctureOne(MultipartFile productPuctureOne) {
-		this.productPuctureOne = productPuctureOne;
+	public void setProductPictureOnePath(String productPictureOnePath) {
+		this.productPictureOnePath = productPictureOnePath;
+	}
+
+	public MultipartFile getProductPictureOne() {
+		return productPictureOne;
+	}
+
+	public void setProductPictureOne(MultipartFile productPictureOne) {
+		this.productPictureOne = productPictureOne;
+	}
+
+	public String getProductPictureTwoPath() {
+		return productPictureTwoPath;
+	}
+
+	public void setProductPictureTwoPath(String productPictureTwoPath) {
+		this.productPictureTwoPath = productPictureTwoPath;
+	}
+
+	public String getProductPictureThreePath() {
+		return productPictureThreePath;
+	}
+
+	public void setProductPictureThreePath(String productPictureThreePath) {
+		this.productPictureThreePath = productPictureThreePath;
+	}
+
+	public MultipartFile getProductPictureTwo() {
+		return productPictureTwo;
+	}
+
+	public void setProductPictureTwo(MultipartFile productPictureTwo) {
+		this.productPictureTwo = productPictureTwo;
+	}
+
+	public MultipartFile getProductPictureThree() {
+		return productPictureThree;
+	}
+
+	public void setProductPictureThree(MultipartFile productPictureThree) {
+		this.productPictureThree = productPictureThree;
 	}
 
 

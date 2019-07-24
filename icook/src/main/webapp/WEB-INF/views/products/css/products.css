@@ -7,7 +7,28 @@ background-color: #CCEEFF;
 border: 1px solid 	#DDDDDD;
 border-radius: 15px;
 padding-top:10px;	
+width: 20%;
+float: left;
 }
+.portfolio{
+margin-left: 100px;
+margin-right: 6px;
+width:1300px ; 
+margin-top: 20px;
+}
+.right {
+width: 75%;
+float: right;
+}
+.col-2{
+margin-top:20px;
+}
+.col-2 img{
+margin-top:15px;
+width:150px;
+height:150px;
+}
+
 .container {
 margin-left: 2ch;
 }
@@ -67,7 +88,6 @@ padding-left:2ch;
 width:30px;
 }
 
-
 .search{
  border-right: 1px solid #cccccc ;
 }
@@ -84,15 +104,8 @@ width:30px;
 	margin-top:3ch;
 }
 
-.left {
-	width: 20%;
-	float: left;
-}
 
-.right {
-	width: 80%;
-	float: right;
-}
+
 
 .list-type1{
 font-size:25px;	

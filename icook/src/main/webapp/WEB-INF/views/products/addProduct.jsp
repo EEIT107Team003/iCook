@@ -376,8 +376,16 @@ font-size:20px;
 					<form:input id="productImage" path="productImage" type='file' accept="image/gif, image/jpeg, image/png"/>
 				</div>
 				<div class="formGroup">
-					<label for="productPuctureOne">圖片2 : </label>
-					<form:input id="productPuctureOne" path="productPuctureOne" type='file' accept="image/gif, image/jpeg, image/png"/>
+					<label for="productPictureOne">圖片2 : </label>
+					<form:input id="productPictureOne" path="productPictureOne" type='file' accept="image/gif, image/jpeg, image/png"/>
+				</div>
+				<div class="formGroup">
+					<label for="productPictureTwo">圖片3 : </label>
+					<form:input id="productPictureTwo" path="productPictureTwo" type='file' accept="image/gif, image/jpeg, image/png"/>
+				</div>
+				<div class="formGroup">
+					<label for="productPictureThree">圖片4 : </label>
+					<form:input id="productPictureThree" path="productPictureThree" type='file' accept="image/gif, image/jpeg, image/png"/>
 				</div>
 				<div id="uploadImg"></div>
 					<div class="formGroup">

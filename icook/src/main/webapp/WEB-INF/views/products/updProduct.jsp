@@ -385,8 +385,16 @@ font-size:20px;
 						<form:input id="productImage" path="productImage" type='file' accept="image/gif, image/jpeg, image/png" />
 					</div>
 					<div class="formGroup">
-						<label for="productPuctureOne">圖片2 : </label>
-						<form:input id="productPuctureOne" path="productPuctureOne" type='file' accept="image/gif, image/jpeg, image/png"/>
+						<label for="productPictureOne">圖片2 : </label>
+						<form:input id="productPictureOne" path="productPictureOne" type='file' accept="image/gif, image/jpeg, image/png"/>
+					</div>
+					<div class="formGroup">
+						<label for="productPictureTwo">圖片3 : </label>
+						<form:input id="productPictureTwo" path="productPictureTwo" type='file' accept="image/gif, image/jpeg, image/png"/>
+					</div>
+					<div class="formGroup">
+						<label for="productPictureThree">圖片4 : </label>
+						<form:input id="productPictureThree" path="productPictureThree" type='file' accept="image/gif, image/jpeg, image/png"/>
 					</div>
 					
                     <div id="uploadImg"></div>
@@ -499,14 +507,20 @@ function readURL(input){
 				<h4>價格      : ${previousbean.price}</h4>
 				<h4>庫存      : ${previousbean.stock}</h4>
 				<h4>狀態      : ${status}</h4>
-				<h4>路徑      : ..${previousbean.productPuctureOnePath}</h4>
-				当前WEB应用的物理路径：<%=application.getRealPath("/")%><BR>
-当前你求请的JSP文件的物理路径：<%=application.getRealPath(request.getRequestURI())%><BR>
+				<h4>路徑      : ..${previousbean.productPictureOnePath}</h4>
+				<h4>路徑      : ..${previousbean.productPictureTwoPath}</h4>
+				<h4>路徑      : ..${previousbean.productPictureThreePath}</h4>
+<%-- 				当前WEB应用的物理路径：<%=application.getRealPath("/")%><BR> --%>
+<%-- 当前你求请的JSP文件的物理路径：<%=application.getRealPath(request.getRequestURI())%><BR> --%>
 
 					<div class="pre">
 					<img width='250' height='200'
-						src="..${previousbean.productPuctureOnePath}" />
-						
+						src="..${previousbean.productPictureOnePath}" />
+					<img width='250' height='200'
+						src="..${previousbean.productPictureTwoPath}" />
+					<img width='250' height='200'
+						src="..${previousbean.productPictureThreePath}" />
+
 						
 						
 						

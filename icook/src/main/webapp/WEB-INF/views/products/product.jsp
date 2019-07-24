@@ -42,7 +42,7 @@
 <style>
 
 .textDiv{
-margin: 0;
+margin-left:1000px;
 }
 .textDiv p{
 font-size:20px;
@@ -229,7 +229,7 @@ font-size:20px;
 // 			console.log('Txt 123: '+txt)
 			$("#remark").val(txt);
 			 $("#fileName").val("");
-			alert($("#remark").val());
+// 			alert($("#remark").val());
 			$.ajax({                                    
 				url : "${pageContext.request.contextPath}/categories/" + txt,
 				type : "GET",
@@ -395,11 +395,6 @@ font-size:20px;
 						             +"Details</a>"
 						             +"</form></nav></div></div></div>"
 					         }
-// 						             +"<a class='btn btn-sm btn-outline-secondary'   href=\" <c:url value=  '/products/product/addToCollection?id="+names[i].product_id+"'    /> \"    >" 
-// 						             +"新增收藏</a>"
-// 						             +"<a class='btn btn-sm btn-outline-secondary'   href=\" <c:url value=  '/products/products/upd?id="+names[i].product_id+"'    /> \"    >" 
-// 						             +"更新</a>"
-//	 						console.log("txt : "+txt)
 							$("#right").html(txt);
 					}
 			   	})
@@ -430,12 +425,6 @@ font-size:20px;
 						             +"Details</a>"
 						             +"</form></nav></div></div></div>"
 					         }
-
-// 						             +"<a class='btn btn-sm btn-outline-secondary'   href=\" <c:url value=  '/product/addToCollection?id="+names[i].product_id+"'    /> \"    >" 
-// 						             +"新增收藏</a>"
-// 						             +"<a class='btn btn-sm btn-outline-secondary'   href=\" <c:url value=  '/products/upd?id="+names[i].product_id+"'    /> \"    >" 
-// 						             +"更新</a>"
-//	 						console.log("txt : "+txt)
 							$("#right").html(txt);
 					    }
 				     })
@@ -482,8 +471,6 @@ font-size:20px;
 									<li><a href="A_articlemainpage">文章區</a></li>
 									<li><a href="products">市集</a>
 									<ul>
-
-
 											<li><a href="cartPage">購物車</a></li>
 										</ul></li>
 
@@ -519,7 +506,6 @@ font-size:20px;
 				<div>
 					<h1>產品清單</h1>
 				</div>
-
 				<div>
 					<select id="show" name="show" class="form-control form-control-sm"><option
 							value="0" SELECTED id='ch'>請選擇</option></select> <select id="show2"
@@ -564,20 +550,14 @@ font-size:20px;
 		</div>
 
 
-		<div class="right">
-
-			<!-- =============================================Dataisl=================================================================		 -->
-
-			<section class="container">
-				<div class="row">
-				
-					<div class="zerogrid" style="width: 100ch; margin: 0; padding: 0;">
+			<div class="row">
+				<div class="col-7">
+					<div class="zerogrid">
 						<div class="portfolio">
 							<div class="col-1-2">
 								<div class="wrap-col">
-									<a
-										href="images/big3.jpg"
-										data-gal="prettyPhoto[1]"><span> <img
+									<a href="images/big3.jpg" data-gal="prettyPhoto[1]"><span>
+											<img  
 											src="<c:url value='/getProductPicture/${product.product_id}'/>"
 											alt="" />
 									</span></a>
@@ -585,63 +565,54 @@ font-size:20px;
 							</div>
 						</div>
 					</div>
-                 		<img width='250' height='200'
-						src="/icook${product.productPuctureOnePath}" />
-						
-						当前WEB应用的物理路径：<%=application.getRealPath("/")%><BR>
-                                          当前你求请的JSP文件的物理路径：<%=application.getRealPath(request.getRequestURI())%><BR>
-						
-                     <h1>${product.productPuctureOnePath}</h1>
-                     
-                     
-                     
-                     
-                     
-					<div class="textDiv">
-						<h1 style="font-size: 30px;">商品編號: ${product.product_id}</h1>
-						<h1 style="font-size: 30px;">${product.name}</h1>
-						<p>分類: ${product.categoriesbean.name}</p>
-						<p>顏色: ${product.color}</p>
-						<p>單價: ${product.price}</p>
-						<p>${product.description}</p>
-						請選擇數量:<select id="quantity" name="quantity" style="width: 15ch"
-							class="form-control form-control-sm"><option value="0"
-								SELECTED id='ch'>0</option></select> <a
-							href="<spring:url value='/products' />" class="btn btn-default">
-							<span class="glyphicon-hand-left glyphicon"></span>返回
-						</a>
-
-						<!-- 						測試 -->
-						<form method='POST' action="<c:url value='/product/addToCart'/>">
-							<input type="hidden" name="productId"
-								value="${product.product_id}" /> <input type="hidden"
-								name="price" value="${product.price}" />
-							<input type="hidden" name="quan" id='quan' value="" />
-							<div align="center">
-								<button type="button" class="btn btn-warning"
-									onclick="{location.href='/icook/cartPage'}" class="">去購物車</button>
-								<input class="btn btn-warning" type="submit" value="加入購物車" />
-							</div>
-
-						</form>
-					</div>
 				</div>
+				<div class="col-2">
+					<br> <img src="/icook${product.productPictureOnePath}" /><br> 
+					<img src="/icook${product.productPictureTwoPath}" /><br> 
+					<img src="/icook${product.productPictureThreePath}" />
+				</div>
+				<div class="col-3" style="margin-top:50px;">
+					<h1 style="font-size: 30px;">商品編號: ${product.product_id}</h1>
+					<h1 style="font-size: 30px;">${product.name}</h1>
+					<p>分類: ${product.categoriesbean.name}</p>
+					<p>顏色: ${product.color}</p>
+					<p>單價: ${product.price}</p>
+					<p>${product.description}</p>
+					請選擇數量:<select id="quantity" name="quantity" style="width: 15ch"
+						class="form-control form-control-sm"><option value="0"
+							SELECTED id='ch'>0</option></select> <a
+						href="<spring:url value='/products' />" class="btn btn-default">
+						<span class="glyphicon-hand-left glyphicon"></span>返回
+					</a>
 
-	           	
+					<!-- 						測試 -->
+					<form method='POST' action="<c:url value='/product/addToCart'/>">
+						<input type="hidden" name="productId"
+							value="${product.product_id}" /> <input type="hidden"
+							name="price" value="${product.price}" /> <input type="hidden"
+							name="quan" id='quan' value="" />
+						<div align="center">
+							<button type="button" class="btn btn-warning"
+								style="margin-left: 0;"
+								onclick="{location.href='/icook/cartPage'}" class="">去購物車</button>
+							<input class="btn btn-warning" type="submit" value="加入購物車" />
+						</div>
+					</form>
+				</div>
+			</div>
 
-			</section>
 			<!-- =============================================Dataisl=================================================================		 -->
-
-			<form>
-				<div class="page">
-					<ul class="pagination">
-					</ul>
-				</div>
-			</form>
-			<section id="right" class="rightMain"></section>
+	       <div class="right">
+				<form>
+					<div class="page">
+						<ul class="pagination">
+						</ul>
+					</div>
+				</form>
+				<section id="right" class="rightMain"></section>
+			</div>
+			<div class="right"></div>
 		</div>
-		<div class="right"></div>
-	</div>
 </div>
 
 
