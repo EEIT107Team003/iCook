@@ -211,7 +211,7 @@
 
 				</div>
 				<!-- .col-md-8 -->
-				<div class="col-lg-4 sidebar pr-lg-5 ftco-animate">
+					<div class="col-lg-4 sidebar pr-lg-5 ftco-animate">
 					<div class="sidebar-box">
 						<form action="#" class="search-form">
 							<div class="form-group">
@@ -233,73 +233,38 @@
 					</div>
 
 					<div class="sidebar-box ftco-animate">
+						news
 						<h3 class="heading mb-4">Recent Blog</h3>
-						<div class="block-21 mb-4 d-flex">
-							<a class="blog-img mr-4"
-								style="background-image: url(article/aimages/image_1.jpg);"></a>
+
+						<c:forEach var='ArticleThree' items='${ArticleThrees}'>
+							<div class="block-21 mb-4 d-flex">
+								<a class="blog-img mr-4" href="<spring:url value='/article?article_num=${ArticleThree.article_num}' />">
+								<img width="100px" height="100px"  src="<c:url value='/getartPicture/${ArticleThree.article_num}'/>">
+									 </a>
+							
+							
+							
 							<div class="text">
 								<h3>
-									<a href="#">Even the all-powerful Pointing has no control
-										about the blind texts</a>
+									<a href="<spring:url value='/article?article_num=${ArticleThree.article_num}' />">${ArticleThree.article_title}
+										</a>
 								</h3>
 								<div class="meta">
 									<div>
-										<a href="#"><span class="icon-calendar"></span> February
-											12, 2019</a>
+										<a href="#"><span class="icon-calendar"></span> 
+										${ArticleThree.article_date}	</a>
 									</div>
 									<div>
-										<a href="#"><span class="icon-person"></span> Admin</a>
+										<a href="#"><span class="icon-person"></span> ${ArticleThree.article_member.nickname}</a>
 									</div>
-									<div>
-										<a href="#"><span class="icon-chat"></span> 19</a>
-									</div>
+									
 								</div>
 							</div>
 						</div>
-						<div class="block-21 mb-4 d-flex">
-							<a class="blog-img mr-4"
-								style="background-image: url(article/aimages/image_2.jpg);"></a>
-							<div class="text">
-								<h3>
-									<a href="#">Even the all-powerful Pointing has no control
-										about the blind texts</a>
-								</h3>
-								<div class="meta">
-									<div>
-										<a href="#"><span class="icon-calendar"></span> February
-											12, 2019</a>
-									</div>
-									<div>
-										<a href="#"><span class="icon-person"></span> Admin</a>
-									</div>
-									<div>
-										<a href="#"><span class="icon-chat"></span> 19</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="block-21 mb-4 d-flex">
-							<a class="blog-img mr-4"
-								style="background-image: url(article/aimages/image_3.jpg);"></a>
-							<div class="text">
-								<h3>
-									<a href="#">Even the all-powerful Pointing has no control
-										about the blind texts</a>
-								</h3>
-								<div class="meta">
-									<div>
-										<a href="#"><span class="icon-calendar"></span> February
-											12, 2019</a>
-									</div>
-									<div>
-										<a href="#"><span class="icon-person"></span> Admin</a>
-									</div>
-									<div>
-										<a href="#"><span class="icon-chat"></span> 19</a>
-									</div>
-								</div>
-							</div>
-						</div>
+						</c:forEach>
+						
+						
+						
 					</div>
 
 					<div class="sidebar-box ftco-animate">
@@ -317,14 +282,24 @@
 					</div>
 
 					<div class="sidebar-box ftco-animate">
-						<h3 class="heading mb-4">Paragraph</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							Ducimus itaque, autem necessitatibus voluptate quod mollitia
-							delectus aut, sunt placeat nam vero culpa sapiente consectetur
-							similique, inventore eos fugit cupiditate numquam!</p>
+						<h3 class="heading mb-4">相關開發人員</h3>
+						<p>EEIT107 第三組</p>
 					</div>
 				</div>
 
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			</div>
 		</div>
 	</section>
@@ -403,6 +378,8 @@
 						</ul>
 					</div>
 				</div>
+				
+				
 				<div class="col-md">
 					<div class="ftco-footer-widget mb-4">
 						<h2 class="ftco-heading-2">Have a Questions?</h2>

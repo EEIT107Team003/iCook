@@ -499,24 +499,7 @@
 	}
 
 	webSocket.onopen = function() {
-		$.notify({
-			title : '<strong>想食天堂歡迎您</strong>',
-			icon : 'glyphicon glyphicon-star',
-			
-		}, {
-			type : 'info',
-			animate : {
-				enter : 'animated fadeInUp',
-				exit : 'animated fadeOutRight'
-			},
-			placement : {
-				from : "bottom",
-				align : "right"
-			},
-			offset : 20,
-			spacing : 10,
-			z_index : 1031,
-		});
+		
 	};
 
 	webSocket.onclose = function() {

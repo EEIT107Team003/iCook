@@ -248,9 +248,8 @@
 					<div class="sidebar-box ftco-animate">
 						news
 						<h3 class="heading mb-4">Recent Blog</h3>
-						
-<!-- 						最新三比 -->
-						<c:forEach var="<c:url value='/getartPicture/${Article.article_num}'/>" items='${ArticleThrees}'>
+
+						<c:forEach var='ArticleThree' items='${ArticleThrees}'>
 							<div class="block-21 mb-4 d-flex">
 								<a class="blog-img mr-4" href="<spring:url value='/article?article_num=${ArticleThree.article_num}' />">
 								<img width="100px" height="100px"  src="<c:url value='/getartPicture/${ArticleThree.article_num}'/>">
@@ -296,11 +295,8 @@
 					</div>
 
 					<div class="sidebar-box ftco-animate">
-						<h3 class="heading mb-4">Paragraph</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							Ducimus itaque, autem necessitatibus voluptate quod mollitia
-							delectus aut, sunt placeat nam vero culpa sapiente consectetur
-							similique, inventore eos fugit cupiditate numquam!</p>
+						<h3 class="heading mb-4">相關開發人員</h3>
+						<p>EEIT107 第三組</p>
 					</div>
 				</div>
 

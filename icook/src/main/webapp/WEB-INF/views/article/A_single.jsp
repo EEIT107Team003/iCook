@@ -93,7 +93,12 @@
 			<div class="col-full">
 				<div class="wrap-col">
 					<h1>
-<a  style="height:200px" href="${pageContext.request.contextPath}/index2"><img src="${pageContext.request.contextPath}/images/logo.png" style="width: 200px ;right: 200px ;border-radius: 50%;" alt="EXTERIOR"></a>					</h1>
+						<a style="height: 200px"
+							href="${pageContext.request.contextPath}/index2"><img
+							src="${pageContext.request.contextPath}/images/logo.png"
+							style="width: 200px; right: 200px; border-radius: 50%;"
+							alt="EXTERIOR"></a>
+					</h1>
 
 					<div class="menu_block">
 						<nav>
@@ -123,7 +128,7 @@
 										<li><a href="checkOrders">查看訂單</a></li>
 										<li><a href="#">會員登出</a></li>
 										<li><a href="#">新增食譜</a></li>
-										</ul></li>
+									</ul></li>
 
 								<c:if
 									test="${pageContext.request.userPrincipal.name == 'aa'||pageContext.request.userPrincipal.name =='dd'}">
@@ -143,268 +148,299 @@
 	<div style="background-color: white;">
 
 
-	<section class="hero-wrap hero-wrap-2"
-		style="background-image: url('article/aimages/bg_4.jpg');">
-		<div class="overlay"></div>
-		<div class="container">
-			<div
-				class="row no-gutters slider-text align-items-end justify-content-center">
-				<div class="col-md-9 ftco-animate pb-5 text-center">
-					<h1 class="mb-3 bread">Article Single</h1>
-					<p class="breadcrumbs">
-						<span class="mr-2"><a href="index.html">Home <i
-								class="ion-ios-arrow-forward"></i></a></span> <span>Article Single<i
-							class="ion-ios-arrow-forward"></i></span>
-					</p>
+		<section class="hero-wrap hero-wrap-2"
+			style="background-image: url('article/aimages/bg_4.jpg');">
+			<div class="overlay"></div>
+			<div class="container">
+				<div
+					class="row no-gutters slider-text align-items-end justify-content-center">
+					<div class="col-md-9 ftco-animate pb-5 text-center">
+						<h1 class="mb-3 bread">Article Single</h1>
+						<p class="breadcrumbs">
+							<span class="mr-2"><a href="index.html">Home <i
+									class="ion-ios-arrow-forward"></i></a></span> <span>Article Single<i
+								class="ion-ios-arrow-forward"></i></span>
+						</p>
+					</div>
 				</div>
 			</div>
-		</div>
-	</section>
+		</section>
 
-	<section class="ftco-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 order-lg-last ftco-animate">
-					<!--           title -->
-					<h2 class="mb-3">${Article.article_title}</h2>
+		<section class="ftco-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 order-lg-last ftco-animate">
+						<!--           title -->
+						<h2 class="mb-3">${Article.article_title}</h2>
 
-					<h3 class=>作者:${Article.article_member.nickname}
-						日期:${Article.article_date}</h3>
+						<h3 class=>作者:${Article.article_member.nickname}
+							日期:${Article.article_date}</h3>
 
-					<!-- 						需要修改 -->
-					<c:if test="${Article.article_member.username == username}">
-						<div align="right" class="tagcloud">
-							<a
-								href="<spring:url value='/TagarticleUpdate?article_num=${Article.article_num}' />"
-								class="tag-cloud-link">編輯</a>
+						<!-- 						需要修改 -->
+						<c:if test="${Article.article_member.username == username}">
+							<div align="right" class="tagcloud">
+								<a
+									href="<spring:url value='/TagarticleUpdate?article_num=${Article.article_num}' />"
+									class="tag-cloud-link">編輯</a>
+							</div>
+						</c:if>
+
+
+						<article>${Article.article_content}</article>
+
+
+
+						<div class="tag-widget post-tag-container mb-5 mt-5">
+							<div class="tagcloud">
+								<a href="#" class="tag-cloud-link">${Article.article_catergoary}</a>
+							</div>
 						</div>
-					</c:if>
 
+						<!-- 					編輯者資料 -->
+						<div class="about-author d-flex p-4 bg-light">
+							<div class="bio mr-5">
+								<img width="200px" height="200px"
+									src="<spring:url value='/MemberPhoto?member_id=${Article.article_member.member_id}' />"
+									alt="Image placeholder" class="img-fluid mb-4">
+							</div>
+							<div class="desc">
 
-					<article>${Article.article_content}</article>
-
-
-
-					<div class="tag-widget post-tag-container mb-5 mt-5">
-						<div class="tagcloud">
-							<a href="#" class="tag-cloud-link">${Article.article_catergoary}</a>
+								<!--               簡介 -->
+								<h3>Author: ${Article.article_member.nickname}</h3>
+								<p>${Article.article_member.resume}</p>
+							</div>
 						</div>
-					</div>
 
-<!-- 					編輯者資料 -->
-					<div class="about-author d-flex p-4 bg-light">
-						<div class="bio mr-5">
-							<img width="200px" height="200px" src="<spring:url value='/MemberPhoto?member_id=${Article.article_member.member_id}' />" alt="Image placeholder"
-								class="img-fluid mb-4">
-						</div>
-						<div class="desc">
+						<!-- 留言 -->
+						<div class="pt-5 mt-5">
+							<h3 class="mb-5">6 Comments</h3>
+							<ul class="comment-list">
+								<c:forEach var='MsgBoard' items='${MsgBoards}'>
+									<li class="comment">
+										<div class="vcard bio">
+											<img
+												src="<spring:url value='/MemberPhoto?member_id=${MsgBoard.memberid_in_msgs.member_id}' />"
+												alt="Image placeholder">
 
-							<!--               簡介 -->
-							<h3>Author:           ${Article.article_member.nickname}</h3>
-							<p>${Article.article_member.resume}</p>
-						</div>
-					</div>
+										</div>
 
-					<!-- 留言 -->
-					<div class="pt-5 mt-5">
-						<h3 class="mb-5">6 Comments</h3>
-						<ul class="comment-list">
-							<c:forEach var='MsgBoard' items='${MsgBoards}'>
-								<li class="comment">
-									<div class="vcard bio">
-										<img
-											src="<spring:url value='/MemberPhoto?member_id=${MsgBoard.memberid_in_msgs.member_id}' />"
-											alt="Image placeholder">
+										<div class="comment-body">
+											<h3>${MsgBoard.memberid_in_msgs.nickname}</h3>
+											<div class="meta">${MsgBoard.msgboard_date}</div>
+											<p>${MsgBoard.msgboard_content}</p>
+										</div>
+									</li>
+								</c:forEach>
 
+							</ul>
+							<!-- END comment-list -->
+							<!--               留言板 -->
+							<div class="comment-form-wrap pt-5">
+
+
+
+								<c:if test="${pageContext.request.userPrincipal.name != null}">
+									<h3 class="mb-5">Leave a comment</h3>
+									<!-- 新增留言板 -->
+									<div class="form-group">
+										<label for="message">Message</label>
+										<textarea id="editor2" cols="30" rows="10"
+											class="form-control"></textarea>
+										<input disabled="disabled" id="catchnum"
+											value="${Article.article_num}" type=hidden>
+									</div>
+									<div class="form-group">
+										<input type="button" value="Post Comment"
+											class="btn py-3 px-4 btn-primary" id='AJMsgBut'></input>
 									</div>
 
-									<div class="comment-body">
-										<h3>${MsgBoard.memberid_in_msgs.nickname}</h3>
-										<div class="meta">${MsgBoard.msgboard_date}</div>
-										<p>${MsgBoard.msgboard_content}</p>
+								</c:if>
+
+								<c:if test="${pageContext.request.userPrincipal.name == null}">
+
+									<!-- 新增留言板 -->
+									<div class="form-group">
+
+										<h3 class="mb-5">會員開放留言</h3>
 									</div>
-								</li>
+
+
+								</c:if>
+
+
+
+
+
+
+
+
+
+
+								<script>
+									$('#AJMsgBut')
+											.click(
+													function() {
+														$
+																.ajax(
+																		{
+																			url : "AjaxMsginsert",
+																			type : "POST",
+																			data : {
+																				catchnum : $(
+																						'#catchnum')
+																						.val(),
+																				msgboard_content : CKEDITOR.instances.editor2
+																						.getData()
+																			}
+																		})
+																.done(
+																		function(
+																				res) {
+
+																			$(
+																					".comment-list")
+																					.append(
+																							'<li class="comment"><div class="vcard bio"><img src="<spring:url value="/MemberPhoto?member_id='
+																									+ res[1]
+																									+ '"/>" alt="Image placeholder"></div><div class="comment-body"><h3>'
+																									+ res[3]
+																									+ '</h3><div class="meta">'
+																									+ res[2]
+																									+ '</div><p>'
+																									+ res[0]
+																									+ '</p></div></li>');
+
+																			CKEDITOR.instances.editor2
+																					.setData('');
+
+																		})
+
+													});
+								</script>
+
+							</div>
+						</div>
+
+					</div>
+
+
+
+
+
+					<!-- .col-md-8 -->
+					<div class="col-lg-4 sidebar pr-lg-5 ftco-animate">
+						<div class="sidebar-box">
+							<form action="#" class="search-form">
+								<div class="form-group">
+									<span class="icon icon-search"></span> <input type="text"
+										class="form-control"
+										placeholder="Type a keyword and hit enter">
+								</div>
+							</form>
+						</div>
+						<!-- 					<div class="sidebar-box ftco-animate"> -->
+						<!-- 						<ul class="categories"> -->
+						<!-- 							<h3 class="heading mb-4">Categories</h3> -->
+						<!-- 							<li><a href="#">Travel <span>(12)</span></a></li> -->
+						<!-- 							<li><a href="#">Tour <span>(22)</span></a></li> -->
+						<!-- 							<li><a href="#">Destination <span>(37)</span></a></li> -->
+						<!-- 							<li><a href="#">Drinks <span>(42)</span></a></li> -->
+						<!-- 							<li><a href="#">Foods <span>(14)</span></a></li> -->
+						<!-- 							<li><a href="#">Travel <span>(140)</span></a></li> -->
+						<!-- 						</ul> -->
+						<!-- 					</div> -->
+
+						<div>
+
+							<h3 align="center">相關網站</h3>
+							<br>
+							<ul class="category-image">
+
+								<li style="height: 220.75px; height: 140px;"><a
+									href="http://www.tcetva.tw/"> <img
+										src="${pageContext.request.contextPath}/article/aimages/news1.jpg ">
+								</a></li>
+								<li style="height: 220.75px; height: 140px;"><a
+									href="https://travel-shop.top-link.com.tw/"><img
+										src="${pageContext.request.contextPath}/article/aimages/news2.jpg ">
+								</a></li>
+								<li style="height: 220.75px; height: 140px;"><a
+									href="https://safood.tw/japan-exhibition"><img
+										src="${pageContext.request.contextPath}/article/aimages/news3.jpg ">
+
+								</a></li>
+							</ul>
+						</div>
+						<br> <br>
+						<br>
+						<br>
+						<br>
+
+
+						<div class="sidebar-box ftco-animate">
+
+							<h3 class="heading mb-4">Recent Blog</h3>
+
+							<c:forEach var='ArticleThree' items='${ArticleThrees}'>
+								<div class="block-21 mb-4 d-flex">
+									<a class="blog-img mr-4"
+										href="<spring:url value='/article?article_num=${ArticleThree.article_num}' />">
+										<img width="100px" height="100px"
+										src="<c:url value='/getartPicture/${ArticleThree.article_num}'/>">
+									</a>
+
+
+
+									<div class="text">
+										<h3>
+											<a
+												href="<spring:url value='/article?article_num=${ArticleThree.article_num}' />">${ArticleThree.article_title}
+											</a>
+										</h3>
+										<div class="meta">
+											<div>
+												<a href="#"><span class="icon-calendar"></span>
+													${ArticleThree.article_date} </a>
+											</div>
+											<div>
+												<a href="#"><span class="icon-person"></span>
+													${ArticleThree.article_member.nickname}</a>
+											</div>
+
+										</div>
+									</div>
+								</div>
 							</c:forEach>
 
-						</ul>
-						<!-- END comment-list -->
-						<!--               留言板 -->
-						<div class="comment-form-wrap pt-5">
 
 
+						</div>
 
-							<c:if test="${pageContext.request.userPrincipal.name != null}">
-								<h3 class="mb-5">Leave a comment</h3>
-								<!-- 新增留言板 -->
-								<div class="form-group">
-									<label for="message">Message</label>
-									<textarea id="editor2" cols="30" rows="10" class="form-control"></textarea>
-									<input disabled="disabled" id="catchnum"
-										value="${Article.article_num}" type=hidden>
-								</div>
-								<div class="form-group">
-									<input type="button" value="Post Comment"
-										class="btn py-3 px-4 btn-primary" id='AJMsgBut'></input>
-								</div>
+						<div class="sidebar-box ftco-animate">
+							<h3 class="heading mb-4">Tag Cloud</h3>
+							<div class="tagcloud">
+								<a href="#" class="tag-cloud-link">dish</a> <a href="#"
+									class="tag-cloud-link">menu</a> <a href="#"
+									class="tag-cloud-link">food</a> <a href="#"
+									class="tag-cloud-link">sweet</a> <a href="#"
+									class="tag-cloud-link">tasty</a> <a href="#"
+									class="tag-cloud-link">delicious</a> <a href="#"
+									class="tag-cloud-link">desserts</a> <a href="#"
+									class="tag-cloud-link">drinks</a>
+							</div>
+						</div>
 
-							</c:if>
-
-							<c:if test="${pageContext.request.userPrincipal.name == null}">
-
-								<!-- 新增留言板 -->
-								<div class="form-group">
-
-									<h3 class="mb-5">會員開放留言</h3>
-								</div>
-
-
-							</c:if>
-
-
-
-
-
-
-
-
-
-
-							<script>
-								$('#AJMsgBut')
-										.click(
-												function() {
-													$
-															.ajax(
-																	{
-																		url : "AjaxMsginsert",
-																		type : "POST",
-																		data : {
-																			catchnum : $(
-																					'#catchnum')
-																					.val(),
-																			msgboard_content : CKEDITOR.instances.editor2
-																					.getData()
-																		}
-																	})
-															.done(
-																	function(
-																			res) {
-
-																		$(
-																				".comment-list")
-																				.append(
-																						'<li class="comment"><div class="vcard bio"><img src="<spring:url value="/MemberPhoto?member_id='
-																								+ res[1]
-																								+ '"/>" alt="Image placeholder"></div><div class="comment-body"><h3>'
-																								+ res[3]
-																								+ '</h3><div class="meta">'
-																								+ res[2]
-																								+ '</div><p>'
-																								+ res[0]
-																								+ '</p></div></li>');
-
-																		CKEDITOR.instances.editor2
-																				.setData('');
-
-																	})
-
-												});
-							</script>
-
+						<div class="sidebar-box ftco-animate">
+							<h3 class="heading mb-4">相關開發人員</h3>
+							<p>EEIT107 第三組</p>
 						</div>
 					</div>
 
 				</div>
-
-
-
-
-
-				<!-- .col-md-8 -->
-				<div class="col-lg-4 sidebar pr-lg-5 ftco-animate">
-					<div class="sidebar-box">
-						<form action="#" class="search-form">
-							<div class="form-group">
-								<span class="icon icon-search"></span> <input type="text"
-									class="form-control" placeholder="Type a keyword and hit enter">
-							</div>
-						</form>
-					</div>
-					<div class="sidebar-box ftco-animate">
-						<ul class="categories">
-							<h3 class="heading mb-4">Categories</h3>
-							<li><a href="#">Travel <span>(12)</span></a></li>
-							<li><a href="#">Tour <span>(22)</span></a></li>
-							<li><a href="#">Destination <span>(37)</span></a></li>
-							<li><a href="#">Drinks <span>(42)</span></a></li>
-							<li><a href="#">Foods <span>(14)</span></a></li>
-							<li><a href="#">Travel <span>(140)</span></a></li>
-						</ul>
-					</div>
-
-					<div class="sidebar-box ftco-animate">
-						news
-						<h3 class="heading mb-4">Recent Blog</h3>
-
-						<c:forEach var='ArticleThree' items='${ArticleThrees}'>
-							<div class="block-21 mb-4 d-flex">
-								<a class="blog-img mr-4" href="<spring:url value='/article?article_num=${ArticleThree.article_num}' />">
-								<img width="100px" height="100px"  src="<c:url value='/getartPicture/${ArticleThree.article_num}'/>">
-									 </a>
-							
-							
-							
-							<div class="text">
-								<h3>
-									<a href="<spring:url value='/article?article_num=${ArticleThree.article_num}' />">${ArticleThree.article_title}
-										</a>
-								</h3>
-								<div class="meta">
-									<div>
-										<a href="#"><span class="icon-calendar"></span> 
-										${ArticleThree.article_date}	</a>
-									</div>
-									<div>
-										<a href="#"><span class="icon-person"></span> ${ArticleThree.article_member.nickname}</a>
-									</div>
-									
-								</div>
-							</div>
-						</div>
-						</c:forEach>
-						
-						
-						
-					</div>
-
-					<div class="sidebar-box ftco-animate">
-						<h3 class="heading mb-4">Tag Cloud</h3>
-						<div class="tagcloud">
-							<a href="#" class="tag-cloud-link">dish</a> <a href="#"
-								class="tag-cloud-link">menu</a> <a href="#"
-								class="tag-cloud-link">food</a> <a href="#"
-								class="tag-cloud-link">sweet</a> <a href="#"
-								class="tag-cloud-link">tasty</a> <a href="#"
-								class="tag-cloud-link">delicious</a> <a href="#"
-								class="tag-cloud-link">desserts</a> <a href="#"
-								class="tag-cloud-link">drinks</a>
-						</div>
-					</div>
-
-					<div class="sidebar-box ftco-animate">
-						<h3 class="heading mb-4">Paragraph</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							Ducimus itaque, autem necessitatibus voluptate quod mollitia
-							delectus aut, sunt placeat nam vero culpa sapiente consectetur
-							similique, inventore eos fugit cupiditate numquam!</p>
-					</div>
-				</div>
-
 			</div>
-		</div>
-	</section>
-	<!-- .section -->
-</div>
+		</section>
+		<!-- .section -->
+	</div>
 	<section class="ftco-subscribe ftco-section bg-light">
 		<div class="overlay">
 			<div class="container">
@@ -563,7 +599,7 @@
 	function sendMsg() {
 		var msgToSend = newnew.value;
 		webSocket.send(msgToSend);
-		
+
 	}
 
 	webSocket.onmessage = function(message) {
@@ -605,9 +641,6 @@
 
 <script>
 	
-	
-
-	
 </script>
 <script>
 	CKEDITOR
@@ -618,20 +651,18 @@
 						cloudServices_tokenUrl : 'https://40733.cke-cs.com/token/dev/Pno0Ld5ha3oNhABb0mnQBXWdL6FXy03CbisbDkPL9hJoOrvd8p0hpHlka5RA',
 						cloudServices_uploadUrl : 'https://40733.cke-cs.com/easyimage/upload/'
 					});
-	
-	
-	
 </script>
 
 <script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
-		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-		integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-		crossorigin="anonymous"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/article/bootstrap-notify-master/bootstrap-notify.min.js"></script>
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+	integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+	integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+	crossorigin="anonymous"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/article/bootstrap-notify-master/bootstrap-notify.min.js"></script>
 
 
 </html>

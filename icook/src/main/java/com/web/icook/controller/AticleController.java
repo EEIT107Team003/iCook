@@ -119,6 +119,11 @@ public class AticleController {
 		System.out.println("#1");
 		ArticleBean articlebean = new ArticleBean();
 		model.addAttribute("Articlebeanselect", articlebean);
+		
+		
+		
+		
+		
 		return "article/A_selectpage";/* 呼叫insert.jsp檔案 */
 	}
 
@@ -275,7 +280,10 @@ public class AticleController {
 	@RequestMapping(value = "/A_insert", method = RequestMethod.GET)
 	public String getAddNewArticleForm(Model model) throws SerialException, SQLException {
 		
-
+		  //前三筆文章開始
+        List<ArticleBean> threelist = arcicleservice.getThreeArticles();
+		model.addAttribute("ArticleThrees", threelist);
+		//前三筆文章結束
 		
 		System.out.println("#1");
 		ArticleBean articlebean = new ArticleBean();
@@ -288,7 +296,6 @@ public class AticleController {
 	public String processAddNewProductForm(@ModelAttribute("Articlebean") ArticleBean articlebean, BindingResult result,
 			HttpServletRequest request ,Model model) throws UnsupportedEncodingException {
 		request.setCharacterEncoding("UTF-8");
-		
 		
 		
 		MemberController c = new MemberController();
@@ -421,6 +428,12 @@ public class AticleController {
 		System.out.println("article_title="+article_title);
 		List<ArticleBean> list = arcicleservice.getByArticle_Title(article_title);
 		model.addAttribute("Articles", list);
+		
+		 //前三筆文章開始
+        List<ArticleBean> threelist = arcicleservice.getThreeArticles();
+		model.addAttribute("ArticleThrees", threelist);
+		//前三筆文章結束
+		
 		return "/article/A_articlesearch"; // 指向success.jsp
 	}
 	
