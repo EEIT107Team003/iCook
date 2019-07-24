@@ -9,6 +9,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -101,7 +102,7 @@ public class ArticleBean implements Serializable {
 	public void setArticle_status(String article_status) {
 		this.article_status = article_status;
 	}
-
+	 @Column(columnDefinition = "NVARCHAR(max)")
 	public String getArticle_content() {
 		return article_content;
 	}

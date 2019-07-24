@@ -5,6 +5,7 @@ import java.sql.Clob;
 import java.sql.Timestamp;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -86,7 +87,7 @@ public class MsgBoardBean implements Serializable {
 	public void setMsgboard_date(Timestamp msgboard_date) {
 		this.msgboard_date = msgboard_date;
 	}
-
+	 @Column(columnDefinition = "NVARCHAR(max)")
 	public String getMsgboard_content() {
 		return msgboard_content;
 	}
