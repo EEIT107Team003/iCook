@@ -21,6 +21,13 @@
 
 <head>
 <meta charset="utf-8" />
+<!-- google font -->
+<link
+	href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap"
+	rel="stylesheet">
+<!-- google font -->
+
+
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -73,6 +80,41 @@ th {
 }
 .urgent {
 	background-color: red;
+}
+
+
+
+.shrink {
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-top: 5%;
+}
+
+td{
+	text-align: center;
+	font-size: 20px;
+	font-family: 'Noto Sans TC', sans-serif;
+	line-height: 20px;
+}
+th{ 
+
+} 
+.thnew{
+font-family: 'Noto Sans TC', sans-serif;
+font-size: 20px;
+text-align: center;
+color: #aa4fff;
+
+}
+
+.thnewHeader{
+	font-family: 'Noto Sans TC', sans-serif;
+}
+
+
+
+td {
+	
 }
 </style>
 <script type="text/javascript">
@@ -143,66 +185,66 @@ th {
 		</div>
 		<div class="main-panel">
 			<!-- Navbar -->
-			<nav class="navbar navbar-expand-lg " color-on-scroll="500">
-				<div class="container-fluid">
-<!-- 					<a class="navbar-brand" href="#pablo"> Table List </a> -->
-					<button href="" class="navbar-toggler navbar-toggler-right"
-						type="button" data-toggle="collapse"
-						aria-controls="navigation-index" aria-expanded="false"
-						aria-label="Toggle navigation">
-						<span class="navbar-toggler-bar burger-lines"></span> <span
-							class="navbar-toggler-bar burger-lines"></span> <span
-							class="navbar-toggler-bar burger-lines"></span>
-					</button>
-					<div class="collapse navbar-collapse justify-content-end"
-						id="navigation">
-						<ul class="nav navbar-nav mr-auto">
-							<li class="nav-item"><a href="#" class="nav-link"
-								data-toggle="dropdown"> <i class="nc-icon nc-palette"></i> <span
-									class="d-lg-none">Dashboard</span>
-							</a></li>
-							<li class="dropdown nav-item"><a href="#"
-								class="dropdown-toggle nav-link" data-toggle="dropdown"> <i
-									class="nc-icon nc-planet"></i> <span class="notification">5</span>
-									<span class="d-lg-none">Notification</span>
-							</a>
-								<ul class="dropdown-menu">
-									<a class="dropdown-item" href="#">Notification 1</a>
-									<a class="dropdown-item" href="#">Notification 2</a>
-									<a class="dropdown-item" href="#">Notification 3</a>
-									<a class="dropdown-item" href="#">Notification 4</a>
-									<a class="dropdown-item" href="#">Another notification</a>
-								</ul></li>
-							<li class="nav-item"><a href="#" class="nav-link"> <i
-									class="nc-icon nc-zoom-split"></i> <span class="d-lg-block">&nbsp;Search</span>
-							</a></li>
-						</ul>
-						<ul class="navbar-nav ml-auto">
-							<li class="nav-item"><a class="nav-link" href="#pablo">
-									<span class="no-icon">Account</span>
-							</a></li>
-							<li class="nav-item dropdown"><a
-								class="nav-link dropdown-toggle" href="http://example.com"
-								id="navbarDropdownMenuLink" data-toggle="dropdown"
-								aria-haspopup="true" aria-expanded="false"> <span
-									class="no-icon">Dropdown</span>
-							</a>
-								<div class="dropdown-menu"
-									aria-labelledby="navbarDropdownMenuLink">
-									<a class="dropdown-item" href="#">Action</a> <a
-										class="dropdown-item" href="#">Another action</a> <a
-										class="dropdown-item" href="#">Something</a> <a
-										class="dropdown-item" href="#">Something else here</a>
-									<div class="divider"></div>
-									<a class="dropdown-item" href="#">Separated link</a>
-								</div></li>
-							<li class="nav-item"><a class="nav-link" href="#pablo">
-									<span class="no-icon">Log out</span>
-							</a></li>
-						</ul>
-					</div>
-				</div>
-			</nav>
+<!-- 			<nav class="navbar navbar-expand-lg " color-on-scroll="500"> -->
+<!-- 				<div class="container-fluid"> -->
+<!-- <!-- 					<a class="navbar-brand" href="#pablo"> Table List </a> -->
+<!-- 					<button href="" class="navbar-toggler navbar-toggler-right" -->
+<!-- 						type="button" data-toggle="collapse" -->
+<!-- 						aria-controls="navigation-index" aria-expanded="false" -->
+<!-- 						aria-label="Toggle navigation"> -->
+<!-- 						<span class="navbar-toggler-bar burger-lines"></span> <span -->
+<!-- 							class="navbar-toggler-bar burger-lines"></span> <span -->
+<!-- 							class="navbar-toggler-bar burger-lines"></span> -->
+<!-- 					</button> -->
+<!-- 					<div class="collapse navbar-collapse justify-content-end" -->
+<!-- 						id="navigation"> -->
+<!-- 						<ul class="nav navbar-nav mr-auto"> -->
+<!-- 							<li class="nav-item"><a href="#" class="nav-link" -->
+<!-- 								data-toggle="dropdown"> <i class="nc-icon nc-palette"></i> <span -->
+<!-- 									class="d-lg-none">Dashboard</span> -->
+<!-- 							</a></li> -->
+<!-- 							<li class="dropdown nav-item"><a href="#" -->
+<!-- 								class="dropdown-toggle nav-link" data-toggle="dropdown"> <i -->
+<!-- 									class="nc-icon nc-planet"></i> <span class="notification">5</span> -->
+<!-- 									<span class="d-lg-none">Notification</span> -->
+<!-- 							</a> -->
+<!-- 								<ul class="dropdown-menu"> -->
+<!-- 									<a class="dropdown-item" href="#">Notification 1</a> -->
+<!-- 									<a class="dropdown-item" href="#">Notification 2</a> -->
+<!-- 									<a class="dropdown-item" href="#">Notification 3</a> -->
+<!-- 									<a class="dropdown-item" href="#">Notification 4</a> -->
+<!-- 									<a class="dropdown-item" href="#">Another notification</a> -->
+<!-- 								</ul></li> -->
+<!-- 							<li class="nav-item"><a href="#" class="nav-link"> <i -->
+<!-- 									class="nc-icon nc-zoom-split"></i> <span class="d-lg-block">&nbsp;Search</span> -->
+<!-- 							</a></li> -->
+<!-- 						</ul> -->
+<!-- 						<ul class="navbar-nav ml-auto"> -->
+<!-- 							<li class="nav-item"><a class="nav-link" href="#pablo"> -->
+<!-- 									<span class="no-icon">Account</span> -->
+<!-- 							</a></li> -->
+<!-- 							<li class="nav-item dropdown"><a -->
+<!-- 								class="nav-link dropdown-toggle" href="http://example.com" -->
+<!-- 								id="navbarDropdownMenuLink" data-toggle="dropdown" -->
+<!-- 								aria-haspopup="true" aria-expanded="false"> <span -->
+<!-- 									class="no-icon">Dropdown</span> -->
+<!-- 							</a> -->
+<!-- 								<div class="dropdown-menu" -->
+<!-- 									aria-labelledby="navbarDropdownMenuLink"> -->
+<!-- 									<a class="dropdown-item" href="#">Action</a> <a -->
+<!-- 										class="dropdown-item" href="#">Another action</a> <a -->
+<!-- 										class="dropdown-item" href="#">Something</a> <a -->
+<!-- 										class="dropdown-item" href="#">Something else here</a> -->
+<!-- 									<div class="divider"></div> -->
+<!-- 									<a class="dropdown-item" href="#">Separated link</a> -->
+<!-- 								</div></li> -->
+<!-- 							<li class="nav-item"><a class="nav-link" href="#pablo"> -->
+<!-- 									<span class="no-icon">Log out</span> -->
+<!-- 							</a></li> -->
+<!-- 						</ul> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</nav> -->
 			<!-- End Navbar -->
 			<div class="content">
 				<div class="container-fluid">
@@ -214,26 +256,27 @@ th {
 									<!--                                     <p class="card-category">Here is a subtitle for this table</p> -->
 								</div>
 								<div class="card-body table-full-width table-responsive">
-									<h1>
-										<c:out value="系統訂單總覽" />
+									<h1 class='thnewHeader' align='center'>
+										<c:out value="---------------------------------------------系統訂單總覽---------------------------------------------" />
 									</h1>
 									<div class="outer">
 										<table class="table table-hover">
 											<thead>
-												<tr style='text-align:center'>
-													<th style='text-align:center' scope="col" >系統訂單號</th>
-													<th scope="col" style='background-color: '>訂單詳情</th>
-													<th scope="col" style='background-color: '>訂購日期</th>
+												<tr>
+													<th scope="col" ><p class='thnew'>系統訂單號</p></th>
+													<th scope="col" style='background-color: '><p class='thnew'>訂單詳情</p></th>
+													<th scope="col" style='background-color: '><p class='thnew'>訂購日期</p></th>
 													<th scope="col"
-														style='background-color: '>預計出貨時間</th>
+														style='background-color: '><p class='thnew'>預計出貨時間</p></th>
 													<th scope="col"
-														style='background-color: '>訂購會員</th>
-													<th scope="col" style='background-color: '>應收金額</th>
+														style='background-color: '><p class='thnew'>訂購會員</p></th>
+													<th scope="col" style='background-color: '><p class='thnew'>應收金額</p></th>
 													<!-- 					<th scope="col" style='background-color: #ffbfa7'>付款方式</th> -->
-													<th scope="col" style='background-color:'>發貨地址</th>
-													<th scope="col" style='background-color:'>發票</th>
-													<th scope="col" style='background-color:'>款項查核</th>
-													<th scope="col" style='background-color: '>匯出</th>
+<!-- 													<th scope="col" style='background-color:'>發貨地址</th> -->
+													<th scope="col" style='background-color:'><p class='thnew'>發票</p></th>
+													<th scope="col" style='background-color:'><p class='thnew'>款項查核</p></th>
+<!-- 													<th scope="col" style='background-color: '><p class='thnew'><a href='orders.xls'>匯出xls</a></p></th> -->
+													<th scope="col" style='background-color: '><p class="btn btn-warning"><a href='orders.xls' style='color:black'>匯出xls</a></p></th>
 												</tr>
 											</thead>
 											<tbody>
@@ -252,7 +295,7 @@ th {
 																<input type="hidden" name="adminCheck" value="admin" />
 																<input type="hidden" name="OrderNo"
 																	value="${OrderBean.orderNo}" /> <input
-																	class="btn btn-outline-info" type="submit"
+																	class="btn btn-outline-success" type="submit"
 																	value="檢視該訂單" />
 															</form>
 														</td>
@@ -281,7 +324,7 @@ th {
 
 														<td>${OrderBean.memberbean.username}</td>
 														<td>${OrderBean.totalAmount}</td>
-														<td>${OrderBean.shippingAddress}</td>
+<%-- 														<td>${OrderBean.shippingAddress}</td> --%>
 														<td>${OrderBean.invoiceTitle}</td>
 														<c:set var="contains" value="no" />
 														<c:if test="${OrderBean.payment eq 'OK'}">
@@ -309,7 +352,7 @@ th {
 														</c:choose>
 														<c:set var="contains" value="no" />
 														<%-- 						<td><input type="button" id="${OrderBean.orderNo}" onclick='setOK(this)' value="OK"></td> --%>
-														<td><a href='orders.xls'>匯出xls</a></td>
+														<td></td>
 													</tr>
 
 												</c:forEach>

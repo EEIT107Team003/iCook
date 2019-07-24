@@ -179,7 +179,7 @@ public class OrderController {
 		
 		//防止訂購完按超商付款他會網頁會refresh跳到此會空值出錯
 		if(cart==null) {
-			return "redirect:/products";
+			return "redirect:/index2";
 		}
 		
 		
@@ -373,7 +373,7 @@ public class OrderController {
 //		if (mcontroller.getPrincipal().equals("Admin@gmail.com")) {
 //			mb = mservice.selectByUsername(mcontroller.getPrincipal());
 //			model.addAttribute("LoginOK", mb);
-			
+		
 			List<OrderBean> orders = new ArrayList<>();
 			orders = odao.getAllOrders();
 			
@@ -411,7 +411,8 @@ public class OrderController {
 //------------------------------------計算完畢-------------------------------------------------
 			model.addAttribute("orders_list", orders);
 //			return "adminCheckOrders";
-			return "backStage/examples/table";
+			return "backStage/examples/adminCheckOrderPage";
+//			return "backStage/examples/typography";
 //		}
 //		else {
 //			return "redirect:/login_page";// 此處要改跳轉至登入畫面
@@ -437,9 +438,10 @@ public class OrderController {
 		Integer OrderNo = Integer.parseInt(req.getParameter("OrderNo"));
 		OrderBean admin_ob = odao.get_One_Order_by_OrderNo(OrderNo);
 		List<OrderItemBean> admin_oib = admin_ob.getItems();
+		model.addAttribute("orderAddress", admin_ob.getShippingAddress());
 		model.addAttribute("orderItems_List", admin_oib);
 //		return "adminCheckOrderDetails";
-		return "backStage/examples/detailTable";
+		return "backStage/examples/adminCheckOrderDetailPage";
 	}
 
 	// 查看會員所有訂單,一定是從orderPage跳轉到此頁,此頁無法直接到達
@@ -447,6 +449,15 @@ public class OrderController {
 	public String order_details_by_member(Model model, HttpSession session, @RequestParam("id") Integer buyerSyetemSeqNo,
 			@RequestParam("orderNo") Integer orderNo, HttpServletRequest req) {
 		Integer FrontSeqNoForOrderByMember = Integer.parseInt(req.getParameter("SeqOrderNoForMember"));
+
+		
+		MemberBean mb=null;
+		if (!mcontroller.getPrincipal().equals("anonymousUser")) {
+			mb = mservice.selectByUsername(mcontroller.getPrincipal());
+			model.addAttribute("LoginOK", mb);
+		}
+		
+		
 		// 一定是從orderPage跳轉到此頁,此頁無法直接到達,所以session.get會員
 		OrderBean ob = null;
 		List<OrderBean> mo = odao.getOrdersbyMemberSeqNo(buyerSyetemSeqNo);
@@ -454,6 +465,7 @@ public class OrderController {
 		while (it.hasNext()) {
 			ob = it.next();
 			if (ob.getOrderNo() == orderNo) {
+				model.addAttribute("LoginOK", mb);
 				model.addAttribute("orderItems_List", ob.getItems());
 				model.addAttribute("orderAddress", ob.getShippingAddress());
 				model.addAttribute("FrontSeqOrderNo", FrontSeqNoForOrderByMember);

@@ -45,7 +45,9 @@
 <script src="js/jquery.prettyPhoto.js"></script>
 <script src="js/css3-mediaqueries.js"></script>
 <!-- google font -->
-<link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap"
+	rel="stylesheet">
 <!-- google font -->
 <!-- 彈跳視窗 -->
 <link rel="stylesheet"
@@ -62,24 +64,26 @@
 	crossorigin="anonymous"></script>
 <!-- 彈跳視窗 -->
 <script type="text/javascript">
-	function to_detail(obj) {
+// 	function to_detail(obj) {
 
-		window.location.href = '/icookProject/orderdetails?id=' + obj.id;
-	}
+// 		window.location.href = '/icookProject/orderdetails?id=' + obj.id;
+// 	}
 </script>
 <style>
-.shrink{
+.shrink {
 	margin-left: 10%;
 	margin-right: 10%;
 	margin-top: 5%;
 }
-td, th{
-	text-align:center;
+
+td, th {
+	text-align: center;
 	font-size: 20px;
 	font-family: 'Noto Sans TC', sans-serif;
 }
-td{
-	line-height:100px;
+
+td {
+	line-height: 100px;
 }
 </style>
 
@@ -103,12 +107,15 @@ td{
 				<div class="col-full">
 					<div class="wrap-col">
 						<h1>
-							<a href="index2"><img src="images/logo.png" alt="EXTERIOR"></a>
+							<a style="height: 200px"
+								href="${pageContext.request.contextPath}/index2"><img
+								src="${pageContext.request.contextPath}/images/logo.png"
+								style="width: 200px; right: 200px; border-radius: 50%;"
+								alt="EXTERIOR"></a>
 						</h1>
-
 						<div class="menu_block">
 							<nav>
-								<ul class="sf-menu">
+								<ul class="sf-menu" style="padding-top: 55px">
 									<li><a href="index2">ICook</a></li>
 									<li><a href="icookAboutUS">關於我們</a>
 										<ul>
@@ -186,7 +193,7 @@ td{
 
 		<div class="content">
 			<h1>
-				<c:out value="會員ID:${LoginOK.member_id}的第${FrontSeqOrderNo}筆消費"></c:out>
+				<c:out value="會員ID:${LoginOK.nickname}的第${FrontSeqOrderNo}筆消費"></c:out>
 				<hr />
 			</h1>
 
@@ -195,7 +202,8 @@ td{
 					<table class="table table-hover">
 						<thead>
 							<tr>
-								<td scope="col" colspan="9">送貨地址/分店資訊:<c:out value="${orderAddress}"/></td>
+								<td scope="col" colspan="9" style='color:red'>送貨地址/分店資訊:<c:out
+										value="${orderAddress}" /></td>
 							</tr>
 							<tr>
 								<td scope="col"></td>
@@ -257,8 +265,8 @@ td{
 			<div class="zerogrid">
 				<div class="col-full">
 					<div class="wrap-col">
-<!-- 						&copy; Copyright &copy; 2013.Company name All rights reserved.<a -->
-<!-- 							target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a> -->
+						<!-- 						&copy; Copyright &copy; 2013.Company name All rights reserved.<a -->
+						<!-- 							target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a> -->
 					</div>
 				</div>
 			</div>

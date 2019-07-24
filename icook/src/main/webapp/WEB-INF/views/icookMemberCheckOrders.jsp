@@ -82,6 +82,10 @@ td, th {
 	font-size: 20px;
 	font-family: 'Noto Sans TC', sans-serif;
 }
+
+.fixleft{
+margin-left:'100px';
+}
 </style>
 
 <!--[if lt IE 8]>
@@ -104,12 +108,15 @@ td, th {
 				<div class="col-full">
 					<div class="wrap-col">
 						<h1>
-							<a href="index2"><img src="images/logo.png" alt="EXTERIOR"></a>
+							<a style="height: 200px"
+								href="${pageContext.request.contextPath}/index2"><img
+								src="${pageContext.request.contextPath}/images/logo.png"
+								style="width: 200px; right: 200px; border-radius: 50%;"
+								alt="EXTERIOR"></a>
 						</h1>
-
 						<div class="menu_block">
 							<nav>
-								<ul class="sf-menu">
+								<ul class="sf-menu" style="padding-top: 55px">
 									<li><a href="index2">ICook</a></li>
 									<li><a href="icookAboutUS">關於我們</a>
 										<ul>
@@ -160,8 +167,8 @@ td, th {
 					</div>
 				</div>
 			</div>
-		</header>	
-			<!--=======content================================-->
+		</header>
+		<!--=======content================================-->
 		<!-- 確認登出 -->
 
 		<div class="modal fade" id="logout" tabindex="-1" role="dialog"
@@ -195,9 +202,9 @@ td, th {
 				<div class="outer">
 					<table class="table table-hover">
 						<thead>
-<!-- 						<tr> -->
-<!-- 								<th scope="col">序號</th> -->
-<!-- 							</tr> -->
+							<!-- 						<tr> -->
+							<!-- 								<th scope="col">序號</th> -->
+							<!-- 							</tr> -->
 							<tr>
 								<th scope="col">序號</th>
 								<th scope="col">訂單詳情</th>
@@ -205,7 +212,7 @@ td, th {
 								<th scope="col">訂購日期</th>
 								<th scope="col">預計出貨時間</th>
 								<th scope="col">應付金額</th>
-<!-- 								<th scope="col">取貨地址</th> -->
+								<!-- 								<th scope="col">取貨地址</th> -->
 								<th scope="col">發票</th>
 								<th scope="col">付款驗證</th>
 							</tr>
@@ -227,7 +234,7 @@ td, th {
 									<td>${OrderBean.orderDate}</td>
 									<td>${OrderBean.shippingDate}</td>
 									<td>${OrderBean.totalAmount}</td>
-<%-- 									<td>${OrderBean.shippingAddress}</td> --%>
+									<%-- 									<td>${OrderBean.shippingAddress}</td> --%>
 									<td>${OrderBean.invoiceTitle}</td>
 
 									<c:set var="contains" value="no" />
@@ -243,13 +250,14 @@ td, th {
 												
 											</script>
 											<i class="fas fa-check"></i>
-											<td class="btn btn-success">已查核</td>
+											<td><div style='background-color:#00B200'>已查核</div></td>
 										</c:when>
 										<c:otherwise>
 											<script type="text/javascript">
 												
 											</script>
-											<td class="btn btn-warning">查核中</td>
+											
+												<td ><div style='background-color:#ebcc34'>查核中</div></td>
 										</c:otherwise>
 									</c:choose>
 									<c:set var="contains" value="no" />

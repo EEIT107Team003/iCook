@@ -92,6 +92,7 @@ td, th {
 	font-family: 'Noto Sans TC', sans-serif;
 	line-height: 50px;
 }
+
 label {
 	font-size: 20px;
 	font-family: 'Noto Sans TC', sans-serif;
@@ -101,6 +102,7 @@ li {
 	font-size: 20px;
 	font-family: 'Noto Sans TC', sans-serif;
 }
+
 #info {
 	margin: auto;
 	line-height: 200%;
@@ -116,23 +118,24 @@ li {
 				<div class="col-full">
 					<div class="wrap-col">
 						<h1>
-							<a href="index2"><img src="images/logo.png" alt="EXTERIOR"></a>
+							<a style="height: 200px"
+								href="${pageContext.request.contextPath}/index2"><img
+								src="${pageContext.request.contextPath}/images/logo.png"
+								style="width: 200px; right: 200px; border-radius: 50%;"
+								alt="EXTERIOR"></a>
 						</h1>
 
 						<div class="menu_block">
 							<nav>
-								<ul class="sf-menu">
+								<ul class="sf-menu" style="padding-top: 55px">
 									<li><a href="index2">ICook</a></li>
 									<li><a href="icookAboutUS">關於我們</a>
 										<ul>
 											<li><a href="icookContact">聯繫我們</a></li>
 										</ul></li>
-									<li><a href="icookMenu">查看食譜</a>
-										<ul>
-											<li><a href="#">cat1</a></li>
-											<li><a href="#">cat2</a></li>
-											<li><a href="#">cat3</a></li>
-										</ul></li>
+									<li><a href="recipe/recipeIndex">查看食譜</a> <!--<ul>--> <!--<li><a href="#">cat1</a></li>-->
+										<!--<li><a href="#">cat2</a></li>--> <!--<li><a href="#">cat3</a></li>-->
+										<!--</ul>--></li>
 									<li><a href="icookLife">生活誌</a></li>
 									<li><a href="forum/overview">討論區</a></li>
 									<li><a href="A_articlemainpage">文章區</a>
@@ -162,8 +165,7 @@ li {
 											<li><a href="checkOrders">查看訂單</a></li>
 											<li><a href="icookAddRecipe">新增食譜</a></li>
 											<li><a href="backStage">後台</a></li>
-											<ul></li>
-
+										</ul></li>
 								</ul>
 							</nav>
 							<div class="clear"></div>
@@ -176,32 +178,32 @@ li {
 		<!--=======content================================-->
 		<!-- 確認登出 -->
 
-<!-- 		<div class="modal fade" id="logout" tabindex="-1" role="dialog" -->
-<!-- 			aria-labelledby="myModalLabel" aria-hidden="true"> -->
-<!-- 			<div class="modal-dialog"> -->
-<!-- 				<div class="modal-content"> -->
-<!-- 					<div class="modal-header" style="border-bottom: 1px solid;"> -->
-<!-- 						<h4 class="modal-title" id="myModalLabel" style="float: left">您即將登出享食天堂</h4> -->
-<!-- 						<button type="button" class="close" data-dismiss="modal" -->
-<!-- 							aria-hidden="true">×</button> -->
-<!-- 					</div> -->
-<!-- 					<div class="modal-body" style="width: 100%"> -->
-<!-- 						<form method="post" action="perform_logout"> -->
-<!-- 							<button type="submit">確定登出</button> -->
-<!-- 						</form> -->
-<!-- 					</div> -->
-<!-- 					<div class="modal-footer"> -->
-<!-- 						<button type="button" class="btn btn-primary" data-dismiss="modal">取消</button> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
+		<!-- 		<div class="modal fade" id="logout" tabindex="-1" role="dialog" -->
+		<!-- 			aria-labelledby="myModalLabel" aria-hidden="true"> -->
+		<!-- 			<div class="modal-dialog"> -->
+		<!-- 				<div class="modal-content"> -->
+		<!-- 					<div class="modal-header" style="border-bottom: 1px solid;"> -->
+		<!-- 						<h4 class="modal-title" id="myModalLabel" style="float: left">您即將登出享食天堂</h4> -->
+		<!-- 						<button type="button" class="close" data-dismiss="modal" -->
+		<!-- 							aria-hidden="true">×</button> -->
+		<!-- 					</div> -->
+		<!-- 					<div class="modal-body" style="width: 100%"> -->
+		<!-- 						<form method="post" action="perform_logout"> -->
+		<!-- 							<button type="submit">確定登出</button> -->
+		<!-- 						</form> -->
+		<!-- 					</div> -->
+		<!-- 					<div class="modal-footer"> -->
+		<!-- 						<button type="button" class="btn btn-primary" data-dismiss="modal">取消</button> -->
+		<!-- 					</div> -->
+		<!-- 				</div> -->
+		<!-- 			</div> -->
+		<!-- 		</div> -->
 
-	<div class="progress">
-		<div class="progress-bar progress-bar-striped bg-success"
-			role="progressbar" style="width: 75%" aria-valuenow="75"
-			aria-valuemin="0" aria-valuemax="100"></div>
-	</div>
+		<div class="progress">
+			<div class="progress-bar progress-bar-striped bg-success"
+				role="progressbar" style="width: 75%" aria-valuenow="75"
+				aria-valuemin="0" aria-valuemax="100"></div>
+		</div>
 
 
 

@@ -123,7 +123,11 @@
 				<div class="col-full">
 					<div class="wrap-col">
 						<h1>
-							<a  style="height:200px" href="${pageContext.request.contextPath}/index2"><img src="${pageContext.request.contextPath}/images/logo.png" style="width: 200px ;right: 200px ;border-radius: 50%;" alt="EXTERIOR"></a>
+							<a style="height: 200px"
+								href="${pageContext.request.contextPath}/index2"><img
+								src="${pageContext.request.contextPath}/images/logo.png"
+								style="width: 200px; right: 200px; border-radius: 50%;"
+								alt="EXTERIOR"></a>
 						</h1>
 
 						<div class="menu_block">
@@ -151,7 +155,8 @@
 										</ul></li>
 
 
-									<li><a href="products">市集</a>
+<!-- 									<li><a href="products">市集</a> -->
+									<li><a href="product?id=61">市集</a>
 										<ul>
 
 
@@ -171,8 +176,7 @@
 											<li><a href="checkOrders">查看訂單</a></li>
 											<li><a href="icookAddRecipe">新增食譜</a></li>
 											<li><a href="backStage">後台</a></li>
-										</ul>
-									</li>
+										</ul></li>
 								</ul>
 							</nav>
 							<div class="clear"></div>
