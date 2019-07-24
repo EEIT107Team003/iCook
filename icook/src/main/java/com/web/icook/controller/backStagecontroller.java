@@ -25,8 +25,6 @@ public class backStagecontroller {
 	@Autowired
 	ProductService Productservice;
 	
-	
-	
 	@ResponseBody
 	@RequestMapping(value = "/allProductForProductTable", method = RequestMethod.POST)
 	public List<ProductBean> allProductForProductTable() {
@@ -79,8 +77,4 @@ public class backStagecontroller {
 	public String user(Model model) {
 		return "backStage/examples/user";
 	}
-
-
-	
-	
 }

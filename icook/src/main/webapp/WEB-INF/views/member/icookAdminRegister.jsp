@@ -41,26 +41,26 @@
 <!-- 彈跳視窗 -->
 
 <script>
-// 	$(function (){
-// 	    function format_float(num, pos){
-// 	        var size = Math.pow(10, pos);
-// 	        return Math.round(num * size) / size;
-// 	    };
+	$(function (){
+	    function format_float(num, pos){
+	        var size = Math.pow(10, pos);
+	        return Math.round(num * size) / size;
+	    };
 	
-// 		function preview(input) {
-// 	        if (input.files && input.files[0]) {
-// 	            var reader = new FileReader();
-// 	        	reader.onload = function (e) {
-// 	            $('#member_photo_image').attr('src', e.target.result);
-// 	        };
-// 	            reader.readAsDataURL(input.files[0]);
-// 	        };
-// 	    };
+		function preview(input) {
+	        if (input.files && input.files[0]) {
+	            var reader = new FileReader();
+	        	reader.onload = function (e) {
+	            $('#member_photo_image').attr('src', e.target.result);
+	        };
+	            reader.readAsDataURL(input.files[0]);
+	        };
+	    };
 		 
-// 	    $("#member_photo_file").change(function (){
-// 	        preview(this);
-// 	    });
-// 	});			
+	    $("#member_photo_file").change(function (){
+	        preview(this);
+	    });
+	});			
 </script>
 
 <style>
@@ -180,30 +180,30 @@
 			<form:form method="POST" modelAttribute="MemberBean"
 					enctype="multipart/form-data">
 					<fieldset>
-<!-- 						<div> -->
-<!-- 							<label for="member_photo_file">  -->
-<%-- 									<form:input type="file" path="member_photo_tr" name="member_photo_file" --%>
-<%-- 										id="member_photo_file" style="display: none;" />  --%>
-<!-- 										<img class="profile-image img-responsive pull-left member_photo"  -->
-<!--  										id="member_photo_image" style="background-color:white;margin: 20px;"   -->
-<%--  										src="<c:url value='resources\images\NoImage.png' />" /> --%>
-<!--  							</label> 	 -->
-<!-- 						</div>	 -->
+						<div>
+							<label for="member_photo_file"> 
+									<form:input type="file" path="member_photo_tr" name="member_photo_file"
+ 										id="member_photo_file" style="display: none;" /> 
+										<img class="profile-image img-responsive pull-left member_photo" 
+  										id="member_photo_image" style="background-color:white;margin: 20px;"
+  										src="<c:url value='resources\images\NoImage.png' />" />
+  							</label>
+ 						</div>
 							<table>
 								<tr> 
-									<td><label for="nickname">暱稱:</label></td>
+									<td><label for="nickname">暱稱：</label></td>
 									<td>
 										<form:input id="nickname" path="nickname" type="text" />
 									</td>					 
 								</tr>
 								<tr>
-									<td><label for="username">帳號:</label></td>
+									<td><label for="username">帳號：</label></td>
 									<td>
 										<form:input id="username" path="username" type="text" />
 									</td>
 								</tr> 
 								<tr>
-									<td><label for="password">密碼:</label></td>
+									<td><label for="password">密碼：</label></td>
 									<td>
 										<form:input id="password" path="password" type="text" />
 									</td>

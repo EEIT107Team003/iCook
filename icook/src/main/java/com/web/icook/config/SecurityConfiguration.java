@@ -65,7 +65,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
    	    
    	 http.authorizeRequests()
 	    .antMatchers("/").permitAll() //不用登入即可使用
-	    .antMatchers("/backStage/**")
+	    .antMatchers("/backStage/**","/adminCheckOrders/**","/adminCheckOrderDetails/**")
 	    .hasAnyRole("ADMIN") //只要登入成功,便可使用(權限:"ADMIN"或"MEMBER")
 	    .and()
 	    .csrf().disable() //關閉CSRF檢查
@@ -82,5 +82,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	        .logoutUrl("/perform_logout")
 	        .logoutSuccessUrl("/index2"); 
 	}
-	
 }

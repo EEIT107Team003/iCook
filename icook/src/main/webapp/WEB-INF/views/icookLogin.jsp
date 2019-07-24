@@ -45,7 +45,7 @@
 </style>    
 
 </head>
-<body>
+<body style="background-color: #55a237">
 	<div class="main">
 		<!--==============================header=================================-->
 		<header>
@@ -155,7 +155,7 @@
 					<fieldset>				
 					<table>
 						<tr> 
-							<td><p>Email:</p></td>
+							<td><p>帳號：</p></td>
 							<td>
 								<label class="email" for="username">
 									 <input type="text" id="username" name="username"> 
@@ -166,7 +166,7 @@
 							</td>					 
 						</tr>
 						<tr>
-							<td><p>password:</p></td>
+							<td><p>密碼：</p></td>
 							<td>
 								<label class="password" for="password">
 									<input type="password" id="password" name="password">
