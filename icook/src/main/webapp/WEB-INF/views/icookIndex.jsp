@@ -470,5 +470,54 @@
 		<script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540'
 			language='JavaScript' charset='gb2312'></script>
 	</div>
+	
+<script>
+	var webSocket = new WebSocket("ws:/localhost:8080/icook/ArtBroadcast");
+	var newnew = "有一則新消息"
+	function sendMsg() {
+		var msgToSend = newnew.value;
+		webSocket.send(msgToSend);
+		
+	}
+
+	webSocket.onmessage = function(message) {
+		$.notify({
+			title : '<strong>新消息</strong>',
+			icon : 'glyphicon glyphicon-star',
+			message : "有一篇文章發表摟，快去看看!"
+		}, {
+			type : 'info',
+			animate : {
+				enter : 'animated fadeInUp',
+				exit : 'animated fadeOutRight'
+			},
+			placement : {
+				from : "bottom",
+				align : "right"
+			},
+			offset : 20,
+			spacing : 10,
+			z_index : 1031,
+		});
+
+	}
+
+	webSocket.onopen = function() {
+		
+	};
+
+	webSocket.onclose = function() {
+		console.log("connection closed");
+	};
+
+	webSocket.onerror = function wserror(message) {
+		console.log("error: " + message);
+	}
+</script>
+
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/article/bootstrap-notify-master/bootstrap-notify.min.js"></script>
+
+	
 </body>
 </html>

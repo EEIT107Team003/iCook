@@ -79,13 +79,12 @@ public class AticleController {
 		return "forward:/A_findAll";
 	}
 	
-	@ResponseBody
-	@RequestMapping({"/A_findThree"}) // 指向index href裡面
+	
+	@RequestMapping("/A_findThree") // 指向index href裡面
 	public String threelist(Model model) {
 		List<ArticleBean> list = arcicleservice.getThreeArticles();
-		model.addAttribute("ArticleThrees", list);
 		System.out.println("list.toString()"+list.toString());
-		return "article/A_articlemainpage"; // 指向success.jsp
+		return "list"; // 指向success.jsp
 	}
 	
 	@RequestMapping("/A_findAll") // 指向index href裡面
@@ -120,6 +119,11 @@ public class AticleController {
 		System.out.println("#1");
 		ArticleBean articlebean = new ArticleBean();
 		model.addAttribute("Articlebeanselect", articlebean);
+		
+		
+		
+		
+		
 		return "article/A_selectpage";/* 呼叫insert.jsp檔案 */
 	}
 
@@ -276,7 +280,10 @@ public class AticleController {
 	@RequestMapping(value = "/A_insert", method = RequestMethod.GET)
 	public String getAddNewArticleForm(Model model) throws SerialException, SQLException {
 		
-
+		  //前三筆文章開始
+        List<ArticleBean> threelist = arcicleservice.getThreeArticles();
+		model.addAttribute("ArticleThrees", threelist);
+		//前三筆文章結束
 		
 		System.out.println("#1");
 		ArticleBean articlebean = new ArticleBean();
@@ -287,8 +294,9 @@ public class AticleController {
 
 	@RequestMapping(value = "/A_insert", method = RequestMethod.POST)
 	public String processAddNewProductForm(@ModelAttribute("Articlebean") ArticleBean articlebean, BindingResult result,
-			HttpServletRequest request) throws UnsupportedEncodingException {
+			HttpServletRequest request ,Model model) throws UnsupportedEncodingException {
 		request.setCharacterEncoding("UTF-8");
+		
 		
 		MemberController c = new MemberController();
 		MemberBean mb = memberservice.selectByUsername(c.getPrincipal());
@@ -420,6 +428,12 @@ public class AticleController {
 		System.out.println("article_title="+article_title);
 		List<ArticleBean> list = arcicleservice.getByArticle_Title(article_title);
 		model.addAttribute("Articles", list);
+		
+		 //前三筆文章開始
+        List<ArticleBean> threelist = arcicleservice.getThreeArticles();
+		model.addAttribute("ArticleThrees", threelist);
+		//前三筆文章結束
+		
 		return "/article/A_articlesearch"; // 指向success.jsp
 	}
 	

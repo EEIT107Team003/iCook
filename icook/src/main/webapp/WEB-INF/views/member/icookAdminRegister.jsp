@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,14 +40,44 @@
 	crossorigin="anonymous"></script>
 <!-- 彈跳視窗 -->
 
+<script>
+// 	$(function (){
+// 	    function format_float(num, pos){
+// 	        var size = Math.pow(10, pos);
+// 	        return Math.round(num * size) / size;
+// 	    };
+	
+// 		function preview(input) {
+// 	        if (input.files && input.files[0]) {
+// 	            var reader = new FileReader();
+// 	        	reader.onload = function (e) {
+// 	            $('#member_photo_image').attr('src', e.target.result);
+// 	        };
+// 	            reader.readAsDataURL(input.files[0]);
+// 	        };
+// 	    };
+		 
+// 	    $("#member_photo_file").change(function (){
+// 	        preview(this);
+// 	    });
+// 	});			
+</script>
+
 <style>
-td {
-	vertical-align: middle;
-}
-</style>
+	.member_photo {
+		width: 175px;
+		height: 175px;
+		border-radius: 50%;
+		border: 2px solid black;
+	}
+	td{
+		vertical-align: middle;
+	}
+
+</style>    
 
 </head>
-<body>
+<body style="background-color:#55a237 ">
 	<div class="main">
 		<!--==============================header=================================-->
 		<header>
@@ -52,19 +85,12 @@ td {
 				<div class="col-full">
 					<div class="wrap-col">
 						<h1>
-
-							<a style="height: 200px"
-								href="${pageContext.request.contextPath}/index2"><img
-								src="${pageContext.request.contextPath}/images/logo.png"
-								style="width: 200px; right: 200px; border-radius: 50%;"
-								alt="EXTERIOR"></a>
-
+							<a  style="height:200px" href="${pageContext.request.contextPath}/index2"><img src="${pageContext.request.contextPath}/images/logo.png" style="width: 200px ;right: 200px ;border-radius: 50%;" alt="EXTERIOR"></a>
 						</h1>
+
 						<div class="menu_block">
 							<nav>
-
-								<ul class="sf-menu" style="padding-top: 55px">
-
+								<ul class="sf-menu"  style="padding-top:55px">
 									<li><a href="index2">ICook</a></li>
 									<li><a href="icookAboutUS">關於我們</a>
 										<ul>
@@ -105,8 +131,8 @@ td {
 											<li><a href="checkOrders">查看訂單</a></li>
 											<li><a href="icookAddRecipe">新增食譜</a></li>
 											<li><a href="backStage">後台</a></li>
-											<ul></li>
-
+										</ul>
+									</li>
 								</ul>
 							</nav>
 							<div class="clear"></div>
@@ -118,7 +144,6 @@ td {
 		</header>
 		<!--=======content================================-->
 		<!-- 確認登出 -->
-
 		<div class="modal fade" id="logout" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -150,60 +175,48 @@ td {
 					</div>
 					<div class="col-2-5">
 						<div class="wrap-col">
-
-							<h2>響食客登入</h2>
-
-							<form id="form" action="perform_login" method="POST">
-								<div class="success_wrapper">
-									<div class="success">
-										Contact form submitted!<br> <strong>We will be
-											in touch soon.</strong>
-									</div>
-								</div>
-								<fieldset>
-									<table>
-										<tr>
-											<td><p>Email:</p></td>
-											<td><label class="email" for="username"> <input
-													type="text" id="username" name="username"> <br
-													class="clear"> <span class="error error-empty">*This
-														is not a valid email address.</span> <span
-													class="empty error-empty">*This field is required.</span>
-											</label></td>
-										</tr>
-										<tr>
-											<td><p>password:</p></td>
-											<td><label class="password" for="password"> <input
-													type="password" id="password" name="password"> <br
-													class="clear"> <span class="error error-empty">*This
-														is not a valid phone number.</span> <span
-													class="empty error-empty">*This field is required.</span>
-											</label></td>
-										</tr>
-									</table>
-
-									<div class="clear"></div>
-									<!-- 						<div class="btns"> -->
-									<!-- 							<a data-type="reset" class="btn">clear</a> -->
-									<!-- 							<a data-type="submit" class="btn">send</a> -->
-									<!-- 							<div class="clear"></div> -->
-									<!-- 						</div> -->
-									<input id=submit type="submit" value="送出">
-								</fieldset>
-								<div style="height: 40px;">
-									<div
-										style="float: left; margin-top: 5px; vertical-align: middle;">記住我
-									</div>
-									<div style="float: left">
-										<input name="remember-me" type="checkbox"
-											style="width: 15px; margin-top: 0px" />
-									</div>
-								</div>
-							</form>
-
-						</div>
-					</div>
-				</div>
+							<h2>註冊管理員</h2>
+									
+			<form:form method="POST" modelAttribute="MemberBean"
+					enctype="multipart/form-data">
+					<fieldset>
+<!-- 						<div> -->
+<!-- 							<label for="member_photo_file">  -->
+<%-- 									<form:input type="file" path="member_photo_tr" name="member_photo_file" --%>
+<%-- 										id="member_photo_file" style="display: none;" />  --%>
+<!-- 										<img class="profile-image img-responsive pull-left member_photo"  -->
+<!--  										id="member_photo_image" style="background-color:white;margin: 20px;"   -->
+<%--  										src="<c:url value='resources\images\NoImage.png' />" /> --%>
+<!--  							</label> 	 -->
+<!-- 						</div>	 -->
+							<table>
+								<tr> 
+									<td><label for="nickname">暱稱:</label></td>
+									<td>
+										<form:input id="nickname" path="nickname" type="text" />
+									</td>					 
+								</tr>
+								<tr>
+									<td><label for="username">帳號:</label></td>
+									<td>
+										<form:input id="username" path="username" type="text" />
+									</td>
+								</tr> 
+								<tr>
+									<td><label for="password">密碼:</label></td>
+									<td>
+										<form:input id="password" path="password" type="text" />
+									</td>
+								</tr> 
+							</table>
+				
+						<div class="clear"></div>
+						<input id=submit type="submit" value="送出">
+					</fieldset>
+				</form:form>
+			</div>
+		</div>
+	</div>
 
 				<div class="row">
 					<div class="bottom_block">
@@ -248,10 +261,10 @@ td {
 	<footer>
 		<div class="zerogrid">
 			<div class="col-full">
-				<div class="wrap-col">
-					&copy; Copyright &copy; 2013.Company name All rights reserved.<a
-						target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
-				</div>
+<!-- 				<div class="wrap-col"> -->
+<!-- 					&copy; Copyright &copy; 2013.Company name All rights reserved.<a -->
+<!-- 						target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a> -->
+<!-- 				</div> -->
 			</div>
 		</div>
 	</footer>

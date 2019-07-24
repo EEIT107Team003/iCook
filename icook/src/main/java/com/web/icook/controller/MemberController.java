@@ -381,6 +381,67 @@ public class MemberController {
 
 		return "icookIndex";
 	}
+	
+	// 新增管理員
+	@RequestMapping(value = "/icookAdminRegister", method = RequestMethod.GET)
+	public String addAdminMember(Model model) {
+		MemberBean bean = new MemberBean();
+		model.addAttribute("MemberBean", bean);
+		return "member/icookAdminRegister";
+	}
+
+	@RequestMapping(value = "/icookAdminRegister", method = RequestMethod.POST)
+	public String addAdminMember(@ModelAttribute("MemberBean") MemberBean bean, Model model, HttpServletRequest request) {
+		// 連絡電話
+		bean.setMember_phone_num("未輸入");
+		// 送貨地址
+		bean.setAddress("未輸入");
+		// 被追蹤、發表食譜、發文數
+		bean.setTracked_num(0);
+		bean.setRecipe_num(0);
+		bean.setForum_num(0);
+		// 設定註冊時間
+		Date date = new Date(System.currentTimeMillis());
+		bean.setRegister_date(date);
+		// 是否有效
+		bean.setEnabled(true);
+		// 權限(預設為會員)
+		bean.setRole("ROLE_ADMIN");
+		// 個人簡歷
+		bean.setResume("新加入的管理員");
+
+		MultipartFile memberImage = bean.getMember_photo_tr();
+		if (memberImage != null && !memberImage.isEmpty()) {
+			// 完整檔名
+			String originalFilename = memberImage.getOriginalFilename();
+			bean.setFileName_member(originalFilename);
+//			System.out.println(originalFilename + "  --1");
+			// 副檔名
+			String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
+//			System.out.println(ext + "  --2");
+			// 跟目錄路徑
+			String rootDirectory = context.getRealPath("/");
+//			System.out.println(rootDirectory + "  --3");
+			try {
+				byte[] b = memberImage.getBytes();
+				Blob blob = new SerialBlob(b);
+				bean.setMember_photo(blob);
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new RuntimeException("檔案上傳發生異常:" + e.getMessage());
+			}
+		}
+		memberService.insertMember(bean);
+
+		List<MemberBean> list = memberService.selectAll();
+		model.addAttribute("members", list);
+
+		return "icookAdminLogin";
+//		return "backStage/examples/dashboard";
+	}
+	
+	
+	
 
 	// 取得圖片(Member)-------------------------------------------------------------------
 	@RequestMapping(value = "/getMemberPhoto/{member_id}", method = RequestMethod.GET)
@@ -486,7 +547,7 @@ public class MemberController {
 	// 取得登入帳號(username)
 	public String getPrincipal() {
 		String userName = null;
-		// 获取当前登录对象
+		// 獲得當前登入對象
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 		if (principal instanceof UserDetails) {
