@@ -50,7 +50,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
    	    .antMatchers("/","/login_page","/addMember","/member").permitAll() //不用登入即可使用
    	    .antMatchers("/user/**","/members/page/track","/checkOrders/**","/icook/toEZship/**","/icookCartPage/**","/cartPage/**", "/forum/newPost", "/forum/reply", "/forum/edit", "/forum/delete", "/forum/like")
    	    .hasAnyRole("ADMIN", "MEMBER") //只要登入成功,便可使用(權限:"ADMIN"或"MEMBER")
-   	    .antMatchers("/backStage/**","/adminCheckOrders/**","/adminCheckOrderDetails/**")
+   	    .antMatchers("/productTable/**","/adminCheckOrders/**","/adminCheckOrderDetails/**")
 		.hasAnyRole("ADMIN") //只要登入成功,便可使用(權限:"ADMIN")
 		.and()
    	    .csrf().disable() //關閉CSRF檢查
