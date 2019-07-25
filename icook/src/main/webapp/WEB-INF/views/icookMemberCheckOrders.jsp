@@ -57,14 +57,19 @@
 
 <style>
 .shrink {
-	margin-left: 10%;
-	margin-right: 10%;
+	margin-left: 15%;
+	margin-right: 15%;
 	margin-top: 5%;
 }
+
 td, th {
 	text-align: center;
 	font-size: 20px;
 	font-family: 'Noto Sans TC', sans-serif;
+}
+
+#member{
+	font-size: 40px;
 }
 </style>
 
@@ -88,13 +93,16 @@ td, th {
 				<div class="col-full">
 					<div class="wrap-col">
 						<h1>
-							<a href="index2"><img src="images/logo.png" height='200px'
-								width='80%' alt="EXTERIOR"></a>
+							<a style="height: 200px"
+								href="${pageContext.request.contextPath}/index2"><img
+								src="${pageContext.request.contextPath}/images/logo.png"
+								style="width: 200px; right: 200px; border-radius: 50%;"
+								alt="EXTERIOR"></a>
 						</h1>
 
 						<div class="menu_block">
 							<nav>
-								<ul class="sf-menu">
+								<ul class="sf-menu" style="padding-top: 55px">
 									<li><a href="index2">ICook</a></li>
 									<li><a href="icookAboutUS">關於我們</a>
 										<ul>
@@ -136,15 +144,15 @@ td, th {
 
 
 			<div class='shrink'>
-				<h1>
-					<c:out value="會員ID:${LoginOK.nickname}的訂單"></c:out>
-				</h1>
+				<h1></h1>
 				<div class="outer">
 					<table class="table table-hover">
+
 						<thead>
-						<tr>
-								<th scope="col">序號</th>
+							<tr>
+								<th colspan="8"><p id='member'><c:out value="會員ID:${LoginOK.nickname}的訂單" /></p></th>
 							</tr>
+							<tr><td><div style="visibility:hidden" >區塊中的內容</div></td></tr>
 							<tr>
 								<th scope="col">序號</th>
 								<th scope="col">訂單詳情</th>
@@ -152,7 +160,7 @@ td, th {
 								<th scope="col">訂購日期</th>
 								<th scope="col">預計出貨時間</th>
 								<th scope="col">應付金額</th>
-<!-- 								<th scope="col">取貨地址</th> -->
+								<!-- 								<th scope="col">取貨地址</th> -->
 								<th scope="col">發票</th>
 								<th scope="col">付款驗證</th>
 							</tr>
@@ -174,7 +182,7 @@ td, th {
 									<td>${OrderBean.orderDate}</td>
 									<td>${OrderBean.shippingDate}</td>
 									<td>${OrderBean.totalAmount}</td>
-<%-- 									<td>${OrderBean.shippingAddress}</td> --%>
+									<%-- 									<td>${OrderBean.shippingAddress}</td> --%>
 									<td>${OrderBean.invoiceTitle}</td>
 
 									<c:set var="contains" value="no" />
@@ -190,13 +198,13 @@ td, th {
 												
 											</script>
 											<i class="fas fa-check"></i>
-											<td class="btn btn-success">已查核</td>
+											<td><p style='background-color: #00CD00'>已查核</p></td>
 										</c:when>
 										<c:otherwise>
 											<script type="text/javascript">
 												
 											</script>
-											<td class="btn btn-warning">查核中</td>
+											<td><p style='background-color: #fcba03'>查核中</p></td>
 										</c:otherwise>
 									</c:choose>
 									<c:set var="contains" value="no" />
