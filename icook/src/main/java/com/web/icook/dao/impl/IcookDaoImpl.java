@@ -9,28 +9,59 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.web.icook.controller.MemberController;
+import com.web.icook.controller.securityController;
 import com.web.icook.dao.IcookDao;
 import com.web.icook.model.ArticleBean;
+import com.web.icook.model.MemberBean;
+
 import org.hibernate.query.Query;
 
 @Repository
 public class IcookDaoImpl implements IcookDao {
 	@Autowired
 	SessionFactory factory;
-	
-	
-	
-	
+//	@Autowired
+//	MemberBean mb ;
+	@Autowired
+	securityController c;
+	@Autowired
+	MemberController mc;
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ArticleBean> getAllArticles() {
 
 		String hql = "from ArticleBean as ab where ab.article_status = 1 order by ab.article_date desc";
-		// 管理員權限		
+		
+		if (c.getPrincipal() != "anonymousUser") {
+
+			MemberBean mb = new MemberBean();
+			mb = mc.getMemberBean(c.getPrincipal());
+			if (mb.getRole().equals("ROLE_ADMIN")) {
+				hql = "FROM ArticleBean as ab order by ab.article_date desc";
+				System.out.println("mb.getRole()=="+mb.getRole());
+				Session session = null;
+				List<ArticleBean> list = new ArrayList<>();
+				session = factory.getCurrentSession();
+				list = session.createQuery(hql).getResultList();
+
+				return list;
+			}else {
+				Session session = null;
+				List<ArticleBean> list = new ArrayList<>();
+				session = factory.getCurrentSession();
+				list = session.createQuery(hql).getResultList();
+
+				return list;
+			}
+		}
+
+		// 管理員權限
 //		if (mb.getRole().equals("ROLE_ADMIN")) {
-//			 hql = "FROM ArticleBean";
-//		} 
+//			hql = "FROM ArticleBean";
+//		}
+//		System.out.println("mb.getRole()=="+mb.getRole());
 
 		Session session = null;
 		List<ArticleBean> list = new ArrayList<>();
@@ -81,7 +112,7 @@ public class IcookDaoImpl implements IcookDao {
 
 		return bean;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ArticleBean> getByArticle_Title(String article_title) {
@@ -122,19 +153,14 @@ public class IcookDaoImpl implements IcookDao {
 		Session session = null;
 		List<ArticleBean> list = new ArrayList<>();
 		session = factory.getCurrentSession();
-		int pageSize=9;
-		int firstResult=(page-1)*pageSize;
-		Query query=session.createQuery(hql);
+		int pageSize = 9;
+		int firstResult = (page - 1) * pageSize;
+		Query query = session.createQuery(hql);
 		query.setFetchSize(firstResult);
 		query.setMaxResults(pageSize);
-		
-		
-		
+
 		list = query.list();
 		return list;
 	}
-
-	
-	
 
 }

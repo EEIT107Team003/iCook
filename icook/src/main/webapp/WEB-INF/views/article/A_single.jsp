@@ -129,7 +129,7 @@
 										<li><a href="#">會員登出</a></li>
 										<li><a href="#">新增食譜</a></li>
 									</ul></li>
-
+<!-- 隱藏判斷 -->
 								<c:if
 									test="${pageContext.request.userPrincipal.name == 'aa'||pageContext.request.userPrincipal.name =='dd'}">
 									<li><a href="A_insert">新增一篇文章</a></li>
@@ -176,8 +176,8 @@
 						<h3 class=>作者:${Article.article_member.nickname}
 							日期:${Article.article_date}</h3>
 
-						<!-- 						需要修改 -->
-						<c:if test="${Article.article_member.username == username}">
+						<!-- 隱藏判斷 -->
+						<c:if test="${Article.article_member.username == username || pageContext.request.userPrincipal.name =='bb'}">
 							<div align="right" class="tagcloud">
 								<a
 									href="<spring:url value='/TagarticleUpdate?article_num=${Article.article_num}' />"
