@@ -85,12 +85,12 @@
 				<div class="col-full">
 					<div class="wrap-col">
 						<h1>
-							<a href="index2"><img src="images/logo.png" alt="EXTERIOR"></a>
+							<a  style="height:200px" href="${pageContext.request.contextPath}/index2"><img src="${pageContext.request.contextPath}/images/logo.png" style="width: 200px ;right: 200px ;border-radius: 50%;" alt="EXTERIOR"></a>
 						</h1>
 
 						<div class="menu_block">
 							<nav>
-								<ul class="sf-menu">
+								<ul class="sf-menu"  style="padding-top:55px">
 									<li><a href="index2">ICook</a></li>
 									<li><a href="icookAboutUS">關於我們</a>
 										<ul>
@@ -191,19 +191,19 @@
 						</div>	
 							<table>
 								<tr> 
-									<td><label for="nickname">暱稱:</label></td>
+									<td><label for="nickname">暱稱：</label></td>
 									<td>
 										<form:input id="nickname" path="nickname" type="text" />
 									</td>					 
 								</tr>
 								<tr>
-									<td><label for="username">電子郵件:</label></td>
+									<td><label for="username">電子郵件：</label></td>
 									<td>
 										<form:input id="username" path="username" type="text" />
 									</td>
 								</tr> 
 								<tr>
-									<td><label for="password">密碼:</label></td>
+									<td><label for="password">密碼：</label></td>
 									<td>
 										<form:input id="password" path="password" type="text" />
 									</td>
