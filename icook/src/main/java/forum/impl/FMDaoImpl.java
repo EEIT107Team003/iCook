@@ -14,6 +14,7 @@ import com.web.icook.service.MemberService;
 
 import forum.dao.IFMDao;
 import forum.model.ForumMainBean;
+import forum.model.ReportBean;
 
 @Repository
 public class FMDaoImpl implements IFMDao {
@@ -189,6 +190,25 @@ public class FMDaoImpl implements IFMDao {
 		List<ForumMainBean> fmbList = new ArrayList<>();
 		fmbList = session.createQuery(hql).setMaxResults(3).list();
 		return fmbList;
+	}
+
+	
+	@Override
+	public void report(ReportBean rtb, ForumMainBean fmb) {
+		rtb.setFmb(fmb);
+		rtb.setReportTime(new Timestamp(System.currentTimeMillis()));
+		Session session = factory.getCurrentSession();
+		session.save(rtb);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ReportBean> getAllReport() {
+		String hql = "from ReportBean";
+		Session session = factory.getCurrentSession();
+		List<ReportBean> rtbList = new ArrayList<>();
+		rtbList = session.createQuery(hql).getResultList();
+		return rtbList;
 	}
 
 }

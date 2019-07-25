@@ -239,11 +239,11 @@ li {
 										<script type="text/javascript">
 											
 										</script>
-										<th><button type='button' class="btn btn-danger"
-												id='${cart.value.productBean.product_id}'
-												onclick='deleteAll()'>
-												<i class="fas fa-trash"></i>刪除所有
-											</button></th>
+<!-- 										<th><button type='button' class="btn btn-danger" -->
+<%-- 												id='${cart.value.productBean.product_id}' --%>
+<!-- 												onclick='deleteAll()'> -->
+<!-- 												<i class="fas fa-trash"></i>刪除所有 -->
+<!-- 											</button></th> -->
 									</c:otherwise>
 								</c:choose>
 								<c:set var="contains" value="no" />
@@ -257,16 +257,11 @@ li {
 									<td>${cart.value.quantity}</td>
 									<td>${cart.value.productBean.price}</td>
 									<td>${cart.value.subtotal}</td>
-									<!-- 						<td><button type='button' class="btn btn-primary" -->
-									<%-- 								id='${cart.value.productBean.product_id}' --%>
-									<!-- 								onclick='editorId(this)'> -->
-									<!-- 								<i class="fas fa-edit"></i>確認修改(改下拉) -->
-									<!-- 							</button></td> -->
-									<td><button type='button' class="btn btn-danger"
-											id='${cart.value.productBean.product_id}'
-											onclick='deleId(this)'>
-											<i class="fas fa-trash"></i>刪除
-										</button></td>
+<!-- 									<td><button type='button' class="btn btn-danger" -->
+<%-- 											id='${cart.value.productBean.product_id}' --%>
+<!-- 											onclick='deleId(this)'> -->
+<!-- 											<i class="fas fa-trash"></i>刪除 -->
+<!-- 										</button></td> -->
 								</tr>
 								<c:set value="${sum + cart.value.subtotal}" var='sum' />
 							</c:forEach>
@@ -279,8 +274,8 @@ li {
 										合計:
 										<c:out value="${sum}" />
 									</h5></th>
-								<th></th>
-								<th></th>
+<!-- 								<th></th> -->
+<!-- 								<th></th> -->
 							</tr>
 						</table>
 						<h1>請輸入收件人資訊</h1>

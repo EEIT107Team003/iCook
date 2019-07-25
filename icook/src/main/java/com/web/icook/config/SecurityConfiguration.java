@@ -30,7 +30,6 @@ import com.sun.istack.logging.Logger;
 @Configuration
 @EnableWebSecurity
 @ComponentScan("com.web.icook")
-@Order(1)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Autowired

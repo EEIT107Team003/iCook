@@ -15,6 +15,10 @@ import com.web.icook.model.ProductBean;
 import com.web.icook.service.MemberService;
 import com.web.icook.service.ProductService;
 
+import forum.controller.ForumController;
+import forum.model.ReportBean;
+import forum.service.IFMService;
+
 
 @Controller
 public class backStagecontroller {
@@ -24,6 +28,10 @@ public class backStagecontroller {
 	ServletContext context;
 	@Autowired
 	ProductService Productservice;
+
+	@Autowired
+	IFMService ifms;
+	
 	
 	@ResponseBody
 	@RequestMapping(value = "/allProductForProductTable", method = RequestMethod.POST)
@@ -76,5 +84,12 @@ public class backStagecontroller {
 	@RequestMapping(value = { "backStageUser"})
 	public String user(Model model) {
 		return "backStage/examples/user";
+	}
+
+	@RequestMapping(value = { "report_forum"})
+	public String reportManager(Model model) {
+		List<ReportBean> rtbList = ifms.getAllReport();
+		model.addAttribute("reports", rtbList);
+		return "backStage/examples/report_forum";
 	}
 }

@@ -360,6 +360,25 @@ public class OrderController {
 		model.addAttribute("orders_list", orders);
 		return "icookMemberCheckOrders";
 	}
+	
+	//ajax 查看該會員所有訂單
+	@RequestMapping("/ajaxCheckMemberOrders")
+	public List<OrderBean> ajaxCheckMemberOrders(Model model, HttpSession session) {
+		MemberBean mb=null;
+		if (!mcontroller.getPrincipal().equals("anonymousUser")) {
+			mb = mservice.selectByUsername(mcontroller.getPrincipal());
+			model.addAttribute("LoginOK", mb);
+		}
+		
+		List<OrderBean> orders = new ArrayList<>();
+		orders = odao.getOrdersbyMemberSeqNo(mb.getMember_id());
+		model.addAttribute("orders_list", orders);
+		return orders;
+	}
+	
+	
+	
+	
 
 	
 	

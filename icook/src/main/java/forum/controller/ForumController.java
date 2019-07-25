@@ -24,6 +24,7 @@ import com.web.icook.model.MemberBean;
 import com.web.icook.service.MemberService;
 
 import forum.model.ForumMainBean;
+import forum.model.ReportBean;
 import forum.service.IFMService;
 
 @Controller
@@ -132,6 +133,9 @@ public class ForumController {
 			List<MemberBean> mbList = new ArrayList<>();
 			mbList.add(mb);
 			model.addAttribute("LoginOK", mbList);
+		} else {
+			List<MemberBean> mbList = new ArrayList<>();
+			model.addAttribute("LoginOK", mbList);
 		}
 		model.addAttribute("posts", fmbList);
 		model.addAttribute("populars", popFmb);
@@ -143,8 +147,9 @@ public class ForumController {
 	}
 
 	@RequestMapping(value = "/forum/pick")
-	public String specificPost(@RequestParam("harticle_id") Integer harticle_id, Integer article_id, Model model) {
+	public String specificPost(@RequestParam("harticle_id") Integer harticle_id, Integer article_id,ForumMainBean fmb, Model model) {
 		System.out.println("成功呼叫specificPost");
+		ReportBean rtb = new ReportBean();
 		List<ForumMainBean> HeadFmb = service.getByPK(harticle_id);
 		List<ForumMainBean> popFmb = service.getPopularArticle();
 		model.addAttribute("HeadFmb", HeadFmb);
@@ -156,8 +161,18 @@ public class ForumController {
 			mbList.add(mb);
 			model.addAttribute("LoginOK", mbList);
 		}
+		model.addAttribute("ReportBean", rtb);
 		return "pick";
 		// 觀看特定主題討論串
+	}
+	
+	@RequestMapping(value = "/forum/pick", method = RequestMethod.POST)
+	public String report(@ModelAttribute("ReportBean") ReportBean rtb,Integer article_id, Integer harticle_id,ForumMainBean fmb,HttpServletRequest request,Model model) {				
+		rtb.setFmb(service.getByPK(Integer.parseInt(request.getParameter("article_id"))).get(0)); 
+		service.report(rtb, service.getByPK(Integer.parseInt(request.getParameter("article_id"))).get(0));
+		
+		return "redirect:/forum/" + this.specificPost(harticle_id, article_id, fmb, model) + "?harticle_id="
+		+ harticle_id;
 	}
 
 	@RequestMapping(value = "/forum/reply", method = RequestMethod.GET)
@@ -187,7 +202,7 @@ public class ForumController {
 			List<ForumMainBean> memberList = service.getByMember_id(bean.getMember_id());
 			bean.setForum_num(memberList.size());
 			memberService.updateMemberInfo(bean, bean.getMember_id());
-			return "redirect:/forum/" + this.specificPost(harticle_id, article_id, model) + "?harticle_id="
+			return "redirect:/forum/" + this.specificPost(harticle_id, article_id, fmb, model) + "?harticle_id="
 					+ harticle_id;
 		} else {
 			List<ForumMainBean> fmbError = new ArrayList<>();
@@ -231,7 +246,8 @@ public class ForumController {
 //			fmb.setText(request.getParameter("text"));
 //			fmb.setSignature(request.getParameter("signature"));
 			service.update(fmb, article_id, memberBean);
-			return this.specificPost(harticle_id, article_id, model);
+			return "redirect:/forum/" + this.specificPost(harticle_id, article_id, fmb, model) + "?harticle_id="
+			+ harticle_id;
 		} else {
 			List<ForumMainBean> fmbError = new ArrayList<>();
 			List<ForumMainBean> HeadFmb = service.getByPK(harticle_id);
@@ -254,7 +270,7 @@ public class ForumController {
 			memberBean.setForum_num(memberList.size());
 			memberService.updateMemberInfo(memberBean, memberBean.getMember_id());
 
-			return "redirect:/forum/" + this.specificPost(harticle_id, article_id, model) + "?harticle_id="
+			return "redirect:/forum/" + this.specificPost(harticle_id, article_id, new ForumMainBean() ,model) + "?harticle_id="
 					+ harticle_id;
 		}
 		// 07.22 江慶庭 -更新memberbean.forum_num
@@ -322,5 +338,7 @@ public class ForumController {
 		}
 		return null;
 	}
+	
+	
 
 }

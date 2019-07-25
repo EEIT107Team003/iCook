@@ -9,13 +9,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.web.icook.controller.MemberController;
 import com.web.icook.dao.IcookDao;
 import com.web.icook.model.ArticleBean;
-import com.web.icook.model.MemberBean;
-import com.web.icook.service.MemberService;
-
-import forum.model.ForumMainBean;
+import org.hibernate.query.Query;
 
 @Repository
 public class IcookDaoImpl implements IcookDao {
@@ -118,5 +114,27 @@ public class IcookDaoImpl implements IcookDao {
 		abList = session.createQuery(hql).setParameter("article_catergoary", article_catergoary).getResultList();
 		return abList;
 	}
+
+	@Override
+	public List<ArticleBean> SelectByPages(int page) {
+		String hql = "from ArticleBean as ab where ab.article_status = 1 order by ab.article_date desc";
+
+		Session session = null;
+		List<ArticleBean> list = new ArrayList<>();
+		session = factory.getCurrentSession();
+		int pageSize=9;
+		int firstResult=(page-1)*pageSize;
+		Query query=session.createQuery(hql);
+		query.setFetchSize(firstResult);
+		query.setMaxResults(pageSize);
+		
+		
+		
+		list = query.list();
+		return list;
+	}
+
+	
+	
 
 }

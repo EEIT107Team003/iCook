@@ -2,7 +2,9 @@ package com.web.icook.dao;
 
 import java.util.List;
 
+
 import com.web.icook.model.ArticleBean;
+import com.web.icook.model.ProductBean;
 
 public interface IcookDao {
 
@@ -22,4 +24,7 @@ public interface IcookDao {
 	List<ArticleBean> getByArticle_Title(String article_title);
 	
 	List<ArticleBean> getByArticle_Catergory(String article_catergoary);
+	
+	public List<ArticleBean>     SelectByPages   (int page);
+
 }
