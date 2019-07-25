@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -49,38 +50,40 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
    	    .antMatchers("/","/login_page","/addMember","/member").permitAll() //不用登入即可使用
    	    .antMatchers("/user/**","/members/page/track","/checkOrders/**","/icook/toEZship/**","/icookCartPage/**","/cartPage/**", "/forum/newPost", "/forum/reply", "/forum/edit", "/forum/delete", "/forum/like")
    	    .hasAnyRole("ADMIN", "MEMBER") //只要登入成功,便可使用(權限:"ADMIN"或"MEMBER")
-   	    .and()
+   	    .antMatchers("/backStage/**","/adminCheckOrders/**","/adminCheckOrderDetails/**")
+		.hasAnyRole("ADMIN") //只要登入成功,便可使用(權限:"ADMIN")
+		.and()
    	    .csrf().disable() //關閉CSRF檢查
    	    .rememberMe()
    	    .and()
    	    .formLogin() 
 	        .loginPage("/icookLogin")
 	        .loginProcessingUrl("/perform_login")
-	        .failureUrl("/icookLogin?error")
+	        .failureUrl("/icookLogin?error") 
 	        .usernameParameter("username").passwordParameter("password")
-        .and()
-	        .logout()
-	        .logoutUrl("/perform_logout")
-	        .logoutSuccessUrl("/index2"); 
-   	    
-   	 http.authorizeRequests()
-	    .antMatchers("/").permitAll() //不用登入即可使用
-	    .antMatchers("/backStage/**")
-	    .hasAnyRole("ADMIN") //只要登入成功,便可使用(權限:"ADMIN"或"MEMBER")
 	    .and()
-	    .csrf().disable() //關閉CSRF檢查
-	    .rememberMe()
-	    .and()
-	    .formLogin() 
-	        .loginPage("/icookAdminLogin")
-	        .loginProcessingUrl("/perform_Adminlogin")
-	        .defaultSuccessUrl("/backStage")
-	        .failureUrl("/icookAdminLogin?error")
-	        .usernameParameter("username").passwordParameter("password")
-     .and()
 	        .logout()
 	        .logoutUrl("/perform_logout")
 	        .logoutSuccessUrl("/index2"); 
 	}
 	
+//	protected void BackConfigure(HttpSecurity http) throws Exception {
+//		http.authorizeRequests()
+//		.antMatchers("/backStage/**","/adminCheckOrders/**","/adminCheckOrderDetails/**")
+//		.hasAnyRole("ADMIN") //只要登入成功,便可使用(權限:"ADMIN")
+//		.and()
+//		.csrf().disable() //關閉CSRF檢查
+//		.rememberMe()
+//		.and()
+//		.formLogin() 
+//			.loginPage("/icookAdminLogin")
+//			.loginProcessingUrl("/perform_Adminlogin")
+//			.defaultSuccessUrl("/backStage")
+//			.failureUrl("/icookAdminLogin?error")
+//			.usernameParameter("username").passwordParameter("password")
+//		.and()
+//			.logout()
+//			.logoutUrl("/perform_logout")
+//			.logoutSuccessUrl("/index2"); 
+//		}
 }

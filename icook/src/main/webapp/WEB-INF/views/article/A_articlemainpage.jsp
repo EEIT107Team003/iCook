@@ -1,12 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
+
 <script src="https://cdn.bootcss.com/web-socket-js/1.0.0/web_socket.js"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <link rel="stylesheet"
@@ -61,9 +65,10 @@
 
 
 
-<title>Stories - Free Bootstrap 4 Template by Colorlib</title>
+<title>享食天堂</title>
 </head>
 <body>
+
 	<!-- 	<nav -->
 	<!-- 		class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" -->
 	<!-- 		id="ftco-navbar"> -->
@@ -111,7 +116,7 @@
 
 					<div class="menu_block">
 						<nav>
-							<ul class="sf-menu">
+							<ul class="sf-menu" style="margin-top: 55px">
 								<li><a href="index2">ICook</a></li>
 								<li><a href="icookAboutUS">關於我們</a>
 									<ul>
@@ -201,7 +206,16 @@
 					<div class="col-lg-9">
 						<div class="row">
 
-							<c:forEach var='Article' items='${Articles}'>
+							<%
+								List list = (List) request.getAttribute("list");
+								pageContext.setAttribute("list", list);
+							%>
+							<%@ include file="page1.file"%>
+
+
+
+							<c:forEach var='Article' items='${list}' begin="<%=pageIndex%>"
+								end="<%=pageIndex+rowsPerPage-1%>">
 								<div class="col-md-4 ftco-animate">
 									<div class="blog-entry">
 										<a
@@ -243,13 +257,10 @@
 							<div class="col text-center">
 								<div class="block-27">
 									<ul>
-										<li><a href="#">&lt;</a></li>
-										<li class="active"><span>1</span></li>
-										<li><a href="#">2</a></li>
-										<li><a href="#">3</a></li>
-										<li><a href="#">4</a></li>
-										<li><a href="#">5</a></li>
-										<li><a href="#">&gt;</a></li>
+										<%@ include file="page2.file"%>
+										
+
+
 									</ul>
 								</div>
 							</div>
@@ -335,6 +346,10 @@
 		</section>
 	</div>
 
+
+
+
+
 	<section class="ftco-subscribe ftco-section bg-light">
 		<div class="overlay">
 			<div class="container">
@@ -363,6 +378,10 @@
 			</div>
 		</div>
 	</section>
+
+
+
+
 
 
 	<footer class="ftco-footer ftco-footer-2 ftco-section">
@@ -519,24 +538,7 @@
 		}
 
 		webSocket.onopen = function(message) {
-			$.notify({
-				title : '<strong>歡迎來到想食天堂</strong>',
-				icon : 'glyphicon glyphicon-star',
-				message : '--------文章影音區'
-			}, {
-				type : 'info',
-				animate : {
-					enter : 'animated fadeInUp',
-					exit : 'animated fadeOutRight'
-				},
-				placement : {
-					from : "bottom",
-					align : "right"
-				},
-				offset : 20,
-				spacing : 10,
-				z_index : 1031,
-			});
+			console.log('連線成功');
 		};
 
 		webSocket.onclose = function() {

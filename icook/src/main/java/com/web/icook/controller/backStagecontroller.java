@@ -28,6 +28,7 @@ public class backStagecontroller {
 	ServletContext context;
 	@Autowired
 	ProductService Productservice;
+
 	@Autowired
 	IFMService ifms;
 	
@@ -84,13 +85,11 @@ public class backStagecontroller {
 	public String user(Model model) {
 		return "backStage/examples/user";
 	}
+
 	@RequestMapping(value = { "report_forum"})
 	public String reportManager(Model model) {
 		List<ReportBean> rtbList = ifms.getAllReport();
 		model.addAttribute("reports", rtbList);
 		return "backStage/examples/report_forum";
 	}
-
-	
-	
 }
