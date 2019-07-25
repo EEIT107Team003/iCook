@@ -54,6 +54,10 @@
 <link rel="stylesheet" href="${flaticonCSS}">
 <link rel="stylesheet" href="${icomoonCSS}">
 <link rel="stylesheet" href="${styleRCSS}">
+<link
+	href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/ckeditor/ckeditor.js">
 	
@@ -64,37 +68,75 @@
 	<div id="colorlib-page">
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
-			<nav id="colorlib-main-menu" role="navigation">
-				<ul>
-					<li class="colorlib-active"><a
-						href="${ pageContext.request.contextPath }">首頁&nbsp;<span class="glyphicon glyphicon-globe"></span></a></li>
-					<li><a
-						href="${ pageContext.request.contextPath }/forum/newPost">發表文章&nbsp; <span class="glyphicon glyphicon-pencil"></span></a></li>
-					<li><a href="${ pageContext.request.contextPath }/icookMenu">食譜&nbsp; <span class="glyphicon glyphicon-list-alt"></span></a></li>
-					<li><a
-						href="${ pageContext.request.contextPath }/A_articlemainpage">生活誌&nbsp; <span class="glyphicon glyphicon-camera"></span></a></li>
-					<c:if test="${pageContext.request.userPrincipal.name==null}">	
-					<li><a href="${ pageContext.request.contextPath }/icookLogin">會員專區&nbsp; <span class="glyphicon glyphicon-user"></span></a></li>
-					</c:if>
-					<c:if test="${pageContext.request.userPrincipal.name!=null}">
-					<li><a href="#" onclick="logout()">會員登出&nbsp; <span class="glyphicon glyphicon-user"></span></a></li>					
-					</c:if>
-					<li><a href="${ pageContext.request.contextPath }/forum">討論區首頁&nbsp; <span class="glyphicon glyphicon-user"></span></a></li>
-				</ul>
+						<nav id="colorlib-main-menu" role="navigation"
+				style="text-align: justify;">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-1"></div>
+						<div class="col-sm-3">
+							<ul>
+								<li><h3
+										style="margin-bottom: 30px;">
+										<span class="glyphicon glyphicon-globe"></span><a
+											href="${ pageContext.request.contextPath }">&nbsp;&nbsp;首頁</a>
+									</h3></li>
+								<li class="colorlib-active"><h3 style="margin-bottom: 30px;">
+										<span class="glyphicon glyphicon-pencil"></span><a
+											href="${ pageContext.request.contextPath }/forum/newPost">&nbsp;&nbsp;發表文章
+										</a>
+										</h3></li>
+								<li><h3 style="margin-bottom: 30px;">
+										<span class="glyphicon glyphicon-list-alt"></span><a
+											href="${ pageContext.request.contextPath }/icookMenu">&nbsp;&nbsp;食譜
+										</a>
+										</h3></li>
+								<li><h3 style="margin-bottom: 30px;">
+										<span class="glyphicon glyphicon-camera"></span><a
+											href="${ pageContext.request.contextPath }/A_articlemainpage">&nbsp;&nbsp;生活誌</a>
+										</h3></li>
+								<li><h3 style="margin-bottom: 30px;">
+										<span class="glyphicon glyphicon-hand-left"></span><a
+											href="${ pageContext.request.contextPath }/forum/overview">&nbsp;&nbsp;討論區首頁</a>
+										</h3></li>
+								<c:if test="${pageContext.request.userPrincipal.name==null}">
+									<li><h3 style="margin-bottom: 30px;">
+											<span class="glyphicon glyphicon-user"></span><a
+												href="${ pageContext.request.contextPath }/icookLogin">&nbsp;&nbsp;會員專區
+											</a>
+											</h3></li>
+								</c:if>
+								<c:if test="${pageContext.request.userPrincipal.name!=null}">
+									<li><h3 style="margin-bottom: 30px;">
+											<span class="glyphicon glyphicon-user"></span><a href="#"
+												onclick="logout()">&nbsp;&nbsp;會員登出 </a>
+											</h3></li>
+								</c:if>
+								<li style="display: none;" id="showchat"><h3
+										style="margin-bottom: 30px;">
+										<span class="glyphicon glyphicon-bullhorn"></span><a href="#"
+											id="chatroom" style="color: red;">&nbsp;&nbsp;聊天室 </a>
+										</h3></li>
+							</ul>
+						</div>
+						<div class="col-sm-4"></div>
+						<div class="col-sm-4"></div>
+					</div>
+				</div>
 			</nav>
 			<script>
-				function logout(){
+				function logout() {
 					let logoutConfirm = confirm("確定登出？");
-					if(logoutConfirm){
-						window.location.replace("${ pageContext.request.contextPath }/perform_logout");
-						
+					if (logoutConfirm) {
+						window.location
+								.replace("${ pageContext.request.contextPath }/perform_logout");
+
 					}
 				}
 			</script>
 
 			<div class="colorlib-footer">
 				<h2 id="colorlib-logo" class="mb-4">
-					<img src="${logo}" style="width:90%;height:90%;">
+					<img src="${logo}" style="width: 90%; height: 90%;">
 				</h2>
 				<p class="pfooter">
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -112,39 +154,10 @@
 			<section class="ftco-section contact-section px-md-4">
 				<div class="container">
 					<div class="row d-flex mb-5 contact-info">
-						<div class="col-md-12 mb-4">
-							<h2 class="h3">Contact Information</h2>
-						</div>
-						<div class="w-100"></div>
-						<div class="col-lg-6 col-xl-3 d-flex mb-4">
-							<div class="info bg-light p-4">
-								<p>
-									<span>Address:</span> 198 West 21th Street, Suite 721 New York
-									NY 10016
-								</p>
-							</div>
-						</div>
-						<div class="col-lg-6 col-xl-3 d-flex mb-4">
-							<div class="info bg-light p-4">
-								<p>
-									<span>Phone:</span> <a href="tel://1234567920">+ 1235 2355
-										98</a>
-								</p>
-							</div>
-						</div>
-						<div class="col-lg-6 col-xl-3 d-flex mb-4">
-							<div class="info bg-light p-4">
-								<p>
-									<span>Email:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a>
-								</p>
-							</div>
-						</div>
-						<div class="col-lg-6 col-xl-3 d-flex mb-4">
-							<div class="info bg-light p-4">
-								<p>
-									<span>Website</span> <a href="#">yoursite.com</a>
-								</p>
-							</div>
+						<div class="container jumbotron jumbotron-fluid"
+							style="background-image: url(<spring:url value="/resources/images/header.png"/>)">
+							<h1 class="display-4">&nbsp;</h1>
+							<p class="lead">&nbsp;</p>
 						</div>
 					</div>
 					<div class="row block-9">
@@ -191,7 +204,7 @@
 									<div class="form-group">
 										<p style="color: red">${ errors.text }</p>
 										<textarea name="text" id="maintext" cols="30" rows="7"
-											class="form-control" style="min-height: 400px" >${ post.text }</textarea>
+											class="form-control" style="min-height: 400px">${ post.text }</textarea>
 									</div>
 									<div class="form-group">
 										<input type="submit" value="發布貼文"
@@ -206,6 +219,7 @@
 
 
 					</div>
+				</div>
 			</section>
 		</div>
 		<!-- END COLORLIB-MAIN -->

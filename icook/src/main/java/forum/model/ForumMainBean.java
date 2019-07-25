@@ -211,7 +211,7 @@ public class ForumMainBean implements Serializable {
 		return "ForumMainBean [memberBean=" + memberBean + "]";
 	}
 	
-	@OneToMany(mappedBy = "fmb")
+	@OneToMany(mappedBy = "fmb", cascade = CascadeType.REMOVE , orphanRemoval = true)
 	@JsonIgnore
 	public Set<ReportBean> getReportArticle() {
 		return reportArticle;

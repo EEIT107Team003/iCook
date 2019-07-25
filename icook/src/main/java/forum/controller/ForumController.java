@@ -298,6 +298,8 @@ public class ForumController {
 		return "overview";
 	}
 
+	
+//=========================================預計修改程式============================================================//	
 	@RequestMapping(value = "/forum/like")
 	@ResponseBody
 	public Integer like(@RequestParam("article_id") Integer article_id, HttpServletRequest request,
@@ -308,7 +310,7 @@ public class ForumController {
 		System.out.println("LIKE");
 		return likes;
 	}
-
+//=============================================================================================================//	
 	@RequestMapping(value = "/forum/test")
 	public String websocketTest() {
 		return "test";
