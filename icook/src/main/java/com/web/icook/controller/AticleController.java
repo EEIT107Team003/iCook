@@ -435,6 +435,8 @@ public class AticleController {
 		model.addAttribute("ArticleThrees", threelist);
 		//前三筆文章結束
 		
+		model.addAttribute("list",list);
+		
 		return "/article/A_articlesearch"; // 指向success.jsp
 	}
 	
@@ -443,6 +445,7 @@ public class AticleController {
 		System.out.println("article_catergoary="+article_catergoary);
 		List<ArticleBean> list = arcicleservice.getByArticle_Catergory(article_catergoary);
 		model.addAttribute("Articles", list);
+		model.addAttribute("list",list);
 		return "/article/A_articlesearch"; // 指向success.jsp
 	}
 }

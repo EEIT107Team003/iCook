@@ -4,6 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="java.util.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -97,6 +98,14 @@
 	<!-- 	</nav> -->
 	<!-- END nav -->
 	<!-- 	套版上面 -->
+	
+	
+							<%
+								List list = (List) request.getAttribute("list");
+								pageContext.setAttribute("list", list);
+							%>
+							<%@ include file="page1.file"%>
+	
 	<header>
 		<div class="zerogrid">
 			<div class="col-full">
@@ -201,7 +210,8 @@
 					<div class="col-lg-9">
 						<div class="row">
 
-							<c:forEach var='Article' items='${Articles}'>
+							<c:forEach var='Article' items='${list}' begin="<%=pageIndex%>"
+								end="<%=pageIndex+rowsPerPage-1%>">
 								<div class="col-md-4 ftco-animate">
 									<div class="blog-entry">
 										<a
@@ -243,13 +253,7 @@
 							<div class="col text-center">
 								<div class="block-27">
 									<ul>
-										<li><a href="#">&lt;</a></li>
-										<li class="active"><span>1</span></li>
-										<li><a href="#">2</a></li>
-										<li><a href="#">3</a></li>
-										<li><a href="#">4</a></li>
-										<li><a href="#">5</a></li>
-										<li><a href="#">&gt;</a></li>
+										<%@ include file="page2.file"%>
 									</ul>
 								</div>
 							</div>
@@ -519,24 +523,7 @@
 		}
 
 		webSocket.onopen = function(message) {
-			$.notify({
-				title : '<strong>歡迎來到想食天堂</strong>',
-				icon : 'glyphicon glyphicon-star',
-				message : '--------文章影音區'
-			}, {
-				type : 'info',
-				animate : {
-					enter : 'animated fadeInUp',
-					exit : 'animated fadeOutRight'
-				},
-				placement : {
-					from : "bottom",
-					align : "right"
-				},
-				offset : 20,
-				spacing : 10,
-				z_index : 1031,
-			});
+			console.log("connection onopen");
 		};
 
 		webSocket.onclose = function() {
