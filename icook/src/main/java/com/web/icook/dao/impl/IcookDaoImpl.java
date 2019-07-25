@@ -85,7 +85,7 @@ public class IcookDaoImpl implements IcookDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ArticleBean> getByArticle_Title(String article_title) {
-		String hql = "from ArticleBean as ab where ab.article_title like :article_title";
+		String hql = "from ArticleBean as ab where ab.article_title like :article_title order by ab.article_date desc";
 		Session session = factory.getCurrentSession();
 		List<ArticleBean> abList = new ArrayList<>();
 		abList = session.createQuery(hql).setParameter("article_title", "%" + article_title + "%").getResultList();
@@ -108,7 +108,7 @@ public class IcookDaoImpl implements IcookDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ArticleBean> getByArticle_Catergory(String article_catergoary) {
-		String hql = "from ArticleBean as ab where ab.article_catergoary = :article_catergoary";
+		String hql = "from ArticleBean as ab where ab.article_catergoary = :article_catergoary order by ab.article_date desc";
 		Session session = factory.getCurrentSession();
 		List<ArticleBean> abList = new ArrayList<>();
 		abList = session.createQuery(hql).setParameter("article_catergoary", article_catergoary).getResultList();
