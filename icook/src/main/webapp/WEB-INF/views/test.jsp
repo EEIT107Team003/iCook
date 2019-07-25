@@ -6,14 +6,17 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<title>Document</title>
-	<link rel="stylesheet" href=<spring:url value="/resources/css/rolling.css"/>>
-	<link rel="stylesheet" href=<spring:url value="/resources/css/chatstyle.css"/>>
-	<script src=<spring:url value="/resources/js/rolling.js"/>></script>
-	<script src=<spring:url value="/resources/js/Public.js"/>></script>
-	<link rel="stylesheet"
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Document</title>
+<link rel="stylesheet"
+	href=<spring:url value="/resources/css/rolling.css"/>>
+<link rel="stylesheet"
+	href=<spring:url value="/resources/css/chatstyle.css"/>>
+<script src=<spring:url value="/resources/js/rolling.js"/>></script>
+<script src=<spring:url value="/resources/js/Public.js"/>></script>
+<link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
@@ -28,223 +31,111 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	crossorigin="anonymous"></script>
+<style>
+.incoming_msg_img {
+	display: inline-block;
+	width: 6%;
+}
+
+.received_msg {
+	display: inline-block;
+	padding: 0 0 0 10px;
+	vertical-align: top;
+	width: 92%;
+}
+
+.received_withd_msg p {
+	background: #73bf00;
+	border-radius: 3px;
+	color: #646464;
+	font-size: 14px;
+	margin: 0;
+	padding: 5px 10px 5px 12px;
+	width: 100%;
+}
+
+.time_date {
+	color: #747474;
+	display: block;
+	font-size: 12px;
+	margin: 8px 0 0;
+}
+
+.received_withd_msg {
+	width: 57%;
+}
+
+.mesgs {
+	float: left;
+	padding: 30px 15px 0 25px;
+	width: 60%;
+}
+
+.sent_msg p {
+	background: #05728f none repeat scroll 0 0;
+	border-radius: 3px;
+	font-size: 14px;
+	margin: 0;
+	color: #fff;
+	padding: 5px 10px 5px 12px;
+	width: 100%;
+}
+
+.outgoing_msg {
+	overflow: hidden;
+	margin: 26px 0 26px;
+}
+
+.sent_msg {
+	float: right;
+	width: 46%;
+}
+
+.input_msg_write input {
+	background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+	border: medium none;
+	color: #4c4c4c;
+	font-size: 15px;
+	min-height: 48px;
+	width: 100%;
+}
+</style>
 </head>
-<body class="room">
-	<div class="scrollbar-macosx">
-		<div class="header">
-			<div class="toptext">
-				<a href="index.html">
-					<span class="glyphicon glyphicon-arrow-left"></span> 返回大厅
-				</a>
-			</div>
-			<ul class="topnavlist">
-				<li class="userlist">
-					<a><span class="glyphicon glyphicon-th-list"></span>用户列表</a>
-					<div class="popover fade bottom in">
-						<div class="arrow"></div>
-						<h3 class="popover-title">在线用户18人</h3>
-						<div class="popover-content scrollbar-macosx">
-							<ul>
-								<li>
-									<img src="images/user/12.png" alt="portrait_1">
-									<b>美国队长</b>
-								</li>
-								<li>
-									<img src="images/user/12.png" alt="portrait_1">
-									<b>美国队长</b>
-								</li>
-								<li>
-									<img src="images/user/12.png" alt="portrait_1">
-									<b>美国队长</b>
-								</li>
-								<li>
-									<img src="images/user/12.png" alt="portrait_1">
-									<b>美国队长</b>
-								</li>
-								<li>
-									<img src="images/user/12.png" alt="portrait_1">
-									<b>美国队长</b>
-								</li>
-								<li>
-									<img src="images/user/12.png" alt="portrait_1">
-									<b>美国队长</b>
-								</li>
-								<li>
-									<img src="images/user/12.png" alt="portrait_1">
-									<b>美国队长</b>
-								</li>
-								<li>
-									<img src="images/user/12.png" alt="portrait_1">
-									<b>美国队长</b>
-								</li>
-								<li>
-									<img src="images/user/12.png" alt="portrait_1">
-									<b>美国队长</b>
-								</li>
-								<li>
-									<img src="images/user/12.png" alt="portrait_1">
-									<b>美国队长</b>
-								</li>
-								<li>
-									<img src="images/user/12.png" alt="portrait_1">
-									<b>美国队长</b>
-								</li>
-								<li>
-									<img src="images/user/12.png" alt="portrait_1">
-									<b>美国队长</b>
-								</li>
-								<li>
-									<img src="images/user/12.png" alt="portrait_1">
-									<b>美国队长</b>
-								</li>
-								<li>
-									<img src="images/user/12.png" alt="portrait_1">
-									<b>美国队长</b>
-								</li>
-								<li>
-									<img src="images/user/12.png" alt="portrait_1">
-									<b>美国队长</b>
-								</li>
-								<li>
-									<img src="images/user/12.png" alt="portrait_1">
-									<b>美国队长</b>
-								</li>
-								<li>
-									<img src="images/user/12.png" alt="portrait_1">
-									<b>美国队长</b>
-								</li>
-								<li>
-									<img src="images/user/12.png" alt="portrait_1">
-									<b>美国队长</b>
-								</li>
-							</ul>
-						</div>
+<body>
+	<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	crossorigin="anonymous">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+	integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+	integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+	crossorigin="anonymous"></script>
+	
+	<c:if test="${pageContext.request.userPrincipal.name!=null}">
+					<a href="${ pageContext.request.contextPath }/index2" data-toggle="modal" data-target="#logout">會員登出&nbsp; <span class="glyphicon glyphicon-user"></span></a>
+					</c:if>
+	<div class="modal fade" id="logout" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header" style="border-bottom: 1px solid;">
+						<h4 class="modal-title" id="myModalLabel" style="float: left">您即將登出享食天堂</h4>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">×</button>
 					</div>
-				</li>
-			</ul>
-			<div class="clapboard hidden"></div>
-		</div>
-		<div class="main container">
-			<div class="col-md-12">
-				<ul class="chat_info">
-					<li class="left">
-						<img src="images/user/12.png" alt="">
-						<b>美国队长</b>
-						<i>09:14</i>
-						<div>怎么没人聊天的</div>
-					</li>
-					<li class="systeminfo">
-						<span>【绿巨人】加入了房间</span>
-					</li>
-					<li class="left">
-						<img src="images/user/12.png" alt="">
-						<b>美国队长</b>
-						<i>09:15</i>
-						<div>嗨起来！！！</div>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<div class="input">
-			<div class="center">
-				<div class="tools">
-
-					<span class="glyphicon glyphicon-heart face_btn"></span>
-					<span class="glyphicon glyphicon-picture imgFileico"></span>
-
-					<input type="file" class="imgFileBtn hidden" accept="image/*">
-					<div class="faces popover fade top in">
-						<div class="arrow"></div>
-						<h3 class="popover-title">表情包</h3>
-						<div class="popover-content scrollbar-macosx">
-							<img src="images/face/1.gif" alt="1">
-							<img src="images/face/2.gif" alt="2">
-							<img src="images/face/3.gif" alt="3">
-							<img src="images/face/4.gif" alt="4">
-							<img src="images/face/5.gif" alt="5">
-							<img src="images/face/6.gif" alt="6">
-							<img src="images/face/7.gif" alt="7">
-							<img src="images/face/8.gif" alt="8">
-							<img src="images/face/9.gif" alt="9">
-							<img src="images/face/10.gif" alt="10">
-							<img src="images/face/11.gif" alt="11">
-							<img src="images/face/12.gif" alt="">
-							<img src="images/face/13.gif" alt="">
-							<img src="images/face/14.gif" alt="">
-							<img src="images/face/15.gif" alt="">
-							<img src="images/face/16.gif" alt="">
-							<img src="images/face/17.gif" alt="">
-							<img src="images/face/18.gif" alt="">
-							<img src="images/face/19.gif" alt="">
-							<img src="images/face/20.gif" alt="">
-							<img src="images/face/21.gif" alt="">
-							<img src="images/face/22.gif" alt="">
-							<img src="images/face/23.gif" alt="">
-							<img src="images/face/24.gif" alt="">
-							<img src="images/face/25.gif" alt="">
-							<img src="images/face/26.gif" alt="">
-							<img src="images/face/27.gif" alt="">
-							<img src="images/face/28.gif" alt="">
-							<img src="images/face/29.gif" alt="">
-							<img src="images/face/30.gif" alt="">
-							<img src="images/face/31.gif" alt="">
-							<img src="images/face/32.gif" alt="">
-							<img src="images/face/33.gif" alt="">
-							<img src="images/face/34.gif" alt="">
-							<img src="images/face/35.gif" alt="">
-							<img src="images/face/36.gif" alt="">
-							<img src="images/face/37.gif" alt="">
-							<img src="images/face/38.gif" alt="">
-							<img src="images/face/39.gif" alt="">
-							<img src="images/face/40.gif" alt="">
-							<img src="images/face/41.gif" alt="">
-							<img src="images/face/42.gif" alt="">
-							<img src="images/face/43.gif" alt="">
-							<img src="images/face/44.gif" alt="">
-							<img src="images/face/45.gif" alt="">
-							<img src="images/face/46.gif" alt="">
-							<img src="images/face/47.gif" alt="">
-							<img src="images/face/48.gif" alt="">
-							<img src="images/face/49.gif" alt="">
-							<img src="images/face/50.gif" alt="">
-							<img src="images/face/51.gif" alt="">
-							<img src="images/face/52.gif" alt="">
-							<img src="images/face/53.gif" alt="">
-							<img src="images/face/54.gif" alt="">
-							<img src="images/face/55.gif" alt="">
-							<img src="images/face/56.gif" alt="">
-							<img src="images/face/57.gif" alt="">
-							<img src="images/face/58.gif" alt="">
-							<img src="images/face/59.gif" alt="">
-							<img src="images/face/60.gif" alt="">
-							<img src="images/face/61.gif" alt="">
-							<img src="images/face/62.gif" alt="">
-							<img src="images/face/63.gif" alt="">
-							<img src="images/face/64.gif" alt="">
-							<img src="images/face/65.gif" alt="">
-							<img src="images/face/66.gif" alt="">
-							<img src="images/face/67.gif" alt="">
-							<img src="images/face/68.gif" alt="">
-							<img src="images/face/69.gif" alt="">
-							<img src="images/face/70.gif" alt="">
-							<img src="images/face/71.gif" alt="">
-							<img src="images/face/72.gif" alt="">
-							<img src="images/face/73.gif" alt="">
-							<img src="images/face/74.gif" alt="">
-							<img src="images/face/75.gif" alt="">
-						</div>
+					<div class="modal-body" style="width: 100%">
+						<form method="post" action="perform_logout">
+							<button type="submit">確定登出</button>
+						</form>
 					</div>
-				</div>
-				<div class="text">
-					<div class="col-xs-10 col-sm-11">
-						<input type="text" class="form-control" placeholder="输入聊天信息...">
-					</div>
-					<div class="col-xs-2 col-sm-1">
-						<a id="subxx" role="button"><span class="glyphicon glyphicon-share-alt"></span></a>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-</body>
+		</div></body>
 </html>

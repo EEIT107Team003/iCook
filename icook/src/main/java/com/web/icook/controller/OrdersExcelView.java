@@ -142,17 +142,17 @@ public class OrdersExcelView extends AbstractXlsView  {
 			cell.setCellValue(m.getMemberbean().getNickname()+"/"+m.getMemberbean().getUsername());			
 			
 			
-			cell = row.createCell(colCount++);
-			cell.setCellStyle(styleCenter);
-			cell.setCellValue(m.getTotalAmount());			
+//			cell = row.createCell(colCount++);
+//			cell.setCellStyle(styleCenter);
+//			cell.setCellValue(m.getTotalAmount());			
 			
 			cell = row.createCell(colCount++);
 			cell.setCellStyle(styleCenter);
 			cell.setCellValue(m.getInvoiceTitle());			
 			
-			cell = row.createCell(colCount++);
-			cell.setCellStyle(styleCenter);
-			cell.setCellValue(m.getOrderDate());			
+//			cell = row.createCell(colCount++);
+//			cell.setCellStyle(styleCenter);
+//			cell.setCellValue(m.getOrderDate());			
 			
 			cell = row.createCell(colCount++);
 			cell.setCellStyle(styleCenter);
@@ -191,7 +191,8 @@ public class OrdersExcelView extends AbstractXlsView  {
 
 	private void createExcelHeaders(Workbook workbook) {
 		//System.out.println("===createExcelHeaders IN==");
-		String[] labels = {"系統單號", "產品描述","會員暱稱/會員ID","訂單金額","發票抬頭","訂購日期","收件人","收件人email","收件人電話","收件地址"};
+		String[] labels = {"系統單號", "產品描述","會員暱稱/會員ID","發票抬頭","收件人","收件人email","收件人電話","收件地址"};
+//		String[] labels = {"系統單號", "產品描述","會員暱稱/會員ID","訂單金額","發票抬頭","訂購日期","收件人","收件人email","收件人電話","收件地址"};
 		
 		
 		CellStyle titleStyle = workbook.createCellStyle();

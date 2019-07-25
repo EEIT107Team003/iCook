@@ -27,7 +27,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Andrea - Free Bootstrap 4 Template by Colorlib</title>
+<title>享食天堂</title>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -66,6 +66,9 @@
 	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
 	crossorigin="anonymous"></script>
 </head>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous"
+	src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v3.3"></script>
 <body>
 
 	<div id="colorlib-page">
@@ -73,29 +76,55 @@
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="fashion.html">Fashion</a></li>
-					<li class="colorlib-active"><a href="travel.html">Travel</a></li>
-					<li><a href="about.html">About</a></li>
-					<li><a href="contact.html">Contact</a></li>
+					<li class="colorlib-active"><a
+						href="${ pageContext.request.contextPath }">首頁&nbsp;<span
+							class="glyphicon glyphicon-globe"></span></a></li>
+					<li><a
+						href="${ pageContext.request.contextPath }/forum/newPost">發表文章&nbsp;
+							<span class="glyphicon glyphicon-pencil"></span>
+					</a></li>
+					<li><a href="${ pageContext.request.contextPath }/icookMenu">食譜&nbsp;
+							<span class="glyphicon glyphicon-list-alt"></span>
+					</a></li>
+					<li><a
+						href="${ pageContext.request.contextPath }/A_articlemainpage">生活誌&nbsp;
+							<span class="glyphicon glyphicon-camera"></span>
+					</a></li>
+					<c:if test="${pageContext.request.userPrincipal.name==null}">	
+					<li><a href="${ pageContext.request.contextPath }/icookLogin">會員專區&nbsp; <span class="glyphicon glyphicon-user"></span></a></li>
+					</c:if>
+					<c:if test="${pageContext.request.userPrincipal.name!=null}">
+					<li><a href="#" onclick="logout()">會員登出&nbsp; <span class="glyphicon glyphicon-user"></span></a></li>					
+					</c:if>
+					</a></li>
+					<li><a href="${ pageContext.request.contextPath }/forum">討論區首頁&nbsp;
+							<span class="glyphicon glyphicon-user"></span>
+					</a></li>
 				</ul>
 			</nav>
+			<script>
+				function logout(){
+					let logoutConfirm = confirm("確定登出？");
+					if(logoutConfirm){
+						window.location.replace("${ pageContext.request.contextPath }/perform_logout");
+						
+					}
+				}
+			</script>
 
 			<div class="colorlib-footer">
-				
+
 				<h2 id="colorlib-logo" class="mb-4">
-					<img src="${logo}">
+					<img src="${logo}" style="width: 90%; height: 90%;">
 				</h2>
-				
+
 				<p class="pfooter">
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 					Copyright &copy;
 					<script>
 						document.write(new Date().getFullYear());
 					</script>
-					All rights reserved | This template is made with <i
-						class="icon-heart" aria-hidden="true"></i> by <a
-						href="https://colorlib.com" target="_blank">Colorlib</a>
+					All rights reserved | iCook
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 				</p>
 			</div>
@@ -111,11 +140,11 @@
 							<c:forEach var="post" items="${ posts }" varStatus="floor">
 
 								<div class="row pt-md-4">
-								<c:if test="${ post.article_id == post.harticle_id }">
-									<div
-										style="min-width: 680px; min-height: 60px; text-align: center;">
-										<h1 class="mb-3">${ post.title }</h1>
-									</div>
+									<c:if test="${ post.article_id == post.harticle_id }">
+										<div
+											style="min-width: 680px; min-height: 60px; text-align: center;">
+											<h1 class="mb-3">${ post.title }</h1>
+										</div>
 									</c:if>
 
 									<div style="min-height: 249px; min-width: 680px;">
@@ -123,52 +152,135 @@
 											<article>${ post.text }</article>
 										</section>
 									</div>
-									
+
 
 									<div class="tag-widget post-tag-container mb-5 mt-5">
-										<div  id="btnrow${post.article_id}" style="text-align:right;">
-											<a href='${ pageContext.request.contextPath }/forum/reply?harticle_id=${ post.harticle_id }' class='btn btn-outline-info btn-sm'>回覆</a>
+										<div id="btnrow${post.article_id}" style="text-align: right;">
+											<a
+												href='${ pageContext.request.contextPath }/forum/reply?harticle_id=${ post.harticle_id }'
+												class='btn btn-outline-info btn-sm'>回覆</a>
+												<c:if test="${pageContext.request.userPrincipal.name!=null}">
+												&nbsp;
+											<button type="button" class="btn btn-outline-danger btn-sm"
+												data-toggle="modal" data-target="#exampleModal" style="float:right">檢舉</button>
+												</c:if>
+										</div>
+										<div class="fb-share-button"
+											data-href="https://github.com/EEIT107Team003/iCook"
+											data-layout="button_count" data-size="small">
+											<a target="_blank"
+												href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fforum.gamer.com.tw%2F&amp;src=sdkpreparse"
+												class="fb-xfbml-parse-ignore">分享</a>
 										</div>
 									</div>
 
+
+
+									<!--report-->
+									<div class="modal fade" id="exampleModal" tabindex="-1"
+										role="dialog" aria-labelledby="exampleModalLabel"
+										aria-hidden="true">
+										<div class="modal-dialog" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title" id="exampleModalLabel">檢舉</h5>
+													<button type="button" class="close" data-dismiss="modal"
+														aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+												</div>
+												<form:form method='POST' modelAttribute='ReportBean'>
+													<div class="modal-body">
+
+														<div class="input-group mb-3">
+															<div class="input-group-prepend">
+																<button id="reportbtn"
+																	class="btn btn-outline-secondary dropdown-toggle"
+																	type="button" data-toggle="dropdown"
+																	aria-haspopup="true" aria-expanded="false">理由</button>
+																<form:input type="hidden" path="reportCategory" value=""
+																	id="reportCategory" />
+																<input type="hidden" value="${ post.article_id }" name="article_id">
+																<div class="dropdown-menu">
+																	<a class="dropdown-item" id="1">謾罵</a> <a
+																		class="dropdown-item" id="2">洗版</a> <a
+																		class="dropdown-item" id="3">限制級文章</a> <a
+																		class="dropdown-item" id="4">錯誤分類</a>
+																	<div role="separator" class="dropdown-divider"></div>
+																	<a class="dropdown-item" id="5">其他</a>
+																</div>
+															</div>
+															<form:input type="text" class="form-control"
+																aria-label="Text input with dropdown button"
+																placeholder="簡單描述......" path="reason" />
+														</div>
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary"
+															data-dismiss="modal">Close</button>
+														<input type="submit" class="btn btn-primary"
+															>
+													</div>
+												</form:form>
+											</div>
+										</div>
+									</div>
+									<script>
+		$("#1").click(function(){var cg = document.getElementById("1").text; $("#reportbtn").attr("value", cg).text(cg); $("#reportCategory").attr("value", cg);})
+		$("#2").click(function(){var cg = document.getElementById("2").text; $("#reportbtn").attr("value", cg).text(cg); $("#reportCategory").attr("value", cg);})
+		$("#3").click(function(){var cg = document.getElementById("3").text; $("#reportbtn").attr("value", cg).text(cg); $("#reportCategory").attr("value", cg);})
+		$("#4").click(function(){var cg = document.getElementById("4").text; $("#reportbtn").attr("value", cg).text(cg); $("#reportCategory").attr("value", cg);})
+		$("#5").click(function(){var cg = document.getElementById("5").text; $("#reportbtn").attr("value", cg).text(cg); $("#reportCategory").attr("value", cg);})
+		</script>
+
+									<!--report-->
+
+
 									<div class="about-author d-flex p-4 bg-light">
 										<div class="bio mr-5">
-											<img src="<c:url value='/getMemberPhoto/${post.memberBean.member_id}'/>" alt="Image placeholder"
-												class="img-fluid mb-4">
+											<a
+												href="${ pageContext.request.contextPath }/members/page?member_id=${post.memberBean.member_id}"><img
+												src="<c:url value='/getMemberPhoto/${post.memberBean.member_id}'/>"
+												alt="Image placeholder" class="img-fluid mb-4"></a>
 										</div>
-										<div class="desc" style="min-width:510px; min-height:162px;">
+										<div class="desc" style="min-width: 510px; min-height: 162px;">
 											<h3>${ post.nickname }</h3>
 											<p>${ post.memberBean.resume }</p>
-											<c:if test="${ post.article_id == post.harticle_id }"><br><br><h3 class="mb-5 font-weight-bold">${ post.replies } Comments</h3></c:if>											
-										</div>																		
-									</div>										
+											<hr>
+											<p>${ post.signature }</p>
+											<c:if test="${ post.article_id == post.harticle_id }">
+												<br>
+												<br>
+												<h3 class="mb-5 font-weight-bold">${ post.replies }
+													Comments</h3>
+											</c:if>
+										</div>
+									</div>
 
 
-									<div class="pt-5 mt-5">										
-										<ul class="comment-list">								
+									<div class="pt-5 mt-5">
+										<ul class="comment-list">
 											<li class="comment">
-												<div class="vcard bio">													
-												</div>
+												<div class="vcard bio"></div>
 												<div class="comment-body">
 													<h3></h3>
 													<div class="meta"></div>
 													<p></p>
-													<p>														
-													</p>
+													<p></p>
 												</div>
 											</li>
 
-<!-- 											
+											<!-- 											
 										<!-- END comment-list -->
 
-									
+
 										</ul>
 									</div>
-									
+
 								</div>
 								<!-- END-->
-								<c:forEach var="user" items="${ LoginOK }" >
-						<script type="text/javascript">
+								<c:forEach var="user" items="${ LoginOK }">
+									<script type="text/javascript">
 						var memberId = ${ user.member_id };
 						var article_id = ${ post.article_id };
 							$.ajax({
@@ -207,13 +319,13 @@
 							
 									
 					</script>
-					</c:forEach>
+								</c:forEach>
 
 
-							
-				</c:forEach>
+
+							</c:forEach>
 						</div>
-						
+
 						<div class="col-lg-4 sidebar ftco-animate bg-light pt-5">
 							<div class="sidebar-box pt-md-4">
 								<form action="#" class="search-form">
@@ -227,35 +339,68 @@
 							<div class="sidebar-box ftco-animate">
 								<h3 class="sidebar-heading">Categories</h3>
 								<ul class="categories">
-									<li><a href="#">Fashion <span>(6)</span></a></li>
-									<li><a href="#">Technology <span>(8)</span></a></li>
-									<li><a href="#">Travel <span>(2)</span></a></li>
-									<li><a href="#">Food <span>(2)</span></a></li>
-									<li><a href="#">Photography <span>(7)</span></a></li>
+									<li><a
+										href="${ pageContext.request.contextPath }/forum/overview">全部
+											<span>(6)</span>
+									</a></li>
+									<li><a
+										href="${ pageContext.request.contextPath }/forum/query?category=問題">問題
+											<span>(8)</span>
+									</a></li>
+									<li><a
+										href="${ pageContext.request.contextPath }/forum/query?category=閒聊">閒聊
+											<span>(2)</span>
+									</a></li>
+									<li><a
+										href="${ pageContext.request.contextPath }/forum/query?category=心得">心得
+											<span>(2)</span>
+									</a></li>
+									<li><a
+										href="${ pageContext.request.contextPath }/forum/query?category=自介">自介
+											<span>(7)</span>
+									</a></li>
+									<li><a
+										href="${ pageContext.request.contextPath }/forum/query?category=食材">食材
+											<span>(7)</span>
+									</a></li>
+									<li><a
+										href="${ pageContext.request.contextPath }/forum/query?category=器具">器具
+											<span>(7)</span>
+									</a></li>
 								</ul>
 							</div>
 
 							<div class="sidebar-box ftco-animate">
 								<h3 class="sidebar-heading">Popular Articles</h3>
-								 <c:forEach var="pop" items="${ populars }">	             	              
-	              <div class="block-21 mb-4 d-flex">
-	                <a class="blog-img mr-4" style="background-image: url(<c:url value='/getMemberPhoto/${pop.memberBean.member_id}'/>);"></a>
-	                <div class="text">
-	                  <h3 class="heading"><a href="${ pageContext.request.contextPath }/forum/pick?harticle_id=${ pop.harticle_id }&article_id=${ pop.article_id }">${ pop.title }</a></h3>
-	                  <div class="meta">	                  
-	                    <div><span class="icon-calendar"></span> ${ pop.postTime }</div>
-	                    <div><span class="icon-person"></span> ${ pop.nickname }</div>
-	                    <div><span class="icon-chat"></span> ${ pop.replies } </div>	                    
-	                  </div>	                  
-	                </div>	                	                
-	            </div>
-	            </c:forEach>
-								</div>
-								
+								<c:forEach var="pop" items="${ populars }">
+									<div class="block-21 mb-4 d-flex">
+										<a class="blog-img mr-4"
+											style="background-image: url(<c:url value='/getMemberPhoto/${pop.memberBean.member_id}'/>);"></a>
+										<div class="text">
+											<h3 class="heading">
+												<a
+													href="${ pageContext.request.contextPath }/forum/pick?harticle_id=${ pop.harticle_id }&article_id=${ pop.article_id }">${ pop.title }</a>
+											</h3>
+											<div class="meta">
+												<div>
+													<span class="icon-calendar"></span> ${ pop.postTime }
+												</div>
+												<div>
+													<span class="icon-person"></span> ${ pop.nickname }
+												</div>
+												<div>
+													<span class="icon-chat"></span> ${ pop.replies }
+												</div>
+											</div>
+										</div>
+									</div>
+								</c:forEach>
+							</div>
 
-							
 
-							
+
+
+
 
 
 							<div class="sidebar-box ftco-animate">
@@ -303,7 +448,7 @@
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 	<script src=<spring:url value="/resources/js/google-map.js"/>></script>
 	<script src=<spring:url value="/resources/js/main.js"/>></script>
-	
+
 
 </body>
 </html>

@@ -8,19 +8,6 @@
 <spring:url value="/resources/js/script.js" var="script" />
 <spring:url value="/resources/js/lib/bootstrap/css/chat.css"
 	var="chatCSS" />
-<%-- <spring:url value="/css/style.css" var="styleCSS"/> --%>
-<%-- <spring:url value="/css/slider.css" var="sliderCSS"/> --%>
-<%-- <spring:url value="/css/zerogrid.css" var="zerogridCSS"/> --%>
-<%-- <spring:url value="/css/responsive.css" var="responsiveCSS"/> --%>
-<%-- <spring:url value="/css/superfish.css" var="superfishCSS"/> --%>
-<%-- <spring:url value="/js/jquery.js" var="jqueryJS"/> --%>
-<%-- <spring:url value="/js/jquery-migrate-1.1.1.js" var="JM111JS"/> --%>
-<%-- <spring:url value="/js/superfish.js" var="superfishJS"/> --%>
-<%-- <spring:url value="/js/jquery.easing.1.3.js" var="JE13JS"/> --%>
-<%-- <spring:url value="/js/sForm.js" var="sFormJS"/> --%>
-<%-- <spring:url value="/js/jquery.carouFredSel-6.1.0-packed.js" var="JCFS610PJS"/> --%>
-<%-- <spring:url value="/js/tms-0.4.1.js" var="TMSJS"/> --%>
-<%-- <spring:url value="/js/css3-mediaqueries.js" var="CSSJS"/> --%>
 <spring:url value="/images/logo.png" var="logo" />
 <spring:url value="/resources/css/table.css" var="table" />
 <spring:url value="/resources/css/open-iconic-bootstrap.min.css"
@@ -40,7 +27,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Andrea - Free Bootstrap 4 Template by Colorlib</title>
+<title>享食天堂</title>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -79,17 +66,35 @@
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="fashion.html">Fashion</a></li>
-					<li><a href="travel.html">Travel</a></li>
-					<li><a href="about.html">About</a></li>
-					<li class="colorlib-active"><a href="contact.html">Contact</a></li>
+					<li class="colorlib-active"><a
+						href="${ pageContext.request.contextPath }">首頁&nbsp;<span class="glyphicon glyphicon-globe"></span></a></li>
+					<li><a
+						href="${ pageContext.request.contextPath }/forum/newPost">發表文章&nbsp; <span class="glyphicon glyphicon-pencil"></span></a></li>
+					<li><a href="${ pageContext.request.contextPath }/icookMenu">食譜&nbsp; <span class="glyphicon glyphicon-list-alt"></span></a></li>
+					<li><a
+						href="${ pageContext.request.contextPath }/A_articlemainpage">生活誌&nbsp; <span class="glyphicon glyphicon-camera"></span></a></li>
+					<c:if test="${pageContext.request.userPrincipal.name==null}">	
+					<li><a href="${ pageContext.request.contextPath }/icookLogin">會員專區&nbsp; <span class="glyphicon glyphicon-user"></span></a></li>
+					</c:if>
+					<c:if test="${pageContext.request.userPrincipal.name!=null}">
+					<li><a href="#" onclick="logout()">會員登出&nbsp; <span class="glyphicon glyphicon-user"></span></a></li>					
+					</c:if>
+					<li><a href="${ pageContext.request.contextPath }/forum">討論區首頁&nbsp; <span class="glyphicon glyphicon-user"></span></a></li>
 				</ul>
 			</nav>
+			<script>
+				function logout(){
+					let logoutConfirm = confirm("確定登出？");
+					if(logoutConfirm){
+						window.location.replace("${ pageContext.request.contextPath }/perform_logout");
+						
+					}
+				}
+			</script>
 
 			<div class="colorlib-footer">
 				<h2 id="colorlib-logo" class="mb-4">
-					<img src="${logo}">
+					<img src="${logo}" style="width:90%;height:90%;">
 				</h2>
 				<p class="pfooter">
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -97,9 +102,7 @@
 					<script>
 						document.write(new Date().getFullYear());
 					</script>
-					All rights reserved | This template is made with <i
-						class="icon-heart" aria-hidden="true"></i> by <a
-						href="https://colorlib.com" target="_blank">Colorlib</a>
+					All rights reserved | iCook
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 				</p>
 			</div>

@@ -63,6 +63,20 @@
 <script src="js/sForm.js"></script>
 <script src="js/jquery.prettyPhoto.js"></script>
 <script src="js/css3-mediaqueries.js"></script>
+<!-- 彈跳視窗 -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	crossorigin="anonymous">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+	integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+	integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+	crossorigin="anonymous"></script>
+<!-- 彈跳視窗 -->
 <!--[if lt IE 8]>
        <div style=' clear: both; text-align:center; position: relative;'>
          <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
@@ -89,39 +103,56 @@
 				<div class="col-full">
 					<div class="wrap-col">
 						<h1>
-							<a href="index2"><img src="images/logo.png" height='200px'
-								width='80%' alt="EXTERIOR"></a>
+							<a  style="height:200px" href="${pageContext.request.contextPath}/index2"><img src="${pageContext.request.contextPath}/images/logo.png" style="width: 200px ;right: 200px ;border-radius: 50%;" alt="EXTERIOR"></a>
 						</h1>
 
 						<div class="menu_block">
 							<nav>
-								<ul class="sf-menu">
+								<ul class="sf-menu"  style="padding-top:55px">
 									<li><a href="index2">ICook</a></li>
 									<li><a href="icookAboutUS">關於我們</a>
 										<ul>
 											<li><a href="icookContact">聯繫我們</a></li>
 										</ul></li>
-									<li><a href="icookMenu">查看食譜</a>
-										<ul>
-
-											<li><a href="#">cat1</a></li>
-											<li><a href="#">cat2</a></li>
-											<li><a href="#">cat3</a></li>
-										</ul>
+									<li>
+										<a href="recipe/recipeIndex">查看食譜</a>
+										<!--<ul>-->
+											<!--<li><a href="#">cat1</a></li>-->
+											<!--<li><a href="#">cat2</a></li>-->
+											<!--<li><a href="#">cat3</a></li>-->
+										<!--</ul>-->
+									</li>
 									<li><a href="icookLife">生活誌</a></li>
-									<li><a href="icookVideo">討論區</a></li>
-									<li><a href="icookProducts">市集</a>
+									<li><a href="forum/overview">討論區</a></li>
+									<li><a href="A_articlemainpage">文章區</a>
 										<ul>
-											<li class="with_ul current"><a href="cartPage">購物車</a></li>
+											<li><a href="A_article">test</a></li>
+
 										</ul></li>
 
-									<li><a href="icookLogin">會員專區</a>
+
+									<li><a href="products">市集</a>
 										<ul>
-											<li><a href="icookLogin">會員登入</a></li>
-											<li><a href="checkOrders">查看訂單</a></li>
-											<li><a href="#">會員登出</a></li>
-											<li><a href="#">新增食譜</a></li>
+
+
+											<li><a href="cartPage">購物車</a></li>
 										</ul></li>
+
+									<li><a href="user">會員專區 </a>
+										<ul>
+											<c:if test="${pageContext.request.userPrincipal.name==null}">
+												<li><a href="icookLogin">會員登入</a></li>
+												<li><a href="icookRegister">會員註冊</a></li>
+											</c:if>
+											<c:if test="${pageContext.request.userPrincipal.name!=null}">
+												<li><a href="index2" data-toggle="modal"
+													data-target="#logout">會員登出</a></li>
+											</c:if>
+											<li><a href="checkOrders">查看訂單</a></li>
+											<li><a href="icookAddRecipe">新增食譜</a></li>
+											<li><a href="backStage">後台</a></li>
+										</ul>
+									</li>
 								</ul>
 							</nav>
 							<div class="clear"></div>
@@ -131,13 +162,15 @@
 				</div>
 			</div>
 		</header>
+
+
 		<!--=======content================================-->
 
 		<div class="content">
 			<div class="progress">
-				<div class="progress-bar progress-bar-striped bg-success" role="progressbar"
-					style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-					aria-valuemax="100"></div>
+				<div class="progress-bar progress-bar-striped bg-success"
+					role="progressbar" style="width: 50%" aria-valuenow="50"
+					aria-valuemin="0" aria-valuemax="100"></div>
 			</div>
 			<%
 				if (!s_processID.equals("")) {
@@ -161,12 +194,12 @@
 				<table width="100%" border="0" cellspacing="0" cellpadding="0"
 					style="border-collapse: collapse">
 					<tr>
-<!-- 						<td align="center"> -->
-<!-- 																			<a class="btn btn-info btn-lg" <a -->
-<!-- 							align="center" class="btn btn-outline-info btn-lg" -->
-<%-- 							href="https://map.ezship.com.tw/ezship_map_web.jsp?suID=buyer@myweb.com.tw&processID=155922&stCate=<%=s_stCate%>&stCode=<%=s_stCode%>&rtURL=http://localhost:8080/icook/check">---請先選擇收貨門市---</a> --%>
-<%-- 																			                <a href="https://map.ezship.com.tw/ezship_map_web.jsp?suID=buyer@myweb.com.tw&processID=155922&stCate=<%=s_stCate%>&stCode=<%=s_stCode%>&rtURL=https://www.ezship.com.tw/emap/ezship_simulation_mappg_hy.jsp&webPara=simulationpage">選擇門市</a> --%>
-<!-- 						</td> -->
+						<!-- 						<td align="center"> -->
+						<!-- 																			<a class="btn btn-info btn-lg" <a -->
+						<!-- 							align="center" class="btn btn-outline-info btn-lg" -->
+						<%-- 							href="https://map.ezship.com.tw/ezship_map_web.jsp?suID=buyer@myweb.com.tw&processID=155922&stCate=<%=s_stCate%>&stCode=<%=s_stCode%>&rtURL=http://localhost:8080/icook/check">---請先選擇收貨門市---</a> --%>
+						<%-- 																			                <a href="https://map.ezship.com.tw/ezship_map_web.jsp?suID=buyer@myweb.com.tw&processID=155922&stCate=<%=s_stCate%>&stCode=<%=s_stCode%>&rtURL=https://www.ezship.com.tw/emap/ezship_simulation_mappg_hy.jsp&webPara=simulationpage">選擇門市</a> --%>
+						<!-- 						</td> -->
 					</tr>
 				</table>
 				<%-- 				<c:out value="登入者${LoginOK.nickname}"></c:out> --%>
@@ -181,10 +214,10 @@
 					<div style='float: right'>
 						<input type="hidden" name="finalDecision" value="">
 
-<!-- 						<a -->
-<!-- 							align="center" class="btn btn-outline-info btn-lg" -->
-<%-- 							href="https://map.ezship.com.tw/ezship_map_web.jsp?suID=buyer@myweb.com.tw&processID=155922&stCate=<%=s_stCate%>&stCode=<%=s_stCode%>&rtURL=http://localhost:8080/icook/check">---請先選擇收貨門市---</a> --%>
-							<button type="button"					
+						<!-- 						<a -->
+						<!-- 							align="center" class="btn btn-outline-info btn-lg" -->
+						<%-- 							href="https://map.ezship.com.tw/ezship_map_web.jsp?suID=buyer@myweb.com.tw&processID=155922&stCate=<%=s_stCate%>&stCode=<%=s_stCode%>&rtURL=http://localhost:8080/icook/check">---請先選擇收貨門市---</a> --%>
+						<button type="button"
 							onclick="{location.href='https://map.ezship.com.tw/ezship_map_web.jsp?suID=buyer@myweb.com.tw&processID=155922&stCate=<%=s_stCate%>&stCode=<%=s_stCode%>&rtURL=http://localhost:8080/icook/check'}"
 							class="btn btn-outline-success btn-lg btnSeperate1">選擇門市</button>
 					</div>
@@ -197,8 +230,8 @@
 			<div class="zerogrid">
 				<div class="col-full">
 					<div class="wrap-col">
-						&copy; Copyright &copy; 2013.Company name All rights reserved.<a
-							target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
+						<!-- 						&copy; Copyright &copy; 2013.Company name All rights reserved.<a -->
+						<!-- 							target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a> -->
 					</div>
 				</div>
 			</div>

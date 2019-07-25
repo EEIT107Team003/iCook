@@ -18,5 +18,16 @@ public class securityController {
 	public String logout(Model model) {
 		return "member/logout";
 	}
+	// 管理員登入
+	@GetMapping("/icookAdminLogin")
+	public String adminlogin(Model model) {
+		return "icookAdminLogin";
+	}
+	
+//	// 會員登出
+//	@GetMapping("/logout_page")
+//	public String adminlogout(Model model) {
+//		return "member/logout";
+//	}
 
 }

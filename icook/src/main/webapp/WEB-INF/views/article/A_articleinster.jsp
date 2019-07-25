@@ -8,10 +8,16 @@
 <html>
 <head>
 <script src="https://cdn.bootcss.com/web-socket-js/1.0.0/web_socket.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
 <title>Stories - Free Bootstrap 4 Template by Colorlib</title>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	crossorigin="anonymous">
 
 <link
 	href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,900"
@@ -46,33 +52,76 @@
 	href="${pageContext.request.contextPath}/article/acss/style.css">
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/article/ckeditor/ckeditor.js"></script>
+	
+	<!-- 套版使用 -->
+<link rel="icon" href="images/favicon.ico">
+<link rel="shortcut icon" href="images/favicon.ico" />
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/zerogrid.css" type="text/css"
+	media="screen">
+<link rel="stylesheet" href="css/responsive.css" type="text/css"
+	media="screen">
+<link rel="stylesheet" href="css/prettyPhoto.css">
+	
+	
+	
+	
 </head>
 <body>
-	<nav
-		class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light"
-		id="ftco-navbar">
-		<div class="container">
-			<a class="navbar-brand" href="index2"><img width="240" height="111.5" src="images/logo.png"
-								alt="EXTERIOR"></a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#ftco-nav" aria-controls="ftco-nav"
-				aria-expanded="false" aria-label="Toggle navigation">
-				<span class="oi oi-menu"></span> Menu
-			</button>
+	<header>
+		<div class="zerogrid">
+			<div class="col-full">
+				<div class="wrap-col">
+					<h1>
+<a  style="height:200px" href="${pageContext.request.contextPath}/index2"><img src="${pageContext.request.contextPath}/images/logo.png" style="width: 200px ;right: 200px ;border-radius: 50%;" alt="EXTERIOR"></a>					</h1>
 
-			<div class="collapse navbar-collapse" id="ftco-nav">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a
-						href="${pageContext.request.contextPath}/home" class="nav-link">Home</a></li>
-					<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-					<li class="nav-item"><a href="A_findAll" class="nav-link">Foods文章首頁</a></li>
-					<li class="nav-item"><a href="lifestyle.html" class="nav-link">Lifestyle</a></li>
-					<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-				</ul>
+					<div class="menu_block">
+						<nav>
+							<ul class="sf-menu">
+								<li><a href="index2">ICook</a></li>
+								<li><a href="icookAboutUS">關於我們</a>
+									<ul>
+										<li class="with_ul current"><a href="icookContact">聯繫我們</a></li>
+									</ul></li>
+								<li><a href="icookMenu">查看食譜</a>
+									<ul>
+
+										<li><a href="#">cat1</a></li>
+										<li><a href="#">cat2</a></li>
+										<li><a href="#">cat3</a></li>
+									</ul>
+								<li><a href="icookLife">生活誌</a></li>
+								<li><a href="icookVideo">討論區</a></li>
+								<li><a href="icookProducts">市集</a>
+									<ul>
+										<li><a href="cartPage">購物車</a></li>
+									</ul></li>
+								<li><a href="A_findAll">文章區</a></li>
+								<li><a href="icookLogin">會員專區</a>
+									<ul>
+										<li><a href="icookLogin">會員登入</a></li>
+										<li><a href="checkOrders">查看訂單</a></li>
+										<li><a href="#">會員登出</a></li>
+										<li><a href="#">新增食譜</a></li>
+										</ul></li>
+
+								<c:if
+									test="${pageContext.request.userPrincipal.name == 'aa'||pageContext.request.userPrincipal.name =='dd'}">
+									<li><a href="A_insert">新增一篇文章</a></li>
+								</c:if>
+							</ul>
+
+
+						</nav>
+						<div class="clear"></div>
+					</div>
+					<div class="clear"></div>
+				</div>
 			</div>
-		</div>
-	</nav>
-	<!-- END nav -->
+	</header>
+
+	<div style="background-color: white;">
+
 
 	<section class="hero-wrap hero-wrap-2"
 		style="background-image: url('article/aimages/bg_4.jpg');">
@@ -102,15 +151,15 @@
 
 
 					<h2 class="mb-3">新增一篇文章</h2>
-					
+
 					<form:form method="POST" modelAttribute="Articlebean"
 						class="bg-light p-5 contact-form" enctype="multipart/form-data">
 
-<!-- 						<div class="form-group"> -->
+						<!-- 						<div class="form-group"> -->
 
-<%-- 							<form:input path="article_date" type="text" class="form-control"  --%>
-<%-- 								placeholder="日期(西元年-月份-日期)" /> --%>
-<!-- 						</div> -->
+						<%-- 							<form:input path="article_date" type="text" class="form-control"  --%>
+						<%-- 								placeholder="日期(西元年-月份-日期)" /> --%>
+						<!-- 						</div> -->
 						<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.error_Article_date}</div>
 						<div class="form-group">
 							<form:input path="article_title" type="text" class="form-control"
@@ -149,16 +198,14 @@
 						</div>
 						<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.error_Article_content}</div>
 
-						<!-- 	測試跑馬燈 -->
 
-						<div class="form-group">
-<%-- 			<form> --%>
-<!-- 				<input id="messageField" type="text" class="form-control"> -->
-<!-- 				 <input onclick="sendMsg();" value="send" type="button" > -->
-<%-- 			</form> --%>
 
-			<div id="msg-box"
-				style="width: 500px; height: 400px; background: #eee; overflow: auto;" ></div></div>
+<!-- 						<div class="form-group"> -->
+
+
+<!-- 							<div id="msg-box" -->
+<!-- 								style="width: 500px; height: 400px; background: #eee; overflow: auto;"></div> -->
+<!-- 						</div> -->
 
 
 
@@ -167,12 +214,13 @@
 
 
 						<div class="form-group">
-							<input type="submit" value="Send Article"
+							<input type="submit" value="Send Article" onclick="sendMsg();"
 								class="btn btn-primary py-3 px-5">
 						</div>
 
 
 					</form:form>
+
 
 				</div>
 				<!-- .col-md-8 -->
@@ -198,73 +246,38 @@
 					</div>
 
 					<div class="sidebar-box ftco-animate">
+						news
 						<h3 class="heading mb-4">Recent Blog</h3>
-						<div class="block-21 mb-4 d-flex">
-							<a class="blog-img mr-4"
-								style="background-image: url(article/aimages/image_1.jpg);"></a>
+
+						<c:forEach var='ArticleThree' items='${ArticleThrees}'>
+							<div class="block-21 mb-4 d-flex">
+								<a class="blog-img mr-4" href="<spring:url value='/article?article_num=${ArticleThree.article_num}' />">
+								<img width="100px" height="100px"  src="<c:url value='/getartPicture/${ArticleThree.article_num}'/>">
+									 </a>
+							
+							
+							
 							<div class="text">
 								<h3>
-									<a href="#">Even the all-powerful Pointing has no control
-										about the blind texts</a>
+									<a href="<spring:url value='/article?article_num=${ArticleThree.article_num}' />">${ArticleThree.article_title}
+										</a>
 								</h3>
 								<div class="meta">
 									<div>
-										<a href="#"><span class="icon-calendar"></span> February
-											12, 2019</a>
+										<a href="#"><span class="icon-calendar"></span> 
+										${ArticleThree.article_date}	</a>
 									</div>
 									<div>
-										<a href="#"><span class="icon-person"></span> Admin</a>
+										<a href="#"><span class="icon-person"></span> ${ArticleThree.article_member.nickname}</a>
 									</div>
-									<div>
-										<a href="#"><span class="icon-chat"></span> 19</a>
-									</div>
+									
 								</div>
 							</div>
 						</div>
-						<div class="block-21 mb-4 d-flex">
-							<a class="blog-img mr-4"
-								style="background-image: url(article/aimages/image_2.jpg);"></a>
-							<div class="text">
-								<h3>
-									<a href="#">Even the all-powerful Pointing has no control
-										about the blind texts</a>
-								</h3>
-								<div class="meta">
-									<div>
-										<a href="#"><span class="icon-calendar"></span> February
-											12, 2019</a>
-									</div>
-									<div>
-										<a href="#"><span class="icon-person"></span> Admin</a>
-									</div>
-									<div>
-										<a href="#"><span class="icon-chat"></span> 19</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="block-21 mb-4 d-flex">
-							<a class="blog-img mr-4"
-								style="background-image: url(article/aimages/image_3.jpg);"></a>
-							<div class="text">
-								<h3>
-									<a href="#">Even the all-powerful Pointing has no control
-										about the blind texts</a>
-								</h3>
-								<div class="meta">
-									<div>
-										<a href="#"><span class="icon-calendar"></span> February
-											12, 2019</a>
-									</div>
-									<div>
-										<a href="#"><span class="icon-person"></span> Admin</a>
-									</div>
-									<div>
-										<a href="#"><span class="icon-chat"></span> 19</a>
-									</div>
-								</div>
-							</div>
-						</div>
+						</c:forEach>
+						
+						
+						
 					</div>
 
 					<div class="sidebar-box ftco-animate">
@@ -282,11 +295,8 @@
 					</div>
 
 					<div class="sidebar-box ftco-animate">
-						<h3 class="heading mb-4">Paragraph</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							Ducimus itaque, autem necessitatibus voluptate quod mollitia
-							delectus aut, sunt placeat nam vero culpa sapiente consectetur
-							similique, inventore eos fugit cupiditate numquam!</p>
+						<h3 class="heading mb-4">相關開發人員</h3>
+						<p>EEIT107 第三組</p>
 					</div>
 				</div>
 
@@ -294,7 +304,7 @@
 		</div>
 	</section>
 	<!-- .section -->
-
+</div>
 	<section class="ftco-subscribe ftco-section bg-light">
 		<div class="overlay">
 			<div class="container">
@@ -448,35 +458,49 @@
 </body>
 
 
-	<script>
-					var webSocket = new WebSocket("ws:/localhost:8080/icook/ArtBroadcast");
-					var msgField = document.getElementById("messageField");
-					var divMsg = document.getElementById("msg-box");
-					var Broadcast = document.getElementById("ArcBroadcast");
-					function sendMsg() {
-						var msgToSend = msgField.value;
-						webSocket.send(msgToSend);
-						msgField.value = "";
-					}
+<script>
+	var webSocket = new WebSocket("ws:/localhost:8080/icook/ArtBroadcast");
+	var newnew = "有一則新消息"
+	function sendMsg() {
+		var msgToSend = newnew.value;
+		webSocket.send(msgToSend);
+		
+	}
 
-					webSocket.onmessage = function(message) {
-						divMsg.innerHTML += "<marquee direction='right' height='30' scrollamount='8' behavior='alternate'>" + message.data+"</marquee>";
-						divtoday.innerHTML+=message.data;
-					}
+	webSocket.onmessage = function(message) {
+		$.notify({
+			title : '<strong>新消息</strong>',
+			icon : 'glyphicon glyphicon-star',
+			message : "有一篇文章發表摟，快去看看!"
+		}, {
+			type : 'info',
+			animate : {
+				enter : 'animated fadeInUp',
+				exit : 'animated fadeOutRight'
+			},
+			placement : {
+				from : "bottom",
+				align : "right"
+			},
+			offset : 20,
+			spacing : 10,
+			z_index : 1031,
+		});
 
-					webSocket.onopen = function() {
-						console.log("connection opened");
-					};
+	}
 
-					webSocket.onclose = function() {
-						console.log("connection closed");
-					};
+	webSocket.onopen = function() {
+		console.log("connection opened");
+	};
 
-					webSocket.onerror = function wserror(message) {
-						console.log("error: " + message);
-					}
-					
-	</script>
+	webSocket.onclose = function() {
+		console.log("connection closed");
+	};
+
+	webSocket.onerror = function wserror(message) {
+		console.log("error: " + message);
+	}
+</script>
 
 
 
@@ -491,4 +515,17 @@
 						cloudServices_uploadUrl : 'https://40733.cke-cs.com/easyimage/upload/'
 					});
 </script>
+
+
+
+<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+		integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+		crossorigin="anonymous"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/article/bootstrap-notify-master/bootstrap-notify.min.js"></script>
+
 </html>

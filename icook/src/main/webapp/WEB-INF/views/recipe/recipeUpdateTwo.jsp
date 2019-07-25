@@ -17,6 +17,7 @@
 		<%--<c:url value='/home' />--%>
 		<%--<form:form method="POST" modelAttribute="RecipeBean" enctype="multipart/form-data" action="${pageContext.request.contextPath}/updateTwoBack">--%>
 		<form:form method="POST" modelAttribute="RecipeBean" enctype="multipart/form-data" action="${pageContext.request.contextPath}/recipe/recipeUpdateTwo">
+			<form:input type="hidden" path="pk_recipe_id" />
 			<table border="1" bgcolor="#ffffb9" width="50%">
 				<tr align="center">
 					<!--食譜名稱-->

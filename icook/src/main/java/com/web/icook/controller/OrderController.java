@@ -1,3 +1,4 @@
+    
 package com.web.icook.controller;
 
 import java.util.ArrayList;
@@ -92,10 +93,6 @@ public class OrderController {
 //		return "information";
 //	}
 	
-
-	
-
-	
 	
 	@RequestMapping(value = "/orders", method = RequestMethod.GET, produces = "application/vnd.ms-excel")
 	public String AllProductsExcel(Model model) {
@@ -183,7 +180,7 @@ public class OrderController {
 		
 		//防止訂購完按超商付款他會網頁會refresh跳到此會空值出錯
 		if(cart==null) {
-			return "redirect:/products";
+			return "redirect:/index2";
 		}
 		
 		
@@ -270,12 +267,15 @@ public class OrderController {
 		msg.setSubject("icook 下單成功!");
 //		msg.setSubject("我是主題");
 		Integer ordersuccessNo=ob.getOrderNo();
-		String content="\"<span style='color:black'>訂單編號\"+"+ordersuccessNo+"\"下單成功!</span><br>\"+\r\n" + 
-				"				'試試使用paypal付款!<br><form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_top\"><br>'+\r\n" + 
-				"		'<input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\"><br>'+\r\n" + 
-				"		'<input type=\"hidden\" name=\"hosted_button_id\" value=\"5KUTFZ9H3G9Q8\"><br>'+\r\n" + 
-				"		'<input type=\"image\" src=\"https://www.paypalobjects.com/en_US/TW/i/btn/btn_buynowCC_LG_wCUP.gif\" border=\"0\" name=\"submit\" alt=\"PayPal - The safer, easier way to pay online!\"><br>'+\r\n" + 
-				"		'<img alt=\"\" border=\"0\" src=\"https://www.paypalobjects.com/en_US/i/scr/pixel.gif\" width=\"1\" height=\"1\"><br></form><br>'+’icook愛廚感謝您’";
+//		String content2="購物成功!下單單號為"+ordersuccessNo;
+		String content="訂單編號"+ordersuccessNo+"下單成功!\r\n\n"+"享食天堂感謝您!\n\n\n<a href=\"localhost:8080/icook/\">";
+//		<img src=\"images/icooklogo.jpg\" alt=\"icooklogo\"></a>
+//		String content="\"<span style='color:black'>訂單編號\"+"+ordersuccessNo+"\"下單成功!</span><br>\"+\r\n" + 
+//				"				'試試使用paypal付款!<br><form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_top\"><br>'+\r\n" + 
+//				"		'<input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\"><br>'+\r\n" + 
+//				"		'<input type=\"hidden\" name=\"hosted_button_id\" value=\"5KUTFZ9H3G9Q8\"><br>'+\r\n" + 
+//				"		'<input type=\"image\" src=\"https://www.paypalobjects.com/en_US/TW/i/btn/btn_buynowCC_LG_wCUP.gif\" border=\"0\" name=\"submit\" alt=\"PayPal - The safer, easier way to pay online!\"><br>'+\r\n" + 
+//				"		'<img alt=\"\" border=\"0\" src=\"https://www.paypalobjects.com/en_US/i/scr/pixel.gif\" width=\"1\" height=\"1\"><br></form><br>'+’icook愛廚感謝您’";
 		msg.setContent(content	,"text/html;charset=utf-8");
 		//讀不到值!!!!!!!!!!!!!
 		msg.setRecipients(RecipientType.TO, InternetAddress.parse(custEmail));
@@ -362,6 +362,26 @@ public class OrderController {
 		return "icookMemberCheckOrders";
 	}
 	
+	//ajax 查看該會員所有訂單
+	@RequestMapping("/ajaxCheckMemberOrders")
+	public List<OrderBean> ajaxCheckMemberOrders(Model model, HttpSession session) {
+		MemberBean mb=null;
+		if (!mcontroller.getPrincipal().equals("anonymousUser")) {
+			mb = mservice.selectByUsername(mcontroller.getPrincipal());
+			model.addAttribute("LoginOK", mb);
+		}
+		
+		List<OrderBean> orders = new ArrayList<>();
+		orders = odao.getOrdersbyMemberSeqNo(mb.getMember_id());
+		model.addAttribute("orders_list", orders);
+		return orders;
+	}
+	
+	
+	
+	
+
+	
 	
 	// 進入後台才有的url
 	// admin查看所有訂單
@@ -373,39 +393,13 @@ public class OrderController {
 //		if (mcontroller.getPrincipal().equals("Admin@gmail.com")) {
 //			mb = mservice.selectByUsername(mcontroller.getPrincipal());
 //			model.addAttribute("LoginOK", mb);
-			
+		
 			List<OrderBean> orders = new ArrayList<>();
 			orders = odao.getAllOrders();
 			
 //-----------------------------------------計算離出貨<1天------------------------------------------------------
 			
 			//算出貨時間<1天的
-			Iterator<OrderBean> iter1 = orders.iterator();
-			List<Integer> needShipOutOrderNo = new ArrayList<>();
-			while (iter1.hasNext()) {
-				OrderBean ob = iter1.next();
-				Date checkDate = new Date();
-				//test
-				Long Long_OrderDate=ob.getOrderDate().getTime();//why nullpointer!!!!
-				Long Long_todaycheckDate=checkDate.getTime();
-				System.out.println("OrderDate="+Long_OrderDate);
-				System.out.println("checkDate="+Long_todaycheckDate);
-				Long diffDateLong=Long_todaycheckDate-Long_OrderDate;
-				System.out.println("diffDateLong="+diffDateLong);
-				Long diffDateDay=diffDateLong/(1000 * 60 * 60 * 24);
-				System.out.println("diffDateDay="+diffDateDay);
-				System.out.println("四捨五入="+Math.ceil(diffDateLong/(1000 * 60 * 60 * 24)));;
-				Long diffLong=checkDate.getTime()-ob.getOrderDate().getTime();
-				Long diffDays=diffLong/(1000 * 60 * 60 * 24);
-				//測試
-				System.out.println("diffDays="+diffDays);
-				if(diffDays>1) {
-					needShipOutOrderNo.add(ob.getOrderNo());
-				}
-				//測試
-				System.out.println("urgentOrderNo="+ob.getOrderNo());
-			}
-			model.addAttribute("urgentOrders_No", needShipOutOrderNo);
 //			Iterator<OrderBean> iter1 = orders.iterator();
 //			List<Integer> needShipOutOrderNo = new ArrayList<>();
 //			while (iter1.hasNext()) {
@@ -437,7 +431,8 @@ public class OrderController {
 //------------------------------------計算完畢-------------------------------------------------
 			model.addAttribute("orders_list", orders);
 //			return "adminCheckOrders";
-			return "backStage/examples/table";
+			return "backStage/examples/adminCheckOrderPage";
+//			return "backStage/examples/typography";
 //		}
 //		else {
 //			return "redirect:/login_page";// 此處要改跳轉至登入畫面
@@ -463,9 +458,10 @@ public class OrderController {
 		Integer OrderNo = Integer.parseInt(req.getParameter("OrderNo"));
 		OrderBean admin_ob = odao.get_One_Order_by_OrderNo(OrderNo);
 		List<OrderItemBean> admin_oib = admin_ob.getItems();
+		model.addAttribute("orderAddress", admin_ob.getShippingAddress());
 		model.addAttribute("orderItems_List", admin_oib);
 //		return "adminCheckOrderDetails";
-		return "backStage/examples/detailTable";
+		return "backStage/examples/adminCheckOrderDetailPage";
 	}
 
 	// 查看會員所有訂單,一定是從orderPage跳轉到此頁,此頁無法直接到達
@@ -473,6 +469,15 @@ public class OrderController {
 	public String order_details_by_member(Model model, HttpSession session, @RequestParam("id") Integer buyerSyetemSeqNo,
 			@RequestParam("orderNo") Integer orderNo, HttpServletRequest req) {
 		Integer FrontSeqNoForOrderByMember = Integer.parseInt(req.getParameter("SeqOrderNoForMember"));
+
+		
+		MemberBean mb=null;
+		if (!mcontroller.getPrincipal().equals("anonymousUser")) {
+			mb = mservice.selectByUsername(mcontroller.getPrincipal());
+			model.addAttribute("LoginOK", mb);
+		}
+		
+		
 		// 一定是從orderPage跳轉到此頁,此頁無法直接到達,所以session.get會員
 		OrderBean ob = null;
 		List<OrderBean> mo = odao.getOrdersbyMemberSeqNo(buyerSyetemSeqNo);
@@ -480,6 +485,7 @@ public class OrderController {
 		while (it.hasNext()) {
 			ob = it.next();
 			if (ob.getOrderNo() == orderNo) {
+				model.addAttribute("LoginOK", mb);
 				model.addAttribute("orderItems_List", ob.getItems());
 				model.addAttribute("orderAddress", ob.getShippingAddress());
 				model.addAttribute("FrontSeqOrderNo", FrontSeqNoForOrderByMember);

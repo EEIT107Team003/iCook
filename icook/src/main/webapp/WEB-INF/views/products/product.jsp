@@ -501,41 +501,60 @@ width: 35px;
 				<div class="col-full">
 					<div class="wrap-col">
 						<h1>
-							<a href="index2"><img src="images/logo.png" alt="EXTERIOR"></a>
+							<a style="height: 200px"
+								href="${pageContext.request.contextPath}/index2"><img
+								src="${pageContext.request.contextPath}/images/logo.png"
+								style="width: 200px; right: 200px; border-radius: 50%;"
+								alt="EXTERIOR"></a>
 						</h1>
 
 						<div class="menu_block">
 							<nav>
-								<ul class="sf-menu">
-									<li class="with_ul current"><a href="index2">ICook</a></li>
+								<ul class="sf-menu"  style="padding-top:55px">
+									<li><a href="index2">ICook</a></li>
 									<li><a href="icookAboutUS">關於我們</a>
 										<ul>
 											<li><a href="icookContact">聯繫我們</a></li>
 										</ul></li>
-									<li><a href="<c:url value='/recipe/recipeIndex' /> ">查看食譜</a>
+									<li>
+										<a href="recipe/recipeIndex">查看食譜</a>
+										<!--<ul>-->
+											<!--<li><a href="#">cat1</a></li>-->
+											<!--<li><a href="#">cat2</a></li>-->
+											<!--<li><a href="#">cat3</a></li>-->
+										<!--</ul>-->
+									</li>
 									<li><a href="icookLife">生活誌</a></li>
 									<li><a href="forum/overview">討論區</a></li>
-									<li><a href="A_articlemainpage">文章區</a></li>
+									<li><a href="A_articlemainpage">文章區</a>
+										<ul>
+											<li><a href="A_article">test</a></li>
+
+										</ul></li>
+
+
+<!-- 									<li><a href="products">市集</a> -->
 									<li><a href="products">市集</a>
-									<ul>
+										<ul>
+
+
 											<li><a href="cartPage">購物車</a></li>
 										</ul></li>
 
-									<li><a href="icookLogin">會員專區</a>
+									<li><a href="user">會員專區 </a>
 										<ul>
 											<c:if test="${pageContext.request.userPrincipal.name==null}">
 												<li><a href="icookLogin">會員登入</a></li>
 												<li><a href="icookRegister">會員註冊</a></li>
 											</c:if>
 											<c:if test="${pageContext.request.userPrincipal.name!=null}">
-												<li><a href="index2" data-toggle="modal" data-target="#logout">會員登出</a></li>
+												<li><a href="index2" data-toggle="modal"
+													data-target="#logout">會員登出</a></li>
 											</c:if>
-												<li><a href="checkOrders">查看訂單</a></li>
-												<li><a href="#">新增食譜</a></li>
-												<li><a href="backStage">後台</a></li>
-										</ul>
-
-									</li>		
+											<li><a href="checkOrders">查看訂單</a></li>
+											<li><a href="icookAddRecipe">新增食譜</a></li>
+											<li><a href="backStage">後台</a></li>
+										</ul></li>
 								</ul>
 							</nav>
 							<div class="clear"></div>
