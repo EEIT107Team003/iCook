@@ -4,6 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -116,6 +118,10 @@
 </head>
 
 <body style="background-color: #55a237">
+<%-- <sec:authorize access="hasRole('MEMBER')"> --%>
+<!--     <h1>0000</h1> -->
+<%-- </sec:authorize> --%>
+
 	<div class="main">
 		<!--==============================header=================================-->
 		<header>
@@ -162,13 +168,12 @@
 
 											<li><a href="cartPage">購物車</a></li>
 										</ul></li>
-
+<%-- </c:if><c:if test="${pageContext.request.userPrincipal.name==null}"> --%>
 									<li><a href="user">會員專區 </a>
-										<ul>
-											<c:if test="${pageContext.request.userPrincipal.name==null}">
+										<ul><sec:authorize access="!isAuthenticated()">
 												<li><a href="icookLogin">會員登入</a></li>
 												<li><a href="icookRegister">會員註冊</a></li>
-											</c:if>
+											</sec:authorize>
 											<c:if test="${pageContext.request.userPrincipal.name!=null}">
 												<li><a href="index2" data-toggle="modal"
 													data-target="#logout">會員登出</a></li>
