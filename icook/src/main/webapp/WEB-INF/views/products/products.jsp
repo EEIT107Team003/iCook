@@ -61,8 +61,8 @@
 	position: absolute;
 	width: 100px;
 	opacity: 0;
-	top: 0;
-	left: 0;
+	top:0;
+	left:0;
 }
 
 .divA {
@@ -77,8 +77,9 @@
 	-moz-transition: opacity 2s linear;
 	-o-transition: opacity 2s linear;
 	transition: opacity 1s linear;
-	width: 45cm;
+	width: 40cm;
 	height: 500px;
+	border-radius: 20px;
 }
 
 /* ============================================================= */

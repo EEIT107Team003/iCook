@@ -47,8 +47,55 @@ margin-left:1000px;
 .textDiv p{
 font-size:20px;
 }
-
-
+.mainShow { 
+opacity: 100;
+width:1300px ; 
+filter: alpha(opacity=100);
+}
+.mainBlock {
+position: absolute;
+width: 10px;
+opacity: 0;
+top: 0;
+left: 0;
+}
+.divA {
+position: relative;
+}
+.divA img {
+-webkit-transition: opacity 2s linear;
+-moz-transition: opacity 2s linear;
+-o-transition: opacity 2s linear;
+transition: opacity 1s linear;
+width: 18cm;
+height: 11cm;
+}
+.subsidiaryShow {
+width: 90px;
+height: 60px;
+border: 2px solid orange;
+}
+.col-2 img{
+position: relative;
+border: 1px solid rgba(0,0,0,0.5);
+transition: all 0.5s linear
+}
+.col-2 img:hover {
+border-radius: 50px;
+transition: all 0.5s linear;    
+}
+.subsidiaryBlock {
+cursor: pointer; 
+margin-left: 2ch;
+margin-top: 1ch;
+width: 72px;
+height: 45px;
+}
+.control {
+margin-left: 17ch;
+margin-top: 2ch;
+width: 35px;
+}
 
 </style>
 </head>
@@ -549,6 +596,25 @@ font-size:20px;
 			</section>
 		</div>
 
+<script>
+let counter = 0;
+document.addEventListener("DOMContentLoaded", function () {
+    mainImgs = document.querySelectorAll("img.mainShow,img.mainBlock");
+    subImgs = document.querySelectorAll("img.subsidiaryShow ,img.subsidiaryBlock");
+    for (var i=0;i<subImgs.length;i++) {
+    	subImgs[i].addEventListener("click", imgClick)
+    }
+})
+
+
+function imgClick() {
+    mainImgs[counter].className = " mainBlock";
+    subImgs[counter].className = " subsidiaryBlock"
+    counter = parseInt(this.id.substring(3, 5));
+    mainImgs[counter].className = " mainShow";
+    subImgs[counter].className = " subsidiaryShow";
+}
+</script>
 
 			<div class="row">
 				<div class="col-7">
@@ -556,20 +622,26 @@ font-size:20px;
 						<div class="portfolio">
 							<div class="col-1-2">
 								<div class="wrap-col">
+									    <div class="divA">
 									<a href="images/big3.jpg" data-gal="prettyPhoto[1]"><span>
-											<img  
-											src="<c:url value='/getProductPicture/${product.product_id}'/>"
-											alt="" />
+<!-- 											<img   -->
+<%-- 											src="<c:url value='/getProductPicture/${product.product_id}'/>" --%>
+<!-- 											alt="" /> -->
+                    <img  class="mainShow"  src="/icook${product.productPictureOnePath}"/>
+					<img  class="mainBlock" src="/icook${product.productPictureTwoPath}"/>
+					<img  class="mainBlock" src="/icook${product.productPictureThreePath}"/>
 									</span></a>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="col-2">
-					<br> <img src="/icook${product.productPictureOnePath}" /><br> 
-					<img src="/icook${product.productPictureTwoPath}" /><br> 
-					<img src="/icook${product.productPictureThreePath}" />
+					<br> 
+					<img id="Sub00" class="subsidiaryShow"  src="/icook${product.productPictureOnePath}" /><br> 
+					<img id="Sub01" class="subsidiaryBlock" src="/icook${product.productPictureTwoPath}" /><br> 
+					<img id="Sub02" class="subsidiaryBlock" src="/icook${product.productPictureThreePath}" />
 				</div>
 				<div class="col-3" style="margin-top:50px;">
 					<h1 style="font-size: 30px;">商品編號: ${product.product_id}</h1>
@@ -600,7 +672,6 @@ font-size:20px;
 					</form>
 				</div>
 			</div>
-
 			<!-- =============================================Dataisl=================================================================		 -->
 	       <div class="right">
 				<form>
