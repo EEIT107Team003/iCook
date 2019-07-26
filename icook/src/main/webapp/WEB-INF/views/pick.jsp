@@ -74,33 +74,59 @@
 	<div id="colorlib-page">
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
-			<nav id="colorlib-main-menu" role="navigation">
-				<ul>
-					<li class="colorlib-active"><a
-						href="${ pageContext.request.contextPath }">首頁&nbsp;<span
-							class="glyphicon glyphicon-globe"></span></a></li>
-					<li><a
-						href="${ pageContext.request.contextPath }/forum/newPost">發表文章&nbsp;
-							<span class="glyphicon glyphicon-pencil"></span>
-					</a></li>
-					<li><a href="${ pageContext.request.contextPath }/icookMenu">食譜&nbsp;
-							<span class="glyphicon glyphicon-list-alt"></span>
-					</a></li>
-					<li><a
-						href="${ pageContext.request.contextPath }/A_articlemainpage">生活誌&nbsp;
-							<span class="glyphicon glyphicon-camera"></span>
-					</a></li>
-					<c:if test="${pageContext.request.userPrincipal.name==null}">	
-					<li><a href="${ pageContext.request.contextPath }/icookLogin">會員專區&nbsp; <span class="glyphicon glyphicon-user"></span></a></li>
-					</c:if>
-					<c:if test="${pageContext.request.userPrincipal.name!=null}">
-					<li><a href="#" onclick="logout()">會員登出&nbsp; <span class="glyphicon glyphicon-user"></span></a></li>					
-					</c:if>
-					</a></li>
-					<li><a href="${ pageContext.request.contextPath }/forum">討論區首頁&nbsp;
-							<span class="glyphicon glyphicon-user"></span>
-					</a></li>
-				</ul>
+			<nav id="colorlib-main-menu" role="navigation"
+				style="text-align: justify;">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-3"></div>
+						<div class="col-sm-9">
+							<ul>
+								<li><h3
+										style="margin-bottom: 30px;">
+										<span class="glyphicon glyphicon-globe"></span><a
+											href="${ pageContext.request.contextPath }">&nbsp;&nbsp;首頁</a>
+									</h3></li>
+								<li><h3 style="margin-bottom: 30px;">
+										<span class="glyphicon glyphicon-pencil"></span><a
+											href="${ pageContext.request.contextPath }/forum/newPost">&nbsp;&nbsp;發表文章
+										</a>
+										</h3></li>
+								<li><h3 style="margin-bottom: 30px;">
+										<span class="glyphicon glyphicon-list-alt"></span><a
+											href="${ pageContext.request.contextPath }/icookMenu">&nbsp;&nbsp;食譜
+										</a>
+										</h3></li>
+								<li><h3 style="margin-bottom: 30px;">
+										<span class="glyphicon glyphicon-camera"></span><a
+											href="${ pageContext.request.contextPath }/A_articlemainpage">&nbsp;&nbsp;生活誌</a>
+										</h3></li>
+								<li class="colorlib-active"><h3 style="margin-bottom: 30px;">
+										<span class="glyphicon glyphicon-hand-left"></span><a
+											href="${ pageContext.request.contextPath }/forum/overview">&nbsp;&nbsp;討論區首頁</a>
+										</h3></li>
+								<c:if test="${pageContext.request.userPrincipal.name==null}">
+									<li><h3 style="margin-bottom: 30px;">
+											<span class="glyphicon glyphicon-user"></span><a
+												href="${ pageContext.request.contextPath }/icookLogin">&nbsp;&nbsp;會員專區
+											</a>
+											</h3></li>
+								</c:if>
+								<c:if test="${pageContext.request.userPrincipal.name!=null}">
+									<li><h3 style="margin-bottom: 30px;">
+											<span class="glyphicon glyphicon-user"></span><a href="#"
+												onclick="logout()">&nbsp;&nbsp;會員登出 </a>
+											</h3></li>
+								</c:if>
+								<li style="display: none;" id="showchat"><h3
+										style="margin-bottom: 30px;">
+										<span class="glyphicon glyphicon-bullhorn"></span><a href="#"
+											id="chatroom" style="color: red;">&nbsp;&nbsp;聊天室 </a>
+										</h3></li>
+							</ul>
+						</div>
+						
+					</div>
+				</div>
 			</nav>
 			<script>
 				function logout(){
@@ -292,7 +318,7 @@
 									if(memberId==AmemberId){										
 // 										$("#btnrow${post.article_id}").append(("<a href='${ pageContext.request.contextPath }/forum/reply?harticle_id=${ post.harticle_id }' class='btn btn-outline-info btn-sm'>回覆</a>"))
 										$("#btnrow${post.article_id}").append(("<a href='${ pageContext.request.contextPath }/forum/edit?harticle_id=${ post.harticle_id }&article_id=${ post.article_id }'role='button' class='btn btn-outline-info btn-sm'>編輯</a>"))
-										$("#btnrow${post.article_id}").append(("<input type='button' class='btn btn-outline-danger btn-sm'  onclick='deleteArticle()' style='float:right;'  value='刪除'/>"))										
+										$("#btnrow${post.article_id}").append(("<input type='button' class='btn btn-outline-danger btn-sm'  onclick='deleteArticle${ post.article_id }()' style='float:right;'  value='刪除'/>"))										
 									} 
 									if(memberId != null){
 										$("#btnrow${post.article_id}").append(("<button id='likebtn${post.article_id}' class='btn btn-outline-success my-2 my-sm-0 btn-sm' value='${ post.article_id }' style='float: left'>${ post.likes }Like</button>"))
@@ -308,9 +334,10 @@
 								}
 							})
 						
+
 						
 							
-							function deleteArticle(){
+							function deleteArticle${ post.article_id }(){
 										let isDelete = confirm("確定刪除？")
 										if(isDelete){
 											window.location.replace("${ pageContext.request.contextPath }/forum/delete?harticle_id=${ post.harticle_id }&article_id=${ post.article_id }");
@@ -337,36 +364,35 @@
 								</form>
 							</div>
 							<div class="sidebar-box ftco-animate">
-								<h3 class="sidebar-heading">Categories</h3>
+								<h3 class="sidebar-heading">文章分類</h3>
 								<ul class="categories">
-									<li><a
-										href="${ pageContext.request.contextPath }/forum/overview">全部
-											<span>(6)</span>
-									</a></li>
-									<li><a
+									<li><h5><a
+										href="${ pageContext.request.contextPath }/forum/overview">全部											
+									</a></h5></li>
+									<li><h5><a
 										href="${ pageContext.request.contextPath }/forum/query?category=問題">問題
-											<span>(8)</span>
-									</a></li>
-									<li><a
+											
+									</a></h5></li>
+									<li><h5><a
 										href="${ pageContext.request.contextPath }/forum/query?category=閒聊">閒聊
-											<span>(2)</span>
-									</a></li>
-									<li><a
+											
+									</a></h5></li>
+									<li><h5><a
 										href="${ pageContext.request.contextPath }/forum/query?category=心得">心得
-											<span>(2)</span>
-									</a></li>
-									<li><a
+											
+									</a></h5></li>
+									<li><h5><a
 										href="${ pageContext.request.contextPath }/forum/query?category=自介">自介
-											<span>(7)</span>
-									</a></li>
-									<li><a
+											
+									</a></h5></li>
+									<li><h5><a
 										href="${ pageContext.request.contextPath }/forum/query?category=食材">食材
-											<span>(7)</span>
-									</a></li>
-									<li><a
+											
+									</a></h5></li>
+									<li><h5><a
 										href="${ pageContext.request.contextPath }/forum/query?category=器具">器具
-											<span>(7)</span>
-									</a></li>
+											
+									</a></h5></li>
 								</ul>
 							</div>
 
@@ -403,12 +429,7 @@
 
 
 
-							<div class="sidebar-box ftco-animate">
-								<h3 class="sidebar-heading">Paragraph</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-									Ducimus itaque, autem necessitatibus voluptate quod mollitia
-									delectus aut.</p>
-							</div>
+							
 						</div>
 						<!-- END COL -->
 					</div>
@@ -452,3 +473,4 @@
 
 </body>
 </html>
+

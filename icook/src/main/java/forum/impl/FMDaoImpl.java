@@ -57,7 +57,7 @@ public class FMDaoImpl implements IFMDao {
 		String hql = "select count (harticle_id) from ForumMainBean where harticle_id = :harticle_id";
 		Integer replies = ((Number) session.createQuery(hql).setParameter("harticle_id", harticle_id).uniqueResult())
 				.intValue();
-		;
+		
 		ForumMainBean headFmb = session.get(ForumMainBean.class, harticle_id);
 		headFmb.setReplies(replies - 1);
 		session.save(headFmb);
@@ -169,6 +169,7 @@ public class FMDaoImpl implements IFMDao {
 		return fmbList;
 	}
 
+	//預計修改程式
 	@Override
 	public Integer like(Integer article_id, MemberBean memberBean) {
 		Session session = factory.getCurrentSession();
@@ -181,6 +182,8 @@ public class FMDaoImpl implements IFMDao {
 		System.out.println(fmb.getLikes());
 		return fmb.getLikes();
 	}
+	
+	
 	
 	@SuppressWarnings("unchecked")
 	@Override

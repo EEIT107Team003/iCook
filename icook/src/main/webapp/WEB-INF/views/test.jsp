@@ -115,27 +115,20 @@
 	integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
 	crossorigin="anonymous"></script>
 	
-	<c:if test="${pageContext.request.userPrincipal.name!=null}">
-					<a href="${ pageContext.request.contextPath }/index2" data-toggle="modal" data-target="#logout">會員登出&nbsp; <span class="glyphicon glyphicon-user"></span></a>
-					</c:if>
-	<div class="modal fade" id="logout" tabindex="-1" role="dialog"
-			aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header" style="border-bottom: 1px solid;">
-						<h4 class="modal-title" id="myModalLabel" style="float: left">您即將登出享食天堂</h4>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-hidden="true">×</button>
-					</div>
-					<div class="modal-body" style="width: 100%">
-						<form method="post" action="perform_logout">
-							<button type="submit">確定登出</button>
-						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
-					</div>
-				</div>
-			</div>
-		</div></body>
+	<div class="form-group">
+	<div class="input-group-prepend">
+		<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="category" value="0">分類</button>
+		<input type="hidden" id="category2" name="category" value="" name="category" />
+		<input type="text" class="form-control" placeholder="TOPIC" name="title" min="1" max="25" required="required"  aria-label="Text input with dropdown button"/>
+		<div class="dropdown-menu">
+			<a class="dropdown-item" id="1">問題</a> 
+			<a class="dropdown-item" id="2">閒聊</a> 
+			<a class="dropdown-item" id="3">心得</a> 
+			<a class="dropdown-item" id="4">食材</a> 
+			<a class="dropdown-item" id="5">器具</a>
+			<a class="dropdown-item" id="6">自介</a>
+		</div>
+	</div>
+</div>
+</body>
 </html>
