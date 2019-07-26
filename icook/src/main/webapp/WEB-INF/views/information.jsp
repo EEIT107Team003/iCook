@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -154,17 +156,19 @@ li {
 
 									<li><a href="user">會員專區 </a>
 										<ul>
-											<c:if test="${pageContext.request.userPrincipal.name==null}">
+											<sec:authorize access="!isAuthenticated()">
 												<li><a href="icookLogin">會員登入</a></li>
 												<li><a href="icookRegister">會員註冊</a></li>
-											</c:if>
-											<c:if test="${pageContext.request.userPrincipal.name!=null}">
+											</sec:authorize>
+											<sec:authorize access="isAuthenticated()">
 												<li><a href="index2" data-toggle="modal"
 													data-target="#logout">會員登出</a></li>
-											</c:if>
+											</sec:authorize>
 											<li><a href="checkOrders">查看訂單</a></li>
 											<li><a href="icookAddRecipe">新增食譜</a></li>
-											<li><a href="backStage">後台</a></li>
+											<sec:authorize access="hasRole('ADMIN')">
+												<li><a href="productTable">後台</a></li>
+											</sec:authorize>
 										</ul></li>
 								</ul>
 							</nav>
@@ -239,11 +243,11 @@ li {
 										<script type="text/javascript">
 											
 										</script>
-<!-- 										<th><button type='button' class="btn btn-danger" -->
-<%-- 												id='${cart.value.productBean.product_id}' --%>
-<!-- 												onclick='deleteAll()'> -->
-<!-- 												<i class="fas fa-trash"></i>刪除所有 -->
-<!-- 											</button></th> -->
+										<!-- 										<th><button type='button' class="btn btn-danger" -->
+										<%-- 												id='${cart.value.productBean.product_id}' --%>
+										<!-- 												onclick='deleteAll()'> -->
+										<!-- 												<i class="fas fa-trash"></i>刪除所有 -->
+										<!-- 											</button></th> -->
 									</c:otherwise>
 								</c:choose>
 								<c:set var="contains" value="no" />
@@ -257,11 +261,11 @@ li {
 									<td>${cart.value.quantity}</td>
 									<td>${cart.value.productBean.price}</td>
 									<td>${cart.value.subtotal}</td>
-<!-- 									<td><button type='button' class="btn btn-danger" -->
-<%-- 											id='${cart.value.productBean.product_id}' --%>
-<!-- 											onclick='deleId(this)'> -->
-<!-- 											<i class="fas fa-trash"></i>刪除 -->
-<!-- 										</button></td> -->
+									<!-- 									<td><button type='button' class="btn btn-danger" -->
+									<%-- 											id='${cart.value.productBean.product_id}' --%>
+									<!-- 											onclick='deleId(this)'> -->
+									<!-- 											<i class="fas fa-trash"></i>刪除 -->
+									<!-- 										</button></td> -->
 								</tr>
 								<c:set value="${sum + cart.value.subtotal}" var='sum' />
 							</c:forEach>
@@ -274,8 +278,8 @@ li {
 										合計:
 										<c:out value="${sum}" />
 									</h5></th>
-<!-- 								<th></th> -->
-<!-- 								<th></th> -->
+								<!-- 								<th></th> -->
+								<!-- 								<th></th> -->
 							</tr>
 						</table>
 						<h1>請輸入收件人資訊</h1>

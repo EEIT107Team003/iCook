@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -129,12 +131,21 @@ td {
 											<li class="with_ul current"><a href="cartPage">購物車</a></li>
 										</ul></li>
 
-									<li><a href="icookLogin">會員專區</a>
+									<li><a href="user">會員專區 </a>
 										<ul>
-											<li><a href="icookLogin">會員登入</a></li>
+											<sec:authorize access="!isAuthenticated()">
+												<li><a href="icookLogin">會員登入</a></li>
+												<li><a href="icookRegister">會員註冊</a></li>
+											</sec:authorize>
+											<sec:authorize access="isAuthenticated()">
+												<li><a href="index2" data-toggle="modal"
+													data-target="#logout">會員登出</a></li>
+											</sec:authorize>
 											<li><a href="checkOrders">查看訂單</a></li>
-											<li><a href="#">會員登出</a></li>
-											<li><a href="#">新增食譜</a></li>
+											<li><a href="icookAddRecipe">新增食譜</a></li>
+											<sec:authorize access="hasRole('ADMIN')">
+												<li><a href="productTable">後台</a></li>
+											</sec:authorize>
 										</ul></li>
 								</ul>
 							</nav>
