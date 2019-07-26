@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html>
@@ -13,8 +15,8 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	
-	<link rel="stylesheet"
+
+<link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
 	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
 	crossorigin="anonymous">
@@ -52,8 +54,8 @@
 	href="${pageContext.request.contextPath}/article/acss/style.css">
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/article/ckeditor/ckeditor.js"></script>
-	
-	<!-- 套版使用 -->
+
+<!-- 套版使用 -->
 <link rel="icon" href="images/favicon.ico">
 <link rel="shortcut icon" href="images/favicon.ico" />
 <link rel="stylesheet" href="css/style.css">
@@ -62,249 +64,285 @@
 <link rel="stylesheet" href="css/responsive.css" type="text/css"
 	media="screen">
 <link rel="stylesheet" href="css/prettyPhoto.css">
-	
-	
-	
-	
+
+
+
+
 </head>
 <body>
 	<header>
-		<div class="zerogrid">
-			<div class="col-full">
-				<div class="wrap-col">
-					<h1>
-<a  style="height:200px" href="${pageContext.request.contextPath}/index2"><img src="${pageContext.request.contextPath}/images/logo.png" style="width: 200px ;right: 200px ;border-radius: 50%;" alt="EXTERIOR"></a>					</h1>
+			<div class="zerogrid">
+				<div class="col-full">
+					<div class="wrap-col">
+						<h1>
+										
+							<c:choose>
+							
+							<c:when test="${pageContext.request.userPrincipal.name == 'aa'||pageContext.request.userPrincipal.name =='admin'}">
+							
+							<a style="height: 200px"
+							
+								href="A_insert"><img
+								src="${pageContext.request.contextPath}/images/logo.png"
+								style="width: 200px; right: 200px; border-radius: 50%;"
+								alt="EXTERIOR"></a>					
+							</c:when>
+							<c:otherwise>
+							
+							
+							<a style="height: 200px"
+							
+								href="${pageContext.request.contextPath}/index2"><img
+								src="${pageContext.request.contextPath}/images/logo.png"
+								style="width: 200px; right: 200px; border-radius: 50%;"
+								alt="EXTERIOR"></a>
+							
+							
+							</c:otherwise>
+							
+							
+							
+							</c:choose>
+										
+						</h1>
 
-					<div class="menu_block">
-						<nav>
-							<ul class="sf-menu" style="margin-top: 55px">
-								<li><a href="index2">ICook</a></li>
-								<li><a href="icookAboutUS">關於我們</a>
-									<ul>
-										<li class="with_ul current"><a href="icookContact">聯繫我們</a></li>
-									</ul></li>
-								<li><a href="icookMenu">查看食譜</a>
-									<ul>
-
-										<li><a href="#">cat1</a></li>
-										<li><a href="#">cat2</a></li>
-										<li><a href="#">cat3</a></li>
-									</ul>
-								<li><a href="icookLife">生活誌</a></li>
-								<li><a href="icookVideo">討論區</a></li>
-								<li><a href="icookProducts">市集</a>
-									<ul>
-										<li><a href="cartPage">購物車</a></li>
-									</ul></li>
-								<li><a href="A_findAll">文章區</a></li>
-								<li><a href="icookLogin">會員專區</a>
-									<ul>
-										<li><a href="icookLogin">會員登入</a></li>
-										<li><a href="checkOrders">查看訂單</a></li>
-										<li><a href="#">會員登出</a></li>
-										<li><a href="#">新增食譜</a></li>
+						<div class="menu_block">
+							<nav>
+								<ul class="sf-menu" style="padding-top: 55px">
+									<li><a href="index2">ICook</a></li>
+									<li><a href="icookAboutUS">關於我們</a>
+										<ul>
+											<li><a href="icookContact">聯繫我們</a></li>
 										</ul></li>
+									<li><a href="recipe/recipeIndex">查看食譜</a> <!--<ul>--> <!--<li><a href="#">cat1</a></li>-->
+										<!--<li><a href="#">cat2</a></li>--> <!--<li><a href="#">cat3</a></li>-->
+										<!--</ul>--></li>
+									<li><a href="icookLife">生活誌</a></li>
+									<li><a href="forum/overview">討論區</a></li>
+									<li><a href="A_articlemainpage">文章區</a></li>
 
-								<c:if
-									test="${pageContext.request.userPrincipal.name == 'aa'||pageContext.request.userPrincipal.name =='dd'}">
-									<li><a href="A_insert">新增一篇文章</a></li>
-								</c:if>
-							</ul>
+
+									<!-- 									<li><a href="products">市集</a> -->
+									<li><a href="products">市集</a>
+										<ul>
 
 
-						</nav>
+											<li><a href="cartPage">購物車</a></li>
+										</ul></li>
+									<%-- </c:if><c:if test="${pageContext.request.userPrincipal.name==null}"> --%>
+									<li><a href="user">會員專區 </a>
+										<ul>
+											<sec:authorize access="!isAuthenticated()">
+												<li><a href="icookLogin">會員登入</a></li>
+												<li><a href="icookRegister">會員註冊</a></li>
+											</sec:authorize>
+											<c:if test="${pageContext.request.userPrincipal.name!=null}">
+												<li><a href="index2" data-toggle="modal"
+													data-target="#logout">會員登出</a></li>
+											</c:if>
+											<li><a href="checkOrders">查看訂單</a></li>
+											<li><a href="icookAddRecipe">新增食譜</a></li>
+											<li><a href="productTable">後台</a></li>
+										</ul></li>
+								</ul>
+							</nav>
+							<div class="clear"></div>
+						</div>
 						<div class="clear"></div>
 					</div>
-					<div class="clear"></div>
 				</div>
 			</div>
-	</header>
+		</header>
 
 	<div style="background-color: white;">
 
 
-	<section class="hero-wrap hero-wrap-2"
-		style="background-image: url('article/aimages/bg_4.jpg');">
-		<div class="overlay"></div>
-		<div class="container">
-			<div
-				class="row no-gutters slider-text align-items-end justify-content-center">
-				<div class="col-md-9 ftco-animate pb-5 text-center">
-					<h1 class="mb-3 bread">Article Single</h1>
-					<p class="breadcrumbs">
-						<span class="mr-2"><a href="index.html">Home <i
-								class="ion-ios-arrow-forward"></i></a></span> <span>Article Single<i
-							class="ion-ios-arrow-forward"></i></span>
-					</p>
+		<section class="hero-wrap hero-wrap-2"
+			style="background-image: url('article/aimages/bg_4.jpg');">
+			<div class="overlay"></div>
+			<div class="container">
+				<div
+					class="row no-gutters slider-text align-items-end justify-content-center">
+					<div class="col-md-9 ftco-animate pb-5 text-center">
+						<h1 class="mb-3 bread">Article Single</h1>
+						<p class="breadcrumbs">
+							<span class="mr-2"><a href="index.html">Home <i
+									class="ion-ios-arrow-forward"></i></a></span> <span>Article Single<i
+								class="ion-ios-arrow-forward"></i></span>
+						</p>
+					</div>
 				</div>
 			</div>
-		</div>
-	</section>
+		</section>
 
-	<section class="ftco-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 order-lg-last ftco-animate">
-					<!--           title -->
-
-
-
-
-					<h2 class="mb-3">新增一篇文章</h2>
-
-					<form:form method="POST" modelAttribute="Articlebean"
-						class="bg-light p-5 contact-form" enctype="multipart/form-data">
-
-						<!-- 						<div class="form-group"> -->
-
-						<%-- 							<form:input path="article_date" type="text" class="form-control"  --%>
-						<%-- 								placeholder="日期(西元年-月份-日期)" /> --%>
-						<!-- 						</div> -->
-						<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.error_Article_date}</div>
-						<div class="form-group">
-							<form:input path="article_title" type="text" class="form-control"
-								placeholder="標題" />
-						</div>
-						<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.error_Article_title}</div>
-
-						<!-- 						<div class="form-group"> -->
-						<%-- 							<form:input path="article_author" type="text" --%>
-						<%-- 								class="form-control" placeholder="作者" /> --%>
-						<!-- 						</div> -->
-						<%-- 						<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.error_Article_author}</div> --%>
-
-						<div class="form-group">
-							<form:select path="article_status" class="form-control">
-								<option value="1">公開</option>
-								<option value="2">隱藏</option>
-								<option value="3">不開放留言</option>
-								<option value="4">限定會員</option>
-							</form:select>
-						</div>
-						<div class="form-group">
-							<form:select path="article_catergoary">
-								<option value="食安新聞">美食新聞</option>
-								<option value="廚具新聞">廚具新聞</option>
-								<option value="其他">其他</option>
-							</form:select>
-						</div>
-						<div class="form-group">
-							<form:input path="ArticleImage" type="file" class="form-control"
-								placeholder="上傳封面照片" />
-						</div>
-						<div class="form-group">
-							<form:textarea rows="100%" cols="100%" name="editor1"
-								path="article_content" id="editor1" />
-						</div>
-						<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.error_Article_content}</div>
-
-
-
-<!-- 						<div class="form-group"> -->
-
-
-<!-- 							<div id="msg-box" -->
-<!-- 								style="width: 500px; height: 400px; background: #eee; overflow: auto;"></div> -->
-<!-- 						</div> -->
+		<section class="ftco-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 order-lg-last ftco-animate">
+						<!--           title -->
 
 
 
 
+						<h2 class="mb-3">新增一篇文章</h2>
 
+						<form:form method="POST" modelAttribute="Articlebean"
+							class="bg-light p-5 contact-form" enctype="multipart/form-data">
 
+							<!-- 						<div class="form-group"> -->
 
-						<div class="form-group">
-							<input type="submit" value="Send Article" onclick="sendMsg();"
-								class="btn btn-primary py-3 px-5">
-						</div>
-
-
-					</form:form>
-
-
-				</div>
-				<!-- .col-md-8 -->
-				<div class="col-lg-4 sidebar pr-lg-5 ftco-animate">
-					<div class="sidebar-box">
-						<form action="#" class="search-form">
+							<%-- 							<form:input path="article_date" type="text" class="form-control"  --%>
+							<%-- 								placeholder="日期(西元年-月份-日期)" /> --%>
+							<!-- 						</div> -->
+							<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.error_Article_date}</div>
 							<div class="form-group">
-								<span class="icon icon-search"></span> <input type="text"
-									class="form-control" placeholder="Type a keyword and hit enter">
+								<form:input path="article_title" type="text"
+									class="form-control" placeholder="標題" />
 							</div>
-						</form>
-					</div>
-					<div class="sidebar-box ftco-animate">
-						<ul class="categories">
-							<h3 class="heading mb-4">Categories</h3>
-							<li><a href="#">Travel <span>(12)</span></a></li>
-							<li><a href="#">Tour <span>(22)</span></a></li>
-							<li><a href="#">Destination <span>(37)</span></a></li>
-							<li><a href="#">Drinks <span>(42)</span></a></li>
-							<li><a href="#">Foods <span>(14)</span></a></li>
-							<li><a href="#">Travel <span>(140)</span></a></li>
-						</ul>
-					</div>
+							<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.error_Article_title}</div>
 
-					<div class="sidebar-box ftco-animate">
-						news
-						<h3 class="heading mb-4">Recent Blog</h3>
+							<!-- 						<div class="form-group"> -->
+							<%-- 							<form:input path="article_author" type="text" --%>
+							<%-- 								class="form-control" placeholder="作者" /> --%>
+							<!-- 						</div> -->
+							<%-- 						<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.error_Article_author}</div> --%>
 
-						<c:forEach var='ArticleThree' items='${ArticleThrees}'>
-							<div class="block-21 mb-4 d-flex">
-								<a class="blog-img mr-4" href="<spring:url value='/article?article_num=${ArticleThree.article_num}' />">
-								<img width="100px" height="100px"  src="<c:url value='/getartPicture/${ArticleThree.article_num}'/>">
-									 </a>
-							
-							
-							
-							<div class="text">
-								<h3>
-									<a href="<spring:url value='/article?article_num=${ArticleThree.article_num}' />">${ArticleThree.article_title}
-										</a>
-								</h3>
-								<div class="meta">
-									<div>
-										<a href="#"><span class="icon-calendar"></span> 
-										${ArticleThree.article_date}	</a>
-									</div>
-									<div>
-										<a href="#"><span class="icon-person"></span> ${ArticleThree.article_member.nickname}</a>
-									</div>
+							<div class="form-group">
+								<form:select path="article_status" class="form-control">
+									<option value="1">公開</option>
+									<option value="2">隱藏</option>
 									
+								</form:select>
+							</div>
+							<div class="form-group">
+								<form:select path="article_catergoary">
+									<option value="美食新聞">美食新聞</option>
+									<option value="廚具新聞">廚具新聞</option>
+									<option value="其他">其他</option>
+								</form:select>
+							</div>
+							<div class="form-group">
+								<form:input path="ArticleImage" type="file" class="form-control"
+									placeholder="上傳封面照片" />
+							</div>
+							<div class="form-group">
+								<form:textarea rows="100%" cols="100%" name="editor1"
+									path="article_content" id="editor1" />
+							</div>
+							<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.error_Article_content}</div>
+
+
+
+							<!-- 						<div class="form-group"> -->
+
+
+							<!-- 							<div id="msg-box" -->
+							<!-- 								style="width: 500px; height: 400px; background: #eee; overflow: auto;"></div> -->
+							<!-- 						</div> -->
+
+
+
+
+
+
+
+							<div class="form-group">
+								<input type="submit" value="Send Article" onclick="sendMsg();"
+									class="btn btn-primary py-3 px-5">
+							</div>
+
+
+						</form:form>
+
+
+					</div>
+					<!-- .col-md-8 -->
+					<div class="col-lg-4 sidebar pr-lg-5 ftco-animate">
+						<div class="sidebar-box">
+							<form action="#" class="search-form">
+								<div class="form-group">
+									<span class="icon icon-search"></span> <input type="text"
+										class="form-control"
+										placeholder="Type a keyword and hit enter">
 								</div>
+							</form>
+						</div>
+						<div class="sidebar-box ftco-animate">
+							<ul class="categories">
+								<h3 class="heading mb-4">Categories</h3>
+								<li><a href="#">Travel <span>(12)</span></a></li>
+								<li><a href="#">Tour <span>(22)</span></a></li>
+								<li><a href="#">Destination <span>(37)</span></a></li>
+								<li><a href="#">Drinks <span>(42)</span></a></li>
+								<li><a href="#">Foods <span>(14)</span></a></li>
+								<li><a href="#">Travel <span>(140)</span></a></li>
+							</ul>
+						</div>
+
+						<div class="sidebar-box ftco-animate">
+							news
+							<h3 class="heading mb-4">Recent Blog</h3>
+
+							<c:forEach var='ArticleThree' items='${ArticleThrees}'>
+								<div class="block-21 mb-4 d-flex">
+									<a class="blog-img mr-4"
+										href="<spring:url value='/article?article_num=${ArticleThree.article_num}' />">
+										<img width="100px" height="100px"
+										src="<c:url value='/getartPicture/${ArticleThree.article_num}'/>">
+									</a>
+
+
+
+									<div class="text">
+										<h3>
+											<a
+												href="<spring:url value='/article?article_num=${ArticleThree.article_num}' />">${ArticleThree.article_title}
+											</a>
+										</h3>
+										<div class="meta">
+											<div>
+												<a href="#"><span class="icon-calendar"></span>
+													${ArticleThree.article_date} </a>
+											</div>
+											<div>
+												<a href="#"><span class="icon-person"></span>
+													${ArticleThree.article_member.nickname}</a>
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</c:forEach>
+
+
+
+						</div>
+
+						<div class="sidebar-box ftco-animate">
+							<h3 class="heading mb-4">Tag Cloud</h3>
+							<div class="tagcloud">
+								<a href="#" class="tag-cloud-link">dish</a> <a href="#"
+									class="tag-cloud-link">menu</a> <a href="#"
+									class="tag-cloud-link">food</a> <a href="#"
+									class="tag-cloud-link">sweet</a> <a href="#"
+									class="tag-cloud-link">tasty</a> <a href="#"
+									class="tag-cloud-link">delicious</a> <a href="#"
+									class="tag-cloud-link">desserts</a> <a href="#"
+									class="tag-cloud-link">drinks</a>
 							</div>
 						</div>
-						</c:forEach>
-						
-						
-						
-					</div>
 
-					<div class="sidebar-box ftco-animate">
-						<h3 class="heading mb-4">Tag Cloud</h3>
-						<div class="tagcloud">
-							<a href="#" class="tag-cloud-link">dish</a> <a href="#"
-								class="tag-cloud-link">menu</a> <a href="#"
-								class="tag-cloud-link">food</a> <a href="#"
-								class="tag-cloud-link">sweet</a> <a href="#"
-								class="tag-cloud-link">tasty</a> <a href="#"
-								class="tag-cloud-link">delicious</a> <a href="#"
-								class="tag-cloud-link">desserts</a> <a href="#"
-								class="tag-cloud-link">drinks</a>
+						<div class="sidebar-box ftco-animate">
+							<h3 class="heading mb-4">相關開發人員</h3>
+							<p>EEIT107 第三組</p>
 						</div>
 					</div>
 
-					<div class="sidebar-box ftco-animate">
-						<h3 class="heading mb-4">相關開發人員</h3>
-						<p>EEIT107 第三組</p>
-					</div>
 				</div>
-
 			</div>
-		</div>
-	</section>
-	<!-- .section -->
-</div>
+		</section>
+		<!-- .section -->
+	</div>
 	<section class="ftco-subscribe ftco-section bg-light">
 		<div class="overlay">
 			<div class="container">
@@ -464,7 +502,7 @@
 	function sendMsg() {
 		var msgToSend = newnew.value;
 		webSocket.send(msgToSend);
-		
+
 	}
 
 	webSocket.onmessage = function(message) {
@@ -519,13 +557,14 @@
 
 
 <script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
-		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-		integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-		crossorigin="anonymous"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/article/bootstrap-notify-master/bootstrap-notify.min.js"></script>
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+	integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+	integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+	crossorigin="anonymous"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/article/bootstrap-notify-master/bootstrap-notify.min.js"></script>
 
 </html>

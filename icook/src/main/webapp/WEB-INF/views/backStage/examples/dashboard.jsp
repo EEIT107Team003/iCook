@@ -75,6 +75,12 @@
                         </a>
                     </li>
                     <li>
+                        <a class="nav-link" href="report_forum">
+                            <i class="nc-icon nc-notes"></i>
+                            <p>檢舉文章管理</p>
+                        </a>
+                    </li>
+                    <li>
                         <a class="nav-link" href="adminCheckOrders">
                             <i class="nc-icon nc-paper-2"></i>
                             <p>XXXX</p>

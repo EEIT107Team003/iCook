@@ -119,13 +119,15 @@
 	color: #fff;
 	padding: 5px 10px 5px 12px;
 	width: 100%;
+	display:block;
 }
 
 .outgoing_msg {
 /* 	overflow: hidden; */
 	min-width:250px;
-	min-height:32px;
+	min-height:35px;
 	margin: 26px 0 26px;
+	clear:both;
 }
 
 .sent_msg {
@@ -150,23 +152,57 @@
 	<div id="colorlib-page">
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
-			<nav id="colorlib-main-menu" role="navigation">
-				<ul>
-					<li class="colorlib-active"><a
-						href="${ pageContext.request.contextPath }">首頁&nbsp;<span class="glyphicon glyphicon-globe"></span></a></li>
-					<li><a
-						href="${ pageContext.request.contextPath }/forum/newPost">發表文章&nbsp; <span class="glyphicon glyphicon-pencil"></span></a></li>
-					<li><a href="${ pageContext.request.contextPath }/icookMenu">食譜&nbsp; <span class="glyphicon glyphicon-list-alt"></span></a></li>
-					<li><a
-						href="${ pageContext.request.contextPath }/A_articlemainpage">生活誌&nbsp; <span class="glyphicon glyphicon-camera"></span></a></li>
-					<c:if test="${pageContext.request.userPrincipal.name==null}">	
-					<li><a href="${ pageContext.request.contextPath }/icookLogin">會員專區&nbsp; <span class="glyphicon glyphicon-user"></span></a></li>
-					</c:if>
-					<c:if test="${pageContext.request.userPrincipal.name!=null}">
-					<li><a href="#" onclick="logout()">會員登出&nbsp; <span class="glyphicon glyphicon-user"></span></a></li>					
-					</c:if>
-					<li style="display:none;" id="showchat"><a href="#" id="chatroom" style="color:red;">聊天室 <span class="glyphicon glyphicon-bullhorn"></span></a></li>								
-				</ul>
+			<nav id="colorlib-main-menu" role="navigation"
+				style="text-align: justify;">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-1"></div>
+						<div class="col-sm-3">
+							<ul>
+								<li class="colorlib-active"><h3
+										style="margin-bottom: 30px;">
+										<span class="glyphicon glyphicon-globe"></span><a
+											href="${ pageContext.request.contextPath }">&nbsp;&nbsp;首頁</a>
+									</h3></li>
+								<li><h3 style="margin-bottom: 30px;">
+										<span class="glyphicon glyphicon-pencil"></span><a
+											href="${ pageContext.request.contextPath }/forum/newPost">&nbsp;&nbsp;發表文章
+										</a>
+										</h3></li>
+								<li><h3 style="margin-bottom: 30px;">
+										<span class="glyphicon glyphicon-list-alt"></span><a
+											href="${ pageContext.request.contextPath }/icookMenu">&nbsp;&nbsp;食譜
+										</a>
+										</h3></li>
+								<li><h3 style="margin-bottom: 30px;">
+										<span class="glyphicon glyphicon-camera"></span><a
+											href="${ pageContext.request.contextPath }/A_articlemainpage">&nbsp;&nbsp;生活誌</a>
+										</h3></li>
+								
+								<c:if test="${pageContext.request.userPrincipal.name==null}">
+									<li><h3 style="margin-bottom: 30px;">
+											<span class="glyphicon glyphicon-user"></span><a
+												href="${ pageContext.request.contextPath }/icookLogin">&nbsp;&nbsp;會員專區
+											</a>
+											</h3></li>
+								</c:if>
+								<c:if test="${pageContext.request.userPrincipal.name!=null}">
+									<li><h3 style="margin-bottom: 30px;">
+											<span class="glyphicon glyphicon-user"></span><a href="#"
+												onclick="logout()">&nbsp;&nbsp;會員登出 </a>
+											</h3></li>
+								</c:if>
+								<li style="display: none;" id="showchat"><h3
+										style="margin-bottom: 30px;">
+										<span class="glyphicon glyphicon-bullhorn"></span><a href="#"
+											id="chatroom" style="color: red;">&nbsp;&nbsp;聊天室 </a>
+										</h3></li>
+							</ul>
+						</div>
+						<div class="col-sm-4"></div>
+						<div class="col-sm-4"></div>
+					</div>
+				</div>
 			</nav>
 			<script>
 				function logout(){
@@ -282,34 +318,33 @@
 							<div class="sidebar-box ftco-animate">
 								<h3 class="sidebar-heading">文章分類</h3>
 								<ul class="categories">
-									<li><a
-										href="${ pageContext.request.contextPath }/forum/overview">全部
-											<span>(6)</span>
-									</a></li>
-									<li><a
+									<li><h4><a
+										href="${ pageContext.request.contextPath }/forum/overview">全部											
+									</a></h4></li>
+									<li><h4><a
 										href="${ pageContext.request.contextPath }/forum/query?category=問題">問題
-											<span>(8)</span>
-									</a></li>
-									<li><a
+											
+									</a></h4></li>
+									<li><h4><a
 										href="${ pageContext.request.contextPath }/forum/query?category=閒聊">閒聊
-											<span>(2)</span>
-									</a></li>
-									<li><a
+											
+									</a></h4></li>
+									<li><h4><a
 										href="${ pageContext.request.contextPath }/forum/query?category=心得">心得
-											<span>(2)</span>
-									</a></li>
-									<li><a
+											
+									</a></h4></li>
+									<li><h4><a
 										href="${ pageContext.request.contextPath }/forum/query?category=自介">自介
-											<span>(7)</span>
-									</a></li>
-									<li><a
+											
+									</a></h4></li>
+									<li><h4><a
 										href="${ pageContext.request.contextPath }/forum/query?category=食材">食材
-											<span>(7)</span>
-									</a></li>
-									<li><a
+											
+									</a></h4></li>
+									<li><h4><a
 										href="${ pageContext.request.contextPath }/forum/query?category=器具">器具
-											<span>(7)</span>
-									</a></li>
+											
+									</a></h4></li>
 								</ul>
 							</div>
 
@@ -342,20 +377,7 @@
 
 
 
-								<div class="sidebar-box subs-wrap img py-4"
-									style="background-image: url();">
-									<div class="overlay"></div>
-									<h3 class="mb-4 sidebar-heading">Newsletter</h3>
-									<p class="mb-4">Far far away, behind the word mountains,
-										far from the countries Vokalia</p>
-									<form action="#" class="subscribe-form">
-										<div class="form-group">
-											<input type="text" class="form-control"
-												placeholder="Email Address"> <input type="submit"
-												value="Subscribe" class="mt-2 btn btn-white submit">
-										</div>
-									</form>
-								</div>
+							
 
 
 
@@ -470,33 +492,18 @@
 	<c:forEach var="user" items="${ LoginOK }">	
 		<input type="hidden" id="from" value=" ${user.username}" />
 		<script>
+		
 		var stompClient = null;
-		//var color = '';
 
-
-
-		function setConnected(isConnected) {
-			console.log(isConnected);
-		    document.getElementById('connect').disabled = isConnected;
-		    document.getElementById('disconnect').disabled = !isConnected;
-		    document.getElementById('conversationDiv').style.visibility = isConnected ? 'visible' : 'hidden';
-		    document.getElementById('from').setAttribute('type', isConnected ? 'hidden' : 'text');
-		    document.getElementById('color').style.visibility = !isConnected ? 'visible' : 'hidden';
-		    document.getElementById('response').innerHTML = '';
-		}
 		$(document).ready(
 				
 		function connect() {
 		    var socket = new SockJS('/icook/forum/overview/chat');
 		    stompClient = Stomp.over(socket);
-		    var colorEl = document.getElementById("color");
-
 
 		    stompClient.connect({}, function(frame) {
 
-
 		        console.log('Connected: ' + frame);
-
 		        serviceMessage('跳進了伺服器。 他是袋鼠！！');
 
 		        stompClient.subscribe('/forum/overview/topic/messages', function(messageOutput) {
@@ -527,6 +534,7 @@
 		}
 
 		function showMessageOutput(messageOutput) {
+			//製造回應元素
 		    var response = document.getElementById('response');
 		    var p = document.createElement('p');
 		    if(messageOutput.from != document.getElementById('from').value){
@@ -547,33 +555,7 @@
 			}
 		    
 		    
-		    
-		    
-		    //製造回應元素
-		    
 
-		    if (messageOutput.from !== 'service msg') {
-		        p.appendChild(document.createTextNode(messageOutput.from + ": " + messageOutput.text + " (" + messageOutput.time + ")"));
-
-
-		    } else {
-
-		        var props = messageOutput.text.split('|');
-		        var name = props[0];
-		        var msg = props[1];
-		        var textMsg = '';
-
-		        switch (msg) {
-		            case 'leave':
-		                textMsg = name + " " + " leave the chat";
-		                p.appendChild(document.createTextNode(messageOutput.from + ": " + textMsg + " (" + messageOutput.time + ")"));
-		                break;
-		            case 'joined':
-		                textMsg = name + " " + " joined the chat";
-		                p.appendChild(document.createTextNode(messageOutput.from + ": " + textMsg + " (" + messageOutput.time + ")"));
-		                break;
-		        }
-		    }
 		    //塞入回應元素
 		    var user = document.getElementById('from').value;
 		    if(messageOutput.from != user){
@@ -590,6 +572,7 @@
 		    	$("div#div2").css("float","left");		    	
 		    	$("div#div2").css("word-break","break-all")
 		    	$("span#span1").attr("class","time_date");
+		    	$("span#span1").css("display","block");
 
 			} else {
 				$("#response").append(div4);
@@ -607,6 +590,7 @@
 				$("p#p2").css("word-break","break-all")
 				$("span#span2").attr("class","time_date");
 				$("span#span2").css("text-align","right");
+				$("span#span2").css("display","block");
 //  				$("div#div5").append("<br>");
 			}
 		    

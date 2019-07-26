@@ -78,7 +78,7 @@ public class ReportBean implements Serializable {
 	}
 	
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "article_id")
 	public ForumMainBean getFmb() {
 		return fmb;

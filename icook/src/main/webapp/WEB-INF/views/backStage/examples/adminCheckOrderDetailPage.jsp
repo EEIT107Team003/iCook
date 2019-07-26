@@ -145,6 +145,12 @@ td {
 						href="adminCheckOrders"> <i class="nc-icon nc-notes"></i>
 							<p>訂單管理</p>
 					</a></li>
+					<li>
+                        <a class="nav-link" href="report_forum">
+                            <i class="nc-icon nc-notes"></i>
+                            <p>檢舉文章管理</p>
+                        </a>
+                    </li>
 					<li><a class="nav-link" href="backStageTypography"> <i
 							class="nc-icon nc-paper-2"></i>
 							<p>Typography</p>

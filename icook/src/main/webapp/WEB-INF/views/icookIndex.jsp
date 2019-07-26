@@ -4,7 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -111,9 +112,9 @@
 </head>
 
 <body style="background-color: #55a237">
-<%-- <sec:authorize access="hasRole('MEMBER')"> --%>
-<!--     <h1>0000</h1> -->
-<%-- </sec:authorize> --%>
+	<%-- <sec:authorize access="hasRole('MEMBER')"> --%>
+	<!--     <h1>0000</h1> -->
+	<%-- </sec:authorize> --%>
 
 	<div class="main">
 		<!--==============================header=================================-->
@@ -131,39 +132,31 @@
 
 						<div class="menu_block">
 							<nav>
-								<ul class="sf-menu"  style="padding-top:55px">
+								<ul class="sf-menu" style="padding-top: 55px">
 									<li><a href="index2">ICook</a></li>
 									<li><a href="icookAboutUS">關於我們</a>
 										<ul>
 											<li><a href="icookContact">聯繫我們</a></li>
 										</ul></li>
-									<li>
-										<a href="recipe/recipeIndex">查看食譜</a>
-										<!--<ul>-->
-											<!--<li><a href="#">cat1</a></li>-->
-											<!--<li><a href="#">cat2</a></li>-->
-											<!--<li><a href="#">cat3</a></li>-->
-										<!--</ul>-->
-									</li>
+									<li><a href="recipe/recipeIndex">查看食譜</a> <!--<ul>--> <!--<li><a href="#">cat1</a></li>-->
+										<!--<li><a href="#">cat2</a></li>--> <!--<li><a href="#">cat3</a></li>-->
+										<!--</ul>--></li>
 									<li><a href="icookLife">生活誌</a></li>
 									<li><a href="forum/overview">討論區</a></li>
-									<li><a href="A_articlemainpage">文章區</a>
-										<ul>
-											<li><a href="A_article">test</a></li>
-
-										</ul></li>
+									<li><a href="A_articlemainpage">文章區</a></li>
 
 
-<!-- 									<li><a href="products">市集</a> -->
+									<!-- 									<li><a href="products">市集</a> -->
 									<li><a href="products">市集</a>
 										<ul>
 
 
 											<li><a href="cartPage">購物車</a></li>
 										</ul></li>
-<%-- </c:if><c:if test="${pageContext.request.userPrincipal.name==null}"> --%>
+									<%-- </c:if><c:if test="${pageContext.request.userPrincipal.name==null}"> --%>
 									<li><a href="user">會員專區 </a>
-										<ul><sec:authorize access="!isAuthenticated()">
+										<ul>
+											<sec:authorize access="!isAuthenticated()">
 												<li><a href="icookLogin">會員登入</a></li>
 												<li><a href="icookRegister">會員註冊</a></li>
 											</sec:authorize>
@@ -468,49 +461,50 @@
 		<script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540'
 			language='JavaScript' charset='gb2312'></script>
 	</div>
-	
-<script>
-	var webSocket = new WebSocket("ws:/localhost:8080/icook/ArtBroadcast");
-	var newnew = "有一則新消息"
-	function sendMsg() {
-		var msgToSend = newnew.value;
-		webSocket.send(msgToSend);
-		
-	}
-	webSocket.onmessage = function(message) {
-		$.notify({
-			title : '<strong>新消息</strong>',
-			icon : 'glyphicon glyphicon-star',
-			message : "有一篇文章發表摟，快去看看!"
-		}, {
-			type : 'info',
-			animate : {
-				enter : 'animated fadeInUp',
-				exit : 'animated fadeOutRight'
-			},
-			placement : {
-				from : "bottom",
-				align : "right"
-			},
-			offset : 20,
-			spacing : 10,
-			z_index : 1031,
-		});
-	}
-	webSocket.onopen = function() {
-		
-	};
-	webSocket.onclose = function() {
-		console.log("connection closed");
-	};
-	webSocket.onerror = function wserror(message) {
-		console.log("error: " + message);
-	}
-</script>
+
+	<script>
+		var webSocket = new WebSocket("ws:/localhost:8080/icook/ArtBroadcast");
+		var newnew = "有一則新消息"
+		function sendMsg() {
+			var msgToSend = newnew.value;
+			webSocket.send(msgToSend);
+
+		}
+		webSocket.onmessage = function(message) {
+			$.notify({
+				title : '<strong>新消息</strong>',
+				icon : 'glyphicon glyphicon-star',
+				message : "有一篇文章發表摟，快去看看!"
+			}, {
+				type : 'info',
+				animate : {
+					enter : 'animated fadeInUp',
+					exit : 'animated fadeOutRight'
+				},
+				placement : {
+					from : "bottom",
+					align : "right"
+				},
+				offset : 20,
+				spacing : 10,
+				z_index : 1031,
+			});
+		}
+		webSocket.onopen = function() {
+
+		};
+		webSocket.onclose = function() {
+			console.log("connection closed");
+		};
+		webSocket.onerror = function wserror(message) {
+			console.log("error: " + message);
+		}
+	</script>
 
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/article/bootstrap-notify-master/bootstrap-notify.min.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/article/bootstrap-notify-master/bootstrap-notify.min.js"></script>
 
-	
+
 </body>
 </html>
