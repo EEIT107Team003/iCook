@@ -4,8 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="sec"
-	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -155,8 +154,7 @@
 										</ul></li>
 									<%-- </c:if><c:if test="${pageContext.request.userPrincipal.name==null}"> --%>
 									<li><a href="user">會員專區 </a>
-										<ul>
-											<sec:authorize access="!isAuthenticated()">
+										<ul><sec:authorize access="!isAuthenticated()">
 												<li><a href="icookLogin">會員登入</a></li>
 												<li><a href="icookRegister">會員註冊</a></li>
 											</sec:authorize>
@@ -166,8 +164,11 @@
 											</c:if>
 											<li><a href="checkOrders">查看訂單</a></li>
 											<li><a href="icookAddRecipe">新增食譜</a></li>
-											<li><a href="productTable">後台</a></li>
-										</ul></li>
+											<sec:authorize access="hasRole('ADMIN')">
+												<li><a href="productTable">後台</a></li>
+											</sec:authorize>
+										</ul>
+									</li>
 								</ul>
 							</nav>
 							<div class="clear"></div>

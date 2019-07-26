@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,31 +46,33 @@
 	height: 175px;
 	border-radius: 50%;
 	border: 2px solid black;
-/* 	margin-top: 10px; */
-/* 	float: right; */
-/* 	float: left; */
-
 }
 
 .member_info {
 	width: 20%;
-	height: 500px;
-	background-color: yellow;
+	height: 350px;
 	float: left;
-	background: #45484d;
-	background: -moz-linear-gradient(left, #45484d 0%, #000000 100%);
-	background: -webkit-linear-gradient(left, #45484d 0%,#000000 100%);
-	background: linear-gradient(to right, #45484d 0%,#000000 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=1 );
+	background: #398235; /* Old browsers */
+	background: -moz-linear-gradient(left, #398235 1%, #8ab66b 78%, #c9de96 96%, #c9de96 96%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left, #398235 1%,#8ab66b 78%,#c9de96 96%,#c9de96 96%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right, #398235 1%,#8ab66b 78%,#c9de96 96%,#c9de96 96%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#398235', endColorstr='#c9de96',GradientType=1 ); /* IE6-9 */
 }
 
 .member_summary{
-	margin: 30px;
+	margin_top: 30px;
+	margin_left: 30px;
+	margin_right: 30px;
 	text-align: center;
-	height: 40%;
 	background-color: rgb(242, 255, 213,1);
     border: 2px dashed black;
     border-radius: 10px;
+/* 	height: 40%; */
+}
+.member_cover_img{
+	height: 350px ;
+	width: 933px ;
+ 	float: left;   
 }
 .change_cover {
 	float: right;
@@ -115,7 +118,7 @@
 	margin-top: 5px;
 	height: 30px;
 	font-size: 25px;
-	font-family: 'Noto Sans TC', sans-serif;;
+	font-family: 'Noto Sans TC', sans-serif;
 	font-weight: 900;
 }
 
@@ -316,7 +319,6 @@ td {
 					$("#member_resume").html(c_resume);
 					$("#resume").val(c_resume);					
 					$('#myModal_changeInfo').modal('hide');
-					
 				},
 				error : function(data, textStatus, errorThrown) {
 					console.log("error: "+data+"RRRRRRRRRRR");					
@@ -384,48 +386,44 @@ td {
 
 						<div class="menu_block">
 							<nav>
-								<ul class="sf-menu"  style="padding-top:55px">
+								<ul class="sf-menu" style="padding-top: 55px">
 									<li><a href="index2">ICook</a></li>
 									<li><a href="icookAboutUS">關於我們</a>
 										<ul>
 											<li><a href="icookContact">聯繫我們</a></li>
 										</ul></li>
-									<li><a href="icookMenu">查看食譜</a>
-										<ul>
-											<li><a href="#">cat1</a></li>
-											<li><a href="#">cat2</a></li>
-											<li><a href="#">cat3</a></li>
-										</ul></li>
+									<li><a href="recipe/recipeIndex">查看食譜</a> <!--<ul>--> <!--<li><a href="#">cat1</a></li>-->
+										<!--<li><a href="#">cat2</a></li>--> <!--<li><a href="#">cat3</a></li>-->
+										<!--</ul>--></li>
 									<li><a href="icookLife">生活誌</a></li>
 									<li><a href="forum/overview">討論區</a></li>
-									<li><a href="A_articlemainpage">文章區</a>
-										<ul>
-											<li><a href="A_article">test</a></li>
-
-										</ul></li>
+									<li><a href="A_articlemainpage">文章區</a></li>
 
 
+									<!-- 									<li><a href="products">市集</a> -->
 									<li><a href="products">市集</a>
 										<ul>
 
+
 											<li><a href="cartPage">購物車</a></li>
 										</ul></li>
-
-									<li><a href="user">會員專區</a>
-										<ul>
-											<c:if test="${pageContext.request.userPrincipal.name==null}">
+									<%-- </c:if><c:if test="${pageContext.request.userPrincipal.name==null}"> --%>
+									<li><a href="user">會員專區 </a>
+										<ul><sec:authorize access="!isAuthenticated()">
 												<li><a href="icookLogin">會員登入</a></li>
 												<li><a href="icookRegister">會員註冊</a></li>
-											</c:if>
+											</sec:authorize>
 											<c:if test="${pageContext.request.userPrincipal.name!=null}">
 												<li><a href="index2" data-toggle="modal"
 													data-target="#logout">會員登出</a></li>
 											</c:if>
 											<li><a href="checkOrders">查看訂單</a></li>
 											<li><a href="icookAddRecipe">新增食譜</a></li>
-											<li><a href="backStage">後台</a></li>
-											</ul></li>
-
+											<sec:authorize access="hasRole('ADMIN')">
+												<li><a href="productTable">後台</a></li>
+											</sec:authorize>
+										</ul>
+									</li>
 								</ul>
 							</nav>
 							<div class="clear"></div>
@@ -458,8 +456,8 @@ td {
 		<!--=======content================================-->
 
 		
-				<div>
-					<div class="member_info">
+				<div style="text-align: center;">
+					<div class="member_info" style="margin-left:300px;">
 						<div style="text-align: center;">
 							<form:form method="POST" action="user/updateMemberPhoto"
 								modelAttribute="MemberBean" enctype="multipart/form-data">
@@ -478,15 +476,12 @@ td {
 							<h2 id="member_resume" class="desc" style="font-size: 10px">${member.resume}</h2>
 						</div>	
 					</div>
-					<div style="height: 500px ;width: 80% ;float: right;">
-						<img class="profile-image img-responsive pull-left" style="height: 100%;width: 100%"
-								id="cover_photo"  src="<c:url value='/getCoverPhoto/${member.member_id}' />" />
-					</div>
+					<div class="member_cover_img" style="background-image:url('getCoverPhoto/${member.member_id}');background-size:100% 100%;" ></div>
 				</div>
-				
+<!-- 				style="height: 100%;width: 100%" -->
 
 				<!-- 控制項-------------------------------------------				 -->
-			<div style="clear: right ">
+			<div style="clear: both; ">
 				<div class="user_control">
 					<p class="btn btn-primary btn-lg user_control_title" data-toggle="modal" data-target="#myModal_changeInfo">編輯會員資料</p>
 					<div class="modal fade" id="myModal_changeInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

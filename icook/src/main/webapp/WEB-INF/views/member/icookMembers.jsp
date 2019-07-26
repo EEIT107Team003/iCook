@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +28,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
-	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 
 
 <script>
@@ -198,25 +199,29 @@
 
 .member_info {
 	width: 20%;
-	height: 500px;
-	background-color: yellow;
+	height: 350px;
 	float: left;
-	background: #45484d;
-	text-align:center;
-	background: -moz-linear-gradient(left, #45484d 0%, #000000 100%);
-	background: -webkit-linear-gradient(left, #45484d 0%,#000000 100%);
-	background: linear-gradient(to right, #45484d 0%,#000000 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=1 );
+	background: #398235; /* Old browsers */
+	background: -moz-linear-gradient(left, #398235 1%, #8ab66b 78%, #c9de96 96%, #c9de96 96%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left, #398235 1%,#8ab66b 78%,#c9de96 96%,#c9de96 96%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right, #398235 1%,#8ab66b 78%,#c9de96 96%,#c9de96 96%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#398235', endColorstr='#c9de96',GradientType=1 ); /* IE6-9 */
 }
 
 .member_summary{
-	clear:left;
-	margin: 30px;
+	margin_top: 30px;
+	margin_left: 30px;
+	margin_right: 30px;
 	text-align: center;
-	height: 40%;
 	background-color: rgb(242, 255, 213,1);
     border: 2px dashed black;
     border-radius: 10px;
+/* 	height: 40%; */
+}
+.member_cover_img{
+	height: 350px ;
+	width: 933px ;
+ 	float: left;   
 }
 
 .change_cover {
@@ -342,21 +347,23 @@ section {
 											<li><a href="${pageContext.request.contextPath}/cartPage">購物車</a></li>
 										</ul></li>
 
-									<li><a href="${pageContext.request.contextPath}/user">會員專區</a>
+									<li><a href="${pageContext.request.contextPath}/user">會員專區 </a>
 										<ul>
-											<c:if test="${pageContext.request.userPrincipal.name==null}">
+											<sec:authorize access="!isAuthenticated()">
 												<li><a href="${pageContext.request.contextPath}/icookLogin">會員登入</a></li>
 												<li><a href="${pageContext.request.contextPath}/icookRegister">會員註冊</a></li>
-											</c:if>
-											<c:if test="${pageContext.request.userPrincipal.name!=null}">
+											</sec:authorize>
+											<sec:authorize access="isAuthenticated()">
 												<li><a href="${pageContext.request.contextPath}/index2" data-toggle="modal"
 													data-target="#logout">會員登出</a></li>
-											</c:if>
+											</sec:authorize>
 											<li><a href="${pageContext.request.contextPath}/checkOrders">查看訂單</a></li>
 											<li><a href="${pageContext.request.contextPath}/icookAddRecipe">新增食譜</a></li>
-											<li><a href="${pageContext.request.contextPath}/backStage">後台</a></li>
-											</ul></li>
-
+											<sec:authorize access="hasRole('ADMIN')">
+												<li><a href="${pageContext.request.contextPath}/productTable">後台</a></li>
+											</sec:authorize>
+										</ul>
+									</li>
 								</ul>
 							</nav>
 							<div class="clear"></div>
@@ -376,7 +383,7 @@ section {
 	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 	            </div>
 	            <div class="modal-body" style="width: 100%">
-					<form method="post" action="perform_logout">
+					<form method="post" action="${pageContext.request.contextPath}/perform_logout">
 				        <button type="submit">確定登出</button>
 				    </form>
 	            </div>
@@ -387,8 +394,8 @@ section {
 	    </div>
 	</div>
 		<!--=======content================================-->
-		<div>
-			<div class="member_info">
+		<div style="text-align: center;">
+			<div class="member_info" style="margin-left:300px;">
 				<div style="text-align: center;" >
 					<label>
 						<img class="profile-image img-responsive pull-left member_photo"
@@ -402,108 +409,103 @@ section {
 					<h2 id="member_resume" class="desc" style="font-size: 10px">${member.resume}</h2>
 				</div>
 			</div>
-			<div style="height: 500px; width: 100%">
-				<img class="profile-image img-responsive pull-left"
-					style="height: 100%; width: 80%" id="cover_photo"
-					src="<c:url value='/getCoverPhoto/${member.member_id}' />" />
+<%-- 			<div class="member_cover_img" style="background-image:url('getCoverPhoto/${member.member_id}');background-size:100% 100%;" ></div> --%>
+			<div class="member_cover_img" style="background-image:url('<c:url value='/getCoverPhoto/${member.member_id}' />');background-size:100% 100%;">
+<!-- 				<img class="profile-image img-responsive pull-left" -->
+<!-- 					style="height: 100%; width: 80%" id="cover_photo" -->
+<%-- 					src="<c:url value='/getCoverPhoto/${member.member_id}' />" /> --%>
 			</div>
 		</div>
-		
-		<div id="trackbutton"></div>
-	
-		<div style="display:none">
-			<form method="POST" action="${pageContext.request.contextPath}/members/page/track?member_id=${member.member_id}">
-				<button id=trackMe_nologin type="submit">加入追蹤</button>
-			</form>
-		</div>
-		
-		
-			<div class="content" style="margin-top: 50px ; ">
-			<div style="width: 100%; ">
-				<div class="container sections-wrapper"
-					style="background-color: white; border: 1px, solid, #c7c7c7">
-					<div class="row">
-						<div class="primary col-md-8 col-sm-12 col-xs-12"
-							style="float: left; border: 1px, solid, #c7c7c7; box-shadow: 4px 4px 3px 4px rgba(20%, 20%, 40%, 0.5);">
-							<ul id="myTab" class="nav nav-tabs">
-								<li class="active"><a href="user_myrecipe"
-									data-toggle="tab">我的食譜</a></li>
-								<li><a href="user_mycollectrecipe" data-toggle="tab">我的收藏</a>
-								</li>
-<!-- 								<li><a id="user_mytrack" data-toggle="tab">我的追蹤</a></li> -->
-								<li><a id="user_myforum" data-toggle="tab">我的文章</a></li>
-							</ul>
 
-							<section class="about section">
-								<div class="section-inner">
-									<div id="myTabContent" class="tab-content">
-										<div id="user_contain"></div>
+		<div style="clear: both;">
+			<div id="trackbutton"></div>
+
+			<div style="display: none">
+				<form method="POST"
+					action="${pageContext.request.contextPath}/members/page/track?member_id=${member.member_id}">
+					<button id=trackMe_nologin type="submit">加入追蹤</button>
+				</form>
+			</div>
+
+
+			<div class="content" style="margin-top: 50px;">
+				<div style="width: 100%;">
+					<div class="container sections-wrapper"
+						style="background-color: white; border: 1px, solid, #c7c7c7">
+						<div class="row">
+							<div class="primary col-md-8 col-sm-12 col-xs-12"
+								style="float: left; border: 1px, solid, #c7c7c7; box-shadow: 4px 4px 3px 4px rgba(20%, 20%, 40%, 0.5);">
+								<ul id="myTab" class="nav nav-tabs">
+									<li class="active"><a href="user_myrecipe"
+										data-toggle="tab">我的食譜</a></li>
+									<li><a href="user_mycollectrecipe" data-toggle="tab">我的收藏</a>
+									</li>
+									<!-- 								<li><a id="user_mytrack" data-toggle="tab">我的追蹤</a></li> -->
+									<li><a href="" id="user_myforum" data-toggle="tab">我的文章</a></li>
+								</ul>
+
+								<section class="about section">
+									<div class="section-inner">
+										<div id="myTabContent" class="tab-content">
+											<div id="user_contain"></div>
+										</div>
 									</div>
-								</div>
-								<!--//section-inner-->
-							</section>
-							<!--//section-->
-						</div>
-						<!--//primary-->
-						<div class="secondary col-md-4 col-sm-12 col-xs-12"
-							style="float: right; height: 155px; border: 1px, solid, #dcdcdc; box-shadow: 4px 4px 3px 4px rgba(20%, 20%, 40%, 0.5);">
-							<aside class="info aside section">
-								<div class="section-inner">
-									<h2 class="heading sr-only">Basic Information</h2>
-									<div class="content">
-										<table width="100%" style="margin-top: 40px">
-											<tr>
-												<th class="items">食譜數量</th>
-												<th class="items">被追蹤數</th>
-												<th class="items">文章總數</th>
-											</tr>
-											<tr>
-												<th id="recipe_num" class="items">${member.recipe_num }</th>
-												<th id="tracked_num" class="items">${member.tracked_num }</th>
-												<th id="forum_num" class="items">${member.forum_num }</th>
-											</tr>
-										</table>
+									<!--//section-inner-->
+								</section>
+								<!--//section-->
+							</div>
+							<!--//primary-->
+							<div class="secondary col-md-4 col-sm-12 col-xs-12"
+								style="float: right; height: 155px; border: 1px, solid, #dcdcdc; box-shadow: 4px 4px 3px 4px rgba(20%, 20%, 40%, 0.5);">
+								<aside class="info aside section">
+									<div class="section-inner">
+										<h2 class="heading sr-only">Basic Information</h2>
+										<div class="content">
+											<table width="100%" style="margin-top: 40px">
+												<tr>
+													<th class="items">食譜數量</th>
+													<th class="items">被追蹤數</th>
+													<th class="items">文章總數</th>
+												</tr>
+												<tr>
+													<th id="recipe_num" class="items">${member.recipe_num }</th>
+													<th id="tracked_num" class="items">${member.tracked_num }</th>
+													<th id="forum_num" class="items">${member.forum_num }</th>
+												</tr>
+											</table>
+										</div>
+										<!--//content-->
 									</div>
-									<!--//content-->
-								</div>
-								<!--//section-inner-->
-							</aside>
-							<!--//aside-->
+									<!--//section-inner-->
+								</aside>
+								<!--//aside-->
+							</div>
+							<!--//secondary-->
 						</div>
-						<!--//secondary-->
+						<!--//row-->
 					</div>
-					<!--//row-->
+					<!--//masonry-->
 				</div>
-				<!--//masonry-->
-			</div>
-		<div>
-	<div >
-		<br>
-		
-				
 			</div>
 		</div>
-		</div>
-		
-
 
 		<!--==============================footer=================================-->
-<div style="background-color: #55a237">
-	<footer>
-		<div class="zerogrid">
-			<div class="col-full">
-<!-- 				<div class="wrap-col"> -->
-<!-- 					&copy; Copyright &copy; 2013.Company name All rights reserved.<a -->
-<!-- 						target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a> -->
-<!-- 				</div> -->
-			</div>
+		<div style="background-color: #55a237">
+			<footer>
+				<div class="zerogrid">
+					<div class="col-full">
+		<!-- 				<div class="wrap-col"> -->
+		<!-- 					&copy; Copyright &copy; 2013.Company name All rights reserved.<a -->
+		<!-- 						target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a> -->
+		<!-- 				</div> -->
+					</div>
+				</div>
+			</footer>
 		</div>
-	</footer>
-	</div>
-	<div style="display: none">
-		<script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540'
-			language='JavaScript' charset='gb2312'></script>
-	</div>
-	</div>
+		<div style="display: none">
+			<script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540'
+				language='JavaScript' charset='gb2312'></script>
+		</div>
+</div>
 </body>
 </html>

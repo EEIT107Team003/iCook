@@ -484,7 +484,7 @@ public class MemberController {
 	// 取得圖片(Cover)-------------------------------------------------------------------
 	@RequestMapping(value = "/getCoverPhoto/{member_id}", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> getCoverPhoto(HttpServletResponse resp, @PathVariable Integer member_id) {
-		String filePath = "/resources/images/NoImage.png";
+		String filePath = "/resources/images/NoCover.png";
 		byte[] media = null;
 		HttpHeaders headers = new HttpHeaders();
 		String filename = "";

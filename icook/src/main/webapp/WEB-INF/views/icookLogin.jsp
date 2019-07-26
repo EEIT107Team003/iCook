@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,49 +63,49 @@
 						<div class="menu_block">
 							<nav>
 								<ul class="sf-menu"  style="padding-top:55px">
-									<li><a href="index2">ICook</a></li>
-									<li><a href="icookAboutUS">關於我們</a>
+									<li><a href="${pageContext.request.contextPath}/index2">ICook</a></li>
+									<li><a href="${pageContext.request.contextPath}/icookAboutUS">關於我們</a>
 										<ul>
-											<li><a href="icookContact">聯繫我們</a></li>
+											<li><a href="${pageContext.request.contextPath}/icookContact">聯繫我們</a></li>
 										</ul></li>
-									<li><a href="icookMenu">查看食譜</a>
+									<li><a href="${pageContext.request.contextPath}/icookMenu">查看食譜</a>
 										<ul>
 											<li><a href="#">cat1</a></li>
 											<li><a href="#">cat2</a></li>
 											<li><a href="#">cat3</a></li>
 										</ul></li>
-									<li><a href="icookLife">生活誌</a></li>
-									<li><a href="forum/overview">討論區</a></li>
-									<li><a href="A_articlemainpage">文章區</a>
+									<li><a href="${pageContext.request.contextPath}/icookLife">生活誌</a></li>
+									<li><a href="${pageContext.request.contextPath}/forum/overview">討論區</a></li>
+									<li><a href="${pageContext.request.contextPath}/A_articlemainpage">文章區</a>
 										<ul>
-											<li><a href="A_article">test</a></li>
+											<li><a href="${pageContext.request.contextPath}/A_article">test</a></li>
 
 										</ul></li>
 
 
-									<li><a href="products">市集</a>
+									<li><a href="${pageContext.request.contextPath}/products">市集</a>
 										<ul>
 
-
-											<li><a href="cartPage">購物車</a></li>
+											<li><a href="${pageContext.request.contextPath}/cartPage">購物車</a></li>
 										</ul></li>
 
-									<li><a href="user">會員專區</a>
+									<li><a href="${pageContext.request.contextPath}/user">會員專區 </a>
 										<ul>
-											<c:if test="${pageContext.request.userPrincipal.name==null}">
-												<li><a href="icookLogin">會員登入</a></li>
-												<li><a href="icookRegister">會員註冊</a></li>
-											</c:if>
-											<c:if test="${pageContext.request.userPrincipal.name!=null}">
-												<li><a href="index2" data-toggle="modal"
+											<sec:authorize access="!isAuthenticated()">
+												<li><a href="${pageContext.request.contextPath}/icookLogin">會員登入</a></li>
+												<li><a href="${pageContext.request.contextPath}/icookRegister">會員註冊</a></li>
+											</sec:authorize>
+											<sec:authorize access="isAuthenticated()">
+												<li><a href="${pageContext.request.contextPath}/index2" data-toggle="modal"
 													data-target="#logout">會員登出</a></li>
-											</c:if>
-											<li><a href="checkOrders">查看訂單</a></li>
-											<li><a href="icookAddRecipe">新增食譜</a></li>
-											<li><a href="backStage">後台</a></li>
+											</sec:authorize>
+											<li><a href="${pageContext.request.contextPath}/checkOrders">查看訂單</a></li>
+											<li><a href="${pageContext.request.contextPath}/icookAddRecipe">新增食譜</a></li>
+											<sec:authorize access="hasRole('ADMIN')">
+												<li><a href="${pageContext.request.contextPath}/productTable">後台</a></li>
+											</sec:authorize>
 										</ul>
-										</li>
-
+									</li>
 								</ul>
 							</nav>
 							<div class="clear"></div>
