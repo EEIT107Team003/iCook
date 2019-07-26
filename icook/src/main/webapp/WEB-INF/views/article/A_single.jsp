@@ -122,14 +122,23 @@
 										<li><a href="cartPage">購物車</a></li>
 									</ul></li>
 								<li><a href="A_findAll">文章區</a></li>
-								<li><a href="icookLogin">會員專區</a>
+								<li><a href="user">會員專區 </a>
 									<ul>
-										<li><a href="icookLogin">會員登入</a></li>
+										<sec:authorize access="!isAuthenticated()">
+											<li><a href="icookLogin">會員登入</a></li>
+											<li><a href="icookRegister">會員註冊</a></li>
+										</sec:authorize>
+										<sec:authorize access="isAuthenticated()">
+											<li><a href="index2" data-toggle="modal"
+												data-target="#logout">會員登出</a></li>
+										</sec:authorize>
 										<li><a href="checkOrders">查看訂單</a></li>
-										<li><a href="#">會員登出</a></li>
-										<li><a href="#">新增食譜</a></li>
+										<li><a href="icookAddRecipe">新增食譜</a></li>
+										<sec:authorize access="hasRole('ADMIN')">
+											<li><a href="productTable">後台</a></li>
+										</sec:authorize>
 									</ul></li>
-<!-- 隱藏判斷 -->
+								<!-- 隱藏判斷 -->
 								<c:if
 									test="${pageContext.request.userPrincipal.name == 'aa'||pageContext.request.userPrincipal.name =='dd'}">
 									<li><a href="A_insert">新增一篇文章</a></li>
@@ -177,7 +186,8 @@
 							日期:${Article.article_date}</h3>
 
 						<!-- 隱藏判斷 -->
-						<c:if test="${Article.article_member.username == username || pageContext.request.userPrincipal.name =='bb'}">
+						<c:if
+							test="${Article.article_member.username == username || pageContext.request.userPrincipal.name =='bb'}">
 							<div align="right" class="tagcloud">
 								<a
 									href="<spring:url value='/TagarticleUpdate?article_num=${Article.article_num}' />"
@@ -185,7 +195,7 @@
 							</div>
 						</c:if>
 
-<br>
+						<br>
 						<article>${Article.article_content}</article>
 
 
@@ -371,10 +381,7 @@
 								</a></li>
 							</ul>
 						</div>
-						<br> <br>
-						<br>
-						<br>
-						<br>
+						<br> <br> <br> <br> <br>
 
 
 						<div class="sidebar-box ftco-animate">

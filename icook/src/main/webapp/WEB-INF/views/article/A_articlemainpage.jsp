@@ -5,7 +5,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html>
@@ -136,12 +137,21 @@
 										<li><a href="cartPage">購物車</a></li>
 									</ul></li>
 								<li><a href="A_findAll">文章區</a></li>
-								<li><a href="icookLogin">會員專區</a>
+								<li><a href="user">會員專區 </a>
 									<ul>
-										<li><a href="icookLogin">會員登入</a></li>
+										<sec:authorize access="!isAuthenticated()">
+											<li><a href="icookLogin">會員登入</a></li>
+											<li><a href="icookRegister">會員註冊</a></li>
+										</sec:authorize>
+										<sec:authorize access="isAuthenticated()">
+											<li><a href="index2" data-toggle="modal"
+												data-target="#logout">會員登出</a></li>
+										</sec:authorize>
 										<li><a href="checkOrders">查看訂單</a></li>
-										<li><a href="#">會員登出</a></li>
-										<li><a href="#">新增食譜</a></li>
+										<li><a href="icookAddRecipe">新增食譜</a></li>
+										<sec:authorize access="hasRole('ADMIN')">
+											<li><a href="productTable">後台</a></li>
+										</sec:authorize>
 									</ul></li>
 
 								<c:if
@@ -258,7 +268,7 @@
 								<div class="block-27">
 									<ul>
 										<%@ include file="page2.file"%>
-										
+
 
 
 									</ul>
