@@ -3,6 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <spring:url value="/resources/js/lib/sockjs.min.js" var="sockjs" />
 <spring:url value="/resources/js/lib/stomp.min.js" var="stomp" />
 <spring:url value="/resources/js/script.js" var="script" />
@@ -54,6 +55,7 @@
 <link rel="stylesheet" href="${flaticonCSS}">
 <link rel="stylesheet" href="${icomoonCSS}">
 <link rel="stylesheet" href="${styleRCSS}">
+
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/ckeditor/ckeditor.js">
 	
@@ -75,43 +77,46 @@
 						<div class="col-sm-3">
 							<ul>
 								<li><h3
-										style="margin-bottom: 30px;">
+										style="margin-bottom: 20px;">
 										<span class="glyphicon glyphicon-globe"></span><a
 											href="${ pageContext.request.contextPath }">&nbsp;&nbsp;首頁</a>
 									</h3></li>
-								<li class="colorlib-active"><h3 style="margin-bottom: 30px;">
+								<li class="colorlib-active"><h3 style="margin-bottom: 20px;">
 										<span class="glyphicon glyphicon-pencil"></span><a
 											href="${ pageContext.request.contextPath }/forum/newPost">&nbsp;&nbsp;發表文章
 										</a>
-										<h3></li>
-								<li><h3 style="margin-bottom: 30px;">
+										</h3></li>
+								<li><h3 style="margin-bottom: 20px;">
 										<span class="glyphicon glyphicon-list-alt"></span><a
 											href="${ pageContext.request.contextPath }/icookMenu">&nbsp;&nbsp;食譜
 										</a>
 										</h3></li>
-								<li><h3 style="margin-bottom: 30px;">
+								<li><h3 style="margin-bottom: 20px;">
 										<span class="glyphicon glyphicon-camera"></span><a
 											href="${ pageContext.request.contextPath }/A_articlemainpage">&nbsp;&nbsp;生活誌</a>
 										</h3></li>
-								<li><h3 style="margin-bottom: 30px;">
+								<li><h3 style="margin-bottom: 20px;">
 										<span class="glyphicon glyphicon-hand-left"></span><a
 											href="${ pageContext.request.contextPath }/forum/overview">&nbsp;&nbsp;討論區首頁</a>
 										</h3></li>
 								<c:if test="${pageContext.request.userPrincipal.name==null}">
-									<li><h3 style="margin-bottom: 30px;">
+									<li><h3 style="margin-bottom: 20px;">
 											<span class="glyphicon glyphicon-user"></span><a
 												href="${ pageContext.request.contextPath }/icookLogin">&nbsp;&nbsp;會員專區
 											</a>
 											</h3></li>
 								</c:if>
 								<c:if test="${pageContext.request.userPrincipal.name!=null}">
-									<li><h3 style="margin-bottom: 30px;">
+									<li><h3 style="margin-bottom: 20px;">
 											<span class="glyphicon glyphicon-user"></span><a href="#"
 												onclick="logout()">&nbsp;&nbsp;會員登出 </a>
-											</h3></li>
+										</h3></li>
+									<sec:authorize access="hasRole('ADMIN')">
+										<li><h3 style="margin-bottom: 20px;"><span class="glyphicon glyphicon-off"></span><a href="${ pageContext.request.contextPath}/backStageDashboard">&nbsp;&nbsp;後台</a></h3></li>
+									</sec:authorize>
 								</c:if>
 								<li style="display: none;" id="showchat"><h3
-										style="margin-bottom: 30px;">
+										style="margin-bottom: 20px;">
 										<span class="glyphicon glyphicon-bullhorn"></span><a href="#"
 											id="chatroom" style="color: red;">&nbsp;&nbsp;聊天室 </a>
 										</h3></li>

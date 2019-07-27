@@ -3,6 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <spring:url value="/resources/js/lib/sockjs.min.js" var="sockjs" />
 <spring:url value="/resources/js/lib/stomp.min.js" var="stomp" />
 <spring:url value="/resources/js/script.js" var="script" />
@@ -54,6 +55,7 @@
 <link rel="stylesheet" href="${flaticonCSS}">
 <link rel="stylesheet" href="${icomoonCSS}">
 <link rel="stylesheet" href="${styleRCSS}">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -81,47 +83,50 @@
 						<div class="col-sm-3"></div>
 						<div class="col-sm-9">
 							<ul>
-								<li><h3
-										style="margin-bottom: 30px;">
-										<span class="glyphicon glyphicon-globe"></span><a
+								<li><h4
+										style="margin-bottom: 20px;">
+										<span class="fa fa-globe"></span><a
 											href="${ pageContext.request.contextPath }">&nbsp;&nbsp;首頁</a>
-									</h3></li>
-								<li><h3 style="margin-bottom: 30px;">
-										<span class="glyphicon glyphicon-pencil"></span><a
+									</h4></li>
+								<li><h4 style="margin-bottom: 20px;">
+										<span class="fa fa-pencil"></span><a
 											href="${ pageContext.request.contextPath }/forum/newPost">&nbsp;&nbsp;發表文章
 										</a>
-										</h3></li>
-								<li><h3 style="margin-bottom: 30px;">
-										<span class="glyphicon glyphicon-list-alt"></span><a
+										</h4></li>
+								<li><h4 style="margin-bottom: 20px;">
+										<span class="fa fa-list-alt"></span><a
 											href="${ pageContext.request.contextPath }/icookMenu">&nbsp;&nbsp;食譜
 										</a>
-										</h3></li>
-								<li><h3 style="margin-bottom: 30px;">
-										<span class="glyphicon glyphicon-camera"></span><a
+										</h4></li>
+								<li><h4 style="margin-bottom: 20px;">
+										<span class="fa fa-camera"></span><a
 											href="${ pageContext.request.contextPath }/A_articlemainpage">&nbsp;&nbsp;生活誌</a>
-										</h3></li>
-								<li class="colorlib-active"><h3 style="margin-bottom: 30px;">
-										<span class="glyphicon glyphicon-hand-left"></span><a
+										</h4></li>
+								<li class="colorlib-active"><h4 style="margin-bottom: 20px;">
+										<span class="fa fa-hand-o-left"></span><a
 											href="${ pageContext.request.contextPath }/forum/overview">&nbsp;&nbsp;討論區首頁</a>
-										</h3></li>
+										</h4></li>
 								<c:if test="${pageContext.request.userPrincipal.name==null}">
-									<li><h3 style="margin-bottom: 30px;">
-											<span class="glyphicon glyphicon-user"></span><a
+									<li><h4 style="margin-bottom: 20px;">
+											<span class="fa fa-user"></span><a
 												href="${ pageContext.request.contextPath }/icookLogin">&nbsp;&nbsp;會員專區
 											</a>
-											</h3></li>
+											</h4></li>
 								</c:if>
 								<c:if test="${pageContext.request.userPrincipal.name!=null}">
-									<li><h3 style="margin-bottom: 30px;">
-											<span class="glyphicon glyphicon-user"></span><a href="#"
+									<li><h4 style="margin-bottom: 20px;">
+											<span class="fa fa-user"></span><a href="#"
 												onclick="logout()">&nbsp;&nbsp;會員登出 </a>
-											</h3></li>
+										</h4></li>
+									<sec:authorize access="hasRole('ADMIN')">
+										<li><h4 style="margin-bottom: 20px;"><span class="fa fa-power-off"></span><a href="${ pageContext.request.contextPath}/backStageDashboard">&nbsp;&nbsp;後台</a></h4></li>
+									</sec:authorize>
 								</c:if>
-								<li style="display: none;" id="showchat"><h3
-										style="margin-bottom: 30px;">
-										<span class="glyphicon glyphicon-bullhorn"></span><a href="#"
+								<li style="display: none;" id="showchat"><h4
+										style="margin-bottom: 20px;">
+										<span class="fa af-bullhorn"></span><a href="#"
 											id="chatroom" style="color: red;">&nbsp;&nbsp;聊天室 </a>
-										</h3></li>
+										</h4></li>
 							</ul>
 						</div>
 						
@@ -309,13 +314,14 @@
 									<script type="text/javascript">
 						var memberId = ${ user.member_id };
 						var article_id = ${ post.article_id };
+						var username = "${ user.username }";
 							$.ajax({
 								url: "${ pageContext.request.contextPath }/forum/isLogin?article_id=${ post.article_id }",
 								type: "GET",								
 								success: function(data){
 									console.log(data);
 									var AmemberId = data;
-									if(memberId==AmemberId){										
+									if(memberId==AmemberId ||username == "admin@gmail.com"){										
 // 										$("#btnrow${post.article_id}").append(("<a href='${ pageContext.request.contextPath }/forum/reply?harticle_id=${ post.harticle_id }' class='btn btn-outline-info btn-sm'>回覆</a>"))
 										$("#btnrow${post.article_id}").append(("<a href='${ pageContext.request.contextPath }/forum/edit?harticle_id=${ post.harticle_id }&article_id=${ post.article_id }'role='button' class='btn btn-outline-info btn-sm'>編輯</a>"))
 										$("#btnrow${post.article_id}").append(("<input type='button' class='btn btn-outline-danger btn-sm'  onclick='deleteArticle${ post.article_id }()' style='float:right;'  value='刪除'/>"))										

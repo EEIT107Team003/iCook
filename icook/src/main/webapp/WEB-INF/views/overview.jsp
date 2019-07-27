@@ -3,6 +3,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <spring:url value="/resources/js/lib/sockjs.min.js" var="sockjs" />
 <spring:url value="/resources/js/lib/stomp.min.js" var="stomp" />
 <spring:url value="/resources/js/script.js" var="script" />
@@ -119,20 +121,19 @@
 	color: #fff;
 	padding: 5px 10px 5px 12px;
 	width: 100%;
-	display:block;
+	display: block;
 }
 
 .outgoing_msg {
-/* 	overflow: hidden; */
-	min-width:250px;
-	min-height:35px;
+	/* 	overflow: hidden; */
+	min-width: 250px;
+	min-height: 35px;
 	margin: 26px 0 26px;
-	clear:both;
+	clear: both;
 }
 
 .sent_msg {
-/* 	float: right; */
-
+	/* 	float: right; */
 	max-width: 250px;
 }
 
@@ -160,43 +161,47 @@
 						<div class="col-sm-3">
 							<ul>
 								<li class="colorlib-active"><h3
-										style="margin-bottom: 30px;">
+										style="margin-bottom: 20px;">
 										<span class="glyphicon glyphicon-globe"></span><a
 											href="${ pageContext.request.contextPath }">&nbsp;&nbsp;首頁</a>
 									</h3></li>
-								<li><h3 style="margin-bottom: 30px;">
+								<li><h3 style="margin-bottom: 20px;">
 										<span class="glyphicon glyphicon-pencil"></span><a
 											href="${ pageContext.request.contextPath }/forum/newPost">&nbsp;&nbsp;發表文章
 										</a>
-										</h3></li>
-								<li><h3 style="margin-bottom: 30px;">
+									</h3></li>
+								<li><h3 style="margin-bottom: 20px;">
 										<span class="glyphicon glyphicon-list-alt"></span><a
 											href="${ pageContext.request.contextPath }/icookMenu">&nbsp;&nbsp;食譜
 										</a>
-										</h3></li>
-								<li><h3 style="margin-bottom: 30px;">
+									</h3></li>
+								<li><h3 style="margin-bottom: 20px;">
 										<span class="glyphicon glyphicon-camera"></span><a
 											href="${ pageContext.request.contextPath }/A_articlemainpage">&nbsp;&nbsp;生活誌</a>
-										</h3></li>
-								
+									</h3></li>
+
 								<c:if test="${pageContext.request.userPrincipal.name==null}">
-									<li><h3 style="margin-bottom: 30px;">
+									<li><h3 style="margin-bottom: 20px;">
 											<span class="glyphicon glyphicon-user"></span><a
-												href="${ pageContext.request.contextPath }/icookLogin">&nbsp;&nbsp;會員專區
+												href="${ pageContext.request.contextPath }/icookLogin">&nbsp;&nbsp;會員登入
 											</a>
-											</h3></li>
+										</h3></li>
 								</c:if>
 								<c:if test="${pageContext.request.userPrincipal.name!=null}">
-									<li><h3 style="margin-bottom: 30px;">
+									<li><h3 style="margin-bottom: 20px;">
 											<span class="glyphicon glyphicon-user"></span><a href="#"
 												onclick="logout()">&nbsp;&nbsp;會員登出 </a>
-											</h3></li>
+										</h3></li>
+									<sec:authorize access="hasRole('ADMIN')">
+										<li><h3 style="margin-bottom: 20px;"><span class="glyphicon glyphicon-off"></span><a href="${ pageContext.request.contextPath}/backStageDashboard">&nbsp;&nbsp;後台</a></h3></li>
+									</sec:authorize>
 								</c:if>
+								
 								<li style="display: none;" id="showchat"><h3
-										style="margin-bottom: 30px;">
+										style="margin-bottom: 20px;">
 										<span class="glyphicon glyphicon-bullhorn"></span><a href="#"
 											id="chatroom" style="color: red;">&nbsp;&nbsp;聊天室 </a>
-										</h3></li>
+									</h3></li>
 							</ul>
 						</div>
 						<div class="col-sm-4"></div>
@@ -205,11 +210,12 @@
 				</div>
 			</nav>
 			<script>
-				function logout(){
+				function logout() {
 					let logoutConfirm = confirm("確定登出？");
-					if(logoutConfirm){
-						window.location.replace("${ pageContext.request.contextPath }/perform_logout");
-						
+					if (logoutConfirm) {
+						window.location
+								.replace("${ pageContext.request.contextPath }/perform_logout");
+
 					}
 				}
 			</script>
@@ -219,15 +225,12 @@
 
 			<div class="colorlib-footer">
 				<h2 id="colorlib-logo" class="mb-4">
-					<img src="${logo}" style="width:90%;height:90%;">
+					<img src="${logo}" style="width: 90%; height: 90%;">
 				</h2>
 				<div class="mb-4">
-					
+
 					<form action="#" class="colorlib-subscribe-form">
-						<div class="form-group d-flex">
-							
-							
-						</div>
+						<div class="form-group d-flex"></div>
 					</form>
 				</div>
 				<p class="pfooter">
@@ -318,33 +321,46 @@
 							<div class="sidebar-box ftco-animate">
 								<h3 class="sidebar-heading">文章分類</h3>
 								<ul class="categories">
-									<li><h4><a
-										href="${ pageContext.request.contextPath }/forum/overview">全部											
-									</a></h4></li>
-									<li><h4><a
-										href="${ pageContext.request.contextPath }/forum/query?category=問題">問題
-											
-									</a></h4></li>
-									<li><h4><a
-										href="${ pageContext.request.contextPath }/forum/query?category=閒聊">閒聊
-											
-									</a></h4></li>
-									<li><h4><a
-										href="${ pageContext.request.contextPath }/forum/query?category=心得">心得
-											
-									</a></h4></li>
-									<li><h4><a
-										href="${ pageContext.request.contextPath }/forum/query?category=自介">自介
-											
-									</a></h4></li>
-									<li><h4><a
-										href="${ pageContext.request.contextPath }/forum/query?category=食材">食材
-											
-									</a></h4></li>
-									<li><h4><a
-										href="${ pageContext.request.contextPath }/forum/query?category=器具">器具
-											
-									</a></h4></li>
+									<li><h4>
+											<a href="${ pageContext.request.contextPath }/forum/overview">全部
+											</a>
+										</h4></li>
+									<li><h4>
+											<a
+												href="${ pageContext.request.contextPath }/forum/query?category=問題">問題
+
+											</a>
+										</h4></li>
+									<li><h4>
+											<a
+												href="${ pageContext.request.contextPath }/forum/query?category=閒聊">閒聊
+
+											</a>
+										</h4></li>
+									<li><h4>
+											<a
+												href="${ pageContext.request.contextPath }/forum/query?category=心得">心得
+
+											</a>
+										</h4></li>
+									<li><h4>
+											<a
+												href="${ pageContext.request.contextPath }/forum/query?category=自介">自介
+
+											</a>
+										</h4></li>
+									<li><h4>
+											<a
+												href="${ pageContext.request.contextPath }/forum/query?category=食材">食材
+
+											</a>
+										</h4></li>
+									<li><h4>
+											<a
+												href="${ pageContext.request.contextPath }/forum/query?category=器具">器具
+
+											</a>
+										</h4></li>
 								</ul>
 							</div>
 
@@ -377,7 +393,7 @@
 
 
 
-							
+
 
 
 
@@ -386,17 +402,19 @@
 									<div class="col-md-9 col-md-offset-3"
 										style="width: 547.5px; height: 400px;">
 										<div class="panel panel-primary"
-											style="width: 300px; height: 400px;" >
+											style="width: 300px; height: 400px;">
 											<div class="panel-heading">
 												<span class="glyphicon glyphicon-remove"
 													style="float: left;" id="close"></span><span
-													class="glyphicon glyphicon-comment" id="showEmoji"></span> 廣場尬聊
+													class="glyphicon glyphicon-comment" id="showEmoji"></span>
+												廣場尬聊
 
 											</div>
-<!--emoji-->											
+											<!--emoji-->
 											<div class="panel-body"
-												style="min-height: 280px;max-height: 280px; text-align: right;overflow-y: scroll;" id="response">
-	
+												style="min-height: 280px; max-height: 280px; text-align: right; overflow-y: scroll;"
+												id="response">
+
 												<ul class="chat">
 												</ul>
 											</div>
@@ -413,19 +431,14 @@
 									</div>
 								</div>
 								<script>
-									$("#close").click(
-										function(){
-											$("#chat").hide();
-											$("#showchat").show();
-										}											
-									)
-									$("#chatroom").click(
-										function(){
-											$("#chat").show();
-											$("#showchat").hide();
-										}		
-									)
-									
+									$("#close").click(function() {
+										$("#chat").hide();
+										$("#showchat").show();
+									})
+									$("#chatroom").click(function() {
+										$("#chat").show();
+										$("#showchat").hide();
+									})
 								</script>
 								<!--         chat -->
 
@@ -472,138 +485,170 @@
 	<script src=<spring:url value="/resources/js/chat.js" />></script>
 	<script src="${sockjs}"></script>
 	<script src="${stomp}"></script>
-	
+
 	<c:if test="${ LoginOK.isEmpty()}">
 		<script>
-		$(document).ready(
-				function checkConn(){
-					var p = document.createElement('p');
-					p.style.wordWrap = 'break-word';
-					p.style.textAlign="center";
-					p.style.color="red";
-					p.appendChild(document.createTextNode("請登入以啟用聊天室功能"));
-					document.getElementById('response').appendChild(p);
-					}
-	
-		)
+			$(document).ready(function checkConn() {
+				var p = document.createElement('p');
+				p.style.wordWrap = 'break-word';
+				p.style.textAlign = "center";
+				p.style.color = "red";
+				p.appendChild(document.createTextNode("請登入以啟用聊天室功能"));
+				document.getElementById('response').appendChild(p);
+			}
+
+			)
 		</script>
 	</c:if>
-	
-	<c:forEach var="user" items="${ LoginOK }">	
-		<input type="hidden" id="from" value=" ${user.username}" />
+
+	<c:forEach var="user" items="${ LoginOK }">
+		<input type="hidden" id="from" value="${user.nickname}" />
 		<script>
-		
-		var stompClient = null;
+			var stompClient = null;
 
-		$(document).ready(
-				
-		function connect() {
-		    var socket = new SockJS('/icook/forum/overview/chat');
-		    stompClient = Stomp.over(socket);
+			$(document).ready(
 
-		    stompClient.connect({}, function(frame) {
+					function connect() {
+						var socket = new SockJS('/icook/forum/overview/chat');
+						stompClient = Stomp.over(socket);
 
-		        console.log('Connected: ' + frame);
-		        serviceMessage('跳進了伺服器。 他是袋鼠！！');
+						stompClient.connect({}, function(frame) {
 
-		        stompClient.subscribe('/forum/overview/topic/messages', function(messageOutput) {
-		            showMessageOutput(JSON.parse(messageOutput.body));
-		        });
-		    });
-		}
-		)
+							console.log('Connected: ' + frame);
+							
+							var dice = Math.floor(Math.random()*5 + 1);
+							
+							if(dice == 1){
+								serviceMessage('跳進了伺服器。 他是袋鼠！！');
+							} else if (dice == 2){
+								serviceMessage('來只為了嚼口香糖跟打爆人。現在 ${user.nickname} 嚼完口香糖了。');
+							} else if (dice == 3){
+								serviceMessage('出現了。 給他一罐啤酒。');
+							} else if (dice == 4 ){
+								serviceMessage('剛剛滑入了伺服器中。');
+							} else if (dice == 5){
+								serviceMessage('來了，請把您的武器留在門口那邊。');
+							}
+								
 
+							stompClient.subscribe(
+									'/forum/overview/topic/messages', function(
+											messageOutput) {
+										showMessageOutput(JSON
+												.parse(messageOutput.body));
+									});
+						});
+					})
 
-		function sendMessage() {
-			var from = document.getElementById('from').value;
-		    var text = document.getElementById('text').value;
-		    if(text.trim().length > 0 && text != null){
-		    	stompClient.send("/forum/overview/app/chat", {}, JSON.stringify({'from': from, 'text': text}));
-			    $("#text").val("");
-		    }
-		    
-		}
+			function sendMessage() {
+				var from = document.getElementById('from').value;
+				var text = document.getElementById('text').value;
+				if (text.trim().length > 0 && text != null) {
+					stompClient.send("/forum/overview/app/chat", {}, JSON
+							.stringify({
+								'from' : from,
+								'text' : text
+							}));
+					$("#text").val("");
+				}
 
-		function serviceMessage(hint) {
-		    var from = document.getElementById('from').value;
-		    from = (from.length > 0 && from != null) ? from : 'anonimus';
-		    stompClient.send("/forum/overview/app/chat", {}, JSON.stringify({
-		        'from': "管理員",
-		        'text': from + " " + hint
-		    }));
-		}
-
-		function showMessageOutput(messageOutput) {
-			//製造回應元素
-		    var response = document.getElementById('response');
-		    var p = document.createElement('p');
-		    if(messageOutput.from != document.getElementById('from').value){
-		    	var div1 = document.createElement('div');
-		    	var div2 = document.createElement('div');
-		    	var p1 = document.createElement('p');
-		    	p1.appendChild(document.createTextNode(messageOutput.from + "：\r" + messageOutput.text));
-		    	var span1 = document.createElement('span');	
-		    	span1.appendChild(document.createTextNode(messageOutput.time));	
-				
-		    } else {
-				var div4 = document.createElement('div');				
-				var div5 = document.createElement('div');				
-				var p2 = document.createElement('p');
-				p2.appendChild(document.createTextNode(messageOutput.text));		
-				var span2 = document.createElement('span');		
-				span2.appendChild(document.createTextNode(messageOutput.time));
 			}
-		    
-		    
 
-		    //塞入回應元素
-		    var user = document.getElementById('from').value;
-		    if(messageOutput.from != user){
-		    	$("#response").append(div1);
-		    	div1.appendChild(div2);
-		    	div2.appendChild(p1);
-		    	div2.appendChild(span1);
-		    	div1.id='div1';
-		    	div2.id='div2';
-		    	span1.id='span1';
-		    	$("div#div1").attr("class","outgoing_msg");
- 		    	$("div#div1").css("text-align","left"); 		    	
-		    	$("div#div2").attr("class","sent_msg");
-		    	$("div#div2").css("float","left");		    	
-		    	$("div#div2").css("word-break","break-all")
-		    	$("span#span1").attr("class","time_date");
-		    	$("span#span1").css("display","block");
-
-			} else {
-				$("#response").append(div4);
-				div4.appendChild(div5);
-				div5.appendChild(p2);
-				div5.appendChild(span2);
-				div4.id='div4';
-				div5.id='div5';
-				span2.id='span2';
-				$("div#div4").attr("class","outgoing_msg");	
-				$("div#div5").attr("class","sent_msg");
-				$("div#div5").css("float","right");	
-				$("div#div5").css("text-align","left");						
-				$("div#div5").css("word-break","break-all")												
-				$("p#p2").css("word-break","break-all")
-				$("span#span2").attr("class","time_date");
-				$("span#span2").css("text-align","right");
-				$("span#span2").css("display","block");
-//  				$("div#div5").append("<br>");
+			function serviceMessage(hint) {
+				var from = document.getElementById('from').value;
+				from = (from.length > 0 && from != null) ? from : 'anonimus';
+				if(from != "admin"){
+					
+					
+				stompClient.send("/forum/overview/app/chat", {}, JSON
+						.stringify({
+							'from' : "管理員",
+							'text' : from + " " + hint
+						}));
+				
+				} else{
+					
+					hint = "進來了，似乎太OP，請NERF一下";
+					stompClient.send("/forum/overview/app/chat", {}, JSON
+							.stringify({
+								'from' : "管理員",
+								'text' : from + " " + hint
+							}));
+					
+				}
 			}
-		    
-		    
-		    if (messageOutput.users.length > 0) {
-		        var $ul = $('#user-list');
-		        $ul.empty();
 
-		        $.each(messageOutput.users, function (index, value) {
-		            $ul.append('<li>' + value.id + '</li>');
-		        });
-		    }
-		}
+			function showMessageOutput(messageOutput) {
+				//製造回應元素
+				var response = document.getElementById('response');
+				var p = document.createElement('p');
+				if (messageOutput.from != document.getElementById('from').value) {
+					var div1 = document.createElement('div');
+					var div2 = document.createElement('div');
+					var p1 = document.createElement('p');
+					p1.appendChild(document.createTextNode(messageOutput.from
+							+ "：\r" + messageOutput.text));
+					var span1 = document.createElement('span');
+					span1.appendChild(document
+							.createTextNode(messageOutput.time));
+
+				} else {
+					var div4 = document.createElement('div');
+					var div5 = document.createElement('div');
+					var p2 = document.createElement('p');
+					p2.appendChild(document.createTextNode(messageOutput.text));
+					var span2 = document.createElement('span');
+					span2.appendChild(document
+							.createTextNode(messageOutput.time));
+				}
+
+				//塞入回應元素
+				var user = document.getElementById('from').value;
+				if (messageOutput.from != user) {
+					$("#response").append(div1);
+					div1.appendChild(div2);
+					div2.appendChild(p1);
+					div2.appendChild(span1);
+					div1.id = 'div1';
+					div2.id = 'div2';
+					span1.id = 'span1';
+					$("div#div1").attr("class", "outgoing_msg");
+					$("div#div1").css("text-align", "left");
+					$("div#div2").attr("class", "sent_msg");
+					$("div#div2").css("float", "left");
+					$("div#div2").css("word-break", "break-all")
+					$("span#span1").attr("class", "time_date");
+					$("span#span1").css("display", "block");
+
+				} else {
+					$("#response").append(div4);
+					div4.appendChild(div5);
+					div5.appendChild(p2);
+					div5.appendChild(span2);
+					div4.id = 'div4';
+					div5.id = 'div5';
+					span2.id = 'span2';
+					$("div#div4").attr("class", "outgoing_msg");
+					$("div#div5").attr("class", "sent_msg");
+					$("div#div5").css("float", "right");
+					$("div#div5").css("text-align", "left");
+					$("div#div5").css("word-break", "break-all")
+					$("p#p2").css("word-break", "break-all")
+					$("span#span2").attr("class", "time_date");
+					$("span#span2").css("text-align", "right");
+					$("span#span2").css("display", "block");
+					//  				$("div#div5").append("<br>");
+				}
+
+				if (messageOutput.users.length > 0) {
+					var $ul = $('#user-list');
+					$ul.empty();
+
+					$.each(messageOutput.users, function(index, value) {
+						$ul.append('<li>' + value.id + '</li>');
+					});
+				}
+			}
 		</script>
 	</c:forEach>
 

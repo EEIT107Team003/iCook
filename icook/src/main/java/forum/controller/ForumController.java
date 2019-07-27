@@ -341,6 +341,12 @@ public class ForumController {
 		return null;
 	}
 	
+	@RequestMapping(value = "/report_forum/check")
+	@ResponseBody
+	public Integer reportChecked(@RequestParam("report_id")Integer report_id) {
+		service.checked(report_id);
+		return 1;
+	}
 	
 
 }

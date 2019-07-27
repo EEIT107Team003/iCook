@@ -116,7 +116,7 @@
 										
 							<c:choose>
 							
-							<c:when test="${pageContext.request.userPrincipal.name == 'aa'||pageContext.request.userPrincipal.name =='admin'}">
+							<c:when test="${pageContext.request.userPrincipal.name == 'admin@gmail.com'||pageContext.request.userPrincipal.name =='admin'}">
 							
 							<a style="height: 200px"
 							

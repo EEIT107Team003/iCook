@@ -38,4 +38,6 @@ public interface IFMService {
 	public void report(ReportBean rtb, ForumMainBean fmb);
 	
 	public List<ReportBean> getAllReport();
+	
+	public void checked(Integer report_id);
 }

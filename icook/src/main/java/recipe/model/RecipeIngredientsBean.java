@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,23 +24,34 @@ public class RecipeIngredientsBean implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer pk_recipe_ingredients_id;// 【PK】食譜食材編號
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "fk_recipe_id")
-	private RecipeBean recipeBeanIngredients;// 多對一
+	// TODO FetchType.EAGER 是要解決 org.hibernate.LazyInitializationException 這個問題
+//	@ManyToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "fk_recipe_id")
+//	private RecipeBean recipeBeanIngredients;// 多對一
 
 	private String ingredients;// 食材名稱
 	private String quantity;// 份量
+	private Integer fk_recipe_id;// FK索引鍵
 
 	public RecipeIngredientsBean() {
+		// 空的建構子
 	}
 
-	public RecipeBean getIngredientsRecipeBean() {
-		return recipeBeanIngredients;
+	public Integer getFk_recipe_id() {
+		return fk_recipe_id;
 	}
 
-	public void setIngredientsRecipeBean(RecipeBean ingredientsRecipeBean) {
-		this.recipeBeanIngredients = ingredientsRecipeBean;
+	public void setFk_recipe_id(Integer fk_recipe_id) {
+		this.fk_recipe_id = fk_recipe_id;
 	}
+	
+//	public RecipeBean getIngredientsRecipeBean() {
+//		return recipeBeanIngredients;
+//	}
+//
+//	public void setIngredientsRecipeBean(RecipeBean ingredientsRecipeBean) {
+//		this.recipeBeanIngredients = ingredientsRecipeBean;
+//	}
 
 	public String getIngredients() {
 		return ingredients;

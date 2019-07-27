@@ -25,7 +25,7 @@ public class ReportBean implements Serializable {
 	private		String			reportCategory;
 	private		Timestamp		reportTime;
 	private		ForumMainBean	fmb;
-	
+	private		Boolean			isCheck;	
 	
 	
 	
@@ -37,7 +37,6 @@ public class ReportBean implements Serializable {
 	
 	public ReportBean(Integer report_id, String reason, String reportCategory, Timestamp reportTime,
 			ForumMainBean fmb) {
-		super();
 		this.report_id = report_id;
 		this.reason = reason;
 		this.reportCategory = reportCategory;
@@ -92,6 +91,18 @@ public class ReportBean implements Serializable {
 	@Override
 	public String toString() {
 		return "ReportBean [fmb=" + fmb + "]";
+	}
+
+
+
+	public Boolean getIsCheck() {
+		return isCheck;
+	}
+
+
+
+	public void setIsCheck(Boolean isCheck) {
+		this.isCheck = isCheck;
 	}
 	
 	
