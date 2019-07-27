@@ -104,6 +104,12 @@ public class FMServiceImpl implements IFMService {
 	public List<ReportBean> getAllReport() {
 		return dao.getAllReport();
 	}
+
+	@Override
+	public void checked(Integer report_id) {
+		dao.checked(report_id);
+		
+	}
 	
 	
 

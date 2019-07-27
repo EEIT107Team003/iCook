@@ -200,6 +200,7 @@ public class FMDaoImpl implements IFMDao {
 	public void report(ReportBean rtb, ForumMainBean fmb) {
 		rtb.setFmb(fmb);
 		rtb.setReportTime(new Timestamp(System.currentTimeMillis()));
+		rtb.setIsCheck(false);
 		Session session = factory.getCurrentSession();
 		session.save(rtb);
 	}
@@ -207,11 +208,20 @@ public class FMDaoImpl implements IFMDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ReportBean> getAllReport() {
-		String hql = "from ReportBean";
+		String hql = "from ReportBean where isCheck is false";
 		Session session = factory.getCurrentSession();
 		List<ReportBean> rtbList = new ArrayList<>();
 		rtbList = session.createQuery(hql).getResultList();
 		return rtbList;
+	}
+
+	@Override
+	public void checked(Integer report_id) {
+		Session session = factory.getCurrentSession();
+		ReportBean rtb = session.get(ReportBean.class, report_id);
+		rtb.setIsCheck(true);
+		session.save(rtb);
+		
 	}
 
 }

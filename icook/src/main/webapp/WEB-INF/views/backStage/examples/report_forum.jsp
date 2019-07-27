@@ -200,7 +200,7 @@ td {
 								</div>
 								<div class="card-body table-full-width table-responsive">
 									<h1 class='thnewHeader' align='center'>
-										<c:out value="---------------------------------------------系統訂單總覽---------------------------------------------" />
+										<c:out value="---------------------------------------------被檢舉文章總覽---------------------------------------------" />
 									</h1>
 									<div class="outer">
 										<table class="table table-hover"  style='text-align:center;'>
@@ -227,19 +227,29 @@ td {
 
 												<c:forEach var="report" items="${ reports }">
 													<tr>
-														
-
-														
-														<td><a href="${ pageContext.request.contextPath }/forum/pick?harticle_id=${ report.fmb.harticle_id }&article_id=${ report.fmb.article_id }">${ report.fmb.title }</a></td>
+													<td><a href="${ pageContext.request.contextPath }/forum/pick?harticle_id=${ report.fmb.harticle_id }&article_id=${ report.fmb.article_id }"  target="_blank">${ report.fmb.title }</a></td>
 														<td>${ report.fmb.username }</td>														
 														<td>${ report.fmb.article_id }</td>
 														<td>${ report.fmb.category }</td>
 														<td>${ report.fmb.memberBean.member_id }</td>																												
 														<td>${ report.reportCategory }:${ report.reason }</td>
 														<td>${ report.reportTime }</td>
-														<td></td>
+														<td><button type="button" class="btn btn-outline-primary" id="check${report.report_id}" onclick="checked()">審核</button></td>
 													</tr>
-
+													<script>
+														function checked(){
+															$.ajax({
+																url:"${ pageContext.request.contextPath }/report_forum/check?report_id=${report.report_id}",
+																type:"GET",
+																success: function(data){
+																	if(data == 1){
+																		$("#check${report.report_id}").text("審核完畢");
+																		$("#check${report.report_id}").attr("disabled", "true");
+																	}
+																}
+															})
+														}
+													</script>
 												</c:forEach>
 											</tbody>
 										</table>
