@@ -516,11 +516,7 @@
 					<li><a class="search">豬肉</a></li>
 					<li><a class="search">羊肉</a></li>
 				</ul>
-				
-				
 				</div>
-				
-				<a href='${pageContext.request.contextPath}'>回首頁</a><BR> <br>
 			</section>
 		</div>
 		
