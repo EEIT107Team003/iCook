@@ -502,7 +502,7 @@
 	</c:if>
 
 	<c:forEach var="user" items="${ LoginOK }">
-		<input type="hidden" id="from" value=" ${user.username}" />
+		<input type="hidden" id="from" value="${user.nickname}" />
 		<script>
 			var stompClient = null;
 
@@ -543,11 +543,22 @@
 			function serviceMessage(hint) {
 				var from = document.getElementById('from').value;
 				from = (from.length > 0 && from != null) ? from : 'anonimus';
+				if(from != "admin"){
 				stompClient.send("/forum/overview/app/chat", {}, JSON
 						.stringify({
 							'from' : "管理員",
 							'text' : from + " " + hint
 						}));
+				} else{
+					
+					hint = "進來了，似乎太OP，請NERF一下";
+					stompClient.send("/forum/overview/app/chat", {}, JSON
+							.stringify({
+								'from' : "管理員",
+								'text' : from + " " + hint
+							}));
+					
+				}
 			}
 
 			function showMessageOutput(messageOutput) {
