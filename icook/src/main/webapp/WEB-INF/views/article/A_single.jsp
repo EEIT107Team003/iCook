@@ -96,7 +96,7 @@
 										
 							<c:choose>
 							
-							<c:when test="${pageContext.request.userPrincipal.name == 'aa'||pageContext.request.userPrincipal.name =='admin'}">
+							<c:when test="${pageContext.request.userPrincipal.name == 'admin@gmail.com'||pageContext.request.userPrincipal.name =='admin'}">
 							
 							<a style="height: 200px"
 							
@@ -205,7 +205,7 @@
 
 						<!-- 隱藏判斷 -->
 						<c:if
-							test="${Article.article_member.username == username || pageContext.request.userPrincipal.name =='admin'}">
+							test="${Article.article_member.username == username || pageContext.request.userPrincipal.name =='admin@gmail.com'}">
 							<div align="right" class="tagcloud">
 								<a
 									href="<spring:url value='/TagarticleUpdate?article_num=${Article.article_num}' />"
