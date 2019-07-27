@@ -122,7 +122,7 @@
 				success : function(data) {
 					var names = JSON.parse(JSON.stringify(data).split(","));
 					var txt = "";			
-					
+					alert(66666);
 					txt+="<input type='button' id='trackCancel' name='trackCancel' value='取消追蹤' onclick='trackCancel()';/>"
 					$("#trackbutton").html(txt);
 					

@@ -97,10 +97,12 @@ public class MemberBean implements Serializable {
 
 	// ------------------------------------------------------------------------
 
+	@JsonBackReference(value = "memberId")
 	@OneToMany(mappedBy = "memberId", fetch = FetchType.LAZY)
 	@JsonIgnore
 	private Set<MyTrackBean> tracker = new LinkedHashSet<>();
 
+	@JsonBackReference(value = "trackedId")
 	@OneToMany(mappedBy = "trackedId", fetch = FetchType.LAZY)
 	@JsonIgnore
 	private Set<MyTrackBean> tracked = new LinkedHashSet<>();
