@@ -515,7 +515,21 @@
 						stompClient.connect({}, function(frame) {
 
 							console.log('Connected: ' + frame);
-							serviceMessage('跳進了伺服器。 他是袋鼠！！');
+							
+							var dice = Math.floor(Math.random()*5 + 1);
+							
+							if(dice == 1){
+								serviceMessage('跳進了伺服器。 他是袋鼠！！');
+							} else if (dice == 2){
+								serviceMessage('來只為了嚼口香糖跟打爆人。現在 ${user.nickname} 嚼完口香糖了。');
+							} else if (dice == 3){
+								serviceMessage('出現了。 給他一罐啤酒。');
+							} else if (dice == 4 ){
+								serviceMessage('剛剛滑入了伺服器中。');
+							} else if (dice == 5){
+								serviceMessage('來了，請把您的武器留在門口那邊。');
+							}
+								
 
 							stompClient.subscribe(
 									'/forum/overview/topic/messages', function(
@@ -544,11 +558,14 @@
 				var from = document.getElementById('from').value;
 				from = (from.length > 0 && from != null) ? from : 'anonimus';
 				if(from != "admin"){
+					
+					
 				stompClient.send("/forum/overview/app/chat", {}, JSON
 						.stringify({
 							'from' : "管理員",
 							'text' : from + " " + hint
 						}));
+				
 				} else{
 					
 					hint = "進來了，似乎太OP，請NERF一下";
