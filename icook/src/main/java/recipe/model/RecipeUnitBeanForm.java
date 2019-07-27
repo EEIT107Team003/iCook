@@ -4,16 +4,16 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class RecipeUnitForm {
+public class RecipeUnitBeanForm {
 	private List<String> explain2;// 食譜步驟說明
 	private List<MultipartFile> unit_image2;// 食譜步驟圖片
 
-	public RecipeUnitForm() {
+	public RecipeUnitBeanForm() {
 	}
-
+	
 	@Override
 	public String toString() {
-		return "RecipeUnitForm [explain2=" + explain2 + ", unit_image2=" + unit_image2 + "]";
+		return "RecipeUnitBeanForm [explain2=" + explain2 + ", unit_image2=" + unit_image2 + "]";
 	}
 
 	public List<String> getExplain2() {

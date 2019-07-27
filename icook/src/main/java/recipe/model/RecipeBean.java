@@ -2,9 +2,9 @@ package recipe.model;
 
 import java.io.Serializable;
 import java.sql.Blob;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.LinkedHashSet;
-import java.util.List;
+//import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -55,15 +55,21 @@ public class RecipeBean implements Serializable {
 	@JoinColumn(name = "fk_member_id")
 	private MemberBean memberbean;// TODO 正確寫法，多中有個一。2-1
 
-	@OneToMany(mappedBy = "recipeBeanIngredients", cascade = CascadeType.ALL)
-	private List<RecipeIngredientsBean> recipeIngredients = new ArrayList<RecipeIngredientsBean>();// 一對多，「食譜食材」
+	// @JsonBackReference(value = "recipeBeanIngredients")
+	// @OneToMany(mappedBy = "recipeBeanIngredients", cascade = CascadeType.ALL)
+//	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+//	@JoinColumn(name = "fk_recipe_id")
+//	private List<RecipeIngredientsBean> recipeIngredients = new ArrayList<RecipeIngredientsBean>();// 一對多，「食譜食材」
 
-	@OneToMany(mappedBy = "recipeBeanUnit", cascade = CascadeType.ALL)
-	private List<RecipeUnit> recipeUnit = new ArrayList<RecipeUnit>();// 一對多，「單元食譜、食譜步驟【已完成】」
+	// @JsonBackReference(value = "recipeBeanUnit")
+	// @OneToMany(mappedBy = "recipeBeanUnit", cascade = CascadeType.ALL)
+//	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+//	@JoinColumn(name = "fk_recipe_id")
+//	private List<RecipeUnitBean> recipeUnit = new ArrayList<RecipeUnitBean>();// 一對多，「單元食譜、食譜步驟【已完成】」
 
 //收藏食譜 (by江慶庭)---------------------------------------
 	@JsonBackReference(value = "cr_reciept_id")
-	@OneToMany(mappedBy = "cr_reciept_id", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "cr_reciept_id", fetch = FetchType.EAGER) // EAGER防止 lazy loading的問題
 	private Set<MyCollectRecipeBean> collectRecipe = new LinkedHashSet<>();
 //---------------------------------------	
 
@@ -76,24 +82,23 @@ public class RecipeBean implements Serializable {
 	private java.sql.Date recipe_date;// 新增食譜時的日期
 	private Integer recipe_display;// 設定食譜是否顯示【1正常顯示，公開給大家看。】【2草稿階段尚未發布，只限本人觀看。】【3對所有人隱藏起來】
 
-	@Transient
+	@Transient // 食譜封面照片
 	private MultipartFile image_file;// @Transient_儲存使用者上傳圖片檔案的欄位，之後再轉成 byte[]陣列 塞進 recipe_image。
 
 	private String file_name;// 儲存使用者圖片檔案名稱，跟 recipe_image相關。
 	private Integer recipe_click_rate;// 計算食譜點閱率
+	private String recipe_item;// 食譜分類
 
 	public RecipeBean() {
 		// 空的建構子
 	}
 
-	@Override
-	public String toString() {
-		return "RecipeBean [pk_recipe_id=" + pk_recipe_id + ", memberbean=" + memberbean + ", recipeIngredients="
-				+ recipeIngredients + ", recipeUnit=" + recipeUnit + ", recipe_name=" + recipe_name
-				+ ", recipe_quantity=" + recipe_quantity + ", recipe_image=" + recipe_image + ", recipe_summary="
-				+ recipe_summary + ", recipe_time=" + recipe_time + ", recipe_note=" + recipe_note + ", recipe_date="
-				+ recipe_date + ", recipe_display=" + recipe_display + ", image_file=" + image_file + ", file_name="
-				+ file_name + ", recipe_click_rate=" + recipe_click_rate + "]";
+	public String getRecipe_item() {
+		return recipe_item;
+	}
+
+	public void setRecipe_item(String recipe_item) {
+		this.recipe_item = recipe_item;
 	}
 
 	public Set<MyCollectRecipeBean> getCollectRecipe() {
@@ -104,21 +109,21 @@ public class RecipeBean implements Serializable {
 		this.collectRecipe = collectRecipe;
 	}
 
-	public List<RecipeIngredientsBean> getRecipeIngredients() {
-		return recipeIngredients;
-	}
+//	public List<RecipeIngredientsBean> getRecipeIngredients() {
+//		return recipeIngredients;
+//	}
+//
+//	public void setRecipeIngredients(List<RecipeIngredientsBean> recipeIngredients) {
+//		this.recipeIngredients = recipeIngredients;
+//	}
 
-	public void setRecipeIngredients(List<RecipeIngredientsBean> recipeIngredients) {
-		this.recipeIngredients = recipeIngredients;
-	}
-
-	public List<RecipeUnit> getRecipeUnit() {
-		return recipeUnit;
-	}
-
-	public void setRecipeUnit(List<RecipeUnit> recipeUnit) {
-		this.recipeUnit = recipeUnit;
-	}
+//	public List<RecipeUnitBean> getRecipeUnit() {
+//		return recipeUnit;
+//	}
+//
+//	public void setRecipeUnit(List<RecipeUnitBean> recipeUnit) {
+//		this.recipeUnit = recipeUnit;
+//	}
 
 	public Integer getPk_recipe_id() {
 		// @GeneratedValue(strategy = GenerationType.SEQUENCE)//不使用，他不會從1開始。
@@ -237,4 +242,11 @@ public class RecipeBean implements Serializable {
 		this.recipe_click_rate = recipe_click_rate;
 	}
 
+//	public MemberBean getMemberbean() {
+//		return memberbean;
+//	}
+//
+//	public void setMemberbean(MemberBean memberbean) {
+//		this.memberbean = memberbean;
+//	}
 }

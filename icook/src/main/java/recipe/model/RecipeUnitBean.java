@@ -15,22 +15,32 @@ import javax.persistence.Table;
 //「單元食譜、食譜步驟【已完成】」
 @Entity
 @Table(name = "recipe_unit")
-public class RecipeUnit implements Serializable {
+public class RecipeUnitBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer pk_recipe_unit_id;// 多對一【PK】單元食譜、食譜步驟編號
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "fk_recipe_id")
-	private RecipeBean recipeBeanUnit;// 多對一
+//	@ManyToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "fk_recipe_id")
+//	private RecipeBean recipeBeanUnit;// 多對一
+	private Integer fk_recipe_id;// 對應到食譜的FK
 
 	private Integer stepNo;// 食譜步驟編號
 	private String explain;// 食譜步驟說明
 	private Blob unit_image;// 食譜步驟圖片
 
-	public RecipeUnit() {
+	public RecipeUnitBean() {
+		// 空的建構子
+	}
+
+	public Integer getFk_recipe_id() {
+		return fk_recipe_id;
+	}
+
+	public void setFk_recipe_id(Integer fk_recipe_id) {
+		this.fk_recipe_id = fk_recipe_id;
 	}
 
 	public Integer getPk_recipe_unit_id() {
@@ -41,13 +51,13 @@ public class RecipeUnit implements Serializable {
 		this.pk_recipe_unit_id = pk_recipe_unit_id;
 	}
 
-	public RecipeBean getRecipeBeanUnit() {
-		return recipeBeanUnit;
-	}
-
-	public void setRecipeBeanUnit(RecipeBean recipeBeanUnit) {
-		this.recipeBeanUnit = recipeBeanUnit;
-	}
+//	public RecipeBean getRecipeBeanUnit() {
+//		return recipeBeanUnit;
+//	}
+//
+//	public void setRecipeBeanUnit(RecipeBean recipeBeanUnit) {
+//		this.recipeBeanUnit = recipeBeanUnit;
+//	}
 
 	public Integer getStepNo() {
 		return stepNo;
