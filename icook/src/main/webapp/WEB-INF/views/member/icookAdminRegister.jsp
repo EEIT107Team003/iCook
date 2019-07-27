@@ -131,7 +131,7 @@
 											<li><a href="${pageContext.request.contextPath}/checkOrders">查看訂單</a></li>
 											<li><a href="${pageContext.request.contextPath}/icookAddRecipe">新增食譜</a></li>
 											<sec:authorize access="hasRole('ADMIN')">
-												<li><a href="${pageContext.request.contextPath}/productTable">後台</a></li>
+												<li><a href="${pageContext.request.contextPath}/backStageDashboard">後台</a></li>
 											</sec:authorize>
 										</ul>
 									</li>
@@ -207,7 +207,7 @@
 								<tr>
 									<td><label for="password">密碼：</label></td>
 									<td>
-										<form:input id="password" path="password" type="text" />
+										<form:input id="password" path="password" type="password" />
 									</td>
 								</tr> 
 							</table>

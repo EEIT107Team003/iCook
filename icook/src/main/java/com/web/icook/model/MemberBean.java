@@ -39,7 +39,7 @@ public class MemberBean implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "generatorName")
 	@GenericGenerator(name = "generatorName", strategy = "native")
 	private Integer member_id;
-	// 電子郵件(不重複)*
+	// 帳號(不重複)*
 	@Column(unique = true)
 	private String username;
 	// 密碼
@@ -51,7 +51,7 @@ public class MemberBean implements Serializable {
 	// 收貨地址
 	private String address;
 	// 會員簡介
-	@Column(columnDefinition = "varchar(50)")
+	@Column(columnDefinition = "varchar(100)")
 	private String resume;
 
 	// 大頭貼
@@ -74,7 +74,7 @@ public class MemberBean implements Serializable {
 
 	// 註冊時間
 	private Date register_date;
-	// 是否水桶(0.公開 1.隱藏)
+	// 是否可用(0.公開 1.隱藏)
 	private Boolean enabled;
 	// 權限
 	private String role;
@@ -97,12 +97,10 @@ public class MemberBean implements Serializable {
 
 	// ------------------------------------------------------------------------
 
-	@JsonBackReference(value = "memberId")
 	@OneToMany(mappedBy = "memberId", fetch = FetchType.LAZY)
 	@JsonIgnore
 	private Set<MyTrackBean> tracker = new LinkedHashSet<>();
 
-	@JsonBackReference(value = "trackedId")
 	@OneToMany(mappedBy = "trackedId", fetch = FetchType.LAZY)
 	@JsonIgnore
 	private Set<MyTrackBean> tracked = new LinkedHashSet<>();

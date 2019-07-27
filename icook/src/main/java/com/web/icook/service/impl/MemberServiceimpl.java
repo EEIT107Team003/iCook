@@ -72,4 +72,10 @@ public class MemberServiceimpl implements MemberService {
 	public void updateMemberInfo(MemberBean bean, int member_id) {
 		dao.updateMemberInfo(bean, member_id);
 	}
+
+	//查詢會員
+	@Override
+	public List<MemberBean> selectAllMember(String role) {
+		return dao.selectAllMember(role);
+	}
 }

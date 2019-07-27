@@ -207,7 +207,7 @@
 								<tr>
 									<td><label for="password">密碼：</label></td>
 									<td>
-										<form:input id="password" path="password" type="text" />
+										<form:input id="password" path="password" type="password" />
 									</td>
 								</tr> 
 							</table>

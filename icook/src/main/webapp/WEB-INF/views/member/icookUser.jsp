@@ -27,17 +27,22 @@
 <script src="js/css3-mediaqueries.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Responsive HTML5 Website landing Page for Developers">
-    <meta name="author" content="3rd Wave Media">    
-    <link rel="shortcut icon" href="favicon.ico">   
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'> 
-<%--     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/bootstrap/css/bootstrap.min.css">    --%>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/font-awesome/css/font-awesome.css">
-    <link id="theme-style" rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/styles.css">
-	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<meta name="description" content="Responsive HTML5 Website landing Page for Developers"> 
+<meta name="author" content="3rd Wave Media">     
+<link rel="shortcut icon" href="favicon.ico">   
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'> 
+<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>  
+<%--     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/bootstrap/css/bootstrap.min.css">    --%> 
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/font-awesome/css/font-awesome.css"> 
+<link id="theme-style" rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/styles.css"> 
+
+<!-- 	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css"> -->
+<!-- 	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script> -->
+<!-- 	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 
 
 <style>
@@ -142,6 +147,16 @@
 	font-family: 'Noto Sans TC', sans-serif;
 	float: right;
 }
+.contain_items{
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	padding-bottom:3px;
+}
+
+a{
+	font-family: 'Noto Sans TC', sans-serif;
+}
 /* ------------------------------------------------------------------------------------------ */
 section {
 	border: 1px solid rgb(220, 220, 220);
@@ -163,10 +178,7 @@ td {
 	margin: 3px;
 }
 
-/* .subscribe { */
-/* 	margin-right: 100px; */
-/* 	margin-left: 260px; */
-/* } */
+
 </style>
 <script>
 	$(document).ready(function() {
@@ -217,7 +229,46 @@ td {
 			});
 		});
 		
+		$("#user_myrecipe").click(function(){
+			$("#tag_myRecipe").css({"border-bottom": "3px solid green"});
+			$("#tag_myCollectRecipe").css({"border-bottom": "none"});
+			$("#tag_myTrack").css({"border-bottom": "none"});
+			$("#tag_myForum").css({"border-bottom": "none"});
+// 			$.ajax({
+// 				url : "${pageContext.request.contextPath}/user/myforum",
+// 				type : "POST",
+// 				dataType : "json",
+// 				contentType : "application/json",
+// 				async : true,
+// 				success : function(data) {
+// 					var names = JSON.parse(JSON.stringify(data).split(","));
+// 					var txt = "";
+// 					for (i in names) {
+// 						txt+=
+// 							"<div class=contain_mytrack>"
+// 									+"<div width=100%>"
+// 										+"<a href=${pageContext.request.contextPath}/forum/pick?harticle_id="+names[i].harticle_id+"&article_id="+names[i].article_id+" class=contain_mytrack_title>"+"["+names[i].category+"] "+names[i].title+"</a>"
+// 									+"</div>"	
+// 								+"<div class=contain_myforum_time>發文時間: "+formatDate(names[i].editTime)+"</div>"
+// 								+"</div>"
+// 								+"<hr style=clear: both;border-style: dashed;>"
+// 							+"</div>"
+// 						console.log(names[i].title);
+// 					};
+// // 					$("#forum_num").html(names.length)
+// 					$("#user_contain").html(txt);
+// 				},
+// 				error : function(data, textStatus, errorThrown) {
+// 					console.log("error: "+data);
+// 				},
+// 			});
+		});
+		
 		$("#user_mytrack").click(function(){
+			$("#tag_myRecipe").css({"border-bottom": "none"});
+			$("#tag_myCollectRecipe").css({"border-bottom": "none"});
+			$("#tag_myTrack").css({"border-bottom": "3px solid green"});
+			$("#tag_myForum").css({"border-bottom": "none"});
 			$.ajax({
 				url : "${pageContext.request.contextPath}/user/mytrack",
 				type : "POST",
@@ -252,7 +303,12 @@ td {
 				},
 			});
 		});
+		
 		$("#user_myforum").click(function(){
+			$("#tag_myRecipe").css({"border-bottom": "none"});
+			$("#tag_myCollectRecipe").css({"border-bottom": "none"});
+			$("#tag_myTrack").css({"border-bottom": "none"});
+			$("#tag_myForum").css({"border-bottom": "3px solid green"});
 			$.ajax({
 				url : "${pageContext.request.contextPath}/user/myforum",
 				type : "POST",
@@ -264,7 +320,7 @@ td {
 					var txt = "";
 					for (i in names) {
 						txt+=
-							"<div class=contain_myforum>"
+							"<div class=contain_mytrack>"
 									+"<div width=100%>"
 										+"<a href=${pageContext.request.contextPath}/forum/pick?harticle_id="+names[i].harticle_id+"&article_id="+names[i].article_id+" class=contain_mytrack_title>"+"["+names[i].category+"] "+names[i].title+"</a>"
 									+"</div>"	
@@ -420,7 +476,7 @@ td {
 											<li><a href="checkOrders">查看訂單</a></li>
 											<li><a href="icookAddRecipe">新增食譜</a></li>
 											<sec:authorize access="hasRole('ADMIN')">
-												<li><a href="productTable">後台</a></li>
+												<li><a href="backStageDashboard">後台</a></li>
 											</sec:authorize>
 										</ul>
 									</li>
@@ -472,8 +528,8 @@ td {
 							</form:form>
 						</div>
 						<div class="member_summary">
-							<h1 id="member_nickname">${member.nickname}</h1>
-							<h2 id="member_resume" class="desc" style="font-size: 10px">${member.resume}</h2>
+							<h1 id="member_nickname" style="color:black">${member.nickname}</h1>
+							<h2 id="member_resume" class="desc" style="font-size: 10px ;color:black">${member.resume}</h2>
 						</div>	
 					</div>
 					<div class="member_cover_img" style="background-image:url('getCoverPhoto/${member.member_id}');background-size:100% 100%;" ></div>
@@ -488,8 +544,8 @@ td {
 					    <div class="modal-dialog">
 					        <div class="modal-content">
 					            <div class="modal-header">
+					                <h4 class="modal-title" id="myModalLabel_changeInfo" style="float: left">編輯會員資料</h4>
 					                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-					                <h4 class="modal-title" id="myModalLabel_changeInfo">修改基本資料</h4>
 					            </div>
 					            <div class="modal-body">
 					            
@@ -535,8 +591,8 @@ td {
 					    <div class="modal-dialog">
 					        <div class="modal-content">
 					            <div class="modal-header">
+					                <h4 class="modal-title" id="myModalLabel" style="float: right">編輯個人簡介</h4>
 					                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-					                <h4 class="modal-title" id="myModalLabel">編輯個人簡介</h4>
 					            </div>
 					            <div class="modal-body">
 					            	<div>請輸入的你個人簡介:(50字以內)</div><br>
@@ -576,12 +632,10 @@ td {
 						<div class="primary col-md-8 col-sm-12 col-xs-12"
 							style="float: left; border: 1px, solid, #c7c7c7; box-shadow: 4px 4px 3px 4px rgba(20%, 20%, 40%, 0.5);">
 							<ul id="myTab" class="nav nav-tabs">
-								<li class="active">
-								<a href="user_myrecipe" data-toggle="tab">我的食譜</a></li>
-								<li><a href="user_mycollectrecipe" data-toggle="tab">我的收藏</a>
-								</li>
-								<li><a href="" id="user_mytrack" data-toggle="tab">我的追蹤</a></li>
-								<li><a href="" id="user_myforum" data-toggle="tab">我的文章</a></li>
+								<li><div id="tag_myRecipe" class="contain_items" style="border-bottom: 3px solid green"><a id="user_myrecipe" data-toggle="tab">我的食譜</a></div></li>
+								<li><div id="tag_myCollectRecipe" class="contain_items"><a id="user_mycollectrecipe" data-toggle="tab">我的收藏</a></div></li>
+								<li><div id="tag_myTrack" class="contain_items"><a  id="user_mytrack" data-toggle="tab">我的追蹤</a></div></li>
+								<li><div id="tag_myForum" class="contain_items"><a  id="user_myforum" data-toggle="tab">我的文章</a></div></li>
 							</ul>
 
 							<section class="about section">

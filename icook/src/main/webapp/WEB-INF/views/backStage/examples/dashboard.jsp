@@ -64,10 +64,11 @@
                     </li>
                     <li>
                         <a class="nav-link" href="backStageUser">
-                            <i class="nc-icon nc-circle-09"></i>
-                            <p>User Profile</p>
+                            <i class="nc-icon nc-notes"></i>
+                            <p>會員管理</p>
                         </a>
                     </li>
+          
                     <li>
                         <a class="nav-link" href="adminCheckOrders">
                             <i class="nc-icon nc-notes"></i>

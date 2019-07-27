@@ -68,6 +68,17 @@ public class MemberDAOimpl implements MemberDAO {
 		list = session.createQuery(hql).getResultList();
 		return list;
 	}
+	
+	// 查詢全部(權限)
+	@Override
+	public List<MemberBean> selectAllMember(String role) {
+		String hql = "from MemberBean where role=:role";
+		Session session = null;
+		List<MemberBean> list = new ArrayList<>();
+		session = factory.getCurrentSession();
+		list = session.createQuery(hql).setParameter("role", role).getResultList();
+		return list;
+	}
 
 	// 尋找單筆資料(member_id)
 	@Override

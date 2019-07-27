@@ -45,10 +45,10 @@
 					var names = JSON.parse(JSON.stringify(data).split(","));
 					var txt = "";				
 					if(names.length!=0){
-						txt+="<input type='button' id='trackCancel' name='trackCancel' value='取消追蹤' onclick='trackCancel()';/>"
+						txt+="<input type='button' class='btn btn-danger' id='trackCancel' name='trackCancel' value='取消追蹤' onclick='trackCancel()';/>"
 						$("#trackbutton").html(txt);
 					}else{
-						txt+="<input type='button' id='trackMe' name='trackMe' value='加入追蹤' onclick='trackMe()';/>"
+						txt+="<input type='button' class='btn btn-primary' id='trackMe' name='trackMe' value='加入追蹤' onclick='trackMe()';/>"
 						$("#trackbutton").html(txt);	
 					}
 				},
@@ -58,12 +58,15 @@
 			});
 		}else{
 			var txt = "";
-			txt+="<input type='button' id='trackMe' name='trackMe' value='加入追蹤' onclick='trackMe()';/>"
+			txt+="<input type='button' class='btn btn-primary' id='trackMe' name='trackMe' value='加入追蹤' onclick='trackMe()';/>"
 				$("#trackbutton").html(txt);
 		}
 	
 		$("#user_myforum").click(function(){
-// 			alert("fdfdfdfdfdfdfdfd");
+			$("#tag_myRecipe").css({"border-bottom": "none"});
+			$("#tag_myCollectRecipe").css({"border-bottom": "none"});
+			$("#tag_myTrack").css({"border-bottom": "none"});
+			$("#tag_myForum").css({"border-bottom": "3px solid green"});
 			$.ajax({
 				url : "${pageContext.request.contextPath}/members/page/myforum",
 				type : "POST",
@@ -75,8 +78,7 @@
 					var txt = "";
 					for (i in names) {
 						txt+=
-							"<div class=contain_myforum>"
-								+"<div class=contain_myforum_Info>"
+							"<div class=contain_mytrack>"
 									+"<div width=100%>"
 										+"<a href=${pageContext.request.contextPath}/forum/pick?harticle_id="+names[i].harticle_id+"&article_id="+names[i].article_id+" class=contain_mytrack_title>"+"["+names[i].category+"] "+names[i].title+"</a>"
 									+"</div>"	
@@ -122,9 +124,9 @@
 				async : true,
 				success : function(data) {
 					var names = JSON.parse(JSON.stringify(data).split(","));
-					var txt = "";			
-					alert(66666);
-					txt+="<input type='button' id='trackCancel' name='trackCancel' value='取消追蹤' onclick='trackCancel()';/>"
+					var txt = "";
+					
+					txt+="<input class='btn btn-danger' type='button' id='trackCancel' name='trackCancel' value='取消追蹤' onclick='trackCancel()';/>"
 					$("#trackbutton").html(txt);
 					
 					$("#tracked_num").html(names.length);
@@ -149,7 +151,7 @@
 				success : function(data) {
 					var names = JSON.parse(JSON.stringify(data).split(","));
 					var txt = "";
-					txt+="<input type='button' id='trackMe' name='trackMe' value='加入追蹤' onclick='trackMe()';/>"
+					txt+="<input class='btn btn-primary' type='button' id='trackMe' name='trackMe' value='加入追蹤' onclick='trackMe()';/>"
 						$("#trackbutton").html(txt);
 						
 						$("#tracked_num").html(names.length);
@@ -239,7 +241,7 @@
 }
 
 .contain_mytrack {
-	border: 1px solid black;
+	border: 1px solid #c7c7c7;
 	width: 100%;
 	height: 130px;
 	margin-bottom: 10px;
@@ -267,7 +269,7 @@
 	margin-top: 5px;
 	height: 30px;
 	font-size: 25px;
-	font-family: 'Noto Sans TC', sans-serif;;
+	font-family: 'Noto Sans TC', sans-serif;
 	font-weight: 900;
 }
 
@@ -275,6 +277,7 @@
 	height: 70%;
 	font-family: 'Noto Sans TC', sans-serif;
 }
+
 .contain_myforum_Info {
 	height: 100px;
 	width: 100%;
@@ -290,8 +293,18 @@
 	font-family: 'Noto Sans TC', sans-serif;
 	float: right;
 }
-/* ------------------------------------------------------------------------------------------ */
 
+.contain_items{
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	padding-bottom:3px;
+}
+
+a{
+	font-family: 'Noto Sans TC', sans-serif;
+}
+/* ------------------------------------------------------------------------------------------ */
 td {
 	margin: 3px;
 }
@@ -359,7 +372,7 @@ section {
 											<li><a href="${pageContext.request.contextPath}/checkOrders">查看訂單</a></li>
 											<li><a href="${pageContext.request.contextPath}/icookAddRecipe">新增食譜</a></li>
 											<sec:authorize access="hasRole('ADMIN')">
-												<li><a href="${pageContext.request.contextPath}/productTable">後台</a></li>
+												<li><a href="${pageContext.request.contextPath}/backStageDashboard">後台</a></li>
 											</sec:authorize>
 										</ul>
 									</li>
@@ -394,7 +407,7 @@ section {
 	</div>
 		<!--=======content================================-->
 		<div style="text-align: center;">
-			<div class="member_info" style="margin-left:300px;">
+			<div class="member_info" style="margin-left:300px">
 				<div style="text-align: center;" >
 					<label>
 						<img class="profile-image img-responsive pull-left member_photo"
@@ -416,16 +429,16 @@ section {
 			</div>
 		</div>
 
-		<div style="clear: both;">
-			<div id="trackbutton"></div>
-
+		<div style="clear: both">
+		<div style="margin-left: 300px">
+			<div id="trackbutton" style="margin-top: 5px"></div>
 			<div style="display: none">
 				<form method="POST"
 					action="${pageContext.request.contextPath}/members/page/track?member_id=${member.member_id}">
-					<button id=trackMe_nologin type="submit">加入追蹤</button>
+					<button class="btn btn-primary" id=trackMe_nologin type="submit">加入追蹤</button>
 				</form>
 			</div>
-
+		</div>
 
 			<div class="content" style="margin-top: 50px;">
 				<div style="width: 100%;">
@@ -435,12 +448,9 @@ section {
 							<div class="primary col-md-8 col-sm-12 col-xs-12"
 								style="float: left; border: 1px, solid, #c7c7c7; box-shadow: 4px 4px 3px 4px rgba(20%, 20%, 40%, 0.5);">
 								<ul id="myTab" class="nav nav-tabs">
-									<li class="active"><a href="user_myrecipe"
-										data-toggle="tab">我的食譜</a></li>
-									<li><a href="user_mycollectrecipe" data-toggle="tab">我的收藏</a>
-									</li>
-									<!-- 								<li><a id="user_mytrack" data-toggle="tab">我的追蹤</a></li> -->
-									<li><a href="" id="user_myforum" data-toggle="tab">我的文章</a></li>
+									<li class="active"><div id="tag_myRecipe" class="contain_items" style="border-bottom: 3px solid green"><a id="user_myrecipe" data-toggle="tab">我的食譜</a></div></li>
+									<li><div id="tag_myCollectRecipe" class="contain_items"><a id="user_mycollectrecipe" data-toggle="tab">我的收藏</a></div></li>
+									<li><div id="tag_myForum" class="contain_items"><a id="user_myforum" data-toggle="tab">我的文章</a></div></li>
 								</ul>
 
 								<section class="about section">
@@ -484,6 +494,7 @@ section {
 						<!--//row-->
 					</div>
 					<!--//masonry-->
+						<br><br><br>
 				</div>
 			</div>
 		</div>

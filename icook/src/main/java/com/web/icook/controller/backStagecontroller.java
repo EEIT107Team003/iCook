@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.web.icook.model.MemberBean;
 import com.web.icook.model.ProductBean;
 import com.web.icook.service.MemberService;
 import com.web.icook.service.ProductService;
@@ -81,10 +82,15 @@ public class backStagecontroller {
 	public String upgrade(Model model) {
 		return "backStage/examples/upgrade";
 	}
+//會員管理---------------------------------------------------------------
 	@RequestMapping(value = { "backStageUser"})
 	public String user(Model model) {
-		return "backStage/examples/user";
+		List<MemberBean> list= service.selectAllMember("ROLE_MEMBER");
+		System.out.println(list.get(0).getNickname());
+		model.addAttribute("members",list);
+		return "backStage/examples/userBackStage";
 	}
+//---------------------------------------------------------------
 
 	@RequestMapping(value = { "report_forum"})
 	public String reportManager(Model model) {

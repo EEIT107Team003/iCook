@@ -25,4 +25,5 @@ public interface MemberService {
 
 	void updateMemberInfo(MemberBean bean, int member_id);
 
+	List<MemberBean> selectAllMember(String role);
 }
