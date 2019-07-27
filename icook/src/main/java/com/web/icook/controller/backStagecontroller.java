@@ -86,7 +86,6 @@ public class backStagecontroller {
 	@RequestMapping(value = { "backStageUser"})
 	public String user(Model model) {
 		List<MemberBean> list= service.selectAllMember("ROLE_MEMBER");
-		System.out.println(list.get(0).getNickname());
 		model.addAttribute("members",list);
 		return "backStage/examples/userBackStage";
 	}
