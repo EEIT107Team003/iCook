@@ -75,39 +75,6 @@
 </head>
 <body>
 
-	<!-- 	<nav -->
-	<!-- 		class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" -->
-	<!-- 		id="ftco-navbar"> -->
-	<!-- 		<div class="container"> -->
-	<!-- 			<a class="navbar-brand" href="index2"><img width="240" -->
-	<!-- 				height="111.5" src="images/logo.png" alt="EXTERIOR"></a> -->
-	<!-- 			<button class="navbar-toggler" type="button" data-toggle="collapse" -->
-	<!-- 				data-target="#ftco-nav" aria-controls="ftco-nav" -->
-	<!-- 				aria-expanded="false" aria-label="Toggle navigation"> -->
-	<!-- 				<span class="oi oi-menu"></span> Menu -->
-	<!-- 			</button> -->
-
-	<!-- 			<div class="collapse navbar-collapse" id="ftco-nav"> -->
-	<!-- 				<ul class="navbar-nav ml-auto"> -->
-	<!-- 					<li class="nav-item"><a -->
-	<%-- 						href="${pageContext.request.contextPath}/home" class="nav-link">Home</a></li> --%>
-	<%-- 					<c:if --%>
-	<%-- 						test="${pageContext.request.userPrincipal.name == 'aa'||pageContext.request.userPrincipal.name =='dd'}"> --%>
-	<!-- 						<li class="nav-item"><a href="A_insert" class="nav-link">新增一篇文章</a></li> -->
-	<%-- 					</c:if> --%>
-	<!-- 					<li class="with_ul current"><a href="index2">ICook</a></li> -->
-	<!-- 					<li class="nav-item active"><a href="A_findAll" -->
-	<!-- 						class="nav-link">Foods文章首頁</a></li> -->
-	<!-- 					<li class="nav-item"><a href="icookLogin" class="nav-link">會員專區</a></li> -->
-	<!-- 					<li class="nav-item"><a href="cartPage" class="nav-link">購物車</a></li> -->
-	<!-- 					<li class="nav-item"><a href="icookLife" class="nav-link">生活誌</a></li> -->
-
-	<!-- 				</ul> -->
-	<!-- 			</div> -->
-	<!-- 		</div> -->
-	<!-- 	</nav> -->
-	<!-- END nav -->
-	<!-- 	套版上面 -->
 	<header>
 			<div class="zerogrid">
 				<div class="col-full">
@@ -215,24 +182,6 @@
 
 		<section class="ftco-section">
 
-			<!-- 	跑馬燈 測試成功排版問題-->
-			<!-- 		<marquee direction="left" height="30" scrollamount="8" -->
-			<!-- 			behavior="alternate" id="ArcBroadcast" style="color: green;"></marquee> -->
-			<%-- 		<form> --%>
-			<!-- 				<input id="messageField" type="text" > <input -->
-			<!-- 					onclick="sendMsg();" value="send" type="button" > -->
-			<%-- 			</form> --%>
-
-			<!-- 		<div id="msg-box" -->
-			<!-- 			style="width: 500px; height: 400px; background: #eee; overflow: auto;"></div> -->
-
-
-
-
-
-
-
-
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-9">
@@ -260,11 +209,6 @@
 
 											<p class="meta d-flex">
 												<span class="pr-3">${Article.article_date}</span>
-												<%-- 											<fmt:parseDate var="parseDate" --%>
-												<%-- 												value="${Article.article_date}" pattern="yyyy-MM-dd HH:mm" --%>
-												<%-- 												parseLocale="Asia/Taipei" /> --%>
-
-												<%-- 											<span class="ml-auto pl-3"> ${Article.article_date} </span> --%>
 											</p>
 
 											<h3>
@@ -272,11 +216,23 @@
 													href="<spring:url value='/article?article_num=${Article.article_num}' />">${Article.article_title}</a>
 											</h3>
 											<p class="mb-0">
+											<c:choose>
+											<c:when test="${pageContext.request.userPrincipal.name == 'admin@gmail.com'||pageContext.request.userPrincipal.name =='admin' && Article.article_status==2}">
+											
+												<a	href="<spring:url value='/article?article_num=${Article.article_num}' />"					
+													class="btn btn-black py-2">此篇文章已被隱藏<span
+													class="icon-arrow_forward ml-4"></span>
+												</a>
+												</c:when>
+												<c:otherwise>
 												<a
 													href="<spring:url value='/article?article_num=${Article.article_num}' />"
 													class="btn btn-black py-2">Read More <span
 													class="icon-arrow_forward ml-4"></span>
 												</a>
+												</c:otherwise>
+												
+												</c:choose>
 											</p>
 										</div>
 									</div>
