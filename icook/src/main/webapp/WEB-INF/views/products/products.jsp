@@ -71,13 +71,13 @@
 }
 
 .divA img {
-     margin-left:10px;
-     margin:auto;
+     margin-left:20px;
+     margin-top:20px;
 	-webkit-transition: opacity 2s linear;
 	-moz-transition: opacity 2s linear;
 	-o-transition: opacity 2s linear;
 	transition: opacity 1s linear;
-	width: 40cm;
+	width: 35cm;
 	height: 500px;
 	border-radius: 40px;
 }
