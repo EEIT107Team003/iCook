@@ -104,7 +104,7 @@
 		<!--<br>-->
 		<%--<a href="<c:url value='/recipe/recipeIndex' />">回食譜首頁</a>--%>
 		<br>
-		<a href="<c:url value='/home' />">回首頁</a>
+		<a href="<c:url value='/index2' />">回首頁</a>
 	</div>
 </body>
 </html>
