@@ -110,14 +110,19 @@
 </head>
 
 <body style="background-color: #55a237">
-	<%-- <sec:authorize access="hasRole('MEMBER')"> --%>
-	<!--     <h1>0000</h1> -->
-	<%-- </sec:authorize> --%>
 
 	<div class="main">
 		<!--==============================header=================================-->
-		<header style="font-size:30px;">
-			<div class="zerogrid">
+		<header>
+	<sec:authorize access="isAuthenticated()">
+		<div class="btn btn-success" onclick="javascript:location.href='user'" style="float:right;margin-right:50px;padding-left:35px;width: 400px">
+			<img id="member_photo_image"
+				 style="float:left;width:100px;height: 100px;border-radius: 50%; border: 1px solid black;background-color: white;"
+				 src="<c:url value='/getMemberPhoto/${bean.member_id}' />" />
+			<div style=" font-size:60px;float: left;margin-left: 30px;">${bean.nickname}</div>
+		</div>
+	</sec:authorize>
+			<div class="zerogrid" style="clear: both;">
 				<div class="col-full">
 					<div class="wrap-col">
 						<h1>
@@ -153,13 +158,12 @@
 									<li><a href="A_articlemainpage">文章區</a></li>
 									<li><a href="products">市集</a>
 										<ul>
-
-
 											<li><a href="cartPage">購物車</a></li>
 										</ul></li>
 									<%-- </c:if><c:if test="${pageContext.request.userPrincipal.name==null}"> --%>
 									<li><a href="user">會員專區 </a>
-										<ul><sec:authorize access="!isAuthenticated()">
+										<ul>
+											<sec:authorize access="!isAuthenticated()">
 												<li><a href="icookLogin">會員登入</a></li>
 												<li><a href="icookRegister">會員註冊</a></li>
 											</sec:authorize>
@@ -172,8 +176,7 @@
 											<sec:authorize access="hasRole('ADMIN')">
 												<li><a href="backStageDashboard">後台</a></li>
 											</sec:authorize>
-										</ul>
-									</li>
+										</ul></li>
 								</ul>
 							</nav>
 							<div class="clear"></div>

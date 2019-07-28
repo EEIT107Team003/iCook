@@ -432,6 +432,14 @@ td {
 	<div class="main">
 		<!--==============================header=================================-->
 		<header>
+			<sec:authorize access="isAuthenticated()">
+				<div class="btn btn-success" onclick="javascript:location.href='user'" style="float:right;margin-right:50px;padding-left:35px;width: 400px">
+					<img id="member_photo_image"
+						 style="float:left;width:100px;height: 100px;border-radius: 50%; border: 1px solid black;background-color: white;"
+						 src="<c:url value='/getMemberPhoto/${member.member_id}' />" />
+					<div style=" font-size:60px;float: left;margin-left: 30px;">${member.nickname}</div>
+				</div>
+			</sec:authorize>
 			<div class="zerogrid">
 			<!-- 修改會員資料-----------------------------------------------------------------------	 -->
 				<div class="col-full">
@@ -513,7 +521,7 @@ td {
 
 		
 				<div style="text-align: center;">
-					<div class="member_info" style="margin-left:300px;">
+					<div class="member_info" style="margin-left:380px;">
 						<div style="text-align: center;">
 							<form:form method="POST" action="user/updateMemberPhoto"
 								modelAttribute="MemberBean" enctype="multipart/form-data">
@@ -537,7 +545,7 @@ td {
 <!-- 				style="height: 100%;width: 100%" -->
 
 				<!-- 控制項-------------------------------------------				 -->
-			<div style="clear: both; ">
+			<div style="clear: both;margin-right: 370px ">
 				<div class="user_control">
 					<p class="btn btn-primary btn-lg user_control_title" data-toggle="modal" data-target="#myModal_changeInfo">編輯會員資料</p>
 					<div class="modal fade" id="myModal_changeInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -623,7 +631,7 @@ td {
 						</form:form>
 					</div>
 					
-	</div>				
+			</div>				
 	<div class="content" style="margin-top: 50px ; ">
 			<div style="width: 100%; ">
 				<div class="container sections-wrapper"

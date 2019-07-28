@@ -234,9 +234,11 @@ public class MemberController {
 	//前往會員頁
 	@RequestMapping(value = "/members/page")
 	public String member_page(Model model, @RequestParam("member_id") Integer member_id) {
-		int user_id = 0;
+		MemberBean user=null;
+		int user_id=0; 
 		if ((!getPrincipal().equals("anonymousUser"))) {
-			user_id = memberService.selectByUsername(getPrincipal()).getMember_id();
+			user = memberService.selectByUsername(getPrincipal());
+			user_id=user.getMember_id();
 		}
 		
 		if (member_id == user_id) {
@@ -244,6 +246,7 @@ public class MemberController {
 		} else {
 			MemberBean bean = memberService.selectById(member_id);
 			model.addAttribute("member", bean);
+			model.addAttribute("user", user);			
 			return "member/icookMembers";
 		}
 	}

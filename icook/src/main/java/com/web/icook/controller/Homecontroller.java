@@ -38,7 +38,6 @@ public class Homecontroller {
 	// 首頁
 	@RequestMapping(value = { "/", "home" })
 	public String home(Model model) {
-
 		if (!getPrincipal().equals("anonymousUser")) {
 			MemberBean bean = service.selectByUsername(getPrincipal());
 			model.addAttribute("bean", bean);

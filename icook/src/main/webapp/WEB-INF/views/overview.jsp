@@ -314,7 +314,17 @@
 							</div>
 						</div>
 						<div class="col-xl-4 sidebar ftco-animate bg-light pt-5">
-							<div class="sidebar-box pt-md-4">
+						<sec:authorize access="isAuthenticated()">
+							<c:forEach var="user" items="${ LoginOK }">
+								<div class="sidebar-box pt-md-4" onclick="javascript:location.href='${ pageContext.request.contextPath }/user'" style="vertical-align:middle; height:50px; line-height:50px;">
+									<img id="member_photo_image"
+				 					style="float:left;width:50px;height: 50px;border-radius: 50%; border: 1px solid black;vertical-align:middle;"
+				 					src="<c:url value='/getMemberPhoto/${user.member_id}' />" />
+									<div style=" font-size:20px;float: left;margin-left: 20px; ">歡迎光臨，${user.nickname}！</div>
+								</div>
+							</c:forEach>	
+						</sec:authorize>
+							<div class="sidebar-box pt-md-4">							
 								<form
 									action="${ pageContext.request.contextPath }/forum/search?title=${ param.title }"
 									class="search-form">

@@ -6,21 +6,24 @@
 =========================================================
  Light Bootstrap Dashboard - v2.0.1
 =========================================================
-
  Product Page: https://www.creative-tim.com/product/light-bootstrap-dashboard
  Copyright 2019 Creative Tim (https://www.creative-tim.com)
  Licensed under MIT (https://github.com/creativetimofficial/light-bootstrap-dashboard/blob/master/LICENSE)
-
  Coded by Creative Tim
-
 =========================================================
-
  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.  -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 <meta charset="utf-8" />
+<!-- google font -->
+<link
+	href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap"
+	rel="stylesheet">
+<!-- google font -->
+
+
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -64,17 +67,39 @@
 .outer {
 	margin: 50px 5% 20% 10%;
 }
-
 td {
 	text-align: center;
 }
-
 th {
 	text-align: center;
 }
-
 .urgent {
 	background-color: red;
+}
+.shrink {
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-top: 5%;
+}
+td{
+	text-align: center;
+	font-size: 20px;
+	font-family: 'Noto Sans TC', sans-serif;
+	line-height: 20px;
+}
+th{ 
+} 
+.thnew{
+font-family: 'Noto Sans TC', sans-serif;
+font-size: 20px;
+text-align: center;
+color: #aa4fff;
+}
+.thnewHeader{
+	font-family: 'Noto Sans TC', sans-serif;
+}
+td {
+	
 }
 </style>
 <script type="text/javascript">
@@ -93,209 +118,122 @@ th {
 		<div class="sidebar" data-image="backStage/assets/img/sidebar-5.jpg">
 			<!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
-
         Tip 2: you can also add an image using data-image tag
     -->
 
 			<div class="sidebar-wrapper">
 				<div class="logo">
-					<a href="/icook" class="simple-text"> 回醜後台 </a>
-				</div>
+                    <a href="home" class="simple-text">
+                                               回前台首頁
+                    </a>
+                </div>
 				<ul class="nav">
-					<li><a class="nav-link" href="backStageDashboard"> <i
-							class="nc-icon nc-chart-pie-35"></i>
-							<p>Dashboard</p>
-					</a></li>
-					<li><a class="nav-link" href="productTable"> <i
-							class="nc-icon nc-chart-pie-35"></i>
-							<p>productTable</p>
-					</a></li>
-					<li><a class="nav-link" href="backStageUser"> <i
-							class="nc-icon nc-circle-09"></i>
-							<p>User Profile</p>
-					</a></li>
-					<li class="nav-item active"><a class="nav-link"
-						href="adminCheckOrders"> <i class="nc-icon nc-notes"></i>
-							<p>訂單管理</p>
-					</a></li>
-					<li><a class="nav-link" href="backStageTypography"> <i
-							class="nc-icon nc-paper-2"></i>
-							<p>Typography</p>
-					</a></li>
-					<li><a class="nav-link" href="backStageIcons"> <i
-							class="nc-icon nc-atom"></i>
-							<p>Icons</p>
-					</a></li>
-					<li><a class="nav-link" href="backStageMaps"> <i
-							class="nc-icon nc-pin-3"></i>
-							<p>Maps</p>
-					</a></li>
-					<li><a class="nav-link" href="backStageNotifications"> <i
-							class="nc-icon nc-bell-55"></i>
-							<p>Notifications</p>
-					</a></li>
-					<li class="nav-item active active-pro"><a
-						class="nav-link active" href="backStageUpgrade"> <i
-							class="nc-icon nc-alien-33"></i>
-							<p>Upgrade to PRO</p>
-					</a></li>
-				</ul>
+                   <li>
+                        <a class="nav-link" href="backStageDashboard">
+                            <i class="nc-icon nc-chart-pie-35"></i>
+                            <p>後台首頁</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="productTable">
+                            <i class="nc-icon nc-notes"></i>
+                            <p>產品管理</p>
+                        </a>
+                    </li>
+ 					<li>
+                        <a class="nav-link" href="backStageUser">
+                            <i class="nc-icon nc-notes"></i>
+                            <p>會員管理</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="adminCheckOrders">
+                            <i class="nc-icon nc-notes"></i>
+                            <p>訂單管理</p>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="report_forum">
+                            <i class="nc-icon nc-chart-pie-35"></i>
+                            <p>檢舉文章管理</p>
+                        </a>
+                    </li>
+                </ul>
 			</div>
 		</div>
 		<div class="main-panel">
-			<!-- Navbar -->
-			<nav class="navbar navbar-expand-lg " color-on-scroll="500">
-				<div class="container-fluid">
-					<!-- 					<a class="navbar-brand" href="#pablo"> Table List </a> -->
-					<button href="" class="navbar-toggler navbar-toggler-right"
-						type="button" data-toggle="collapse"
-						aria-controls="navigation-index" aria-expanded="false"
-						aria-label="Toggle navigation">
-						<span class="navbar-toggler-bar burger-lines"></span> <span
-							class="navbar-toggler-bar burger-lines"></span> <span
-							class="navbar-toggler-bar burger-lines"></span>
-					</button>
-					<div class="collapse navbar-collapse justify-content-end"
-						id="navigation">
-						<ul class="nav navbar-nav mr-auto">
-							<li class="nav-item"><a href="#" class="nav-link"
-								data-toggle="dropdown"> <i class="nc-icon nc-palette"></i> <span
-									class="d-lg-none">Dashboard</span>
-							</a></li>
-							<li class="dropdown nav-item"><a href="#"
-								class="dropdown-toggle nav-link" data-toggle="dropdown"> <i
-									class="nc-icon nc-planet"></i> <span class="notification">5</span>
-									<span class="d-lg-none">Notification</span>
-							</a>
-								<ul class="dropdown-menu">
-									<a class="dropdown-item" href="#">Notification 1</a>
-									<a class="dropdown-item" href="#">Notification 2</a>
-									<a class="dropdown-item" href="#">Notification 3</a>
-									<a class="dropdown-item" href="#">Notification 4</a>
-									<a class="dropdown-item" href="#">Another notification</a>
-								</ul></li>
-							<li class="nav-item"><a href="#" class="nav-link"> <i
-									class="nc-icon nc-zoom-split"></i> <span class="d-lg-block">&nbsp;Search</span>
-							</a></li>
-						</ul>
-						<ul class="navbar-nav ml-auto">
-							<li class="nav-item"><a class="nav-link" href="#pablo">
-									<span class="no-icon">Account</span>
-							</a></li>
-							<li class="nav-item dropdown"><a
-								class="nav-link dropdown-toggle" href="http://example.com"
-								id="navbarDropdownMenuLink" data-toggle="dropdown"
-								aria-haspopup="true" aria-expanded="false"> <span
-									class="no-icon">Dropdown</span>
-							</a>
-								<div class="dropdown-menu"
-									aria-labelledby="navbarDropdownMenuLink">
-									<a class="dropdown-item" href="#">Action</a> <a
-										class="dropdown-item" href="#">Another action</a> <a
-										class="dropdown-item" href="#">Something</a> <a
-										class="dropdown-item" href="#">Something else here</a>
-									<div class="divider"></div>
-									<a class="dropdown-item" href="#">Separated link</a>
-								</div></li>
-							<li class="nav-item"><a class="nav-link" href="#pablo">
-									<span class="no-icon">Log out</span>
-							</a></li>
-						</ul>
-					</div>
-				</div>
-			</nav>
-			<!-- End Navbar -->
+
 			<div class="content">
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="card strpied-tabled-with-hover">
 								<div class="card-header ">
-									<!-- 									<h4 class="card-title">訂單總覽</h4> -->
+<!-- 									<h4 class="card-title">訂單總覽</h4> -->
 									<!--                                     <p class="card-category">Here is a subtitle for this table</p> -->
 								</div>
 								<div class="card-body table-full-width table-responsive">
-									<h1>
-										<c:out value="被檢舉文章一覽" />
+									<h1 class='thnewHeader' align='center'>
+										<c:out value="---------------------------------------------被檢舉文章總覽---------------------------------------------" />
 									</h1>
-									<div class="outer" style="text-align:left;">
-										<table class="table table-hover">
+									<div class="outer">
+										<table class="table table-hover"  style='text-align:center;'>
 											<thead>
-												<c:out value="管理者ID:${LoginOK.member_id}"></c:out>
-												
-											</thead>
-											<tbody>
-												<%-- 	<h5>系統訂單編號:<c:out value="${systemOrderNo}"/></h5> --%>
-											<thead style="text-align:center;">
 												<tr>
-													<th scope="col" >被檢舉文章</th>
-													<th scope="col" >作者</th>
-													<th scope="col" >文章ID</th>
-													<th scope="col" >分類</th>
-													<th scope="col" >會員ID</th>
-													<th scope="col" >理由</th>
-													<th scope="col" >檢舉時間</th>
-													
-
+													<th scope="col" ><p class='thnew'>被檢舉文章</p></th>
+													<th scope="col" style='background-color: '><p class='thnew'>作者</p></th>
+													<th scope="col" style='background-color: '><p class='thnew'>文章ID</p></th>
+													<th scope="col"
+														style='background-color: '><p class='thnew'>分類</p></th>
+													<th scope="col"
+														style='background-color: '><p class='thnew'>會員ID</p></th>
+													<th scope="col" style='background-color: '><p class='thnew'>理由</p></th>
+													<th scope="col" style='text-align:center;'><p class='thnew'>檢舉時間</p></th>
+													<th scope="col" style='background-color:'><p class='thnew'>審核完成</p></th>
+<!-- 													<th scope="col" style='background-color:'><p class='thnew'>款項查核</p></th> -->
+<!-- 													<th scope="col" style='background-color: '><p class="btn btn-warning"><a href='orders.xls' style='color:black'>匯出xls</a></p></th> -->
 												</tr>
 											</thead>
 											<tbody>
-											<c:forEach var="report" items="${ reports }">
-												<tr >
-													<td style="text-align:left;">${ report.fmb.title }</td>
-													<td style="text-align:left;">${ report.fmb.username }</td>
-													<td style="text-align:left;">${ report.fmb.article_id }</td>
-													<td style="text-align:left;">${ report.fmb.category }</td>
-													<td style="text-align:left;">${ report.fmb.memberBean.member_id }</td>
-													<td style="text-align:left;">${ report.reportCategory } : ${ report.reason }</td>
-													<td style="text-align:left;">${ report.reportTime }</td>
 
-												</tr>
-											</c:forEach>
 
-												<tr>
-													<td><input type="button" class="btn btn-outline-info"
-														name="back" value="返回"
-														onClick="javascript:history.back();"></td>
 
-												</tr>
+
+												<c:forEach var="report" items="${ reports }">
+													<tr>
+													<td><a href="${ pageContext.request.contextPath }/forum/pick?harticle_id=${ report.fmb.harticle_id }&article_id=${ report.fmb.article_id }"  target="_blank">${ report.fmb.title }</a></td>
+														<td>${ report.fmb.username }</td>														
+														<td>${ report.fmb.article_id }</td>
+														<td>${ report.fmb.category }</td>
+														<td>${ report.fmb.memberBean.member_id }</td>																												
+														<td>${ report.reportCategory }:${ report.reason }</td>
+														<td>${ report.reportTime }</td>
+														<td><button type="button" class="btn btn-outline-primary" id="check${report.report_id}" onclick="checked()">審核</button></td>
+													</tr>
+													<script>
+														function checked(){
+															$.ajax({
+																url:"${ pageContext.request.contextPath }/report_forum/check?report_id=${report.report_id}",
+																type:"GET",
+																success: function(data){
+																	if(data == 1){
+																		$("#check${report.report_id}").text("審核完畢");
+																		$("#check${report.report_id}").attr("disabled", "true");
+																	}
+																}
+															})
+														}
+													</script>
+												</c:forEach>
 											</tbody>
 										</table>
-
 									</div>
-								</div>
 
+								</div>
 							</div>
 						</div>
-					</div>
 
-				</div>
-			</div>
-		</div>
-		<footer class="footer">
-			<div class="container-fluid">
-				<nav>
-					<ul class="footer-menu">
-						<li><a href="#"> Home </a></li>
-						<li><a href="#"> Company </a></li>
-						<li><a href="#"> Portfolio </a></li>
-						<li><a href="#"> Blog </a></li>
-					</ul>
-					<p class="copyright text-center">
-						©
-						<script>
-							document.write(new Date().getFullYear())
-						</script>
-						<a href="http://www.creative-tim.com">Creative Tim</a>, made with
-						love for a better web
-					</p>
-				</nav>
-			</div>
-		</footer>
-	</div>
-	</div>
-
-	-->
+ -->
 </body>
 <!--   Core JS Files   -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

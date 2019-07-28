@@ -89,6 +89,15 @@
 </head>
 <body>
 	<header>
+	<sec:authorize access="isAuthenticated()">
+<!--   <div class="btn btn-primary" style="float:right;height: 60px;margin-right:50px;padding-left:50px;padding-right:30px;background-color:#228B22;border-radius: 20%"> -->
+  <div class="btn btn-success" onclick="javascript:location.href='user'" style="float:right;margin-right:50px;padding-left:35px;width: 400px">
+   <img id="member_photo_image"
+     style="float:left;width:100px;height: 100px;border-radius: 50%; border: 1px solid black"
+     src="<c:url value='/getMemberPhoto/${bean.member_id}' />" />
+   <div style=" font-size:60px;float: left;margin-left: 30px;">${bean.nickname}</div>
+  </div>
+ </sec:authorize>
 			<div class="zerogrid">
 				<div class="col-full">
 					<div class="wrap-col">
