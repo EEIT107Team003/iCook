@@ -126,7 +126,7 @@ public class FMDaoImpl implements IFMDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ForumMainBean> getByCategory(String category) {
-		String hql = "from ForumMainBean as fmb where (fmb.category like :category) and (fmb.article_id = fmb.harticle_id)";
+		String hql = "from ForumMainBean as fmb where (fmb.category like :category) and (fmb.article_id = fmb.harticle_id) order by fmb.postTime desc";
 		Session session = factory.getCurrentSession();
 		List<ForumMainBean> fmbList = new ArrayList<>();
 		fmbList = session.createQuery(hql).setParameter("category", "%" + category + "%").getResultList();
