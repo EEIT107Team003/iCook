@@ -57,31 +57,13 @@ public class backStagecontroller {
 	public String dashboard(Model model) {
 		return "backStage/examples/dashboard";
 	}
-	@RequestMapping(value = { "backStageIcons"})
-	public String icons(Model model) {
-		return "backStage/examples/icons";
-	}
-	@RequestMapping(value = { "backStageMaps"})
-	public String maps(Model model) {
-		return "backStage/examples/maps";
-	}
-	@RequestMapping(value = { "backStageNotifications"})
-	public String notifications(Model model) {
-		return "backStage/examples/notifications";
-	}
-	@RequestMapping(value = { "backStageTypography"})
-	public String typography(Model model) {
-		return "backStage/examples/typography";
-	}
+
 	@RequestMapping(value = { "backStageTable"})
 	public String table(Model model) {
 		
 		return "backStage/examples/table";
 	}
-	@RequestMapping(value = { "backStageUpgrade"})
-	public String upgrade(Model model) {
-		return "backStage/examples/upgrade";
-	}
+
 //會員管理---------------------------------------------------------------
 	@RequestMapping(value = { "backStageUser"})
 	public String user(Model model) {

@@ -124,56 +124,45 @@ td {
         Tip 2: you can also add an image using data-image tag
     -->
 
-			<div class="sidebar-wrapper">
-				<div class="logo">
-					<a href="/icook" class="simple-text"> 回醜後台 </a>
-				</div>
-				<ul class="nav">
-					<li><a class="nav-link" href="backStageDashboard"> <i
-							class="nc-icon nc-chart-pie-35"></i>
-							<p>Dashboard</p>
-					</a></li>
-					<li><a class="nav-link" href="productTable"> <i
-							class="nc-icon nc-chart-pie-35"></i>
-							<p>productTable</p>
-					</a></li>
-					<li><a class="nav-link" href="backStageUser"> <i
-							class="nc-icon nc-circle-09"></i>
-							<p>User Profile</p>
-					</a></li>
-					<li class="nav-item active"><a class="nav-link"
-						href="adminCheckOrders"> <i class="nc-icon nc-notes"></i>
-							<p>訂單管理</p>
-					</a></li>
-					<li>
+			 <div class="sidebar-wrapper">
+                <div class="logo">
+                    <a href="home" class="simple-text">
+                                               回前台首頁
+                    </a>
+                </div>
+                <ul class="nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="backStageDashboard">
+                            <i class="nc-icon nc-chart-pie-35"></i>
+                            <p>後台首頁</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="productTable">
+                            <i class="nc-icon nc-notes"></i>
+                            <p>產品管理</p>
+                        </a>
+                    </li>
+ 					<li>
+                        <a class="nav-link" href="backStageUser">
+                            <i class="nc-icon nc-notes"></i>
+                            <p>會員管理</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="adminCheckOrders">
+                            <i class="nc-icon nc-notes"></i>
+                            <p>訂單管理</p>
+                        </a>
+                    </li>
+                    <li>
                         <a class="nav-link" href="report_forum">
                             <i class="nc-icon nc-notes"></i>
                             <p>檢舉文章管理</p>
                         </a>
                     </li>
-					<li><a class="nav-link" href="backStageTypography"> <i
-							class="nc-icon nc-paper-2"></i>
-							<p>Typography</p>
-					</a></li>
-					<li><a class="nav-link" href="backStageIcons"> <i
-							class="nc-icon nc-atom"></i>
-							<p>Icons</p>
-					</a></li>
-					<li><a class="nav-link" href="backStageMaps"> <i
-							class="nc-icon nc-pin-3"></i>
-							<p>Maps</p>
-					</a></li>
-					<li><a class="nav-link" href="backStageNotifications"> <i
-							class="nc-icon nc-bell-55"></i>
-							<p>Notifications</p>
-					</a></li>
-					<li class="nav-item active active-pro"><a
-						class="nav-link active" href="backStageUpgrade"> <i
-							class="nc-icon nc-alien-33"></i>
-							<p>Upgrade to PRO</p>
-					</a></li>
-				</ul>
-			</div>
+                </ul>
+            </div>
 		</div>
 		<div class="main-panel">
 			<!-- Navbar -->

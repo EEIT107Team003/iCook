@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -41,13 +40,6 @@
 	padding: 0;
 	margin: 0;
 }
-
-fieldset {
-/*     padding-left: 5cm; */
-	border: 1px solid rgb(255, 232, 57);
-	width: 600px;
-	
-}
 .left{
 /* float: left; */
 
@@ -84,138 +76,47 @@ font-size:20px;
         Tip 2: you can also add an image using data-image tag
     -->
            
-            <div class="sidebar-wrapper">
+          <div class="sidebar-wrapper">
                 <div class="logo">
-                    <a href="http://www.creative-tim.com" class="simple-text">
-                        Creative Tim
+                    <a href="../home" class="simple-text">
+                                               回前台首頁
                     </a>
                 </div>
                 <ul class="nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="addSingleProduct">
+                        <a class="nav-link" href="../backStageDashboard">
                             <i class="nc-icon nc-chart-pie-35"></i>
-                            <p>addSingleProduct</p>
+                            <p>後台首頁</p>
                         </a>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="backStageDashboard">
-                            <i class="nc-icon nc-chart-pie-35"></i>
-                            <p>Dashboard</p>
+                    <li>
+                        <a class="nav-link" href="../productTable">
+                            <i class="nc-icon nc-notes"></i>
+                            <p>產品管理</p>
                         </a>
                     </li>
                     <li>
                         <a class="nav-link" href="backStageUser">
-                            <i class="nc-icon nc-circle-09"></i>
-                            <p>User Profile</p>
-                        </a>q
-                    </li>
-                    <li>
-                        <a class="nav-link" href="backStageTable">
                             <i class="nc-icon nc-notes"></i>
-                            <p>Table List</p>
+                            <p>會員管理</p>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="backStageTypography">
-                            <i class="nc-icon nc-paper-2"></i>
-                            <p>Typography</p>
+                        <a class="nav-link" href="../adminCheckOrders">
+                            <i class="nc-icon nc-notes"></i>
+                            <p>訂單管理</p>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="backStageIcons">
-                            <i class="nc-icon nc-atom"></i>
-                            <p>Icons</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="backStageMaps">
-                            <i class="nc-icon nc-pin-3"></i>
-                            <p>Maps</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="backStageNotifications">
-                            <i class="nc-icon nc-bell-55"></i>
-                            <p>Notifications</p>
-                        </a>
-                    </li>
-                    <li class="nav-item active active-pro">
-                        <a class="nav-link active" href="backStageUpgrade">
-                            <i class="nc-icon nc-alien-33"></i>
-                            <p>Upgrade to PRO</p>
+                        <a class="nav-link" href="../report_forum">
+                            <i class="nc-icon nc-notes"></i>
+                            <p>檢舉文章管理</p>
                         </a>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="main-panel">
-            <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg " color-on-scroll="500">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#pablo"> Table List </a>
-                    <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-bar burger-lines"></span>
-                        <span class="navbar-toggler-bar burger-lines"></span>
-                        <span class="navbar-toggler-bar burger-lines"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                        <ul class="nav navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link" data-toggle="dropdown">
-                                    <i class="nc-icon nc-palette"></i>
-                                    <span class="d-lg-none">Dashboard</span>
-                                </a>
-                            </li>
-                            <li class="dropdown nav-item">
-                                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                                    <i class="nc-icon nc-planet"></i>
-                                    <span class="notification">5</span>
-                                    <span class="d-lg-none">Notification</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Notification 1</a>
-                                    <a class="dropdown-item" href="#">Notification 2</a>
-                                    <a class="dropdown-item" href="#">Notification 3</a>
-                                    <a class="dropdown-item" href="#">Notification 4</a>
-                                    <a class="dropdown-item" href="#">Another notification</a>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="nc-icon nc-zoom-split"></i>
-                                    <span class="d-lg-block">&nbsp;Search</span>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="navbar-nav ml-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#pablo">
-                                    <span class="no-icon">Account</span>
-                                </a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="no-icon">Dropdown</span>
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                    <div class="divider"></div>
-                                    <a class="dropdown-item" href="#">Separated link</a>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#pablo">
-                                    <span class="no-icon">Log out</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            <!-- End Navbar -->
            <script>
 		$(document).ready(function() {
 			
@@ -320,98 +221,115 @@ font-size:20px;
 			<h2 style="text-align: center">
 				上架產品資料
 			</h2>
-			<a href='${pageContext.request.contextPath}/products'>查詢所有產品資料</a>
 		</div>	
 	</section>
+	<h1>33333333</h1>
 	<hr
 		style="height: 1px; border: none; color: #333; background-color: #333;">
 	<section >
-		<!--       三個地方要完全一樣 -->
-		<form:form method='POST' modelAttribute="productBeanObject" class="formmIn"
-			 enctype="multipart/form-data" >
-			<!-- 		                  	enctype="multipart/form-data"一定要加這個屬性才可以使用上傳檔案這個功能 -->
-			
-			<fieldset class='form-horizontal'>
-              <div class="formGroup">
-				<form:input id="product_id"  name="product_id" path="product_id"
-					type='hidden' />
-					  <input type="text" readonly class="form-control-plaintext" 
-					  id="staticEmail" value="編號 :${productBeanObject.product_id}">
-                </div>
-              <div class="formGroup">
-					<label for='name'>名稱描述 : </label>
-					<form:input id="name" path="name" type='text' />
-				</div>
+						<form:form method='POST' modelAttribute="productBeanObject"
+							class="formmIn" enctype="multipart/form-data">
+							<fieldset class='form-horizontal'>
+							<div class="container">
 
-				<div class="formGroup">
-					<label for="exampleFormControlSelect1">種類 :</label> <select
-						class="form-control" id="exampleFormControlSelect1"
-						style="width: 15ch"><option value="0" SELECTED>請選擇</option></select>
+								<div class="row">
+									<div class="col-7">
+										<form:input id="product_id" name="product_id"
+											path="product_id" type='hidden' />
+										<input type="text" readonly class="form-control-plaintext"
+											id="staticEmail" value="編號 :${productBeanObject.product_id}">
+										<label for='name'>產品名稱 : </label>
+										<form:input id="name" path="name" type='text' />
+										<label for="exampleFormControlSelect1">產品種類 :</label> <select
+											class="form-control" id="exampleFormControlSelect1"
+											style="width: 15ch"><option value="0" SELECTED>請選擇</option></select>
 
-					<label for="exampleFormControlSelect2"></label> <select multiple
-						class="form-control" id="exampleFormControlSelect2"
-						style="width: 30ch"></select> <input id="fileName" name="fileName"
-						type="hidden" /> <input id="remark" name="remark" type="hidden" />
-				</div>
+										<label for="exampleFormControlSelect2"></label> <select
+											multiple class="form-control" id="exampleFormControlSelect2"
+											style="width: 30ch"></select> <input id="fileName"
+											name="fileName" type="hidden" /> <input id="remark"
+											name="remark" type="hidden" /> <label for="m1"><input
+											type="radio" name="gender" value="1"> 上架 </label> <label>
+											<input type="radio" name="gender" value="2"> 下架
+										</label>
 
-				<div class="formGroup">
-					<label for='unit_size'>單位 : </label>
-					<form:input id="unit_size" path="unit_size" type='text' />
-				</div>
-				<div class="formGroup">
-					<label for="price">價格 :  </label>
-					<form:input id="price" path="price" type='text' />
-				</div>
-				<div class="formGroup">
-					<label for="color">顏色 : </label>
-					<form:input id="color" path="color" type='text' />
-				</div>
+									</div>
+									<div class="col-5">
+										<div class="col-12" style="margin-bottom: 15px;">
+											<label for='unit_size'>單位 : </label>
+											<form:input id="unit_size" path="unit_size" type='text' />
+										</div>
+										<div class="col-12">
+											<label for="price">價格 : </label>
+											<form:input id="price" path="price" type='text' />
+										</div>
+										<div class="col-12">
+											<label for="color">顏色 : </label>
+											<form:input id="color" path="color" type='text' />
+										</div>
+										<div class="col-12">
+											<label for="stock">庫存 : </label>
+											<form:input id="stock" path="stock" type='text' />
+										</div>
+									</div>
+									<div class="col-3">
+										<label for="productImage">圖片 : </label>
+										<form:input id="productImage" path="productImage" type='file'
+											accept="image/gif, image/jpeg, image/png" />
+									</div>
+									<div class="col-3">
+										<label for="productPictureOne">圖片2 : </label>
+										<form:input id="productPictureOne" path="productPictureOne"
+											type='file' accept="image/gif, image/jpeg, image/png" />
+									</div>
+									<div class="col-3">
+										<label for="productPictureTwo">圖片3 : </label>
+										<form:input id="productPictureTwo" path="productPictureTwo"
+											type='file' accept="image/gif, image/jpeg, image/png" />
+									</div>
+									<div class="col-3">
+										<label for="productPictureThree">圖片4 : </label>
+										<form:input id="productPictureThree"
+											path="productPictureThree" type='file'
+											accept="image/gif, image/jpeg, image/png" />
+									</div>
+								<div class="col-3" id="uploadImg1"></div>
+								<div class="col-3" id="uploadImg2"></div>
+								<div class="col-3" id="uploadImg3"></div>
+								<div class="col-3" id="uploadImg4"></div>
+								</div>
 
-				<div class="formGroup">
-					<label for="stock">庫存 : </label>
-					<form:input id="stock" path="stock" type='text' />
-				</div>
-				<div class="formGroup">
-					<label for="productImage">圖片 : </label>
-					<form:input id="productImage" path="productImage" type='file' accept="image/gif, image/jpeg, image/png"/>
-				</div>
-				<div class="formGroup">
-					<label for="productPictureOne">圖片2 : </label>
-					<form:input id="productPictureOne" path="productPictureOne" type='file' accept="image/gif, image/jpeg, image/png"/>
-				</div>
-				<div class="formGroup">
-					<label for="productPictureTwo">圖片3 : </label>
-					<form:input id="productPictureTwo" path="productPictureTwo" type='file' accept="image/gif, image/jpeg, image/png"/>
-				</div>
-				<div class="formGroup">
-					<label for="productPictureThree">圖片4 : </label>
-					<form:input id="productPictureThree" path="productPictureThree" type='file' accept="image/gif, image/jpeg, image/png"/>
-				</div>
-				<div id="uploadImg"></div>
-					<div class="formGroup">
-						<label for="m1"><input type="radio" name="gender" value="1" >   上架   </label>
-						<label> <input type="radio" name="gender" value="2">    下架         </label>
-					</div>
-					
-				<div class="formGroup">
-						<label for="description">商品描述 :</label>
-						<textarea id="" class="form-control" name="description" rows="6"></textarea>
-					</div>
-				<div class="formGroup">
-					<input id="btnAdd" type='submit' class='btn btn-primary'
-						value="Submit" />
-				</div>
-				
-			</fieldset>
-		</form:form>
-		
-		
-<script>
+
+								<label for="description">商品描述 :</label>
+									<textarea id="" class="form-control" name="description"
+										rows="6"></textarea>
+									<input id="btnAdd" type='submit' class='btn btn-primary'
+										value="Submit" />
+				             	</div>
+							</fieldset>
+						</form:form>
+
+					<script>
 
 $("#productImage").change(function(){
 	  readURL(this);
-	  var txt="<img id='preview_progressbarTW_img' src='#' style='margin-left:5ch;' width='300px' height='300px' />"
-	  $("#uploadImg").html(txt);
+	  var txt="<img id='preview_progressbarTW_img' src='#' style='margin-left:5ch;' width='125px' height='150px' />"
+	  $("#uploadImg1").html(txt);
+	});
+$("#productPictureOne").change(function(){
+	  readURL2(this);
+	  var txt="<img id='preview_progressbarTW_img2' src='#' style='margin-left:5ch;' width='125px' height='150px' />"
+	  $("#uploadImg2").html(txt);
+	});
+$("#productPictureTwo").change(function(){
+	  readURL3(this);
+	  var txt="<img id='preview_progressbarTW_img3' src='#' style='margin-left:5ch;' width='125px' height='150px' />"
+	  $("#uploadImg3").html(txt);
+	});
+$("#productPictureThree").change(function(){
+	  readURL4(this);
+	  var txt="<img id='preview_progressbarTW_img4' src='#' style='margin-left:5ch;' width='125px' height='150px' />"
+	  $("#uploadImg4").html(txt);
 	});
 
  
@@ -423,15 +341,47 @@ function readURL(input){
     var reader = new FileReader();
 
     reader.onload = function (e) {
-
        $("#preview_progressbarTW_img").attr('src', e.target.result);
-
     }
-
     reader.readAsDataURL(input.files[0]);
-
   }
+}
+  
+function readURL2(input){
 
+	  if(input.files && input.files[0]){
+
+	    var reader = new FileReader();
+
+	    reader.onload = function (e) {
+	       $("#preview_progressbarTW_img2").attr('src', e.target.result);
+	    }
+	    reader.readAsDataURL(input.files[0]);
+	  }
+}
+function readURL3(input){
+
+	  if(input.files && input.files[0]){
+
+	    var reader = new FileReader();
+
+	    reader.onload = function (e) {
+	       $("#preview_progressbarTW_img3").attr('src', e.target.result);
+	    }
+	    reader.readAsDataURL(input.files[0]);
+	  }
+}
+function readURL4(input){
+
+	  if(input.files && input.files[0]){
+
+	    var reader = new FileReader();
+
+	    reader.onload = function (e) {
+	       $("#preview_progressbarTW_img4").attr('src', e.target.result);
+	    }
+	    reader.readAsDataURL(input.files[0]);
+	  }
 }
 
 </script>
