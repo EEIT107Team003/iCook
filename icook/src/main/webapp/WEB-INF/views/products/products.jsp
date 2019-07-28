@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ page import="java.util.*, java.io.*" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <html>
 <head>
@@ -358,7 +359,7 @@
 						             +"<img width='100' height='150'src=   \" <c:url value=  '/getProductPicture/"+names[i].product_id+"'   /> \"     />"
 						             +"<div class=''  height='100' style='font-size: 8px; ''><p>"
 						             +"名稱 :"+names[i].name+"</p><p>價格 : "+names[i].price+"</p>"
-						             +"<nav class='navbar navbar-light bg-light'><form class='form-inline'>"
+						             +"<nav class='na'><form class='form-inline'>"
 						             +"<a class='mh6'   href=\" <c:url value=  '/products/product?id="+names[i].product_id+"'    /> \"    >" 
 						             +"Details</a>"
 						             +"</form></nav></div></div></div>"
@@ -388,7 +389,7 @@
 						             +"<img src=   \" <c:url value=  '/getProductPicture/"+names[i].product_id+"'   /> \"     />"
 						             +"<div class='mainText'  style='font-size: 8px; ''><p>"
 						             +"名稱  : "+names[i].name+"</p><p>價格 : "+names[i].price+"</p>"
-						             +"<nav class='navbar navbar-light bg-light'><form class='form-inline'>"
+						             +"<nav class='na'><form class='form-inline'>"
 						             +"<a class='mh6'   href=\" <c:url value=  '/product?id="+names[i].product_id+"'    /> \"    >" 
 						             +"Details</a>"
 						             +"</form></nav></div></div></div>"
@@ -420,6 +421,16 @@
 	<div class="main">
 	<!--==============================header=================================-->
 	<header>
+			<sec:authorize access="isAuthenticated()">
+				<div class="btn btn-success"
+					onclick="javascript:location.href='user'"
+					style="float: right; margin-right: 50px; padding-left: 35px; width: 400px">
+					<img id="member_photo_image"
+						style="float: left; width: 100px; height: 100px; border-radius: 50%; border: 1px solid black"
+						src="<c:url value='/getMemberPhoto/${bean.member_id}' />" />
+					<div style="font-size: 60px; float: left; margin-left: 30px;">${bean.nickname}</div>
+				</div>
+			</sec:authorize>
 			<div class="zerogrid">
 				<div class="col-full">
 					<div class="wrap-col">

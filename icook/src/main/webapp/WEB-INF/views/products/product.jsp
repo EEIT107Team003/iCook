@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ page import="java.util.*, java.io.*"%>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <html>
 <head>
 <script
@@ -155,7 +155,7 @@ margin-bottom:20px
 										+ "</p><p>價格 : "
 										+ names[i].price
 										+ "</p>"
-										+ "<nav class='navbar navbar-light bg-light'><form class='form-inline'>"
+										+ "<nav class='na'><form class='form-inline'>"
 										+ "<a class='mh6'   href=\" <c:url value=  '/product?id="
 										+ names[i].product_id
 										+ "'    /> \"    >"
@@ -479,7 +479,7 @@ margin-bottom:20px
 										+ "</p><p>價格 : "
 										+ names[i].price
 										+ "</p>"
-										+ "<nav class='navbar navbar-light bg-light'><form class='form-inline'>"
+										+ "<nav class='na'><form class='form-inline'>"
 										+ "<a class='mh6'   href=\" <c:url value=  '/product?id="
 										+ names[i].product_id
 										+ "'    /> \"    >"
@@ -510,14 +510,17 @@ margin-bottom:20px
 								txt += 
 									"<div class='col-sm-6 col-md-3' style='width: 200px; height: 250px;margin-bottom:100px;margin-right:70px'>"
 										+ "<div class='mainDiv'>"
-										+ "<img src=   \" <c:url value=  '/getProductPicture/"+names[i].product_id+"'   /> \"     />"
+// 										<img id="Sub00" class="subsidiaryShow"
+// 											src="/icook${product.productPictureOnePath}" />
+										+ "<img src= '/icook${product.productPictureOnePath}'   />"
+// 										+ "<img src=   \" <c:url value=  '/getProductPicture/"+names[i].product_id+"'   /> \"     />"
 										+ "<div class='mainText'  style='font-size: 8px; ''><p>"
 										+ "名稱  : "
 										+ names[i].name
 										+ "</p><p>價格 : "
 										+ names[i].price
 										+ "</p>"
-										+ "<nav class='navbar navbar-light bg-light'><form class='form-inline'>"
+										+ "<nav class='na'><form class='form-inline'>"
 										+ "<a class='mh6'   href=\" <c:url value=  '/product?id="
 										+ names[i].product_id
 										+ "'    /> \"    >"
@@ -547,6 +550,17 @@ margin-bottom:20px
 	</script>
 	<div class="main">
 		<header>
+		<sec:authorize access="isAuthenticated()">
+				<div class="btn btn-success"
+					onclick="javascript:location.href='user'"
+					style="float: right; margin-right: 50px; padding-left: 35px; width: 400px">
+					<img id="member_photo_image"
+						style="float: left; width: 100px; height: 100px; border-radius: 50%; border: 1px solid black"
+						src="<c:url value='/getMemberPhoto/${bean.member_id}' />" />
+					<div style="font-size: 60px; float: left; margin-left: 30px;">${bean.nickname}</div>
+				</div>
+			</sec:authorize>
+		
 			<div class="zerogrid">
 				<div class="col-full">
 					<div class="wrap-col">
@@ -630,7 +644,7 @@ margin-bottom:20px
 							<input id="description" name="description" type="text"
 								class="form-control mr-sm-2" placeholder="請輸入產品名稱關鍵字"></input>
 							<input type="button" id="searchSub"
-								class="btn btn-outline-success my-2 my-sm-0" value="收尋">
+								class="btn btn-outline-success my-2 my-sm-0" value="搜尋">
 						</div>
 					</form>
 				</section>
@@ -718,12 +732,16 @@ margin-bottom:20px
 						src="/icook${product.productPictureThreePath}" />
 				</div>
 				<div class="col-3" style="margin-top: 30px;">
-					<p>編號: ${product.product_id}</p>
+					<div>
 					<p>名稱 :${product.name}</p>
+					</div>
+					<p>編號: ${product.product_id}</p>
 					<p>分類: ${product.categoriesbean.name}</p>
 					<p>顏色: ${product.color}</p>
 					<p>單價: ${product.price}</p>
+					<div>
 					<p>描述 :${product.description}</p>
+					</div>
 					請選擇數量:<select id="quantity" name="quantity" style="width: 15ch"
 						class="form-control form-control-sm"><option value="0"
 							SELECTED id='ch'>0</option></select>

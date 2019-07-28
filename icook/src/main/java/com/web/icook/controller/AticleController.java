@@ -81,47 +81,72 @@ public class AticleController {
 	
 	
 	@RequestMapping("/A_findThree") // 指向index href裡面
-	public String threelist(Model model) {
+	public String threelist(Model model,MemberBean bean) {
 		List<ArticleBean> list = arcicleservice.getThreeArticles();
 		System.out.println("list.toString()"+list.toString());
 		return "list"; // 指向success.jsp
 	}
 	
 	@RequestMapping("/A_findAll") // 指向index href裡面
-	public String list(Model model) {
+	public String list(Model model,MemberBean bean) {
 		List<ArticleBean> aclist = arcicleservice.getAllArticles();
 		model.addAttribute("Articles", aclist);
 		model.addAttribute("list",aclist);
+		
+		
+		if (!c.getPrincipal().equals("anonymousUser")) {
+			bean = memberservice.selectByUsername(c.getPrincipal());
+			model.addAttribute("bean", bean);
+		}
+		
 		
 		return "article/A_articlemainpage"; // 指向success.jsp
 	}
 
 	@RequestMapping(value = "/A_delete", method = RequestMethod.GET)
-	public String getDeleteArticle(Model model) {
+	public String getDeleteArticle(Model model,MemberBean bean) {
 		System.out.println("#1");
 		ArticleBean articlebean = new ArticleBean();
 		model.addAttribute("Articlebean", articlebean);
+		
+
+		if (!c.getPrincipal().equals("anonymousUser")) {
+			bean = memberservice.selectByUsername(c.getPrincipal());
+			model.addAttribute("bean", bean);
+		}
+		
 		return "article/A_deletepage";/* 呼叫insert.jsp檔案 */
 	}
 
 	@RequestMapping(value = "/A_delete", method = RequestMethod.POST)
 	public String processDeleteArticleForm(@ModelAttribute("Articlebean") ArticleBean articlebean, int article_num, HttpServletRequest request,
-			Model model) throws UnsupportedEncodingException {
+			Model model,MemberBean bean) throws UnsupportedEncodingException {
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("#2");
 		
 		arcicleservice.deleteIcookArticle(articlebean);
+		
+
+		if (!c.getPrincipal().equals("anonymousUser")) {
+			bean = memberservice.selectByUsername(c.getPrincipal());
+			model.addAttribute("bean", bean);
+		}
+		
 
 		return "article/A_article";/* 讓瀏覽器再次發出請求，呼叫successPage.jsp檔案 */
 	}// end of processAddNewProductForm mathod
 
 	@RequestMapping(value = "/A_select", method = RequestMethod.GET)
-	public String getSelectArticleForm(Model model) {
+	public String getSelectArticleForm(Model model,MemberBean bean) {
 		System.out.println("#1");
 		ArticleBean articlebean = new ArticleBean();
 		model.addAttribute("Articlebeanselect", articlebean);
 		
-		
+
+		if (!c.getPrincipal().equals("anonymousUser")) {
+			bean = memberservice.selectByUsername(c.getPrincipal());
+			model.addAttribute("bean", bean);
+		}
 		
 		
 		
@@ -130,7 +155,7 @@ public class AticleController {
 
 	@RequestMapping(value = "/A_select", method = RequestMethod.POST)
 	public String processSelectArticleForm(@ModelAttribute("Articlebeanselect") ArticleBean articlebean, int article_num, HttpServletRequest request,
-			Model model,MsgBoardBean msgBoardbean) throws UnsupportedEncodingException {
+			Model model,MsgBoardBean msgBoardbean,MemberBean bean) throws UnsupportedEncodingException {
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("#2");
 
@@ -148,6 +173,13 @@ public class AticleController {
 		model.addAttribute("ArticleThrees", threelist);
 		//前三筆文章結束
 		
+		
+		if (!c.getPrincipal().equals("anonymousUser")) {
+			bean = memberservice.selectByUsername(c.getPrincipal());
+			model.addAttribute("bean", bean);
+		}
+		
+		
 		return "article/A_single";
 //		return "redirect:/select/Msginsert.action?bean="+ab;
 //		return "redirect:/findone?id="+article_num;
@@ -156,7 +188,7 @@ public class AticleController {
 	
 	//return "redirect:/emp/update.action?id=" + id
 	@RequestMapping("/article")
-	public String getInsertarcitleById( @RequestParam("article_num") Integer article_num, Model model,MsgBoardBean msgBoardbean) {
+	public String getInsertarcitleById( @RequestParam("article_num") Integer article_num, Model model,MsgBoardBean msgBoardbean,MemberBean bean) {
 		
 		ArticleBean ab=arcicleservice.getIcookArticle(article_num);
 		model.addAttribute("Article", ab);
@@ -172,12 +204,20 @@ public class AticleController {
 		List<ArticleBean> threelist = arcicleservice.getThreeArticles();
 		model.addAttribute("ArticleThrees", threelist);
 		
+		
+		if (!c.getPrincipal().equals("anonymousUser")) {
+			bean = memberservice.selectByUsername(c.getPrincipal());
+			model.addAttribute("bean", bean);
+		}
+		
+		
+		
 		return "article/A_single";
 		
 		
 	}
 	@RequestMapping("/TagarticleUpdate")
-	public String getUpdatearcitleById(@RequestParam("article_num") Integer article_num, Model model,ArticleBean articlebean, HttpServletRequest request) throws UnsupportedEncodingException {
+	public String getUpdatearcitleById(@RequestParam("article_num") Integer article_num, Model model,ArticleBean articlebean, HttpServletRequest request,MemberBean bean) throws UnsupportedEncodingException {
 		request.setCharacterEncoding("UTF-8");
 		List<ArticleBean> list = new ArrayList<>();
 		list.add(arcicleservice.getIcookArticle(articlebean.getArticle_num()));
@@ -186,22 +226,38 @@ public class AticleController {
 		model.addAttribute("test",list.get(0).getArticle_content());
 		articlebean.setArticle_content(list.get(0).getArticle_content());
 		model.addAttribute("ArticlebeanUpdate", articlebean);
+		
+		if (!c.getPrincipal().equals("anonymousUser")) {
+			bean = memberservice.selectByUsername(c.getPrincipal());
+			model.addAttribute("bean", bean);
+		}
+		
+		
+		
 		return "article/A_articleupdate";
 		
 		
 	}
 	
 	@RequestMapping(value = "/A_update", method = RequestMethod.GET)
-	public String getSelectupArticleForm(Model model) {
+	public String getSelectupArticleForm(Model model,MemberBean bean) {
 		System.out.println("#1");
 		ArticleBean articlebean = new ArticleBean();
 		model.addAttribute("ArticlebeanUpdate", articlebean);
+		
+		
+		if (!c.getPrincipal().equals("anonymousUser")) {
+			bean = memberservice.selectByUsername(c.getPrincipal());
+			model.addAttribute("bean", bean);
+		}
+		
+		
 		return "article/A_selectupdatepage";/* 呼叫insert.jsp檔案 */
 	}
 
 	@RequestMapping(value = "/A_update", method = RequestMethod.POST)
 	public String processSelectupArticleForm(@ModelAttribute("ArticlebeanUpdate") ArticleBean articlebean, int article_num, HttpServletRequest request,
-			Model model) throws UnsupportedEncodingException {
+			Model model,MemberBean bean) throws UnsupportedEncodingException {
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("#2");
 
@@ -214,15 +270,32 @@ public class AticleController {
 //		System.out.println("list.get(0)==========="+list.get(0).getArticle_content());
 //		System.out.println("111111111111nummmmmmmmmm===="+list.toString());
 		
+		if (!c.getPrincipal().equals("anonymousUser")) {
+			bean = memberservice.selectByUsername(c.getPrincipal());
+			model.addAttribute("bean", bean);
+		}
+		
+		
+		
 		return "article/A_updatepage";/* 讓瀏覽器再次發出請求，呼叫successPage.jsp檔案 */
 	}// end of processAddNewProductForm mathod
 
 	
 	@RequestMapping(value = "/A_updateAfterSelete", method = RequestMethod.GET )
-	public String getUpdateArticleForm(Model model ) {
+	public String getUpdateArticleForm(Model model ,MemberBean bean) {
 		System.out.println("#3");
 		ArticleBean articlebean = new ArticleBean();
 		model.addAttribute("ArticlebeanUpdate", articlebean);
+		
+		
+		
+		if (!c.getPrincipal().equals("anonymousUser")) {
+			bean = memberservice.selectByUsername(c.getPrincipal());
+			model.addAttribute("bean", bean);
+		}
+		
+		
+		
 		return "article/A_updatepage";
 		/* 呼叫insert.jsp檔案 */
 	}
@@ -231,7 +304,7 @@ public class AticleController {
 
 	@RequestMapping(value = "/A_updateAfterSelete", method = RequestMethod.POST)
 	public String processUpdateArticleForm(@ModelAttribute("ArticlebeanUpdate") ArticleBean articlebean, BindingResult result,
-			HttpServletRequest request) throws UnsupportedEncodingException {
+			HttpServletRequest request,MemberBean bean,Model model) throws UnsupportedEncodingException {
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("#4");
 		
@@ -271,6 +344,13 @@ public class AticleController {
 		}
 //		session.merge(object)
 		arcicleservice.updateIcookArticle(articlebean);
+		
+		if (!c.getPrincipal().equals("anonymousUser")) {
+			bean = memberservice.selectByUsername(c.getPrincipal());
+			model.addAttribute("bean", bean);
+		}
+		
+		
 
 		// 將上傳的檔案移到指定的資料夾
 		return "redirect:/A_articlemainpage";/* 讓瀏覽器再次發出請求，呼叫successPage.jsp檔案 */
@@ -279,7 +359,7 @@ public class AticleController {
 
 	/* 跟 <a href="insert">新增</a> 有關 */
 	@RequestMapping(value = "/A_insert", method = RequestMethod.GET)
-	public String getAddNewArticleForm(Model model) throws SerialException, SQLException {
+	public String getAddNewArticleForm(Model model,MemberBean bean) throws SerialException, SQLException {
 		
 		  //前三筆文章開始
         List<ArticleBean> threelist = arcicleservice.getThreeArticles();
@@ -290,12 +370,18 @@ public class AticleController {
 		ArticleBean articlebean = new ArticleBean();
 		model.addAttribute("Articlebean", articlebean);
 		
+		if (!c.getPrincipal().equals("anonymousUser")) {
+			bean = memberservice.selectByUsername(c.getPrincipal());
+			model.addAttribute("bean", bean);
+		}
+		
+		
 		return "article/A_articleinster";/* 呼叫insert.jsp檔案 */
 	}
 
 	@RequestMapping(value = "/A_insert", method = RequestMethod.POST)
 	public String processAddNewProductForm(@ModelAttribute("Articlebean") ArticleBean articlebean, BindingResult result,
-			HttpServletRequest request ,Model model) throws UnsupportedEncodingException {
+			HttpServletRequest request ,Model model,MemberBean bean) throws UnsupportedEncodingException {
 		request.setCharacterEncoding("UTF-8");
 		
 		
@@ -353,6 +439,15 @@ public class AticleController {
 		/* 開始處理圖片檔案-end */
 
 		arcicleservice.insertIcookArticle(articlebean);
+		
+		
+		if (!c.getPrincipal().equals("anonymousUser")) {
+			bean = memberservice.selectByUsername(c.getPrincipal());
+			model.addAttribute("bean", bean);
+		}
+		
+		
+		
 
 		// 將上傳的檔案移到指定的資料夾
 		return "redirect:/A_articlemainpage";/* 讓瀏覽器再次發出請求，呼叫successPage.jsp檔案 */
@@ -425,7 +520,7 @@ public class AticleController {
 	
 	
 	@RequestMapping(value = "/findArctile")
-	public String findArctile( @RequestParam("article_title") String  article_title, Model model) {
+	public String findArctile( @RequestParam("article_title") String  article_title, Model model,MemberBean bean) {
 		System.out.println("article_title="+article_title);
 		List<ArticleBean> list = arcicleservice.getByArticle_Title(article_title);
 		model.addAttribute("Articles", list);
@@ -437,15 +532,29 @@ public class AticleController {
 		
 		model.addAttribute("list",list);
 		
+		if (!c.getPrincipal().equals("anonymousUser")) {
+			bean = memberservice.selectByUsername(c.getPrincipal());
+			model.addAttribute("bean", bean);
+		}
+		
+		
 		return "/article/A_articlesearch"; // 指向success.jsp
 	}
 	
 	@RequestMapping(value = "/findArctiCatergory")
-	public String findArctiCatergory( @RequestParam("article_catergoary") String  article_catergoary, Model model) {	
+	public String findArctiCatergory( @RequestParam("article_catergoary") String  article_catergoary, Model model,MemberBean bean) {	
 		System.out.println("article_catergoary="+article_catergoary);
 		List<ArticleBean> list = arcicleservice.getByArticle_Catergory(article_catergoary);
 		model.addAttribute("Articles", list);
 		model.addAttribute("list",list);
+		
+		if (!c.getPrincipal().equals("anonymousUser")) {
+			bean = memberservice.selectByUsername(c.getPrincipal());
+			model.addAttribute("bean", bean);
+		}
+		
+		
+		
 		return "/article/A_articlesearch"; // 指向success.jsp
 	}
 }

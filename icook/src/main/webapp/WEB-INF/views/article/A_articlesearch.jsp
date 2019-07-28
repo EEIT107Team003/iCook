@@ -107,89 +107,98 @@
 		pageContext.setAttribute("list", list);
 	%>
 	<%@ include file="page1.file"%>
-<header>
-			<div class="zerogrid">
-				<div class="col-full">
-					<div class="wrap-col">
-						<h1>
-										
-							<c:choose>
-							
-							<c:when test="${pageContext.request.userPrincipal.name == 'admin@gmail.com'||pageContext.request.userPrincipal.name =='admin'}">
-							
-							<a style="height: 200px"
-							
-								href="A_insert"><img
-								src="${pageContext.request.contextPath}/images/logo.png"
-								style="width: 200px; right: 200px; border-radius: 50%;"
-								alt="EXTERIOR"></a>					
+	<header>
+		<sec:authorize access="isAuthenticated()">
+			<!--   <div class="btn btn-primary" style="float:right;height: 60px;margin-right:50px;padding-left:50px;padding-right:30px;background-color:#228B22;border-radius: 20%"> -->
+			<div class="btn btn-success"
+				onclick="javascript:location.href='user'"
+				style="float: right; margin-right: 50px; padding-left: 35px; width: 400px">
+				<img id="member_photo_image"
+					style="float: left; width: 100px; height: 100px; border-radius: 50%; border: 1px solid black"
+					src="<c:url value='/getMemberPhoto/${bean.member_id}' />" />
+				<div style="font-size: 60px; float: left; margin-left: 30px;">${bean.nickname}</div>
+			</div>
+		</sec:authorize>
+		<div class="zerogrid">
+			<div class="col-full">
+				<div class="wrap-col">
+					<h1>
+
+						<c:choose>
+
+							<c:when
+								test="${pageContext.request.userPrincipal.name == 'admin@gmail.com'||pageContext.request.userPrincipal.name =='admin'}">
+
+								<a style="height: 200px" href="A_insert"><img
+									src="${pageContext.request.contextPath}/images/logo.png"
+									style="width: 200px; right: 200px; border-radius: 50%;"
+									alt="EXTERIOR"></a>
 							</c:when>
 							<c:otherwise>
-							
-							
-							<a style="height: 200px"
-							
-								href="${pageContext.request.contextPath}/index2"><img
-								src="${pageContext.request.contextPath}/images/logo.png"
-								style="width: 200px; right: 200px; border-radius: 50%;"
-								alt="EXTERIOR"></a>
-							
-							
+
+
+								<a style="height: 200px"
+									href="${pageContext.request.contextPath}/index2"><img
+									src="${pageContext.request.contextPath}/images/logo.png"
+									style="width: 200px; right: 200px; border-radius: 50%;"
+									alt="EXTERIOR"></a>
+
+
 							</c:otherwise>
-							
-							
-							
-							</c:choose>
-										
-						</h1>
-
-						<div class="menu_block">
-							<nav>
-								<ul class="sf-menu" style="padding-top: 55px">
-									<li><a href="index2">ICook</a></li>
-									<li><a href="icookAboutUS">關於我們</a>
-										<ul>
-											<li><a href="icookContact">聯繫我們</a></li>
-										</ul></li>
-									<li><a href="recipe/recipeIndex">查看食譜</a> <!--<ul>--> <!--<li><a href="#">cat1</a></li>-->
-										<!--<li><a href="#">cat2</a></li>--> <!--<li><a href="#">cat3</a></li>-->
-										<!--</ul>--></li>
-									<li><a href="icookLife">生活誌</a></li>
-									<li><a href="forum/overview">討論區</a></li>
-									<li><a href="A_articlemainpage">文章區</a></li>
 
 
-									<!-- 									<li><a href="products">市集</a> -->
-									<li><a href="products">市集</a>
-										<ul>
+
+						</c:choose>
+
+					</h1>
+
+					<div class="menu_block">
+						<nav>
+							<ul class="sf-menu" style="padding-top: 55px">
+								<li><a href="index2">ICook</a></li>
+								<li><a href="icookAboutUS">關於我們</a>
+									<ul>
+										<li><a href="icookContact">聯繫我們</a></li>
+									</ul></li>
+								<li><a href="recipe/recipeIndex">查看食譜</a> <!--<ul>--> <!--<li><a href="#">cat1</a></li>-->
+									<!--<li><a href="#">cat2</a></li>--> <!--<li><a href="#">cat3</a></li>-->
+									<!--</ul>--></li>
+								<li><a href="icookLife">生活誌</a></li>
+								<li><a href="forum/overview">討論區</a></li>
+								<li><a href="A_articlemainpage">文章區</a></li>
 
 
-											<li><a href="cartPage">購物車</a></li>
-										</ul></li>
-									<%-- </c:if><c:if test="${pageContext.request.userPrincipal.name==null}"> --%>
-									<li><a href="user">會員專區 </a>
-										<ul>
-											<sec:authorize access="!isAuthenticated()">
-												<li><a href="icookLogin">會員登入</a></li>
-												<li><a href="icookRegister">會員註冊</a></li>
-											</sec:authorize>
-											<c:if test="${pageContext.request.userPrincipal.name!=null}">
-												<li><a href="index2" data-toggle="modal"
-													data-target="#logout">會員登出</a></li>
-											</c:if>
-											<li><a href="checkOrders">查看訂單</a></li>
-											<li><a href="icookAddRecipe">新增食譜</a></li>
-											<li><a href="productTable">後台</a></li>
-										</ul></li>
-								</ul>
-							</nav>
-							<div class="clear"></div>
-						</div>
+								<!-- 									<li><a href="products">市集</a> -->
+								<li><a href="products">市集</a>
+									<ul>
+
+
+										<li><a href="cartPage">購物車</a></li>
+									</ul></li>
+								<%-- </c:if><c:if test="${pageContext.request.userPrincipal.name==null}"> --%>
+								<li><a href="user">會員專區 </a>
+									<ul>
+										<sec:authorize access="!isAuthenticated()">
+											<li><a href="icookLogin">會員登入</a></li>
+											<li><a href="icookRegister">會員註冊</a></li>
+										</sec:authorize>
+										<c:if test="${pageContext.request.userPrincipal.name!=null}">
+											<li><a href="index2" data-toggle="modal"
+												data-target="#logout">會員登出</a></li>
+										</c:if>
+										<li><a href="checkOrders">查看訂單</a></li>
+										<li><a href="icookAddRecipe">新增食譜</a></li>
+										<li><a href="productTable">後台</a></li>
+									</ul></li>
+							</ul>
+						</nav>
 						<div class="clear"></div>
 					</div>
+					<div class="clear"></div>
 				</div>
 			</div>
-		</header>
+		</div>
+	</header>
 
 
 
@@ -264,22 +273,24 @@
 													href="<spring:url value='/article?article_num=${Article.article_num}' />">${Article.article_title}</a>
 											</h3>
 											<p class="mb-0">
-											<c:choose>
-											<c:when test="${pageContext.request.userPrincipal.name == 'admin@gmail.com'||pageContext.request.userPrincipal.name =='admin' && Article.article_status==2}">
-											
-												<a	href="<spring:url value='/article?article_num=${Article.article_num}' />"					
-													class="btn btn-black py-2">此篇文章已被隱藏<span
-													class="icon-arrow_forward ml-4"></span>
-												</a>
-												</c:when>
-												<c:otherwise>
-												<a
-													href="<spring:url value='/article?article_num=${Article.article_num}' />"
-													class="btn btn-black py-2">Read More <span
-													class="icon-arrow_forward ml-4"></span>
-												</a>
-												</c:otherwise>
-												
+												<c:choose>
+													<c:when
+														test="${pageContext.request.userPrincipal.name == 'admin@gmail.com'||pageContext.request.userPrincipal.name =='admin' && Article.article_status==2}">
+
+														<a
+															href="<spring:url value='/article?article_num=${Article.article_num}' />"
+															class="btn btn-black py-2">此篇文章已被隱藏<span
+															class="icon-arrow_forward ml-4"></span>
+														</a>
+													</c:when>
+													<c:otherwise>
+														<a
+															href="<spring:url value='/article?article_num=${Article.article_num}' />"
+															class="btn btn-black py-2">Read More <span
+															class="icon-arrow_forward ml-4"></span>
+														</a>
+													</c:otherwise>
+
 												</c:choose>
 											</p>
 										</div>
