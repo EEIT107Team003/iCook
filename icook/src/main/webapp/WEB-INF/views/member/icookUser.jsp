@@ -432,6 +432,14 @@ td {
 	<div class="main">
 		<!--==============================header=================================-->
 		<header>
+			<sec:authorize access="isAuthenticated()">
+				<div class="btn btn-success" onclick="javascript:location.href='user'" style="float:right;margin-right:50px;padding-left:35px;width: 400px">
+					<img id="member_photo_image"
+						 style="float:left;width:100px;height: 100px;border-radius: 50%; border: 1px solid black"
+						 src="<c:url value='/getMemberPhoto/${member.member_id}' />" />
+					<div style=" font-size:60px;float: left;margin-left: 30px;">${member.nickname}</div>
+				</div>
+			</sec:authorize>
 			<div class="zerogrid">
 			<!-- 修改會員資料-----------------------------------------------------------------------	 -->
 				<div class="col-full">
@@ -537,93 +545,93 @@ td {
 <!-- 				style="height: 100%;width: 100%" -->
 
 				<!-- 控制項-------------------------------------------				 -->
-			<div style="clear: both; ">
-				<div class="user_control">
-					<p class="btn btn-primary btn-lg user_control_title" data-toggle="modal" data-target="#myModal_changeInfo">編輯會員資料</p>
-					<div class="modal fade" id="myModal_changeInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					    <div class="modal-dialog">
-					        <div class="modal-content">
-					            <div class="modal-header">
-					                <h4 class="modal-title" id="myModalLabel_changeInfo" style="float: left">編輯會員資料</h4>
-					                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-					            </div>
-					            <div class="modal-body">
+<!-- 			<div style="clear: both; "> -->
+<!-- 				<div class="user_control"> -->
+<!-- 					<p class="btn btn-primary btn-lg user_control_title" data-toggle="modal" data-target="#myModal_changeInfo">編輯會員資料</p> -->
+<!-- 					<div class="modal fade" id="myModal_changeInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> -->
+<!-- 					    <div class="modal-dialog"> -->
+<!-- 					        <div class="modal-content"> -->
+<!-- 					            <div class="modal-header"> -->
+<!-- 					                <h4 class="modal-title" id="myModalLabel_changeInfo" style="float: left">編輯會員資料</h4> -->
+<!-- 					                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
+<!-- 					            </div> -->
+<!-- 					            <div class="modal-body"> -->
 					            
-									<form id="change_info" method="POST">
-										<table>
-											<tr>
-												<td><label for="change_nickname">暱稱: </label></td>
-												<td><input id="change_nickname" name="nickname" type="text" value="${member.nickname}" /></td>
-											</tr>
-											<tr>
-												<td><label for="username">電子郵件: </label></td>
-												<td><input id="change_username" name="username" type="text" disabled="disabled" value="${member.username}" style="color: gray;"/></td>
-											</tr>
-											<tr>
-												<td><label for="change_member_phone_num">聯絡電話: </label></td>
-												<td><input id="change_member_phone_num" name="member_phone_num" type="text" value="${member.member_phone_num}" /></td>
-											</tr>
-											<tr>
-												<td><label for="change_address">收貨地址: </label></td>
-												<td><input id="change_address" name="address" type="text" style="width:400px" value="${member.address}" /></td>
-											</tr>
-											<tr>
-												<td><label for="change_reaume">個人簡介: </label></td>
-								            	<td><textarea id="change_reaume" name="resume" style="min-height: 40px; max-height: 200px; min-width:80%; max-width:80%;">${member.resume}</textarea></td>
-											</tr>
-										</table>
-									</form>
+<%-- 									<form id="change_info" method="POST"> --%>
+<!-- 										<table> -->
+<!-- 											<tr> -->
+<!-- 												<td><label for="change_nickname">暱稱: </label></td> -->
+<%-- 												<td><input id="change_nickname" name="nickname" type="text" value="${member.nickname}" /></td> --%>
+<!-- 											</tr> -->
+<!-- 											<tr> -->
+<!-- 												<td><label for="username">電子郵件: </label></td> -->
+<%-- 												<td><input id="change_username" name="username" type="text" disabled="disabled" value="${member.username}" style="color: gray;"/></td> --%>
+<!-- 											</tr> -->
+<!-- 											<tr> -->
+<!-- 												<td><label for="change_member_phone_num">聯絡電話: </label></td> -->
+<%-- 												<td><input id="change_member_phone_num" name="member_phone_num" type="text" value="${member.member_phone_num}" /></td> --%>
+<!-- 											</tr> -->
+<!-- 											<tr> -->
+<!-- 												<td><label for="change_address">收貨地址: </label></td> -->
+<%-- 												<td><input id="change_address" name="address" type="text" style="width:400px" value="${member.address}" /></td> --%>
+<!-- 											</tr> -->
+<!-- 											<tr> -->
+<!-- 												<td><label for="change_reaume">個人簡介: </label></td> -->
+<%-- 								            	<td><textarea id="change_reaume" name="resume" style="min-height: 40px; max-height: 200px; min-width:80%; max-width:80%;">${member.resume}</textarea></td> --%>
+<!-- 											</tr> -->
+<!-- 										</table> -->
+<%-- 									</form> --%>
 				
-					            </div>
-					            <div class="modal-footer">
-					                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-					                <button type="button" class="btn btn-primary" id=updateInfo_check>確定更改</button>
-					            </div>
-					        </div>
-					    </div>
-					</div>
-				</div>
-				<!-- -----------------------------------------------------------------------	 -->
-				<!-- 編輯個人首頁(彈出視窗)-----------------------------------------------------------------------	 -->
-				<div class="user_control">
-					<p class="btn btn-primary btn-lg user_control_title" data-toggle="modal" data-target="#myModal">編輯個人簡介</p>
-					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					    <div class="modal-dialog">
-					        <div class="modal-content">
-					            <div class="modal-header">
-					                <h4 class="modal-title" id="myModalLabel" style="float: right">編輯個人簡介</h4>
-					                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-					            </div>
-					            <div class="modal-body">
-					            	<div>請輸入的你個人簡介:(50字以內)</div><br>
-						            <form id="resume_value" method="POST">
-										<div>
-							            	<textarea id="resume" name="resume" style="min-height: 40px; max-height: 200px; min-width:80%; max-width:80%">${member.resume}</textarea>
-										</div>
-									</form>
-					            </div>
-					            <div class="modal-footer">
-					                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-					                <button type="button" class="btn btn-primary" id=updateResume_check>確定更改</button>
-					            </div>
-					        </div>
-					    </div>
-					</div>
-				</div>
+<!-- 					            </div> -->
+<!-- 					            <div class="modal-footer"> -->
+<!-- 					                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button> -->
+<!-- 					                <button type="button" class="btn btn-primary" id=updateInfo_check>確定更改</button> -->
+<!-- 					            </div> -->
+<!-- 					        </div> -->
+<!-- 					    </div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 				-----------------------------------------------------------------------	 -->
+<!-- 				編輯個人首頁(彈出視窗)-----------------------------------------------------------------------	 -->
+<!-- 				<div class="user_control"> -->
+<!-- 					<p class="btn btn-primary btn-lg user_control_title" data-toggle="modal" data-target="#myModal">編輯個人簡介</p> -->
+<!-- 					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> -->
+<!-- 					    <div class="modal-dialog"> -->
+<!-- 					        <div class="modal-content"> -->
+<!-- 					            <div class="modal-header"> -->
+<!-- 					                <h4 class="modal-title" id="myModalLabel" style="float: right">編輯個人簡介</h4> -->
+<!-- 					                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
+<!-- 					            </div> -->
+<!-- 					            <div class="modal-body"> -->
+<!-- 					            	<div>請輸入的你個人簡介:(50字以內)</div><br> -->
+<%-- 						            <form id="resume_value" method="POST"> --%>
+<!-- 										<div> -->
+<%-- 							            	<textarea id="resume" name="resume" style="min-height: 40px; max-height: 200px; min-width:80%; max-width:80%">${member.resume}</textarea> --%>
+<!-- 										</div> -->
+<%-- 									</form> --%>
+<!-- 					            </div> -->
+<!-- 					            <div class="modal-footer"> -->
+<!-- 					                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button> -->
+<!-- 					                <button type="button" class="btn btn-primary" id=updateResume_check>確定更改</button> -->
+<!-- 					            </div> -->
+<!-- 					        </div> -->
+<!-- 					    </div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
 				
-				<!-- -----------------------------------------------------------------------	 -->
-				<!-- 更改封面圖片-----------------------------------------------------------------------	 -->
-					<div class="user_control">
-						<form:form method="POST" action="user/updateCoverPhoto" modelAttribute="MemberBean" enctype="multipart/form-data">
-							<label for="cover_photo_file"> 
-								<form:input type="file" path="cover_photo_tr" name="cover_photo_file" id="cover_photo_file" style="display: none;" /> 
-									<p class="btn btn-primary btn-lg user_control_title" id="cover_photo_image"> 更改封面圖片 </p>
-							</label>					
-								<input id=submit2 type="submit" value="送出" style="display: none;">
-						</form:form>
-					</div>
+<!-- 				-----------------------------------------------------------------------	 -->
+<!-- 				更改封面圖片-----------------------------------------------------------------------	 -->
+<!-- 					<div class="user_control"> -->
+<%-- 						<form:form method="POST" action="user/updateCoverPhoto" modelAttribute="MemberBean" enctype="multipart/form-data"> --%>
+<!-- 							<label for="cover_photo_file">  -->
+<%-- 								<form:input type="file" path="cover_photo_tr" name="cover_photo_file" id="cover_photo_file" style="display: none;" />  --%>
+<!-- 									<p class="btn btn-primary btn-lg user_control_title" id="cover_photo_image"> 更改封面圖片 </p> -->
+<!-- 							</label>					 -->
+<!-- 								<input id=submit2 type="submit" value="送出" style="display: none;"> -->
+<%-- 						</form:form> --%>
+<!-- 					</div> -->
 					
-	</div>				
+<!-- 			</div>				 -->
 	<div class="content" style="margin-top: 50px ; ">
 			<div style="width: 100%; ">
 				<div class="container sections-wrapper"

@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -137,14 +138,14 @@ td {
         Tip 2: you can also add an image using data-image tag
     -->
 
-			 <div class="sidebar-wrapper">
-                <div class="logo">
+			<div class="sidebar-wrapper">
+				<div class="logo">
                     <a href="home" class="simple-text">
                                                回前台首頁
                     </a>
                 </div>
-                <ul class="nav">
-                    <li class="nav-item active">
+				<ul class="nav">
+                   <li>
                         <a class="nav-link" href="backStageDashboard">
                             <i class="nc-icon nc-chart-pie-35"></i>
                             <p>後台首頁</p>
@@ -168,14 +169,14 @@ td {
                             <p>訂單管理</p>
                         </a>
                     </li>
-                    <li>
+                    <li class="nav-item active">
                         <a class="nav-link" href="report_forum">
-                            <i class="nc-icon nc-notes"></i>
+                            <i class="nc-icon nc-chart-pie-35"></i>
                             <p>檢舉文章管理</p>
                         </a>
                     </li>
                 </ul>
-            </div>
+			</div>
 		</div>
 		<div class="main-panel">
 
@@ -248,11 +249,8 @@ td {
 								</div>
 							</div>
 						</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+
+ -->
 </body>
 <!--   Core JS Files   -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -296,3 +294,4 @@ td {
 <script src="backStage/assets/js/demo.js"></script>
 
 </html>
+

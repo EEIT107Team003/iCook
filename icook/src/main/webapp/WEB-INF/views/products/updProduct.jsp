@@ -83,6 +83,12 @@ margin-right:10ch;
 .pre{
 text-align: left;
 }
+.pre img{
+width:150;
+height:100;
+margin:15px;
+}
+
 
 /* #formUp{ */
 /* font-size:20px; */
@@ -248,10 +254,8 @@ text-align: left;
 <div class="content">
 
 		<section>
-			<!--       三個地方要完全一樣 -->
 					<form:form method='POST' modelAttribute="productBeanObject"
 						id="formUp" enctype="multipart/form-data">
-						<!-- 		                  	enctype="multipart/form-data"一定要加這個屬性才可以使用上傳檔案這個功能 -->
 
 						<fieldset class='left'>
 							<form:input id="product_id" name="product_id" path="product_id"
@@ -307,26 +311,20 @@ text-align: left;
 									<form:input id="productImage" path="productImage" type='file'
 										accept="image/gif, image/jpeg, image/png" />
 								</div>
-								<div class="col-3">
-									<label for="productPictureOne">圖片2 : </label>
-									<form:input id="productPictureOne" path="productPictureOne"
-										type='file' accept="image/gif, image/jpeg, image/png" />
-								</div>
-								<div class="col-3">
-									<label for="productPictureTwo">圖片3 : </label>
+								<div class="col-4">
+									<label for="productPictureTwo">圖片2 : </label>
 									<form:input id="productPictureTwo" path="productPictureTwo"
 										type='file' accept="image/gif, image/jpeg, image/png" />
 								</div>
-								<div class="col-3">
-									<label for="productPictureThree">圖片4 : </label>
+								<div class="col-4">
+									<label for="productPictureThree">圖片3 : </label>
 									<form:input id="productPictureThree" path="productPictureThree"
 										type='file' accept="image/gif, image/jpeg, image/png" />
 								</div>
 
-								<div class="col-3" id="uploadImg1"></div>
-								<div class="col-3" id="uploadImg2"></div>
-								<div class="col-3" id="uploadImg3"></div>
-								<div class="col-3" id="uploadImg4"></div>
+								<div class="col-4" id="uploadImg1"></div>
+								<div class="col-4" id="uploadImg3"></div>
+								<div class="col-4" id="uploadImg4"></div>
 							</div>
                             <div>
 							<label for="description">商品描述 :</label>
@@ -345,11 +343,6 @@ $("#productImage").change(function(){
 	  readURL(this);
 	  var txt="<img id='preview_progressbarTW_img' src='#' style='margin-left:5ch;' width='125px' height='150px' />"
 	  $("#uploadImg1").html(txt);
-	});
-$("#productPictureOne").change(function(){
-	  readURL2(this);
-	  var txt="<img id='preview_progressbarTW_img2' src='#' style='margin-left:5ch;' width='125px' height='150px' />"
-	  $("#uploadImg2").html(txt);
 	});
 $("#productPictureTwo").change(function(){
 	  readURL3(this);
@@ -375,19 +368,6 @@ function readURL(input){
     }
     reader.readAsDataURL(input.files[0]);
   }
-}
-  
-function readURL2(input){
-
-	  if(input.files && input.files[0]){
-
-	    var reader = new FileReader();
-
-	    reader.onload = function (e) {
-	       $("#preview_progressbarTW_img2").attr('src', e.target.result);
-	    }
-	    reader.readAsDataURL(input.files[0]);
-	  }
 }
 function readURL3(input){
 
@@ -431,20 +411,11 @@ function readURL4(input){
 				<h3>價格      : ${previousbean.price}</h3>
 				<h3>庫存      : ${previousbean.stock}</h3>
 				<h3>狀態      : ${status}</h3>
-				<h4>路徑      : ..${previousbean.productPictureOnePath}</h4>
-				<h4>路徑      : ..${previousbean.productPictureTwoPath}</h4>
-				<h4>路徑      : ..${previousbean.productPictureThreePath}</h4>
-<%-- 				当前WEB应用的物理路径：<%=application.getRealPath("/")%><BR> --%>
-<%-- 当前你求请的JSP文件的物理路径：<%=application.getRealPath(request.getRequestURI())%><BR> --%>
 
 					<div class="pre">
-					<img width='250' height='200'
-						src="..${previousbean.productPictureOnePath}" />
-					<img width='250' height='200'
-						src="..${previousbean.productPictureTwoPath}" />
-					<img width='250' height='200'
-						src="..${previousbean.productPictureThreePath}" />
-<!-- 						src="../product_pathImage/Users/icookImages/123_1.JPG" /> -->
+					<img src="..${previousbean.productPictureOnePath}" />
+					<img src="..${previousbean.productPictureTwoPath}" />
+					<img src="..${previousbean.productPictureThreePath}" />
 				</div >
 				</div>
 				<c:choose>

@@ -276,15 +276,21 @@
 												</div>
 												<p class="mb-4"
 													style="width: 490px; max-width: 490px; max-height: 55px; word-break: break-all; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block;">${ post.text }</p>
+												
+												
 												<p>
 													<a
 														href="${ pageContext.request.contextPath }/forum/pick?harticle_id=${ post.harticle_id }&article_id=${ post.article_id }"
 														class="btn-custom">閱讀文章 <span
 														class="ion-ios-arrow-forward"></span></a>
 												</p>
+												
 											</div>
 										</div>
 									</div>
+									<hr>
+									
+									
 								</c:forEach>
 
 

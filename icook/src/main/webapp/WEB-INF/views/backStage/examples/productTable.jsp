@@ -243,13 +243,13 @@ float:right;
                     </a>
                 </div>
                 <ul class="nav">
-                    <li class="nav-item active">
+                    <li>
                         <a class="nav-link" href="backStageDashboard">
                             <i class="nc-icon nc-chart-pie-35"></i>
                             <p>後台首頁</p>
                         </a>
                     </li>
-                    <li>
+                    <li  class="nav-item active">
                         <a class="nav-link" href="productTable">
                             <i class="nc-icon nc-notes"></i>
                             <p>產品管理</p>
@@ -426,8 +426,8 @@ float:right;
                                     <table class="table table-hover table-striped">
                                         <thead>
                                             <th>ID</th>
+                                            <th>Image</th>
                                             <th>Name</th>
-                                            <th>Picture</th>
                                             <th>Category</th>
                                             <th>Price</th>
                                             <th>status</th>
