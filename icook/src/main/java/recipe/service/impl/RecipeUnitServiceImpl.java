@@ -40,4 +40,9 @@ public class RecipeUnitServiceImpl implements IRecipeUnitService {
 	public List<Blob> getRecipeUnitImageByFk(Integer fk) {
 		return recipeUnitDao.getRecipeUnitImageByFk(fk);
 	}
+
+	@Override
+	public RecipeUnitBean getRecipeUnitByFkAndStepNo(Integer fk, Integer stepNo) {
+		return recipeUnitDao.getRecipeUnitByFkAndStepNo(fk, stepNo);
+	}
 }

@@ -13,4 +13,6 @@ public interface IRecipeUnitService {
 	void insertRecipeUnit(RecipeUnitBean recipeUnitBean);// 新增資料
 	
 	List<Blob> getRecipeUnitImageByFk(Integer fk);//先把舊資料的影像檔案撈出來
+	
+	RecipeUnitBean getRecipeUnitByFkAndStepNo(Integer fk, Integer stepNo);//使用fk鍵跟食譜編號把單一一筆紀錄搜尋出來。
 }

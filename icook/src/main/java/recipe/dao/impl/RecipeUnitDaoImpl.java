@@ -34,6 +34,19 @@ public class RecipeUnitDaoImpl implements IRecipeUnitDao {
 		return image;
 	}
 
+	// stepNo
+	@Override
+	public RecipeUnitBean getRecipeUnitByFkAndStepNo(Integer fk, Integer stepNo) {
+		Session session = sessionFactory.getCurrentSession();
+		RecipeUnitBean recipeUnit = null;
+		if (fk != null && stepNo != null) {
+			String hql = "FROM RecipeUnitBean WHERE (fk_recipe_id = :fk AND stepNo = :stepNo)";
+			recipeUnit = (RecipeUnitBean) session.createQuery(hql).setParameter("fk", fk).setParameter("stepNo", stepNo)
+					.getSingleResult();
+		}
+		return recipeUnit;
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<RecipeUnitBean> getRecipeUnitBeanByFk(Integer fk) {

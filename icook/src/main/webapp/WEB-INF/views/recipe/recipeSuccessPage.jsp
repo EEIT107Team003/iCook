@@ -40,7 +40,7 @@
 				<td>食譜封面照片</td>
 				<td><img
 					src="<c:url value='/getRecipePicture/${recipe.pk_recipe_id}' />"
-					width="300" /></td>
+					width="200" /></td>
 			</tr>
 			<tr align="center">
 				<td>烹調時間</td>
@@ -94,15 +94,17 @@
 					<tr align="center">
 						<td><img
 							src="<c:url value='/getRecipePicture2/${recipe.pk_recipe_id}/${recipe3.stepNo}' />"
-							width="300" /></td>
+							width="200" /></td>
 						<td>${recipe3.explain}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 		<%--第三張table-end--%>
-		<br> <a href="<c:url value='/recipe/recipeIndex' />">回食譜首頁</a> <br>
-		<a href="<c:url value='/home' />">回首頁</a> <br>
+		<!--<br>-->
+		<%--<a href="<c:url value='/recipe/recipeIndex' />">回食譜首頁</a>--%>
+		<br>
+		<a href="<c:url value='/home' />">回首頁</a>
 	</div>
 </body>
 </html>
