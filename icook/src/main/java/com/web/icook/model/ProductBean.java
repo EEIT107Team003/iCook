@@ -93,11 +93,6 @@ public class ProductBean implements Serializable {
 	@JsonIgnore
 	@XmlTransient
 	@Transient
-	private MultipartFile productPictureOne;
-	
-	@JsonIgnore
-	@XmlTransient
-	@Transient
 	private MultipartFile productPictureTwo;
 	
 	@JsonIgnore
@@ -229,13 +224,6 @@ public class ProductBean implements Serializable {
 		this.productPictureOnePath = productPictureOnePath;
 	}
 
-	public MultipartFile getProductPictureOne() {
-		return productPictureOne;
-	}
-
-	public void setProductPictureOne(MultipartFile productPictureOne) {
-		this.productPictureOne = productPictureOne;
-	}
 
 	public String getProductPictureTwoPath() {
 		return productPictureTwoPath;
