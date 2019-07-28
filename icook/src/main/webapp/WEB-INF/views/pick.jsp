@@ -414,7 +414,7 @@
 							</div>
 
 							<div class="sidebar-box ftco-animate">
-								<h3 class="sidebar-heading">Popular Articles</h3>
+								<h3 class="sidebar-heading">熱門文章</h3>
 								<c:forEach var="pop" items="${ populars }">
 									<div class="block-21 mb-4 d-flex">
 										<a class="blog-img mr-4"
