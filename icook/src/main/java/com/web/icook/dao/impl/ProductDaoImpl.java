@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -15,7 +14,6 @@ import com.web.icook.dao.ProductDao;
 import com.web.icook.exception.ProductNotFoundException;
 import com.web.icook.model.CategoriesBean;
 import com.web.icook.model.CategoryBean;
-import com.web.icook.model.CollectiontBean;
 import com.web.icook.model.MemberBean;
 import com.web.icook.model.ProductBean;
 
@@ -39,8 +37,6 @@ public class ProductDaoImpl implements ProductDao {
 		}
 		return list;
 	}
-
-	
 	
 	//================================================================================================================
 	//================================================================================================================
@@ -256,24 +252,6 @@ public class ProductDaoImpl implements ProductDao {
 		return list;
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean getCollectionById(int productId, int memberId) {
-		boolean bol = true;
-		System.out.println("========getCollectionById  DAO Start==================");
-		Session session = factory.getCurrentSession();
-		List<CollectiontBean> list = new ArrayList<>();
-		String hql = "FROM CollectiontBean as cb where cb.productBean.product_id= :product_id"
-				+ " AND cb.memberBean.member_id=:member_id ";
-		list = session.createQuery(hql).setParameter("product_id", productId).setParameter("member_id", memberId)
-				.setMaxResults(1).getResultList();
-		System.out.println("List :" + list);
-		if (list != null && list.size() != 0)
-			bol = false;
-		System.out.println("========getCollectionById  DAO  Finish==================");
-
-		return bol;
-	}
 
 	@Override
 	public ProductBean getProductById(int productId) {
@@ -288,34 +266,6 @@ public class ProductDaoImpl implements ProductDao {
 		return bb;
 	}
 
-	@Override
-	public void addtoCollection(int productId, int memberId) {
-		System.out.println("=========================addtoCollection    Start==============================");
-
-		Session session = factory.getCurrentSession();
-		java.sql.Date date = new java.sql.Date(new Date().getTime());
-		ProductBean bb = session.get(ProductBean.class, productId);
-		MemberBean membean = session.get(MemberBean.class, memberId);
-		System.out.println("porductBean :" + productId + " : " + bb);
-		System.out.println("memberBean  :" + memberId + " : " + membean);
-		CollectiontBean bean = new CollectiontBean();
-		boolean bol = getCollectionById(productId, memberId);
-		System.out.println("Nowdate :" + date);
-		System.out.println("bol :" + bol);
-//		if (bol) {
-//			throw new ProductNotFoundException("Product no  " + productId + "not found", productId);
-//			}
-		if (bol != false) {
-			bean.setProductBean(bb);
-			bean.setCollect(date);
-			bean.setMemberBean(membean);
-			session.save(bean);
-			System.out.println("Bean saved");
-		} else {
-			System.out.println("Product is existed");
-		}
-		System.out.println("=========================addtoCollection   Finish==============================");
-	}
 
 	@Override
 	public void updateProduct(ProductBean product, String productId) {

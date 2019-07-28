@@ -50,10 +50,6 @@ public class ProductServiceImpl implements ProductService {
     	return dao.getAllCategories(name);
     }
    
-	@Override
-	public void addtoCollection(int productId, int memberId) {
-		dao.addtoCollection(productId, memberId);		
-	}
 	
     @Override
     public void updateProducts(ProductBean product,String productId) {
@@ -78,7 +74,6 @@ public class ProductServiceImpl implements ProductService {
 	
 		return dao.getAllCategory();
 	}
-
 
 
 

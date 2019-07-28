@@ -8,9 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.web.icook.dao.CollectionDao;
 import com.web.icook.dao.MyCollectionRecipeDAO;
-import com.web.icook.model.CollectiontBean;
 import com.web.icook.model.MyCollectRecipeBean;
 import com.web.icook.model.MyTrackBean;
 

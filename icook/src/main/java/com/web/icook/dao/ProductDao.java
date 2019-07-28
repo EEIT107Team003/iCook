@@ -9,9 +9,7 @@ import com.web.icook.model.ProductBean;
 public interface ProductDao {
 	public void           addProduct       (ProductBean product);
 	public void           updateProduct    (ProductBean product,String productId);
-	public void           addtoCollection  (int productId ,int memberId);
 	public ProductBean    getProductById   (int productId);
-	public boolean        getCollectionById(int productId,int memberId);
 	
 	
 	public List<ProductBean>     getAllProducts();

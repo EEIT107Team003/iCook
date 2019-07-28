@@ -24,6 +24,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -51,23 +53,35 @@ public class ProductController {
 	ProductService service;
 
 	@Autowired
+	MemberService memberService;
+	@Autowired
 	ServletContext context;
-	
-	
-	@RequestMapping(value = "/product_Test")
-	public String producttest(Model model) {
-		List<ProductBean> list = service.getAllProducts();
-		model.addAttribute("products", list);
-		return "products/test";
-	}
-	
 	@Autowired
 	MemberController mcontroller;
 
-	@Autowired
-	MemberService mservice;
+	@ModelAttribute("bean")
+	public MemberBean getMemberBean() {
+		MemberBean bean=null;
+		if (!getPrincipal().equals("anonymousUser")) {
+			 bean = memberService.selectByUsername(getPrincipal());
+		}
+		return bean;
+	}
 	
+	public String getPrincipal() {
+		String userName = null;
+		// 獲得當前登入對象
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
+		if (principal instanceof UserDetails) {
+			userName = ((UserDetails) principal).getUsername();
+		} else {
+			userName = principal.toString();
+		}
+		return userName;
+	}
+	
+	
 	@ResponseBody
 	@RequestMapping(value = "/SelectByCategoriesAndDescriptionForProduct/{txt}", method = RequestMethod.GET)
 	public List<ProductBean> SelectByCategoriesAndDescriptionForProduct(@PathVariable String txt) {
@@ -211,14 +225,6 @@ public class ProductController {
 		return bean;
 	}
 
-	@RequestMapping("/product/addToCollection")
-	public String addToCollection(@RequestParam("id") Integer id, Model model) {
-		// 暫時用member=5
-		int memberId = 2;
-		service.addtoCollection(id, memberId);
-//		model.addAttribute("product", bb);
-		return "redirect:/products";
-	}
 
 	// 查全部
 	@RequestMapping(value = "/products")
@@ -227,7 +233,7 @@ public class ProductController {
 		// 要在下頁用EL顯示會員${LoginOK.member_id}需在controller裡面加此行,-----------------------------
 		//測試成功
 		if (!mcontroller.getPrincipal().equals("anonymousUser")) {
-			MemberBean mb = mservice.selectByUsername(mcontroller.getPrincipal());
+			MemberBean mb = memberService.selectByUsername(mcontroller.getPrincipal());
 			model.addAttribute("LoginOK", mb);
 		}
 		// -----------------------------------------------------------------------
@@ -242,7 +248,7 @@ public class ProductController {
 		// 要在下頁用EL顯示會員${LoginOK.member_id}需在controller裡面加此行,-----------------------------
 		//測試成功
 		if (!mcontroller.getPrincipal().equals("anonymousUser")) {
-			MemberBean mb = mservice.selectByUsername(mcontroller.getPrincipal());
+			MemberBean mb = memberService.selectByUsername(mcontroller.getPrincipal());
 			model.addAttribute("LoginOK", mb);
 		}
 		// -----------------------------------------------------------------------
@@ -362,7 +368,6 @@ public class ProductController {
 	public String getAddNewProductForm(Model model) {
 		System.out.println("Init From Start============================================");
 		ProductBean bb = new ProductBean();
-//		bb.setCategory("鍋子");
 		model.addAttribute("productBeanObject", bb);
 		Map<String, Object> map = model.asMap();
 		Set<String> set = map.keySet();
@@ -384,6 +389,8 @@ public class ProductController {
 			@RequestParam String product_id, Model model, BindingResult result, HttpServletRequest request)
 			throws IOException {
 		System.out.println("\nSubmit Form Start============================================");
+		System.out.println("name :"+bb.getName());
+		System.out.println("getPrice :"+bb.getPrice());
 		String Categoriesname = request.getParameter("fileName");
 		String Category = request.getParameter("name");
 		String gender = request.getParameter("gender");
@@ -419,8 +426,6 @@ public class ProductController {
 			bb.setStock(0);
 		}
 		MultipartFile productImage = bb.getProductImage();
-//		MultipartFile productPictureOne = bb.getProductPictureOne();
-//		System.out.println("productPuctureOne :"+productPictureOne.getSize() +"，"+productPictureOne.getBytes());
 		MultipartFile productPictureTwo = bb.getProductPictureTwo();
 		System.out.println("productPuctureTwo :"+productPictureTwo);
 		MultipartFile productPictureThree = bb.getProductPictureThree();

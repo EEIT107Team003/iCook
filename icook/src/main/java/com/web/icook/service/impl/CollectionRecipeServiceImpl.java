@@ -10,7 +10,6 @@ import com.web.icook.dao.MyCollectionRecipeDAO;
 import com.web.icook.model.MyCollectRecipeBean;
 import com.web.icook.model.MyTrackBean;
 import com.web.icook.service.CollectionRecipeService;
-import com.web.icook.service.CollectionService;
 
 @Service
 @Transactional

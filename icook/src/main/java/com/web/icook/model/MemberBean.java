@@ -114,9 +114,6 @@ public class MemberBean implements Serializable {
 	private Set<RecipeBean> recipe = new LinkedHashSet<RecipeBean>();// 一中有個多，【一方】。
 
 //	private Set<CollectRecipe> recipe_Collecter = new LinkedHashSet<>();
-	@JsonBackReference(value = "COmemberBean")
-	@OneToMany(mappedBy = "COmemberBean", fetch = FetchType.EAGER)
-	private Set<CollectiontBean> collectiontbean = new HashSet<>(0);
 	@JsonBackReference(value = "article_member")
 	@OneToMany(mappedBy = "article_member", fetch = FetchType.EAGER)
 	private Set<ArticleBean> Act = new LinkedHashSet<>();
@@ -160,13 +157,6 @@ public class MemberBean implements Serializable {
 		this.recipe = recipe;
 	}
 
-	public Set<CollectiontBean> getCollectiontbean() {
-		return collectiontbean;
-	}
-
-	public void setCollectiontbean(Set<CollectiontBean> collectiontbean) {
-		this.collectiontbean = collectiontbean;
-	}
 
 	public MemberBean() {
 

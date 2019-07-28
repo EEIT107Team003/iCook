@@ -10,7 +10,6 @@ public interface ProductService {
 	public ProductBean getProductById   (int productId);
 	public void        updateProducts   (ProductBean product,String product_id);
 	public void        addProduct       (ProductBean product);
-	public void        addtoCollection  (int productId,int memberId);
 	
 	public List<ProductBean>     getAllProducts();
 	public List<CategoryBean>    getAllCategory();
