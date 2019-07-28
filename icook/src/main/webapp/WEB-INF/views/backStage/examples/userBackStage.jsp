@@ -75,14 +75,14 @@
 td {
 	text-align: center;
 }
+
 th {
 	text-align: center;
 }
+
 .urgent {
 	background-color: red;
 }
-
-
 
 .shrink {
 	margin-left: 10%;
@@ -90,28 +90,27 @@ th {
 	margin-top: 5%;
 }
 
-td{
+td {
 	text-align: center;
 	font-size: 20px;
 	font-family: 'Noto Sans TC', sans-serif;
 	line-height: 20px;
 }
-th{ 
 
-} 
-.thnew{
-font-family: 'Noto Sans TC', sans-serif;
-font-size: 20px;
-text-align: center;
-color: #aa4fff;
-
+th {
+	
 }
 
-.thnewHeader{
+.thnew {
+	font-family: 'Noto Sans TC', sans-serif;
+	font-size: 20px;
+	text-align: center;
+	color: #aa4fff;
+}
+
+.thnewHeader {
 	font-family: 'Noto Sans TC', sans-serif;
 }
-
-
 
 td {
 	
@@ -161,68 +160,74 @@ td {
 </head>
 
 <body>
-	
+
 	<div class="wrapper">
 		<div class="sidebar" data-image="backStage/assets/img/sidebar-5.jpg">
 
 
 			<div class="sidebar-wrapper">
 				<div class="logo">
-					<a href="/icook" class="simple-text">
-						離開後台 </a>
+					<a href="/icook" class="simple-text"> 回前台首頁 </a>
 				</div>
 				<ul class="nav">
 					<li><a class="nav-link" href="backStageDashboard"> <i
 							class="nc-icon nc-chart-pie-35"></i>
-							<p>回後台首頁</p>
+							<p>後台首頁</p>
 					</a></li>
 					<li><a class="nav-link" href="productTable"> <i
-							class="nc-icon nc-chart-pie-35"></i>
+							class="nc-icon nc-notes"></i>
 							<p>產品管理</p>
 					</a></li>
-					<li><a class="nav-link" href="backStageUser"> <i
-							class="nc-icon nc-circle-09"></i>
+					<li class="nav-item active"><a class="nav-link active" href="backStageUser"> <i
+							class="nc-icon nc-notes"></i>
 							<p>會員管理</p>
 					</a></li>
-					<li class="nav-item active"><a class="nav-link"
-						href="adminCheckOrders"> <i class="nc-icon nc-notes"></i>
+					<li>
+						<a class="nav-link" href="adminCheckOrders"> <i
+							class="nc-icon nc-notes"></i>
 							<p>訂單管理</p>
 					</a></li>
-					<li>
-                        <a class="nav-link" href="report_forum">
-                            <i class="nc-icon nc-notes"></i>
-                            <p>檢舉文章管理</p>
-                        </a>
-                    </li>
+					<li><a class="nav-link" href="report_forum"> <i
+							class="nc-icon nc-notes"></i>
+							<p>檢舉文章管理</p>
+					</a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="main-panel">
-			
+
 			<div class="content">
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="card strpied-tabled-with-hover">
 								<div class="card-header ">
-<!-- 									<h4 class="card-title">訂單總覽</h4> -->
+									<!-- 									<h4 class="card-title">訂單總覽</h4> -->
 									<!--                                     <p class="card-category">Here is a subtitle for this table</p> -->
 								</div>
 								<div class="card-body table-full-width table-responsive">
 									<h1 class='thnewHeader' align='center'>
-										<c:out value="---------------------------------------------會員管理---------------------------------------------" />
+										<c:out
+											value="---------------------------------------------會員管理---------------------------------------------" />
 									</h1>
 									<div class="outer">
 										<table class="table table-hover">
 											<thead>
 												<tr>
-													<th scope="col" style='background-color: '><p class='thnew'>會員編號</p></th>
-													<th scope="col" style='background-color: '><p class='thnew'>帳號</p></th>
-													<th scope="col" style='background-color: '><p class='thnew'>密碼</p></th>
-													<th scope="col" style='background-color: '><p class='thnew'>暱稱</p></th>
-													<th scope="col" style='background-color: '><p class='thnew'>註冊日期</p></th>
-													<th scope="col" style='background-color: '><p class='thnew'>是否可用</p></th>
-													<th scope="col" style='background-color: '><p class='thnew'></p></th>
+													<th scope="col" style='background-color:'><p
+															class='thnew'>會員編號</p></th>
+													<th scope="col" style='background-color:'><p
+															class='thnew'>帳號</p></th>
+													<th scope="col" style='background-color:'><p
+															class='thnew'>密碼</p></th>
+													<th scope="col" style='background-color:'><p
+															class='thnew'>暱稱</p></th>
+													<th scope="col" style='background-color:'><p
+															class='thnew'>註冊日期</p></th>
+													<th scope="col" style='background-color:'><p
+															class='thnew'>是否可用</p></th>
+													<th scope="col" style='background-color:'><p
+															class='thnew'></p></th>
 												</tr>
 											</thead>
 											<tbody>
@@ -234,18 +239,17 @@ td {
 														<td id='odno'>${member.password}</td>
 														<td id='odno'>${member.nickname}</td>
 														<td id='odno'>${member.register_date}</td>
-														<td id='odno'>
-														<c:if test="${member.enabled==true}">
-															<div id="enabled${member.member_id}">
-																<button id="unlocked" class='btn btn-success' onclick="lockMember(${member.member_id})">可用</button> 
-															</div>
-														</c:if>
-														<c:if test="${member.enabled==false}">
-															<div id="enabled${member.member_id}">
-																<button id="locked" class='btn btn-danger' onclick="unlockMember(${member.member_id})">鎖定</button>
-															</div>
-														</c:if>
-														</td>
+														<td id='odno'><c:if test="${member.enabled==true}">
+																<div id="enabled${member.member_id}">
+																	<button id="unlocked" class='btn btn-success'
+																		onclick="lockMember(${member.member_id})">可用</button>
+																</div>
+															</c:if> <c:if test="${member.enabled==false}">
+																<div id="enabled${member.member_id}">
+																	<button id="locked" class='btn btn-danger'
+																		onclick="unlockMember(${member.member_id})">鎖定</button>
+																</div>
+															</c:if></td>
 														<td></td>
 													</tr>
 												</c:forEach>
@@ -280,7 +284,7 @@ td {
 			</footer>
 		</div>
 	</div>
-	
+
 </body>
 <!--   Core JS Files   -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

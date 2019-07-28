@@ -144,7 +144,7 @@ td {
                     </a>
                 </div>
                 <ul class="nav">
-                    <li class="nav-item active">
+                    <li>
                         <a class="nav-link" href="backStageDashboard">
                             <i class="nc-icon nc-chart-pie-35"></i>
                             <p>後台首頁</p>
@@ -168,7 +168,7 @@ td {
                             <p>訂單管理</p>
                         </a>
                     </li>
-                    <li>
+                    <li class="nav-item active">
                         <a class="nav-link" href="report_forum">
                             <i class="nc-icon nc-notes"></i>
                             <p>檢舉文章管理</p>
