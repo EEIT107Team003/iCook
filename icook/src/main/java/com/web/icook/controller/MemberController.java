@@ -235,7 +235,7 @@ public class MemberController {
 	@RequestMapping(value = "/members/page")
 	public String member_page(Model model, @RequestParam("member_id") Integer member_id) {
 		MemberBean user=null;
-		int user_id=0;
+		int user_id=0; 
 		if ((!getPrincipal().equals("anonymousUser"))) {
 			user = memberService.selectByUsername(getPrincipal());
 			user_id=user.getMember_id();
