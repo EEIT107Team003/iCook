@@ -43,6 +43,8 @@ import com.web.icook.service.MyTrackService;
 
 import forum.model.ForumMainBean;
 import forum.service.IFMService;
+import recipe.model.RecipeBean;
+import recipe.service.IRecipeService;
 
 @Controller
 public class MemberController {
@@ -55,7 +57,9 @@ public class MemberController {
 	ServletContext context;
 	@Autowired
 	IFMService ifmService;
-
+	@Autowired
+	IRecipeService irecipeService; 
+	
 //	@Autowired
 //	IProductService productService;
 
@@ -316,15 +320,15 @@ public class MemberController {
 		return list;
 	}
 
-//	//我的食譜
-//	@RequestMapping(value="members/myrecipe") 
-//	public String MyRecipe(Model model) {
-//		List<RecipeBean> allRecipeBean=.getAllRecipe();
-//		
+	//我的食譜
+	@RequestMapping(value="members/myrecipe") 
+	public List<RecipeBean> MyRecipe(Model model) {
+		List<RecipeBean> allRecipeBean=irecipeService.getAllRecipe();
+		
 //		model.addAttribute("recipes",allRecipeBean);
-//		
-//		return "member_page_myrecipe";
-//	}
+		
+		return null;
+	}
 	
 //-------------------------------  管理員  ---------------------------------------------------------------------------
 	// 封鎖會員

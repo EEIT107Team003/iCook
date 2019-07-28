@@ -31,6 +31,12 @@ public class securityController {
 		return "member/logout";
 	}
 	
+	// 登入失敗
+	@GetMapping("icookLoginError")
+	public String loginError(Model model) {
+		return "icookLoginError";
+	}
+	
 //	// 管理員登入
 //	@GetMapping("/icookAdminLogin")
 //	public String adminlogin(Model model) {

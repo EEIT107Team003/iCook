@@ -263,7 +263,7 @@
 											<span class="col2"> <!-- 												href="http://blog.templatemonster.com/free-website-templates/" -->
 												<!-- 												rel="nofollow">Click here</a> -->
 											</span>
-											歡迎來到全台灣最大的食譜入口平台,響時天堂提供了最新最富有創意的料理食譜,我們蒐集並提供的食譜老少咸宜,在家或者在外面烹調都可以輕易上手.
+											歡迎來到全台灣最大的食譜入口平台,享食天堂提供了最新最富有創意的料理食譜,我們蒐集並提供的食譜老少咸宜,在家或者在外面烹調都可以輕易上手.
 										</p>
 										請跟著我們的食譜步驟,展開一系列的美食奇幻之旅吧! <br> <a href="#" class="btn">去看食譜!</a>
 									</div>
