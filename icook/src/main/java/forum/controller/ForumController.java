@@ -73,7 +73,7 @@ public class ForumController {
 	@RequestMapping(value = "/forum/newPost", method = RequestMethod.GET)
 	public String insert(MemberBean memberBean, Model model) {
 
-		ForumMainBean fmb = new ForumMainBean();
+		ForumMainBean fmb = new ForumMainBean();		
 
 		model.addAttribute("ForumMainBean", fmb);
 		System.out.println(getPrincipal());
@@ -110,6 +110,7 @@ public class ForumController {
 			return this.backHome(model);
 		} else {
 			List<ForumMainBean> fmbError = new ArrayList<>();
+			
 			fmbError.add(fmb);
 			model.addAttribute("posts", fmbError);
 			request.setAttribute("errors", error);
@@ -178,6 +179,7 @@ public class ForumController {
 	@RequestMapping(value = "/forum/reply", method = RequestMethod.GET)
 	public String reply(@RequestParam("harticle_id") Integer harticle_id, Model model, MemberBean memberBean) {
 		List<ForumMainBean> HeadFmb = service.getByPK(harticle_id);
+		
 		model.addAttribute("HeadFmb", HeadFmb);
 		ForumMainBean fmb = new ForumMainBean();
 		model.addAttribute("ForumMainBean", fmb);
@@ -286,6 +288,12 @@ public class ForumController {
 	@RequestMapping(value = "/forum/search")
 	public String fuzzyQuery(@RequestParam("title") String title, Model model) {
 		List<ForumMainBean> fmbList = service.getByTitle(title);
+		if (!getPrincipal().equals("anonymousUser")) {
+			MemberBean mb = ms.selectByUsername(getPrincipal());
+			List<MemberBean> mbList = new ArrayList<>();
+			mbList.add(mb);
+			model.addAttribute("LoginOK", mbList);
+		}
 		model.addAttribute("posts", fmbList);
 		return "overview";
 		// 標題關鍵字搜尋
@@ -294,6 +302,14 @@ public class ForumController {
 	@RequestMapping(value = "/forum/query")
 	public String categoryQuery(@RequestParam("category") String category, Model model) {
 		List<ForumMainBean> fmbList = service.getByCategory(category);
+		List<ForumMainBean> popFmb = service.getPopularArticle();
+		if (!getPrincipal().equals("anonymousUser")) {
+			MemberBean mb = ms.selectByUsername(getPrincipal());
+			List<MemberBean> mbList = new ArrayList<>();
+			mbList.add(mb);
+			model.addAttribute("LoginOK", mbList);
+		}
+		model.addAttribute("populars", popFmb);
 		model.addAttribute("posts", fmbList);
 		return "overview";
 	}
