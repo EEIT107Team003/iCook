@@ -264,11 +264,23 @@
 													href="<spring:url value='/article?article_num=${Article.article_num}' />">${Article.article_title}</a>
 											</h3>
 											<p class="mb-0">
+											<c:choose>
+											<c:when test="${pageContext.request.userPrincipal.name == 'admin@gmail.com'||pageContext.request.userPrincipal.name =='admin' && Article.article_status==2}">
+											
+												<a	href="<spring:url value='/article?article_num=${Article.article_num}' />"					
+													class="btn btn-black py-2">此篇文章已被隱藏<span
+													class="icon-arrow_forward ml-4"></span>
+												</a>
+												</c:when>
+												<c:otherwise>
 												<a
 													href="<spring:url value='/article?article_num=${Article.article_num}' />"
 													class="btn btn-black py-2">Read More <span
 													class="icon-arrow_forward ml-4"></span>
 												</a>
+												</c:otherwise>
+												
+												</c:choose>
 											</p>
 										</div>
 									</div>
