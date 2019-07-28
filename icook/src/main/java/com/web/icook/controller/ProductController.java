@@ -331,7 +331,7 @@ public class ProductController {
 //限定輸入欄位	
 	@InitBinder
 	public void whiteListing(WebDataBinder binder) {
-		binder.setAllowedFields("product_id，", "description", "unit_size", "price", "color", "stock", "productImage","productPictureOne"
+		binder.setAllowedFields("product_id，", "description", "unit_size", "price", "color", "stock", "productImage"
 		,"productPictureTwo","productPictureThree");
 		}
 
@@ -419,8 +419,8 @@ public class ProductController {
 			bb.setStock(0);
 		}
 		MultipartFile productImage = bb.getProductImage();
-		MultipartFile productPictureOne = bb.getProductPictureOne();
-		System.out.println("productPuctureOne :"+productPictureOne.getSize() +"，"+productPictureOne.getBytes());
+//		MultipartFile productPictureOne = bb.getProductPictureOne();
+//		System.out.println("productPuctureOne :"+productPictureOne.getSize() +"，"+productPictureOne.getBytes());
 		MultipartFile productPictureTwo = bb.getProductPictureTwo();
 		System.out.println("productPuctureTwo :"+productPictureTwo);
 		MultipartFile productPictureThree = bb.getProductPictureThree();
@@ -451,21 +451,7 @@ public class ProductController {
 		originalFilename = product_id;
 		int lenght = -1;
 		byte[] tmp = new byte[81920];
-		if (productPictureOne != null && productPictureOne.getSize() != 0) {
-			InputStream ins = productPictureOne.getInputStream();
-			OutputStream ous = new FileOutputStream(
-					"C:/Users/屁股/git/iCook/icook/src/main/webapp/WEB-INF/views/products/images/savedPicture/"
-							+ totalcounts + "_2" + ext);
-			bb.setProductPictureOnePath("/product_pathImage/" + totalcounts + "_2" + ext);
-			while ((lenght = ins.read(tmp)) != -1) {
-				ous.write(tmp, 0, lenght);
-			}
-			ins.close();
-			ous.close();
-		} else {
-			if(previousbean.getProductPictureOnePath().length()!=0 && previousbean.getProductPictureOnePath()!=null)
-			bb.setProductPictureOnePath(previousbean.getProductPictureOnePath());
-		}
+	
 		if (productPictureTwo != null && productPictureTwo.getSize() != 0) {
 			InputStream ins = productPictureTwo.getInputStream();
 			OutputStream ous = new FileOutputStream(
@@ -496,6 +482,7 @@ public class ProductController {
 			if(previousbean.getProductPictureThreePath().length()!=0 && previousbean.getProductPictureThreePath()!=null)
 			bb.setProductPictureThreePath(previousbean.getProductPictureThreePath());
 		}
+		
 		if (productImage != null && productImage.getSize() != 0) {
 			System.out.println("productImage NO PreviouseBean IN============");
 			InputStream ins = productImage.getInputStream();
@@ -503,7 +490,7 @@ public class ProductController {
 					"C:/Users/屁股/git/iCook/icook/src/main/webapp/WEB-INF/views/products/images/savedPicture/"
 							+ totalcounts + "_1" + ext);
 			tmp = new byte[81920];
-
+			bb.setProductPictureOnePath("/product_pathImage/" + totalcounts + "_1" + ext);
 			while ((lenght = ins.read(tmp)) != -1) {
 				ous.write(tmp, 0, lenght);
 			}
@@ -512,6 +499,8 @@ public class ProductController {
 		} else {
 			System.out.println("productImage  PreviouseBean IN============");
 		    bb.setImage(previousbean.getImage());
+		    if(previousbean.getProductPictureOnePath().length()!=0 && previousbean.getProductPictureOnePath()!=null)
+			bb.setProductPictureOnePath(previousbean.getProductPictureOnePath());
 		}
 		System.out.println("=====outputf finish");
 		// -----------------------------------------寫入寫出-----------------------------------------------------------------------

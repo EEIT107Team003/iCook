@@ -223,7 +223,6 @@ font-size:20px;
 			</h2>
 		</div>	
 	</section>
-	<h1>33333333</h1>
 	<hr
 		style="height: 1px; border: none; color: #333; background-color: #333;">
 	<section >
@@ -272,31 +271,31 @@ font-size:20px;
 											<form:input id="stock" path="stock" type='text' />
 										</div>
 									</div>
-									<div class="col-3">
+									<div class="col-4">
 										<label for="productImage">圖片 : </label>
 										<form:input id="productImage" path="productImage" type='file'
 											accept="image/gif, image/jpeg, image/png" />
 									</div>
-									<div class="col-3">
-										<label for="productPictureOne">圖片2 : </label>
-										<form:input id="productPictureOne" path="productPictureOne"
-											type='file' accept="image/gif, image/jpeg, image/png" />
-									</div>
-									<div class="col-3">
-										<label for="productPictureTwo">圖片3 : </label>
+<!-- 									<div class="col-3"> -->
+<!-- 										<label for="productPictureOne">圖片2 : </label> -->
+<%-- 										<form:input id="productPictureOne" path="productPictureOne" --%>
+<%-- 											type='file' accept="image/gif, image/jpeg, image/png" /> --%>
+<!-- 									</div> -->
+									<div class="col-4">
+										<label for="productPictureTwo">圖片2 : </label>
 										<form:input id="productPictureTwo" path="productPictureTwo"
 											type='file' accept="image/gif, image/jpeg, image/png" />
 									</div>
-									<div class="col-3">
-										<label for="productPictureThree">圖片4 : </label>
+									<div class="col-4">
+										<label for="productPictureThree">圖片3 : </label>
 										<form:input id="productPictureThree"
 											path="productPictureThree" type='file'
 											accept="image/gif, image/jpeg, image/png" />
 									</div>
-								<div class="col-3" id="uploadImg1"></div>
-								<div class="col-3" id="uploadImg2"></div>
-								<div class="col-3" id="uploadImg3"></div>
-								<div class="col-3" id="uploadImg4"></div>
+								<div class="col-4" id="uploadImg1"></div>
+<!-- 								<div class="col-3" id="uploadImg2"></div> -->
+								<div class="col-4" id="uploadImg3"></div>
+								<div class="col-4" id="uploadImg4"></div>
 								</div>
 
 

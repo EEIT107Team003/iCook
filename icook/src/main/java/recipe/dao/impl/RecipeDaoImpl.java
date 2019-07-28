@@ -36,6 +36,7 @@ public class RecipeDaoImpl implements IRecipeDao {
 //		session.clear();
 	}
 
+	// TODO 依組長指示，移除掉修改功能。
 //	@Override
 //	public void updateRecipe(RecipeBean recipeBeanNew) {
 //		// 修改一筆資料
@@ -103,6 +104,7 @@ public class RecipeDaoImpl implements IRecipeDao {
 		return recipeBean;
 	}
 
+	// TODO 依組長指示，移除掉刪除功能。
 //	@Override
 //	public void deleteRecipe(RecipeBean recipeBean) {
 //		// TODO 刪除資料

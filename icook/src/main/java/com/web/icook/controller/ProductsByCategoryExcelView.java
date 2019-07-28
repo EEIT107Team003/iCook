@@ -128,38 +128,45 @@ public class ProductsByCategoryExcelView extends AbstractXlsView  {
 		for(ProductBean m : products) {
 			colCount = 0;
 			row = sheet.createRow(rowCount++);
+			if(m.getProduct_id()!=null) {
 			cell = row.createCell(colCount++);
 			cell.setCellStyle(styleCenter);
 			cell.setCellValue(m.getProduct_id());
-			
+			}
+			if(m.getName()!=null) {
 			cell = row.createCell(colCount++);
 			cell.setCellStyle(styleName);
 			cell.setCellValue(m.getName());
-			
+			}
 			cell = row.createCell(colCount++);
 			cell.setCellStyle(styleCenter);
 			cell.setCellValue(m.getCategoriesbean().getCategorybean().getName()+" / "+m.getCategoriesbean().getName());			
 			
-			
+			if(m.getColor()!=null) {
 			cell = row.createCell(colCount++);
 			cell.setCellStyle(styleCenter);
-			cell.setCellValue(m.getColor());			
-			
+			cell.setCellValue(m.getColor());	
+			}
+			if(m.getDescription()!=null) {
 			cell = row.createCell(colCount++);
 			cell.setCellStyle(styleCenter);
-			cell.setCellValue(m.getDescription());			
-			
+			cell.setCellValue(m.getDescription());	
+			}
+			if(m.getUnit_size()!=null) {
 			cell = row.createCell(colCount++);
 			cell.setCellStyle(styleCenter);
-			cell.setCellValue(m.getUnit_size());			
-			
+			cell.setCellValue(m.getUnit_size());
+			}
+			if(m.getStock()!=null) {
 			cell = row.createCell(colCount++);
 			cell.setCellStyle(styleCenter);
-			cell.setCellValue(m.getStock());			
-			
+			cell.setCellValue(m.getStock());	
+			}
+			if(m.getPrice()!=null) {
 			cell = row.createCell(colCount++);
 			cell.setCellStyle(styleCenter);
-			cell.setCellValue(m.getPrice());			
+			cell.setCellValue(m.getPrice());	
+			}
 			
 
 			
