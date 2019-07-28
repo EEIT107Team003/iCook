@@ -39,14 +39,25 @@
 padding: 0;
 margin: 0;
 }
+.table{
+margin-top:50px;
+}
+.col-12{
+margin-top:20px;
+}
+.navbar .btn{
+font-size: 20px;
+height: 55px;
+margin: 15px;
+font-weight:bold;
+}
 
 .container select{
 padding: 0;
 margin: 0;
-margin-top:2ch;
 font-size:10px;
 width:20ch;
-hight:10px;
+hight:15px;
 float:left;
 }
 #description{
@@ -225,65 +236,41 @@ float:right;
         Tip 2: you can also add an image using data-image tag
     -->
            
-            <div class="sidebar-wrapper">
+             <div class="sidebar-wrapper">
                 <div class="logo">
-                    <a href="http://www.creative-tim.com" class="simple-text">
-                        Creative Tim
+                    <a href="home" class="simple-text">
+                                               回前台首頁
                     </a>
                 </div>
                 <ul class="nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="addSingleProduct">
-                            <i class="nc-icon nc-chart-pie-35"></i>
-                            <p>addSingleProduct</p>
-                        </a>
-                    </li>
-                    <li class="nav-item active">
                         <a class="nav-link" href="backStageDashboard">
                             <i class="nc-icon nc-chart-pie-35"></i>
-                            <p>Dashboard</p>
+                            <p>後台首頁</p>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="backStageUser">
-                            <i class="nc-icon nc-circle-09"></i>
-                            <p>User Profile</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="backStageTable">
+                        <a class="nav-link" href="productTable">
                             <i class="nc-icon nc-notes"></i>
-                            <p>Table List</p>
+                            <p>產品管理</p>
+                        </a>
+                    </li>
+ 					<li>
+                        <a class="nav-link" href="backStageUser">
+                            <i class="nc-icon nc-notes"></i>
+                            <p>會員管理</p>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="backStageTypography">
-                            <i class="nc-icon nc-paper-2"></i>
-                            <p>Typography</p>
+                        <a class="nav-link" href="adminCheckOrders">
+                            <i class="nc-icon nc-notes"></i>
+                            <p>訂單管理</p>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="backStageIcons">
-                            <i class="nc-icon nc-atom"></i>
-                            <p>Icons</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="backStageMaps">
-                            <i class="nc-icon nc-pin-3"></i>
-                            <p>Maps</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="backStageNotifications">
-                            <i class="nc-icon nc-bell-55"></i>
-                            <p>Notifications</p>
-                        </a>
-                    </li>
-                    <li class="nav-item active active-pro">
-                        <a class="nav-link active" href="backStageUpgrade">
-                            <i class="nc-icon nc-alien-33"></i>
-                            <p>Upgrade to PRO</p>
+                        <a class="nav-link" href="report_forum">
+                            <i class="nc-icon nc-notes"></i>
+                            <p>檢舉文章管理</p>
                         </a>
                     </li>
                 </ul>
@@ -399,12 +386,10 @@ float:right;
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card strpied-tabled-with-hover">
-                                <div class="card-header ">
+                                 <div class="card-header ">
+                                 
                                     <h4 class="card-title">產品後台</h4>
                                     <p class="card-category">Here is the background of the product</p>
-									<a href="${pageContext.request.contextPath}/products/add" style="width:10ch;height:4ch;margin:1ch;" class="btn btn-secondary" 
-									role="button" aria-pressed="true">Insert</a>
-							     	<a href="productsEx.xls" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true" style="line-height:5px;margin:1ch;" >AllProductsExcel</a>
 									<section class="container">
 										<nav class="navbar navbar-light bg-light">
 											<form class="searchDiv"  method="GET" id="searchDiv"  action="productsByCategoryEx.xls"
@@ -418,11 +403,19 @@ float:right;
 													value="0" SELECTED id='ch'>請選擇</option></select> <select id="show2" 
 												name="show2" class="form-control form-control-sm">
 											</select>
-													<input id="description" name="description" type="text"  style="height:5ch"
+													<input id="description" name="description" type="text" 
 														class="form-control mr-sm-2" placeholder="Search">
-															<input type="submit" class="btn btn-secondary" value="ProductsExcel"  style="margin-left:35ch;;height:4ch;">
-														<input type="button" id="searchSub"
-									class="btn btn-secondary"  style="width:10ch;height:4ch;margin-top:2ch;" value="Search">
+												<div class="col-12">
+													<a href="${pageContext.request.contextPath}/products/add"
+														class="btn btn-secondary" role="button"
+														aria-pressed="true">新增產品</a> <a href="productsEx.xls"
+														class="btn btn-secondary btn-lg active" role="button"
+														aria-pressed="true">匯出所有產品(Excel)</a> <input style="cursor: pointer"
+														type="submit" class="btn btn-secondary" value="匯出Excel">
+													<input type="button" id="searchSub" style="cursor: pointer"
+														class="btn btn-secondary"
+														value="收尋">
+												</div>
 											</form>
 										</nav>
 									</section>

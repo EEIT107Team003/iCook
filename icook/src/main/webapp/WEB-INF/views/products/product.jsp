@@ -570,7 +570,6 @@ width: 35px;
 		<div class="left">
 			<section class="container">
 				<div>
-					<h1>產品清單</h1>
 				</div>
 				<div>
 					<select id="show" name="show" class="form-control form-control-sm"><option
@@ -610,7 +609,6 @@ width: 35px;
 						<li><a class="search">豬肉</a></li>
 						<li><a class="search">羊肉</a></li>
 					</ul>
-					<a href='${pageContext.request.contextPath}'>回首頁</a><BR> <br>
 					</div>
 			</section>
 		</div>
@@ -642,7 +640,9 @@ function imgClick() {
 							<div class="col-1-2">
 								<div class="wrap-col">
 									    <div class="divA">
-									<a href="images/big3.jpg" data-gal="prettyPhoto[1]"><span>
+<%-- 									<a href="/icook${product.productPictureOnePath}" data-gal="prettyPhoto[1]"><span> --%>
+<%-- 									<a href="/icook${product.productPictureOnePath}" rel="prettyPhoto"> --%>
+									<span>
 <!-- 											<img   -->
 <%-- 											src="<c:url value='/getProductPicture/${product.product_id}'/>" --%>
 <!-- 											alt="" /> -->

@@ -322,7 +322,29 @@ public class MemberController {
 //		
 //		return "member_page_myrecipe";
 //	}
-
+	
+//-------------------------------  管理員  ---------------------------------------------------------------------------
+	// 封鎖會員
+		@ResponseBody
+		@RequestMapping(value = "/backStageUser/lock", method = RequestMethod.POST)
+		public Integer lockMember(@RequestParam(value = "member_id", required = false) Integer member_id) {
+			MemberBean bean=memberService.selectById(member_id);
+			bean.setEnabled(false);
+			memberService.updateMemberInfo(bean, member_id);
+			return 0;
+		}
+		// 解鎖會員
+		@ResponseBody
+		@RequestMapping(value = "/backStageUser/unlock", method = RequestMethod.POST)
+		public Integer unlockMember(@RequestParam(value = "member_id", required = false) Integer member_id) {
+			MemberBean bean=memberService.selectById(member_id);
+			bean.setEnabled(true);
+			memberService.updateMemberInfo(bean, member_id);
+			return 1;
+		}
+	
+	
+	
 //-------------------------------  無權限  ---------------------------------------------------------------------------
 
 	// 新增會員

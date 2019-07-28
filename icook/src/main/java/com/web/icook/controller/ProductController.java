@@ -387,8 +387,15 @@ public class ProductController {
 		String Categoriesname = request.getParameter("fileName");
 		String Category = request.getParameter("name");
 		String gender = request.getParameter("gender");
+		ProductBean previousbean =null;
+		System.out.println("product_id======================================" + product_id.length());
+		if(product_id!=null &&product_id.length()!=0) {
+		previousbean = service.getProductById(Integer.valueOf(product_id));
+		Category=previousbean.getCategoriesbean().getCategorybean().getName();
+		Categoriesname=previousbean.getCategoriesbean().getName();
+		}
 		if (gender == null)
-			gender = "2";
+			gender = "1";
 		if (Category == null || Category.length() == 0)
 			Category = "其他";
 		if (Categoriesname == null || Categoriesname.length() == 0)
@@ -411,11 +418,9 @@ public class ProductController {
 		if (bb != null & bb.getStock() == null) {
 			bb.setStock(0);
 		}
-		System.out.println("product_id======================================" + product_id);
-
 		MultipartFile productImage = bb.getProductImage();
 		MultipartFile productPictureOne = bb.getProductPictureOne();
-		System.out.println("productPuctureOne :"+productPictureOne);
+		System.out.println("productPuctureOne :"+productPictureOne.getSize() +"，"+productPictureOne.getBytes());
 		MultipartFile productPictureTwo = bb.getProductPictureTwo();
 		System.out.println("productPuctureTwo :"+productPictureTwo);
 		MultipartFile productPictureThree = bb.getProductPictureThree();
@@ -429,65 +434,85 @@ public class ProductController {
 		// ext :抓檔案副檔名 從" . "以後含點都取
 
 		// -----------------------------------------寫入寫出-----------------------------------------------------------------------
-		List<ProductBean>list =service.getAllProducts();
-		int totalcounts=0;
-		for(ProductBean  bean:list ) {
+		List<ProductBean> list = service.getAllProducts();
+		int totalcounts = 0;
+		for (ProductBean bean : list) {
 			totalcounts++;
 		}
-		totalcounts++;//計算總Products數並加一給outputStream 當作圖片命名用
-		String rootDirectory = context.getRealPath("/");
-		String contextPath=context.getContextPath();
-		System.out.println("=====input start");
-		System.out.println("contextPath :"+contextPath);
-		System.out.println("ID :"+product_id);
-		originalFilename=product_id;
-		int lenght = -1;
-		byte[]  tmp  = new byte[81920];
-		if(productPictureOne!=null) {
-		InputStream ins=productPictureOne.getInputStream();
-		OutputStream ous = new FileOutputStream(
-				"C:\\Users\\屁股\\git\\repository\\icook\\src\\main\\webapp\\WEB-INF\\views\\products\\images/savedPicture/"
-				+ totalcounts+"_2" + ext);
-		bb.setProductPictureOnePath("/product_pathImage/"
-				+ totalcounts+"_2" + ext);
-		while ((lenght = ins.read(tmp)) != -1) {
-			ous.write(tmp, 0, lenght);
-		  }
-		}
-		if(productPictureTwo!=null) {
-			InputStream ins=productPictureTwo.getInputStream();
-			OutputStream ous = new FileOutputStream(
-					"C:\\Users\\屁股\\git\\repository\\icook\\src\\main\\webapp\\WEB-INF\\views\\products\\images/savedPicture/"
-							+ totalcounts+"_3" + ext);
-			bb.setProductPictureTwoPath("/product_pathImage/"
-					+ totalcounts+"_3" + ext);
-			while ((lenght = ins.read(tmp)) != -1) {
-				ous.write(tmp, 0, lenght);
-			}
-		}
-		if(productPictureThree!=null) {
-			InputStream ins=productPictureThree.getInputStream();
-			OutputStream ous = new FileOutputStream(
-					"C:\\Users\\屁股\\git\\repository\\icook\\src\\main\\webapp\\WEB-INF\\views\\products\\images/savedPicture/"
-							+ totalcounts+"_4" + ext);
-			bb.setProductPictureThreePath("/product_pathImage/"
-					+ totalcounts+"_4" + ext);
-			while ((lenght = ins.read(tmp)) != -1) {
-				ous.write(tmp, 0, lenght);
-			}
-		}
-		
-		InputStream ins = productImage.getInputStream();
-		OutputStream ous = new FileOutputStream("C:/Users/屁股/git/repository/icook/src/main/webapp/WEB-INF/views/products/images/savedPicture/"
-						+ totalcounts+"_1" + ext);
-		tmp = new byte[81920];
+		totalcounts++;// 計算總Products數並加一給outputStream 當作圖片命名用
+		if (previousbean != null)
+			totalcounts = previousbean.getProduct_id();
 
-		while ((lenght = ins.read(tmp)) != -1) {
-			ous.write(tmp, 0, lenght);
+		String rootDirectory = context.getRealPath("/");
+		String contextPath = context.getContextPath();
+		System.out.println("=====input start");
+		System.out.println("contextPath :" + contextPath);
+		System.out.println("ID :" + product_id);
+		originalFilename = product_id;
+		int lenght = -1;
+		byte[] tmp = new byte[81920];
+		if (productPictureOne != null && productPictureOne.getSize() != 0) {
+			InputStream ins = productPictureOne.getInputStream();
+			OutputStream ous = new FileOutputStream(
+					"C:/Users/屁股/git/iCook/icook/src/main/webapp/WEB-INF/views/products/images/savedPicture/"
+							+ totalcounts + "_2" + ext);
+			bb.setProductPictureOnePath("/product_pathImage/" + totalcounts + "_2" + ext);
+			while ((lenght = ins.read(tmp)) != -1) {
+				ous.write(tmp, 0, lenght);
+			}
+			ins.close();
+			ous.close();
+		} else {
+			if(previousbean.getProductPictureOnePath().length()!=0 && previousbean.getProductPictureOnePath()!=null)
+			bb.setProductPictureOnePath(previousbean.getProductPictureOnePath());
 		}
-		
-		ins.close();
-		ous.close();
+		if (productPictureTwo != null && productPictureTwo.getSize() != 0) {
+			InputStream ins = productPictureTwo.getInputStream();
+			OutputStream ous = new FileOutputStream(
+					"C:/Users/屁股/git/iCook/icook/src/main/webapp/WEB-INF/views/products/images/savedPicture/"
+							+ totalcounts + "_3" + ext);
+			bb.setProductPictureTwoPath("/product_pathImage/" + totalcounts + "_3" + ext);
+			while ((lenght = ins.read(tmp)) != -1) {
+				ous.write(tmp, 0, lenght);
+			}
+			ins.close();
+			ous.close();
+		} else {
+			if(previousbean.getProductPictureTwoPath().length()!=0 && previousbean.getProductPictureTwoPath()!=null)
+			bb.setProductPictureTwoPath(previousbean.getProductPictureTwoPath());
+		}
+		if (productPictureThree != null && productPictureThree.getSize() != 0) {
+			InputStream ins = productPictureThree.getInputStream();
+			OutputStream ous = new FileOutputStream(
+					"C:/Users/屁股/git/iCook/icook/src/main/webapp/WEB-INF/views/products/images/savedPicture/"
+							+ totalcounts + "_4" + ext);
+			bb.setProductPictureThreePath("/product_pathImage/" + totalcounts + "_4" + ext);
+			while ((lenght = ins.read(tmp)) != -1) {
+				ous.write(tmp, 0, lenght);
+			}
+			ins.close();
+			ous.close();
+		} else {
+			if(previousbean.getProductPictureThreePath().length()!=0 && previousbean.getProductPictureThreePath()!=null)
+			bb.setProductPictureThreePath(previousbean.getProductPictureThreePath());
+		}
+		if (productImage != null && productImage.getSize() != 0) {
+			System.out.println("productImage NO PreviouseBean IN============");
+			InputStream ins = productImage.getInputStream();
+			OutputStream ous = new FileOutputStream(
+					"C:/Users/屁股/git/iCook/icook/src/main/webapp/WEB-INF/views/products/images/savedPicture/"
+							+ totalcounts + "_1" + ext);
+			tmp = new byte[81920];
+
+			while ((lenght = ins.read(tmp)) != -1) {
+				ous.write(tmp, 0, lenght);
+			}
+			ins.close();
+			ous.close();
+		} else {
+			System.out.println("productImage  PreviouseBean IN============");
+		    bb.setImage(previousbean.getImage());
+		}
 		System.out.println("=====outputf finish");
 		// -----------------------------------------寫入寫出-----------------------------------------------------------------------
 		
