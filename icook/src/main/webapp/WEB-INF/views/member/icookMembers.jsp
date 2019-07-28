@@ -323,9 +323,9 @@ section {
 		<!--==============================header=================================-->
 		<header>
 			<sec:authorize access="isAuthenticated()">
-				<div class="btn btn-success" onclick="javascript:location.href='user'" style="float:right;margin-right:50px;padding-left:35px;width: 400px">
+				<div class="btn btn-success" onclick="javascript:location.href='${pageContext.request.contextPath}/user'" style="float:right;margin-right:50px;padding-left:35px;width: 400px;background-color: w">
 					<img id="member_photo_image"
-						 style="float:left;width:100px;height: 100px;border-radius: 50%; border: 1px solid black"
+						 style="float:left;width:100px;height: 100px;border-radius: 50%; border: 1px solid black;background-color: white;"
 						 src="<c:url value='/getMemberPhoto/${user.member_id}' />" />
 					<div style=" font-size:60px;float: left;margin-left: 30px;">${user.nickname}</div>
 				</div>
@@ -415,7 +415,7 @@ section {
 	</div>
 		<!--=======content================================-->
 		<div style="text-align: center;">
-			<div class="member_info" style="margin-left:300px">
+			<div class="member_info" style="margin-left:380px">
 				<div style="text-align: center;" >
 					<label>
 						<img class="profile-image img-responsive pull-left member_photo"
@@ -438,7 +438,7 @@ section {
 		</div>
 
 		<div style="clear: both">
-		<div style="margin-left: 300px">
+		<div style="margin-left: 380px">
 			<div id="trackbutton" style="margin-top: 5px"></div>
 			<div style="display: none">
 				<form method="POST"

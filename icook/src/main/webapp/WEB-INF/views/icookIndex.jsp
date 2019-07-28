@@ -117,7 +117,7 @@
 	<sec:authorize access="isAuthenticated()">
 		<div class="btn btn-success" onclick="javascript:location.href='user'" style="float:right;margin-right:50px;padding-left:35px;width: 400px">
 			<img id="member_photo_image"
-				 style="float:left;width:100px;height: 100px;border-radius: 50%; border: 1px solid black"
+				 style="float:left;width:100px;height: 100px;border-radius: 50%; border: 1px solid black;background-color: white;"
 				 src="<c:url value='/getMemberPhoto/${bean.member_id}' />" />
 			<div style=" font-size:60px;float: left;margin-left: 30px;">${bean.nickname}</div>
 		</div>

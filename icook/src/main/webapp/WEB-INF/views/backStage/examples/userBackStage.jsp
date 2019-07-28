@@ -147,7 +147,7 @@ td {
 				var txt = "";
 // 				alert(data);
 				if(data==1){
-	 				$("#enabled"+id).html("<button type='button' class='btn btn-success' id='unlocked' onclick='lockMember("+id+")'>可用</button>");					
+	 				$("#enabled"+id).html("<button type='button' class='btn btn-success' id='unlocked' onclick='lockMember("+id+")'>正常</button>");					
 				}
 			},
 			error : function(data, textStatus, errorThrown) {
@@ -225,7 +225,7 @@ td {
 													<th scope="col" style='background-color:'><p
 															class='thnew'>註冊日期</p></th>
 													<th scope="col" style='background-color:'><p
-															class='thnew'>是否可用</p></th>
+															class='thnew'>狀態</p></th>
 													<th scope="col" style='background-color:'><p
 															class='thnew'></p></th>
 												</tr>
@@ -242,7 +242,7 @@ td {
 														<td id='odno'><c:if test="${member.enabled==true}">
 																<div id="enabled${member.member_id}">
 																	<button id="unlocked" class='btn btn-success'
-																		onclick="lockMember(${member.member_id})">可用</button>
+																		onclick="lockMember(${member.member_id})">正常</button>
 																</div>
 															</c:if> <c:if test="${member.enabled==false}">
 																<div id="enabled${member.member_id}">
