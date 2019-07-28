@@ -75,14 +75,14 @@
 td {
 	text-align: center;
 }
+
 th {
 	text-align: center;
 }
+
 .urgent {
 	background-color: red;
 }
-
-
 
 .shrink {
 	margin-left: 10%;
@@ -90,265 +90,168 @@ th {
 	margin-top: 5%;
 }
 
-td{
+td {
 	text-align: center;
 	font-size: 20px;
 	font-family: 'Noto Sans TC', sans-serif;
 	line-height: 20px;
 }
-th{ 
 
-} 
-.thnew{
-font-family: 'Noto Sans TC', sans-serif;
-font-size: 20px;
-text-align: center;
-color: #aa4fff;
-
+th {
+	
 }
 
-.thnewHeader{
+.thnew {
+	font-family: 'Noto Sans TC', sans-serif;
+	font-size: 20px;
+	text-align: center;
+	color: #aa4fff;
+}
+
+.thnewHeader {
 	font-family: 'Noto Sans TC', sans-serif;
 }
-
-
 
 td {
 	
 }
 </style>
 <script type="text/javascript">
-	function setOK(obj) {
-		var msg = "確定收到款項了嗎";
-		if (confirm(msg) == true) {
-			window.location.href = '/icook/setPaymentOK?id=' + obj.id;
-			return true;
-		}
+	function lockMember(id) {
+		$.ajax({ 
+			url : "${pageContext.request.contextPath}/backStageUser/lock",
+			type : "POST",
+			dataType : "json",
+			data:{member_id:id},
+			async : true,
+			success : function(data) {
+				var txt = "";
+// 				alert(data);
+				if(data==0){
+	 				$("#enabled"+id).html("<button type='button' class='btn btn-danger' id='locked' onclick='unlockMember("+id+")'>鎖定</button>");					
+				}
+			},
+			error : function(data, textStatus, errorThrown) {
+				console.log("error: "+data);
+			},
+		});
+	}
+	function unlockMember(id) {
+		$.ajax({ 
+			url : "${pageContext.request.contextPath}/backStageUser/unlock",
+			type : "POST",
+			dataType : "json",
+			data:{member_id:id},
+			async : true,
+			success : function(data) {
+				var txt = "";
+// 				alert(data);
+				if(data==1){
+	 				$("#enabled"+id).html("<button type='button' class='btn btn-success' id='unlocked' onclick='lockMember("+id+")'>正常</button>");					
+				}
+			},
+			error : function(data, textStatus, errorThrown) {
+				console.log("error: "+data);
+			},
+		});
 	}
 </script>
+
 </head>
 
 <body>
+
 	<div class="wrapper">
 		<div class="sidebar" data-image="backStage/assets/img/sidebar-5.jpg">
-			<!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 
-        Tip 2: you can also add an image using data-image tag
-    -->
 
 			<div class="sidebar-wrapper">
 				<div class="logo">
-					<a href="/icook" class="simple-text">
-						回醜後台 </a>
+					<a href="/icook" class="simple-text"> 回前台首頁 </a>
 				</div>
 				<ul class="nav">
 					<li><a class="nav-link" href="backStageDashboard"> <i
 							class="nc-icon nc-chart-pie-35"></i>
-							<p>Dashboard</p>
+							<p>後台首頁</p>
 					</a></li>
 					<li><a class="nav-link" href="productTable"> <i
-							class="nc-icon nc-chart-pie-35"></i>
-							<p>productTable</p>
+							class="nc-icon nc-notes"></i>
+							<p>產品管理</p>
 					</a></li>
-					<li><a class="nav-link" href="backStageUser"> <i
-							class="nc-icon nc-circle-09"></i>
-							<p>User Profile</p>
-					</a></li>
-					<li class="nav-item active"><a class="nav-link"
-						href="adminCheckOrders"> <i class="nc-icon nc-notes"></i>
-							<p>訂單管理</p>
+					<li class="nav-item active"><a class="nav-link active" href="backStageUser"> <i
+							class="nc-icon nc-notes"></i>
+							<p>會員管理</p>
 					</a></li>
 					<li>
-                        <a class="nav-link" href="report_forum">
-                            <i class="nc-icon nc-notes"></i>
-                            <p>檢舉文章管理</p>
-                        </a>
-                    </li>
-					<li><a class="nav-link" href="backStageTypography"> <i
-							class="nc-icon nc-paper-2"></i>
-							<p>Typography</p>
+						<a class="nav-link" href="adminCheckOrders"> <i
+							class="nc-icon nc-notes"></i>
+							<p>訂單管理</p>
 					</a></li>
-					<li><a class="nav-link" href="backStageIcons"> <i
-							class="nc-icon nc-atom"></i>
-							<p>Icons</p>
-					</a></li>
-					<li><a class="nav-link" href="backStageMaps"> <i
-							class="nc-icon nc-pin-3"></i>
-							<p>Maps</p>
-					</a></li>
-					<li><a class="nav-link" href="backStageNotifications"> <i
-							class="nc-icon nc-bell-55"></i>
-							<p>Notifications</p>
-					</a></li>
-					<li class="nav-item active active-pro"><a
-						class="nav-link active" href="backStageUpgrade"> <i
-							class="nc-icon nc-alien-33"></i>
-							<p>Upgrade to PRO</p>
+					<li><a class="nav-link" href="report_forum"> <i
+							class="nc-icon nc-notes"></i>
+							<p>檢舉文章管理</p>
 					</a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="main-panel">
-			<!-- Navbar -->
-<!-- 			<nav class="navbar navbar-expand-lg " color-on-scroll="500"> -->
-<!-- 				<div class="container-fluid"> -->
-<!-- <!-- 					<a class="navbar-brand" href="#pablo"> Table List </a> -->
-<!-- 					<button href="" class="navbar-toggler navbar-toggler-right" -->
-<!-- 						type="button" data-toggle="collapse" -->
-<!-- 						aria-controls="navigation-index" aria-expanded="false" -->
-<!-- 						aria-label="Toggle navigation"> -->
-<!-- 						<span class="navbar-toggler-bar burger-lines"></span> <span -->
-<!-- 							class="navbar-toggler-bar burger-lines"></span> <span -->
-<!-- 							class="navbar-toggler-bar burger-lines"></span> -->
-<!-- 					</button> -->
-<!-- 					<div class="collapse navbar-collapse justify-content-end" -->
-<!-- 						id="navigation"> -->
-<!-- 						<ul class="nav navbar-nav mr-auto"> -->
-<!-- 							<li class="nav-item"><a href="#" class="nav-link" -->
-<!-- 								data-toggle="dropdown"> <i class="nc-icon nc-palette"></i> <span -->
-<!-- 									class="d-lg-none">Dashboard</span> -->
-<!-- 							</a></li> -->
-<!-- 							<li class="dropdown nav-item"><a href="#" -->
-<!-- 								class="dropdown-toggle nav-link" data-toggle="dropdown"> <i -->
-<!-- 									class="nc-icon nc-planet"></i> <span class="notification">5</span> -->
-<!-- 									<span class="d-lg-none">Notification</span> -->
-<!-- 							</a> -->
-<!-- 								<ul class="dropdown-menu"> -->
-<!-- 									<a class="dropdown-item" href="#">Notification 1</a> -->
-<!-- 									<a class="dropdown-item" href="#">Notification 2</a> -->
-<!-- 									<a class="dropdown-item" href="#">Notification 3</a> -->
-<!-- 									<a class="dropdown-item" href="#">Notification 4</a> -->
-<!-- 									<a class="dropdown-item" href="#">Another notification</a> -->
-<!-- 								</ul></li> -->
-<!-- 							<li class="nav-item"><a href="#" class="nav-link"> <i -->
-<!-- 									class="nc-icon nc-zoom-split"></i> <span class="d-lg-block">&nbsp;Search</span> -->
-<!-- 							</a></li> -->
-<!-- 						</ul> -->
-<!-- 						<ul class="navbar-nav ml-auto"> -->
-<!-- 							<li class="nav-item"><a class="nav-link" href="#pablo"> -->
-<!-- 									<span class="no-icon">Account</span> -->
-<!-- 							</a></li> -->
-<!-- 							<li class="nav-item dropdown"><a -->
-<!-- 								class="nav-link dropdown-toggle" href="http://example.com" -->
-<!-- 								id="navbarDropdownMenuLink" data-toggle="dropdown" -->
-<!-- 								aria-haspopup="true" aria-expanded="false"> <span -->
-<!-- 									class="no-icon">Dropdown</span> -->
-<!-- 							</a> -->
-<!-- 								<div class="dropdown-menu" -->
-<!-- 									aria-labelledby="navbarDropdownMenuLink"> -->
-<!-- 									<a class="dropdown-item" href="#">Action</a> <a -->
-<!-- 										class="dropdown-item" href="#">Another action</a> <a -->
-<!-- 										class="dropdown-item" href="#">Something</a> <a -->
-<!-- 										class="dropdown-item" href="#">Something else here</a> -->
-<!-- 									<div class="divider"></div> -->
-<!-- 									<a class="dropdown-item" href="#">Separated link</a> -->
-<!-- 								</div></li> -->
-<!-- 							<li class="nav-item"><a class="nav-link" href="#pablo"> -->
-<!-- 									<span class="no-icon">Log out</span> -->
-<!-- 							</a></li> -->
-<!-- 						</ul> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</nav> -->
-			<!-- End Navbar -->
+
 			<div class="content">
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="card strpied-tabled-with-hover">
 								<div class="card-header ">
-<!-- 									<h4 class="card-title">訂單總覽</h4> -->
+									<!-- 									<h4 class="card-title">訂單總覽</h4> -->
 									<!--                                     <p class="card-category">Here is a subtitle for this table</p> -->
 								</div>
 								<div class="card-body table-full-width table-responsive">
 									<h1 class='thnewHeader' align='center'>
-										<c:out value="---------------------------------------------會員管理---------------------------------------------" />
+										<c:out
+											value="---------------------------------------------會員管理---------------------------------------------" />
 									</h1>
 									<div class="outer">
 										<table class="table table-hover">
 											<thead>
 												<tr>
-													<th scope="col" style='background-color: '><p class='thnew'>會員編號</p></th>
-													<th scope="col" style='background-color: '><p class='thnew'>帳號</p></th>
-													<th scope="col" style='background-color: '><p class='thnew'>密碼</p></th>
-													<th scope="col" style='background-color: '><p class='thnew'>暱稱</p></th>
-													<th scope="col" style='background-color: '><p class="btn btn-warning"><a href='orders.xls' style='color:black'>是否可用</a></p></th>
+													<th scope="col" style='background-color:'><p
+															class='thnew'>會員編號</p></th>
+													<th scope="col" style='background-color:'><p
+															class='thnew'>帳號</p></th>
+													<th scope="col" style='background-color:'><p
+															class='thnew'>密碼</p></th>
+													<th scope="col" style='background-color:'><p
+															class='thnew'>暱稱</p></th>
+													<th scope="col" style='background-color:'><p
+															class='thnew'>註冊日期</p></th>
+													<th scope="col" style='background-color:'><p
+															class='thnew'>狀態</p></th>
+													<th scope="col" style='background-color:'><p
+															class='thnew'></p></th>
 												</tr>
 											</thead>
 											<tbody>
 
 												<c:forEach var='member' items='${members}'>
 													<tr>
-														<td>${member.member_id}</td>
-
 														<td id='odno'>${member.member_id}</td>
-														<td>
-															<form method='POST'
-																action="<c:url value='/adminCheckOrderDetails?id=${OrderBean.memberbean.member_id}'/>">
-																<input type="hidden" name="adminCheck" value="admin" />
-																<input type="hidden" name="OrderNo"
-																	value="${OrderBean.orderNo}" /> <input
-																	class="btn btn-outline-success" type="submit"
-																	value="檢視該訂單" />
-															</form>
-														</td>
-														<td>${OrderBean.orderDate}</td>
-														<c:set var="contains" value="no" />
-														<c:forEach var="urgentOrderNo" items="${urgentOrders_No}">
-															<c:if test="${urgentOrderNo eq OrderBean.orderNo}">
-																<c:set var="contains" value="yes" />
-															</c:if>
-														</c:forEach>
-														<c:choose>
-															<c:when test="${contains=='yes'}">
-																<td id='odno' class='urgent'>${OrderBean.shippingDate}</td>
-																<script type="text/javascript">
-																	
-<!-- 																</script> -->
-															</c:when>
-															<c:otherwise>
-																<td>${OrderBean.shippingDate}</td>
-																<script type="text/javascript">
-																	
-<!-- 																</script> -->
-															</c:otherwise>
-														</c:choose>
-
-
-														<td>${OrderBean.memberbean.username}</td>
-														<td>${OrderBean.totalAmount}</td>
-<%-- 														<td>${OrderBean.shippingAddress}</td> --%>
-														<td>${OrderBean.invoiceTitle}</td>
-														<c:set var="contains" value="no" />
-														<c:if test="${OrderBean.payment eq 'OK'}">
-															<c:set var="contains" value="yes" />
-															<script type="text/javascript">
-																
-<!-- 															</script> -->
-														</c:if>
-
-														<c:choose>
-															<c:when test="${contains=='yes'}">
-																<script type="text/javascript">
-																	
-<!-- 																</script> -->
-																<td>查核完畢</td>
-															</c:when>
-															<c:otherwise>
-																<script type="text/javascript">
-																	
-<!-- 																</script> -->
-																<td><input type="button" class="btn btn-success"
-																	id="${OrderBean.orderNo}" onclick='setOK(this)'
-																	value="收到款項"></td>
-															</c:otherwise>
-														</c:choose>
-														<c:set var="contains" value="no" />
-																				<td><input type="button" id="${OrderBean.orderNo}" onclick='setOK(this)' value="OK"></td>
+														<td id='odno'>${member.username}</td>
+														<td id='odno'>${member.password}</td>
+														<td id='odno'>${member.nickname}</td>
+														<td id='odno'>${member.register_date}</td>
+														<td id='odno'><c:if test="${member.enabled==true}">
+																<div id="enabled${member.member_id}">
+																	<button id="unlocked" class='btn btn-success'
+																		onclick="lockMember(${member.member_id})">正常</button>
+																</div>
+															</c:if> <c:if test="${member.enabled==false}">
+																<div id="enabled${member.member_id}">
+																	<button id="locked" class='btn btn-danger'
+																		onclick="unlockMember(${member.member_id})">鎖定</button>
+																</div>
+															</c:if></td>
 														<td></td>
 													</tr>
-
 												</c:forEach>
 											</tbody>
 										</table>
@@ -381,85 +284,7 @@ td {
 			</footer>
 		</div>
 	</div>
-	<!--   -->
-	<!-- <div class="fixed-plugin">
-    <div class="dropdown show-dropdown">
-        <a href="#" data-toggle="dropdown">
-            <i class="fa fa-cog fa-2x"> </i>
-        </a>
 
-        <ul class="dropdown-menu">
-			<li class="header-title"> Sidebar Style</li>
-            <li class="adjustments-line">
-                <a href="javascript:void(0)" class="switch-trigger">
-                    <p>Background Image</p>
-                    <label class="switch">
-                        <input type="checkbox" data-toggle="switch" checked="" data-on-color="primary" data-off-color="primary"><span class="toggle"></span>
-                    </label>
-                    <div class="clearfix"></div>
-                </a>
-            </li>
-            <li class="adjustments-line">
-                <a href="javascript:void(0)" class="switch-trigger background-color">
-                    <p>Filters</p>
-                    <div class="pull-right">
-                        <span class="badge filter badge-black" data-color="black"></span>
-                        <span class="badge filter badge-azure" data-color="azure"></span>
-                        <span class="badge filter badge-green" data-color="green"></span>
-                        <span class="badge filter badge-orange" data-color="orange"></span>
-                        <span class="badge filter badge-red" data-color="red"></span>
-                        <span class="badge filter badge-purple active" data-color="purple"></span>
-                    </div>
-                    <div class="clearfix"></div>
-                </a>
-            </li>
-            <li class="header-title">Sidebar Images</li>
-
-            <li class="active">
-                <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="../assets/img/sidebar-1.jpg" alt="" />
-                </a>
-            </li>
-            <li>
-                <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="../assets/img/sidebar-3.jpg" alt="" />
-                </a>
-            </li>
-            <li>
-                <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="..//assets/img/sidebar-4.jpg" alt="" />
-                </a>
-            </li>
-            <li>
-                <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="../assets/img/sidebar-5.jpg" alt="" />
-                </a>
-            </li>
-
-            <li class="button-container">
-                <div class="">
-                    <a href="http://www.creative-tim.com/product/light-bootstrap-dashboard" target="_blank" class="btn btn-info btn-block btn-fill">Download, it's free!</a>
-                </div>
-            </li>
-
-            <li class="header-title pro-title text-center">Want more components?</li>
-
-            <li class="button-container">
-                <div class="">
-                    <a href="http://www.creative-tim.com/product/light-bootstrap-dashboard-pro" target="_blank" class="btn btn-warning btn-block btn-fill">Get The PRO Version!</a>
-                </div>
-            </li>
-
-            <li class="header-title" id="sharrreTitle">Thank you for sharing!</li>
-
-            <li class="button-container">
-				<button id="twitter" class="btn btn-social btn-outline btn-twitter btn-round sharrre"><i class="fa fa-twitter"></i> · 256</button>
-                <button id="facebook" class="btn btn-social btn-outline btn-facebook btn-round sharrre"><i class="fa fa-facebook-square"></i> · 426</button>
-            </li>
-        </ul>
-    </div>
-</div>
- -->
 </body>
 <!--   Core JS Files   -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

@@ -26,18 +26,23 @@ public class RecipeUnitServiceImpl implements IRecipeUnitService {
 		return recipeUnitDao.getRecipeUnitBeanByFk(fk);
 	}
 
-//	@Override
-//	public void deleteRecipeUnitByFk(Integer fk) {
-//		recipeUnitDao.deleteRecipeUnitByFk(fk);
-//	}
+	@Override
+	public void deleteRecipeUnitByFk(Integer fk) {
+		recipeUnitDao.deleteRecipeUnitByFk(fk);
+	}
 
 	@Override
 	public void insertRecipeUnit(RecipeUnitBean recipeUnitBean) {
 		recipeUnitDao.insertRecipeUnit(recipeUnitBean);
 	}
-
+	
 	@Override
 	public List<Blob> getRecipeUnitImageByFk(Integer fk) {
 		return recipeUnitDao.getRecipeUnitImageByFk(fk);
+	}
+
+	@Override
+	public RecipeUnitBean getRecipeUnitByFkAndStepNo(Integer fk, Integer stepNo) {
+		return recipeUnitDao.getRecipeUnitByFkAndStepNo(fk, stepNo);
 	}
 }

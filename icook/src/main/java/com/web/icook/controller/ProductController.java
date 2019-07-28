@@ -24,6 +24,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -51,23 +53,35 @@ public class ProductController {
 	ProductService service;
 
 	@Autowired
+	MemberService memberService;
+	@Autowired
 	ServletContext context;
-	
-	
-	@RequestMapping(value = "/product_Test")
-	public String producttest(Model model) {
-		List<ProductBean> list = service.getAllProducts();
-		model.addAttribute("products", list);
-		return "products/test";
-	}
-	
 	@Autowired
 	MemberController mcontroller;
 
-	@Autowired
-	MemberService mservice;
+	@ModelAttribute("bean")
+	public MemberBean getMemberBean() {
+		MemberBean bean=null;
+		if (!getPrincipal().equals("anonymousUser")) {
+			 bean = memberService.selectByUsername(getPrincipal());
+		}
+		return bean;
+	}
 	
+	public String getPrincipal() {
+		String userName = null;
+		// 獲得當前登入對象
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
+		if (principal instanceof UserDetails) {
+			userName = ((UserDetails) principal).getUsername();
+		} else {
+			userName = principal.toString();
+		}
+		return userName;
+	}
+	
+	
 	@ResponseBody
 	@RequestMapping(value = "/SelectByCategoriesAndDescriptionForProduct/{txt}", method = RequestMethod.GET)
 	public List<ProductBean> SelectByCategoriesAndDescriptionForProduct(@PathVariable String txt) {
@@ -211,14 +225,6 @@ public class ProductController {
 		return bean;
 	}
 
-	@RequestMapping("/product/addToCollection")
-	public String addToCollection(@RequestParam("id") Integer id, Model model) {
-		// 暫時用member=5
-		int memberId = 2;
-		service.addtoCollection(id, memberId);
-//		model.addAttribute("product", bb);
-		return "redirect:/products";
-	}
 
 	// 查全部
 	@RequestMapping(value = "/products")
@@ -227,7 +233,7 @@ public class ProductController {
 		// 要在下頁用EL顯示會員${LoginOK.member_id}需在controller裡面加此行,-----------------------------
 		//測試成功
 		if (!mcontroller.getPrincipal().equals("anonymousUser")) {
-			MemberBean mb = mservice.selectByUsername(mcontroller.getPrincipal());
+			MemberBean mb = memberService.selectByUsername(mcontroller.getPrincipal());
 			model.addAttribute("LoginOK", mb);
 		}
 		// -----------------------------------------------------------------------
@@ -242,7 +248,7 @@ public class ProductController {
 		// 要在下頁用EL顯示會員${LoginOK.member_id}需在controller裡面加此行,-----------------------------
 		//測試成功
 		if (!mcontroller.getPrincipal().equals("anonymousUser")) {
-			MemberBean mb = mservice.selectByUsername(mcontroller.getPrincipal());
+			MemberBean mb = memberService.selectByUsername(mcontroller.getPrincipal());
 			model.addAttribute("LoginOK", mb);
 		}
 		// -----------------------------------------------------------------------
@@ -331,7 +337,7 @@ public class ProductController {
 //限定輸入欄位	
 	@InitBinder
 	public void whiteListing(WebDataBinder binder) {
-		binder.setAllowedFields("product_id，", "description", "unit_size", "price", "color", "stock", "productImage","productPictureOne"
+		binder.setAllowedFields("product_id，", "description", "unit_size", "price", "color", "stock", "productImage"
 		,"productPictureTwo","productPictureThree");
 		}
 
@@ -362,7 +368,6 @@ public class ProductController {
 	public String getAddNewProductForm(Model model) {
 		System.out.println("Init From Start============================================");
 		ProductBean bb = new ProductBean();
-//		bb.setCategory("鍋子");
 		model.addAttribute("productBeanObject", bb);
 		Map<String, Object> map = model.asMap();
 		Set<String> set = map.keySet();
@@ -384,11 +389,20 @@ public class ProductController {
 			@RequestParam String product_id, Model model, BindingResult result, HttpServletRequest request)
 			throws IOException {
 		System.out.println("\nSubmit Form Start============================================");
+		System.out.println("name :"+bb.getName());
+		System.out.println("getPrice :"+bb.getPrice());
 		String Categoriesname = request.getParameter("fileName");
 		String Category = request.getParameter("name");
 		String gender = request.getParameter("gender");
+		ProductBean previousbean =null;
+		System.out.println("product_id======================================" + product_id.length());
+		if(product_id!=null &&product_id.length()!=0) {
+		previousbean = service.getProductById(Integer.valueOf(product_id));
+		Category=previousbean.getCategoriesbean().getCategorybean().getName();
+		Categoriesname=previousbean.getCategoriesbean().getName();
+		}
 		if (gender == null)
-			gender = "2";
+			gender = "1";
 		if (Category == null || Category.length() == 0)
 			Category = "其他";
 		if (Categoriesname == null || Categoriesname.length() == 0)
@@ -411,11 +425,7 @@ public class ProductController {
 		if (bb != null & bb.getStock() == null) {
 			bb.setStock(0);
 		}
-		System.out.println("product_id======================================" + product_id);
-
 		MultipartFile productImage = bb.getProductImage();
-		MultipartFile productPictureOne = bb.getProductPictureOne();
-		System.out.println("productPuctureOne :"+productPictureOne);
 		MultipartFile productPictureTwo = bb.getProductPictureTwo();
 		System.out.println("productPuctureTwo :"+productPictureTwo);
 		MultipartFile productPictureThree = bb.getProductPictureThree();
@@ -429,65 +439,74 @@ public class ProductController {
 		// ext :抓檔案副檔名 從" . "以後含點都取
 
 		// -----------------------------------------寫入寫出-----------------------------------------------------------------------
-		List<ProductBean>list =service.getAllProducts();
-		int totalcounts=0;
-		for(ProductBean  bean:list ) {
+		List<ProductBean> list = service.getAllProducts();
+		int totalcounts = 0;
+		for (ProductBean bean : list) {
 			totalcounts++;
 		}
-		totalcounts++;//計算總Products數並加一給outputStream 當作圖片命名用
-		String rootDirectory = context.getRealPath("/");
-		String contextPath=context.getContextPath();
-		System.out.println("=====input start");
-		System.out.println("contextPath :"+contextPath);
-		System.out.println("ID :"+product_id);
-		originalFilename=product_id;
-		int lenght = -1;
-		byte[]  tmp  = new byte[81920];
-		if(productPictureOne!=null) {
-		InputStream ins=productPictureOne.getInputStream();
-		OutputStream ous = new FileOutputStream(
-				"C:\\Users\\屁股\\git\\repository\\icook\\src\\main\\webapp\\WEB-INF\\views\\products\\images/savedPicture/"
-				+ totalcounts+"_2" + ext);
-		bb.setProductPictureOnePath("/product_pathImage/"
-				+ totalcounts+"_2" + ext);
-		while ((lenght = ins.read(tmp)) != -1) {
-			ous.write(tmp, 0, lenght);
-		  }
-		}
-		if(productPictureTwo!=null) {
-			InputStream ins=productPictureTwo.getInputStream();
-			OutputStream ous = new FileOutputStream(
-					"C:\\Users\\屁股\\git\\repository\\icook\\src\\main\\webapp\\WEB-INF\\views\\products\\images/savedPicture/"
-							+ totalcounts+"_3" + ext);
-			bb.setProductPictureTwoPath("/product_pathImage/"
-					+ totalcounts+"_3" + ext);
-			while ((lenght = ins.read(tmp)) != -1) {
-				ous.write(tmp, 0, lenght);
-			}
-		}
-		if(productPictureThree!=null) {
-			InputStream ins=productPictureThree.getInputStream();
-			OutputStream ous = new FileOutputStream(
-					"C:\\Users\\屁股\\git\\repository\\icook\\src\\main\\webapp\\WEB-INF\\views\\products\\images/savedPicture/"
-							+ totalcounts+"_4" + ext);
-			bb.setProductPictureThreePath("/product_pathImage/"
-					+ totalcounts+"_4" + ext);
-			while ((lenght = ins.read(tmp)) != -1) {
-				ous.write(tmp, 0, lenght);
-			}
-		}
-		
-		InputStream ins = productImage.getInputStream();
-		OutputStream ous = new FileOutputStream("C:/Users/屁股/git/repository/icook/src/main/webapp/WEB-INF/views/products/images/savedPicture/"
-						+ totalcounts+"_1" + ext);
-		tmp = new byte[81920];
+		totalcounts++;// 計算總Products數並加一給outputStream 當作圖片命名用
+		if (previousbean != null)
+			totalcounts = previousbean.getProduct_id();
 
-		while ((lenght = ins.read(tmp)) != -1) {
-			ous.write(tmp, 0, lenght);
+		String rootDirectory = context.getRealPath("/");
+		String contextPath = context.getContextPath();
+		System.out.println("=====input start");
+		System.out.println("contextPath :" + contextPath);
+		System.out.println("ID :" + product_id);
+		originalFilename = product_id;
+		int lenght = -1;
+		byte[] tmp = new byte[81920];
+	
+		if (productPictureTwo != null && productPictureTwo.getSize() != 0) {
+			InputStream ins = productPictureTwo.getInputStream();
+			OutputStream ous = new FileOutputStream(
+					"C:/Users/屁股/git/iCook/icook/src/main/webapp/WEB-INF/views/products/images/savedPicture/"
+							+ totalcounts + "_3" + ext);
+			bb.setProductPictureTwoPath("/product_pathImage/" + totalcounts + "_3" + ext);
+			while ((lenght = ins.read(tmp)) != -1) {
+				ous.write(tmp, 0, lenght);
+			}
+			ins.close();
+			ous.close();
+		} else {
+			if(previousbean.getProductPictureTwoPath().length()!=0 && previousbean.getProductPictureTwoPath()!=null)
+			bb.setProductPictureTwoPath(previousbean.getProductPictureTwoPath());
+		}
+		if (productPictureThree != null && productPictureThree.getSize() != 0) {
+			InputStream ins = productPictureThree.getInputStream();
+			OutputStream ous = new FileOutputStream(
+					"C:/Users/屁股/git/iCook/icook/src/main/webapp/WEB-INF/views/products/images/savedPicture/"
+							+ totalcounts + "_4" + ext);
+			bb.setProductPictureThreePath("/product_pathImage/" + totalcounts + "_4" + ext);
+			while ((lenght = ins.read(tmp)) != -1) {
+				ous.write(tmp, 0, lenght);
+			}
+			ins.close();
+			ous.close();
+		} else {
+			if(previousbean.getProductPictureThreePath().length()!=0 && previousbean.getProductPictureThreePath()!=null)
+			bb.setProductPictureThreePath(previousbean.getProductPictureThreePath());
 		}
 		
-		ins.close();
-		ous.close();
+		if (productImage != null && productImage.getSize() != 0) {
+			System.out.println("productImage NO PreviouseBean IN============");
+			InputStream ins = productImage.getInputStream();
+			OutputStream ous = new FileOutputStream(
+					"C:/Users/屁股/git/iCook/icook/src/main/webapp/WEB-INF/views/products/images/savedPicture/"
+							+ totalcounts + "_1" + ext);
+			tmp = new byte[81920];
+			bb.setProductPictureOnePath("/product_pathImage/" + totalcounts + "_1" + ext);
+			while ((lenght = ins.read(tmp)) != -1) {
+				ous.write(tmp, 0, lenght);
+			}
+			ins.close();
+			ous.close();
+		} else {
+			System.out.println("productImage  PreviouseBean IN============");
+		    bb.setImage(previousbean.getImage());
+		    if(previousbean.getProductPictureOnePath().length()!=0 && previousbean.getProductPictureOnePath()!=null)
+			bb.setProductPictureOnePath(previousbean.getProductPictureOnePath());
+		}
 		System.out.println("=====outputf finish");
 		// -----------------------------------------寫入寫出-----------------------------------------------------------------------
 		

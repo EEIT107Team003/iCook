@@ -276,15 +276,21 @@
 												</div>
 												<p class="mb-4"
 													style="width: 490px; max-width: 490px; max-height: 55px; word-break: break-all; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block;">${ post.text }</p>
+												
+												
 												<p>
 													<a
 														href="${ pageContext.request.contextPath }/forum/pick?harticle_id=${ post.harticle_id }&article_id=${ post.article_id }"
 														class="btn-custom">閱讀文章 <span
 														class="ion-ios-arrow-forward"></span></a>
 												</p>
+												
 											</div>
 										</div>
 									</div>
+									<hr>
+									
+									
 								</c:forEach>
 
 
@@ -308,7 +314,17 @@
 							</div>
 						</div>
 						<div class="col-xl-4 sidebar ftco-animate bg-light pt-5">
-							<div class="sidebar-box pt-md-4">
+						<sec:authorize access="isAuthenticated()">
+							<c:forEach var="user" items="${ LoginOK }">
+								<div class="sidebar-box pt-md-4" onclick="javascript:location.href='${ pageContext.request.contextPath }/user'" style="vertical-align:middle; height:50px; line-height:50px;">
+									<img id="member_photo_image"
+				 					style="float:left;width:50px;height: 50px;border-radius: 50%; border: 1px solid black;vertical-align:middle;"
+				 					src="<c:url value='/getMemberPhoto/${user.member_id}' />" />
+									<div style=" font-size:20px;float: left;margin-left: 20px; ">歡迎光臨，${user.nickname}！</div>
+								</div>
+							</c:forEach>	
+						</sec:authorize>
+							<div class="sidebar-box pt-md-4">							
 								<form
 									action="${ pageContext.request.contextPath }/forum/search?title=${ param.title }"
 									class="search-form">

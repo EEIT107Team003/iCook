@@ -36,6 +36,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.gson.Gson;
 import com.web.icook.model.MemberBean;
 import com.web.icook.model.MyTrackBean;
 import com.web.icook.service.MemberService;
@@ -43,6 +44,8 @@ import com.web.icook.service.MyTrackService;
 
 import forum.model.ForumMainBean;
 import forum.service.IFMService;
+import recipe.model.RecipeBean;
+import recipe.service.IRecipeService;
 
 @Controller
 public class MemberController {
@@ -55,7 +58,9 @@ public class MemberController {
 	ServletContext context;
 	@Autowired
 	IFMService ifmService;
-
+	@Autowired
+	IRecipeService irecipeService; 
+	
 //	@Autowired
 //	IProductService productService;
 
@@ -69,6 +74,16 @@ public class MemberController {
 		return "member/icookUser";
 	}
 
+	//我的食譜
+	@ResponseBody
+	@RequestMapping(value="user/myrecipe", method = RequestMethod.POST) 
+	public List<RecipeBean> myRecipe() {
+		List<RecipeBean> allRecipeBean=new ArrayList<RecipeBean>();
+		MemberBean bean = memberService.selectByUsername(getPrincipal());
+		allRecipeBean=irecipeService.searchRecipeByMemberId(bean.getMember_id());
+		System.out.println(allRecipeBean.size());
+		return allRecipeBean;
+	}
 
 	// 查詢我的追蹤
 	@ResponseBody
@@ -234,9 +249,11 @@ public class MemberController {
 	//前往會員頁
 	@RequestMapping(value = "/members/page")
 	public String member_page(Model model, @RequestParam("member_id") Integer member_id) {
-		int user_id = 0;
+		MemberBean user=null;
+		int user_id=0; 
 		if ((!getPrincipal().equals("anonymousUser"))) {
-			user_id = memberService.selectByUsername(getPrincipal()).getMember_id();
+			user = memberService.selectByUsername(getPrincipal());
+			user_id=user.getMember_id();
 		}
 		
 		if (member_id == user_id) {
@@ -244,6 +261,7 @@ public class MemberController {
 		} else {
 			MemberBean bean = memberService.selectById(member_id);
 			model.addAttribute("member", bean);
+			model.addAttribute("user", user);			
 			return "member/icookMembers";
 		}
 	}
@@ -313,16 +331,38 @@ public class MemberController {
 		return list;
 	}
 
-//	//我的食譜
-//	@RequestMapping(value="members/myrecipe") 
-//	public String MyRecipe(Model model) {
-//		List<RecipeBean> allRecipeBean=.getAllRecipe();
-//		
-//		model.addAttribute("recipes",allRecipeBean);
-//		
-//		return "member_page_myrecipe";
-//	}
-
+	//我的食譜
+	@ResponseBody
+	@RequestMapping(value="members/page/myrecipe", method = RequestMethod.POST) 
+	public List<RecipeBean> membersRecipe(@RequestParam(value = "member_id", required = false) Integer member_id) {
+		List<RecipeBean> allRecipeBean=new ArrayList<RecipeBean>();
+		allRecipeBean=irecipeService.searchRecipeByMemberId(member_id);
+		System.out.println(allRecipeBean.size());
+		return allRecipeBean;
+	}
+	
+//-------------------------------  管理員  ---------------------------------------------------------------------------
+	// 封鎖會員
+		@ResponseBody
+		@RequestMapping(value = "/backStageUser/lock", method = RequestMethod.POST)
+		public Integer lockMember(@RequestParam(value = "member_id", required = false) Integer member_id) {
+			MemberBean bean=memberService.selectById(member_id);
+			bean.setEnabled(false);
+			memberService.updateMemberInfo(bean, member_id);
+			return 0;
+		}
+		// 解鎖會員
+		@ResponseBody
+		@RequestMapping(value = "/backStageUser/unlock", method = RequestMethod.POST)
+		public Integer unlockMember(@RequestParam(value = "member_id", required = false) Integer member_id) {
+			MemberBean bean=memberService.selectById(member_id);
+			bean.setEnabled(true);
+			memberService.updateMemberInfo(bean, member_id);
+			return 1;
+		}
+	
+	
+	
 //-------------------------------  無權限  ---------------------------------------------------------------------------
 
 	// 新增會員

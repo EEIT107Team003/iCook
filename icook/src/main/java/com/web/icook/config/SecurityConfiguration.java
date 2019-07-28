@@ -59,7 +59,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
    	    .formLogin() 
 	        .loginPage("/icookLogin")
 	        .loginProcessingUrl("/perform_login")
-	        .failureUrl("/icookLogin?error") 
+	        .failureUrl("/icookLoginError") 
 	        .usernameParameter("username").passwordParameter("password")
 	    .and()
 	        .logout()

@@ -55,6 +55,7 @@ public class RecipeInsertController {
 	public String insertPost(RecipeBean recipeBean, RecipeIngredientsBeanForm recipeIngredientsBeanForm,
 			RecipeUnitBeanForm recipeUnitForm, RedirectAttributes redirectAttribute) {
 		// recipeInsert-第二次呼叫
+		// RedirectAttributes redirectAttribute
 		System.out.println("recipeInsert-第二次呼叫");
 		String userName = getPrincipal();
 		System.out.println("userName = " + userName);
@@ -125,9 +126,13 @@ public class RecipeInsertController {
 			recipeUnit.setExplain(recipeUnitForm.getExplain2().get(i));
 			// recipeUnit.setRecipeBeanUnit(recipeBean);// 加入食譜FK鍵索引
 			recipeUnit.setFk_recipe_id(recipeBean.getPk_recipe_id());// 加入食譜FK鍵索引
+
+			// 開始處理圖片檔案-start
 			MultipartFile imageFile2 = recipeUnitForm.getUnit_image2().get(i);
 			// 建立Blob物件，交由 Hibernate 寫入資料庫
 			if (imageFile2 != null && !imageFile2.isEmpty()) {
+				String oringinalFilename2 = imageFile2.getOriginalFilename();
+				recipeUnit.setFile_name(oringinalFilename2);
 				try {
 					byte[] byteArray2 = imageFile2.getBytes();
 					Blob unit_image = new SerialBlob(byteArray2);
@@ -137,6 +142,8 @@ public class RecipeInsertController {
 					throw new RuntimeException("圖片上傳發生異常：" + e);
 				}
 			}
+			// 開始處理圖片檔案-end
+
 			recipeUnitService.insertRecipeUnit(recipeUnit);
 			recipeUnit = null;
 		}
@@ -161,6 +168,8 @@ public class RecipeInsertController {
 		redirectAttribute.addFlashAttribute("recipeUnitBean", recipeUnitBean);
 		redirectAttribute.addFlashAttribute("currentUser", currentUser);
 		redirectAttribute.addFlashAttribute("recipeUser", recipeUser);
+		System.out.println("currentUser -> " + currentUser);
+		System.out.println("recipeUser -> " + recipeUser);
 		return "redirect:/recipe/recipeSuccessPage";// 讓瀏覽器再次發出請求，呼叫recipeSuccessPage.jsp檔案
 	}
 

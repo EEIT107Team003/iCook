@@ -28,6 +28,7 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	crossorigin="anonymous"></script>
+<<<<<<< HEAD
 <!-- 	bootstrap -->
 <!-- fontawesome-free -->
 <!-- <script type="text/javascript" -->
@@ -138,8 +139,15 @@ li {
 /* 	margin-right: 100px; */
 /* 	margin-left: 260px; */
 /* } */
+=======
+<style type="text/css">
+.right2 {
+	float: right;
+}
+>>>>>>> refs/remotes/origin/master
 </style>
 </head>
+<<<<<<< HEAD
 <body>
 	<div class="main">
 		<!--==============================header=================================-->
@@ -240,6 +248,71 @@ li {
 					<tr>
 						<th scope="col"><div style="visibility: hidden">區塊中的內容</div></th>
 						<th scope="col"><div style="visibility: hidden">區塊中的內容</div></th>
+=======
+<body bgcolor="#ffffce">
+	<div align="center">
+		<div class="right2">
+			<%--currentUser=${currentUser}<br> recipeUser=${recipeUser}<br>--%>
+			<%--<c:if test="${not empty currentUser}">--%>
+			<%--<c:if test="${currentUser == recipeUser}">--%>
+			<%--href="${pageContext.request.contextPath}/user/recipeUpdateOne/${recipe.pk_recipe_id}"--%>
+			<!--<a-->
+			<%--href="<c:url value='/user/recipeUpdateOne/${recipe.pk_recipe_id}'/>"--%>
+			<!--class="btn btn-outline-primary">修改</a>-->
+			<!--<br>-->
+			<%--src="<c:url value='/user/deleteTwo/${recipe.pk_recipe_id}'/>"--%>
+			<%--<a href="<c:url value='/user/deleteTwo/${recipe.pk_recipe_id}'/>"--%>
+			<!--class="btn btn-outline-danger">刪除</a>-->
+			<!--<br>-->
+			<%--</c:if>--%>
+			<%--</c:if>--%>
+		</div>
+		<%--第一張table-start--%>
+		<!--<table border="1" bgcolor="#ffffb9" width="50%">-->
+		<table width="50%">
+			<tr align="center">
+				<td>食譜名稱</td>
+				<td>${recipe.recipe_name}</td>
+			</tr>
+			<tr align="center">
+				<%--<td colspan="2">--%>
+				<td>食譜封面照片</td>
+				<td><img
+					src="<c:url value='/getRecipePicture/${recipe.pk_recipe_id}' />"
+					width="300" /></td>
+			</tr>
+			<tr align="center">
+				<td>烹調時間</td>
+				<td>${recipe.recipe_time}</td>
+			</tr>
+			<tr align="center">
+				<td>食譜份量</td>
+				<td>${recipe.recipe_quantity}</td>
+			</tr>
+			<tr align="center">
+				<td>食譜簡介</td>
+				<td>${recipe.recipe_summary}</td>
+			</tr>
+			<%--<img width='100' height='150' src="<c:url value='/getPicture/${product.bookId}'/>" />--%>
+		</table>
+		<%--第一張table-end--%>
+		<br>
+		<%--第二張table-start--%>
+		<!--<table border="1" width="50%" bgcolor="#ffffaa">-->
+		<table width="50%">
+			<!--【recipeBeans】來自於public String updateOneGet(Model model)-->
+			<thead>
+				<tr align="center">
+					<td>食材名稱</td>
+					<td>份量</td>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="recipe2" items="${recipeIngredients}">
+					<tr align="center">
+						<td>${recipe2.ingredients}</td>
+						<td>${recipe2.quantity}</td>
+>>>>>>> refs/remotes/origin/master
 					</tr>
 				</thead>
 				<tbody>
@@ -271,6 +344,7 @@ li {
 						<td style='font-size: 35px'>食材名稱</td>
 						<td style='font-size: 35px'>份量</td>
 					</tr>
+<<<<<<< HEAD
 					<c:forEach var="recipe2" items="${recipeIngredients}">
 						<tr align="center">
 							<td>${recipe2.ingredients}</td>
@@ -303,6 +377,40 @@ li {
 			</div>
 
 		</div>
+=======
+				</c:forEach>
+			</tbody>
+		</table>
+		<%--第三張table-end--%>
+		<!--<br>-->
+		<%--<a href="<c:url value='/recipe/recipeIndex' />">回食譜首頁</a>--%>
+		<br> <a href="<c:url value='/index2' />">回首頁</a>
+	</div>
+	<script>
+		document.onkeydown = function(e) {
+			e = window.event || e;
+			var keycode = e.keyCode || e.which;
+			if (keycode == 116) {
+				console.log("禁用F5按鍵");
+				if (window.event) {
+					console.log("禁用F5按鍵-#2");
+					// ie
+					try {
+						console.log("禁用F5按鍵-#3");
+						e.keyCode = 0;
+					} catch (e) {
+						console.log("禁用F5按鍵-#4");
+					}
+					e.returnValue = false;
+				} else {
+					//firefox
+					console.log("禁用F5按鍵-#5");
+					e.preventDefault();
+				}
+			}
+		}
+	</script>
+>>>>>>> refs/remotes/origin/master
 </body>
 
 </html>

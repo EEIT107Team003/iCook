@@ -264,7 +264,7 @@ public class MsgBoardController {
 	@RequestMapping(value = "/MemberPhoto", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> getMemberPhoto(@RequestParam("member_id") Integer member_id) {
 		System.out.println("我建得getMemberPhoto  member_id=" + member_id);
-		String filePath = "/resources/images/NoImage.jpg";
+		String filePath = "/resources/images/NoImage.png";
 		byte[] media = null;
 		HttpHeaders headers = new HttpHeaders();
 		String filename = "";

@@ -34,6 +34,19 @@ public class RecipeUnitDaoImpl implements IRecipeUnitDao {
 		return image;
 	}
 
+	// stepNo
+	@Override
+	public RecipeUnitBean getRecipeUnitByFkAndStepNo(Integer fk, Integer stepNo) {
+		Session session = sessionFactory.getCurrentSession();
+		RecipeUnitBean recipeUnit = null;
+		if (fk != null && stepNo != null) {
+			String hql = "FROM RecipeUnitBean WHERE (fk_recipe_id = :fk AND stepNo = :stepNo)";
+			recipeUnit = (RecipeUnitBean) session.createQuery(hql).setParameter("fk", fk).setParameter("stepNo", stepNo)
+					.getSingleResult();
+		}
+		return recipeUnit;
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<RecipeUnitBean> getRecipeUnitBeanByFk(Integer fk) {
@@ -46,15 +59,15 @@ public class RecipeUnitDaoImpl implements IRecipeUnitDao {
 		return unitBeanList;
 	}
 
-//	@Override
-//	public void deleteRecipeUnitByFk(Integer fk) {
-//		// 刪除多筆資料
-//		Session session = sessionFactory.getCurrentSession();
-//		if (fk != null) {
-//			String hql = "DELETE FROM RecipeUnitBean WHERE fk_recipe_id = :fk";
-//			session.createQuery(hql).setParameter("fk", fk).executeUpdate();
-//		}
-//	}
+	@Override
+	public void deleteRecipeUnitByFk(Integer fk) {
+		// 刪除多筆資料
+		Session session = sessionFactory.getCurrentSession();
+		if (fk != null) {
+			String hql = "DELETE FROM RecipeUnitBean WHERE fk_recipe_id = :fk";
+			session.createQuery(hql).setParameter("fk", fk).executeUpdate();
+		}
+	}
 
 	@Override
 	public void insertRecipeUnit(RecipeUnitBean recipeUnitBean) {

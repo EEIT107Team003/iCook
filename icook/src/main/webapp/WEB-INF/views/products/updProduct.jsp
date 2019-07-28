@@ -51,9 +51,14 @@ fieldset {
     margin-top:1ch;
     padding:2ch; 
 }
+.row div{
+margin-bottom:15px;
+}
 .left{
 float:left;
 width: 60%;
+margin-top:100px;
+font-size:25px;
 }
 .left select {
 clear:left;
@@ -78,10 +83,16 @@ margin-right:10ch;
 .pre{
 text-align: left;
 }
-
-#formUp{
-font-size:20px;
+.pre img{
+width:150;
+height:100;
+margin:15px;
 }
+
+
+/* #formUp{ */
+/* font-size:20px; */
+/* } */
 
 </style>
 <title>Products</title>
@@ -97,139 +108,48 @@ font-size:20px;
 
         Tip 2: you can also add an image using data-image tag
     -->
-           
             <div class="sidebar-wrapper">
                 <div class="logo">
-                    <a href="http://www.creative-tim.com" class="simple-text">
-                        Creative Tim
+                    <a href="../home" class="simple-text">
+                                               回前台首頁
                     </a>
                 </div>
                 <ul class="nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="addSingleProduct">
+                        <a class="nav-link" href="../backStageDashboard">
                             <i class="nc-icon nc-chart-pie-35"></i>
-                            <p>addSingleProduct</p>
+                            <p>後台首頁</p>
                         </a>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="backStageDashboard">
-                            <i class="nc-icon nc-chart-pie-35"></i>
-                            <p>Dashboard</p>
+                    <li>
+                        <a class="nav-link" href="../productTable">
+                            <i class="nc-icon nc-notes"></i>
+                            <p>產品管理</p>
                         </a>
                     </li>
                     <li>
                         <a class="nav-link" href="backStageUser">
-                            <i class="nc-icon nc-circle-09"></i>
-                            <p>User Profile</p>
-                        </a>q
-                    </li>
-                    <li>
-                        <a class="nav-link" href="backStageTable">
                             <i class="nc-icon nc-notes"></i>
-                            <p>Table List</p>
+                            <p>會員管理</p>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="backStageTypography">
-                            <i class="nc-icon nc-paper-2"></i>
-                            <p>Typography</p>
+                        <a class="nav-link" href="../adminCheckOrders">
+                            <i class="nc-icon nc-notes"></i>
+                            <p>訂單管理</p>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="backStageIcons">
-                            <i class="nc-icon nc-atom"></i>
-                            <p>Icons</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="backStageMaps">
-                            <i class="nc-icon nc-pin-3"></i>
-                            <p>Maps</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="backStageNotifications">
-                            <i class="nc-icon nc-bell-55"></i>
-                            <p>Notifications</p>
-                        </a>
-                    </li>
-                    <li class="nav-item active active-pro">
-                        <a class="nav-link active" href="backStageUpgrade">
-                            <i class="nc-icon nc-alien-33"></i>
-                            <p>Upgrade to PRO</p>
+                        <a class="nav-link" href="../report_forum">
+                            <i class="nc-icon nc-notes"></i>
+                            <p>檢舉文章管理</p>
                         </a>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="main-panel">
-            <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg " color-on-scroll="500">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#pablo"> Table List </a>
-                    <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-bar burger-lines"></span>
-                        <span class="navbar-toggler-bar burger-lines"></span>
-                        <span class="navbar-toggler-bar burger-lines"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                        <ul class="nav navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link" data-toggle="dropdown">
-                                    <i class="nc-icon nc-palette"></i>
-                                    <span class="d-lg-none">Dashboard</span>
-                                </a>
-                            </li>
-                            <li class="dropdown nav-item">
-                                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                                    <i class="nc-icon nc-planet"></i>
-                                    <span class="notification">5</span>
-                                    <span class="d-lg-none">Notification</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Notification 1</a>
-                                    <a class="dropdown-item" href="#">Notification 2</a>
-                                    <a class="dropdown-item" href="#">Notification 3</a>
-                                    <a class="dropdown-item" href="#">Notification 4</a>
-                                    <a class="dropdown-item" href="#">Another notification</a>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="nc-icon nc-zoom-split"></i>
-                                    <span class="d-lg-block">&nbsp;Search</span>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="navbar-nav ml-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#pablo">
-                                    <span class="no-icon">Account</span>
-                                </a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="no-icon">Dropdown</span>
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                    <div class="divider"></div>
-                                    <a class="dropdown-item" href="#">Separated link</a>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#pablo">
-                                    <span class="no-icon">Log out</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            <!-- End Navbar -->
+       
 			
 			
 	<script>
@@ -331,135 +251,109 @@ font-size:20px;
 	</script>
 	
 	
-                    
 <div class="content">
 
 		<section>
-			<!--       三個地方要完全一樣 -->
-			<form:form method='POST' modelAttribute="productBeanObject" id="formUp"
-				enctype="multipart/form-data">
-				<!-- 		                  	enctype="multipart/form-data"一定要加這個屬性才可以使用上傳檔案這個功能 -->
+					<form:form method='POST' modelAttribute="productBeanObject"
+						id="formUp" enctype="multipart/form-data">
 
-				<fieldset class='left'>
-					<div class="formGroup">
-						<form:input id="product_id" name="product_id" path="product_id"
-							type='hidden' />
-						<input type="text" readonly class="form-control-plaintext"
-							id="staticEmail" value="編號 :${productBeanObject.product_id}">
-					</div>
-					<div class="formGroup">
-						<label for='name'>名稱 : </label>
-						<form:input id="name" path="name" type='text' value="${previousbean.name}"/>
-					</div>
-					<div class="formGroup">
-						<label for="exampleFormControlSelect1">種類 :</label> <select
-							class="form-control" id="exampleFormControlSelect1"
-							style="width: 15ch"><option value="0" SELECTED>請選擇</option></select>
+						<fieldset class='left'>
+							<form:input id="product_id" name="product_id" path="product_id"
+								type='hidden' />
+							<div class="row">
+								<div class="col-7">
+									<input type="text" readonly class="form-control-plaintext"
+										id="staticEmail" value="編號 :${productBeanObject.product_id}">
+									<label for='name'>名稱 : </label>
+									<form:input id="name" path="name" type='text'
+										value="${previousbean.name}" />
+										<div>
+									<label for="exampleFormControlSelect1">種類 :</label> <select 
+										class="form-control" id="exampleFormControlSelect1"
+										style="width: 15ch"><option value="0" SELECTED>請選擇</option></select>
 
-						<label for="exampleFormControlSelect2"></label> <select multiple
-							class="form-control" id="exampleFormControlSelect2"
-							style="width: 30ch"></select> <input id="fileName"
-							name="fileName" type="hidden" /> <input id="remark"
-							name="remark" type="hidden" />
-					</div>
+										</div>
+									<label for="exampleFormControlSelect2"></label> <select
+										multiple class="form-control" id="exampleFormControlSelect2"
+										style="width: 30ch"></select> <input id="fileName"
+										name="fileName" type="hidden" /> <input id="remark"
+										name="remark" type="hidden" /> <label for="m1">
+										<input type="radio" name="gender" value="1"> 上架 </label> <label>
+										<input type="radio" name="gender" value="2"> 下架
+									</label>
+								</div>
 
-					<div class="formGroup">
-						<label for='unit_size'>單位 : </label>
-						<form:input id="unit_size" path="unit_size" type='text' value="${previousbean.unit_size}"/>
-					</div>
-					<div class="formGroup">
-						<label for="price">價格 : </label>
-						<form:input id="price" path="price" type='text' value="${previousbean.price}"/>
-					</div>
-					<div class="formGroup">
-						<label for="color">顏色 : </label>
-						<form:input id="color" path="color" type='text'  value="${previousbean.color}"/>
-					</div>
+								<div class="col-5">
+									<div>
+										<label for='unit_size'>單位 : </label>
+										<form:input id="unit_size" path="unit_size" type='text'
+											value="${previousbean.unit_size}" />
+									</div>
+									<div>
+										<label for="price">價格 : </label>
+										<form:input id="price" path="price" type='text'
+											value="${previousbean.price}" />
+									</div>
+									<div>
+										<label for="color">顏色 : </label>
+										<form:input id="color" path="color" type='text'
+											value="${previousbean.color}" />
+									</div>
+									<div>
+										<label for="stock">庫存 : </label>
+										<form:input id="stock" path="stock" type='text'
+											value="${previousbean.stock}" />
+									</div>
+								</div>
+								
+								<div class="col-3">
+									<label for="productImage">圖片 : </label>
+									<form:input id="productImage" path="productImage" type='file'
+										accept="image/gif, image/jpeg, image/png" />
+								</div>
+								<div class="col-4">
+									<label for="productPictureTwo">圖片2 : </label>
+									<form:input id="productPictureTwo" path="productPictureTwo"
+										type='file' accept="image/gif, image/jpeg, image/png" />
+								</div>
+								<div class="col-4">
+									<label for="productPictureThree">圖片3 : </label>
+									<form:input id="productPictureThree" path="productPictureThree"
+										type='file' accept="image/gif, image/jpeg, image/png" />
+								</div>
 
-					<div class="formGroup">
-						<label for="stock">庫存 : </label>
-						<form:input id="stock" path="stock" type='text'  value="${previousbean.stock}"/>
-					</div>
-					<div class="formGroup">
-						<label for="productImage">圖片 : </label>
-						<form:input id="productImage" path="productImage" type='file' accept="image/gif, image/jpeg, image/png" />
-					</div>
-					<div class="formGroup">
-						<label for="productPictureOne">圖片2 : </label>
-						<form:input id="productPictureOne" path="productPictureOne" type='file' accept="image/gif, image/jpeg, image/png"/>
-					</div>
-					<div class="formGroup">
-						<label for="productPictureTwo">圖片3 : </label>
-						<form:input id="productPictureTwo" path="productPictureTwo" type='file' accept="image/gif, image/jpeg, image/png"/>
-					</div>
-					<div class="formGroup">
-						<label for="productPictureThree">圖片4 : </label>
-						<form:input id="productPictureThree" path="productPictureThree" type='file' accept="image/gif, image/jpeg, image/png"/>
-					</div>
-					
-                    <div id="uploadImg"></div>
-<!--                      <div> -->
-<!-- 						<input type="file" id="progressbarTWInput" -->
-<!-- 							accept="image/gif, image/jpeg, image/png"multiple ></input> -->
-<!-- 						<div id="preview" -->
-<!-- 							style="width: 100%; height: 300px; overflow: scroll;"> -->
-<!-- 							<p>目前沒有圖片</p> -->
-<!-- 						</div> -->
-<!--                      </div> -->
-                     
-                    <div class="formGroup">
-						<label for="m1"><input type="radio" name="gender" value="1" >   上架   </label>
-						<label> <input type="radio" name="gender" value="2">    下架         </label>
-					</div>
-
-					<div class="formGroup">
-						<label for="description">商品描述 :</label>
-						<textarea id="" class="form-control" name="description" rows="6"></textarea>
-					</div>
-
-					<div class="formGroup">
-						<input id="btnAdd" type='submit' class='btn btn-primary' />
-					</div>
-				</fieldset>
-			</form:form>
-
-		    </section>
+								<div class="col-4" id="uploadImg1"></div>
+								<div class="col-4" id="uploadImg3"></div>
+								<div class="col-4" id="uploadImg4"></div>
+							</div>
+                            <div>
+							<label for="description">商品描述 :</label>
+								<textarea id="" class="form-control" name="description" rows="6"></textarea>
+								<input id="btnAdd" type='submit' class='btn btn-primary' />
+                            </div>
+						</fieldset>
+					</form:form>
+				</section>
 		
 				
 <script>
 
 
-// $("#progressbarTWInput").change(function(){
-// 	  $("#preview").html(""); // 清除預覽
-// 	  readURLIMGS(this);
-// 	});
-
-// 	function readURLIMGS(input){
-// 	  if (input.files && input.files.length >= 0) {
-// 	    for(var i = 0; i < input.files.length; i ++){
-// 	      var reader = new FileReader();
-// 	      reader.onload = function (e) {
-// 	        var img = $("<img width='150px' height='150px'>").attr('src', e.target.result);
-// 	        var Formimg = $("<input id='productImage_"+i+"' type='file' accept='image/gif,image/jpeg,image/png' />' ");
-// 	        $("#preview").append(img);
-// 	        $("#preview").append(Formimg);
-// 	      }
-// 	      reader.readAsDataURL(input.files[i]);
-// 	    }
-// 	  }else{
-// 	     var noPictures = $("<p>目前沒有圖片</p>");
-// 	     $("#preview").append(noPictures);
-// 	  }
-// 	}
-
-
-	
-	
 $("#productImage").change(function(){
-  readURL(this);
-  var txt="<img id='preview_progressbarTW_img' src='#' style='margin-left:5ch;' width='150px' height='150px' />"
-  $("#uploadImg").html(txt);
-});
+	  readURL(this);
+	  var txt="<img id='preview_progressbarTW_img' src='#' style='margin-left:5ch;' width='125px' height='150px' />"
+	  $("#uploadImg1").html(txt);
+	});
+$("#productPictureTwo").change(function(){
+	  readURL3(this);
+	  var txt="<img id='preview_progressbarTW_img3' src='#' style='margin-left:5ch;' width='125px' height='150px' />"
+	  $("#uploadImg3").html(txt);
+	});
+$("#productPictureThree").change(function(){
+	  readURL4(this);
+	  var txt="<img id='preview_progressbarTW_img4' src='#' style='margin-left:5ch;' width='125px' height='150px' />"
+	  $("#uploadImg4").html(txt);
+	});
 
  
 
@@ -470,29 +364,39 @@ function readURL(input){
     var reader = new FileReader();
 
     reader.onload = function (e) {
-
        $("#preview_progressbarTW_img").attr('src', e.target.result);
-
     }
-
     reader.readAsDataURL(input.files[0]);
-
   }
+}
+function readURL3(input){
 
+	  if(input.files && input.files[0]){
+
+	    var reader = new FileReader();
+
+	    reader.onload = function (e) {
+	       $("#preview_progressbarTW_img3").attr('src', e.target.result);
+	    }
+	    reader.readAsDataURL(input.files[0]);
+	  }
+}
+function readURL4(input){
+
+	  if(input.files && input.files[0]){
+
+	    var reader = new FileReader();
+
+	    reader.onload = function (e) {
+	       $("#preview_progressbarTW_img4").attr('src', e.target.result);
+	    }
+	    reader.readAsDataURL(input.files[0]);
+	  }
 }
 
 </script>
 		<div class="right">
-			<fieldset >
-				<c:choose>
-				<c:when test="${previousbean.status==1}">
-				 <c:set var="status">上架中</c:set>。
-				</c:when>
-				<c:otherwise>
-				<c:set var="status">下架中</c:set>。
-				</c:otherwise>
-				</c:choose>
-				
+			<fieldset  style="margin:0;">
 				<h1 class="pre">Previous Product</h1>
 				<div class="pre">
 					<img width='250' height='200'
@@ -502,76 +406,33 @@ function readURL(input){
 				<h2>編碼      :  ${previousbean.product_id}</h2>
 				<h2>名稱      :  ${previousbean.name}</h2>
 				<h2>種類      :  ${previousbean.categoriesbean.categorybean.name} / ${previousbean.categoriesbean.name}</h2>
-				<h4>單位      :  ${previousbean.unit_size}</h4>
-				<h4>顏色      : ${previousbean.color}</h4>
-				<h4>價格      : ${previousbean.price}</h4>
-				<h4>庫存      : ${previousbean.stock}</h4>
-				<h4>狀態      : ${status}</h4>
-				<h4>路徑      : ..${previousbean.productPictureOnePath}</h4>
-				<h4>路徑      : ..${previousbean.productPictureTwoPath}</h4>
-				<h4>路徑      : ..${previousbean.productPictureThreePath}</h4>
-<%-- 				当前WEB应用的物理路径：<%=application.getRealPath("/")%><BR> --%>
-<%-- 当前你求请的JSP文件的物理路径：<%=application.getRealPath(request.getRequestURI())%><BR> --%>
+				<h3>單位      :  ${previousbean.unit_size}</h3>
+				<h3>顏色      : ${previousbean.color}</h3>
+				<h3>價格      : ${previousbean.price}</h3>
+				<h3>庫存      : ${previousbean.stock}</h3>
+				<h3>狀態      : ${status}</h3>
 
 					<div class="pre">
-					<img width='250' height='200'
-						src="..${previousbean.productPictureOnePath}" />
-					<img width='250' height='200'
-						src="..${previousbean.productPictureTwoPath}" />
-					<img width='250' height='200'
-						src="..${previousbean.productPictureThreePath}" />
-
-						
-						
-						
-						
-						
-<!-- 						src="../product_pathImage/Users/icookImages/123_1.JPG" /> -->
+					<img src="..${previousbean.productPictureOnePath}" />
+					<img src="..${previousbean.productPictureTwoPath}" />
+					<img src="..${previousbean.productPictureThreePath}" />
 				</div >
 				</div>
-				
+				<c:choose>
+				<c:when test="${previousbean.status==1}">
+				 <c:set var="status">上架中</c:set>。
+				</c:when>
+				<c:otherwise>
+				<c:set var="status">下架中</c:set>。
+				</c:otherwise>
+				</c:choose>
 				<div class="pre">
 					<p>${previousbean.description}</p>
 				</div>
 			</fieldset>
 		</div>
 	</div>
-            <footer class="footer">
-                <div class="container-fluid">
-                    <nav>
-                        <ul class="footer-menu">
-                            <li>
-                                <a href="#">
-                                    Home
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Company
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Portfolio
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Blog
-                                </a>
-                            </li>
-                        </ul>，
-                        <p class="copyright text-center">
-                            ©
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script>
-                            <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
-                        </p>
-                    </nav>
-                </div>
-                
-            </footer>
+           
         </div>
 		</div>
 		
@@ -595,12 +456,8 @@ function readURL(input){
 <script src="${pageContext.request.contextPath}/backStage/assets/js/core/bootstrap.min.js" type="text/javascript"></script>
 <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
 <script src="${pageContext.request.contextPath}/backStage/assets/js/plugins/bootstrap-switch.js"></script>
-<!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 <!--  Chartist Plugin  -->
 <script src="${pageContext.request.contextPath}/backStage/assets/js/plugins/chartist.min.js"></script>
-<!--  Notifications Plugin    -->
-<script src="${pageContext.request.contextPath}/backStage/assets/js/plugins/bootstrap-notify.js"></script>
 <!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
 <script src="${pageContext.request.contextPath}/backStage/assets/js/light-bootstrap-dashboard.js?v=2.0.0 " type="text/javascript"></script>
 <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->

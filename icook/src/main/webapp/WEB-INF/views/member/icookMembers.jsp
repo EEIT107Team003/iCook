@@ -62,6 +62,81 @@
 				$("#trackbutton").html(txt);
 		}
 	
+// 		$("#user_myrecipe").click(function(){
+// 			$("#tag_myRecipe").css({"border-bottom": "3px solid green"});
+// 			$("#tag_myCollectRecipe").css({"border-bottom": "none"});
+// 			$("#tag_myTrack").css({"border-bottom": "none"});
+// 			$("#tag_myForum").css({"border-bottom": "none"});
+// 			$.ajax({
+// 				url : "${pageContext.request.contextPath}/members/page/myrecipe",
+// 				type : "POST",
+// 				dataType : "json",
+// 				contentType : "application/json",
+// 				data:{member_id:$("#memberId").val()},
+// 				async : true,
+// 				success : function(data) {
+// 					var names = JSON.parse(JSON.stringify(data).split(","));
+// 					var txt = "";
+// 					console.log(data);
+// 					for (i in names) {
+// 						txt+=
+// 							"<div class=contain_mytrack>"
+// 									+"<div width=100%>"
+// 										+"<a href=${pageContext.request.contextPath}/forum/pick?harticle_id="+names[i].harticle_id+"&article_id="+names[i].article_id+" class=contain_mytrack_title>"+"["+names[i].category+"] "+names[i].title+"</a>"
+// 									+"</div>"	
+// 								+"<div class=contain_myforum_time>發文時間: "+formatDate(names[i].editTime)+"</div>"
+// 								+"</div>"
+// 								+"<hr style=clear: both;border-style: dashed;>"
+// 							+"</div>"
+// 						console.log(names[i].title);
+// 					};
+// 					$("#forum_num").html(names.length)
+// 					$("#user_contain").html(txt);
+// 				},
+// 				error : function(data, textStatus, errorThrown) {
+// 					console.log("error: "+data);
+// 				},
+// 			});
+// 		});
+		$("#user_myrecipe").click(function(){
+			$("#tag_myRecipe").css({"border-bottom": "3px solid green"});
+			$("#tag_myCollectRecipe").css({"border-bottom": "none"});
+			$("#tag_myTrack").css({"border-bottom": "none"});
+			$("#tag_myForum").css({"border-bottom": "none"});
+			$.ajax({
+				url : "${pageContext.request.contextPath}/members/page/myrecipe",
+				type : "POST",
+				dataType : "json",
+				data:{member_id:$("#memberId").val()},
+				async : true,
+				success : function(data) {
+					var names = JSON.parse(JSON.stringify(data).split(","));
+					var txt = "";
+					console.log(data);
+					
+					for (i in names) {
+						txt+=
+							"<div class=contain_mytrack>"
+								+"<div width=100%>"
+								+"<div>"
+									+"<img class=contain_mytrack_photo src=<c:url value='/getRecipePicture/"+names[i].pk_recipe_id+"' /> />"
+								+"</div>"
+									+"<a href='${pageContext.request.contextPath}/recipe/recipeSuccessPage/two/"+names[i].pk_recipe_id+"' class='contain_mytrack_title'>"+names[i].recipe_name+"</a>"
+								+"</div>"
+								+"<div class=contain_mytrack_summary>食譜簡介："+names[i].recipe_summary+"</div>"
+								+"</div>"
+// 								+"<hr style=clear: both;border-style: dashed;>"
+							+"</div>";
+							
+						console.log(names[i].recipe_name+"  dsddsdsdsdsdsds");
+					};
+					$("#user_contain").html(txt);
+				},
+				error : function(data, textStatus, errorThrown) {
+					console.log("error: "+data);
+				},
+			});
+		});
 		$("#user_myforum").click(function(){
 			$("#tag_myRecipe").css({"border-bottom": "none"});
 			$("#tag_myCollectRecipe").css({"border-bottom": "none"});
@@ -84,7 +159,7 @@
 									+"</div>"	
 								+"<div class=contain_myforum_time>發文時間: "+formatDate(names[i].editTime)+"</div>"
 								+"</div>"
-								+"<hr style=clear: both;border-style: dashed;>"
+// 								+"<hr style=clear: both;border-style: dashed;>"
 							+"</div>"
 						console.log(names[i].title);
 					};
@@ -322,6 +397,14 @@ section {
 	<div class="main">
 		<!--==============================header=================================-->
 		<header>
+			<sec:authorize access="isAuthenticated()">
+				<div class="btn btn-success" onclick="javascript:location.href='${pageContext.request.contextPath}/user'" style="float:right;margin-right:50px;padding-left:35px;width: 400px;background-color: w">
+					<img id="member_photo_image"
+						 style="float:left;width:100px;height: 100px;border-radius: 50%; border: 1px solid black;background-color: white;"
+						 src="<c:url value='/getMemberPhoto/${user.member_id}' />" />
+					<div style=" font-size:60px;float: left;margin-left: 30px;">${user.nickname}</div>
+				</div>
+			</sec:authorize>
 			<div class="zerogrid">
 			<!-- 修改會員資料-----------------------------------------------------------------------	 -->
 				<div class="col-full">
@@ -407,7 +490,7 @@ section {
 	</div>
 		<!--=======content================================-->
 		<div style="text-align: center;">
-			<div class="member_info" style="margin-left:300px">
+			<div class="member_info" style="margin-left:380px">
 				<div style="text-align: center;" >
 					<label>
 						<img class="profile-image img-responsive pull-left member_photo"
@@ -430,7 +513,7 @@ section {
 		</div>
 
 		<div style="clear: both">
-		<div style="margin-left: 300px">
+		<div style="margin-left: 380px">
 			<div id="trackbutton" style="margin-top: 5px"></div>
 			<div style="display: none">
 				<form method="POST"

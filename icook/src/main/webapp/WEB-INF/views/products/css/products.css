@@ -3,10 +3,11 @@
 	font-size: 10px;
 }
 .left{
-background-color: #CCEEFF;
+background-color: #DDDDDD;
 border: 1px solid 	#DDDDDD;
 border-radius: 15px;
 padding-top:10px;	
+margin:30px;
 width: 20%;
 float: left;
 }
@@ -21,7 +22,7 @@ width: 75%;
 float: right;
 }
 .col-2{
-margin-top:20px;
+margin-top:5px;
 }
 .col-2 img{
 margin-top:15px;
@@ -59,8 +60,9 @@ font-size: 18px;
 background-color: #CCEEFF;
 border: 1px solid 	#DDDDDD;
 border-radius: 15px;
-height:40ch;
+height:45ch;
 width:28ch;
+margin-bottom:10px;
 }
 .mainDiv img{
 margin-left:3ch;
@@ -146,6 +148,9 @@ transition: all .2s ease-in-out;
 margin-left:2px;;
 
 }
+.bg-light{
+background-color: #CCEEFF;
+}
 
 .list-type1 a:hover{
 background: #d6d4d4;
@@ -193,7 +198,7 @@ width:200px;
 line-height:40px;
 text-align:center;
 font-style:oblique;
-
+margin-left:22px;
 }
 
 .mh6 span{
@@ -208,7 +213,7 @@ content: '';
 position: absolute;
 top: 0;
 left: 0;
-width: 100%;
+width: 90%;
 height: 100%;
 z-index: 1;
 opacity: 0;

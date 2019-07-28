@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import recipe.dao.IRecipeIngredientsDao;
-//import recipe.model.RecipeBean;
+import recipe.model.RecipeBean;
 import recipe.model.RecipeIngredientsBean;
 
 @Repository
@@ -33,15 +33,15 @@ public class RecipeIngredientsDaoImpl implements IRecipeIngredientsDao {
 		return ingredientsBeanList;
 	}
 
-//	@Override
-//	public void deleteRecipeIngredientsByFk(Integer fk) {
-//		// 刪除多筆資料
-//		Session session = sessionFactory.getCurrentSession();
-//		if (fk != null) {
-//			String hql = "DELETE FROM RecipeIngredientsBean WHERE fk_recipe_id = :fk";
-//			session.createQuery(hql).setParameter("fk", fk).executeUpdate();
-//		}
-//	}
+	@Override
+	public void deleteRecipeIngredientsByFk(Integer fk) {
+		// 刪除多筆資料
+		Session session = sessionFactory.getCurrentSession();
+		if (fk != null) {
+			String hql = "DELETE FROM RecipeIngredientsBean WHERE fk_recipe_id = :fk";
+			session.createQuery(hql).setParameter("fk", fk).executeUpdate();
+		}
+	}
 
 	@Override
 	public void insertRecipeIngredients(RecipeIngredientsBean recipeIngredientsBean) {

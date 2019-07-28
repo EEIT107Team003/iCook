@@ -60,11 +60,6 @@ public class ProductBean implements Serializable {
 	private String productPictureOnePath;
 	private String productPictureTwoPath;
 	private String productPictureThreePath;
-	@JsonBackReference(value="COproductBean")
-	@OneToMany(mappedBy = "COproductBean",orphanRemoval = true ,fetch = FetchType.EAGER )
-	@Cascade(value= {org.hibernate.annotations.CascadeType.SAVE_UPDATE,
-			         org.hibernate.annotations.CascadeType.DELETE})
-	private Set<CollectiontBean> collections = new HashSet<CollectiontBean>(0);
 	@JsonBackReference(value="productBean")
 	@OneToMany(fetch=FetchType.EAGER, mappedBy = "productBean"
 	        , cascade = CascadeType.ALL)
@@ -89,11 +84,6 @@ public class ProductBean implements Serializable {
 	@XmlTransient
 	@Transient
 	private MultipartFile productImage;
-	
-	@JsonIgnore
-	@XmlTransient
-	@Transient
-	private MultipartFile productPictureOne;
 	
 	@JsonIgnore
 	@XmlTransient
@@ -125,13 +115,6 @@ public class ProductBean implements Serializable {
 		this.product_id = product_id;
 	}
 
-	public Set<CollectiontBean> getCollections() {
-		return collections;
-	}
-
-	public void setCollections(Set<CollectiontBean> collections) {
-		this.collections = collections;
-	}
 
 	public Blob getImage() {
 		return image;
@@ -229,13 +212,6 @@ public class ProductBean implements Serializable {
 		this.productPictureOnePath = productPictureOnePath;
 	}
 
-	public MultipartFile getProductPictureOne() {
-		return productPictureOne;
-	}
-
-	public void setProductPictureOne(MultipartFile productPictureOne) {
-		this.productPictureOne = productPictureOne;
-	}
 
 	public String getProductPictureTwoPath() {
 		return productPictureTwoPath;

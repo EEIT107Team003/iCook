@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
@@ -62,6 +64,15 @@ th, td {
 	<c:out value="登入者${LoginOK.nickname}"></c:out>
 	<!--==============================header=================================-->
 	<header>
+	<sec:authorize access="isAuthenticated()">
+<!-- 		<div class="btn btn-primary" style="float:right;height: 60px;margin-right:50px;padding-left:50px;padding-right:30px;background-color:#228B22;border-radius: 20%"> -->
+		<div class="btn btn-success" onclick="javascript:location.href='user'" style="float:right;margin-right:50px;padding-left:35px;width: 400px">
+			<img id="member_photo_image"
+				 style="float:left;width:100px;height: 100px;border-radius: 50%; border: 1px solid black"
+				 src="<c:url value='/getMemberPhoto/${LoginOK.member_id}' />" />
+			<div style=" font-size:60px;float: left;margin-left: 30px;">${LoginOK.nickname}</div>
+		</div>
+	</sec:authorize>
 		<div class="zerogrid">
 			<div class="col-full">
 				<div class="wrap-col">

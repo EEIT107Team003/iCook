@@ -268,7 +268,7 @@ public class OrderController {
 //		msg.setSubject("我是主題");
 		Integer ordersuccessNo=ob.getOrderNo();
 //		String content2="購物成功!下單單號為"+ordersuccessNo;
-		String content="訂單編號"+ordersuccessNo+"下單成功!\r\n\n"+"享食天堂感謝您!\n\n\n<a href=\"localhost:8080/icook/\">";
+		String content="訂單編號"+ordersuccessNo+"下單成功!\r\n\n"+"享食天堂感謝您!\n\n\n";
 //		<img src=\"images/icooklogo.jpg\" alt=\"icooklogo\"></a>
 //		String content="\"<span style='color:black'>訂單編號\"+"+ordersuccessNo+"\"下單成功!</span><br>\"+\r\n" + 
 //				"				'試試使用paypal付款!<br><form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_top\"><br>'+\r\n" + 

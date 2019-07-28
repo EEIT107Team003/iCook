@@ -139,6 +139,12 @@ public class CartController {
 	// 選擇了EZ要先填資料
 	@RequestMapping("/icookezship")
 	public String icookezship(Model model, HttpSession session) {
+		
+		MemberBean mb;
+		if (!mcontroller.getPrincipal().equals("anonymousUser")) {
+			mb = mservice.selectByUsername(mcontroller.getPrincipal());
+			model.addAttribute("LoginOK", mb);
+		}
 		return "icookezship";
 	}
 
