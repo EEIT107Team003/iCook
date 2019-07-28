@@ -125,9 +125,13 @@ public class RecipeInsertController {
 			recipeUnit.setExplain(recipeUnitForm.getExplain2().get(i));
 			// recipeUnit.setRecipeBeanUnit(recipeBean);// 加入食譜FK鍵索引
 			recipeUnit.setFk_recipe_id(recipeBean.getPk_recipe_id());// 加入食譜FK鍵索引
+
+			// 開始處理圖片檔案-start
 			MultipartFile imageFile2 = recipeUnitForm.getUnit_image2().get(i);
 			// 建立Blob物件，交由 Hibernate 寫入資料庫
 			if (imageFile2 != null && !imageFile2.isEmpty()) {
+				String oringinalFilename2 = imageFile2.getOriginalFilename();
+				recipeUnit.setFile_name(oringinalFilename2);
 				try {
 					byte[] byteArray2 = imageFile2.getBytes();
 					Blob unit_image = new SerialBlob(byteArray2);
@@ -137,6 +141,8 @@ public class RecipeInsertController {
 					throw new RuntimeException("圖片上傳發生異常：" + e);
 				}
 			}
+			// 開始處理圖片檔案-end
+
 			recipeUnitService.insertRecipeUnit(recipeUnit);
 			recipeUnit = null;
 		}

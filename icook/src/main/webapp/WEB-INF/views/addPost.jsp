@@ -59,10 +59,10 @@
 	href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
 
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/ckeditor/ckeditor.js">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/article/ckeditor/ckeditor.js"></script>
+
 	
-</script>
+
 </head>
 <body>
 

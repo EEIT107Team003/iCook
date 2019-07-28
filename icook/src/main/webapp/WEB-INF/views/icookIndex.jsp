@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant-TW">
 <head>
 <title>Home</title>
 <meta charset="utf-8">
@@ -137,9 +136,19 @@
 										<ul>
 											<li><a href="icookContact">聯繫我們</a></li>
 										</ul></li>
-									<li><a href="recipe/recipeIndex">查看食譜</a> <!--<ul>--> <!--<li><a href="#">cat1</a></li>-->
-										<!--<li><a href="#">cat2</a></li>--> <!--<li><a href="#">cat3</a></li>-->
-										<!--</ul>--></li>
+									<li>
+										<!--<a href="recipe/recipeIndex">查看食譜</a>-->
+										<a href="#">食譜專區</a>
+										<ul>
+											<li>
+											<a href="<c:url value='/user/recipe/recipeInsert' />">新增食譜</a>
+											</li>
+											<li>
+											<a href="<c:url value='/recipe/recipeSelect' />">查看食譜</a>
+											</li>
+											<!--<li><a href="#">cat3</a></li>-->
+										</ul>
+									</li>
 									<li><a href="icookLife">生活誌</a></li>
 									<li><a href="forum/overview">討論區</a></li>
 									<li><a href="A_articlemainpage">文章區</a></li>
@@ -276,122 +285,57 @@
 						</div>
 					</div>
 				</div>
+				<div>
+					<form method="POST"
+						action="${pageContext.request.contextPath}/recipe/search2">
+						<select name="searchTwo">
+							<option value="name">以食譜名稱搜尋</option>
+							<option value="author">以作者名稱搜尋</option>
+						</select> <input type="text" name="recipeSearch2" /> <input type="submit"
+							value="查詢" />
+					</form>
+				</div>
 				<div class="col-full">
 					<div class="hor_separator"></div>
 				</div>
+
 				<div class="row">
+					<!--這是第一列-->
+					<!--<img src="images/p1.jpg" alt="Stephen Curry" title="Stephen Curry" width="400">-->
 					<div class="col-full">
 						<div class="wrap-col">
 							<div class="car_wrap">
-								<h2>特選食譜</h2>
+								<h2>臺式料理</h2>
 
 								<div style="visibility: hidden">區塊中的內容</div>
 								<div style="visibility: hidden">區塊中的內容</div>
 								<a href="#" class="prev"></a><a href="#" class="next"></a>
 								<ul class="carousel1">
-									<li><div>
-											<img src="images/seafood.jpg" alt="">
-											<div class="col1 upp">
-												<a href="#">爆炒海瓜子</a>
-											</div>
-											<span> Dorem ipsum dolor amet consectetur</span>
-											<!-- 											<div class="price">45$</div> -->
-										</div></li>
-									<li><div>
-											<img src="images/noodle.jpg" alt="">
-											<div class="col1 upp">
-												<a href="#">蚵仔麵線</a>
-											</div>
-											<span> Dorem ipsum dolor amet consectetur</span>
-											<!-- 											<div class="price">45$</div> -->
-										</div></li>
-									<li><div>
-											<img src="images/Omlette.jpg" alt="">
-											<div class="col1 upp">
-												<a href="#">蛋包飯</a>
-											</div>
-											<span> Dorem ipsum dolor amet consectetur</span>
-											<!-- 											<div class="price">45$</div> -->
-										</div></li>
-									<li><div>
-											<img src="images/meat.jpg" alt="">
-											<div class="col1 upp">
-												<a href="#">梅干扣肉</a>
-											</div>
-											<span> Dorem ipsum dolor amet consectetur</span>
-											<!-- 											<div class="price">45$</div> -->
-										</div></li>
-									<!-- 									<li><div> -->
-									<!-- 											<img src="images/duck.jpg" alt=""> -->
-									<!-- 											<div class="col1 upp"> -->
-									<!-- 												<a href="#">Lorem ipsum doamet consectet kim</a> -->
-									<!-- 											</div> -->
-									<!-- 											<span> Dorem ipsum dolor amet consectetur</span> -->
-									<!-- 											<div class="price">45$</div> -->
-									<!-- 										</div></li> -->
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-full">
-					<div class="hor_separator"></div>
-				</div>
-				<div class="row">
-					<div class="col-full">
-						<div class="wrap-col">
-							<div class="car_wrap">
-								<h2>特選食譜</h2>
-
-								<div style="visibility: hidden">區塊中的內容</div>
-								<div style="visibility: hidden">區塊中的內容</div>
-								<a href="#" class="prev"></a><a href="#" class="next"></a>
-								<ul class="carousel1">
-									<li><div>
-											<img src="images/seafood.jpg" alt="">
-											<div class="col1 upp">
-												<a href="#">爆炒海瓜子</a>
-											</div>
-											<span>海瓜子洗淨。 蒜頭切片、辣椒切段、蔥切斜段、薑絲準備好。
-												油兩大匙爆香鍋，加入蒜頭、薑絲.....</span>
-											<!-- 											<div class="price">45$</div> -->
-										</div></li>
-									<li><div>
-											<img src="images/noodle.jpg" alt="">
-											<div class="col1 upp">
-												<a href="#">蚵仔麵線</a>
-											</div>
-											<span>備一大鍋放水+全部食材+酌料1→一起煮至紅麵線軟爛
-
-
-												再加入食材2一起拌勻煮滾，再用酌料1的太白粉水勾芡 起鍋前倒些香油…</span>
-											<!-- 											<div class="price">45$</div> -->
-										</div></li>
-									<li><div>
-											<img src="images/Omlette.jpg" alt="">
-											<div class="col1 upp">
-												<a href="#">蛋包飯</a>
-											</div>
-											<span> 蛋包飯長的可愛又好吃, 一直都是很受歡迎的料理之一! 蛋包飯要包得好看, 一定要快! 狠!
-												準! ...</span>
-											<!-- 											<div class="price">45$</div> -->
-										</div></li>
-									<li><div>
-											<img src="images/meat.jpg" alt="">
-											<div class="col1 upp">
-												<a href="#">梅干扣肉</a>
-											</div>
-											<span>梅乾菜洗淨切碎，蒜末、辣椒末用剛剛煎肉的油下去炒香油不夠可以加點。拌炒出香氣，加醬油、冰糖、...</span>
-											<!-- 											<div class="price">45$</div> -->
-										</div></li>
-									<!-- 									<li><div> -->
-									<!-- 											<img src="images/duck.jpg" alt=""> -->
-									<!-- 											<div class="col1 upp"> -->
-									<!-- 												<a href="#">Lorem ipsum doamet consectet kim</a> -->
-									<!-- 											</div> -->
-									<!-- 											<span> Dorem ipsum dolor amet consectetur</span> -->
-									<!-- 											<div class="price">45$</div> -->
-									<!-- 										</div></li> -->
+									<!--從這裡加入foreach迴圈-1-->
+									<!--recipeBeanList-->
+									<c:forEach var="recipe" items="${recipeBeanList}"
+										varStatus="varStatus">
+										<c:set var="count1" value="${0}" />
+										<c:if test="${recipe.recipe_item == 'taiwan'}">
+											<c:set var="count1" value="${count1 + 1}" />
+											<c:if test="${count1 <= 3}">
+												<li>
+													<div>
+														<!--<img src="images/seafood.jpg" alt="">-->
+														<!--<img src="<c:url value='/getRecipePicture/${recipe.pk_recipe_id}' />" width="200" />-->
+														<img
+															src="<c:url value='/getRecipePicture/${recipe.pk_recipe_id}' />" />
+														<div class="col1 upp">
+															<a
+																href="<c:url value='/recipe/recipeSuccessPage/two/${recipe.pk_recipe_id}' />">${recipe.recipe_name}</a>
+														</div>
+														<span>${recipe.recipe_summary}</span>
+														<!--<span>${recipe.recipe_summary}食譜簡介</span>-->
+													</div>
+												</li>
+											</c:if>
+										</c:if>
+									</c:forEach>
 								</ul>
 							</div>
 						</div>
@@ -399,7 +343,93 @@
 				</div>
 
 				<div class="col-full">
-					<!-- 					<div class="hor_separator"></div> -->
+					<div class="hor_separator"></div>
+				</div>
+
+				<div class="row">
+					<!--這是第二列-->
+					<div class="col-full">
+						<div class="wrap-col">
+							<div class="car_wrap">
+								<h2>日式料理</h2>
+								<div style="visibility: hidden">區塊中的內容</div>
+								<div style="visibility: hidden">區塊中的內容</div>
+								<a href="#" class="prev"></a> <a href="#" class="next"></a>
+								<ul class="carousel1">
+									<!--從這裡加入foreach迴圈-2-->
+									<c:forEach var="recipe" items="${recipeBeanList}"
+										varStatus="varStatus">
+										<c:set var="count1" value="${0}" />
+										<c:if test="${recipe.recipe_item == 'japan'}">
+											<c:set var="count1" value="${count1 + 1}" />
+											<c:if test="${count1 <= 3}">
+												<li>
+													<div>
+														<!--<img src="images/seafood.jpg" alt="">-->
+														<!--<img src="<c:url value='/getRecipePicture/${recipe.pk_recipe_id}' />" width="200" />-->
+														<img
+															src="<c:url value='/getRecipePicture/${recipe.pk_recipe_id}' />" />
+														<div class="col1 upp">
+															<a
+																href="<c:url value='/recipe/recipeSuccessPage/two/${recipe.pk_recipe_id}' />">${recipe.recipe_name}</a>
+														</div>
+														<span>${recipe.recipe_summary}</span>
+														<!--<span>${recipe.recipe_summary}食譜簡介</span>-->
+													</div>
+												</li>
+											</c:if>
+										</c:if>
+									</c:forEach>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-full">
+					<div class="hor_separator"></div>
+				</div>
+
+				<div class="row">
+					<!--這是第三列-->
+					<!--<img src="images/p1.jpg" alt="Stephen Curry" title="Stephen Curry" width="400">-->
+					<div class="col-full">
+						<div class="wrap-col">
+							<div class="car_wrap">
+								<h2>泰式料理</h2>
+
+								<div style="visibility: hidden">區塊中的內容</div>
+								<div style="visibility: hidden">區塊中的內容</div>
+								<a href="#" class="prev"></a><a href="#" class="next"></a>
+								<ul class="carousel1">
+									<!--從這裡加入foreach迴圈-3-->
+									<c:forEach var="recipe" items="${recipeBeanList}"
+										varStatus="varStatus">
+										<c:set var="count1" value="${0}" />
+										<c:if test="${recipe.recipe_item == 'thailand'}">
+											<c:set var="count1" value="${count1 + 1}" />
+											<c:if test="${count1 <= 3}">
+												<li>
+													<div>
+														<!--<img src="images/seafood.jpg" alt="">-->
+														<!--<img src="<c:url value='/getRecipePicture/${recipe.pk_recipe_id}' />" width="200" />-->
+														<img
+															src="<c:url value='/getRecipePicture/${recipe.pk_recipe_id}' />" />
+														<div class="col1 upp">
+															<a
+																href="<c:url value='/recipe/recipeSuccessPage/two/${recipe.pk_recipe_id}' />">${recipe.recipe_name}</a>
+														</div>
+														<span>${recipe.recipe_summary}</span>
+														<!--<span>${recipe.recipe_summary}食譜簡介</span>-->
+													</div>
+												</li>
+											</c:if>
+										</c:if>
+									</c:forEach>
+								</ul>
+							</div>
+						</div>
+					</div>
 				</div>
 
 				<div class='subscribe'>
@@ -443,6 +473,7 @@
 
 
 			</div>
+		</div>
 		</div>
 	</div>
 

@@ -207,8 +207,6 @@
 										value="${Article.article_status}">
 										<option value="1">公開</option>
 										<option value="2">隱藏</option>
-										<option value="3">不開放留言</option>
-										<option value="4">限定會員</option>
 									</form:select>
 								</div>
 								<div class="form-group">

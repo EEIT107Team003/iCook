@@ -26,19 +26,21 @@
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	crossorigin="anonymous"></script>
 </head>
-<body bgcolor="#ffffce">
+<!--<body bgcolor="#ffffce">-->
+<body>
 	<div align="center">
-		<h1>recipeSelect</h1>
+	<!--<h1>recipeSelect</h1>-->
 		<h2>查詢資料</h2>
 		<div>
-			<form method="POST"
-				action="${pageContext.request.contextPath}/recipe/search">
-				搜尋：<input type="text" name="recipeSearch" /> <input type="submit"
-					value="查詢" />
+			<form method="POST" action="${pageContext.request.contextPath}/recipe/search">
+				搜尋：
+				<input type="text" name="recipeSearch" />
+				<input type="submit" value="查詢" />
 			</form>
 		</div>
 		<br>
-		<table border="1" width="50%" bgcolor="#ffffb9">
+		<!--<table border="1" width="50%" bgcolor="#ffffb9">-->
+		<table width="50%">
 			<!--【recipeBeans】來自於public String updateOneGet(Model model)-->
 			<thead>
 				<tr align="center">
@@ -58,8 +60,10 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		<br> <a href="<c:url value='/recipe/recipeIndex' />">回食譜首頁</a> <br>
-		<a href="<c:url value='/home' />">回首頁</a> <br>
+		<!--<br>-->
+		<%--<a href="<c:url value='/recipe/recipeIndex' />">回食譜首頁</a>--%>
+		<br>
+		<a href="<c:url value='/home' />">回首頁</a>
 	</div>
 </body>
 </html>

@@ -16,14 +16,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.web.icook.model.MemberBean;
 import com.web.icook.service.MemberService;
 
+import recipe.model.RecipeBean;
+import recipe.service.IRecipeService;
 
 @Controller
 public class Homecontroller {
 	@Autowired
-	MemberService service; 
+	MemberService service;
 	@Autowired
 	ServletContext context;
-	@RequestMapping(value = { "backStage"})
+
+	@Autowired
+	private IRecipeService recipeService = null;
+
+	@RequestMapping(value = { "backStage" })
 	public String backStage(Model model) {
 		return "backStage/examples/dashboard";
 	}
@@ -32,10 +38,13 @@ public class Homecontroller {
 	// 首頁
 	@RequestMapping(value = { "/", "home" })
 	public String home(Model model) {
-		if (getPrincipal().equals("anonymousUser")) {
-			MemberBean bean=service.selectByUsername(getPrincipal());
+
+		if (!getPrincipal().equals("anonymousUser")) {
+			MemberBean bean = service.selectByUsername(getPrincipal());
 			model.addAttribute("bean", bean);
 		}
+		List<RecipeBean> recipeBeanList = recipeService.getAllRecipe();
+		model.addAttribute("recipeBeanList", recipeBeanList);
 		return "icookIndex";
 	}
 
@@ -52,24 +61,21 @@ public class Homecontroller {
 		}
 		return userName;
 	}
-	
+
 	// --------------------------------------------------------------------------
 	// AJAX測試
 	@ResponseBody
 	@RequestMapping(value = "/category", method = RequestMethod.GET)
-	public  List<MemberBean> categorySelect () {
+	public List<MemberBean> categorySelect() {
 		System.out.println("======CategorySelect IN==============");
-		List<MemberBean> bean=service.selectAll();
+		List<MemberBean> bean = service.selectAll();
 //	    	String nvrsjson = JSONArray.toJSONString(bean);
-		for(MemberBean bb : bean) {
-			System.out.println("name : "+bb.getNickname()+" 55555555555555555555555555");
+		for (MemberBean bb : bean) {
+			System.out.println("name : " + bb.getNickname() + " 55555555555555555555555555");
 		}
 		System.out.println("======CategorySelect OUT=============");
 		return bean;
 	}
-	//--------------------------------------------------------------------------
-	
-	
-	
-	
+	// --------------------------------------------------------------------------
+
 }
