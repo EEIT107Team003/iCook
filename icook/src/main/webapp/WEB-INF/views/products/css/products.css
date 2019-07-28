@@ -3,10 +3,11 @@
 	font-size: 10px;
 }
 .left{
-background-color: #CCEEFF;
+background-color: #DDDDDD;
 border: 1px solid 	#DDDDDD;
 border-radius: 15px;
 padding-top:10px;	
+margin:30px;
 width: 20%;
 float: left;
 }
@@ -21,7 +22,7 @@ width: 75%;
 float: right;
 }
 .col-2{
-margin-top:20px;
+margin-top:5px;
 }
 .col-2 img{
 margin-top:15px;
@@ -61,6 +62,7 @@ border: 1px solid 	#DDDDDD;
 border-radius: 15px;
 height:40ch;
 width:28ch;
+margin-bottom:10px;
 }
 .mainDiv img{
 margin-left:3ch;

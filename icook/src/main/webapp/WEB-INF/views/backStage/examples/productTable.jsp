@@ -426,8 +426,8 @@ float:right;
                                     <table class="table table-hover table-striped">
                                         <thead>
                                             <th>ID</th>
+                                            <th>Image</th>
                                             <th>Name</th>
-                                            <th>Picture</th>
                                             <th>Category</th>
                                             <th>Price</th>
                                             <th>status</th>

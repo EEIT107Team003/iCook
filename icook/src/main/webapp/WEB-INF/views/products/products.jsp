@@ -79,7 +79,7 @@
 	transition: opacity 1s linear;
 	width: 40cm;
 	height: 500px;
-	border-radius: 20px;
+	border-radius: 40px;
 }
 
 /* ============================================================= */
@@ -353,7 +353,7 @@
 							for (i in names) {
 //	 				             console.log(i + ' :' + names[i]	);
 					             txt+=
-					            	  "<div class='col-sm-6 col-md-3' style='width: 200px; height: 250px;margin-bottom:20px'>"
+					            	 "<div class='col-sm-6 col-md-3' style='width: 200px; height: 250px;margin-bottom:100px;margin-right:70px'>"
 						             +"<div class='mainDiv'>"
 						             +"<img width='100' height='150'src=   \" <c:url value=  '/getProductPicture/"+names[i].product_id+"'   /> \"     />"
 						             +"<div class=''  height='100' style='font-size: 8px; ''><p>"
@@ -383,7 +383,7 @@
 							for (i in names) {
 //	 				             console.log(i + ' :' + names[i]	);
 					             txt+=
-					            	  "<div class='col-sm-6 col-md-3' style='width: 200px; height: 250px;margin-bottom:80px;margin-right:50px'>"
+					            	  "<div class='col-sm-6 col-md-3' style='width: 200px; height: 250px;margin-bottom:100px;margin-right:70px'>"
 						             +"<div class='mainDiv'>"
 						             +"<img src=   \" <c:url value=  '/getProductPicture/"+names[i].product_id+"'   /> \"     />"
 						             +"<div class='mainText'  style='font-size: 8px; ''><p>"
