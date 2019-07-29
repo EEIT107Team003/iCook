@@ -4,7 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 <head>
@@ -114,14 +115,16 @@
 	<div class="main">
 		<!--==============================header=================================-->
 		<header>
-	<sec:authorize access="isAuthenticated()">
-		<div class="btn btn-success" onclick="javascript:location.href='user'" style="float:right;margin-right:50px;padding-left:35px;width: 400px">
-			<img id="member_photo_image"
-				 style="float:left;width:100px;height: 100px;border-radius: 50%; border: 1px solid black;background-color: white;"
-				 src="<c:url value='/getMemberPhoto/${bean.member_id}' />" />
-			<div style=" font-size:60px;float: left;margin-left: 30px;">${bean.nickname}</div>
-		</div>
-	</sec:authorize>
+			<sec:authorize access="isAuthenticated()">
+				<div class="btn btn-success"
+					onclick="javascript:location.href='user'"
+					style="float: right; margin-right: 50px; padding-left: 35px; width: 400px">
+					<img id="member_photo_image"
+						style="float: left; width: 100px; height: 100px; border-radius: 50%; border: 1px solid black; background-color: white;"
+						src="<c:url value='/getMemberPhoto/${bean.member_id}' />" />
+					<div style="font-size: 60px; float: left; margin-left: 30px;">${bean.nickname}</div>
+				</div>
+			</sec:authorize>
 			<div class="zerogrid" style="clear: both;">
 				<div class="col-full">
 					<div class="wrap-col">
@@ -141,21 +144,18 @@
 										<ul>
 											<li><a href="icookContact">聯繫我們</a></li>
 										</ul></li>
-									<li>
-										<a href="#">食譜專區</a>
+									<li><a href="#">食譜專區</a>
 										<ul>
-											<li>
-											<a href="<c:url value='/user/recipe/recipeInsert' />">新增食譜</a>
+											<li><a
+												href="<c:url value='/user/recipe/recipeInsert' />">新增食譜</a>
 											</li>
-											<li>
-											<a href="<c:url value='/recipe/recipeSelect' />">查看食譜</a>
+											<li><a href="<c:url value='/recipe/recipeSelect' />">查看食譜</a>
 											</li>
 											<!--<li><a href="#">cat3</a></li>-->
-										</ul>
-									</li>
-									<li><a href="icookLife">生活誌</a></li>
+										</ul></li>
+
 									<li><a href="forum/overview">討論區</a></li>
-									<li><a href="A_articlemainpage">文章區</a></li>
+									<li><a href="A_articlemainpage">生活誌</a></li>
 									<li><a href="products">市集</a>
 										<ul>
 											<li><a href="cartPage">購物車</a></li>
@@ -473,7 +473,7 @@
 
 			</div>
 		</div>
-		</div>
+	</div>
 	</div>
 
 	<!--==============================footer=================================-->

@@ -131,9 +131,9 @@
 								<li><a href="recipe/recipeIndex">查看食譜</a> <!--<ul>--> <!--<li><a href="#">cat1</a></li>-->
 									<!--<li><a href="#">cat2</a></li>--> <!--<li><a href="#">cat3</a></li>-->
 									<!--</ul>--></li>
-								<li><a href="icookLife">生活誌</a></li>
+							
 								<li><a href="forum/overview">討論區</a></li>
-								<li><a href="A_articlemainpage">文章區</a></li>
+								<li><a href="A_articlemainpage">生活誌</a></li>
 
 
 								<!-- 									<li><a href="products">市集</a> -->
