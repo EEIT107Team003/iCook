@@ -182,7 +182,6 @@ td {
 </style>
 <script>
 	$(document).ready(function() {
-// 		$("#user_myrecipe").click(function(){
 			$("#tag_myRecipe").css({"border-bottom": "3px solid green"});
 			$("#tag_myCollectRecipe").css({"border-bottom": "none"});
 			$("#tag_myTrack").css({"border-bottom": "none"});
@@ -217,12 +216,7 @@ td {
 					console.log("error: "+data);
 				},
 			});
-// 		});
-		
-		
-		
-		
-		
+
 		$("#member_photo_file").click(function(){
 			$.ajax({
 				url : "${pageContext.request.contextPath}/user/updateMemberPhotos",
