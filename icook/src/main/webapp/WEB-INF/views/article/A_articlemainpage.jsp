@@ -227,7 +227,7 @@
 											<p class="mb-0">
 												<c:choose>
 													<c:when
-														test="${pageContext.request.userPrincipal.name == 'admin@gmail.com'||pageContext.request.userPrincipal.name =='admin' && Article.article_status==2}">
+														test="${pageContext.request.userPrincipal.name == 'admin@gmail.com' && Article.article_status==2}">
 
 														<a
 															href="<spring:url value='/article?article_num=${Article.article_num}' />"
