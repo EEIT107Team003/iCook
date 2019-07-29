@@ -235,15 +235,13 @@ li {
 			<table class="table table-hover" align="center">
 				<thead>
 					<tr>
-						<td colspan='1'>
-						
-						</td>
-						
-						<td colspan='2' >
-							<div style='float:right' class="btn btn-outline-success">
-								<form  method="POST"
+						<td colspan='1'></td>
+
+						<td colspan='2'>
+							<div style='float: right' class="btn btn-outline-success">
+								<form method="POST"
 									action="${pageContext.request.contextPath}/recipe/search">
-									食譜搜尋：<input  type="text" name="recipeSearch" /> <input
+									食譜搜尋：<input type="text" name="recipeSearch" /> <input
 										type="submit" value="查詢" />
 								</form>
 							</div>
@@ -259,11 +257,12 @@ li {
 				</thead>
 				<tbody>
 					<c:forEach var="recipe" items="${recipeBeans}">
-						<tr >
+						<tr>
 							<td>${recipe.recipe_name}</td>
 							<td>${recipe.recipe_summary}</td>
-							<td ><a 
-								href="${pageContext.request.contextPath}/recipe/recipeSelectTwo/${recipe.pk_recipe_id}"><p class="btn btn-outline-success"> 查看完整食譜</p></a></td>
+							<td><a
+								href="${pageContext.request.contextPath}/recipe/recipeSelectTwo/${recipe.pk_recipe_id}"><p
+										class="btn btn-outline-success">查看完整食譜</p></a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

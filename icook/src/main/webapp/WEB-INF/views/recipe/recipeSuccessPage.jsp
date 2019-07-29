@@ -28,7 +28,6 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	crossorigin="anonymous"></script>
-<<<<<<< HEAD
 <!-- 	bootstrap -->
 <!-- fontawesome-free -->
 <!-- <script type="text/javascript" -->
@@ -53,8 +52,6 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap"
 	rel="stylesheet">
-
-
 
 <link rel="icon"
 	href="${pageContext.request.contextPath}/images/favicon.ico">
@@ -109,7 +106,6 @@
 .shrink {
 	margin-left: 20%;
 	margin-right: 20%;
-
 }
 
 td, th {
@@ -139,175 +135,183 @@ li {
 /* 	margin-right: 100px; */
 /* 	margin-left: 260px; */
 /* } */
-
 </style>
 </head>
 
-<body>
-	<div class="main">
-		<!--==============================header=================================-->
-		<header>
+<body style="background-color: #55a237;">
+	<!--<div class="main">-->
+	<!--==============================header=================================-->
+	<header>
+		<div class="zerogrid">
+			<div class="col-full">
+				<div class="wrap-col">
+					<h1>
+						<a style="height: 200px"
+							href="${pageContext.request.contextPath}/index2"><img
+							src="${pageContext.request.contextPath}/images/logo.png"
+							style="width: 200px; right: 200px; border-radius: 50%;"
+							alt="EXTERIOR"></a>
+					</h1>
+
+					<div class="menu_block">
+						<nav>
+							<ul class="sf-menu" style="padding-top: 55px">
+								<li><a href="index2">ICook</a></li>
+								<li><a href="icookAboutUS">關於我們</a>
+									<ul>
+										<li><a href="icookContact">聯繫我們</a></li>
+									</ul></li>
+								<li><a href="recipe/recipeIndex">查看食譜</a> <!--<ul>--> <!--<li><a href="#">cat1</a></li>-->
+									<!--<li><a href="#">cat2</a></li>--> <!--<li><a href="#">cat3</a></li>-->
+									<!--</ul>--></li>
+								<li><a href="icookLife">生活誌</a></li>
+								<li><a href="forum/overview">討論區</a></li>
+								<li><a href="A_articlemainpage">文章區</a>
+									<ul>
+										<li><a href="A_article">test</a></li>
+
+									</ul></li>
+
+
+								<li><a href="products">市集</a>
+									<ul>
+
+
+										<li><a href="cartPage">購物車</a></li>
+									</ul></li>
+
+								<li><a href="user">會員專區 </a>
+									<ul>
+										<sec:authorize access="!isAuthenticated()">
+											<li><a href="icookLogin">會員登入</a></li>
+											<li><a href="icookRegister">會員註冊</a></li>
+										</sec:authorize>
+										<sec:authorize access="isAuthenticated()">
+											<li><a href="index2" data-toggle="modal"
+												data-target="#logout">會員登出</a></li>
+										</sec:authorize>
+										<li><a href="checkOrders">查看訂單</a></li>
+										<li><a href="icookAddRecipe">新增食譜</a></li>
+										<sec:authorize access="hasRole('ADMIN')">
+											<li><a href="productTable">後台</a></li>
+										</sec:authorize>
+									</ul></li>
+							</ul>
+						</nav>
+						<div class="clear"></div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!--=======content================================-->
+	<!-- 確認登出 -->
+
+	<!-- 		<div class="modal fade" id="logout" tabindex="-1" role="dialog" -->
+	<!-- 			aria-labelledby="myModalLabel" aria-hidden="true"> -->
+	<!-- 			<div class="modal-dialog"> -->
+	<!-- 				<div class="modal-content"> -->
+	<!-- 					<div class="modal-header" style="border-bottom: 1px solid;"> -->
+	<!-- 						<h4 class="modal-title" id="myModalLabel" style="float: left">您即將登出享食天堂</h4> -->
+	<!-- 						<button type="button" class="close" data-dismiss="modal" -->
+	<!-- 							aria-hidden="true">×</button> -->
+	<!-- 					</div> -->
+	<!-- 					<div class="modal-body" style="width: 100%"> -->
+	<!-- 						<form method="post" action="perform_logout"> -->
+	<!-- 							<button type="submit">確定登出</button> -->
+	<!-- 						</form> -->
+	<!-- 					</div> -->
+	<!-- 					<div class="modal-footer"> -->
+	<!-- 						<button type="button" class="btn btn-primary" data-dismiss="modal">取消</button> -->
+	<!-- 					</div> -->
+	<!-- 				</div> -->
+	<!-- 			</div> -->
+	<!-- 		</div> -->
+
+<div style="background-color: white; margin-bottom: 50px">
+	<div align="center" class='shrink' style="background-color: white;">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th scope="col"><div style="visibility: hidden">區塊中的內容</div></th>
+					<th scope="col"><div style="visibility: hidden">區塊中的內容</div></th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr align="center" style='background-color: #2FA02F; color: white'>
+					<td style='font-size: 35px;'>食譜名稱</td>
+					<td style='font-size: 35px'>${recipe.recipe_name}</td>
+				</tr>
+				<tr align="center">
+					<%--<td colspan="2">--%>
+					<td style='line-height: 150px'><p style='margin-left: 40px'>食譜封面照片</p></td>
+					<td><img
+						src="<c:url value='/getRecipePicture/${recipe.pk_recipe_id}' />"
+						width="300" /></td>
+				</tr>
+				<tr align="center">
+					<td>烹調時間</td>
+					<td>${recipe.recipe_time}</td>
+				</tr>
+				<tr align="center">
+					<td>食譜份量</td>
+					<td>${recipe.recipe_quantity}</td>
+				</tr>
+				<tr align="center">
+					<td>食譜簡介</td>
+					<td>${recipe.recipe_summary}</td>
+				</tr>
+
+				<tr align="center" style='background-color: #2FA02F; color: white'>
+					<td style='font-size: 35px'>食材名稱</td>
+					<td style='font-size: 35px'>份量</td>
+				</tr>
+
+				<c:forEach var="recipe2" items="${recipeIngredients}">
+					<tr align="center">
+						<td>${recipe2.ingredients}</td>
+						<td>${recipe2.quantity}</td>
+					</tr>
+				</c:forEach>
+				<tr align="center" style='background-color: #2FA02F; color: white''>
+					<td style='font-size: 35px'>步驟圖片</td>
+					<td style='font-size: 35px'>步驟說明</td>
+				</tr>
+				<c:forEach var="recipe3" items="${recipeUnitBean}">
+					<tr align="center">
+						<td><img
+							src="<c:url value='/getRecipePicture2/${recipe.pk_recipe_id}/${recipe3.stepNo}' />"
+							width="300" /></td>
+						<td>${recipe3.explain}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+
+	</div>
+<div style="height: 50px;background-color: white;"></div>
+</div>
+
+
+		<!--==============================footer=================================-->
+
+		<footer >
 			<div class="zerogrid">
 				<div class="col-full">
 					<div class="wrap-col">
-						<h1>
-							<a style="height: 200px"
-								href="${pageContext.request.contextPath}/index2"><img
-								src="${pageContext.request.contextPath}/images/logo.png"
-								style="width: 200px; right: 200px; border-radius: 50%;"
-								alt="EXTERIOR"></a>
-						</h1>
-
-						<div class="menu_block">
-							<nav>
-								<ul class="sf-menu" style="padding-top: 55px">
-									<li><a href="index2">ICook</a></li>
-									<li><a href="icookAboutUS">關於我們</a>
-										<ul>
-											<li><a href="icookContact">聯繫我們</a></li>
-										</ul></li>
-									<li><a href="recipe/recipeIndex">查看食譜</a> <!--<ul>--> <!--<li><a href="#">cat1</a></li>-->
-										<!--<li><a href="#">cat2</a></li>--> <!--<li><a href="#">cat3</a></li>-->
-										<!--</ul>--></li>
-									<li><a href="icookLife">生活誌</a></li>
-									<li><a href="forum/overview">討論區</a></li>
-									<li><a href="A_articlemainpage">文章區</a>
-										<ul>
-											<li><a href="A_article">test</a></li>
-
-										</ul></li>
-
-
-									<li><a href="products">市集</a>
-										<ul>
-
-
-											<li><a href="cartPage">購物車</a></li>
-										</ul></li>
-
-									<li><a href="user">會員專區 </a>
-										<ul>
-											<sec:authorize access="!isAuthenticated()">
-												<li><a href="icookLogin">會員登入</a></li>
-												<li><a href="icookRegister">會員註冊</a></li>
-											</sec:authorize>
-											<sec:authorize access="isAuthenticated()">
-												<li><a href="index2" data-toggle="modal"
-													data-target="#logout">會員登出</a></li>
-											</sec:authorize>
-											<li><a href="checkOrders">查看訂單</a></li>
-											<li><a href="icookAddRecipe">新增食譜</a></li>
-											<sec:authorize access="hasRole('ADMIN')">
-												<li><a href="productTable">後台</a></li>
-											</sec:authorize>
-										</ul></li>
-								</ul>
-							</nav>
-							<div class="clear"></div>
-						</div>
-						<div class="clear"></div>
+						<!-- 						&copy; Copyright &copy; 2013.Company name All rights reserved.<a -->
+						<!-- 							target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a> -->
 					</div>
 				</div>
 			</div>
-		</header>
-		<!--=======content================================-->
-		<!-- 確認登出 -->
-
-		<!-- 		<div class="modal fade" id="logout" tabindex="-1" role="dialog" -->
-		<!-- 			aria-labelledby="myModalLabel" aria-hidden="true"> -->
-		<!-- 			<div class="modal-dialog"> -->
-		<!-- 				<div class="modal-content"> -->
-		<!-- 					<div class="modal-header" style="border-bottom: 1px solid;"> -->
-		<!-- 						<h4 class="modal-title" id="myModalLabel" style="float: left">您即將登出享食天堂</h4> -->
-		<!-- 						<button type="button" class="close" data-dismiss="modal" -->
-		<!-- 							aria-hidden="true">×</button> -->
-		<!-- 					</div> -->
-		<!-- 					<div class="modal-body" style="width: 100%"> -->
-		<!-- 						<form method="post" action="perform_logout"> -->
-		<!-- 							<button type="submit">確定登出</button> -->
-		<!-- 						</form> -->
-		<!-- 					</div> -->
-		<!-- 					<div class="modal-footer"> -->
-		<!-- 						<button type="button" class="btn btn-primary" data-dismiss="modal">取消</button> -->
-		<!-- 					</div> -->
-		<!-- 				</div> -->
-		<!-- 			</div> -->
-		<!-- 		</div> -->
-
-
-		<div align="center" class='shrink'>
-
-
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th scope="col"><div style="visibility: hidden">區塊中的內容</div></th>
-						<th scope="col"><div style="visibility: hidden">區塊中的內容</div></th>
-
-					</tr>
-				</thead>
-				<tbody>
-						<tr align="center" style='background-color:#2FA02F;color:white'>
-							<td style='font-size: 35px;' >食譜名稱</td>
-							<td style='font-size: 35px'>${recipe.recipe_name}</td>
-						</tr>
-						<tr align="center">
-							<%--<td colspan="2">--%>
-							<td style='line-height:150px'><p style='margin-left:40px'>食譜封面照片</p></td>
-							<td><img
-								src="<c:url value='/getRecipePicture/${recipe.pk_recipe_id}' />"
-								width="300" /></td>
-						</tr>
-						<tr align="center">
-							<td>烹調時間</td>
-							<td>${recipe.recipe_time}</td>
-						</tr>
-						<tr align="center">
-							<td>食譜份量</td>
-							<td>${recipe.recipe_quantity}</td>
-						</tr>
-						<tr align="center">
-							<td>食譜簡介</td>
-							<td>${recipe.recipe_summary}</td>
-						</tr>
-
-					<tr align="center" style='background-color:#2FA02F;color:white' >
-						<td style='font-size: 35px'>食材名稱</td>
-						<td style='font-size: 35px'>份量</td>
-					</tr>
-
-					<c:forEach var="recipe2" items="${recipeIngredients}">
-						<tr align="center">
-							<td>${recipe2.ingredients}</td>
-							<td>${recipe2.quantity}</td>
-						</tr>
-					</c:forEach>
-					<tr align="center" style='background-color:#2FA02F;color:white'  '>
-						<td style='font-size: 35px'>步驟圖片</td>
-						<td style='font-size: 35px'>步驟說明</td>
-					</tr>
-
-				</tbody>
-			</table>
-
-			<!--==============================footer=================================-->
-
-			<footer>
-				<div class="zerogrid">
-					<div class="col-full">
-						<div class="wrap-col">
-							<!-- 						&copy; Copyright &copy; 2013.Company name All rights reserved.<a -->
-							<!-- 							target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a> -->
-						</div>
-					</div>
-				</div>
-			</footer>
-			<div style="display: none">
-				<script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540'
-					language='JavaScript' charset='gb2312'></script>
-			</div>
-
+		</footer>
+		<div style="display: none">
+			<script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540'
+				language='JavaScript' charset='gb2312'></script>
 		</div>
+
 
 </body>
 
