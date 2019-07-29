@@ -26,20 +26,20 @@ public class RecipeServiceImpl implements IRecipeService {
 		recipeDao.insertRecipe(recipeBean);
 	}
 
-//	@Override
-//	public void updateRecipe(RecipeBean recipeBeanNew) {
-//		recipeDao.updateRecipe(recipeBeanNew);
-//	}
+	@Override
+	public void updateRecipe(RecipeBean recipeBeanNew) {
+		recipeDao.updateRecipe(recipeBeanNew);
+	}
 
 	@Override
 	public List<RecipeBean> getAllRecipe() {
 		return recipeDao.getAllRecipe();
 	}
 
-//	@Override
-//	public void deleteRecipe(RecipeBean recipeBean) {
-//		recipeDao.deleteRecipe(recipeBean);
-//	}
+	@Override
+	public void deleteRecipe(RecipeBean recipeBean) {
+		recipeDao.deleteRecipe(recipeBean);
+	}
 
 	@Override
 	public RecipeBean getRecipeById(Integer pk_recipe_id) {
@@ -51,8 +51,13 @@ public class RecipeServiceImpl implements IRecipeService {
 		return recipeDao.searchRecipe(recipe_name);
 	}
 
-//	@Override
-//	public void deleteRecipeById(Integer id) {
-//		recipeDao.deleteRecipeById(id);
-//	}
+	@Override
+	public void deleteRecipeById(Integer id) {
+		recipeDao.deleteRecipeById(id);
+	}
+
+	@Override
+	public List<RecipeBean> searchRecipeByMemberId(Integer member_id) {
+		return recipeDao.searchRecipeByMemberId(member_id);
+	}
 }
