@@ -250,7 +250,6 @@
 
 						<!-- 留言 -->
 						<div class="pt-5 mt-5">
-							<h3 class="mb-5">快來留言~</h3>
 							<ul class="comment-list">
 								<c:forEach var='MsgBoard' items='${MsgBoards}'>
 									<li class="comment">
@@ -299,6 +298,7 @@
 									<div class="form-group">
 
 										<h3 class="mb-5">會員開放留言</h3>
+										<a href="icookLogin" class="tag-cloud-link">按此登入</a>
 									</div>
 
 
