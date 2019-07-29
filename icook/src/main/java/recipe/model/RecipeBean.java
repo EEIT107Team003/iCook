@@ -22,6 +22,7 @@ import javax.persistence.Transient;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.web.icook.model.MemberBean;
 import com.web.icook.model.MyCollectRecipeBean;
 
@@ -75,7 +76,10 @@ public class RecipeBean implements Serializable {
 
 	private String recipe_name;// 食譜名稱
 	private String recipe_quantity;// 食譜份量
+	
+	@JsonIgnore
 	private Blob recipe_image;// 食譜圖片
+	
 	private String recipe_summary;// 食譜簡介
 	private String recipe_time;// 烹調時間
 	private String recipe_note;// 小撇步介紹
