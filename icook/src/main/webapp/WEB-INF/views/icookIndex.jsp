@@ -4,21 +4,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="sec"
-	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 <head>
-<sec:authorize access="isAuthenticated()">
-	<!--   <div class="btn btn-primary" style="float:right;height: 60px;margin-right:50px;padding-left:50px;padding-right:30px;background-color:#228B22;border-radius: 20%"> -->
-	<div class="btn btn-success" onclick="javascript:location.href='user'"
-		style="float: right; margin-right: 50px; padding-left: 35px; width: 400px">
-		<img id="member_photo_image"
-			style="float: left; width: 100px; height: 100px; border-radius: 50%; border: 1px solid black"
-			src="<c:url value='/getMemberPhoto/${bean.member_id}' />" />
-		<div style="font-size: 60px; float: left; margin-left: 30px;">${bean.nickname}</div>
-	</div>
-</sec:authorize>
 <title>Home</title>
 <meta charset="utf-8">
 <meta name="viewport"
@@ -121,14 +110,19 @@
 </head>
 
 <body style="background-color: #55a237">
-	<%-- <sec:authorize access="hasRole('MEMBER')"> --%>
-	<!--     <h1>0000</h1> -->
-	<%-- </sec:authorize> --%>
 
 	<div class="main">
 		<!--==============================header=================================-->
 		<header>
-			<div class="zerogrid">
+	<sec:authorize access="isAuthenticated()">
+		<div class="btn btn-success" onclick="javascript:location.href='user'" style="float:right;margin-right:50px;padding-left:35px;width: 400px">
+			<img id="member_photo_image"
+				 style="float:left;width:100px;height: 100px;border-radius: 50%; border: 1px solid black;background-color: white;"
+				 src="<c:url value='/getMemberPhoto/${bean.member_id}' />" />
+			<div style=" font-size:60px;float: left;margin-left: 30px;">${bean.nickname}</div>
+		</div>
+	</sec:authorize>
+			<div class="zerogrid" style="clear: both;">
 				<div class="col-full">
 					<div class="wrap-col">
 						<h1>
@@ -148,7 +142,7 @@
 											<li><a href="icookContact">聯繫我們</a></li>
 										</ul></li>
 									<li>
-										<!--<a href="recipe/recipeIndex">查看食譜</a>--> <a href="#">食譜專區</a>
+										<a href="#">食譜專區</a>
 										<ul>
 											<li>
 											<a href="<c:url value='/user/recipe/recipeInsert' />">新增食譜</a>
@@ -162,7 +156,6 @@
 									<li><a href="icookLife">生活誌</a></li>
 									<li><a href="forum/overview">討論區</a></li>
 									<li><a href="A_articlemainpage">文章區</a></li>
-									<!-- 									<li><a href="products">市集</a> -->
 									<li><a href="products">市集</a>
 										<ul>
 											<li><a href="cartPage">購物車</a></li>
@@ -179,7 +172,7 @@
 													data-target="#logout">會員登出</a></li>
 											</c:if>
 											<li><a href="checkOrders">查看訂單</a></li>
-											<!--<li><a href="icookAddRecipe">新增食譜</a></li>-->
+											<li><a href="icookAddRecipe">新增食譜</a></li>
 											<sec:authorize access="hasRole('ADMIN')">
 												<li><a href="backStageDashboard">後台</a></li>
 											</sec:authorize>
@@ -270,7 +263,7 @@
 											<span class="col2"> <!-- 												href="http://blog.templatemonster.com/free-website-templates/" -->
 												<!-- 												rel="nofollow">Click here</a> -->
 											</span>
-											歡迎來到全台灣最大的食譜入口平台,響時天堂提供了最新最富有創意的料理食譜,我們蒐集並提供的食譜老少咸宜,在家或者在外面烹調都可以輕易上手.
+											歡迎來到全台灣最大的食譜入口平台,享食天堂提供了最新最富有創意的料理食譜,我們蒐集並提供的食譜老少咸宜,在家或者在外面烹調都可以輕易上手.
 										</p>
 										請跟著我們的食譜步驟,展開一系列的美食奇幻之旅吧! <br> <a href="#" class="btn">去看食譜!</a>
 									</div>
@@ -296,9 +289,9 @@
 						action="${pageContext.request.contextPath}/recipe/search2">
 						<select name="searchTwo">
 							<option value="name">以食譜名稱搜尋</option>
-							<!--<option value="author">以作者名稱搜尋</option>-->
-						</select>
-						<input type="text" name="recipeSearch2" /> <input type="submit" value="查詢" />
+							<option value="author">以作者名稱搜尋</option>
+						</select> <input type="text" name="recipeSearch2" /> <input type="submit"
+							value="查詢" />
 					</form>
 				</div>
 				<div class="col-full">
@@ -325,7 +318,6 @@
 										<c:if test="${recipe.recipe_item == 'taiwan'}">
 											<c:set var="count1" value="${count1 + 1}" />
 											<c:if test="${count1 <= 3}">
-											<!--最多將會印出4張圖片資料-->
 												<li>
 													<div>
 														<!--<img src="images/seafood.jpg" alt="">-->
@@ -333,7 +325,8 @@
 														<img
 															src="<c:url value='/getRecipePicture/${recipe.pk_recipe_id}' />" />
 														<div class="col1 upp">
-															<a href="<c:url value='/recipe/recipeSuccessPage/two/${recipe.pk_recipe_id}' />">${recipe.recipe_name}</a>
+															<a
+																href="<c:url value='/recipe/recipeSuccessPage/two/${recipe.pk_recipe_id}' />">${recipe.recipe_name}</a>
 														</div>
 														<span>${recipe.recipe_summary}</span>
 														<!--<span>${recipe.recipe_summary}食譜簡介</span>-->
@@ -480,7 +473,7 @@
 
 			</div>
 		</div>
-	</div>
+		</div>
 	</div>
 
 	<!--==============================footer=================================-->
