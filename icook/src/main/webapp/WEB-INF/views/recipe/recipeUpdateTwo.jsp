@@ -41,7 +41,7 @@
 						<td><label for="image_file">食譜封面照片</label></td>
 						<td><form:input id="image_file" path="image_file"
 								name="image_file" type="file" /> <img
-							src="<c:url value='/getRecipePicture/${RecipeBean.pk_recipe_id}' />" />
+							src="<c:url value='/getRecipePicture/${RecipeBean.pk_recipe_id}' />" width="200" />
 						</td>
 					</tr>
 					<tr align="center">

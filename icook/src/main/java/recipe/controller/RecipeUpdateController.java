@@ -1,6 +1,11 @@
 package recipe.controller;
 
 import java.sql.Blob;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,6 +61,7 @@ public class RecipeUpdateController {
 		return "recipe/recipeUpdateOne";
 	}
 
+	// 我現在要直接由食譜結果頁的「編輯按鈕」進去這一頁。
 	@RequestMapping(value = "/user/recipeUpdateOne/{pk_recipe_id}", method = RequestMethod.GET)
 	public String updateOneGetToRecipe(@PathVariable("pk_recipe_id") Integer pk_recipe_id, Model model) {
 		System.out.println("進入修改頁面2");
@@ -81,7 +87,7 @@ public class RecipeUpdateController {
 		// 開始處理圖片檔案-start
 		MultipartFile imageFile = recipe.getImage_file();
 		// 建立Blob物件，交由 Hibernate 寫入資料庫
-		if (imageFile != null) {
+		if (imageFile != null && !imageFile.isEmpty()) {
 			String originalFilename = imageFile.getOriginalFilename();
 			recipe.setFile_name(originalFilename);
 
@@ -97,17 +103,15 @@ public class RecipeUpdateController {
 		// 開始處理圖片檔案-end
 
 		// 主table-食譜table
-		//recipeService.updateRecipe(recipe);// TODO 方法已被移除
+		// recipeService.updateRecipe(recipe);// TODO 方法已被移除
 
 		// 開始處理第二張關聯table【RecipeIngredientsBean】【食譜食材表單】-start
 
 		int ingredientsSize = Integer.MIN_VALUE;
-		System.out.println("recipeIngredientsBeanForm -> " + recipeIngredientsBeanForm);
-		System.out.println(
-				"recipeIngredientsBeanForm.getIngredients2() -> " + recipeIngredientsBeanForm.getIngredients2());
-		System.out.println("recipeIngredientsBeanForm.getIngredients2().size() -> "
-				+ recipeIngredientsBeanForm.getIngredients2().size());
-		System.out.println("---------------------------------------");
+//		System.out.println("recipeIngredientsBeanForm -> " + recipeIngredientsBeanForm);
+//		System.out.println("recipeIngredientsBeanForm.getIngredients2() -> " + recipeIngredientsBeanForm.getIngredients2());
+//		System.out.println("recipeIngredientsBeanForm.getIngredients2().size() -> " + recipeIngredientsBeanForm.getIngredients2().size());
+//		System.out.println("---------------------------------------");
 		// 求出總共有幾列「食材清單」
 		if (recipeIngredientsBeanForm.getIngredients2().size() > ingredientsSize) {
 			ingredientsSize = recipeIngredientsBeanForm.getIngredients2().size();
@@ -117,8 +121,7 @@ public class RecipeUpdateController {
 		}
 
 		// 先刪除第二張table
-		//recipeIngredientsService.deleteRecipeIngredientsByFk(recipe.getPk_recipe_id());
-		// TODO 刪除功能已被移除
+		recipeIngredientsService.deleteRecipeIngredientsByFk(recipe.getPk_recipe_id());
 
 		// 接著新增第二張table
 		RecipeIngredientsBean ingredientsBean = null;
@@ -146,12 +149,80 @@ public class RecipeUpdateController {
 			recipeUnitSize = recipeUnitBeanForm.getUnit_image2().size();
 		}
 
-		// 先把第三張table舊資料的圖檔抓出來
-		List<Blob> oldRecipeUnitImage = recipeUnitService.getRecipeUnitImageByFk(recipe.getPk_recipe_id());
+		List<Blob> oldRecipeUnitImage = new ArrayList<Blob>();
+		List<String> oldRecipeImageFilename = new ArrayList<String>();
+		// 先把第三張table舊資料的 圖檔、圖檔檔名 抓出來-start
+		// JDBC-start
+		Connection connection = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			String connectionURL = "jdbc:sqlserver://localhost:1433;databaseName=icook";
+			connection = DriverManager.getConnection(connectionURL, "sa", "passw0rd");
+			connection.setAutoCommit(false);// 關閉自動交易模式，開啟隱性交易模式。
+			String qryStmt = "SELECT unit_image, file_name FROM recipe_unit WHERE fk_recipe_id = "
+					+ String.valueOf(recipe.getPk_recipe_id());
+			statement = connection.createStatement();
+			resultSet = statement.executeQuery(qryStmt);
+			while (resultSet.next()) {
+				oldRecipeUnitImage.add(resultSet.getBlob("unit_image"));
+				oldRecipeImageFilename.add(resultSet.getString("file_name"));
+			}
+			connection.commit();// commit把資料 新、刪、改、查 結果送出去
+		} catch (ClassNotFoundException e1) {
+			try {
+				connection.rollback();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			e1.printStackTrace();
+		} catch (SQLException e1) {
+			try {
+				connection.rollback();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			e1.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					// 開啟自動交易模式，關閉隱性交易模式。
+					connection.setAutoCommit(true);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (resultSet != null) {
+				try {
+					resultSet.close();
+					resultSet = null;
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (statement != null) {
+				try {
+					statement.close();
+					statement = null;
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (connection != null) {
+				try {
+					connection.close();
+					connection = null;
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		// JDBC-end
+		// 先把第三張table舊資料的 圖檔、圖檔檔名 抓出來-end
 
 		// 刪掉第三張table
-		//recipeUnitService.deleteRecipeUnitByFk(recipe.getPk_recipe_id());
-		// TODO 這個功能已經被刪除
+		recipeUnitService.deleteRecipeUnitByFk(recipe.getPk_recipe_id());
 
 		RecipeUnitBean recipeUnit = null;
 		for (int i = 0; i < recipeUnitSize; i++) {
@@ -163,6 +234,10 @@ public class RecipeUpdateController {
 			MultipartFile imageFile2 = recipeUnitBeanForm.getUnit_image2().get(i);
 			// 建立Blob物件，交由 Hibernate 寫入資料庫
 			if (imageFile2 != null && !imageFile2.isEmpty()) {
+//				String originalFilename = imageFile.getOriginalFilename();
+//				recipeBean.setFile_name(originalFilename);
+				String originalFilename3 = imageFile2.getOriginalFilename();
+				recipeUnit.setFile_name(originalFilename3);
 				try {
 					byte[] byteArray2 = imageFile2.getBytes();
 					Blob unit_image = new SerialBlob(byteArray2);
@@ -171,10 +246,10 @@ public class RecipeUpdateController {
 					e.printStackTrace();
 					throw new RuntimeException("圖片上傳發生異常：" + e);
 				}
-			}
-			if (imageFile2 == null) {
+			} else {
 				// 如果使用者沒上傳圖片，塞舊資料的圖片進去。
 				recipeUnit.setUnit_image(oldRecipeUnitImage.get(i));
+				recipeUnit.setFile_name(oldRecipeImageFilename.get(i));
 			}
 			recipeUnitService.insertRecipeUnit(recipeUnit);
 			recipeUnit = null;
@@ -198,8 +273,11 @@ public class RecipeUpdateController {
 		redirectAttribute.addFlashAttribute("recipe", recipe);
 		redirectAttribute.addFlashAttribute("recipeIngredients", recipeIngredients);
 		redirectAttribute.addFlashAttribute("recipeUnitBean", recipeUnitBean);
+
 		redirectAttribute.addFlashAttribute("currentUser", currentUser);
 		redirectAttribute.addFlashAttribute("recipeUser", recipeUser);
+		System.out.println("currentUser -> " + currentUser);
+		System.out.println("recipeUser -> " + recipeUser);
 		return "redirect:/recipe/recipeSuccessPage";// 讓瀏覽器再次發出請求，呼叫recipeSuccessPage.jsp檔案
 	}
 

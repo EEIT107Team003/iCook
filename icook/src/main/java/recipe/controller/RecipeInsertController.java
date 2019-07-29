@@ -55,6 +55,7 @@ public class RecipeInsertController {
 	public String insertPost(RecipeBean recipeBean, RecipeIngredientsBeanForm recipeIngredientsBeanForm,
 			RecipeUnitBeanForm recipeUnitForm, RedirectAttributes redirectAttribute) {
 		// recipeInsert-第二次呼叫
+		// RedirectAttributes redirectAttribute
 		System.out.println("recipeInsert-第二次呼叫");
 		String userName = getPrincipal();
 		System.out.println("userName = " + userName);
@@ -167,6 +168,8 @@ public class RecipeInsertController {
 		redirectAttribute.addFlashAttribute("recipeUnitBean", recipeUnitBean);
 		redirectAttribute.addFlashAttribute("currentUser", currentUser);
 		redirectAttribute.addFlashAttribute("recipeUser", recipeUser);
+		System.out.println("currentUser -> " + currentUser);
+		System.out.println("recipeUser -> " + recipeUser);
 		return "redirect:/recipe/recipeSuccessPage";// 讓瀏覽器再次發出請求，呼叫recipeSuccessPage.jsp檔案
 	}
 

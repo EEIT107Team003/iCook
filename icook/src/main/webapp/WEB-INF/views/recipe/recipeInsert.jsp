@@ -69,7 +69,31 @@
 	integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
 	crossorigin="anonymous"></script>
 <!-- 彈跳視窗 -->
+<script>
+	$(function() {
+		function format_float(num, pos) {
+			var size = Math.pow(10, pos);
+			return Math.round(num * size) / size;
+		}
+		;
 
+		function preview(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					$('#member_photo_image').attr('src', e.target.result);
+				};
+				reader.readAsDataURL(input.files[0]);
+			}
+			;
+		}
+		;
+
+		$("#member_photo_file").change(function() {
+			preview(this);
+		});
+	});
+</script>
 <script>
 <!-- 彈跳視窗 -->
 	$(window).load(function() {
@@ -139,6 +163,31 @@
 	margin-left: 260px;
 }
 </style>
+<script>
+	$(function() {
+		function format_float(num, pos) {
+			var size = Math.pow(10, pos);
+			return Math.round(num * size) / size;
+		}
+		;
+
+		function preview(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					$('#photo_image').attr('src', e.target.result);
+				};
+				reader.readAsDataURL(input.files[0]);
+			}
+			;
+		}
+		;
+
+		$("#image_file").change(function() {
+			preview(this);
+		});
+	});
+</script>
 </head>
 <!--<body bgcolor="#ffffce">-->
 <!--<font>&nbsp;&nbsp;格式為yyyy-MM-dd</font>-->
@@ -198,8 +247,16 @@
 							</tr>
 							<tr align="center">
 								<%--儲存使用者上傳圖片檔案的欄位--%>
-								<td><label for="image_file">食譜封面照片</label></td>
-								<td><input id="image_file" name="image_file" type="file" /></td>
+								<!--<td><label for="image_file">食譜封面照片</label></td>-->
+								<!--<td><input id="image_file" name="image_file" type="file" /></td>-->
+								<td colspan="2"><label for="image_file"><input
+										type="file" name="image_file" id="image_file"
+										style="display: none;" /> <img
+										class="profile-image img-responsive pull-left"
+										id="photo_image"
+										style="background-color: white; margin: 20px;" width="200"
+										src="<c:url value='/resources/images/NoImage.png' />" />
+								</label></td>
 							</tr>
 							<tr align="center">
 								<%--烹調時間--%>
@@ -210,7 +267,7 @@
 								<%--食譜份量--%>
 								<td><label for="recipe_quantity">食譜份量</label></td>
 								<td><input id="recipe_quantity" name="recipe_quantity"
-									type="text" /></td>
+									type="text" />人份</td>
 							</tr>
 							<tr align="center">
 								<%--食譜簡介--%>
@@ -258,7 +315,6 @@
 									value="新增" style="font-size: 16px" /></td>
 								<td><input type="button" onclick="deleteCurrentRow1(this)"
 									value="刪除" style="font-size: 16px" /></td>
-
 							</tr>
 						</tbody>
 					</table>
@@ -338,8 +394,9 @@
 		<%--<c:set value="#d3ff93" var="color" />--%>
 		<%--<a href="<c:url value='/home' />">回首頁</a><br>--%>
 
-		<br> <a href="<c:url value='/recipe/recipeIndex' />">回食譜首頁</a> <br>
-		<a href="<c:url value='/home' />">回首頁</a> <br>
+		<!--<br>-->
+		<%--<a href="<c:url value='/recipe/recipeIndex' />">回食譜首頁</a>--%>
+		<br> <a href="<c:url value='/index2' />">回首頁</a> <br>
 	</div>
 	<!--<div>-->
 	<%--pageContext.request.contextPath&nbsp;=&nbsp;${pageContext.request.contextPath}<br>--%>
