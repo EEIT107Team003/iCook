@@ -12,7 +12,7 @@
 <script src="https://cdn.bootcss.com/web-socket-js/1.0.0/web_socket.js"></script>
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
 <title>Stories - Free Bootstrap 4 Template by Colorlib</title>
-<meta charset="utf-8">
+<meta charset="utf-8"> 
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
