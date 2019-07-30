@@ -137,7 +137,6 @@
 							<nav>
 								<ul class="sf-menu" style="padding-top: 55px">
 									<li><a href="index2">ICook</a></li>
-									-->
 									<li>
 										<a href="<c:url value='/recipe/recipeSelect' />">食譜專區</a>
 										<ul>
