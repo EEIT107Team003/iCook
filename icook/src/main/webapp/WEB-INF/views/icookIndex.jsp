@@ -137,12 +137,8 @@
 							<nav>
 								<ul class="sf-menu" style="padding-top: 55px">
 									<li><a href="index2">ICook</a></li>
-									<li><a href="icookAboutUS">關於我們</a>
-										<ul>
-											<li><a href="icookContact">聯繫我們</a></li>
-										</ul></li>
 									<li>
-										<a href="#">食譜專區</a>
+										<a href="<c:url value='/recipe/recipeSelect' />">食譜專區</a>
 										<ul>
 											<li>
 											<a href="<c:url value='/user/recipe/recipeInsert' />">新增食譜</a>

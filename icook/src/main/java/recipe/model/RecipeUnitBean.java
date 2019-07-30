@@ -3,6 +3,7 @@ package recipe.model;
 import java.io.Serializable;
 import java.sql.Blob;
 
+import javax.persistence.Column;
 //import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,11 +31,13 @@ public class RecipeUnitBean implements Serializable {
 	private Integer fk_recipe_id;// 對應到食譜的FK
 
 	private Integer stepNo;// 食譜步驟編號
+
+	@Column(columnDefinition = "VARCHAR(1200)")
 	private String explain;// 食譜步驟說明
-	
+
 	@JsonIgnore
 	private Blob unit_image;// 食譜步驟圖片
-	
+
 	private String file_name;// 儲存使用者圖片檔案名稱，跟 unit_image 相關。
 
 	public RecipeUnitBean() {

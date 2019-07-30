@@ -52,6 +52,10 @@ public class RecipeInsertController {
 	public String insertGet(Model model) {
 		// recipeInsert-第一次呼叫
 		System.out.println("recipeInsert-第一次呼叫");
+		String userName = getPrincipal();
+		MemberBean memberBean = null;
+		memberBean = memberService.selectByUsername(userName);
+		model.addAttribute("bean", memberBean);
 		return "recipe/recipeInsert";// 呼叫recipeInsert.jsp檔案
 	}
 
@@ -76,7 +80,8 @@ public class RecipeInsertController {
 		memberBean = memberService.selectByUsername(userName);
 		System.out.println("memberBean = " + memberBean);
 		recipeBean.setMemberbean(memberBean);// 加入會員的FK
-
+		
+		
 		// 開始處理圖片檔案-start
 		MultipartFile imageFile = recipeBean.getImage_file();
 		// 建立Blob物件，交由 Hibernate 寫入資料庫
@@ -181,6 +186,7 @@ public class RecipeInsertController {
 		redirectAttribute.addFlashAttribute("recipeUnitBean", recipeUnitBean);
 		redirectAttribute.addFlashAttribute("currentUser", currentUser);
 		redirectAttribute.addFlashAttribute("recipeUser", recipeUser);
+		redirectAttribute.addFlashAttribute("bean", memberBean);
 		System.out.println("currentUser -> " + currentUser);
 		System.out.println("recipeUser -> " + recipeUser);
 		return "redirect:/recipe/recipeSuccessPage";// 讓瀏覽器再次發出請求，呼叫recipeSuccessPage.jsp檔案

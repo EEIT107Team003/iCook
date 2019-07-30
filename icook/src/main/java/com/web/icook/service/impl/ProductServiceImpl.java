@@ -22,7 +22,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<CategoriesBean> getOneCategory(String categoriesName) {
 		List<CategoriesBean> assa=dao.getOneCategory(categoriesName);
-			System.out.println(assa.get(0).getProductBean().size());	
+//			System.out.println(assa.get(0).getProductBean().size());	
 		return  assa;
 	}
 

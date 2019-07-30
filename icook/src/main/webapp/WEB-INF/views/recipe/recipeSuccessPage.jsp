@@ -216,7 +216,17 @@ li {
 	<!--<div class="main">-->
 	<!--==============================header=================================-->
 	<header>
-		<div class="zerogrid">
+		<sec:authorize access="isAuthenticated()">
+			<div class="btn btn-success"
+				onclick="javascript:location.href='user'"
+				style="float: right; margin-right: 50px; padding-left: 35px; width: 400px">
+				<img id="member_photo_image"
+					style="float: left; width: 100px; height: 100px; border-radius: 50%; border: 1px solid black; background-color: white;"
+					src="<c:url value='/getMemberPhoto/${bean.member_id}' />" />
+				<div style="font-size: 60px; float: left; margin-left: 30px;">${bean.nickname}</div>
+			</div>
+		</sec:authorize>
+		<div class="zerogrid" style="clear: both;">
 			<div class="col-full">
 				<div class="wrap-col">
 					<h1>
@@ -230,12 +240,16 @@ li {
 					<div class="menu_block">
 						<nav>
 							<ul class="sf-menu" style="padding-top: 55px">
-								<li><a href="index2">ICook</a></li>
-								<li><a href="icookAboutUS">關於我們</a>
-									<ul>
-										<li><a href="icookContact">聯繫我們</a></li>
-									</ul></li>
-								<li><a href="#">食譜專區</a>
+								<li><a href="${pageContext.request.contextPath}/index2">ICook</a></li>
+								<!--
+										<li>
+											<a href="icookAboutUS">關於我們</a>
+											<ul>
+												<li><a href="icookContact">聯繫我們</a></li>
+											</ul>
+										</li>
+									-->
+								<li><a href="<c:url value='/recipe/recipeSelect' />">食譜專區</a>
 									<ul>
 										<li><a href="<c:url value='/user/recipe/recipeInsert' />">新增食譜</a>
 										</li>
@@ -243,36 +257,27 @@ li {
 										</li>
 										<!--<li><a href="#">cat3</a></li>-->
 									</ul></li>
-								<li><a href="icookLife">生活誌</a></li>
-								<li><a href="forum/overview">討論區</a></li>
-								<li><a href="A_articlemainpage">文章區</a>
+								<li><a href="<c:url value='/forum/overview' />">討論區</a></li>
+								<li><a href="<c:url value='/A_articlemainpage' />">生活誌</a></li>
+								<li><a href="<c:url value='/products' />">市集</a>
 									<ul>
-										<li><a href="A_article">test</a></li>
-
+										<li><a href="<c:url value='/cartPage' />">購物車</a></li>
 									</ul></li>
-
-
-								<li><a href="products">市集</a>
-									<ul>
-
-
-										<li><a href="cartPage">購物車</a></li>
-									</ul></li>
-
-								<li><a href="user">會員專區 </a>
+								<%-- </c:if><c:if test="${pageContext.request.userPrincipal.name==null}"> --%>
+								<li><a href="<c:url value='/user' />">會員專區 </a>
 									<ul>
 										<sec:authorize access="!isAuthenticated()">
 											<li><a href="icookLogin">會員登入</a></li>
 											<li><a href="icookRegister">會員註冊</a></li>
 										</sec:authorize>
-										<sec:authorize access="isAuthenticated()">
+										<c:if test="${pageContext.request.userPrincipal.name!=null}">
 											<li><a href="index2" data-toggle="modal"
 												data-target="#logout">會員登出</a></li>
-										</sec:authorize>
+										</c:if>
 										<li><a href="checkOrders">查看訂單</a></li>
 										<li><a href="icookAddRecipe">新增食譜</a></li>
 										<sec:authorize access="hasRole('ADMIN')">
-											<li><a href="productTable">後台</a></li>
+											<li><a href="backStageDashboard">後台</a></li>
 										</sec:authorize>
 									</ul></li>
 							</ul>
@@ -356,6 +361,11 @@ li {
 							泰式
 						</c:if></td>
 					</tr>
+					<tr align="center">
+						<td>作者名稱</td>
+						<td><a
+							href="<c:url value='/members/page?member_id=${memberBean.member_id}' />">${memberBean.nickname}</a></td>
+					</tr>
 
 					<tr align="center" style='background-color: #2FA02F; color: white'>
 						<td style='font-size: 35px'>食材名稱</td>
@@ -368,7 +378,7 @@ li {
 							<td>${recipe2.quantity}</td>
 						</tr>
 					</c:forEach>
-					<tr align="center" style='background-color: #2FA02F; color: white''>
+					<tr align="center" style='background-color: #2FA02F; color: white'>
 						<td style='font-size: 35px'>步驟圖片</td>
 						<td style='font-size: 35px'>步驟說明</td>
 					</tr>

@@ -63,6 +63,13 @@ public class HomeController {
 			List<RecipeBean> recipeBeanList = recipeService.searchRecipe(recipeSearch);
 			model.addAttribute("recipeBeans", recipeBeanList);
 		}
+		
+		String userName = getPrincipal();
+		System.out.println("userName = " + userName);
+		MemberBean memberBean = null;
+		memberBean = memberService.selectByUsername(userName);
+		System.out.println("memberBean = " + memberBean);
+		model.addAttribute("bean", memberBean);
 		return "recipe/recipeSelect";
 	}
 
@@ -75,6 +82,13 @@ public class HomeController {
 		List<RecipeBean> recipeBeanList = recipeService.searchRecipe(recipe_name);
 //		System.out.println("recipeBeanList -> " + recipeBeanList);
 		model.addAttribute("recipeBeans", recipeBeanList);
+		
+		String userName = getPrincipal();
+		System.out.println("userName = " + userName);
+		MemberBean memberBean = null;
+		memberBean = memberService.selectByUsername(userName);
+		System.out.println("memberBean = " + memberBean);
+		model.addAttribute("bean", memberBean);
 		return "recipe/recipeSelect";
 	}
 
@@ -102,8 +116,10 @@ public class HomeController {
 		recipeUser = memberBean2.getUsername();
 		redirectAttribute.addFlashAttribute("currentUser", currentUser);
 		redirectAttribute.addFlashAttribute("recipeUser", recipeUser);
-		System.out.println("currentUser -> " + currentUser);
-		System.out.println("recipeUser -> " + recipeUser);
+		redirectAttribute.addFlashAttribute("memberBean", memberBean2);
+		redirectAttribute.addFlashAttribute("bean", memberBean2);
+//		System.out.println("currentUser -> " + currentUser);
+//		System.out.println("recipeUser -> " + recipeUser);
 		return "redirect:/recipe/recipeSuccessPage";
 	}
 
@@ -122,13 +138,13 @@ public class HomeController {
 		RecipeBean recipeBean = recipeService.getRecipeById(pk_recipe_id);
 		if (recipeBean != null) {
 //			System.out.println("before recipeIngredientsService.deleteRecipeIngredientsByFk(pk_recipe_id);");
-			 recipeIngredientsService.deleteRecipeIngredientsByFk(pk_recipe_id);
+			recipeIngredientsService.deleteRecipeIngredientsByFk(pk_recipe_id);
 //			System.out.println("after recipeIngredientsService.deleteRecipeIngredientsByFk(pk_recipe_id);");
 //			System.out.println("before recipeUnitService.deleteRecipeUnitByFk(pk_recipe_id);");
-			 recipeUnitService.deleteRecipeUnitByFk(pk_recipe_id);// TODO 方法已經被移除
+			recipeUnitService.deleteRecipeUnitByFk(pk_recipe_id);// TODO 方法已經被移除
 //			System.out.println("after recipeUnitService.deleteRecipeUnitByFk(pk_recipe_id);");
 //			System.out.println("before recipeService.deleteRecipe(recipeBean);");
-			 recipeService.deleteRecipe(recipeBean);// TODO 方法已經被移除
+			recipeService.deleteRecipe(recipeBean);// TODO 方法已經被移除
 //			System.out.println("after recipeService.deleteRecipe(recipeBean);");
 		}
 		// 刪除完資料後必須讓瀏覽器重新發送請求
@@ -142,6 +158,13 @@ public class HomeController {
 		// 查詢
 		List<RecipeBean> recipeBeanList = recipeService.getAllRecipe();
 		model.addAttribute("recipeBeans", recipeBeanList);
+		
+		String userName = getPrincipal();
+		System.out.println("userName = " + userName);
+		MemberBean memberBean = null;
+		memberBean = memberService.selectByUsername(userName);
+		System.out.println("memberBean = " + memberBean);
+		model.addAttribute("bean", memberBean);
 		return "recipe/recipeSelect";
 	}
 
@@ -169,18 +192,26 @@ public class HomeController {
 		MemberBean memberBean2 = recipeBean.getMemberbean();
 		System.out.println("recipe.getMemberbean() -> " + recipeBean.getMemberbean());
 		recipeUser = memberBean2.getUsername();
-		
+
 		redirectAttribute.addFlashAttribute("pageSubject", "查詢完整食譜");
 		redirectAttribute.addFlashAttribute("recipe", recipeBean);
 		redirectAttribute.addFlashAttribute("recipeIngredients", recipeIngredients);
 		redirectAttribute.addFlashAttribute("recipeUnitBean", recipeUnitBean);
 		redirectAttribute.addFlashAttribute("currentUser", currentUser);
 		redirectAttribute.addFlashAttribute("recipeUser", recipeUser);
+		redirectAttribute.addFlashAttribute("memberBean", memberBean2);
+		redirectAttribute.addFlashAttribute("bean", memberBean2);
 		return "redirect:/recipe/recipeSuccessPage";
 	}
 
 	@RequestMapping(value = "/recipe/recipeSuccessPage")
-	public String successPage() {
+	public String successPage(Model model) {
+		String userName = getPrincipal();
+		System.out.println("userName = " + userName);
+		MemberBean memberBean = null;
+		memberBean = memberService.selectByUsername(userName);
+		System.out.println("memberBean = " + memberBean);
+		model.addAttribute("bean", memberBean);
 		return "recipe/recipeSuccessPage";
 	}
 
@@ -190,6 +221,7 @@ public class HomeController {
 //		System.out.println("食譜首頁");
 		String userName = getPrincipal();
 //		System.out.println("userName = " + userName);
+		@SuppressWarnings("unused")
 		MemberBean memberBean = null;
 		memberBean = memberService.selectByUsername(userName);
 //		System.out.println("memberBean = " + memberBean);

@@ -8,6 +8,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -78,9 +79,15 @@ public class RecipeBean implements Serializable {
 	private String recipe_quantity;// 食譜份量
 	@JsonIgnore
 	private Blob recipe_image;// 食譜圖片
+
+	@Column(columnDefinition = "VARCHAR(1200)")
 	private String recipe_summary;// 食譜簡介
+
 	private String recipe_time;// 烹調時間
+
+	@Column(columnDefinition = "VARCHAR(1200)")
 	private String recipe_note;// 小撇步介紹
+
 	private java.sql.Date recipe_date;// 新增食譜時的日期
 	private Integer recipe_display;// 設定食譜是否顯示【1正常顯示，公開給大家看。】【2草稿階段尚未發布，只限本人觀看。】【3對所有人隱藏起來】
 
