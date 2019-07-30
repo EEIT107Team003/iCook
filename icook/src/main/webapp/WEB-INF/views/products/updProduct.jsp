@@ -411,7 +411,9 @@ function readURL4(input){
 				<h3>價格      : ${previousbean.price}</h3>
 				<h3>庫存      : ${previousbean.stock}</h3>
 				<h3>狀態      : ${status}</h3>
-
+<%--                 <h3>路徑      :..${previousbean.productPictureOnePath}</h3> --%>
+<%--                 <h3>路徑      :..${previousbean.productPictureTwoPath}</h3> --%>
+<%--                 <h3>路徑      :..${previousbean.productPictureThreePath}</h3> --%>
 					<div class="pre">
 					<img src="..${previousbean.productPictureOnePath}" />
 					<img src="..${previousbean.productPictureTwoPath}" />
