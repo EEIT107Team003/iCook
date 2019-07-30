@@ -70,9 +70,12 @@
 	top: 0;
 	left: 0;
 }
-.col-3 p{
-font-size:30px;
+.col-3 h1{
+font-size:25px;
 margin-bottom:20px
+}
+.col-3 p{
+font-size: 15px;
 }
 
 .divA {
@@ -96,7 +99,7 @@ margin-bottom:20px
 
 .col-2 img {
 	position: relative;
-	/* border: 1px solid rgba(0,0,0,0.5); */
+	 border: 1px solid rgba(0,0,0,0.5);
 	transition: all 0.5s linear
 }
 
@@ -146,7 +149,7 @@ margin-bottom:20px
 							txt = "";
 							for (i in names) {
 								txt += 
-								       	"<div class='col-sm-6 col-md-3' style='width: 200px; height: 250px;margin-bottom:100px;margin-right:70px'>"
+								       	"<div class='col-sm-6 col-md-3' style='width: 200px; height: 250px;margin-bottom:120px;margin-right:70px'>"
 										+ "<div class='mainDiv'>"
 										+ "<img src=   \" <c:url value=  '/getProductPicture/"+names[i].product_id+"'   /> \"     />"
 										+ "<div class='mainText'  style='font-size: 8px; ''><p>"
@@ -470,7 +473,7 @@ margin-bottom:20px
 							for (i in names) {
 								//	 				             console.log(i + ' :' + names[i]	);
 								txt += 
-									"<div class='col-sm-6 col-md-3' style='width: 200px; height: 250px;margin-bottom:100px;margin-right:70px'>"
+									"<div class='col-sm-6 col-md-3' style='width: 200px; height: 250px;margin-bottom:120px;margin-right:70px'>"
 										+ "<div class='mainDiv'>"
 										+ "<img src=   \" <c:url value=  '/getProductPicture/"+names[i].product_id+"'   /> \"     />"
 										+ "<div class='mainText'  style='font-size: 8px; ''><p>"
@@ -508,12 +511,12 @@ margin-bottom:20px
 							for (i in names) {
 								//	 				             console.log(i + ' :' + names[i]	);
 								txt += 
-									"<div class='col-sm-6 col-md-3' style='width: 200px; height: 250px;margin-bottom:100px;margin-right:70px'>"
+									"<div class='col-sm-6 col-md-3' style='width: 200px; height: 250px;margin-bottom:120px;margin-right:70px'>"
 										+ "<div class='mainDiv'>"
 // 										<img id="Sub00" class="subsidiaryShow"
 // 											src="/icook${product.productPictureOnePath}" />
-										+ "<img src= '/icook${product.productPictureOnePath}'   />"
-// 										+ "<img src=   \" <c:url value=  '/getProductPicture/"+names[i].product_id+"'   /> \"     />"
+// 										+ "<img src= '/icook${product.productPictureOnePath}'   />"
+										+ "<img src=   \" <c:url value=  '/getProductPicture/"+names[i].product_id+"'   /> \"     />"
 										+ "<div class='mainText'  style='font-size: 8px; ''><p>"
 										+ "名稱  : "
 										+ names[i].name
@@ -590,9 +593,6 @@ margin-bottom:20px
 											<li><a href="A_article">test</a></li>
 
 										</ul></li>
-
-
-									<!-- 									<li><a href="products">市集</a> -->
 									<li><a href="products">市集</a>
 										<ul>
 
@@ -661,12 +661,13 @@ margin-bottom:20px
 						</ul>
 						<h1>刀具</h1>
 						<ul style="cursor: pointer">
-							<li><a class="search">式剁刀</a></li>
+							<li><a class="search">中式剁刀</a></li>
+							<li><a class="search">中式菜刀/切刀</a></li>
 							<li><a class="search">牛排刀</a></li>
 						</ul>
-						<h1>食材</h1>
+						<h1>品酒器具</h1>
 						<ul style="cursor: pointer">
-							<li><a class="search">牛肉</a></li>
+							<li><a class="search">精緻酒器禮盒</a></li>
 							<li><a class="search">雞肉</a></li>
 							<li><a class="search">豬肉</a></li>
 							<li><a class="search">羊肉</a></li>
@@ -733,12 +734,12 @@ margin-bottom:20px
 				</div>
 				<div class="col-3" style="margin-top: 30px;">
 					<div>
-					<p>名稱 :${product.name}</p>
+					<h1>${product.name}</h1>
 					</div>
-					<p>編號: ${product.product_id}</p>
+					<h1>編號: ${product.product_id}</h1>
+					<h1>單價: ${product.price}</h1>
 					<p>分類: ${product.categoriesbean.name}</p>
 					<p>顏色: ${product.color}</p>
-					<p>單價: ${product.price}</p>
 					<div>
 					<p>描述 :${product.description}</p>
 					</div>

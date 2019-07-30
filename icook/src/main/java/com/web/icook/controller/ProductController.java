@@ -389,7 +389,8 @@ public class ProductController {
 			@RequestParam String product_id, Model model, BindingResult result, HttpServletRequest request)
 			throws IOException {
 		System.out.println("\nSubmit Form Start============================================");
-		System.out.println("name :"+bb.getName());
+		String na=request.getParameter("name");
+		System.out.println("name :"+na);
 		System.out.println("getPrice :"+bb.getPrice());
 		String Categoriesname = request.getParameter("fileName");
 		String Category = request.getParameter("name");
@@ -408,7 +409,7 @@ public class ProductController {
 		if (Categoriesname == null || Categoriesname.length() == 0)
 			Categoriesname = "其他";
 		System.out.println(gender + "，" + Category + "，" + Categoriesname);
-		bb.setName(Category);
+		bb.setName(na);
 		bb.setStatus(Integer.valueOf(gender));
 		bb.getCategoriesbean().setName(Categoriesname);
 		System.out.println(model.asMap());
@@ -431,10 +432,20 @@ public class ProductController {
 		MultipartFile productPictureThree = bb.getProductPictureThree();
 		System.out.println("productPuctureThree :"+productPictureThree);
 		String originalFilename = productImage.getOriginalFilename();
+		String originalFilename2 = productPictureTwo.getOriginalFilename();
+		String originalFilename3 = productPictureThree.getOriginalFilename();
 		bb.setFileName(originalFilename);
 		String ext = null;
+		String ext2 = null;
+		String ext3 = null;
+		String JPG=".JPG";
 		if (originalFilename != null && !originalFilename.isEmpty())
-			ext = originalFilename.substring(originalFilename.lastIndexOf("."));
+			ext = originalFilename.substring(originalFilename.lastIndexOf(".")).toLowerCase();
+		if (originalFilename2 != null && !originalFilename.isEmpty())
+			ext2 = originalFilename2.substring(originalFilename2.lastIndexOf(".")).toLowerCase();
+		if (originalFilename3 != null && !originalFilename.isEmpty())
+			ext3 = originalFilename3.substring(originalFilename3.lastIndexOf(".")).toLowerCase();
+		System.out.println("ext:"+ext+"，ext2: "+ext2+"，ext3 : "+ext3);
 
 		// ext :抓檔案副檔名 從" . "以後含點都取
 
@@ -476,8 +487,8 @@ public class ProductController {
 			InputStream ins = productPictureThree.getInputStream();
 			OutputStream ous = new FileOutputStream(
 					"C:/Users/屁股/git/iCook/icook/src/main/webapp/WEB-INF/views/products/images/savedPicture/"
-							+ totalcounts + "_4" + ext);
-			bb.setProductPictureThreePath("/product_pathImage/" + totalcounts + "_4" + ext);
+							+ totalcounts + "_4" + ext3);
+			bb.setProductPictureThreePath("/product_pathImage/" + totalcounts + "_4" + ext3);
 			while ((lenght = ins.read(tmp)) != -1) {
 				ous.write(tmp, 0, lenght);
 			}
