@@ -181,6 +181,32 @@ li {
 /* 	margin-left: 260px; */
 /* } */
 </style>
+<script>
+	//圖片上傳預覽功能
+	$(function() {
+		function format_float(num, pos) {
+			var size = Math.pow(10, pos);
+			return Math.round(num * size) / size;
+		}
+		;
+
+		function preview(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					$('#photo_image').attr('src', e.target.result);
+				};
+				reader.readAsDataURL(input.files[0]);
+			}
+			;
+		}
+		;
+
+		$("#image_file").change(function() {
+			preview(this);
+		});
+	});
+</script>
 </head>
 <body>
 	<div class="main">
@@ -295,9 +321,12 @@ li {
 									<%--儲存使用者上傳圖片檔案的欄位--%>
 									<td><label for="image_file"><p
 												style='margin-left: 37px'>食譜封面照片</p></label></td>
-									<td><p style='margin-left: 110px'>
-											<input id="image_file" name="image_file" type="file" />
-										</p></td>
+									<td><label for="image_file"><input type="file"
+											name="image_file" id="image_file" style="display: none;" />
+											<img class="profile-image img-responsive pull-left"
+											id="photo_image"
+											style="background-color: white; margin: 20px;" width="200"
+											src="<c:url value='/resources/images/NoImage.png' />" /> </label></td>
 								</tr>
 								<tr align="center">
 									<%--烹調時間--%>
