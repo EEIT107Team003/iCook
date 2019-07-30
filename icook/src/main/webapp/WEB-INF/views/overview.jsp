@@ -172,7 +172,7 @@
 									</h3></li>
 								<li><h3 style="margin-bottom: 20px;">
 										<span class="glyphicon glyphicon-list-alt"></span><a
-											href="${ pageContext.request.contextPath }/icookMenu">&nbsp;&nbsp;食譜
+											href="${pageContext.request.contextPath}/recipe/recipeSelect">&nbsp;&nbsp;食譜
 										</a>
 									</h3></li>
 								<li><h3 style="margin-bottom: 20px;">

@@ -95,7 +95,7 @@
 										</h4></li>
 								<li><h4 style="margin-bottom: 20px;">
 										<span class="fa fa-list-alt"></span><a
-											href="${ pageContext.request.contextPath }/icookMenu">&nbsp;&nbsp;食譜
+											href="${pageContext.request.contextPath}/recipe/recipeSelect">&nbsp;&nbsp;食譜
 										</a>
 										</h4></li>
 								<li><h4 style="margin-bottom: 20px;">
