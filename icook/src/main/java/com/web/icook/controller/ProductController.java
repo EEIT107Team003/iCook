@@ -472,8 +472,8 @@ public class ProductController {
 			InputStream ins = productPictureTwo.getInputStream();
 			OutputStream ous = new FileOutputStream(
 					"C:/Users/屁股/git/iCook/icook/src/main/webapp/WEB-INF/views/products/images/savedPicture/"
-							+ totalcounts + "_3" + ext);
-			bb.setProductPictureTwoPath("/product_pathImage/" + totalcounts + "_3" + ext);
+							+ totalcounts + "_3" + ext2);
+			bb.setProductPictureTwoPath("/product_pathImage/" + totalcounts + "_3" + ext2);
 			while ((lenght = ins.read(tmp)) != -1) {
 				ous.write(tmp, 0, lenght);
 			}
