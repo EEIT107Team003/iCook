@@ -38,7 +38,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 import com.web.icook.model.MemberBean;
+import com.web.icook.model.MyCollectRecipeBean;
 import com.web.icook.model.MyTrackBean;
+import com.web.icook.service.CollectionRecipeService;
 import com.web.icook.service.MemberService;
 import com.web.icook.service.MyTrackService;
 
@@ -60,6 +62,8 @@ public class MemberController {
 	IFMService ifmService;
 	@Autowired
 	IRecipeService irecipeService; 
+	@Autowired
+	CollectionRecipeService collectionRecipeService;
 	
 //	@Autowired
 //	IProductService productService;
@@ -76,13 +80,24 @@ public class MemberController {
 
 	//我的食譜
 	@ResponseBody
-	@RequestMapping(value="user/myrecipe", method = RequestMethod.POST) 
+	@RequestMapping(value="/user/myrecipe", method = RequestMethod.POST) 
 	public List<RecipeBean> myRecipe() {
 		List<RecipeBean> allRecipeBean=new ArrayList<RecipeBean>();
 		MemberBean bean = memberService.selectByUsername(getPrincipal());
 		allRecipeBean=irecipeService.searchRecipeByMemberId(bean.getMember_id());
 		System.out.println(allRecipeBean.size());
 		return allRecipeBean;
+	}
+
+	//我的收藏
+	@ResponseBody
+	@RequestMapping(value="/user/mycollectrecipe", method = RequestMethod.POST) 
+	public List<MyCollectRecipeBean> mycollectrecipe() {
+		List<MyCollectRecipeBean> list=new ArrayList<MyCollectRecipeBean>();
+		MemberBean bean = memberService.selectByUsername(getPrincipal());
+		list=collectionRecipeService.selectCollectRecipeById(bean.getMember_id());
+		System.out.println(list.size());
+		return list;
 	}
 
 	// 查詢我的追蹤
@@ -235,15 +250,47 @@ public class MemberController {
 		}
 		return list;
 	}
-
-//	@RequestMapping(value = "/user/update", method = RequestMethod.POST)
-//	public String updateMember(@ModelAttribute("MemberBean") MemberBean bean, Model model, HttpServletRequest request) {
-//		memberService.updateMember(bean);
-//		List<MemberBean> list = new ArrayList<>();
-//		list.add(bean);
-//		model.addAttribute("members", list);
-//		return "result";
-//	}
+	
+	// 查詢特定食譜是否被收藏過
+	@ResponseBody
+	@RequestMapping(value = "/user/collectedRecipe", method = RequestMethod.POST)
+	public List<MyCollectRecipeBean> collectedRecipe(@RequestParam(value = "recipe_id", required = false) Integer recipe_id) {
+		MemberBean bean = memberService.selectByUsername(getPrincipal());
+		System.out.println(bean.getMember_id());
+		System.out.println(recipe_id);
+		List<MyCollectRecipeBean> list = collectionRecipeService.selectOneCollectRecipeById(bean.getMember_id(), recipe_id);
+//		System.out.println(list.get(0).toString());
+		return list;
+	}
+	
+	// 加入收藏
+	@ResponseBody
+	@RequestMapping(value = "/user/collectRecipe", method = RequestMethod.POST)
+	public List<MyCollectRecipeBean> collectRecipe(@RequestParam(value = "recipe_id", required = false) Integer recipe_id) {
+		MemberBean member = memberService.selectByUsername(getPrincipal());
+		
+		System.out.println(recipe_id);
+		RecipeBean recipe = irecipeService.getRecipeById(recipe_id);
+		
+		MyCollectRecipeBean bean = new MyCollectRecipeBean();
+		bean.setCr_memberBean(member);
+		bean.setCr_recipeBean(recipe);
+		Timestamp collectTime = new Timestamp(System.currentTimeMillis());
+		bean.setCollectTime(collectTime);
+		collectionRecipeService.collectByRecipeId(bean);
+		return null;
+	}
+	
+	// 取消收藏
+	@ResponseBody
+	@RequestMapping(value = "/user/cancelCollectRecipe", method = RequestMethod.GET)
+	public int CancelCollectRecipe(@RequestParam(value = "recipe_id", required = false) Integer recipe_id) {
+		MemberBean bean = memberService.selectByUsername(getPrincipal());
+		System.out.println(bean.getMember_id());
+		System.out.println(recipe_id);
+		int h=collectionRecipeService.CollectRecipeCancel(bean.getMember_id(), recipe_id);
+		return h;
+	}
 
 //-------------------------------  members  ---------------------------------------------------------------------------
 	//前往會員頁
@@ -294,6 +341,16 @@ public class MemberController {
 		return list;
 	}
 
+	//我的收藏
+	@ResponseBody
+	@RequestMapping(value="/members/page/mycollectrecipe", method = RequestMethod.POST) 
+	public List<MyCollectRecipeBean> memberCollectrecipe(@RequestParam(value = "member_id", required = false) Integer member_id) {
+		List<MyCollectRecipeBean> list=new ArrayList<MyCollectRecipeBean>();
+		list=collectionRecipeService.selectCollectRecipeById(member_id);
+		System.out.println(list.size());
+		return list;
+	}
+	
 	// 查詢特定追蹤者是否被追蹤過
 	@ResponseBody
 	@RequestMapping(value = "/members/page/checkTracked", method = RequestMethod.POST)

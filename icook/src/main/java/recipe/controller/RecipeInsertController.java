@@ -1,6 +1,7 @@
 package recipe.controller;
 
 import java.sql.Blob;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.rowset.serial.SerialBlob;
@@ -16,6 +17,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.web.icook.model.MemberBean;
+import com.web.icook.model.MyCollectRecipeBean;
+import com.web.icook.model.MyTrackBean;
+import com.web.icook.service.CollectionRecipeService;
 import com.web.icook.service.MemberService;
 
 import recipe.model.RecipeBean;
@@ -33,7 +37,7 @@ public class RecipeInsertController {
 	private IRecipeIngredientsService recipeIngredientsService = null;
 	private IRecipeUnitService recipeUnitService = null;
 	private MemberService memberService = null;
-
+	
 	@Autowired
 	public RecipeInsertController(IRecipeService recipeService, IRecipeIngredientsService recipeIngredientsService,
 			IRecipeUnitService recipeUnitService, MemberService memberService) {
@@ -56,6 +60,15 @@ public class RecipeInsertController {
 			RecipeUnitBeanForm recipeUnitForm, RedirectAttributes redirectAttribute) {
 		// recipeInsert-第二次呼叫
 		// RedirectAttributes redirectAttribute
+		//更新食譜數量 江慶庭-----------------
+		MemberBean memberBean0=memberService.selectByUsername(getPrincipal());
+				List<RecipeBean> list = new ArrayList<RecipeBean>();
+				list = recipeService.searchRecipeByMemberId(memberBean0.getMember_id());
+				memberBean0.setRecipe_num(list.size()+1);
+				memberService.updateMemberInfo(memberBean0,memberBean0.getMember_id());
+		//---------------------------------------			
+
+//		
 		System.out.println("recipeInsert-第二次呼叫");
 		String userName = getPrincipal();
 		System.out.println("userName = " + userName);
@@ -161,7 +174,7 @@ public class RecipeInsertController {
 		String recipeUser = null;
 		MemberBean memberBean2 = recipeBean.getMemberbean();
 		recipeUser = memberBean2.getUsername();
-
+		
 		redirectAttribute.addFlashAttribute("pageSubject", "新增成功");
 		redirectAttribute.addFlashAttribute("recipe", recipeBean);
 		redirectAttribute.addFlashAttribute("recipeIngredients", recipeIngredients);

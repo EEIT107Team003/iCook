@@ -27,8 +27,8 @@ public class MyCollectionRecipeDAOImpl implements MyCollectionRecipeDAO{
 
 	// 查詢 我收藏的食譜
 	@Override
-	public List<MyCollectRecipeBean> selectCollectRecipeById(int cr_member_id) {
-		String hql = "from MyCollectRecipeBean where cr_member_id=:cr_member_id order by collectTime desc";
+	public List<MyCollectRecipeBean> selectCollectRecipeById(Integer cr_member_id) {
+		String hql = "from MyCollectRecipeBean where cr_memberBean.member_id=:cr_member_id order by collectTime desc";
 		List<MyCollectRecipeBean> list = new ArrayList<MyCollectRecipeBean>();
 		Session session = factory.getCurrentSession();
 		list = session.createQuery(hql).setParameter("cr_member_id", cr_member_id).getResultList();
@@ -38,33 +38,33 @@ public class MyCollectionRecipeDAOImpl implements MyCollectionRecipeDAO{
 
 	// 查詢 這篇食譜被誰收藏
 	@Override
-	public List<MyCollectRecipeBean> selectCollectedRecipeById(int cr_reciept_id) {
-		String hql = "from MyCollectRecipeBean where cr_reciept_id=:cr_reciept_id";
+	public List<MyCollectRecipeBean> selectCollectedRecipeById(Integer cr_recipe_id) {
+		String hql = "from MyCollectRecipeBean where cr_recipeBean.pk_recipe_id=:cr_recipe_id";
 		List<MyCollectRecipeBean> list = new ArrayList<MyCollectRecipeBean>();
 		Session session = factory.getCurrentSession();
-		list = session.createQuery(hql).setParameter("cr_reciept_id", cr_reciept_id).getResultList();
+		list = session.createQuery(hql).setParameter("cr_recipe_id", cr_recipe_id).getResultList();
 
 		return list;
 	}
 
 	// 查詢特定收藏食譜
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<MyTrackBean> selectOneCollectRecipeById(int cr_member_id, int cr_reciept_id) {
-		String hql = "from MyCollectRecipeBean where (cr_member_id=:cr_member_id and cr_reciept_id=:cr_reciept_id)";
-		List<MyTrackBean> list = new ArrayList<MyTrackBean>();
-		Session session = factory.getCurrentSession();
-		list = session.createQuery(hql).setParameter("cr_member_id", cr_member_id).setParameter("cr_reciept_id", cr_reciept_id)
-				.getResultList();
+	public List<MyCollectRecipeBean> selectOneCollectRecipeById(Integer cr_member_id, Integer cr_recipe_id) {
+		String hql = "from MyCollectRecipeBean where (cr_memberBean.member_id=:cr_member_id and cr_recipeBean.pk_recipe_id=:cr_recipe_id)";
+		List<MyCollectRecipeBean> list = new ArrayList<MyCollectRecipeBean>();
+		Session session = factory.getCurrentSession();	
+		list = session.createQuery(hql).setParameter("cr_member_id",cr_member_id).setParameter("cr_recipe_id", cr_recipe_id).getResultList();
 
 		return list;
 	}
 
 	// 取消收藏食譜
 	@Override
-	public Integer CollectRecipeCancel(int cr_member_id, int cr_reciept_id) {
-		String hql="delete MyCollectRecipeBean where cr_member_id=:cr_member_id and cr_reciept_id=:cr_reciept_id";
+	public Integer CollectRecipeCancel(Integer cr_member_id, Integer cr_recipe_id) {
+		String hql="delete MyCollectRecipeBean where (cr_memberBean.member_id=:cr_member_id and cr_recipeBean.pk_recipe_id=:cr_recipe_id)";
 		Session session = factory.getCurrentSession();
-		int h=session.createQuery(hql).setParameter("cr_member_id", cr_member_id).setParameter("tracked_id", cr_reciept_id).executeUpdate();
+		int h=session.createQuery(hql).setParameter("cr_member_id", cr_member_id).setParameter("cr_recipe_id", cr_recipe_id).executeUpdate();
 		return h;
 	}
 }

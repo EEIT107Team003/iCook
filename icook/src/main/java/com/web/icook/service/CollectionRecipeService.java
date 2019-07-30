@@ -10,14 +10,14 @@ public interface CollectionRecipeService {
 	void collectByRecipeId(MyCollectRecipeBean bean);
 
 	// 查詢 我收藏的食譜
-	List<MyCollectRecipeBean> selectCollectRecipeById(int cr_member_id);
+	List<MyCollectRecipeBean> selectCollectRecipeById(Integer cr_member_id);
 
 	// 查詢 這篇食譜被誰收藏
-	List<MyCollectRecipeBean> selectCollectedRecipeById(int cr_reciept_id);
+	List<MyCollectRecipeBean> selectCollectedRecipeById(Integer cr_recipe_id);
 
 	// 查詢特定收藏食譜
-	List<MyTrackBean> selectOneCollectRecipeById(int cr_member_id, int cr_reciept_id);
+	List<MyCollectRecipeBean> selectOneCollectRecipeById(Integer cr_member_id, Integer cr_recipe_id);
 
 	// 取消收藏食譜
-	Integer CollectRecipeCancel(int cr_member_id, int cr_reciept_id);
+	Integer CollectRecipeCancel(Integer cr_member_id, Integer cr_recipe_id);
 }

@@ -292,7 +292,43 @@ td {
 								+"</div>"
 							+"</div>";
 					};
-					
+					$("#recipe_num").html(names.length)
+					$("#user_contain").html(txt);
+				},
+				error : function(data, textStatus, errorThrown) {
+					console.log("error: "+data);
+				},
+			});
+		});
+		
+		$("#user_mycollectrecipe").click(function(){
+			$("#tag_myRecipe").css({"border-bottom": "none"});
+			$("#tag_myCollectRecipe").css({"border-bottom": "3px solid green"});
+			$("#tag_myTrack").css({"border-bottom": "none"});
+			$("#tag_myForum").css({"border-bottom": "none"});
+			$.ajax({
+				url : "${pageContext.request.contextPath}/user/mycollectrecipe",
+				type : "POST",
+				dataType : "json",
+				contentType : "application/json",
+				async : true,
+				success : function(data) {
+					var names = JSON.parse(JSON.stringify(data).split(","));
+					var txt = "";
+					console.log(data);
+					for (i in names) {
+						txt+=
+							"<div class=contain_mytrack>"
+							+"<div width=100%>"
+							+"<div>"
+								+"<img class=contain_mytrack_photo src=<c:url value='/getRecipePicture/"+names[i].cr_recipeBean.pk_recipe_id+"' /> />"
+							+"</div>"
+								+"<a href='${pageContext.request.contextPath}/recipe/recipeSuccessPage/two/"+names[i].cr_recipeBean.pk_recipe_id+"' class='contain_mytrack_title'>"+names[i].cr_recipeBean.recipe_name+"</a>"
+							+"</div>"
+							+"<div class=contain_mytrack_summary>食譜簡介："+names[i].cr_recipeBean.recipe_summary+"</div>"
+							+"</div>"
+						+"</div>";
+					};
 					$("#user_contain").html(txt);
 				},
 				error : function(data, textStatus, errorThrown) {
@@ -367,7 +403,7 @@ td {
 							+"</div>"
 						console.log(names[i].title);
 					};
-// 					$("#forum_num").html(names.length)
+					$("#forum_num").html(names.length)
 					$("#user_contain").html(txt);
 				},
 				error : function(data, textStatus, errorThrown) {

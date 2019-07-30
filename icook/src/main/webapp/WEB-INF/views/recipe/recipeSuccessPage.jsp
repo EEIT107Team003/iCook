@@ -5,6 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,21 +35,21 @@
 <!-- <script type="text/javascript" -->
 <%-- 	src='${pageContext.request.contextPath}/css/fontawesome-free/js/all.min.js'></script> --%>
 <!-- fontawesome-free -->
-<link rel="icon" href="images/favicon.ico">
-<link rel="shortcut icon" href="images/favicon.ico" />
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/zerogrid.css" type="text/css"
+<link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico">
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.ico" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/zerogrid.css" type="text/css"
 	media="screen">
-<link rel="stylesheet" href="css/responsive.css" type="text/css"
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/responsive.css" type="text/css"
 	media="screen">
-<link rel="stylesheet" href="css/prettyPhoto.css">
-<script src="js/jquery.js"></script>
-<script src="js/jquery-migrate-1.1.1.js"></script>
-<script src="js/superfish.js"></script>
-<script src="js/jquery.easing.1.3.js"></script>
-<script src="js/sForm.js"></script>
-<script src="js/jquery.prettyPhoto.js"></script>
-<script src="js/css3-mediaqueries.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/prettyPhoto.css">
+<script src="${pageContext.request.contextPath}/js/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-migrate-1.1.1.js"></script>
+<script src="${pageContext.request.contextPath}/js/superfish.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.easing.1.3.js"></script>
+<script src="${pageContext.request.contextPath}/js/sForm.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.prettyPhoto.js"></script>
+<script src="${pageContext.request.contextPath}/js/css3-mediaqueries.js"></script>
 <!-- google font -->
 <link
 	href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap"
@@ -79,6 +80,7 @@
 	src="${pageContext.request.contextPath}/js/jquery.carouFredSel-6.1.0-packed.js"></script>
 <script src="${pageContext.request.contextPath}/js/tms-0.4.1.js"></script>
 <script src="${pageContext.request.contextPath}/js/css3-mediaqueries.js"></script>
+
 <!-- google font -->
 <!-- 彈跳視窗 -->
 <!-- <link rel="stylesheet" -->
@@ -94,9 +96,78 @@
 <!-- 	integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" -->
 <!-- 	crossorigin="anonymous"></script> -->
 <!-- 彈跳視窗 -->
-<script type="text/javascript">
+<script>
+	$(document).ready(function() {
+		if($("#userId").val().trim()!=""){
+			$.ajax({ 
+				url : "${pageContext.request.contextPath}/user/collectedRecipe",
+				type : "POST",
+				dataType : "json",
+				data:{recipe_id:$("#recipeId").val()},
+				async : true,
+				success : function(data) {
+					var names = JSON.parse(JSON.stringify(data).split(","));
+					var txt = "";				
+					if(names.length!=0){
+						txt+="<button class='btn btn-danger' style='margin-top:6px; float: right;height: 100%' onclick='cancelcollect()'>已收藏</button>";
+						$("#collectRecipeButton").html(txt);	
+					}else{
+						txt+="<button class='btn btn-light' style='margin-top:6px; float: right;height: 100%' onclick='collect()'>加入收藏</button>";
+						$("#collectRecipeButton").html(txt);
+					}
+				},
+				error : function(data, textStatus, errorThrown) {
+					alert('error')
+					console.log("error: "+data);
+				},
+			});
+		}else{
+			var txt = "";
+			txt+="<button class='btn btn-light' style='margin-top:6px; float: right;height: 100%' onclick='collect()'>加入收藏</button>"
+				$("#collectRecipeButton").html(txt);
+		}
+	});
 	
+	function collect() {
+// 		if($("#userId").val().trim()!=""){
+			$.ajax({ 
+				url : "${pageContext.request.contextPath}/user/collectRecipe",
+				type : "POST",
+				dataType : "json",
+				data:{recipe_id:$("#recipeId").val()},
+				async : true,
+				success : function(data) {
+					var names = JSON.parse(JSON.stringify(data).split(","));
+					var txt = "";				
+					txt+="<button class='btn btn-danger' style='margin-top:6px; float: right;height: 100%' onclick='cancelcollect()'>已收藏</button>"
+					$("#collectRecipeButton").html(txt);	
+				},
+				error : function(data, textStatus, errorThrown) {
+					console.log("error: "+data);
+				},
+			});
+// 		}
+	}
+	function cancelcollect() {
+		$.ajax({ 
+			url : "${pageContext.request.contextPath}/user/cancelCollectRecipe",
+			type : "GET",
+			dataType : "json",
+			data:{recipe_id:$("#recipeId").val()},
+			async : true,
+			success : function(data) {
+				var names = JSON.parse(JSON.stringify(data).split(","));
+				var txt = "";				
+				txt+="<button class='btn btn-light' style='margin-top:6px; float: right;height: 100%' onclick='collect()'>加入收藏</button>"
+				$("#collectRecipeButton").html(txt);	
+			},
+			error : function(data, textStatus, errorThrown) {
+				console.log("error: "+data);
+			},
+		});
+	}
 </script>
+
 <style>
 .subscribe {
 	margin-left: 20%;
@@ -140,6 +211,8 @@ li {
 </head>
 
 <body style="background-color: #55a237;">
+	<input id="recipeId" name="recipeId" type="hidden" value="${recipe.pk_recipe_id}"/>
+	<input id="userId" name="userId" type="hidden" value="${pageContext.request.userPrincipal.name}"/>
 	<!--<div class="main">-->
 	<!--==============================header=================================-->
 	<header>
@@ -248,7 +321,11 @@ li {
 				<tbody>
 					<tr align="center" style='background-color: #2FA02F; color: white'>
 						<td style='font-size: 35px;'>食譜名稱</td>
-						<td style='font-size: 35px'>${recipe.recipe_name}</td>
+						<td style='font-size: 35px'>
+							<div>${recipe.recipe_name}</div>
+							<div id="collectRecipeButton"></div>
+<!-- 								<button class="btn btn-light" style="margin-top:6px; float: right;height: 100%" onclick='collect()'>收藏食譜</button> -->
+						</td>
 					</tr>
 					<tr align="center">
 						<%--<td colspan="2">--%>

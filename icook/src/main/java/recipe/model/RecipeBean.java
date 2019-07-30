@@ -69,8 +69,8 @@ public class RecipeBean implements Serializable {
 //	private List<RecipeUnitBean> recipeUnit = new ArrayList<RecipeUnitBean>();// 一對多，「單元食譜、食譜步驟【已完成】」
 
 //收藏食譜 (by江慶庭)---------------------------------------
-	@JsonBackReference(value = "cr_reciept_id")
-	@OneToMany(mappedBy = "cr_reciept_id", fetch = FetchType.EAGER) // EAGER防止 lazy loading的問題
+	@JsonBackReference(value = "cr_recipeBean")
+	@OneToMany(mappedBy = "cr_recipeBean", fetch = FetchType.EAGER) // EAGER防止 lazy loading的問題
 	private Set<MyCollectRecipeBean> collectRecipe = new LinkedHashSet<>();
 //---------------------------------------	
 

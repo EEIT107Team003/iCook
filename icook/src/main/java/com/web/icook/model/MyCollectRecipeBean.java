@@ -18,32 +18,32 @@ public class MyCollectRecipeBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	// 收藏者(會員)
-	private MemberBean cr_member_id;
+	private MemberBean cr_memberBean;
 	// 被收藏食譜
-	private RecipeBean cr_reciept_id;
+	private RecipeBean cr_recipeBean;
 	// 收藏時間
 	private Timestamp collectTime;
 
 	@Id
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="cr_member_id")
-	public MemberBean getCr_member_id() {
-		return cr_member_id;
+	public MemberBean getCr_memberBean() {
+		return cr_memberBean;
 	}
 
-	public void setCr_member_id(MemberBean cr_member_id) {
-		this.cr_member_id = cr_member_id;
+	public void setCr_memberBean(MemberBean cr_memberBean) {
+		this.cr_memberBean = cr_memberBean;
 	}
 
 	@Id
 	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="cr_reciept_id")
-	public RecipeBean getCr_reciept_id() {
-		return cr_reciept_id;
+	@JoinColumn(name="cr_recipe_id")
+	public RecipeBean getCr_recipeBean() {
+		return cr_recipeBean;
 	}
 
-	public void setCr_reciept_id(RecipeBean cr_reciept_id) {
-		this.cr_reciept_id = cr_reciept_id;
+	public void setCr_recipeBean(RecipeBean cr_recipeBean) {
+		this.cr_recipeBean = cr_recipeBean;
 	}
 
 	public Timestamp getCollectTime() {

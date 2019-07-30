@@ -25,26 +25,25 @@ public class CollectionRecipeServiceImpl implements CollectionRecipeService {
 
 	// 查詢 我收藏的食譜
 	@Override
-	public List<MyCollectRecipeBean> selectCollectRecipeById(int cr_member_id) {
-		return dao.selectCollectedRecipeById(cr_member_id);
+	public List<MyCollectRecipeBean> selectCollectRecipeById(Integer cr_member_id) {
+		return dao.selectCollectRecipeById(cr_member_id);
 	}
 
 	// 查詢 這篇食譜被誰收藏
 	@Override
-	public List<MyCollectRecipeBean> selectCollectedRecipeById(int cr_reciept_id) {
-		return dao.selectCollectedRecipeById(cr_reciept_id);
+	public List<MyCollectRecipeBean> selectCollectedRecipeById(Integer cr_recipe_id) {
+		return dao.selectCollectedRecipeById(cr_recipe_id);
 	}
 
 	// 查詢特定收藏食譜
 	@Override
-	public List<MyTrackBean> selectOneCollectRecipeById(int cr_member_id, int cr_reciept_id) {
-		return dao.selectOneCollectRecipeById(cr_member_id, cr_reciept_id);
+	public List<MyCollectRecipeBean> selectOneCollectRecipeById(Integer cr_member_id, Integer cr_recipe_id) {
+		return dao.selectOneCollectRecipeById(cr_member_id, cr_recipe_id);
 	}
 
 	// 取消收藏食譜
 	@Override
-	public Integer CollectRecipeCancel(int cr_member_id, int cr_reciept_id) {
-		return dao.CollectRecipeCancel(cr_member_id, cr_reciept_id);
+	public Integer CollectRecipeCancel(Integer cr_member_id, Integer cr_recipe_id) {
+		return dao.CollectRecipeCancel(cr_member_id, cr_recipe_id);
 	}
-
 }
