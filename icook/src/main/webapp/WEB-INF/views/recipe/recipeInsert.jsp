@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>購物車</title>
+<title>新增食譜</title>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -205,9 +205,15 @@ li {
 										<ul>
 											<li><a href="icookContact">聯繫我們</a></li>
 										</ul></li>
-									<li><a href="recipe/recipeIndex">查看食譜</a> <!--<ul>--> <!--<li><a href="#">cat1</a></li>-->
-										<!--<li><a href="#">cat2</a></li>--> <!--<li><a href="#">cat3</a></li>-->
-										<!--</ul>--></li>
+									<li><a href="#">食譜專區</a>
+										<ul>
+											<li><a
+												href="<c:url value='/user/recipe/recipeInsert' />">新增食譜</a>
+											</li>
+											<li><a href="<c:url value='/recipe/recipeSelect' />">查看食譜</a>
+											</li>
+											<!--<li><a href="#">cat3</a></li>-->
+										</ul></li>
 									<li><a href="icookLife">生活誌</a></li>
 									<li><a href="forum/overview">討論區</a></li>
 									<li><a href="A_articlemainpage">文章區</a>
@@ -252,27 +258,6 @@ li {
 		<!--=======content================================-->
 		<!-- 確認登出 -->
 
-		<!-- 		<div class="modal fade" id="logout" tabindex="-1" role="dialog" -->
-		<!-- 			aria-labelledby="myModalLabel" aria-hidden="true"> -->
-		<!-- 			<div class="modal-dialog"> -->
-		<!-- 				<div class="modal-content"> -->
-		<!-- 					<div class="modal-header" style="border-bottom: 1px solid;"> -->
-		<!-- 						<h4 class="modal-title" id="myModalLabel" style="float: left">您即將登出享食天堂</h4> -->
-		<!-- 						<button type="button" class="close" data-dismiss="modal" -->
-		<!-- 							aria-hidden="true">×</button> -->
-		<!-- 					</div> -->
-		<!-- 					<div class="modal-body" style="width: 100%"> -->
-		<!-- 						<form method="post" action="perform_logout"> -->
-		<!-- 							<button type="submit">確定登出</button> -->
-		<!-- 						</form> -->
-		<!-- 					</div> -->
-		<!-- 					<div class="modal-footer"> -->
-		<!-- 						<button type="button" class="btn btn-primary" data-dismiss="modal">取消</button> -->
-		<!-- 					</div> -->
-		<!-- 				</div> -->
-		<!-- 			</div> -->
-		<!-- 		</div> -->
-
 		<div align="center">
 			<!--HTML註解-->
 			<%--JSP註解--%>
@@ -295,14 +280,14 @@ li {
 					<%-- 食譜表單 --%>
 					<!--<table border="1" bgcolor="#ffffb9" width="50%">-->
 					<fieldset>
-						<legend></legend>
+						<!--<legend>食譜表單</legend>-->
 						<table width="50%" class="table table-hover">
 							<tbody>
 								<tr align="center">
 									<td colspan="2"><p style='font-size: 50px'>新增一份食譜</p></td>
 								</tr>
 								<tr>
-									<%-- 食譜名稱--%>
+									<%--食譜名稱--%>
 									<td><label for="recipe_name">食譜名稱</label></td>
 									<td><input id="recipe_name" name="recipe_name" type="text" /></td>
 								</tr>
@@ -317,13 +302,13 @@ li {
 								<tr align="center">
 									<%--烹調時間--%>
 									<td><label for="recipe_time">烹調時間</label></td>
-									<td><input id="recipe_time" name="recipe_time" type="text" /></td>
+									<td><input id="recipe_time" name="recipe_time" type="text" />分鐘</td>
 								</tr>
 								<tr align="center">
 									<%--食譜份量--%>
 									<td><label for="recipe_quantity">食譜份量</label></td>
 									<td><input id="recipe_quantity" name="recipe_quantity"
-										type="text" /></td>
+										type="text" />人份</td>
 								</tr>
 								<tr align="center">
 									<%--食譜簡介--%>
@@ -335,7 +320,7 @@ li {
 									<%--食譜分類--%>
 									<td><label for="recipe_item">食譜分類</label></td>
 									<td><select name="recipe_item">
-											<option value="taiwan">臺式</option>
+											<option value="taiwan">台式</option>
 											<option value="japan">日式</option>
 											<option value="thailand">泰式</option>
 									</select></td>
@@ -352,7 +337,7 @@ li {
 					<!--<table id="recipe_ingredients" border="1" width="50%" bgcolor="#ffffaa">-->
 
 					<fieldset>
-						<!-- 						<legend>食材-份量</legend> -->
+						<!--<legend>食材-份量</legend>-->
 						<table id="recipe_ingredients" class="table table-hover">
 							<thead>
 								<tr align="center">
@@ -363,31 +348,17 @@ li {
 								</tr>
 							</thead>
 							<tbody align="left">
-								<tr align="" >
+								<tr align="">
 									<!--<c:set var='count' value="${count+1}" />-->
 									<td><input type="text" name="ingredients2" /></td>
 									<td><input type="text" name="quantity2"></input></td>
 									<td><input type="button" class="btn btn-success"
-										onclick="addCurrentRow1()" value="新增" style="font-size: 16px" /></td>
+										onclick="addCurrentRow1()" value="新增" style="font-size: 16px" />
+									</td>
 									<td><input type="button" onclick="deleteCurrentRow1(this)"
-										value="刪除" class="btn btn-danger" style="font-size: 16px" /></td>
-
+										value="刪除" class="btn btn-danger" style="font-size: 16px" />
+									</td>
 								</tr>
-								<tr>
-									<th scope="col"><p style='margin-left:10px'>步驟圖片</p></th>
-									<th scope="col">步驟說明</th>
-									<th scope="col">新增</th>
-									<th scope="col">刪除</th>
-								</tr>
-								<tr>
-									<td><p style='margin-left:110px'><input type="file" name="unit_image2"  /></p></td>
-									<td><input type="text" name="explain2"></input></td>
-									<td><input type="button" onclick="addCurrentRow2()"
-										value="新增" class="btn btn-success" style="font-size: 16px" /></td>
-									<td><input type="button" onclick="deleteCurrentRow2(this)"
-										value="刪除" class="btn btn-danger" style="font-size: 16px" /></td>
-								</tr>
-
 							</tbody>
 						</table>
 					</fieldset>
@@ -395,97 +366,71 @@ li {
 					<br>
 					<%-- 第三張table-start --%>
 					<%-- 食譜步驟表單【動態生成】 --%>
-					<!--<table id="recipe_unit" border="1" width="50%" bgcolor="#ffff93">-->
-					<!-- 				<fieldset> -->
-					<!-- 					<legend>食譜步驟</legend> -->
-
-<!-- 					<table id="recipe_unit" class="table table-hover"> -->
-<!-- 						<thead> -->
-<!-- 							<tr align="center"> -->
-<!-- 								<th scope="col">步驟圖片</th> -->
-<!-- 								<th scope="col">步驟說明</th> -->
-<!-- 								<th scope="col">新增</th> -->
-<!-- 								<th scope="col">刪除</th> -->
-<!-- 							</tr> -->
-<!-- 						</thead> -->
-<!-- 						<tbody> -->
-<!-- 							<tr align="center"> -->
-<!-- 								<td><input type="file" name="unit_image2" /></td> -->
-<!-- 								<td><input type="text" name="explain2"></input></td> -->
-<!-- 								<td><input type="button" onclick="addCurrentRow2()" -->
-<!-- 									value="新增" class="btn btn-success" style="font-size: 16px" /></td> -->
-<!-- 								<td><input type="button" onclick="deleteCurrentRow2(this)" -->
-<!-- 									value="刪除" class="btn btn-danger" style="font-size: 16px" /></td> -->
-<!-- 							</tr> -->
-<!-- 						</tbody> -->
-<!-- 					</table> -->
+					<fieldset>
+						<!--<legend>食譜步驟</legend>-->
+						<table id="recipe_unit" class="table table-hover">
+							<thead>
+								<tr>
+									<th scope="col"><p style='margin-left: 10px'>步驟圖片</p></th>
+									<th scope="col">步驟說明</th>
+									<th scope="col">新增</th>
+									<th scope="col">刪除</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<p style='margin-left: 110px'>
+											<input type="file" name="unit_image2" />
+										</p>
+									</td>
+									<td><input type="text" name="explain2"></input></td>
+									<td><input type="button" onclick="addCurrentRow2()"
+										value="新增" class="btn btn-success" style="font-size: 16px" />
+									</td>
+									<td><input type="button" onclick="deleteCurrentRow2(this)"
+										value="刪除" class="btn btn-danger" style="font-size: 16px" />
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</fieldset>
 					<br>
 					<%--這是「送出」按鈕--%>
 					<input class="btn btn-outline-primary" type="submit" value="確認新增資料" />
 				</form>
-				<!-- 				</fieldset> -->
 				<!--<input type="button" onclick="addCurrentRow2()" value="新增一列" style="font-size: 16px" />-->
 				<%-- 第三張table-end --%>
 			</div>
-
-
-			<!-- 			<table class="table table-hover"> -->
-			<!-- 				<thead> -->
-			<!-- 					<tr> -->
-			<!-- 						<th scope="col">#</th> -->
-			<!-- 						<th scope="col">First</th> -->
-			<!-- 						<th scope="col">Last</th> -->
-			<!-- 						<th scope="col">Handle</th> -->
-			<!-- 					</tr> -->
-			<!-- 				</thead> -->
-			<!-- 				<tbody> -->
-			<!-- 					<tr> -->
-			<!-- 						<th scope="row">1</th> -->
-			<!-- 						<td>Mark</td> -->
-			<!-- 						<td>Otto</td> -->
-			<!-- 						<td>@mdo</td> -->
-			<!-- 					</tr> -->
-			<!-- 					<tr> -->
-			<!-- 						<th scope="row">2</th> -->
-			<!-- 						<td>Jacob</td> -->
-			<!-- 						<td>Thornton</td> -->
-			<!-- 						<td>@fat</td> -->
-			<!-- 					</tr> -->
-			<!-- 					<tr> -->
-			<!-- 						<th scope="row">3</th> -->
-			<!-- 						<td colspan="2">Larry the Bird</td> -->
-			<!-- 						<td>@twitter</td> -->
-			<!-- 					</tr> -->
-			<!-- 				</tbody> -->
-			<!-- 			</table> -->
-
 
 			<%--<br> <a href="home">回首頁</a>--%>
 			<%--<br><a href="${pageContext.request.contextPath}">回首頁</a><br>--%>
 			<%--<c:set value="#d3ff93" var="color" />--%>
 			<%--<a href="<c:url value='/home' />">回首頁</a><br>--%>
-
 			<%-- 			<br> <a href="<c:url value='/recipe/recipeIndex' />">回食譜首頁</a> <br> --%>
 			<%-- 			<a href="<c:url value='/home' />">回首頁</a> <br> --%>
 		</div>
-		<!--<div>-->
 		<%--pageContext.request.contextPath&nbsp;=&nbsp;${pageContext.request.contextPath}<br>--%>
-		<!--</div>-->
 		<script>
 			let countIngredients = 1;//食譜食材
 			let countUnit = 1;//食譜步驟
 			//recipe_ingredients
 			function addCurrentRow1() {
 				//新增一列
+
 				countIngredients++;
-				let trcomp = "<tr align='center'>";
-				trcomp += "<td><input type='text' name='ingredients2' /></td>";
-				trcomp += "<td><input type='text' name='quantity2'></input></td>";
+				let trcomp = "<tr align=''>";
 				trcomp += "<td>";
-				trcomp += "<input type='button' onclick='addCurrentRow1()' value='新增' style='font-size: 16px' />";
+				trcomp += "<input type='text' name='ingredients2' />";
 				trcomp += "</td>";
 				trcomp += "<td>";
-				trcomp += "<input type='button' onclick='deleteCurrentRow1(this)' value='刪除' style='font-size: 16px' />";
+				trcomp += "<input type='text' name='quantity2'></input>";
+				trcomp += "</td>";
+				trcomp += "<td>";
+				trcomp += "<input type='button' class='btn btn-success' onclick='addCurrentRow1()' value='新增' style='font-size: 16px' />";
+				trcomp += "</td>";
+				trcomp += "<td>";
+				trcomp += "<input type='button' onclick='deleteCurrentRow1(this)' value='刪除' class='btn btn-danger' style='font-size: 16px' />";
 				trcomp += "</td>";
 				trcomp += "</tr>";
 				$("#recipe_ingredients tbody tr:last-child").after(trcomp);
@@ -510,14 +455,20 @@ li {
 			function addCurrentRow2() {
 				//新增一列
 				countUnit++;
-				let trcomp = "<tr align='center'>";
-				trcomp += "<td><input type='file' name='unit_image2' /></td>";
-				trcomp += "<td><input type='text' name='explain2'></input></td>";
+				let trcomp = "<tr>";
 				trcomp += "<td>";
-				trcomp += "<input type='button' onclick='addCurrentRow2()' value='新增' style='font-size: 16px' />";
+				trcomp += "<p style='margin-left: 110px'>";
+				trcomp += "<input type='file' name='unit_image2' />";
+				trcomp += "</p>";
 				trcomp += "</td>";
 				trcomp += "<td>";
-				trcomp += "<input type='button' onclick='deleteCurrentRow2(this)' value='刪除' style='font-size: 16px' />";
+				trcomp += "<input type='text' name='explain2'></input>";
+				trcomp += "</td>";
+				trcomp += "<td>";
+				trcomp += "<input type='button' onclick='addCurrentRow2()' value='新增' class='btn btn-success' style='font-size: 16px' />";
+				trcomp += "</td>";
+				trcomp += "<td>";
+				trcomp += "<input type='button' onclick='deleteCurrentRow2(this)' value='刪除' class='btn btn-danger' style='font-size: 16px' />";
 				trcomp += "</td>";
 				trcomp += "</tr>";
 				$("#recipe_unit tbody tr:last-child").after(trcomp);
