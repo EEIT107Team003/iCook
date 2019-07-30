@@ -63,6 +63,13 @@ public class HomeController {
 			List<RecipeBean> recipeBeanList = recipeService.searchRecipe(recipeSearch);
 			model.addAttribute("recipeBeans", recipeBeanList);
 		}
+		
+		String userName = getPrincipal();
+		System.out.println("userName = " + userName);
+		MemberBean memberBean = null;
+		memberBean = memberService.selectByUsername(userName);
+		System.out.println("memberBean = " + memberBean);
+		model.addAttribute("bean", memberBean);
 		return "recipe/recipeSelect";
 	}
 
@@ -75,6 +82,13 @@ public class HomeController {
 		List<RecipeBean> recipeBeanList = recipeService.searchRecipe(recipe_name);
 //		System.out.println("recipeBeanList -> " + recipeBeanList);
 		model.addAttribute("recipeBeans", recipeBeanList);
+		
+		String userName = getPrincipal();
+		System.out.println("userName = " + userName);
+		MemberBean memberBean = null;
+		memberBean = memberService.selectByUsername(userName);
+		System.out.println("memberBean = " + memberBean);
+		model.addAttribute("bean", memberBean);
 		return "recipe/recipeSelect";
 	}
 
@@ -103,6 +117,7 @@ public class HomeController {
 		redirectAttribute.addFlashAttribute("currentUser", currentUser);
 		redirectAttribute.addFlashAttribute("recipeUser", recipeUser);
 		redirectAttribute.addFlashAttribute("memberBean", memberBean2);
+		redirectAttribute.addFlashAttribute("bean", memberBean2);
 //		System.out.println("currentUser -> " + currentUser);
 //		System.out.println("recipeUser -> " + recipeUser);
 		return "redirect:/recipe/recipeSuccessPage";
@@ -143,6 +158,13 @@ public class HomeController {
 		// 查詢
 		List<RecipeBean> recipeBeanList = recipeService.getAllRecipe();
 		model.addAttribute("recipeBeans", recipeBeanList);
+		
+		String userName = getPrincipal();
+		System.out.println("userName = " + userName);
+		MemberBean memberBean = null;
+		memberBean = memberService.selectByUsername(userName);
+		System.out.println("memberBean = " + memberBean);
+		model.addAttribute("bean", memberBean);
 		return "recipe/recipeSelect";
 	}
 
@@ -178,11 +200,18 @@ public class HomeController {
 		redirectAttribute.addFlashAttribute("currentUser", currentUser);
 		redirectAttribute.addFlashAttribute("recipeUser", recipeUser);
 		redirectAttribute.addFlashAttribute("memberBean", memberBean2);
+		redirectAttribute.addFlashAttribute("bean", memberBean2);
 		return "redirect:/recipe/recipeSuccessPage";
 	}
 
 	@RequestMapping(value = "/recipe/recipeSuccessPage")
-	public String successPage() {
+	public String successPage(Model model) {
+		String userName = getPrincipal();
+		System.out.println("userName = " + userName);
+		MemberBean memberBean = null;
+		memberBean = memberService.selectByUsername(userName);
+		System.out.println("memberBean = " + memberBean);
+		model.addAttribute("bean", memberBean);
 		return "recipe/recipeSuccessPage";
 	}
 
