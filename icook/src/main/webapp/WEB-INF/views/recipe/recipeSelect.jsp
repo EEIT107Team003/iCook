@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>購物車</title>
+<title>查詢所有食譜</title>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -162,9 +162,15 @@ li {
 										<ul>
 											<li><a href="icookContact">聯繫我們</a></li>
 										</ul></li>
-									<li><a href="recipe/recipeIndex">查看食譜</a> <!--<ul>--> <!--<li><a href="#">cat1</a></li>-->
-										<!--<li><a href="#">cat2</a></li>--> <!--<li><a href="#">cat3</a></li>-->
-										<!--</ul>--></li>
+									<li><a href="#">食譜專區</a>
+										<ul>
+											<li><a
+												href="<c:url value='/user/recipe/recipeInsert' />">新增食譜</a>
+											</li>
+											<li><a href="<c:url value='/recipe/recipeSelect' />">查看食譜</a>
+											</li>
+											<!--<li><a href="#">cat3</a></li>-->
+										</ul></li>
 									<li><a href="icookLife">生活誌</a></li>
 									<li><a href="forum/overview">討論區</a></li>
 									<li><a href="A_articlemainpage">文章區</a>

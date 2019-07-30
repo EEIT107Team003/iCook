@@ -302,13 +302,13 @@ li {
 								<tr align="center">
 									<%--烹調時間--%>
 									<td><label for="recipe_time">烹調時間</label></td>
-									<td><input id="recipe_time" name="recipe_time" type="text" /></td>
+									<td><input id="recipe_time" name="recipe_time" type="text" />分鐘</td>
 								</tr>
 								<tr align="center">
 									<%--食譜份量--%>
 									<td><label for="recipe_quantity">食譜份量</label></td>
 									<td><input id="recipe_quantity" name="recipe_quantity"
-										type="text" /></td>
+										type="text" />人份</td>
 								</tr>
 								<tr align="center">
 									<%--食譜簡介--%>
@@ -320,7 +320,7 @@ li {
 									<%--食譜分類--%>
 									<td><label for="recipe_item">食譜分類</label></td>
 									<td><select name="recipe_item">
-											<option value="taiwan">臺式</option>
+											<option value="taiwan">台式</option>
 											<option value="japan">日式</option>
 											<option value="thailand">泰式</option>
 									</select></td>

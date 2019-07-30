@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>購物車</title>
+<title>顯示完整食譜頁面</title>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -162,9 +162,14 @@ li {
 									<ul>
 										<li><a href="icookContact">聯繫我們</a></li>
 									</ul></li>
-								<li><a href="recipe/recipeIndex">查看食譜</a> <!--<ul>--> <!--<li><a href="#">cat1</a></li>-->
-									<!--<li><a href="#">cat2</a></li>--> <!--<li><a href="#">cat3</a></li>-->
-									<!--</ul>--></li>
+								<li><a href="#">食譜專區</a>
+									<ul>
+										<li><a href="<c:url value='/user/recipe/recipeInsert' />">新增食譜</a>
+										</li>
+										<li><a href="<c:url value='/recipe/recipeSelect' />">查看食譜</a>
+										</li>
+										<!--<li><a href="#">cat3</a></li>-->
+									</ul></li>
 								<li><a href="icookLife">生活誌</a></li>
 								<li><a href="forum/overview">討論區</a></li>
 								<li><a href="A_articlemainpage">文章區</a>
@@ -230,88 +235,122 @@ li {
 	<!-- 			</div> -->
 	<!-- 		</div> -->
 
-<div style="background-color: white; margin-bottom: 50px">
-	<div align="center" class='shrink' style="background-color: white;">
-		<table class="table table-hover">
-			<thead>
-				<tr>
-					<th scope="col"><div style="visibility: hidden">區塊中的內容</div></th>
-					<th scope="col"><div style="visibility: hidden">區塊中的內容</div></th>
+	<div style="background-color: white; margin-bottom: 50px">
+		<div align="center" class='shrink' style="background-color: white;">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th scope="col"><div style="visibility: hidden">區塊中的內容</div></th>
+						<th scope="col"><div style="visibility: hidden">區塊中的內容</div></th>
 
-				</tr>
-			</thead>
-			<tbody>
-				<tr align="center" style='background-color: #2FA02F; color: white'>
-					<td style='font-size: 35px;'>食譜名稱</td>
-					<td style='font-size: 35px'>${recipe.recipe_name}</td>
-				</tr>
-				<tr align="center">
-					<%--<td colspan="2">--%>
-					<td style='line-height: 150px'><p style='margin-left: 40px'>食譜封面照片</p></td>
-					<td><img
-						src="<c:url value='/getRecipePicture/${recipe.pk_recipe_id}' />"
-						width="300" /></td>
-				</tr>
-				<tr align="center">
-					<td>烹調時間</td>
-					<td>${recipe.recipe_time}</td>
-				</tr>
-				<tr align="center">
-					<td>食譜份量</td>
-					<td>${recipe.recipe_quantity}</td>
-				</tr>
-				<tr align="center">
-					<td>食譜簡介</td>
-					<td>${recipe.recipe_summary}</td>
-				</tr>
-
-				<tr align="center" style='background-color: #2FA02F; color: white'>
-					<td style='font-size: 35px'>食材名稱</td>
-					<td style='font-size: 35px'>份量</td>
-				</tr>
-
-				<c:forEach var="recipe2" items="${recipeIngredients}">
-					<tr align="center">
-						<td>${recipe2.ingredients}</td>
-						<td>${recipe2.quantity}</td>
 					</tr>
-				</c:forEach>
-				<tr align="center" style='background-color: #2FA02F; color: white''>
-					<td style='font-size: 35px'>步驟圖片</td>
-					<td style='font-size: 35px'>步驟說明</td>
-				</tr>
-				<c:forEach var="recipe3" items="${recipeUnitBean}">
+				</thead>
+				<tbody>
+					<tr align="center" style='background-color: #2FA02F; color: white'>
+						<td style='font-size: 35px;'>食譜名稱</td>
+						<td style='font-size: 35px'>${recipe.recipe_name}</td>
+					</tr>
 					<tr align="center">
+						<%--<td colspan="2">--%>
+						<td style='line-height: 150px'><p style='margin-left: 40px'>食譜封面照片</p></td>
 						<td><img
-							src="<c:url value='/getRecipePicture2/${recipe.pk_recipe_id}/${recipe3.stepNo}' />"
+							src="<c:url value='/getRecipePicture/${recipe.pk_recipe_id}' />"
 							width="300" /></td>
-						<td>${recipe3.explain}</td>
 					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+					<tr align="center">
+						<td>烹調時間</td>
+						<td>${recipe.recipe_time}&nbsp;分鐘</td>
+					</tr>
+					<tr align="center">
+						<td>食譜份量</td>
+						<td>${recipe.recipe_quantity}&nbsp;人份</td>
+					</tr>
+					<tr align="center">
+						<td>食譜簡介</td>
+						<td>${recipe.recipe_summary}</td>
+					</tr>
+					<tr align="center">
+						<td>食譜分類</td>
+						<td><c:if test="${recipe.recipe_item == 'taiwan'}">
+							台式
+						</c:if> <c:if test="${recipe.recipe_item == 'japan'}">
+							日式
+						</c:if> <c:if test="${recipe.recipe_item == 'thailand'}">
+							泰式
+						</c:if></td>
+					</tr>
 
+					<tr align="center" style='background-color: #2FA02F; color: white'>
+						<td style='font-size: 35px'>食材名稱</td>
+						<td style='font-size: 35px'>份量</td>
+					</tr>
+
+					<c:forEach var="recipe2" items="${recipeIngredients}">
+						<tr align="center">
+							<td>${recipe2.ingredients}</td>
+							<td>${recipe2.quantity}</td>
+						</tr>
+					</c:forEach>
+					<tr align="center" style='background-color: #2FA02F; color: white''>
+						<td style='font-size: 35px'>步驟圖片</td>
+						<td style='font-size: 35px'>步驟說明</td>
+					</tr>
+					<c:forEach var="recipe3" items="${recipeUnitBean}">
+						<tr align="center">
+							<td><img
+								src="<c:url value='/getRecipePicture2/${recipe.pk_recipe_id}/${recipe3.stepNo}' />"
+								width="300" /></td>
+							<td>${recipe3.explain}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+
+		</div>
+		<div style="height: 50px; background-color: white;"></div>
 	</div>
-<div style="height: 50px;background-color: white;"></div>
-</div>
 
 
-		<!--==============================footer=================================-->
+	<!--==============================footer=================================-->
 
-		<footer >
-			<div class="zerogrid">
-				<div class="col-full">
-					<div class="wrap-col">
-						<!-- 						&copy; Copyright &copy; 2013.Company name All rights reserved.<a -->
-						<!-- 							target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a> -->
-					</div>
+	<footer>
+		<div class="zerogrid">
+			<div class="col-full">
+				<div class="wrap-col">
+					<!-- 						&copy; Copyright &copy; 2013.Company name All rights reserved.<a -->
+					<!-- 							target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a> -->
 				</div>
 			</div>
-		</footer>
-		<div style="display: none">
-			<script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540'
-				language='JavaScript' charset='gb2312'></script>
 		</div>
+	</footer>
+	<div style="display: none">
+		<script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540'
+			language='JavaScript' charset='gb2312'></script>
+	</div>
+	<script>
+		document.onkeydown = function(e) {
+			e = window.event || e;
+			var keycode = e.keyCode || e.which;
+			if (keycode == 116) {
+				console.log("禁用F5按鍵");
+				if (window.event) {
+					console.log("禁用F5按鍵-#2");
+					// ie
+					try {
+						console.log("禁用F5按鍵-#3");
+						e.keyCode = 0;
+					} catch (e) {
+						console.log("禁用F5按鍵-#4");
+					}
+					e.returnValue = false;
+				} else {
+					//firefox
+					console.log("禁用F5按鍵-#5");
+					e.preventDefault();
+				}
+			}
+		}
+	</script>
 </body>
 
 </html>

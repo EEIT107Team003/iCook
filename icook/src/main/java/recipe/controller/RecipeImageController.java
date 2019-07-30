@@ -162,7 +162,7 @@ public class RecipeImageController {
 	}
 
 //	// 回傳圖片給網頁的函數，回傳食譜步驟圖片.
-//	//error-抓取資料功能失敗。
+//	//error-抓取食譜步驟圖片功能失敗。
 //	@RequestMapping(value = "/getRecipePicture2/{pk_recipe_id}/{stepNo}", method = RequestMethod.GET)
 //	public ResponseEntity<byte[]> getPictureUnit(HttpServletResponse response, @PathVariable Integer pk_recipe_id,
 //			@PathVariable Integer stepNo) throws ClassNotFoundException, SQLException {
