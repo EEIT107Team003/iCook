@@ -44,7 +44,7 @@ public class RecipeIngredientsBean implements Serializable {
 	public void setFk_recipe_id(Integer fk_recipe_id) {
 		this.fk_recipe_id = fk_recipe_id;
 	}
-	
+
 //	public RecipeBean getIngredientsRecipeBean() {
 //		return recipeBeanIngredients;
 //	}
