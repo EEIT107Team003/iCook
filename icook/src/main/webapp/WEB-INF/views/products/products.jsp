@@ -518,15 +518,14 @@
 				<h1>刀具</h1>
 				<ul style="cursor: pointer">
 					<li><a class="search">中式剁刀</a></li>
-					<li><a class="search">中式菜刀/切刀</a></li>
+					<li><a class="search">中式菜刀-切刀</a></li>
 					<li><a class="search">牛排刀</a></li>
 				</ul>
 				<h1>品酒器具</h1>
 				<ul style="cursor: pointer">
 					<li><a class="search">精緻酒器禮盒</a></li>
-					<li><a class="search">雞肉</a></li>
-					<li><a class="search">豬肉</a></li>
-					<li><a class="search">羊肉</a></li>
+					<li><a class="search">醒酒-調酒用具</a></li>
+					<li><a class="search">置酒架</a></li>
 				</ul>
 				</div>
 			</section>

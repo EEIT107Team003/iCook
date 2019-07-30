@@ -399,7 +399,9 @@ public class ProductController {
 		System.out.println("product_id======================================" + product_id.length());
 		if(product_id!=null &&product_id.length()!=0) {
 		previousbean = service.getProductById(Integer.valueOf(product_id));
+		if(Category==null || Category.length()==0)
 		Category=previousbean.getCategoriesbean().getCategorybean().getName();
+		if(Categoriesname==null || Categoriesname.length()==0)
 		Categoriesname=previousbean.getCategoriesbean().getName();
 		}
 		if (gender == null)

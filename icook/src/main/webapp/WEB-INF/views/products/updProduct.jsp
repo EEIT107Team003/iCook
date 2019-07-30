@@ -328,7 +328,7 @@ margin:15px;
 							</div>
                             <div>
 							<label for="description">商品描述 :</label>
-								<textarea id="" class="form-control" name="description" rows="6"></textarea>
+								<textarea id="" class="form-control" name="description" rows="6" ></textarea>
 								<input id="btnAdd" type='submit' class='btn btn-primary' />
                             </div>
 						</fieldset>
