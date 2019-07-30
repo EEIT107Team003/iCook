@@ -36,6 +36,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.gson.Gson;
 import com.web.icook.model.MemberBean;
 import com.web.icook.model.MyTrackBean;
 import com.web.icook.service.MemberService;
@@ -73,6 +74,16 @@ public class MemberController {
 		return "member/icookUser";
 	}
 
+	//我的食譜
+	@ResponseBody
+	@RequestMapping(value="user/myrecipe", method = RequestMethod.POST) 
+	public List<RecipeBean> myRecipe() {
+		List<RecipeBean> allRecipeBean=new ArrayList<RecipeBean>();
+		MemberBean bean = memberService.selectByUsername(getPrincipal());
+		allRecipeBean=irecipeService.searchRecipeByMemberId(bean.getMember_id());
+		System.out.println(allRecipeBean.size());
+		return allRecipeBean;
+	}
 
 	// 查詢我的追蹤
 	@ResponseBody
@@ -321,13 +332,13 @@ public class MemberController {
 	}
 
 	//我的食譜
-	@RequestMapping(value="members/myrecipe") 
-	public List<RecipeBean> MyRecipe(Model model) {
-		List<RecipeBean> allRecipeBean=irecipeService.getAllRecipe();
-		
-//		model.addAttribute("recipes",allRecipeBean);
-		
-		return null;
+	@ResponseBody
+	@RequestMapping(value="members/page/myrecipe", method = RequestMethod.POST) 
+	public List<RecipeBean> membersRecipe(@RequestParam(value = "member_id", required = false) Integer member_id) {
+		List<RecipeBean> allRecipeBean=new ArrayList<RecipeBean>();
+		allRecipeBean=irecipeService.searchRecipeByMemberId(member_id);
+		System.out.println(allRecipeBean.size());
+		return allRecipeBean;
 	}
 	
 //-------------------------------  管理員  ---------------------------------------------------------------------------

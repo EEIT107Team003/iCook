@@ -25,10 +25,10 @@ public class RecipeIngredientsServiceImpl implements IRecipeIngredientsService {
 		return recipeIngredientsDao.getRecipeIngredientsByFk(fk_recipe_id);
 	}
 
-//	@Override
-//	public void deleteRecipeIngredientsByFk(Integer fk) {
-//		recipeIngredientsDao.deleteRecipeIngredientsByFk(fk);
-//	}
+	@Override
+	public void deleteRecipeIngredientsByFk(Integer fk) {
+		recipeIngredientsDao.deleteRecipeIngredientsByFk(fk);
+	}
 
 	@Override
 	public void insertRecipeIngredients(RecipeIngredientsBean recipeIngredientsBean) {

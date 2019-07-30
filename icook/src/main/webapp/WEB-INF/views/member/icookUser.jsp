@@ -182,6 +182,41 @@ td {
 </style>
 <script>
 	$(document).ready(function() {
+			$("#tag_myRecipe").css({"border-bottom": "3px solid green"});
+			$("#tag_myCollectRecipe").css({"border-bottom": "none"});
+			$("#tag_myTrack").css({"border-bottom": "none"});
+			$("#tag_myForum").css({"border-bottom": "none"});
+			$.ajax({
+				url : "${pageContext.request.contextPath}/user/myrecipe",
+				type : "POST",
+				dataType : "json",
+				async : true,
+				success : function(data) {
+					var names = JSON.parse(JSON.stringify(data).split(","));
+					var txt = "";
+					console.log(data);
+					
+					for (i in names) {
+						txt+=
+							"<div class=contain_mytrack>"
+								+"<div width=100%>"
+								+"<div>"
+									+"<img class=contain_mytrack_photo src=<c:url value='/getRecipePicture/"+names[i].pk_recipe_id+"' /> />"
+								+"</div>"
+									+"<a href='${pageContext.request.contextPath}/recipe/recipeSuccessPage/two/"+names[i].pk_recipe_id+"' class='contain_mytrack_title'>"+names[i].recipe_name+"</a>"
+								+"</div>"
+									+"<div class=contain_mytrack_summary>食譜簡介："+names[i].recipe_summary+"</div>"
+								+"</div>"
+							+"</div>";
+					};
+					
+					$("#user_contain").html(txt);
+				},
+				error : function(data, textStatus, errorThrown) {
+					console.log("error: "+data);
+				},
+			});
+
 		$("#member_photo_file").click(function(){
 			$.ajax({
 				url : "${pageContext.request.contextPath}/user/updateMemberPhotos",
@@ -234,34 +269,36 @@ td {
 			$("#tag_myCollectRecipe").css({"border-bottom": "none"});
 			$("#tag_myTrack").css({"border-bottom": "none"});
 			$("#tag_myForum").css({"border-bottom": "none"});
-// 			$.ajax({
-// 				url : "${pageContext.request.contextPath}/user/myforum",
-// 				type : "POST",
-// 				dataType : "json",
-// 				contentType : "application/json",
-// 				async : true,
-// 				success : function(data) {
-// 					var names = JSON.parse(JSON.stringify(data).split(","));
-// 					var txt = "";
-// 					for (i in names) {
-// 						txt+=
-// 							"<div class=contain_mytrack>"
-// 									+"<div width=100%>"
-// 										+"<a href=${pageContext.request.contextPath}/forum/pick?harticle_id="+names[i].harticle_id+"&article_id="+names[i].article_id+" class=contain_mytrack_title>"+"["+names[i].category+"] "+names[i].title+"</a>"
-// 									+"</div>"	
-// 								+"<div class=contain_myforum_time>發文時間: "+formatDate(names[i].editTime)+"</div>"
-// 								+"</div>"
-// 								+"<hr style=clear: both;border-style: dashed;>"
-// 							+"</div>"
-// 						console.log(names[i].title);
-// 					};
-// // 					$("#forum_num").html(names.length)
-// 					$("#user_contain").html(txt);
-// 				},
-// 				error : function(data, textStatus, errorThrown) {
-// 					console.log("error: "+data);
-// 				},
-// 			});
+			$.ajax({
+				url : "${pageContext.request.contextPath}/user/myrecipe",
+				type : "POST",
+				dataType : "json",
+				async : true,
+				success : function(data) {
+					var names = JSON.parse(JSON.stringify(data).split(","));
+					var txt = "";
+					console.log(data);
+					
+					for (i in names) {
+						txt+=
+							"<div class=contain_mytrack>"
+								+"<div width=100%>"
+								+"<div>"
+									+"<img class=contain_mytrack_photo src=<c:url value='/getRecipePicture/"+names[i].pk_recipe_id+"' /> />"
+								+"</div>"
+									+"<a href='${pageContext.request.contextPath}/recipe/recipeSuccessPage/two/"+names[i].pk_recipe_id+"' class='contain_mytrack_title'>"+names[i].recipe_name+"</a>"
+								+"</div>"
+								+"<div class=contain_mytrack_summary>食譜簡介："+names[i].recipe_summary+"</div>"
+								+"</div>"
+							+"</div>";
+					};
+					
+					$("#user_contain").html(txt);
+				},
+				error : function(data, textStatus, errorThrown) {
+					console.log("error: "+data);
+				},
+			});
 		});
 		
 		$("#user_mytrack").click(function(){

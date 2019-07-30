@@ -137,10 +137,6 @@
 							<nav>
 								<ul class="sf-menu" style="padding-top: 55px">
 									<li><a href="index2">ICook</a></li>
-									<li><a href="icookAboutUS">關於我們</a>
-										<ul>
-											<li><a href="icookContact">聯繫我們</a></li>
-										</ul></li>
 									<li>
 										<a href="#">食譜專區</a>
 										<ul>
@@ -153,9 +149,8 @@
 											<!--<li><a href="#">cat3</a></li>-->
 										</ul>
 									</li>
-									<li><a href="icookLife">生活誌</a></li>
 									<li><a href="forum/overview">討論區</a></li>
-									<li><a href="A_articlemainpage">文章區</a></li>
+									<li><a href="A_articlemainpage">生活誌</a></li>
 									<li><a href="products">市集</a>
 										<ul>
 											<li><a href="cartPage">購物車</a></li>

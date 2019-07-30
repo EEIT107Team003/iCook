@@ -12,6 +12,8 @@ import javax.persistence.Id;
 //import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 //「單元食譜、食譜步驟【已完成】」
 @Entity
 @Table(name = "recipe_unit")
@@ -29,7 +31,10 @@ public class RecipeUnitBean implements Serializable {
 
 	private Integer stepNo;// 食譜步驟編號
 	private String explain;// 食譜步驟說明
+	
+	@JsonIgnore
 	private Blob unit_image;// 食譜步驟圖片
+	
 	private String file_name;// 儲存使用者圖片檔案名稱，跟 unit_image 相關。
 
 	public RecipeUnitBean() {

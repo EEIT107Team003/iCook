@@ -12,7 +12,7 @@
 <script src="https://cdn.bootcss.com/web-socket-js/1.0.0/web_socket.js"></script>
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
 <title>Stories - Free Bootstrap 4 Template by Colorlib</title>
-<meta charset="utf-8">
+<meta charset="utf-8"> 
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -126,9 +126,9 @@
 								<li><a href="recipe/recipeIndex">查看食譜</a> <!--<ul>--> <!--<li><a href="#">cat1</a></li>-->
 									<!--<li><a href="#">cat2</a></li>--> <!--<li><a href="#">cat3</a></li>-->
 									<!--</ul>--></li>
-								<li><a href="icookLife">生活誌</a></li>
+								
 								<li><a href="forum/overview">討論區</a></li>
-								<li><a href="A_articlemainpage">文章區</a></li>
+								<li><a href="A_articlemainpage">生活誌</a></li>
 
 
 								<!-- 									<li><a href="products">市集</a> -->
