@@ -279,6 +279,10 @@ li {
 							泰式
 						</c:if></td>
 					</tr>
+					<tr align="center">
+						<td>作者名稱</td>
+						<td><a href="<c:url value='/members/page?member_id=${memberBean.member_id}' />">${memberBean.nickname}</a></td>
+					</tr>
 
 					<tr align="center" style='background-color: #2FA02F; color: white'>
 						<td style='font-size: 35px'>食材名稱</td>
@@ -291,7 +295,7 @@ li {
 							<td>${recipe2.quantity}</td>
 						</tr>
 					</c:forEach>
-					<tr align="center" style='background-color: #2FA02F; color: white''>
+					<tr align="center" style='background-color: #2FA02F; color: white'>
 						<td style='font-size: 35px'>步驟圖片</td>
 						<td style='font-size: 35px'>步驟說明</td>
 					</tr>

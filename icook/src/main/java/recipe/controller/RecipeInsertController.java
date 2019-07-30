@@ -168,6 +168,7 @@ public class RecipeInsertController {
 		redirectAttribute.addFlashAttribute("recipeUnitBean", recipeUnitBean);
 		redirectAttribute.addFlashAttribute("currentUser", currentUser);
 		redirectAttribute.addFlashAttribute("recipeUser", recipeUser);
+		redirectAttribute.addFlashAttribute("memberBean", memberBean);
 		System.out.println("currentUser -> " + currentUser);
 		System.out.println("recipeUser -> " + recipeUser);
 		return "redirect:/recipe/recipeSuccessPage";// 讓瀏覽器再次發出請求，呼叫recipeSuccessPage.jsp檔案
