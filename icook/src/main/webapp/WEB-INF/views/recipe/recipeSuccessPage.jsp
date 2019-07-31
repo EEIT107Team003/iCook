@@ -129,7 +129,7 @@
 	});
 	
 	function collect() {
-// 		if($("#userId").val().trim()!=""){
+		if($("#userId").val().trim()!=""){
 			$.ajax({ 
 				url : "${pageContext.request.contextPath}/user/collectRecipe",
 				type : "POST",
@@ -146,7 +146,9 @@
 					console.log("error: "+data);
 				},
 			});
-// 		}
+		}else{
+			$("#collectMe_nologin").click();
+		}
 	}
 	function cancelcollect() {
 		$.ajax({ 
@@ -328,8 +330,16 @@ li {
 						<td style='font-size: 35px;'>食譜名稱</td>
 						<td style='font-size: 35px'>
 							<div>${recipe.recipe_name}</div>
-							<div id="collectRecipeButton"></div>
-<!-- 								<button class="btn btn-light" style="margin-top:6px; float: right;height: 100%" onclick='collect()'>收藏食譜</button> -->
+							<div id="collectRecipeButton">
+								<button class='btn btn-light' style='margin-top:6px; float: right;height: 100%' onclick='collect()'>加入收藏</button>
+							</div>
+							<div style="display: none">
+								<form method="GET"
+									action="${pageContext.request.contextPath}/user/collectRecipe/${recipe.pk_recipe_id}">
+									<button class="btn btn-primary" id=collectMe_nologin type="submit">加入收藏</button>
+									<%-- 					${pageContext.request.contextPath}/recipe/recipeSuccessPage/two/"+names[i].pk_recipe_id+" --%>
+								</form>
+							</div>
 						</td>
 					</tr>
 					<tr align="center">

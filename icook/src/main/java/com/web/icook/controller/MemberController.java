@@ -280,6 +280,11 @@ public class MemberController {
 		collectionRecipeService.collectByRecipeId(bean);
 		return null;
 	}
+	// 加入收藏(非會員)
+	@RequestMapping(value = "/user/collectRecipe/{pk_recipe_id}", method = RequestMethod.GET)
+	public String collectRecipe(Model model,@PathVariable("pk_recipe_id") Integer pk_recipe_id) {
+		return "redirect:/recipe/recipeSuccessPage/two/"+String.valueOf(pk_recipe_id);
+	}
 	
 	// 取消收藏
 	@ResponseBody
@@ -291,7 +296,6 @@ public class MemberController {
 		int h=collectionRecipeService.CollectRecipeCancel(bean.getMember_id(), recipe_id);
 		return h;
 	}
-
 //-------------------------------  members  ---------------------------------------------------------------------------
 	//前往會員頁
 	@RequestMapping(value = "/members/page")
