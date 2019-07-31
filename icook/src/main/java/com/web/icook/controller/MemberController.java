@@ -96,8 +96,7 @@ public class MemberController {
 		List<MyCollectRecipeBean> list=new ArrayList<MyCollectRecipeBean>();
 		MemberBean bean = memberService.selectByUsername(getPrincipal());
 		list=collectionRecipeService.selectCollectRecipeById(bean.getMember_id());
-		System.out.println(list.get(0).getCr_memberBean().getNickname()+"sssssssssssssssssssssssssss");
-		System.out.println(list.get(0).getCr_recipeBean().getRecipe_name()+"sssssssssssssssssssssssssss");
+		System.out.println(list.size());
 		return list;
 	}
 
