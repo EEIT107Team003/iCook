@@ -576,7 +576,7 @@ line-height:25px;
 								alt="EXTERIOR"></a>
 						</h1>
 
-						<div class="menu_block">
+						<div class="menu_block" style="float: left;">
 							<nav>
 								<ul class="sf-menu" style="padding-top: 55px">
 									<li><a href="index2">ICook</a></li>

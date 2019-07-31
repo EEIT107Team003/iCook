@@ -58,7 +58,7 @@ height:5ch;
 font-size: 18px;
 }
 .mainDiv{
-background-color: #CCEEFF;
+background-color: white;
 border: 1px solid 	#DDDDDD;
 border-radius: 15px;
 height:45ch;
@@ -74,7 +74,7 @@ width:23ch;
 	
 .mainText{
 margin:3px;
-background-color: #CCEEFF;
+background-color: white;
 height:10ch;
 }
 #pagination  input{

@@ -21,10 +21,10 @@ public class MyTrackBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	//追蹤者
-	@JsonBackReference
+	@JsonBackReference(value="tracker")
 	private MemberBean memberId;
 	//被追蹤者
-	@JsonBackReference
+	@JsonBackReference(value="tracked")
 	private MemberBean trackedId;
 	//追蹤時間
 	private Timestamp trackTime;
