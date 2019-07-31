@@ -196,13 +196,7 @@
 												data-toggle="modal" data-target="#exampleModal" style="float:right">檢舉</button>
 												</c:if>
 										</div>
-										<div class="fb-share-button"
-											data-href="https://github.com/EEIT107Team003/iCook"
-											data-layout="button_count" data-size="small">
-											<a target="_blank"
-												href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fforum.gamer.com.tw%2F&amp;src=sdkpreparse"
-												class="fb-xfbml-parse-ignore">分享</a>
-										</div>
+										
 									</div>
 
 

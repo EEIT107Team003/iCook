@@ -296,6 +296,7 @@ public class MemberController {
 		int h=collectionRecipeService.CollectRecipeCancel(bean.getMember_id(), recipe_id);
 		return h;
 	}
+
 //-------------------------------  members  ---------------------------------------------------------------------------
 	//前往會員頁
 	@RequestMapping(value = "/members/page")
