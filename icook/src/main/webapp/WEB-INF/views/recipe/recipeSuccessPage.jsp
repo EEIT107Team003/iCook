@@ -117,7 +117,7 @@
 					}
 				},
 				error : function(data, textStatus, errorThrown) {
-				
+					alert('error')
 					console.log("error: "+data);
 				},
 			});

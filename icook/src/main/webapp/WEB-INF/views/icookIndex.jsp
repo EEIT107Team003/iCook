@@ -167,7 +167,6 @@
 													data-target="#logout">會員登出</a></li>
 											</c:if>
 											<li><a href="checkOrders">查看訂單</a></li>
-											<li><a href="icookAddRecipe">新增食譜</a></li>
 											<sec:authorize access="hasRole('ADMIN')">
 												<li><a href="backStageDashboard">後台</a></li>
 											</sec:authorize>

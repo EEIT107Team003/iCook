@@ -166,18 +166,10 @@ li {
 								alt="EXTERIOR"></a>
 						</h1>
 
-						<div class="menu_block">
+						<div class="menu_block" style="float: left;">
 							<nav>
 								<ul class="sf-menu" style="padding-top: 55px">
-									<li><a href="${pageContext.request.contextPath}/index2">ICook</a></li>
-									<!--
-										<li>
-											<a href="icookAboutUS">關於我們</a>
-											<ul>
-												<li><a href="icookContact">聯繫我們</a></li>
-											</ul>
-										</li>
-									-->
+									<li><a href="index2">ICook</a></li>
 									<li><a href="<c:url value='/recipe/recipeSelect' />">食譜專區</a>
 										<ul>
 											<li><a
@@ -187,25 +179,24 @@ li {
 											</li>
 											<!--<li><a href="#">cat3</a></li>-->
 										</ul></li>
-									<li><a href="<c:url value='/forum/overview' />">討論區</a></li>
-									<li><a href="<c:url value='/A_articlemainpage' />">生活誌</a></li>
-									<li><a href="<c:url value='/products' />">市集</a>
+									<li><a href="forum/overview">討論區</a></li>
+									<li><a href="A_articlemainpage">生活誌</a></li>
+									<li><a href="products">市集</a>
 										<ul>
-											<li><a href="<c:url value='/cartPage' />">購物車</a></li>
+											<li><a href="cartPage">購物車</a></li>
 										</ul></li>
 									<%-- </c:if><c:if test="${pageContext.request.userPrincipal.name==null}"> --%>
-									<li><a href="<c:url value='/user' />">會員專區 </a>
+																			<li><a href="<c:url value='/user' />" >會員專區 </a>
 										<ul>
 											<sec:authorize access="!isAuthenticated()">
-												<li><a href="icookLogin">會員登入</a></li>
-												<li><a href="icookRegister">會員註冊</a></li>
+												<li><a href="<c:url value='/icookLogin' />" >會員登入</a></li>
+												<li><a href="<c:url value='/icookRegister' />" >會員註冊</a></li>
 											</sec:authorize>
 											<c:if test="${pageContext.request.userPrincipal.name!=null}">
-												<li><a href="index2" data-toggle="modal"
+												<li><a href="<c:url value='/index2' />" data-toggle="modal"
 													data-target="#logout">會員登出</a></li>
 											</c:if>
-											<li><a href="checkOrders">查看訂單</a></li>
-											<li><a href="icookAddRecipe">新增食譜</a></li>
+											<li><a href="${pageContext.request.contextPath}/checkOrders">查看訂單</a></li>
 											<sec:authorize access="hasRole('ADMIN')">
 												<li><a href="backStageDashboard">後台</a></li>
 											</sec:authorize>
@@ -220,7 +211,28 @@ li {
 			</div>
 		</header>
 		<!--=======content================================-->
-		<!-- 確認登出 -->
+				<!-- 確認登出 -->
+
+		<div class="modal fade" id="logout" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header" style="border-bottom: 1px solid;">
+						<h4 class="modal-title" id="myModalLabel" style="float: left">您即將登出享食天堂</h4>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">×</button>
+					</div>
+					<div class="modal-body" style="width: 100%">
+						<form method="post" action="<c:url value='/perform_logout'/>">
+							<button type="submit">確定登出</button>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
 		<!--=======content================================-->
 		<!-- 確認登出 -->
 
@@ -246,43 +258,46 @@ li {
 		<!-- 		</div> -->
 
 
-<!-- 		<div align="center" class='shrink'> -->
-		<div align="center">
-			<table class="table table-hover" align="center">
-				<thead>
-					<tr>
-						<td colspan='1'></td>
-
-						<td colspan='2'>
-							<div style='float: right' class="btn btn-outline-success">
-								<form method="POST"
-									action="${pageContext.request.contextPath}/recipe/search">
-									食譜搜尋：<input type="text" name="recipeSearch" /> <input
-										type="submit" value="查詢" />
-								</form>
-							</div>
-						</td>
-					</tr>
-					<tr>
-
-						<td>食譜名稱</td>
-						<td>食譜簡介</td>
-						<td>查看完整食譜</td>
-
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="recipe" items="${recipeBeans}">
+				<div align="center" class='shrink'>
+			<div align="center">
+				<table class="table table-hover">
+					<thead>
 						<tr>
-							<td>${recipe.recipe_name}</td>
-							<td>${recipe.recipe_summary}</td>
-							<td><a
-								href="${pageContext.request.contextPath}/recipe/recipeSelectTwo/${recipe.pk_recipe_id}"><p
-										class="btn btn-outline-success">查看完整食譜</p></a></td>
+							<td colspan='1' ></td>
+
+							<td colspan='2'>
+								<div style='float: right' class="btn btn-outline-success">
+									<form method="POST"
+										action="${pageContext.request.contextPath}/recipe/search">
+										食譜搜尋：<input type="text" name="recipeSearch" /> <input
+											type="submit" value="查詢" />
+									</form>
+								</div>
+							</td>
 						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+						<tr>
+							<td width="20%" style='font-size:40px'>食譜名稱</td>
+
+							<td width="60%" style='font-size:40px'>食譜簡介</td>
+
+							<td width="20%" style='font-size:40px'>查看內容</td>
+
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="recipe" items="${recipeBeans}">
+							<tr>
+								<td><p align="left">${recipe.recipe_name}</p></td>
+								<td><p align="left">${recipe.recipe_summary}</p></td>
+								<td><a
+									href="${pageContext.request.contextPath}/recipe/recipeSelectTwo/${recipe.pk_recipe_id}"><p
+											class="btn btn-outline-success">查看完整食譜</p></a></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+			</div>
 			<%-- <br> <a href="<c:url value='/recipe/recipeIndex' />">回食譜首頁</a> <br> --%>
 			<%-- 		<a href="<c:url value='/home' />">回首頁</a> <br> --%>
 
@@ -307,7 +322,6 @@ li {
 			</div>
 
 		</div>
-	</div>
 </body>
 
 </html>
