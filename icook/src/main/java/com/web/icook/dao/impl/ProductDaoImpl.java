@@ -1,28 +1,27 @@
 package com.web.icook.dao.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Repository;
 
 import com.web.icook.dao.ProductDao;
 import com.web.icook.exception.ProductNotFoundException;
 import com.web.icook.model.CategoriesBean;
 import com.web.icook.model.CategoryBean;
+import com.web.icook.model.MemberBean;
 import com.web.icook.model.ProductBean;
 
 @Repository
 public class ProductDaoImpl implements ProductDao {
-	
 	@Autowired
 	SessionFactory factory;
-	@Autowired
-	LocalSessionFactoryBean sessionFactory;
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<CategoriesBean> getOneCategory(String categoriesName) {
@@ -247,9 +246,9 @@ public class ProductDaoImpl implements ProductDao {
 		List<CategoryBean> list = new ArrayList<>();
 		session = factory.getCurrentSession();
 		list = session.createQuery(hql).getResultList();
-		for (CategoryBean bb : list) {
-			System.out.println(bb.getName());
-		}
+//		for (CategoryBean bb : list) {
+//			System.out.println(bb.getName());
+//		}
 		return list;
 	}
 

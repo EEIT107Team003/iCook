@@ -266,7 +266,7 @@ public class MemberController {
 	// 加入收藏
 	@ResponseBody
 	@RequestMapping(value = "/user/collectRecipe", method = RequestMethod.POST)
-	public List<MyCollectRecipeBean> collectRecipe(@RequestParam(value = "recipe_id", required = false) Integer recipe_id) {
+	public List<MyCollectRecipeBean> collectRecipe(@RequestParam(value = "recipe_id") Integer recipe_id) {
 		MemberBean member = memberService.selectByUsername(getPrincipal());
 		
 		System.out.println(recipe_id);

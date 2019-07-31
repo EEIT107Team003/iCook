@@ -122,7 +122,7 @@ public class MemberBean implements Serializable {
 	private Set<MsgBoardBean> Msg = new LinkedHashSet<>();
 
 	////////
-	@JsonBackReference(value = "cr_memberBean")
+//	@JsonBackReference(value = "cr_memberBean")
 	@OneToMany(mappedBy = "cr_memberBean", fetch = FetchType.EAGER)
 	private Set<MyCollectRecipeBean> collectRecipe = new LinkedHashSet<>();
 

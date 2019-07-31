@@ -371,11 +371,13 @@
 		}
 		
 		 function selectAll(){
+			 console.log($("#searchDiv").serializeObject())
 				$.ajax({
 					url : "${pageContext.request.contextPath}/SelectByCategoriesAndDescription/",
 					type : "POST",
 					dataType : "json",
 					data :$("#searchDiv").serializeObject(),
+// 					data :JSON.stringify($("#searchDiv")),
 					contentType : "application/json",
 					success : function(data) {
 						var names = JSON.parse(JSON.stringify(data).split(","));

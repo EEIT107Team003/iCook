@@ -18,6 +18,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.web.icook.model.MemberBean;
 
@@ -44,6 +45,7 @@ public class ForumMainBean implements Serializable {
 	private Integer replies; 			// 回應數
 	private Integer harticle_id; 		// 首篇文章編號
 	private Integer article_id; 		// 文章編號
+	@JsonBackReference
 	private MemberBean memberBean;		// 關聯會員物件
 	
 	

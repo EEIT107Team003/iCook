@@ -192,6 +192,7 @@ float:right;
 	
 	
 	 function selectAll(){
+		console.log($("#searchDiv").serializeObject());
 				$.ajax({
 					url : "${pageContext.request.contextPath}/SelectByCategoriesAndDescription/",
 					type : "POST",

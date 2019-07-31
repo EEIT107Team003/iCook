@@ -20,6 +20,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -49,10 +50,12 @@ public class RecipeBean implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GenericGenerator(name = "generatorName", strategy = "native")
 	private Integer pk_recipe_id;// 【PK】食譜編號
 
 //	private Integer member_id;// 【FK】會員編號//TODO 錯誤寫法1-1
 
+	@JsonBackReference
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_member_id")
 	private MemberBean memberbean;// TODO 正確寫法，多中有個一。2-1
@@ -70,7 +73,7 @@ public class RecipeBean implements Serializable {
 //	private List<RecipeUnitBean> recipeUnit = new ArrayList<RecipeUnitBean>();// 一對多，「單元食譜、食譜步驟【已完成】」
 
 //收藏食譜 (by江慶庭)---------------------------------------
-	@JsonBackReference(value = "cr_recipeBean")
+//	@JsonBackReference(value = "cr_recipeBean")
 	@OneToMany(mappedBy = "cr_recipeBean", fetch = FetchType.EAGER) // EAGER防止 lazy loading的問題
 	private Set<MyCollectRecipeBean> collectRecipe = new LinkedHashSet<>();
 //---------------------------------------	
