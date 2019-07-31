@@ -133,9 +133,9 @@
 								alt="EXTERIOR"></a>
 						</h1>
 
-						<div class="menu_block">
+						<div class="menu_block" style="float:left;">
 							<nav>
-								<ul class="sf-menu" style="padding-top: 55px">
+								<ul class="sf-menu" style="padding-top: 55px" >
 									<li><a href="index2">ICook</a></li>
 									<li>
 										<a href="<c:url value='/recipe/recipeSelect' />">食譜專區</a>

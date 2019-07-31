@@ -289,9 +289,12 @@ public class ForumController {
 	public String fuzzyQuery(@RequestParam("title") String title, Model model) {
 		List<ForumMainBean> fmbList = service.getByTitle(title);
 		if (!getPrincipal().equals("anonymousUser")) {
-			MemberBean mb = ms.selectByUsername(getPrincipal());
+			MemberBean mb = ms.selectByUsername(getPrincipal());			
 			List<MemberBean> mbList = new ArrayList<>();
 			mbList.add(mb);
+			model.addAttribute("LoginOK", mbList);
+		} else {
+			List<MemberBean> mbList = new ArrayList<>();
 			model.addAttribute("LoginOK", mbList);
 		}
 		model.addAttribute("posts", fmbList);
@@ -304,9 +307,12 @@ public class ForumController {
 		List<ForumMainBean> fmbList = service.getByCategory(category);
 		List<ForumMainBean> popFmb = service.getPopularArticle();
 		if (!getPrincipal().equals("anonymousUser")) {
-			MemberBean mb = ms.selectByUsername(getPrincipal());
+			MemberBean mb = ms.selectByUsername(getPrincipal());			
 			List<MemberBean> mbList = new ArrayList<>();
 			mbList.add(mb);
+			model.addAttribute("LoginOK", mbList);
+		} else {
+			List<MemberBean> mbList = new ArrayList<>();
 			model.addAttribute("LoginOK", mbList);
 		}
 		model.addAttribute("populars", popFmb);
