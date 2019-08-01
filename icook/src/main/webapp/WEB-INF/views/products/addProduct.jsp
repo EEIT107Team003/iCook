@@ -241,11 +241,11 @@ font-size:20px;
 										<form:input id="name" path="name" type='text' />
 										<label for="exampleFormControlSelect1">產品種類 :</label> <select
 											class="form-control" id="exampleFormControlSelect1"
-											style="width: 15ch"><option value="0" SELECTED>請選擇</option></select>
+											style="width: 15ch;height:5ch;font-size:15px;"><option value="0" SELECTED>請選擇</option></select>
 
 										<label for="exampleFormControlSelect2"></label> <select
 											multiple class="form-control" id="exampleFormControlSelect2"
-											style="width: 30ch"></select> <input id="fileName"
+											style="width: 30ch;height:10ch;font-size:15px;"></select> <input id="fileName"
 											name="fileName" type="hidden" /> <input id="remark"
 											name="remark" type="hidden" /> <label for="m1"><input
 											type="radio" name="gender" value="1"> 上架 </label> <label>

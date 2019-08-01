@@ -56,6 +56,8 @@ public class RecipeInsertController {
 		MemberBean memberBean = null;
 		memberBean = memberService.selectByUsername(userName);
 		model.addAttribute("bean", memberBean);
+		//memberBean
+		model.addAttribute("memberBean", memberBean);
 		return "recipe/recipeInsert";// 呼叫recipeInsert.jsp檔案
 	}
 
@@ -187,6 +189,7 @@ public class RecipeInsertController {
 		redirectAttribute.addFlashAttribute("currentUser", currentUser);
 		redirectAttribute.addFlashAttribute("recipeUser", recipeUser);
 		redirectAttribute.addFlashAttribute("bean", memberBean);
+		redirectAttribute.addFlashAttribute("memberBean", memberBean);
 		System.out.println("currentUser -> " + currentUser);
 		System.out.println("recipeUser -> " + recipeUser);
 		return "redirect:/recipe/recipeSuccessPage";// 讓瀏覽器再次發出請求，呼叫recipeSuccessPage.jsp檔案

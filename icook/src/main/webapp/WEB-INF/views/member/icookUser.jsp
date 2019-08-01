@@ -408,6 +408,7 @@ td {
 				contentType : "application/json",
 				async : true,
 				success : function(data) {
+					$("#ss").html(c_nickname);
 					$("#member_nickname").html(c_nickname);
 					$("#member_resume").html(c_resume);
 					$("#resume").val(c_resume);					
@@ -474,7 +475,7 @@ td {
 					<img id="member_photo_image"
 						 style="float:left;width:100px;height: 100px;border-radius: 50%; border: 1px solid black;background-color: white;"
 						 src="<c:url value='/getMemberPhoto/${member.member_id}' />" />
-					<div style=" font-size:60px;float: left;margin-left: 30px;">${member.nickname}</div>
+					<div id="ss" style=" font-size:60px;float: left;margin-left: 30px;">${member.nickname}</div>
 				</div>
 			</sec:authorize>
 			<div class="zerogrid">
@@ -572,7 +573,7 @@ td {
 						</div>
 						<div class="member_summary">
 							<h1 id="member_nickname" style="color:black">${member.nickname}</h1>
-							<h2 id="member_resume" class="desc" style="font-size: 10px ;color:black">${member.resume}</h2>
+							<h2 id="member_resume" class="desc" style="font-size: 15px ;color:black">${member.resume}</h2>
 						</div>	
 					</div>
 					<div class="member_cover_img" style="background-image:url('getCoverPhoto/${member.member_id}');background-size:100% 100%;" ></div>

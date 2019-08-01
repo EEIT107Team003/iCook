@@ -70,6 +70,7 @@ public class HomeController {
 		memberBean = memberService.selectByUsername(userName);
 		System.out.println("memberBean = " + memberBean);
 		model.addAttribute("bean", memberBean);
+		model.addAttribute("memberBean", memberBean);
 		return "recipe/recipeSelect";
 	}
 
@@ -89,6 +90,8 @@ public class HomeController {
 		memberBean = memberService.selectByUsername(userName);
 		System.out.println("memberBean = " + memberBean);
 		model.addAttribute("bean", memberBean);
+		//memberBean
+		model.addAttribute("memberBean", memberBean);
 		return "recipe/recipeSelect";
 	}
 
@@ -165,6 +168,8 @@ public class HomeController {
 		memberBean = memberService.selectByUsername(userName);
 		System.out.println("memberBean = " + memberBean);
 		model.addAttribute("bean", memberBean);
+		//memberBean
+		model.addAttribute("memberBean", memberBean);
 		return "recipe/recipeSelect";
 	}
 

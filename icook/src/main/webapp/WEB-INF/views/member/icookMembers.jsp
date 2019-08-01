@@ -535,7 +535,7 @@ section {
 				</div>
 				<div class="member_summary">
 					<h1 id="member_nickname">${member.nickname}</h1>
-					<h2 id="member_resume" class="desc" style="font-size: 10px">${member.resume}</h2>
+					<h2 id="member_resume" class="desc" style="font-size: 15px">${member.resume}</h2>
 				</div>
 			</div>
 <%-- 			<div class="member_cover_img" style="background-image:url('getCoverPhoto/${member.member_id}');background-size:100% 100%;" ></div> --%>
